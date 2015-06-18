@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
-		407305461B3203E600DE02D2 /* MenuSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305451B3203E600DE02D2 /* MenuSelectionViewController.swift */; };
+		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
+		407898D71B3301100006E9C5 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D61B3301100006E9C5 /* ToDoItem.swift */; };
+		407898D91B3302DB0006E9C5 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* TableViewCell.swift */; };
+		407898DB1B3303AF0006E9C5 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */; };
 		40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842261B308C6A00D39DCD /* AppDelegate.swift */; };
 		40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842281B308C6A00D39DCD /* MainMenuViewController.swift */; };
 		40E8422C1B308C6A00D39DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422A1B308C6A00D39DCD /* Main.storyboard */; };
@@ -31,7 +34,10 @@
 /* Begin PBXFileReference section */
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
-		407305451B3203E600DE02D2 /* MenuSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSelectionViewController.swift; sourceTree = "<group>"; };
+		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
+		407898D61B3301100006E9C5 /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		407898D81B3302DB0006E9C5 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
 		40E842211B308C6A00D39DCD /* Commons Menu1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Commons Menu1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E842251B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E842261B308C6A00D39DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,8 +93,11 @@
 				407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */,
 				40E842281B308C6A00D39DCD /* MainMenuViewController.swift */,
 				40E8422A1B308C6A00D39DCD /* Main.storyboard */,
-				407305451B3203E600DE02D2 /* MenuSelectionViewController.swift */,
 				407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */,
+				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
+				407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */,
+				407898D81B3302DB0006E9C5 /* TableViewCell.swift */,
+				407898D61B3301100006E9C5 /* ToDoItem.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
@@ -221,11 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				407305461B3203E600DE02D2 /* MenuSelectionViewController.swift in Sources */,
 				407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */,
 				407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */,
+				407898DB1B3303AF0006E9C5 /* StrikeThroughText.swift in Sources */,
+				407898D71B3301100006E9C5 /* ToDoItem.swift in Sources */,
 				40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */,
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
+				407898D91B3302DB0006E9C5 /* TableViewCell.swift in Sources */,
+				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
