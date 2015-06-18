@@ -16,6 +16,8 @@
 		40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422D1B308C6A00D39DCD /* Images.xcassets */; };
 		40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */; };
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
+		F39905901B3300EF004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F399058F1B3300EF004E74C6 /* Dish.swift */; };
+		F39905921B33021D004E74C6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905911B33021D004E74C6 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		40E842361B308C6A00D39DCD /* Commons Menu1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Commons Menu1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E8423B1B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
+		F399058F1B3300EF004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		F39905911B33021D004E74C6 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
+				F399058F1B3300EF004E74C6 /* Dish.swift */,
+				F39905911B33021D004E74C6 /* TableViewCell.swift */,
 			);
 			path = "Commons Menu1";
 			sourceTree = "<group>";
@@ -224,7 +230,9 @@
 				407305461B3203E600DE02D2 /* MenuSelectionViewController.swift in Sources */,
 				407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */,
 				407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */,
+				F39905901B3300EF004E74C6 /* Dish.swift in Sources */,
 				40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */,
+				F39905921B33021D004E74C6 /* TableViewCell.swift in Sources */,
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
