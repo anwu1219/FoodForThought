@@ -12,7 +12,7 @@ import QuartzCore
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol TableViewCellDelegate {
     // indicates that the given item has been deleted
-    func toDoItemDeleted(todoItem: ToDoItem)
+    func toDoItemDeleted(dish: Dish)
 }
 
 class TableViewCell: UITableViewCell {
@@ -26,10 +26,10 @@ class TableViewCell: UITableViewCell {
     // The object that acts as delegate for this cell.
     var delegate: TableViewCellDelegate?
     // The item that this cell renders.
-    var toDoItem: ToDoItem? {
+    var dish: Dish? {
         didSet {
-            label.text = toDoItem!.text
-            label.strikeThrough = toDoItem!.completed
+            label.text = dish!.name
+            label.strikeThrough = dish!.completed
             itemCompleteLayer.hidden = !label.strikeThrough
         }
     }
@@ -134,13 +134,13 @@ class TableViewCell: UITableViewCell {
             let originalFrame = CGRect(x: 0, y: frame.origin.y,
                 width: bounds.size.width, height: bounds.size.height)
             if deleteOnDragRelease {
-                if delegate != nil && toDoItem != nil {
+                if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
-                    delegate!.toDoItemDeleted(toDoItem!)
+                    delegate!.toDoItemDeleted(dish!)
                 }
             } else if completeOnDragRelease {
-                if toDoItem != nil {
-                    toDoItem!.completed = true
+                if dish != nil {
+                    dish!.completed = true
                 }
                 label.strikeThrough = true
                 itemCompleteLayer.hidden = false
