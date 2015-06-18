@@ -9,7 +9,6 @@
 import UIKit
 
 class ToDoItem: NSObject {
-   
     // A text description of this item.
     var text: String
     
@@ -21,6 +20,4 @@ class ToDoItem: NSObject {
         self.text = text
         self.completed = false
     }
-
-    
 }

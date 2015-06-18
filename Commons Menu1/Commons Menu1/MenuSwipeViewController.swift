@@ -27,18 +27,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if toDoItems.count > 0 {
             return
         }
-        toDoItems.append(ToDoItem(text: "feed the cat"))
-        toDoItems.append(ToDoItem(text: "buy eggs"))
-        toDoItems.append(ToDoItem(text: "watch WWDC videos"))
-        toDoItems.append(ToDoItem(text: "rule the Web"))
-        toDoItems.append(ToDoItem(text: "buy a new iPhone"))
-        toDoItems.append(ToDoItem(text: "darn holes in socks"))
-        toDoItems.append(ToDoItem(text: "write this tutorial"))
-        toDoItems.append(ToDoItem(text: "master Swift"))
-        toDoItems.append(ToDoItem(text: "learn to draw"))
-        toDoItems.append(ToDoItem(text: "get more exercise"))
-        toDoItems.append(ToDoItem(text: "catch up with Mom"))
-        toDoItems.append(ToDoItem(text: "get a hair cut"))
+        toDoItems.append(ToDoItem(text: "Menu Item 1"))
+        toDoItems.append(ToDoItem(text: "Menu Item 2"))
+        toDoItems.append(ToDoItem(text: "Menu Item 3"))
+        toDoItems.append(ToDoItem(text: "Menu Item 4"))
+        toDoItems.append(ToDoItem(text: "Menu Item 5"))
+        toDoItems.append(ToDoItem(text: "Menu Item 6"))
+        toDoItems.append(ToDoItem(text: "Menu Item 7"))
+        toDoItems.append(ToDoItem(text: "Menu Item 8"))
+        toDoItems.append(ToDoItem(text: "Menu Item 9"))
+        toDoItems.append(ToDoItem(text: "Menu Item 10"))
+        toDoItems.append(ToDoItem(text: "Menu Item 11"))
+        toDoItems.append(ToDoItem(text: "Menu Item 12"))
     }
     
     // MARK: - Table view data source
