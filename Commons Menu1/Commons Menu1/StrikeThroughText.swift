@@ -17,7 +17,7 @@ class StrikeThroughText: UILabel {
         didSet {
             strikeThroughLayer.hidden = !strikeThrough
             if strikeThrough {
-//                resizeStrikeThrough()
+//               resizeStrikeThrough()
             }
         }
     }
@@ -38,7 +38,7 @@ class StrikeThroughText: UILabel {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        resizeStrikeThrough()
+//       resizeStrikeThrough()
     }
     
     let kStrikeOutThickness: CGFloat = 2.0
