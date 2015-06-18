@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class PreferenceListViewController: UIViewController {
 

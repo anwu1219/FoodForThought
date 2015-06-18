@@ -143,7 +143,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="protCell" id="rHH-34-zTX">
-
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rHH-34-zTX" id="rLY-sE-uJe">
@@ -171,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCp-JQ-udo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="-699"/>
+            <point key="canvasLocation" x="240" y="-695"/>
         </scene>
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
@@ -232,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="-58"/>
+            <point key="canvasLocation" x="240" y="81"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">

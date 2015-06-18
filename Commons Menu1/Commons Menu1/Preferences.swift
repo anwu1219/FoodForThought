@@ -9,5 +9,5 @@
 import Foundation
 
 struct DishPreferences {
-    var Preferences["Commons": ["Dish A", "Dish B", "Dish C"]]
+    var Preferences = ["Commons": ["Dish A", "Dish B", "Dish C"]]
 }
