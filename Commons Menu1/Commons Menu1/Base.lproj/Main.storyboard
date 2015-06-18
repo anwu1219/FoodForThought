@@ -159,6 +159,24 @@
             </objects>
             <point key="canvasLocation" x="231" y="-680"/>
         </scene>
+        <!--Dish Info-->
+        <scene sceneID="5oC-AP-4wm">
+            <objects>
+                <viewController title="Dish Info" id="f2Y-jF-9VT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgw-pN-LjJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="0nw-ug-gXp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zfm-z2-jgf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="231" y="6"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
             <objects>

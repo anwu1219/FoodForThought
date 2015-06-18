@@ -64,6 +64,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             return cell
     }
     
+    
     func toDoItemDeleted(dish: Dish) {
         // could use this to get index when Swift Array indexOfObject works
         // let index = toDoItems.indexOfObject(toDoItem)
