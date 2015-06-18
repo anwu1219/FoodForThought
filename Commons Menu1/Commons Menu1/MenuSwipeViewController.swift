@@ -62,7 +62,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             cell.delegate = self
             cell.dish = item
             
-            var image : UIImage = UIImage(named: "osx_design_view_messages")
+//            var image : UIImage = UIImage(named: "osx_design_view_messages")
 
             return cell
     }

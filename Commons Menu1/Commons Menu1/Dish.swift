@@ -19,4 +19,8 @@ class Dish: NSObject {
         self.name = text
         self.completed = false
     }
+    
+    
+    
+    
 }
