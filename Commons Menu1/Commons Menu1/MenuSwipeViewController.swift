@@ -61,6 +61,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             //            cell.textLabel?.text = item.text
             cell.delegate = self
             cell.dish = item
+            
+            var image : UIImage = UIImage(named: "osx_design_view_messages")
+
             return cell
     }
     
