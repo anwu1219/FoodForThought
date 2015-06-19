@@ -64,17 +64,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sustainability Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55t-aS-SLo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sustainability Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55t-aS-SLo">
                                 <rect key="frame" x="92" y="115" width="136" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="LJh-O9-cS1">
-                                <rect key="frame" x="13" y="177" width="295" height="227"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="LJh-O9-cS1">
+                                <rect key="frame" x="13" y="175" width="295" height="227"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="295" id="QnY-jk-b6o"/>
+                                    <constraint firstAttribute="height" constant="227" id="RoG-IL-k5i"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="55t-aS-SLo" secondAttribute="centerX" id="GcC-qN-UD5"/>
+                            <constraint firstItem="LJh-O9-cS1" firstAttribute="top" secondItem="55t-aS-SLo" secondAttribute="bottom" constant="41" id="Jcy-yH-ezd"/>
+                            <constraint firstAttribute="centerX" secondItem="LJh-O9-cS1" secondAttribute="centerX" id="o9P-4a-cUA"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sustainability Info" id="r1B-Ie-odl"/>
                 </viewController>
