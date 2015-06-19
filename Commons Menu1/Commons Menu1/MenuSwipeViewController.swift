@@ -54,15 +54,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-            //            cell.textLabel?.backgroundColor = UIColor.clearColor()
-            
-            cell.selectionStyle = .None
+
             let item = menu[indexPath.row]
-            //            cell.textLabel?.text = item.text
+            cell.selectionStyle = .None
+        
+
             cell.delegate = self
             cell.dish = item
             
-//            var image : UIImage = UIImage(named: "osx_design_view_messages")
+            var sloth = UIImage(named: "sloth")
+            cell.imageView?.image = sloth
+            
+            // cell.textLabel?.text = item.text
+            // cell.textLabel?.backgroundColor = UIColor.clearColor()
+            // var image : UIImage = UIImage(named: "osx_design_view_messages")
 
             return cell
     }

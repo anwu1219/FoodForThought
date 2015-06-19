@@ -53,7 +53,9 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+      
         if indexPath == 0{
             let dish = preferences1[indexPath.row]
             cell.textLabel?.text = dish
@@ -61,6 +63,13 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         let dish = preferences2[indexPath.row]
         cell.textLabel?.text = dish
         }
+
+//        var cell = UITableViewCell()
+//        cell.textLabel?.text = "Hey!"
+        
+        var sloth = UIImage(named: "sloth")
+        cell.imageView?.image = sloth
+        
         return cell
     }
     
