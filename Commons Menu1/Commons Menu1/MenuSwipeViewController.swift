@@ -64,6 +64,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             
 //            var image : UIImage = UIImage(named: "osx_design_view_messages")
 
+
             return cell
     }
     

@@ -57,10 +57,13 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         if indexPath == 0{
             let dish = preferences1[indexPath.row]
             cell.textLabel?.text = dish
+            cell.detailTextLabel?.text = "Hey"
         } else {
         let dish = preferences2[indexPath.row]
         cell.textLabel?.text = dish
+        cell.detailTextLabel?.text = "Hey"
         }
+        
         return cell
     }
     
