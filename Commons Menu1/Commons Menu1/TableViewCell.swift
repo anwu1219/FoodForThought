@@ -17,6 +17,8 @@ protocol TableViewCellDelegate {
 
 class TableViewCell: UITableViewCell {
     
+    var imgUser = UIImageView()
+    
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, completeOnDragRelease = false

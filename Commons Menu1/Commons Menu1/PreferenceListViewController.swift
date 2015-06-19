@@ -36,6 +36,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         cell.textLabel?.text = "Hey!"
+        
+        var sloth = UIImage(named: "sloth")
+        cell.imageView?.image = sloth
+        
         return cell
     }
     
