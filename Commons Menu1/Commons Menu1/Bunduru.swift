@@ -11,30 +11,12 @@ import Foundation
 //Data lives in here
 
 struct Bunduru {
-    let Commons = [
-    
-        [
-        "name": "Chicken Parmesan",
-        "description": "It is chiken lol",
-        "ingredients": ["Chicken", "other stuff"],
-        "nutrition": ["pracehorder"]
-        ],
-        [
-        "name": "Beef Stroganoff",
-        "description": "It is beef lol",
-        "ingredients": ["Beef", "other stuff"],
-        "nutrition": ["pracehorder"]
-        ]
-    ]
-    
-    
-    let Union = [
-    [
-        "name": "Hamburger",
-        "description": "It is a hambuger lol",
-        "ingredients": ["hamburger", "other stuff"],
-        "nutrition": ["pracehorder"]
-        ]
-    ]
+    var allRestaurants =
+    ["Commons": [
+        Dish(name: "Chicken Parmesan", ingredients: ["Chicken", "other stuff"], nutrition: "pracehorder"),
+        Dish(name: "Beef Stroganoff", ingredients: ["Beef", "other stuff"], nutrition: "pracehorder")],
+        "Union": [
+            Dish(name: "Hamburger", ingredients: ["hamburger", "other stuff"], nutrition: "pracehorder")
+    ]]
 }
 

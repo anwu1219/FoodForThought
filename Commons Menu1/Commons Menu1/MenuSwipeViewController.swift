@@ -27,18 +27,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if menu.count > 0 {
             return
         }
-        menu.append(Dish(text: "Menu Item 1"))
-        menu.append(Dish(text: "Menu Item 2"))
-        menu.append(Dish(text: "Menu Item 3"))
-        menu.append(Dish(text: "Menu Item 4"))
-        menu.append(Dish(text: "Menu Item 5"))
-        menu.append(Dish(text: "Menu Item 6"))
-        menu.append(Dish(text: "Menu Item 7"))
-        menu.append(Dish(text: "Menu Item 8"))
-        menu.append(Dish(text: "Menu Item 9"))
-        menu.append(Dish(text: "Menu Item 10"))
-        menu.append(Dish(text: "Menu Item 11"))
-        menu.append(Dish(text: "Menu Item 12"))
+        menu.append(Dish(name: "Menu Item 1"))
+        menu.append(Dish(name: "Menu Item 2"))
+        menu.append(Dish(name: "Menu Item 3"))
+        menu.append(Dish(name: "Menu Item 4"))
+        menu.append(Dish(name: "Menu Item 5"))
+        menu.append(Dish(name: "Menu Item 6"))
+        menu.append(Dish(name: "Menu Item 7"))
+        menu.append(Dish(name: "Menu Item 8"))
+        menu.append(Dish(name: "Menu Item 9"))
+        menu.append(Dish(name: "Menu Item 10"))
+        menu.append(Dish(name: "Menu Item 11"))
+        menu.append(Dish(name: "Menu Item 12"))
     }
     
     // MARK: - Table view data source

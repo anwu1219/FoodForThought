@@ -10,16 +10,31 @@ import UIKit
 class Dish: NSObject {
     // A text description of this item.
     var name: String
+    var ingredients: [String] = []
+    var nutrition: String = ""
     
     // A Boolean value that determines the completed state of this item.
     var completed: Bool
     
     // Returns a ToDoItem initialized with the given text and default completed value.
-    init(text: String) {
-        self.name = text
+    init(name: String) {
+        self.name = name
         self.completed = false
     }
     
+    //two initializers and will know which one to use by what you enter
+    init(name: String, ingredients: [String]) {
+        self.name = name
+        self.ingredients = ingredients
+        self.completed = false
+    }
+    
+    init(name: String, ingredients: [String], nutrition: String) {
+        self.name = name
+        self.ingredients = ingredients
+        self.nutrition = nutrition
+        self.completed = false
+    }
     
     
     
