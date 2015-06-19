@@ -59,6 +59,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             var sloth = UIImage(named: "sloth")
             cell.imageView?.image = sloth
             
+            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
+            
             // cell.textLabel?.text = item.text
             // cell.textLabel?.backgroundColor = UIColor.clearColor()
             // var image : UIImage = UIImage(named: "osx_design_view_messages")

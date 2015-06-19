@@ -94,7 +94,7 @@ class TableViewCell: UITableViewCell {
         addGestureRecognizer(recognizer)
     }
     
-    let kLabelLeftMargin: CGFloat = 15.0
+    let kLabelLeftMargin: CGFloat = 150.0
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
     override func layoutSubviews() {
         super.layoutSubviews()
