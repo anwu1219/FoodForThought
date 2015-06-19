@@ -23,6 +23,7 @@
 		40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */; };
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
+		F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		40E8423B1B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
+		F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
+				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
 			);
 			path = "Commons Menu1";
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				407898E31B331E4E0006E9C5 /* Meal.swift in Sources */,
 				407898E11B331E040006E9C5 /* Menu.swift in Sources */,
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
+				F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				407898E51B331E830006E9C5 /* Ingredient.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* TableViewCell.swift in Sources */,
