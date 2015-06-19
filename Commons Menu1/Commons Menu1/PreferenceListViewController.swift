@@ -12,7 +12,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
 
     @IBOutlet weak var preferenceListTableView: UITableView!
-    var dishPreferences = Bunduru().Commons
     
     let preferences1 = ["Meal 1",
         "Meal 2",
