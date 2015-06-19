@@ -12,7 +12,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBOutlet weak var tableView: UITableView!
    
-    var toDoItems = [ToDoItem]()
+    var menu = [Dish]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +24,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundColor = UIColor.blackColor()
         tableView.rowHeight = 50;
         
-        if toDoItems.count > 0 {
+        if menu.count > 0 {
             return
         }
-        toDoItems.append(ToDoItem(text: "Menu Item 1"))
-        toDoItems.append(ToDoItem(text: "Menu Item 2"))
-        toDoItems.append(ToDoItem(text: "Menu Item 3"))
-        toDoItems.append(ToDoItem(text: "Menu Item 4"))
-        toDoItems.append(ToDoItem(text: "Menu Item 5"))
-        toDoItems.append(ToDoItem(text: "Menu Item 6"))
-        toDoItems.append(ToDoItem(text: "Menu Item 7"))
-        toDoItems.append(ToDoItem(text: "Menu Item 8"))
-        toDoItems.append(ToDoItem(text: "Menu Item 9"))
-        toDoItems.append(ToDoItem(text: "Menu Item 10"))
-        toDoItems.append(ToDoItem(text: "Menu Item 11"))
-        toDoItems.append(ToDoItem(text: "Menu Item 12"))
+        menu.append(Dish(text: "Menu Item 1"))
+        menu.append(Dish(text: "Menu Item 2"))
+        menu.append(Dish(text: "Menu Item 3"))
+        menu.append(Dish(text: "Menu Item 4"))
+        menu.append(Dish(text: "Menu Item 5"))
+        menu.append(Dish(text: "Menu Item 6"))
+        menu.append(Dish(text: "Menu Item 7"))
+        menu.append(Dish(text: "Menu Item 8"))
+        menu.append(Dish(text: "Menu Item 9"))
+        menu.append(Dish(text: "Menu Item 10"))
+        menu.append(Dish(text: "Menu Item 11"))
+        menu.append(Dish(text: "Menu Item 12"))
     }
     
     // MARK: - Table view data source
@@ -48,7 +48,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDoItems.count
+        return menu.count
     }
     
     func tableView(tableView: UITableView,
@@ -57,26 +57,30 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             //            cell.textLabel?.backgroundColor = UIColor.clearColor()
             
             cell.selectionStyle = .None
-            let item = toDoItems[indexPath.row]
+            let item = menu[indexPath.row]
             //            cell.textLabel?.text = item.text
             cell.delegate = self
-            cell.toDoItem = item
+            cell.dish = item
+            
+//            var image : UIImage = UIImage(named: "osx_design_view_messages")
+
             return cell
     }
     
-    func toDoItemDeleted(toDoItem: ToDoItem) {
+    
+    func toDoItemDeleted(dish: Dish) {
         // could use this to get index when Swift Array indexOfObject works
         // let index = toDoItems.indexOfObject(toDoItem)
         // in the meantime, scan the array to find index of item to delete
         var index = 0
-        for i in 0..<toDoItems.count {
-            if toDoItems[i] === toDoItem {  // note: === not ==
+        for i in 0..<menu.count {
+            if menu[i] === dish {  // note: === not ==
                 index = i
                 break
             }
         }
         // could removeAtIndex in the loop but keep it here for when indexOfObject works
-        toDoItems.removeAtIndex(index)
+        menu.removeAtIndex(index)
         
         // use the UITableView to animate the removal of this row
         tableView.beginUpdates()
@@ -88,7 +92,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Table view delegate
     
     func colorForIndex(index: Int) -> UIColor {
-        let itemCount = toDoItems.count - 1
+        let itemCount = menu.count - 1
         let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
         return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
     }
