@@ -196,7 +196,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lXn-E5-OFx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lXn-E5-OFx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -213,6 +213,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lXn-E5-OFx" secondAttribute="trailing" id="7N5-9o-lCu"/>
+                            <constraint firstItem="lXn-E5-OFx" firstAttribute="leading" secondItem="13h-NW-7xK" secondAttribute="leading" id="UR8-Aj-Oj5"/>
+                            <constraint firstItem="lXn-E5-OFx" firstAttribute="top" secondItem="13h-NW-7xK" secondAttribute="top" id="qyW-ka-6pi"/>
+                            <constraint firstAttribute="bottom" secondItem="lXn-E5-OFx" secondAttribute="bottom" id="zeC-sr-D6m"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Preference List" id="gCE-9I-BWh"/>
                     <connections>
@@ -221,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4R-hW-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="609" y="-666"/>
+            <point key="canvasLocation" x="608" y="-680"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
