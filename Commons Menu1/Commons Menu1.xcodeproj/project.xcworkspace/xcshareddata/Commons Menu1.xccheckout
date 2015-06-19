@@ -5,6 +5,18 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
+	<string>417D9F04-8CA2-49A2-A012-A201EA09FB96</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Commons Menu1</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
+		<string>https://github.com/anwu1219/FoodForThought.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Commons Menu1/Commons Menu1.xcodeproj</string>
+=======
 	<string>D95A4A62-9884-4D93-8895-5B8F512A46CC</string>
 	<key>IDESourceControlProjectName</key>
 	<string>project</string>
@@ -15,13 +27,18 @@
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Commons Menu1/Commons Menu1.xcodeproj/project.xcworkspace</string>
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
+<<<<<<< HEAD
+	<string>https://github.com/anwu1219/FoodForThought.git</string>
+=======
 	<string>https://github.com/WizuO/FoodForThought.git</string>
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

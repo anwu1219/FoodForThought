@@ -2,7 +2,11 @@
 //  TableViewCell.swift
 //  Commons Menu1
 //
+<<<<<<< HEAD
+//  Created by Andrew Wu on 6/18/15.
+=======
 //  Created by Bjorn Ordoubadian on 18/6/15.
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
@@ -12,11 +16,24 @@ import QuartzCore
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol TableViewCellDelegate {
     // indicates that the given item has been deleted
+<<<<<<< HEAD
+    func dishDeleted(dish: Dish)
+=======
     func toDoItemDeleted(dish: Dish)
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
 }
 
 class TableViewCell: UITableViewCell {
     
+<<<<<<< HEAD
+    // The object that acts as delegate for this cell.
+    var delegate: TableViewCellDelegate?
+    // The item that this cell renders.
+    var dish: Dish?
+    let gradientLayer = CAGradientLayer()
+    var originalCenter = CGPoint()
+    var deleteOnDragRelease = false
+=======
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, completeOnDragRelease = false
@@ -33,12 +50,17 @@ class TableViewCell: UITableViewCell {
             itemCompleteLayer.hidden = !label.strikeThrough
         }
     }
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+<<<<<<< HEAD
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+=======
         // create a label that renders the to-do item text
         label = StrikeThroughText(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
@@ -70,6 +92,7 @@ class TableViewCell: UITableViewCell {
         // remove the default blue highlight for selected cells
         selectionStyle = .None
         
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
         // gradient layer for cell
         gradientLayer.frame = bounds
         let color1 = UIColor(white: 1.0, alpha: 0.2).CGColor as CGColorRef
@@ -79,6 +102,8 @@ class TableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.01, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
+<<<<<<< HEAD
+=======
         
         // add a layer that renders a green background when an item is complete
         itemCompleteLayer = CALayer(layer: layer)
@@ -86,12 +111,21 @@ class TableViewCell: UITableViewCell {
         itemCompleteLayer.hidden = true
         layer.insertSublayer(itemCompleteLayer, atIndex: 0)
         
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
         // add a pan recognizer
         var recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         recognizer.delegate = self
         addGestureRecognizer(recognizer)
     }
     
+<<<<<<< HEAD
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = bounds
+    }
+    
+    
+=======
     let kLabelLeftMargin: CGFloat = 15.0
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
     override func layoutSubviews() {
@@ -107,6 +141,7 @@ class TableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
     }
     
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
     //MARK: - horizontal pan gesture methods
     func handlePan(recognizer: UIPanGestureRecognizer) {
         // 1
@@ -120,6 +155,23 @@ class TableViewCell: UITableViewCell {
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
             // has the user dragged the item far enough to initiate a delete/complete?
             deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
+<<<<<<< HEAD
+        }
+        // 3
+        if recognizer.state == .Ended {
+            // the frame this cell had before user dragged it
+            let originalFrame = CGRect(x: 0, y: frame.origin.y,
+                width: bounds.size.width, height: bounds.size.height)
+            if !deleteOnDragRelease {
+                // if the item is not being deleted, snap back to the original location
+                UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
+            }
+            if deleteOnDragRelease {
+                if delegate != nil && dish != nil {
+                    // notify the delegate that this item should be deleted
+                    delegate!.dishDeleted(dish!)
+                }
+=======
             completeOnDragRelease = frame.origin.x > frame.size.width / 2.0
             // fade the contextual clues
             let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
@@ -147,6 +199,7 @@ class TableViewCell: UITableViewCell {
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
             } else {
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
             }
         }
     }
@@ -161,4 +214,8 @@ class TableViewCell: UITableViewCell {
         }
         return false
     }
+<<<<<<< HEAD
+    
+=======
+>>>>>>> dcb4c1395fe9698b84b0d1c24b2910e6fe081016
 }
