@@ -15,20 +15,25 @@ struct Bunduru {
     
         [
         "name": "Chicken Parmesan",
-        "ingredients": "Chicken lol",
-        "nutrition": "pracehorder"
+        "description": "It is chiken lol",
+        "ingredients": ["Chicken", "other stuff"],
+        "nutrition": ["pracehorder"]
         ],
         [
         "name": "Beef Stroganoff",
-        "ingredients": "Beef",
-        "nutrition": "pracehorder"
+        "description": "It is beef lol",
+        "ingredients": ["Beef", "other stuff"],
+        "nutrition": ["pracehorder"]
         ]
     ]
     
     
     let Union = [
     [
-      "name": "Hamburger",  
+        "name": "Hamburger",
+        "description": "It is a hambuger lol",
+        "ingredients": ["hamburger", "other stuff"],
+        "nutrition": ["pracehorder"]
         ]
     ]
 }
