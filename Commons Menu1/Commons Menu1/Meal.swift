@@ -9,10 +9,8 @@
 import Foundation
 
 struct Meal {
-    var name: String?
-    var description: String?
+    var name: String
     var ingredients: [Ingredient]
-    var meals: [String] = []
     
     init(name: String) {
         self.name = name
@@ -25,18 +23,6 @@ struct Meal {
     }
     
     
-    
-//    init(index: Int) {
-//        let allMeals = Bunduru().Commons
-//        let cuisineDictionary = allMeals[index]
-//        
-//        name = cuisineDictionary["name"] as! String! //downcasting (as! - keyword) into String
-//        description = cuisineDictionary["description"] as! String!
-//        
-//        meals += cuisineDictionary["meals"] as! [String]
-//
-//        
-//    }
 
     
     mutating func addIngredient(ingredient: Ingredient) {
