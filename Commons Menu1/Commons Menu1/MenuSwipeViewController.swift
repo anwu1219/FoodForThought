@@ -22,7 +22,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor.blackColor()
-        tableView.rowHeight = 50;
+        tableView.rowHeight = 100;
         
         if menu.count > 0 {
             return
