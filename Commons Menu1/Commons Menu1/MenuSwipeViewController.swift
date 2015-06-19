@@ -17,6 +17,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var bunduru = Bunduru().allRestaurants
+        var meal = bunduru["Commons"]
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
@@ -27,18 +30,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if menu.count > 0 {
             return
         }
-        menu.append(Dish(name: "Menu Item 1"))
-        menu.append(Dish(name: "Menu Item 2"))
-        menu.append(Dish(name: "Menu Item 3"))
-        menu.append(Dish(name: "Menu Item 4"))
-        menu.append(Dish(name: "Menu Item 5"))
-        menu.append(Dish(name: "Menu Item 6"))
-        menu.append(Dish(name: "Menu Item 7"))
-        menu.append(Dish(name: "Menu Item 8"))
-        menu.append(Dish(name: "Menu Item 9"))
-        menu.append(Dish(name: "Menu Item 10"))
-        menu.append(Dish(name: "Menu Item 11"))
-        menu.append(Dish(name: "Menu Item 12"))
+        for var i = 0; i < meal!.count; i++ {
+            menu.append(meal![i])
+        }
     }
     
     // MARK: - Table view data source
