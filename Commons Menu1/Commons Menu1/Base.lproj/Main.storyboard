@@ -2,8 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Menu-->
@@ -105,47 +103,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="davidsonLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Ag3-2g-dpW">
-                                <rect key="frame" x="55" y="119" width="211" height="125"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Ag3-2g-dpW" secondAttribute="height" multiplier="211:125" id="tds-f9-aMr"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-iJ-UFs">
+                                <rect key="frame" x="137" y="269" width="71" height="30"/>
+                                <state key="normal" title="Commons">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="t1O-bz-3DJ" appends="YES" id="1zU-50-Ao8"/>
+                                    <segue destination="5dj-oE-vjJ" kind="push" id="wgb-kf-2KN"/>
                                 </connections>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="AjF-MJ-OT2">
-                                <rect key="frame" x="55" y="356" width="211" height="125"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="AjF-MJ-OT2" secondAttribute="height" multiplier="211:125" id="5fu-qB-dC9"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="D5s-wT-r6i" appends="YES" id="ztH-6n-Ege"/>
-                                </connections>
-                            </imageView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.43960793246137009" green="1" blue="0.68653450390421134" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="AjF-MJ-OT2" secondAttribute="trailing" constant="38" id="BhJ-h2-bq5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ag3-2g-dpW" secondAttribute="trailing" constant="38" id="Lh3-Cy-AK3"/>
-                            <constraint firstItem="MJr-EW-Q7S" firstAttribute="top" secondItem="AjF-MJ-OT2" secondAttribute="bottom" constant="87" id="ZUG-zM-oPX"/>
-                            <constraint firstItem="Ag3-2g-dpW" firstAttribute="top" secondItem="SPf-I2-z9n" secondAttribute="bottom" constant="55" id="Zg3-on-QeF"/>
-                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="top" secondItem="Ag3-2g-dpW" secondAttribute="bottom" constant="112" id="cz1-mr-bTJ"/>
-                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="top" secondItem="Ag3-2g-dpW" secondAttribute="bottom" constant="112" id="lZ6-Oj-ZRL"/>
-                            <constraint firstItem="Ag3-2g-dpW" firstAttribute="leading" secondItem="UMK-bq-K6P" secondAttribute="leadingMargin" constant="39" id="p1f-8Z-wox"/>
-                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="leading" secondItem="UMK-bq-K6P" secondAttribute="leadingMargin" constant="39" id="rkA-dl-FxW"/>
+                            <constraint firstAttribute="centerY" secondItem="mIT-iJ-UFs" secondAttribute="centerY" id="6Zm-FM-nei"/>
+                            <constraint firstAttribute="centerX" secondItem="mIT-iJ-UFs" secondAttribute="centerX" constant="-12.5" id="R6z-xh-UTh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdf-ks-fN8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="t1O-bz-3DJ">
-                    <connections>
-                        <segue destination="5dj-oE-vjJ" kind="push" id="tXz-AC-SVL"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="t1O-bz-3DJ"/>
                 <tapGestureRecognizer id="D5s-wT-r6i"/>
             </objects>
             <point key="canvasLocation" x="-209" y="-680"/>
@@ -197,7 +174,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="m4B-Z7-P1R" kind="push" id="rGS-du-9ia"/>
+                                    <segue destination="m4B-Z7-P1R" kind="push" identifier="menuToPreferenceSegue" id="rGS-du-9ia"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -338,11 +315,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="-46.999999999999993"/>
+            <point key="canvasLocation" x="210" y="197"/>
         </scene>
     </scenes>
     <resources>
-        <image name="davidsonLogo" width="350" height="233"/>
         <image name="sloth" width="625" height="469"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -121,11 +121,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             let selectedMeal = sender! as! Dish
             if let index = find(menu, selectedMeal) {
                 mealInfoViewController.dish = menu[index]
-                println("        The item passed is: \(selectedMeal.name)")
+                println("The item passed is: \(selectedMeal.name)")
             }
             else {
                 println("item was not found")
             }
+        }
+        if segue.identifier  == "menuToPreferenceSegue"{
+            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
+            preferencelistViewController.preferences = menu
         }
     }
     
