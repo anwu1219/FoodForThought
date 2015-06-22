@@ -166,12 +166,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="protCell" id="rHH-34-zTX" customClass="TableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="protCell" id="rHH-34-zTX" customClass="TableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rHH-34-zTX" id="rLY-sE-uJe">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="f2Y-jF-9VT" kind="push" identifier="mealInfoSegue" id="4iJ-fy-ZFU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -272,7 +275,7 @@
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
             <objects>
-                <viewController title="Dish Info" id="f2Y-jF-9VT" customClass="DishInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgw-pN-LjJ"/>
                         <viewControllerLayoutGuide type="bottom" id="0nw-ug-gXp"/>
@@ -325,6 +328,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dish Name" id="ULQ-XH-8VC"/>
+                    <connections>
+                        <outlet property="alergenInfo" destination="mKB-cf-FUb" id="Sv6-96-vyO"/>
+                        <outlet property="dishImage" destination="CJN-4S-V6S" id="eJI-Ew-8sC"/>
+                        <outlet property="ecoLabel" destination="KgN-6P-GoR" id="W1d-dy-WjS"/>
+                        <outlet property="ingredientsList" destination="sjD-nk-LlM" id="aI4-bu-7nI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

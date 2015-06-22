@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
 		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
 		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				40E842261B308C6A00D39DCD /* AppDelegate.swift */,
 				407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */,
 				40E842281B308C6A00D39DCD /* MainMenuViewController.swift */,
+				137AC6AD1B386985001057CB /* MenuInfoViewController.swift */,
 				40E8422A1B308C6A00D39DCD /* Main.storyboard */,
 				407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */,
 				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
@@ -256,6 +259,7 @@
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				407898E51B331E830006E9C5 /* Ingredient.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* TableViewCell.swift in Sources */,
+				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
 			);
