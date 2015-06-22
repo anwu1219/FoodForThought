@@ -316,6 +316,7 @@
                     <connections>
                         <outlet property="alergenInfo" destination="mKB-cf-FUb" id="Sv6-96-vyO"/>
                         <outlet property="dishImage" destination="CJN-4S-V6S" id="eJI-Ew-8sC"/>
+                        <outlet property="dishName" destination="ULQ-XH-8VC" id="dWT-vi-bsD"/>
                         <outlet property="ecoLabel" destination="KgN-6P-GoR" id="W1d-dy-WjS"/>
                         <outlet property="ingredientsList" destination="sjD-nk-LlM" id="aI4-bu-7nI"/>
                     </connections>
