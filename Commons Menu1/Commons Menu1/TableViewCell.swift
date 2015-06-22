@@ -13,6 +13,10 @@ import QuartzCore
 protocol TableViewCellDelegate {
     // indicates that the given item has been deleted
     func toDoItemDeleted(dish: Dish)
+    
+    // indicates which item has been selected and provide appropriate information for a segue to dish info
+    // #spchadinha
+    func viewDishInfo(dish: Dish)
 }
 
 class TableViewCell: UITableViewCell {
@@ -92,6 +96,10 @@ class TableViewCell: UITableViewCell {
         var recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         recognizer.delegate = self
         addGestureRecognizer(recognizer)
+        
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap")
+        tapRecognizer.delegate = self
+        addGestureRecognizer(tapRecognizer)
     }
     
     let kLabelLeftMargin: CGFloat = 150.0
@@ -153,6 +161,17 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    func handleTap(recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .Ended {
+            println(dish)
+            println(delegate)
+            if delegate != nil && dish != nil {
+                println("Recognized the tap")
+                delegate!.viewDishInfo(dish!)
+            }
+        }
+    }
+    
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translationInView(superview!)
@@ -160,6 +179,15 @@ class TableViewCell: UITableViewCell {
                 return true
             }
             return false
+        }
+        
+        if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer {
+            //            self.label.text = "Changed"
+            //            self.label.textColor = UIColor.yellowColor()
+            //            testLabel.hidden = false
+            println("\(dish!.name)'s cell was clicked" )
+            delegate!.viewDishInfo(dish!)
+            
         }
         return false
     }

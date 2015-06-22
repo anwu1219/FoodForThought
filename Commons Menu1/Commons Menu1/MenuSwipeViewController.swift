@@ -90,6 +90,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.endUpdates()
     }
     
+    func viewDishInfo(dish: Dish) {
+        println("  delegate function was called")
+        performSegueWithIdentifier("mealInfoSegue", sender: dish)
+    }
+    
     // MARK: - Table view delegate
     
     func colorForIndex(index: Int) -> UIColor {
@@ -107,6 +112,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, heightForRowAtIndexPath
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "dishInfoSegue" {
+            println("    Entered the prepare for segue method")
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                mealInfoViewController.dish = menu[index]
+            }
+        }
     }
     
 }
