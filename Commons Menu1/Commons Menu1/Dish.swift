@@ -13,27 +13,27 @@ class Dish: NSObject {
     var ingredients: [String] = []
     var nutrition: String = ""
     
-    // A Boolean value that determines the completed state of this item.
-    var completed: Bool
+    // A Boolean value that determines whether the user liked the dish %anwu
+    var like: Bool
     
     // Returns a ToDoItem initialized with the given text and default completed value.
     init(name: String) {
         self.name = name
-        self.completed = false
+        self.like = false
     }
     
     //two initializers and will know which one to use by what you enter
     init(name: String, ingredients: [String]) {
         self.name = name
         self.ingredients = ingredients
-        self.completed = false
+        self.like = false
     }
     
     init(name: String, ingredients: [String], nutrition: String) {
         self.name = name
         self.ingredients = ingredients
         self.nutrition = nutrition
-        self.completed = false
+        self.like = false
     }
     
     

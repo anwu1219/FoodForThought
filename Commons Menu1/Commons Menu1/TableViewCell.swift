@@ -25,18 +25,18 @@ class TableViewCell: UITableViewCell {
     
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
-    var deleteOnDragRelease = false, completeOnDragRelease = false
+    var deleteOnDragRelease = false, likeOnDragRelease = false
     var tickLabel: UILabel, crossLabel: UILabel
     let label: StrikeThroughText
-    var itemCompleteLayer = CALayer()
+    var itemLikeLayer = CALayer()
     // The object that acts as delegate for this cell.
     var delegate: TableViewCellDelegate?
     // The item that this cell renders.
     var dish: Dish? {
         didSet {
             label.text = dish!.name
-            label.strikeThrough = dish!.completed
-            itemCompleteLayer.hidden = !label.strikeThrough
+            label.strikeThrough = dish!.like
+            itemLikeLayer.hidden = !label.strikeThrough
         }
     }
     
@@ -86,11 +86,11 @@ class TableViewCell: UITableViewCell {
         gradientLayer.locations = [0.0, 0.01, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
         
-        // add a layer that renders a green background when an item is complete
-        itemCompleteLayer = CALayer(layer: layer)
-        itemCompleteLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).CGColor
-        itemCompleteLayer.hidden = true
-        layer.insertSublayer(itemCompleteLayer, atIndex: 0)
+        // add a layer that renders a green background when a user like the dish %anwu
+        itemLikeLayer = CALayer(layer: layer)
+        itemLikeLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).CGColor
+        itemLikeLayer.hidden = true
+        layer.insertSublayer(itemLikeLayer, atIndex: 0)
         
         // add a pan recognizer
         var recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -108,7 +108,7 @@ class TableViewCell: UITableViewCell {
         super.layoutSubviews()
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
-        itemCompleteLayer.frame = bounds
+        itemLikeLayer.frame = bounds
         label.frame = CGRect(x: kLabelLeftMargin, y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
@@ -128,15 +128,15 @@ class TableViewCell: UITableViewCell {
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
-            // has the user dragged the item far enough to initiate a delete/complete?
+            // has the user dragged the item far enough to initiate a delete/Like?
             deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
-            completeOnDragRelease = frame.origin.x > frame.size.width / 2.0
+            likeOnDragRelease = frame.origin.x > frame.size.width / 2.0
             // fade the contextual clues
             let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
             tickLabel.alpha = cueAlpha
             crossLabel.alpha = cueAlpha
             // indicate when the user has pulled the item far enough to invoke the given action
-            tickLabel.textColor = completeOnDragRelease ? UIColor.greenColor() : UIColor.whiteColor()
+            tickLabel.textColor = likeOnDragRelease ? UIColor.greenColor() : UIColor.whiteColor()
             crossLabel.textColor = deleteOnDragRelease ? UIColor.redColor() : UIColor.whiteColor()
         }
         // 3
@@ -148,12 +148,12 @@ class TableViewCell: UITableViewCell {
                     // notify the delegate that this item should be deleted
                     delegate!.toDoItemDeleted(dish!)
                 }
-            } else if completeOnDragRelease {
+            } else if likeOnDragRelease {
                 if dish != nil {
-                    dish!.completed = true
+                    dish!.like = true
                 }
                 label.strikeThrough = true
-                itemCompleteLayer.hidden = false
+                itemLikeLayer.hidden = false
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
             } else {
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
@@ -164,7 +164,7 @@ class TableViewCell: UITableViewCell {
     func handleTap(recognizer: UITapGestureRecognizer) {
         if recognizer.state == .Ended {
             println(dish)
-            println(delegate)
+            println("Delegate: \(delegate)" )
             if delegate != nil && dish != nil {
                 println("Recognized the tap")
                 delegate!.viewDishInfo(dish!)
