@@ -15,12 +15,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     //var dishPreferences = Bunduru().Commons
     
     var preferences: [Dish]!
-    let preferences2 = ["Meal 1",
-        "Meal 2",
-        "Meal 3",
-        "Meal 4",
-        "Meal 5",
-        "Meal 6"]
 
     
     
