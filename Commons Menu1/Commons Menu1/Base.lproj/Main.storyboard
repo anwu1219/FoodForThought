@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main Menu-->
@@ -103,35 +105,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="VailCommons" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qj-Ak-znb">
-                                <rect key="frame" x="83" y="184" width="154" height="40"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="24"/>
-                                <state key="normal" title="Vail Commons">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="davidsonLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Ag3-2g-dpW">
+                                <rect key="frame" x="55" y="119" width="211" height="125"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ag3-2g-dpW" secondAttribute="height" multiplier="211:125" id="tds-f9-aMr"/>
+                                </constraints>
                                 <connections>
-                                    <segue destination="5dj-oE-vjJ" kind="push" id="WnG-kZ-Qre"/>
+                                    <outletCollection property="gestureRecognizers" destination="t1O-bz-3DJ" appends="YES" id="1zU-50-Ao8"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAC-To-uLJ">
-                                <rect key="frame" x="129" y="270" width="63" height="40"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="24"/>
-                                <state key="normal" title="Union">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="AjF-MJ-OT2">
+                                <rect key="frame" x="55" y="356" width="211" height="125"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="AjF-MJ-OT2" secondAttribute="height" multiplier="211:125" id="5fu-qB-dC9"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="D5s-wT-r6i" appends="YES" id="ztH-6n-Ege"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.43960793246137009" green="1" blue="0.68653450390421134" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="4qj-Ak-znb" secondAttribute="centerX" id="7rL-Mp-Aep"/>
-                            <constraint firstAttribute="centerX" secondItem="LAC-To-uLJ" secondAttribute="centerX" id="M42-7d-pQQ"/>
-                            <constraint firstItem="MJr-EW-Q7S" firstAttribute="top" secondItem="LAC-To-uLJ" secondAttribute="bottom" constant="258" id="Ulx-rY-ybo"/>
-                            <constraint firstItem="LAC-To-uLJ" firstAttribute="top" secondItem="4qj-Ak-znb" secondAttribute="bottom" constant="46" id="l9g-ca-4Ji"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AjF-MJ-OT2" secondAttribute="trailing" constant="38" id="BhJ-h2-bq5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ag3-2g-dpW" secondAttribute="trailing" constant="38" id="Lh3-Cy-AK3"/>
+                            <constraint firstItem="MJr-EW-Q7S" firstAttribute="top" secondItem="AjF-MJ-OT2" secondAttribute="bottom" constant="87" id="ZUG-zM-oPX"/>
+                            <constraint firstItem="Ag3-2g-dpW" firstAttribute="top" secondItem="SPf-I2-z9n" secondAttribute="bottom" constant="55" id="Zg3-on-QeF"/>
+                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="top" secondItem="Ag3-2g-dpW" secondAttribute="bottom" constant="112" id="cz1-mr-bTJ"/>
+                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="top" secondItem="Ag3-2g-dpW" secondAttribute="bottom" constant="112" id="lZ6-Oj-ZRL"/>
+                            <constraint firstItem="Ag3-2g-dpW" firstAttribute="leading" secondItem="UMK-bq-K6P" secondAttribute="leadingMargin" constant="39" id="p1f-8Z-wox"/>
+                            <constraint firstItem="AjF-MJ-OT2" firstAttribute="leading" secondItem="UMK-bq-K6P" secondAttribute="leadingMargin" constant="39" id="rkA-dl-FxW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdf-ks-fN8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="t1O-bz-3DJ">
+                    <connections>
+                        <segue destination="5dj-oE-vjJ" kind="push" id="tXz-AC-SVL"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="D5s-wT-r6i"/>
             </objects>
             <point key="canvasLocation" x="-209" y="-680"/>
         </scene>
@@ -191,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCp-JQ-udo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="-680"/>
+            <point key="canvasLocation" x="210" y="-680"/>
         </scene>
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
@@ -207,7 +222,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lXn-E5-OFx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="ffw-VS-muO"/>
                                 </constraints>
@@ -272,38 +287,38 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eco Label: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdh-KE-Dgp">
                                 <rect key="frame" x="16" y="304" width="85" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ingredient: " lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJp-FA-2yy">
                                 <rect key="frame" x="16" y="360" width="84" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Allergent Information: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQ4-i5-2CA">
                                 <rect key="frame" x="16" y="500" width="169" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjD-nk-LlM">
                                 <rect key="frame" x="31" y="375" width="269" height="122"/>
                                 <string key="text">😉 😊 ☺️ 😋 😌 😍 😎 😏 😐 😑 😒 😓 😔 😕 😖 😗 😘 😙 😚 😛 😜 😝 😞 😟 😠 😡 😢 😣 😤 😥 😦 😧 😨 😩 😪 😫 😬 😭 😮 😯 😰 😱 😲 😳 😴 😵 😶 😷</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="😬😘💩😇 😋 😌 😍 😎" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgN-6P-GoR">
                                 <rect key="frame" x="31" y="333" width="196" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="😏 😐 😑 😒 😓 😔 😕 😖" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKB-cf-FUb">
                                 <rect key="frame" x="31" y="527" width="210" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -317,6 +332,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="davidsonLogo" width="350" height="233"/>
         <image name="sloth" width="625" height="469"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
