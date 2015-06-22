@@ -14,13 +14,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var preferenceListTableView: UITableView!
     //var dishPreferences = Bunduru().Commons
     
-    let preferences1 = ["Meal 1",
-        "Meal 2",
-        "Meal 3",
-        "Meal 4",
-        "Meal 5",
-        "Meal 6"]
-    
+    var preferences: [Dish]!
     let preferences2 = ["Meal 1",
         "Meal 2",
         "Meal 3",
@@ -35,34 +29,26 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         
+        
     }
     
     //number of section
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2 //can be customized to number of restuarant
+        return 1 //can be customized to number of restuarant
     }
     
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return preferences1.count
-        }
-        return preferences2.count
+            return preferences.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-      
-        if indexPath == 0{
-            let dish = preferences1[indexPath.row]
+            let dish = preferences[indexPath.row].name
             cell.textLabel?.text = dish
-        } else {
-        let dish = preferences2[indexPath.row]
-        cell.textLabel?.text = dish
-        }
 
 //        var cell = UITableViewCell()
 //        cell.textLabel?.text = "Hey!"
@@ -75,12 +61,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0{
             return "Commons"
-        } else {
-            return "Union"
-        }
     }
-    
-    
 }
