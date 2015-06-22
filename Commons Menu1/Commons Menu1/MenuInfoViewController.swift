@@ -20,12 +20,12 @@ class MealInfoViewController: UIViewController {
     
     @IBOutlet weak var alergenInfo: UILabel!
     
-    //@IBOutlet weak var dishName: UILabel!
+    @IBOutlet weak var dishName: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //ecoLabel.text = dish!.name
+        dishName.title = dish?.name
         //        dishImage = dish!.image
         //        ecoLabel = dish!.ecoLabel
         //        ingredientsList = dish!.ingredients

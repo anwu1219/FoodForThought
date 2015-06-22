@@ -186,6 +186,7 @@ class TableViewCell: UITableViewCell {
             //            self.label.textColor = UIColor.yellowColor()
             //            testLabel.hidden = false
             println("\(dish!.name)'s cell was clicked" )
+            //var x = ()
             delegate!.viewDishInfo(dish!)
             
         }

@@ -90,9 +90,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.endUpdates()
     }
     
-    func viewDishInfo(dish: Dish) {
+    func viewDishInfo(selectedDish: Dish) {
         println("  delegate function was called")
-        performSegueWithIdentifier("mealInfoSegue", sender: dish)
+        performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
     // MARK: - Table view delegate
@@ -115,12 +115,16 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "dishInfoSegue" {
+        if segue.identifier == "mealInfoSegue" {
             println("    Entered the prepare for segue method")
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
             if let index = find(menu, selectedMeal) {
                 mealInfoViewController.dish = menu[index]
+                println("        The item passed is: \(selectedMeal.name)")
+            }
+            else {
+                println("item was not found")
             }
         }
     }
