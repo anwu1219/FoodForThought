@@ -10,40 +10,46 @@ import UIKit
 import QuartzCore
 
 
-
+/**
+Manages the cell representation of a dish in a menu
+*/
 class MenuTableViewCell: UITableViewCell {
     
-    var imgUser = UIImageView()
     
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false
     var tickLabel: UILabel, crossLabel: UILabel
-    let label: StrikeThroughText
+    let label: UILabel
     var itemLikeLayer = CALayer()
-    // The object that acts as delegate for this cell.
+    // The object that acts as delegate for this cell
     var delegate: MenuTableViewCellDelegate?
-    // The item that this cell renders.
+    // The dish that this cell renders
     var dish: Dish? {
         didSet {
             label.text = dish!.name
-            label.strikeThrough = dish!.like
-            itemLikeLayer.hidden = !label.strikeThrough
+            
+            itemLikeLayer.hidden = !dish!.like
         }
     }
+    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
     
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
-        label = StrikeThroughText(frame: CGRect.nullRect)
+        label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
         label.font = UIFont.boldSystemFontOfSize(16)
         label.backgroundColor = UIColor.clearColor()
         
-        // utility method for creating the contextual cues
+        
+        /**
+        utility method for creating the contextual cues
+        */
         func createCueLabel() -> UILabel {
             let label = UILabel(frame: CGRect.nullRect)
             label.textColor = UIColor.whiteColor()
@@ -59,6 +65,7 @@ class MenuTableViewCell: UITableViewCell {
         crossLabel = createCueLabel()
         crossLabel.text = "\u{2717}"
         crossLabel.textAlignment = .Left
+        
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -78,6 +85,7 @@ class MenuTableViewCell: UITableViewCell {
         gradientLayer.locations = [0.0, 0.01, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
         
+        
         // add a layer that renders a green background when a user like the dish %anwu
         itemLikeLayer = CALayer(layer: layer)
         itemLikeLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).CGColor
@@ -85,14 +93,15 @@ class MenuTableViewCell: UITableViewCell {
         layer.insertSublayer(itemLikeLayer, atIndex: 0)
         
         // add a pan recognizer
-        var recognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
-        recognizer.delegate = self
-        addGestureRecognizer(recognizer)
-        
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap")
+        var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        panRecognizer.delegate = self
+        addGestureRecognizer(panRecognizer)
+        // add a tap recognizer
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
     }
+    
     
     let kLabelLeftMargin: CGFloat = 150.0
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
@@ -108,8 +117,11 @@ class MenuTableViewCell: UITableViewCell {
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
     }
+
     
-    //MARK: - horizontal pan gesture methods
+    /**
+    MARK: - horizontal pan gesture methods
+    */
     func handlePan(recognizer: UIPanGestureRecognizer) {
         // 1
         if recognizer.state == .Began {
@@ -119,15 +131,16 @@ class MenuTableViewCell: UITableViewCell {
         // 2
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)
+            // Updates the center point of the cell so that cell is animatable when panned
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
             // has the user dragged the item far enough to initiate a delete/Like?
             deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
             likeOnDragRelease = frame.origin.x > frame.size.width / 2.0
-            // fade the contextual clues
+            // fades the contextual clues
             let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
             tickLabel.alpha = cueAlpha
             crossLabel.alpha = cueAlpha
-            // indicate when the user has pulled the item far enough to invoke the given action
+            // indicates when the user has pulled the item far enough to invoke the given action
             tickLabel.textColor = likeOnDragRelease ? UIColor.greenColor() : UIColor.whiteColor()
             crossLabel.textColor = deleteOnDragRelease ? UIColor.redColor() : UIColor.whiteColor()
         }
@@ -144,27 +157,32 @@ class MenuTableViewCell: UITableViewCell {
                 if dish != nil {
                     dish!.like = !dish!.like
                 }
-                label.strikeThrough = !self.label.strikeThrough
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden
-                UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
+                UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {
-                UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
+                UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             }
         }
     }
     
+    
+    /**
+    MARK: - tap gesture methods
+    */
     func handleTap(recognizer: UITapGestureRecognizer) {
         if recognizer.state == .Ended {
-            println(dish)
-            println("Delegate: \(delegate)" )
             if delegate != nil && dish != nil {
-                println("Recognized the tap")
                 delegate!.viewDishInfo(dish!)
             }
         }
     }
     
+    
+    /**
+    Returns true when a gesture should begin
+    */
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        // pan gesture recognizer
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translationInView(superview!)
             if fabs(translation.x) > fabs(translation.y) {
@@ -172,15 +190,9 @@ class MenuTableViewCell: UITableViewCell {
             }
             return false
         }
-        
+        // pan gesture recognizer
         if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer {
-            //            self.label.text = "Changed"
-            //            self.label.textColor = UIColor.yellowColor()
-            //            testLabel.hidden = false
-            println("\(dish!.name)'s cell was clicked" )
-            //var x = ()
-            delegate!.viewDishInfo(dish!)
-            
+            return true
         }
         return false
     }

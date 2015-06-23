@@ -8,19 +8,19 @@
 
 import UIKit
 
+/**
+Displays information on a given dish
+*/
+
 class MealInfoViewController: UIViewController {
     
+    @IBOutlet weak var dishImage: UIImageView!
+    @IBOutlet weak var ecoLabel: UILabel!
+    @IBOutlet weak var ingredientsList: UILabel!
+    @IBOutlet weak var alergenInfo: UILabel!
+    @IBOutlet weak var dishName: UINavigationItem!
     var dish: Dish?
     
-    @IBOutlet weak var dishImage: UIImageView!
-    
-    @IBOutlet weak var ecoLabel: UILabel!
-    
-    @IBOutlet weak var ingredientsList: UILabel!
-    
-    @IBOutlet weak var alergenInfo: UILabel!
-    
-    @IBOutlet weak var dishName: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,7 @@ class MealInfoViewController: UIViewController {
         
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
