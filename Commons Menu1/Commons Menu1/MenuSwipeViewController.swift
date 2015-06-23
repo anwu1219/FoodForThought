@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TableViewCellDelegate {
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
    
@@ -23,7 +23,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .None
         tableView.backgroundColor = UIColor.blackColor()
         tableView.rowHeight = 100;
@@ -48,7 +48,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
 
             let item = menu[indexPath.row]
             cell.selectionStyle = .None
@@ -137,12 +137,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     //Updates the preferenceList  %anwu
-    func updatePreferenceList(){
+    func updatePreferenceList() {
         for dish: Dish in menu {
-        println(dish.like)
+        //println(dish.like)
         if dish.like && !contains(preferenceList, dish){
             preferenceList.append(dish)
-        }
+            }
         }
         preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }

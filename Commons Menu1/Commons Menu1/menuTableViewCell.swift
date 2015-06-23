@@ -9,17 +9,9 @@
 import UIKit
 import QuartzCore
 
-// A protocol that the TableViewCell uses to inform its delegate of state change
-protocol TableViewCellDelegate {
-    // indicates that the given item has been deleted
-    func toDoItemDeleted(dish: Dish)
-    
-    // indicates which item has been selected and provide appropriate information for a segue to dish info
-    // #spchadinha
-    func viewDishInfo(dish: Dish)
-}
 
-class TableViewCell: UITableViewCell {
+
+class MenuTableViewCell: UITableViewCell {
     
     var imgUser = UIImageView()
     
@@ -30,7 +22,7 @@ class TableViewCell: UITableViewCell {
     let label: StrikeThroughText
     var itemLikeLayer = CALayer()
     // The object that acts as delegate for this cell.
-    var delegate: TableViewCellDelegate?
+    var delegate: MenuTableViewCellDelegate?
     // The item that this cell renders.
     var dish: Dish? {
         didSet {
