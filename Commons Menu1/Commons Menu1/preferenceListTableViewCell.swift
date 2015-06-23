@@ -8,14 +8,19 @@
 
 import UIKit
 
+/**
+Manages the cell representation of a dish in a preference list
+*/
 class preferenceListTableViewCell: UITableViewCell {
     var delegate: MenuTableViewCellDelegate?
     // The item that this cell renders.
     var dish: Dish?
     
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
+    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

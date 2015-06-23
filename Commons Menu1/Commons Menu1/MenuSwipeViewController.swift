@@ -70,12 +70,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            let item = menu[indexPath.row]
-            cell.dish = item
+            let dish = menu[indexPath.row]
+            cell.dish = dish
             
             //sets the image
-            var sloth = UIImage(named: "sloth")
-            cell.imageView?.image = sloth
+            cell.imageView?.image = dish.image
             cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
             
             return cell
