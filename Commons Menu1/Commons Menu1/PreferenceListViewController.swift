@@ -23,10 +23,9 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
-        preferenceListTableView.separatorStyle = .None
+        preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.backgroundColor = UIColor.blackColor()
         preferenceListTableView.rowHeight = 100;
-        
     }
     
     //number of section
@@ -47,6 +46,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         let dish = preferences[indexPath.row]
         cell.textLabel?.text = dish.name
         cell.delegate = self
+        cell.selectionStyle = .None
         cell.dish = dish
 
 //        var cell = UITableViewCell()

@@ -8,8 +8,11 @@
 
 import UIKit
 
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
 
+/**
+Displays menus as food tinder
+*/
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
    
     var menu = [Dish]()
@@ -24,7 +27,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .SingleLine
         tableView.backgroundColor = UIColor.blackColor()
         tableView.rowHeight = 100;
         
@@ -36,52 +39,56 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    // MARK: - Table view data source
     
+    // MARK: - Table view data source
+    /**
+    Returns the number of sections in the table
+    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    
+    /**
+    Returns the number of rows in the table
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu.count
     }
     
+    
+    /**
+    Generates cells and adds items to the table
+    */
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            //initiates the cell
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
-
-            let item = menu[indexPath.row]
-            cell.selectionStyle = .None
-        
-
+    
+            //
             cell.delegate = self
+            cell.selectionStyle = .None
+            
+            //passes a dish to each cell
+            let item = menu[indexPath.row]
             cell.dish = item
             
+            //sets the image
             var sloth = UIImage(named: "sloth")
             cell.imageView?.image = sloth
-            
             cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
             
-            // cell.textLabel?.text = item.text
-            // cell.textLabel?.backgroundColor = UIColor.clearColor()
-            // var image : UIImage = UIImage(named: "osx_design_view_messages")
-
             return cell
     }
     
     
+    //MARK: - Table view cell delegate
+    /**
+    Delegate function that finds and deletes the dish that is swiped
+    */
     func toDoItemDeleted(dish: Dish) {
-        // could use this to get index when Swift Array indexOfObject works
-        // let index = toDoItems.indexOfObject(toDoItem)
-        // in the meantime, scan the array to find index of item to delete
-        var index = 0
-        for i in 0..<menu.count {
-            if menu[i] === dish {  // note: === not ==
-                index = i
-                break
-            }
-        }
-        // could removeAtIndex in the loop but keep it here for when indexOfObject works
+        //Finds index of swiped dish and removes it from the array
+        var index = find(menu, dish)!
         menu.removeAtIndex(index)
         
         // use the UITableView to animate the removal of this row
@@ -91,23 +98,28 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.endUpdates()
     }
     
+    
+    /**
+    Delegate function that segues between the dish cells and the dish info view
+    */
     func viewDishInfo(selectedDish: Dish) {
-        println("  delegate function was called")
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
-    // MARK: - Table view delegate
     
+    // MARK: - Table view delegate
     func colorForIndex(index: Int) -> UIColor {
         let itemCount = menu.count - 1
         let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
         return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
     }
     
+    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
             cell.backgroundColor = colorForIndex(indexPath.row)
     }
+    
     
     // support for versions of iOS prior to iOS 8
     func tableView(tableView: UITableView, heightForRowAtIndexPath
@@ -115,28 +127,34 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             return tableView.rowHeight;
     }
     
+    
+    /**
+    Prepares for segue
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Segues to single dish info
         if segue.identifier == "mealInfoSegue" {
-            println("    Entered the prepare for segue method")
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
             if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[index]
-                println("The item passed is: \(selectedMeal.name)")
-            }
-            else {
-                println("item was not found")
             }
         }
+        
+        // Segues to the preference list
         if segue.identifier  == "menuToPreferenceSegue" {
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
             updatePreferenceList()
+            // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = preferenceList
         }
     }
     
     
-    //Updates the preferenceList  %anwu
+    /**
+    Updates the preferenceList  %anwu
+    */
     func updatePreferenceList() {
         for dish: Dish in menu {
         //println(dish.like)

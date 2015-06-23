@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+/**
+Shows all the resturants with available menus
+*/
 class RestMenuViewController: UIViewController {
     
     
