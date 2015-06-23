@@ -150,10 +150,10 @@ class TableViewCell: UITableViewCell {
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
-                    dish!.like = true
+                    dish!.like = !dish!.like
                 }
-                label.strikeThrough = true
-                itemLikeLayer.hidden = false
+                label.strikeThrough = !self.label.strikeThrough
+                itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
             } else {
                 UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
