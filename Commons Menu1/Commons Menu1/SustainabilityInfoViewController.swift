@@ -9,6 +9,9 @@
 
 import UIKit
 
+/**
+Displays information of sustainability and links to sustainability info
+*/
 class SustainabilityInfoViewController: UIViewController {
     
     
