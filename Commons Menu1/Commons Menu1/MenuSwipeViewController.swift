@@ -139,11 +139,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     //Updates the preferenceList  %anwu
     func updatePreferenceList(){
         for dish: Dish in menu {
-        if dish.like == true && !contains(preferenceList, dish){
+        println(dish.like)
+        if dish.like && !contains(preferenceList, dish){
             preferenceList.append(dish)
         }
         }
-        preferenceList = preferenceList.filter{contains(self.menu, $0)}
+        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
     
 }
