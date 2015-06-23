@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+Welcome page view controller and search type for user
+*/
 class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
