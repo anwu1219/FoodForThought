@@ -39,10 +39,12 @@ class Dish: NSObject {
     }
     
     
-    init (name: String, ingredients: [String]?, image: UIImage?, allergens: [String]?, chefNote: [String]?, ecoLabel: [UIImage]?, nutritionistNote: String?, price: Double?){
+    init (name: String, ingredients: [String]?, image: String?, allergens: [String]?, chefNote: [String]?, ecoLabel: [UIImage]?, nutritionistNote: String?, price: Double?){
         self.name = name
         self.ingredients = ingredients
-        self.image = image
+        if image != nil {
+            self.image = UIImage(named: image!)
+        }
         self.allergens = allergens
         self.chefNote = chefNote
         self.ecoLabel = ecoLabel

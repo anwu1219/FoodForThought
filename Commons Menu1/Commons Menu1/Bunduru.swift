@@ -13,11 +13,11 @@ import Foundation
 struct Bunduru {
     var allRestaurants =
     ["Commons": [
-        Dish(name: "Chicken Parmesan", ingredients: ["Chicken", "other stuff"]),
-        Dish(name: "Beef Stroganoff", ingredients: ["Beef", "other stuff"]),
-        Dish(name: "Tilapia", ingredients: ["Fish", "Other stuff"]),
-        Dish(name: "Burritos", ingredients: ["Meat", "cheese"]),
-        Dish(name: "Chicken tenders", ingredients: ["Chicken", "stuff"])
+        Dish(name: "Chicken Parm", ingredients: ["Chicken", "other"], image: "sloth", allergens: nil, chefNote: nil, ecoLabel: nil, nutritionistNote: nil, price: nil),
+        Dish(name: "Beef Stroganoff", ingredients: ["Beef", "other stuff"], image: "davidsonLogo", allergens: nil, chefNote: nil, ecoLabel: nil, nutritionistNote: nil, price: nil),
+        Dish(name: "Tilapia", ingredients: ["Fish", "Other stuff"], image: "sloth", allergens: nil, chefNote: nil, ecoLabel: nil, nutritionistNote: nil, price: nil),
+        Dish(name: "Burritos", ingredients: ["Meat", "cheese"], image: "davidsonLogo", allergens: nil, chefNote: nil, ecoLabel: nil, nutritionistNote: nil, price: nil),
+        Dish(name: "Chicken tenders", ingredients: ["Chicken", "stuff"], image: "sloth", allergens: nil, chefNote: nil, ecoLabel: nil, nutritionistNote: nil, price: nil)
         ],
      "Union": [
         Dish(name: "Hamburger", ingredients: ["hamburger", "other stuff"]),
@@ -29,5 +29,3 @@ struct Bunduru {
         ]
     ]
 }
-
-//Dish(name: "", ingredients: ["", ""], nutrition: "Placeholder"),

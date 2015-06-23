@@ -99,16 +99,11 @@
 			children = (
 				40E842261B308C6A00D39DCD /* AppDelegate.swift */,
 				40E8422A1B308C6A00D39DCD /* Main.storyboard */,
-				40E842281B308C6A00D39DCD /* MainMenuViewController.swift */,
-				407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */,
-				407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */,
-				137AC6AD1B386985001057CB /* MenuInfoViewController.swift */,
-				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
+				F3E529131B39F9A00081FFDC /* View Controller */,
 				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
-				F39905971B3311A4004E74C6 /* Dish.swift */,
-				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
 				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
+				F39905971B3311A4004E74C6 /* Dish.swift */,
 				407898DE1B331D1B0006E9C5 /* Bunduru.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
@@ -140,6 +135,19 @@
 				40E8423B1B308C6A00D39DCD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3E529131B39F9A00081FFDC /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40E842281B308C6A00D39DCD /* MainMenuViewController.swift */,
+				407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */,
+				407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */,
+				137AC6AD1B386985001057CB /* MenuInfoViewController.swift */,
+				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
+				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
