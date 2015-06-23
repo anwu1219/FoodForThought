@@ -13,7 +13,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
    
     var menu = [Dish]()
-    var preferenceList = [Dish]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,23 +127,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 println("item was not found")
             }
         }
-        if segue.identifier  == "menuToPreferenceSegue" {
+        if segue.identifier  == "menuToPreferenceSegue"{
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
-            updatePreferenceList()
-            preferencelistViewController.preferences = preferenceList
+            preferencelistViewController.preferences = menu
         }
-    }
-    
-    
-    //Updates the preferenceList  %anwu
-    func updatePreferenceList(){
-        for dish: Dish in menu {
-        println(dish.like)
-        if dish.like && !contains(preferenceList, dish){
-            preferenceList.append(dish)
-        }
-        }
-        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
     
 }
