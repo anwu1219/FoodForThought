@@ -11,7 +11,7 @@
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
 		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
-		407898D91B3302DB0006E9C5 /* menuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* menuTableViewCell.swift */; };
+		407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */; };
 		407898DB1B3303AF0006E9C5 /* StrikeThroughText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */; };
 		407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DE1B331D1B0006E9C5 /* Bunduru.swift */; };
 		407898E11B331E040006E9C5 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898E01B331E040006E9C5 /* Menu.swift */; };
@@ -24,7 +24,8 @@
 		40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */; };
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
-		F3E529101B39966A0081FFDC /* MenuTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E5290F1B39966A0081FFDC /* MenuTableViewCellProtocol.swift */; };
+		F3E529101B39966A0081FFDC /* MenuTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */; };
+		F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */; };
 		F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +44,7 @@
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
 		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
-		407898D81B3302DB0006E9C5 /* menuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuTableViewCell.swift; sourceTree = "<group>"; };
+		407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
 		407898DE1B331D1B0006E9C5 /* Bunduru.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bunduru.swift; sourceTree = "<group>"; };
 		407898E01B331E040006E9C5 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
@@ -60,7 +61,8 @@
 		40E8423B1B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
-		F3E5290F1B39966A0081FFDC /* MenuTableViewCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCellProtocol.swift; sourceTree = "<group>"; };
+		F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = preferenceListTableViewCell.swift; sourceTree = "<group>"; };
 		F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,18 +112,19 @@
 				40E8422A1B308C6A00D39DCD /* Main.storyboard */,
 				407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */,
 				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
+				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
 				407898DA1B3303AF0006E9C5 /* StrikeThroughText.swift */,
 				407898DE1B331D1B0006E9C5 /* Bunduru.swift */,
-				407898D81B3302DB0006E9C5 /* menuTableViewCell.swift */,
 				407898E01B331E040006E9C5 /* Menu.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
 				407898E21B331E4E0006E9C5 /* Meal.swift */,
 				407898E41B331E830006E9C5 /* Ingredient.swift */,
 				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
+				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
+				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
-				F3E5290F1B39966A0081FFDC /* MenuTableViewCellProtocol.swift */,
 			);
 			path = "Commons Menu1";
 			sourceTree = "<group>";
@@ -260,11 +263,12 @@
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
 				F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
-				F3E529101B39966A0081FFDC /* MenuTableViewCellProtocol.swift in Sources */,
+				F3E529101B39966A0081FFDC /* MenuTableViewCellDelegate.swift in Sources */,
 				407898E51B331E830006E9C5 /* Ingredient.swift in Sources */,
-				407898D91B3302DB0006E9C5 /* menuTableViewCell.swift in Sources */,
+				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */,
+				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

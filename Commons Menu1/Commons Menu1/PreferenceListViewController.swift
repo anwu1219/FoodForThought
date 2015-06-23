@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreferenceListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PreferenceListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     
 
     @IBOutlet weak var preferenceListTableView: UITableView!
@@ -22,7 +22,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
-        
+        preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
+        preferenceListTableView.separatorStyle = .None
+        preferenceListTableView.backgroundColor = UIColor.blackColor()
+        preferenceListTableView.rowHeight = 100;
         
     }
     
@@ -40,9 +43,11 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-            let dish = preferences[indexPath.row].name
-            cell.textLabel?.text = dish
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! preferenceListTableViewCell
+        let dish = preferences[indexPath.row]
+        cell.textLabel?.text = dish.name
+        cell.delegate = self
+        cell.dish = dish
 
 //        var cell = UITableViewCell()
 //        cell.textLabel?.text = "Hey!"
@@ -53,8 +58,31 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             return "Commons"
+    }
+    
+    func viewDishInfo(selectedDish: Dish) {
+        println("delegate function was called")
+        performSegueWithIdentifier("preferenceInfoSegue", sender: selectedDish)
+    }
+    
+    func toDoItemDeleted(dish: Dish){
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "preferenceInfoSegue" {
+            println("    Entered the prepare for segue method")
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(preferences, selectedMeal) {
+                mealInfoViewController.dish = preferences[index]
+                println("The item passed is: \(selectedMeal.name)")
+            }
+            else {
+                println("item was not found")
+            }
+        }
     }
 }
