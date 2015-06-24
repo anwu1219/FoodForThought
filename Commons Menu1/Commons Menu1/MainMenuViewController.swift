@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 /**
 Welcome page view controller and search type for user
@@ -15,7 +16,22 @@ class MainMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let user = PFUser()
+        user.username = "my name"
+        user.password = "my pass"
+        user.email = "email@example.com"
+        
+        // other fields can be set if you want to save more information
+        user["phone"] = "650-555-0000"
+        
+        user.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
+            if error == nil {
+                println("success")
+            } else {
+                println("\(error)");
         // Do any additional setup after loading the view, typically from a nib.
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
