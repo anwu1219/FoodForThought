@@ -21,4 +21,6 @@ protocol MenuTableViewCellDelegate {
     */
     // #spchadinha
     func viewDishInfo(dish: Dish)
+
+    
 }

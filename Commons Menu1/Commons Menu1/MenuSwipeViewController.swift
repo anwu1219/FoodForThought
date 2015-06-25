@@ -17,6 +17,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
    
     var menu = [Dish]()
     var preferenceList = [Dish]()
+    let styles = Styles()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
-        tableView.backgroundColor = UIColor.blackColor()
+        //tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundView = styles.backgroundImage
+        //tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
         
         if menu.count > 0 {
@@ -106,17 +109,30 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    // MARK: - Table view delegate
-    func colorForIndex(index: Int) -> UIColor {
-        let itemCount = menu.count - 1
-        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+    // MARK: - PreferenceListViewControllerDelegate
+    
+    func revertCellToOriginalColor(dish: Dish) {
+        var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
+        println("We've made it into the revertCellToOriginalColor method")
+        //self[index].backgoundColor = UIColor.clearColor()
     }
+    
+    func identifyDish(dish: Dish) {
+        // no need to do anything in this viewcontroller
+    }
+    
+    
+    // MARK: - Table view delegate
+//    func colorForIndex(index: Int) -> UIColor {
+//        let itemCount = menu.count - 1
+//        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+//        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+//    }
     
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
-            cell.backgroundColor = colorForIndex(indexPath.row)
+            cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
     }
     
     

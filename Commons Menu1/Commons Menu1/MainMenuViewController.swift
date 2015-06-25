@@ -14,6 +14,11 @@ Welcome page view controller and search type for user
 */
 class MainMenuViewController: UIViewController {
 
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var sustainabilityInfoButton: UIButton!
+    
+    let styles = Styles()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let user = PFUser()
@@ -32,6 +37,11 @@ class MainMenuViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
             }
         }
+        
+        menuButton.backgroundColor = styles.buttonBackgoundColor
+        menuButton.layer.cornerRadius = styles.buttonCornerRadius
+        menuButton.layer.borderWidth = 1
+        
     }
 
     override func didReceiveMemoryWarning() {
