@@ -14,10 +14,13 @@ Displays information of sustainability and links to sustainability info
 */
 class SustainabilityInfoViewController: UIViewController {
     
+
+    @IBOutlet weak var scrollView: UIScrollView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //scrollView.contentSize.height = 1000
     }
     
     override func didReceiveMemoryWarning() {

@@ -15,7 +15,7 @@ Manages the cell representation of a dish in a menu
 */
 class MenuTableViewCell: UITableViewCell {
     
-    
+    let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false
@@ -42,7 +42,7 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
-        label.textColor = UIColor.whiteColor()
+        label.textColor = styles.labelTextColor
         label.font = UIFont.boldSystemFontOfSize(16)
         label.backgroundColor = UIColor.clearColor()
         

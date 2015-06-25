@@ -16,6 +16,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
 
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences: [Dish]!
+    var delegate: PreferenceListViewControllerDelegate?
 
     
     
@@ -65,8 +66,20 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
     
     func toDoItemDeleted(dish: Dish){
+        //Finds index of swiped dish and removes it from the array
+        var index = find(preferences, dish)!
+        preferences.removeAtIndex(index)
+        
+        // use the UITableView to animate the removal of this row
+        preferenceListTableView.beginUpdates()
+        let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
+        preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        preferenceListTableView.endUpdates()
     }
     
+
+    
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */; };
+		1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB91B3C5E9100C5C49A /* AppStylings.swift */; };
+		1376EEC01B3C894500C5C49A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1376EEBE1B3C894500C5C49A /* Main.storyboard */; };
 		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
@@ -15,7 +18,6 @@
 		407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DE1B331D1B0006E9C5 /* Bunduru.swift */; };
 		40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842261B308C6A00D39DCD /* AppDelegate.swift */; };
 		40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842281B308C6A00D39DCD /* MainMenuViewController.swift */; };
-		40E8422C1B308C6A00D39DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422A1B308C6A00D39DCD /* Main.storyboard */; };
 		40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422D1B308C6A00D39DCD /* Images.xcassets */; };
 		40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */; };
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
@@ -52,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListViewControllerDelegate.swift; sourceTree = "<group>"; };
+		1376EEB91B3C5E9100C5C49A /* AppStylings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStylings.swift; sourceTree = "<group>"; };
+		1376EEBF1B3C894500C5C49A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +67,6 @@
 		40E842251B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E842261B308C6A00D39DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E842281B308C6A00D39DCD /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		40E8422B1B308C6A00D39DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40E8422D1B308C6A00D39DCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		40E842301B308C6A00D39DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		40E842361B308C6A00D39DCD /* Commons Menu1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Commons Menu1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,17 +164,19 @@
 			isa = PBXGroup;
 			children = (
 				40E842261B308C6A00D39DCD /* AppDelegate.swift */,
-				40E8422A1B308C6A00D39DCD /* Main.storyboard */,
+				1376EEBE1B3C894500C5C49A /* Main.storyboard */,
 				F3E529131B39F9A00081FFDC /* View Controller */,
 				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
-				F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */,
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
+				F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */,
 				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
+				1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
 				407898DE1B331D1B0006E9C5 /* Bunduru.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
+				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 			);
 			path = "Commons Menu1";
 			sourceTree = "<group>";
@@ -293,7 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E8422C1B308C6A00D39DCD /* Main.storyboard in Resources */,
+				1376EEC01B3C894500C5C49A /* Main.storyboard in Resources */,
 				40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */,
 				40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */,
 			);
@@ -314,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */,
+				1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */,
 				407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */,
 				40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */,
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
@@ -323,6 +330,7 @@
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */,
+				1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */,
 				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
@@ -348,10 +356,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		40E8422A1B308C6A00D39DCD /* Main.storyboard */ = {
+		1376EEBE1B3C894500C5C49A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				40E8422B1B308C6A00D39DCD /* Base */,
+				1376EEBF1B3C894500C5C49A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
