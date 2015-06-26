@@ -16,6 +16,11 @@ class MainMenuViewController: UIViewController {
 
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var sustainabilityInfoButton: UIButton!
+    @IBAction func signOut(sender: AnyObject) {
+        
+        PFUser.logOut()
+        
+    }
     
     let styles = Styles()
     
@@ -87,22 +92,6 @@ class MainMenuViewController: UIViewController {
         } else {
             println("logged in")
         }
-//        let user = PFUser()
-//        user.username = "my name"
-//        user.password = "my pass"
-//        user.email = "email@example.com"
-//        
-//        // other fields can be set if you want to save more information
-//        user["phone"] = "650-555-0000"
-//        
-//        user.signUpInBackgroundWithBlock { (succeeded, error) -> Void in
-//            if error == nil {
-//                println("success")
-//            } else {
-//                println("\(error)");
-//        // Do any additional setup after loading the view, typically from a nib.
-//            }
-//        }
         
         menuButton.backgroundColor = styles.buttonBackgoundColor
         menuButton.layer.cornerRadius = styles.buttonCornerRadius

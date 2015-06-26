@@ -66,7 +66,13 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="193" id="mQF-fm-LlA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB"/>
+                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
+                            <connections>
+                                <action selector="signOut:" destination="vXZ-lx-hvc" id="rce-E6-WGs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="7Yh-Ow-tTM" id="4lc-52-vl7"/>
                         <outlet property="sustainabilityInfoButton" destination="XwZ-3x-4nw" id="RHo-gD-9im"/>
