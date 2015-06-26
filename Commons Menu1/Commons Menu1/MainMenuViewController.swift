@@ -21,6 +21,9 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        if PFUser.currentUser() != nil {
+//            PFUser.logOut()
+//        }
         if PFUser.currentUser() == nil{
             var loginAlert:UIAlertController = UIAlertController(title: "Sign Up / Login", message: "Please sign up or login", preferredStyle: UIAlertControllerStyle.Alert)
             
