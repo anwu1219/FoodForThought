@@ -60,7 +60,7 @@ class RestMenuViewController: UIViewController {
     func toMenu(sender: UIButton!) {
         // use get data function to get the menu for the selected restaurant
         // call performSegueWithIdentifier to menuSwipeViewController 
-        self.getData(sender.titleLabel!.text!)
+        //self.getData(sender.titleLabel!.text!)
         println(sender.titleLabel!.text!)
         performSegueWithIdentifier("restToMenuSegue", sender: sender)
     }

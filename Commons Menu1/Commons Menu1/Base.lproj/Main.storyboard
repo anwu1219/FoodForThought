@@ -614,7 +614,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenEarth" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
                                 <rect key="frame" x="16" y="64" width="568" height="226"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CJN-4S-V6S" secondAttribute="height" multiplier="284:113" id="5Z6-rD-koj"/>
