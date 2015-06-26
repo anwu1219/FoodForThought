@@ -344,7 +344,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5dj-oE-vjJ" kind="push" id="wgb-kf-2KN"/>
+                                    <segue destination="5dj-oE-vjJ" kind="push" identifier="restToMenuSegue" id="wgb-kf-2KN"/>
                                 </connections>
                             </button>
                         </subviews>
