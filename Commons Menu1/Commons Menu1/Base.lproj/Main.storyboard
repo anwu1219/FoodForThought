@@ -371,7 +371,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
                                 <rect key="frame" x="16" y="302" width="288" height="246"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-iJ-UFs">
@@ -384,20 +384,19 @@
                                     <segue destination="5dj-oE-vjJ" kind="push" identifier="restToMenuSegue" id="wgb-kf-2KN"/>
                                 </connections>
                             </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-DD-UEW">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="QQv-te-0r1" id="Tgs-8w-eqU"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.43960793246137009" green="1" blue="0.68653450390421134" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="n3j-Sf-0h6" secondAttribute="centerX" id="31R-eL-Vux"/>
+                            <constraint firstAttribute="trailing" secondItem="n3j-Sf-0h6" secondAttribute="trailing" constant="16" id="6gc-ym-ql3"/>
+                            <constraint firstAttribute="centerY" secondItem="n3j-Sf-0h6" secondAttribute="centerY" constant="-141" id="FP0-rb-aMJ"/>
+                            <constraint firstItem="n3j-Sf-0h6" firstAttribute="leading" secondItem="UMK-bq-K6P" secondAttribute="leading" constant="16" id="OiS-UT-c8n"/>
+                            <constraint firstItem="MJr-EW-Q7S" firstAttribute="top" secondItem="n3j-Sf-0h6" secondAttribute="bottom" constant="20" id="cwK-jh-cNr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
                     <connections>
                         <outlet property="horizonScroll" destination="n3j-Sf-0h6" id="EMf-kj-y5y"/>
-                        <outlet property="searchBar" destination="HpP-DD-UEW" id="G4X-70-gPH"/>
                         <outlet property="searchDisplayController" destination="jKN-Gc-OYb" id="RWX-xo-oWE"/>
                     </connections>
                 </viewController>
@@ -407,7 +406,6 @@
                 <searchDisplayController id="jKN-Gc-OYb">
                     <connections>
                         <outlet property="delegate" destination="QQv-te-0r1" id="rj2-KQ-raI"/>
-                        <outlet property="searchBar" destination="HpP-DD-UEW" id="HkL-nQ-p99"/>
                         <outlet property="searchContentsController" destination="QQv-te-0r1" id="M2x-IP-0wf"/>
                         <outlet property="searchResultsDataSource" destination="QQv-te-0r1" id="Q6H-ER-7L8"/>
                         <outlet property="searchResultsDelegate" destination="QQv-te-0r1" id="Rv4-jj-Rlv"/>
