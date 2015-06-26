@@ -84,7 +84,7 @@ class RestMenuViewController: UIViewController {
     //                    menuSwipeViewController.image = img
     //                }
     //            }
-            menuSwipeViewController.menu = menu
+            menuSwipeViewController.menuLoad = menu
         }
     }
     
