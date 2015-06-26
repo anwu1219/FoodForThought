@@ -23,7 +23,7 @@ struct Styles {
     let labelBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     
     // view styles controls 
-    let backgroundImage = UIImageView(image: UIImage(named: "sloth"))
+    let backgroundImage = UIImageView(image: UIImage(named: "davidsonLogo"))
     let viewBackgoundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
     
