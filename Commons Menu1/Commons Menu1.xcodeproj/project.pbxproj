@@ -15,7 +15,6 @@
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
 		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
 		407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */; };
-		407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DE1B331D1B0006E9C5 /* Bunduru.swift */; };
 		40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842261B308C6A00D39DCD /* AppDelegate.swift */; };
 		40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842281B308C6A00D39DCD /* MainMenuViewController.swift */; };
 		40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422D1B308C6A00D39DCD /* Images.xcassets */; };
@@ -62,7 +61,6 @@
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
 		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
 		407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		407898DE1B331D1B0006E9C5 /* Bunduru.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bunduru.swift; sourceTree = "<group>"; };
 		40E842211B308C6A00D39DCD /* Commons Menu1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Commons Menu1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E842251B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E842261B308C6A00D39DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
 				1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
-				407898DE1B331D1B0006E9C5 /* Bunduru.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
@@ -329,7 +326,6 @@
 				F3E529101B39966A0081FFDC /* MenuTableViewCellDelegate.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
-				407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */,
 				1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */,
 				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,

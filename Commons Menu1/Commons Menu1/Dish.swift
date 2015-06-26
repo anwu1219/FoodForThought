@@ -43,6 +43,12 @@ class Dish: NSObject {
         self.image = image
     }
     
+    init(name: String, image: UIImage, like: Bool) {
+        self.name = name
+        self.image = image
+        self.like = like
+    }
+    
     init (name: String, ingredients: [String], image: UIImage, allergens: [String], chefNote: [String], ecoLabel: [UIImage], nutritionistNote: String, price: Double){
         self.name = name
         self.ingredients = ingredients

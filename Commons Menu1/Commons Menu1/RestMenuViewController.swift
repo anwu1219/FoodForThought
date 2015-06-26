@@ -81,41 +81,11 @@ class RestMenuViewController: UIViewController {
                 }
             }
         }
-        
-//                query.getObjectInBackgroundWithId("fl6MKsTbrO") {
-//                    (dish: PFObject?, error: NSError?) -> Void in
-//                    if error == nil && dish != nil {
-//                        if let name = dish?["name"] as? String{
-//                                self.test = name
-//                            if let userImageFile = dish?["image"] as? PFFile{
-//                                userImageFile.getDataInBackgroundWithBlock {
-//                                    (imageData: NSData?, error: NSError?) -> Void in
-//                                    if error == nil {
-//                                        if let data = imageData{
-//                                            self.image = UIImage(data: data)
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        } else {
-//                            println(error)
-//                        }
-//                    } else {
-//                        println(error)
-//                    }
-//                }
-    
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "restToMenuSegue"{
         let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
-    //            if let name = test{
-    //                menuSwipeViewController.test = name
-    //                if let img = image{
-    //                    menuSwipeViewController.image = img
-    //                }
-    //            }
             menuSwipeViewController.menuLoad = menu
         }
     }
