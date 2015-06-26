@@ -14,6 +14,11 @@ Shows all the resturants with available menus
 */
 class RestMenuViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var horizonScroll: UIScrollView!
+    
+    //let viewContainer = UIView()
+    
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var test = [String]()
@@ -22,6 +27,33 @@ class RestMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getData()
+        
+        horizonScroll.contentSize.width = 1000
+        horizonScroll.backgroundColor = UIColor.redColor()
+        //horizonScroll.addSubview(viewContainer)
+        placeButtons(5)
+        
+    }
+    
+    func placeButtons(numButtons: Int) {
+        for i in 0..<numButtons {
+            var button = UIButton()
+            var width: CGFloat = 140
+            var height: CGFloat = 50
+            var x: CGFloat = (width+10) * CGFloat(i)
+            var y: CGFloat = 0
+            button.frame = CGRectMake(x, y, width, height)
+            button.backgroundColor = UIColor.blackColor()
+            button.setTitle("Touch Me", forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.yellowColor(), forState: UIControlState.Normal)
+            
+            
+            var image = UIImageView(image: UIImage(named: "davidsonLogo"))
+            image.frame = CGRectMake(x, (y+height+5), width, width)
+            
+            horizonScroll.addSubview(button)
+            horizonScroll.addSubview(image)
+        }
     }
     
     func getData() {

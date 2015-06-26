@@ -337,8 +337,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-iJ-UFs">
-                                <rect key="frame" x="46" y="248" width="228" height="72"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
+                                <rect key="frame" x="16" y="302" width="288" height="246"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIT-iJ-UFs">
+                                <rect key="frame" x="46" y="215" width="228" height="72"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <state key="normal" title="Commons">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -347,18 +350,35 @@
                                     <segue destination="5dj-oE-vjJ" kind="push" identifier="restToMenuSegue" id="wgb-kf-2KN"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HpP-DD-UEW">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QQv-te-0r1" id="Tgs-8w-eqU"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.43960793246137009" green="1" blue="0.68653450390421134" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="mIT-iJ-UFs" secondAttribute="centerX" id="VYi-yv-NdF"/>
-                            <constraint firstAttribute="centerY" secondItem="mIT-iJ-UFs" secondAttribute="centerY" id="iOJ-OT-64T"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
+                    <connections>
+                        <outlet property="horizonScroll" destination="n3j-Sf-0h6" id="EMf-kj-y5y"/>
+                        <outlet property="searchBar" destination="HpP-DD-UEW" id="G4X-70-gPH"/>
+                        <outlet property="searchDisplayController" destination="jKN-Gc-OYb" id="RWX-xo-oWE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdf-ks-fN8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="t1O-bz-3DJ"/>
                 <tapGestureRecognizer id="D5s-wT-r6i"/>
+                <searchDisplayController id="jKN-Gc-OYb">
+                    <connections>
+                        <outlet property="delegate" destination="QQv-te-0r1" id="rj2-KQ-raI"/>
+                        <outlet property="searchBar" destination="HpP-DD-UEW" id="HkL-nQ-p99"/>
+                        <outlet property="searchContentsController" destination="QQv-te-0r1" id="M2x-IP-0wf"/>
+                        <outlet property="searchResultsDataSource" destination="QQv-te-0r1" id="Q6H-ER-7L8"/>
+                        <outlet property="searchResultsDelegate" destination="QQv-te-0r1" id="Rv4-jj-Rlv"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-209" y="-680"/>
         </scene>
