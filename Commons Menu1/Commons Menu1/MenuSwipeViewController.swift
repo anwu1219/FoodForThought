@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Parse
 
 /**
 Displays menus as food tinder
@@ -15,15 +15,14 @@ Displays menus as food tinder
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     @IBOutlet weak var tableView: UITableView!
    
+    var menuLoad : [Dish]?
     var menu = [Dish]()
     var preferenceList = [Dish]()
+    var menuPFObjects: [PFObject]?
     let styles = Styles()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var bunduru = Bunduru().allRestaurants
-        var meal = bunduru["Commons"]
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -33,15 +32,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
-        
-        if menu.count > 0 {
-            return
-        }
-        for var i = 0; i < meal!.count; i++ {
-            menu.append(meal![i])
+        //self.createMenu()
+        if let menuLoad = menuLoad {
+            for dish in menuLoad {
+                menu.append(dish)
+            }
         }
     }
-    
     
     // MARK: - Table view data source
     /**
@@ -73,13 +70,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            let dish = menu[indexPath.row]
-            cell.dish = dish
+            println(menu.count)
+                let dish = menu[indexPath.row]
+                cell.dish = dish
             
             //sets the image
-            cell.imageView?.image = dish.image
-            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
-            
+                cell.imageView?.image = dish.image
+                cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
             return cell
     }
     
@@ -91,10 +88,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func toDoItemDeleted(dish: Dish) {
         //Finds index of swiped dish and removes it from the array
         var index = find(menu, dish)!
-        menu.removeAtIndex(index)
+        //menu.removeAtIndex(index)
         
         // use the UITableView to animate the removal of this row
         tableView.beginUpdates()
+        self.menu.removeAtIndex(index)
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
         tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         tableView.endUpdates()
@@ -112,8 +110,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - PreferenceListViewControllerDelegate
     
     func revertCellToOriginalColor(dish: Dish) {
-        var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
-        println("We've made it into the revertCellToOriginalColor method")
+            var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
+            println("We've made it into the revertCellToOriginalColor method")
         //self[index].backgoundColor = UIColor.clearColor()
     }
     
@@ -151,9 +149,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
+                if let index = find(menu, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
+                    mealInfoViewController.dish = menu[index]
             }
         }
         
@@ -171,11 +169,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Updates the preferenceList  %anwu
     */
     func updatePreferenceList() {
-        for dish: Dish in menu {
+            for dish: Dish in menu {
         //println(dish.like)
-        if dish.like && !contains(preferenceList, dish){
-            preferenceList.append(dish)
-            }
+                if dish.like && !contains(preferenceList, dish){
+                    preferenceList.append(dish)
+                }
         }
         preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
