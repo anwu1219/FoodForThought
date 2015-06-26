@@ -39,10 +39,10 @@ class RestMenuViewController: UIViewController {
         for i in 0..<numButtons {
             var button = UIButton()
             var leftAlign: CGFloat = 10
-            var width: CGFloat = 140
-            var height: CGFloat = 50
+            var width: CGFloat = 0.2 * horizonScroll.bounds.width
+            var height: CGFloat = 0.3 * horizonScroll.bounds.height
             var x: CGFloat = (width+10) * CGFloat(i)
-            var y: CGFloat = 0
+            var y: CGFloat = (0 - (0.5 * height))
             button.frame = CGRectMake(leftAlign + x, y, width, height)
             button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
             button.setTitle("Touch Me" + String(i), forState: UIControlState.Normal)
