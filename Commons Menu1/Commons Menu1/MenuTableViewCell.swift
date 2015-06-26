@@ -8,13 +8,13 @@
 
 import UIKit
 import QuartzCore
+import Parse
 
 
 /**
 Manages the cell representation of a dish in a menu
 */
 class MenuTableViewCell: UITableViewCell {
-    
     let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
@@ -156,6 +156,20 @@ class MenuTableViewCell: UITableViewCell {
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
+
+                }
+                if let user = PFUser.currentUser(){
+                    let newPreference = PFObject(className:"Preference")
+                    newPreference["createdBy"] = PFUser.currentUser()
+                    newPreference["like"] = dish!.like
+                    newPreference.saveInBackgroundWithBlock({
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            // The object has been saved.
+                        } else {
+                            // There was a problem, check error.description
+                        }
+                        })
                 }
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
