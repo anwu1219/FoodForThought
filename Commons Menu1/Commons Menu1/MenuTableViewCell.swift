@@ -158,20 +158,6 @@ class MenuTableViewCell: UITableViewCell {
                     dish!.like = !dish!.like
 
                 }
-                if let user = PFUser.currentUser(){
-                    let newPreference = PFObject(className:"Preference")
-                    newPreference["createdBy"] = PFUser.currentUser()
-                    newPreference["like"] = dish!.like
-                    newPreference["dishName"] = dish!.name
-                    newPreference.saveInBackgroundWithBlock({
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            // The object has been saved.
-                        } else {
-                            // There was a problem, check error.description
-                        }
-                        })
-                }
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {

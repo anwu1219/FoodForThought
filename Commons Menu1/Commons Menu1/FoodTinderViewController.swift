@@ -1,38 +1,36 @@
 //
-//  MenuSwipeViewController.swift
+//  FoodTinderViewController.swift
 //  Commons Menu1
 //
-//  Created by Bjorn Ordoubadian on 18/6/15.
+//  Created by Bjorn Ordoubadian on 29/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
 import UIKit
 import Parse
 
-/**
-Displays menus as food tinder
-*/
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
-    @IBOutlet weak var tableView: UITableView!
-   
+
+class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+    
+    @IBOutlet weak var foodTinderTableView: UITableView!
+    
     var menuLoad : [Dish]?
     var menu = [Dish]()
     var preferenceList = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
-    var test = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.separatorStyle = .SingleLine
+        foodTinderTableView.dataSource = self
+        foodTinderTableView.delegate = self
+        foodTinderTableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
+        foodTinderTableView.separatorStyle = .SingleLine
         //tableView.backgroundColor = UIColor.blackColor()
-        tableView.backgroundView = styles.backgroundImage
+        foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 100;
+        foodTinderTableView.rowHeight = 100;
         //self.createMenu()
         if let menuLoad = menuLoad {
             for dish in menuLoad {
@@ -64,19 +62,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
-    
+            let cell = tableView.dequeueReusableCellWithIdentifier("tinderCell", forIndexPath: indexPath) as! MenuTableViewCell
+            
             //
             cell.delegate = self
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-                let dish = menu[indexPath.row]
-                cell.dish = dish
+            println(menu.count)
+            let dish = menu[indexPath.row]
+            cell.dish = dish
             
             //sets the image
-                cell.imageView?.image = dish.image
-                cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
+            cell.imageView?.image = dish.image
+            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
             return cell
     }
     
@@ -91,11 +90,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         //menu.removeAtIndex(index)
         
         // use the UITableView to animate the removal of this row
-        tableView.beginUpdates()
+        foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
-        tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-        tableView.endUpdates()
+        foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        foodTinderTableView.endUpdates()
     }
     
     
@@ -110,8 +109,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - PreferenceListViewControllerDelegate
     
     func revertCellToOriginalColor(dish: Dish) {
-            var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
-            println("We've made it into the revertCellToOriginalColor method")
+        var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
+        println("We've made it into the revertCellToOriginalColor method")
         //self[index].backgoundColor = UIColor.clearColor()
     }
     
@@ -121,11 +120,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // MARK: - Table view delegate
-//    func colorForIndex(index: Int) -> UIColor {
-//        let itemCount = menu.count - 1
-//        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-//        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-//    }
+    //    func colorForIndex(index: Int) -> UIColor {
+    //        let itemCount = menu.count - 1
+    //        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+    //        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+    //    }
     
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
@@ -149,9 +148,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-                if let index = find(menu, selectedMeal) {
+            if let index = find(menu, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
-                    mealInfoViewController.dish = menu[index]
+                mealInfoViewController.dish = menu[index]
             }
         }
         
@@ -169,8 +168,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Updates the preferenceList  %anwu
     */
     func updatePreferenceList() {
-        upLoadPreferenceList()
         for dish: Dish in menu {
+            //println(dish.like)
             if dish.like && !contains(preferenceList, dish){
                 preferenceList.append(dish)
             }
@@ -178,63 +177,4 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
     
-    
-    func fetchPreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let name = object["dishName"] as? String{
-                                println(name)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    func upLoadPreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let pFObject: PFObject = object as? PFObject{
-                                pFObject.delete()
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        for dish: Dish in menu{
-            if dish.like{
-                if let user = PFUser.currentUser(){
-                    let newPreference = PFObject(className:"Preference")
-                    newPreference["createdBy"] = PFUser.currentUser()
-                    newPreference["like"] = dish.like
-                    newPreference["dishName"] = dish.name
-                    newPreference.saveInBackgroundWithBlock({
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                        // The object has been saved.
-                        } else {
-                        // There was a problem, check error.description
-                        }
-                    })
-                }
-            }
-        }
-    }
 }
