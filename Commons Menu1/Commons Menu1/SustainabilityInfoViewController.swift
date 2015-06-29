@@ -14,9 +14,22 @@ Displays information of sustainability and links to sustainability info
 */
 class SustainabilityInfoViewController: UIViewController {
     
+    
 
     @IBOutlet weak var scrollView: UIScrollView!
 
+    @IBAction func learnMoreAction(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
+    }
+    
+    @IBAction func learnMoreAction2(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
+    }
+    
+    @IBAction func learnMoreAction3(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
