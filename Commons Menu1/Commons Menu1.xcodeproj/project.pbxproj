@@ -15,7 +15,6 @@
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
 		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
 		407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */; };
-		407898DF1B331D1B0006E9C5 /* Bunduru.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898DE1B331D1B0006E9C5 /* Bunduru.swift */; };
 		4082719E1B41A0170095597E /* FoodTinderViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4082719D1B41A0170095597E /* FoodTinderViewCellDelegate.swift */; };
 		40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */; };
 		40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842261B308C6A00D39DCD /* AppDelegate.swift */; };
@@ -43,6 +42,7 @@
 		F3EBAFB01B3B2A8800BFFD93 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */; };
 		F3EBAFB21B3B2A8F00BFFD93 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */; };
 		F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */; };
+		F3FB7E701B41F0A900AD38B7 /* allPreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB7E6F1B41F0A900AD38B7 /* allPreferenceListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,6 @@
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
 		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
 		407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		407898DE1B331D1B0006E9C5 /* Bunduru.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bunduru.swift; sourceTree = "<group>"; };
 		4082719D1B41A0170095597E /* FoodTinderViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderViewCellDelegate.swift; sourceTree = "<group>"; };
 		40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderViewController.swift; sourceTree = "<group>"; };
 		40E842211B308C6A00D39DCD /* Commons Menu1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Commons Menu1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +95,7 @@
 		F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F3FB7E6F1B41F0A900AD38B7 /* allPreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = allPreferenceListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,21 +134,7 @@
 		40E842181B308C6A00D39DCD = {
 			isa = PBXGroup;
 			children = (
-				F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */,
-				F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */,
-				F3EBAFAD1B3B2A8200BFFD93 /* SystemConfiguration.framework */,
-				F3EBAFAB1B3B2A7C00BFFD93 /* StoreKit.framework */,
-				F3EBAFA91B3B2A7500BFFD93 /* Social.framework */,
-				F3EBAFA71B3B2A6F00BFFD93 /* Security.framework */,
-				F3EBAFA51B3B2A6800BFFD93 /* QuartzCore.framework */,
-				F3EBAFA31B3B2A6100BFFD93 /* MobileCoreServices.framework */,
-				F3EBAFA11B3B2A5A00BFFD93 /* CoreLocation.framework */,
-				F3EBAF9F1B3B2A5200BFFD93 /* CoreGraphics.framework */,
-				F3EBAF9D1B3B2A4800BFFD93 /* CFNetwork.framework */,
-				F3EBAF9B1B3B2A3F00BFFD93 /* AudioToolbox.framework */,
-				F3EBAF991B3B2A3600BFFD93 /* Accounts.framework */,
-				F3EBAF971B3B29EB00BFFD93 /* Bolts.framework */,
-				F3EBAF951B3B29C500BFFD93 /* Parse.framework */,
+				F3FB7E6E1B41EFB000AD38B7 /* Framework */,
 				40E842231B308C6A00D39DCD /* Commons Menu1 */,
 				40E842391B308C6A00D39DCD /* Commons Menu1Tests */,
 				40E842221B308C6A00D39DCD /* Products */,
@@ -220,8 +206,31 @@
 				407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */,
 				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
 				40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */,
+				F3FB7E6F1B41F0A900AD38B7 /* allPreferenceListViewController.swift */,
 			);
 			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		F3FB7E6E1B41EFB000AD38B7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */,
+				F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */,
+				F3EBAFAD1B3B2A8200BFFD93 /* SystemConfiguration.framework */,
+				F3EBAFAB1B3B2A7C00BFFD93 /* StoreKit.framework */,
+				F3EBAFA91B3B2A7500BFFD93 /* Social.framework */,
+				F3EBAFA71B3B2A6F00BFFD93 /* Security.framework */,
+				F3EBAFA51B3B2A6800BFFD93 /* QuartzCore.framework */,
+				F3EBAFA31B3B2A6100BFFD93 /* MobileCoreServices.framework */,
+				F3EBAFA11B3B2A5A00BFFD93 /* CoreLocation.framework */,
+				F3EBAF9F1B3B2A5200BFFD93 /* CoreGraphics.framework */,
+				F3EBAF9D1B3B2A4800BFFD93 /* CFNetwork.framework */,
+				F3EBAF9B1B3B2A3F00BFFD93 /* AudioToolbox.framework */,
+				F3EBAF991B3B2A3600BFFD93 /* Accounts.framework */,
+				F3EBAF971B3B29EB00BFFD93 /* Bolts.framework */,
+				F3EBAF951B3B29C500BFFD93 /* Parse.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +344,7 @@
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				F3E529101B39966A0081FFDC /* MenuTableViewCellDelegate.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
+				F3FB7E701B41F0A900AD38B7 /* allPreferenceListViewController.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */,
 				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
