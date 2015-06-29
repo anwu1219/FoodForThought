@@ -62,14 +62,13 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("tinderCell", forIndexPath: indexPath) as! MenuTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
             
             //
             cell.delegate = self
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            println(menu.count)
             let dish = menu[indexPath.row]
             cell.dish = dish
             
@@ -102,7 +101,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     Delegate function that segues between the dish cells and the dish info view
     */
     func viewDishInfo(selectedDish: Dish) {
-        performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
+        performSegueWithIdentifier("foodTinderSegue", sender: selectedDish)
     }
     
     
@@ -145,7 +144,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Segues to single dish info
-        if segue.identifier == "mealInfoSegue" {
+        if segue.identifier == "foodTinderSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
             if let index = find(menu, selectedMeal) {

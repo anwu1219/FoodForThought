@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PF2-Xu-cZ2">
-                                <rect key="frame" x="0.0" y="-8" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PF2-Xu-cZ2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinderCell" id="2Av-9g-xZi" customClass="TableViewCell">
@@ -33,6 +33,10 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PF2-Xu-cZ2" firstAttribute="leading" secondItem="ZOa-hq-kbh" secondAttribute="leading" id="BY7-Ka-eCA"/>
+                            <constraint firstAttribute="trailing" secondItem="PF2-Xu-cZ2" secondAttribute="trailing" id="LNS-CK-8NZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="foodTinderTableView" destination="PF2-Xu-cZ2" id="2cI-MW-Q79"/>
@@ -81,28 +85,50 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaB-WN-Yol">
                                 <rect key="frame" x="205" y="458" width="189" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="2K1-QI-Yl8"/>
+                                    <constraint firstAttribute="width" constant="189" id="zGU-uy-ivY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="24"/>
                                 <state key="normal" title="Tinder Style">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2K1-QI-Yl8"/>
+                                        <exclude reference="zGU-uy-ivY"/>
+                                    </mask>
+                                </variation>
                                 <connections>
-                                    <segue destination="WVm-va-1Bq" kind="show" id="fRk-GI-yso"/>
+                                    <segue destination="WVm-va-1Bq" kind="show" identifier="foodTinderSegue" id="fRk-GI-yso"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.76508683198389515" blue="0.10664838931238096" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="XwZ-3x-4nw" secondAttribute="centerX" id="0YP-Ts-TJ8"/>
+                            <constraint firstItem="AaB-WN-Yol" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="189" id="6eR-HC-VxE"/>
                             <constraint firstAttribute="centerX" secondItem="AaB-WN-Yol" secondAttribute="centerX" id="6zQ-WT-CdL"/>
+                            <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="51" id="HTp-Op-tkt"/>
                             <constraint firstAttribute="width" secondItem="7Yh-Ow-tTM" secondAttribute="height" multiplier="15:1" id="K7h-Vv-IN4"/>
                             <constraint firstAttribute="centerX" secondItem="7Yh-Ow-tTM" secondAttribute="centerX" id="PWj-qj-Cdb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AaB-WN-Yol" secondAttribute="trailing" constant="190" id="Sc9-d9-hjC"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AaB-WN-Yol" secondAttribute="bottom" constant="86" id="b6u-Q0-AiW"/>
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="51" id="cva-FG-v8z"/>
                             <constraint firstAttribute="width" secondItem="XwZ-3x-4nw" secondAttribute="height" multiplier="75:7" id="eal-aI-b46"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="top" secondItem="7Yh-Ow-tTM" secondAttribute="bottom" constant="72" id="eoe-IO-jU0"/>
                             <constraint firstAttribute="centerY" secondItem="7Yh-Ow-tTM" secondAttribute="centerY" constant="41" id="kOp-NN-tH0"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="193" id="mQF-fm-LlA"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6eR-HC-VxE"/>
+                                <exclude reference="Sc9-d9-hjC"/>
+                                <exclude reference="cva-FG-v8z"/>
+                                <exclude reference="b6u-Q0-AiW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
@@ -120,7 +146,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1362" y="-719"/>
-
         </scene>
         <!--Sustainability Info-->
         <scene sceneID="1a4-ct-bCe">
@@ -423,7 +448,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lco-8q-pbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-563" y="64"/>
+            <point key="canvasLocation" x="-718" y="58"/>
         </scene>
         <!--Restaurant Menus-->
         <scene sceneID="27M-76-1o5">
@@ -728,7 +753,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenEarth" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="greenEarth" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
                                 <rect key="frame" x="16" y="64" width="568" height="226"/>
                             </imageView>
                         </subviews>
@@ -776,8 +801,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-
         <segue reference="9KC-Ya-aLm"/>
-        <segue reference="aIz-rM-qCJ"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>
