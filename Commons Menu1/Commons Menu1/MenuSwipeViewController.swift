@@ -170,36 +170,25 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func updatePreferenceList() {
         upLoadPreferenceList()
-        for dish: Dish in menu {
-            if dish.like && !contains(preferenceList, dish){
+        preferenceList.removeAll(keepCapacity: false)
+        for dish : Dish in menu {
+            if dish.like{
                 preferenceList.append(dish)
             }
         }
-        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
+        
+//        for dish: Dish in menu {
+//            if dish.like && !contains(preferenceList, dish){
+//                preferenceList.append(dish)
+//            }
+//        }
+//        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
     
     
-    func fetchPreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let name = object["dishName"] as? String{
-                                println(name)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
+    /**
+    Renew the preference list of the current user on parse
+    */
     func upLoadPreferenceList(){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
