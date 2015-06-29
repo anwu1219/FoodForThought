@@ -731,7 +731,6 @@
     <resources>
         <image name="greenEarth" width="202" height="208"/>
         <image name="heartHands" width="225" height="225"/>
-        <image name="sloth" width="625" height="469"/>
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
