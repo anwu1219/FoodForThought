@@ -162,6 +162,7 @@ class MenuTableViewCell: UITableViewCell {
                     let newPreference = PFObject(className:"Preference")
                     newPreference["createdBy"] = PFUser.currentUser()
                     newPreference["like"] = dish!.like
+                    newPreference["dishName"] = dish!.name
                     newPreference.saveInBackgroundWithBlock({
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {

@@ -20,6 +20,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var preferenceList = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
+    var test = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -169,11 +170,30 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Updates the preferenceList  %anwu
     */
     func updatePreferenceList() {
-            for dish: Dish in menu {
-        //println(dish.like)
-                if dish.like && !contains(preferenceList, dish){
-                    preferenceList.append(dish)
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let name = object["dishName"] as? String{
+                                println(name)
+                            }
+                        }
+                    }
                 }
+            }
+        }
+        
+        for dish: Dish in menu {
+            
+        //println(dish.like)
+            if dish.like && !contains(preferenceList, dish){
+                preferenceList.append(dish)
+            }
         }
         preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
