@@ -90,20 +90,12 @@ class RestMenuViewController: UIViewController {
                 }
             }
         }
-<<<<<<< HEAD
-=======
-        
-    
->>>>>>> 01c0cf90415882fbcd3146efc2418717953b800b
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "restToMenuSegue"{
         let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
-<<<<<<< HEAD
-=======
             menu.sort({$0.name<$1.name})
->>>>>>> 01c0cf90415882fbcd3146efc2418717953b800b
             menuSwipeViewController.menuLoad = menu
         }
     }
