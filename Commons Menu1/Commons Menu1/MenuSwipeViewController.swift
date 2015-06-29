@@ -179,27 +179,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    func fetchPreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let name = object["dishName"] as? String{
-                                println(name)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
     func upLoadPreferenceList(){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
@@ -228,9 +207,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     newPreference.saveInBackgroundWithBlock({
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
-                        // The object has been saved.
+                            // The object has been saved.
                         } else {
-                        // There was a problem, check error.description
+                            // There was a problem, check error.description
                         }
                     })
                 }
