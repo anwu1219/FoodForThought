@@ -14,6 +14,7 @@ Displays information of sustainability and links to sustainability info
 */
 class SustainabilityInfoViewController: UIViewController {
     
+    
 
     @IBOutlet weak var scrollView: UIScrollView!
 
