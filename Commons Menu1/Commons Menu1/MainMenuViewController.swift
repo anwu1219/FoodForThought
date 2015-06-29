@@ -23,8 +23,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var sustainabilityInfoButton: UIButton!
     @IBAction func signOut(sender: AnyObject) {
-        
-        	PFUser.logOut()
+        PFUser.logOut()
     }
     
     let styles = Styles()

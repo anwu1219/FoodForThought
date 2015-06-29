@@ -20,6 +20,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var preferenceList = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
+    var test = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +71,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            println(menu.count)
                 let dish = menu[indexPath.row]
                 cell.dish = dish
             
@@ -169,13 +169,72 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Updates the preferenceList  %anwu
     */
     func updatePreferenceList() {
-            for dish: Dish in menu {
-        //println(dish.like)
-                if dish.like && !contains(preferenceList, dish){
-                    preferenceList.append(dish)
-                }
+        upLoadPreferenceList()
+        for dish: Dish in menu {
+            if dish.like && !contains(preferenceList, dish){
+                preferenceList.append(dish)
+            }
         }
         preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
     }
     
+    
+    func fetchPreferenceList(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let name = object["dishName"] as? String{
+                                println(name)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func upLoadPreferenceList(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                pFObject.delete()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for dish: Dish in menu{
+            if dish.like{
+                if let user = PFUser.currentUser(){
+                    let newPreference = PFObject(className:"Preference")
+                    newPreference["createdBy"] = PFUser.currentUser()
+                    newPreference["like"] = dish.like
+                    newPreference["dishName"] = dish.name
+                    newPreference.saveInBackgroundWithBlock({
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                        // The object has been saved.
+                        } else {
+                        // There was a problem, check error.description
+                        }
+                    })
+                }
+            }
+        }
+    }
 }
