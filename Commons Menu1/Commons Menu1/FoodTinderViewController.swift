@@ -30,8 +30,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //tableView.backgroundColor = UIColor.blackColor()
         foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
-        foodTinderTableView.rowHeight = 100;
+        foodTinderTableView.rowHeight = 600;
         //self.createMenu()
+        
         if let menuLoad = menuLoad {
             for dish in menuLoad {
                 menu.append(dish)
@@ -45,6 +46,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    //random function to get random dishes into the tinder swiper
+    func randomTinderDishes() -> Int {
+       var dishNumber = Int(arc4random_uniform(5))
+        return dishNumber
     }
     
     
@@ -69,8 +76,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            let dish = menu[indexPath.row]
+//            let dish = menu[indexPath.row]
+            let dish = menu[randomTinderDishes()]
             cell.dish = dish
+            
+            
             
             //sets the image
             cell.imageView?.image = dish.image
