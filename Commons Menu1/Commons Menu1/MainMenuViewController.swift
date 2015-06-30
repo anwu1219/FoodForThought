@@ -16,10 +16,17 @@ class MainMenuViewController: UIViewController {
     
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
+    var restaurants = [String: [Dish]]()
+    
 
+    @IBAction func showRestaurants(sender: AnyObject) {
+        performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
+    }
+    
     @IBAction func foodTinderAction(sender: AnyObject) {
         performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
+    
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var sustainabilityInfoButton: UIButton!
     @IBAction func signOut(sender: AnyObject) {
@@ -51,6 +58,12 @@ class MainMenuViewController: UIViewController {
             menu.sort({$0.name<$1.name})
             foodTinderViewController.menuLoad = menu
         }
+        if segue.identifier == "mainToRestaurantsSegue" {
+            let restMenuViewController = segue.destinationViewController as! RestMenuViewController
+            menu.sort({$0.name<$1.name})
+            restMenuViewController.menu = menu
+            restMenuViewController.restaurants = restaurants
+        }
     }
     
     
@@ -68,8 +81,12 @@ class MainMenuViewController: UIViewController {
                                 userImageFile.getDataInBackgroundWithBlock {
                                     (imageData: NSData?, error: NSError?) ->Void in
                                     if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                        self.menu.append(Dish(name: name, image: image))
-                                        }
+                                        if let location = object["location"] as? String{
+                                            let dish = Dish(name: name, image: image, location: location)
+                                            self.menu.append(dish)
+                                            self.addToRestaurant(location, dish: dish)
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -81,6 +98,13 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    func addToRestaurant(location: String, dish: Dish){
+        if !contains(self.restaurants.keys, location){
+            restaurants[location] = [Dish]()
+        }
+        restaurants[location]?.append(dish)
+    }
     
 }
 
