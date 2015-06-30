@@ -30,7 +30,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
         //tableView.backgroundColor = UIColor.blackColor()
-        tableView.backgroundView = styles.backgroundImage
+        //tableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
         //self.createMenu()
