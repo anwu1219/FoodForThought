@@ -19,24 +19,26 @@ class RestMenuViewController: UIViewController {
     
     //let viewContainer = UIView()
     var styles = Styles()
-    var menuPFObjects = [PFObject]()
-    var menu = [Dish]()
-    var test = [String]()
+    var menu: [Dish]?
+    var restaurants :[String: [Dish]]?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.getData("test")
+        
         horizonScroll.contentSize.width = 1000
         horizonScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
         //horizonScroll.addSubview(viewContainer)
-        placeButtons(5)
+        if let restaurants = restaurants{
+            var keys = restaurants.keys.array
+            placeButtons(keys)
+        }
         
     }
     
-    func placeButtons(numButtons: Int) {
-        for i in 0..<numButtons {
+    func placeButtons(keys: [String]) {
+        for i in 0..<keys.count {
             var button = UIButton()
             var leftAlign: CGFloat = 10
             var width: CGFloat = 0.2 * horizonScroll.bounds.width
@@ -45,7 +47,7 @@ class RestMenuViewController: UIViewController {
             var y: CGFloat = (0 - (0.5 * height))
             button.frame = CGRectMake(leftAlign + x, y, width, height)
             button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
-            button.setTitle("Touch Me" + String(i), forState: UIControlState.Normal)
+            button.setTitle(keys[i], forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             
@@ -61,42 +63,19 @@ class RestMenuViewController: UIViewController {
         // use get data function to get the menu for the selected restaurant
         // call performSegueWithIdentifier to menuSwipeViewController 
         //self.getData(sender.titleLabel!.text!)
-        println(sender.titleLabel!.text!)
         performSegueWithIdentifier("restToMenuSegue", sender: sender)
     }
-    
-    func getData(name: String) {
-        var query = PFQuery(className:"dishInfo")
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil && objects != nil{
-                if let objectsArray = objects{
-                    for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
-                        if let name = object["name"] as? String {
-                            if let userImageFile = object["image"] as? PFFile{
-                                userImageFile.getDataInBackgroundWithBlock {
-                                    (imageData: NSData?, error: NSError?) ->Void in
-                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                        self.menu.append(Dish(name: name, image: image))
-                                        }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    }
-                }
-            }
-        }
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "restToMenuSegue"{
         let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
-            menu.sort({$0.name<$1.name})
-            menuSwipeViewController.menuLoad = menu
+        if let restaurants = restaurants {
+            let button = sender as! UIButton
+            if let title = button.titleLabel?.text {
+            menuSwipeViewController.menuLoad = restaurants[title]
+            }
+        }
         }
     }
     

@@ -161,7 +161,6 @@
 				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
-				F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */,
 				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
 				4082719D1B41A0170095597E /* FoodTinderViewCellDelegate.swift */,
 				1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */,
@@ -210,6 +209,7 @@
 				F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */,
 				40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */,
 				F3FB7E6F1B41F0A900AD38B7 /* allPreferenceListViewController.swift */,
+				F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";

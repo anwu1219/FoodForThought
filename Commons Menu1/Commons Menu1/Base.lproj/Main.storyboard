@@ -106,7 +106,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="QQv-te-0r1" kind="show" id="eP9-cA-8qv"/>
+                                    <segue destination="QQv-te-0r1" kind="show" identifier="mainToRestaurantsSegue" id="eP9-cA-8qv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaB-WN-Yol">
@@ -173,7 +173,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
                             <connections>
                                 <action selector="signOut:" destination="vXZ-lx-hvc" id="CbE-eA-QcA"/>
-                                <segue destination="bha-uc-Tnm" kind="show" id="BBf-Ep-yK9"/>
+                                <segue destination="bha-uc-Tnm" kind="show" identifier="" id="BBf-Ep-yK9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -404,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oD3-eF-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1351" y="527"/>
+            <point key="canvasLocation" x="-1362" y="527"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
@@ -443,7 +443,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signIn:" destination="bha-uc-Tnm" eventType="touchUpInside" id="JTi-3h-yIM"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigation" id="oCX-IQ-hjX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujy-Bf-ZCU">
@@ -705,7 +705,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4R-hW-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997" y="-719"/>
+            <point key="canvasLocation" x="1079" y="-719"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
@@ -839,7 +839,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mba-Fe-ynv"/>
-        <segue reference="3o2-Y1-34R"/>
+        <segue reference="oCX-IQ-hjX"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>

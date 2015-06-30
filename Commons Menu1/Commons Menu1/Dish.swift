@@ -26,6 +26,7 @@ class Dish: NSObject {
     var price: Double?
     // a Boolean value that determines whether the user liked the dish %anwu
     var like: Bool = false
+    var location: String?
 
     
     init(name: String) {
@@ -38,15 +39,17 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage){
+    init(name: String, image: UIImage, location: String){
         self.name = name
         self.image = image
+        self.location = location
     }
     
-    init(name: String, image: UIImage, like: Bool) {
+    init(name: String, image: UIImage, like: Bool, location: String) {
         self.name = name
         self.image = image
         self.like = like
+        self.location = location
     }
     
     init (name: String, ingredients: [String], image: UIImage, allergens: [String], chefNote: [String], ecoLabel: [UIImage], nutritionistNote: String, price: Double){
