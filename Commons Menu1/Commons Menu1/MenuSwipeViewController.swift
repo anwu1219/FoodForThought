@@ -20,7 +20,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var preferenceList = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
-    var test = [String]()
+    var location : String?
+    var delegate: updatePreferenceListDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if let menuLoad = menuLoad {
             for dish in menuLoad {
                 menu.append(dish)
+            }
+        }
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            println("This VC is 'will' be popped. i.e. the back button was pressed.")
+            if delegate != nil {
+                if let location = location{
+                delegate?.updatePreference(preferenceList,location: location)
+            }
             }
         }
     }

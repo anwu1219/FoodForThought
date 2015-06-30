@@ -9,10 +9,15 @@
 import UIKit
 import Parse
 
+protocol updatePreferenceListDelegate{
+    func updatePreference(preferences: [Dish], location: String)
+}
+
+
 /**
 Shows all the resturants with available menus
 */
-class RestMenuViewController: UIViewController {
+class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var horizonScroll: UIScrollView!
@@ -21,6 +26,7 @@ class RestMenuViewController: UIViewController {
     var styles = Styles()
     var menu: [Dish]?
     var restaurants :[String: [Dish]]?
+    var preferenceList = [String: [Dish]]()
     
     
     override func viewDidLoad() {
@@ -32,10 +38,19 @@ class RestMenuViewController: UIViewController {
         //horizonScroll.addSubview(viewContainer)
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
+            addKeysToPreferenceList(keys)
             placeButtons(keys)
         }
         
     }
+    
+    
+    func addKeysToPreferenceList(keys: [String]){
+        for key in keys{
+            preferenceList[key] = []
+        }
+    }
+    
     
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
@@ -73,13 +88,16 @@ class RestMenuViewController: UIViewController {
         if let restaurants = restaurants {
             let button = sender as! UIButton
             if let title = button.titleLabel?.text {
-            menuSwipeViewController.menuLoad = restaurants[title]
+                menuSwipeViewController.menuLoad = restaurants[title]
+                menuSwipeViewController.location = title
             }
         }
         }
     }
     
-    
+    func updatePreference(preferences: [Dish], location: String) {
+        preferenceList[location] = preferences
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
