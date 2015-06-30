@@ -9,8 +9,17 @@
 import UIKit
 import Parse
 
+extension Array {
+    mutating func shuffle() {
+        if count < 2 { return }
+        for i in 0..<(count - 1) {
+            let j = Int(arc4random_uniform(UInt32(count - i))) + i
+            swap(&self[i], &self[j])
+        }
+    }
+}
 
-class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate {
     
     @IBOutlet weak var foodTinderTableView: UITableView!
     
@@ -19,13 +28,14 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var preferenceList = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
+    var queriedDishes = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         foodTinderTableView.dataSource = self
         foodTinderTableView.delegate = self
-        foodTinderTableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
+        foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "cell")
         foodTinderTableView.separatorStyle = .SingleLine
         //tableView.backgroundColor = UIColor.blackColor()
         foodTinderTableView.backgroundView = styles.backgroundImage
@@ -38,6 +48,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 menu.append(dish)
             }
         }
+        
+        //shuffles the goddamn dishes
+        menu.shuffle()
+        
     }
     
     // MARK: - Table view data source
@@ -48,11 +62,18 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         return 1
     }
     
-    //random function to get random dishes into the tinder swiper
-    func randomTinderDishes() -> Int {
-       var dishNumber = Int(arc4random_uniform(5))
-        return dishNumber
+    //Fisher-Yates function to get random dishes into the tinder swiper
+    
+    func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C {
+        let c = count(list)
+        if c < 2 { return list }
+        for i in 0..<(c - 1) {
+            let j = Int(arc4random_uniform(UInt32(c - i))) + i
+            swap(&list[i], &list[j])
+        }
+        return list
     }
+    
     
     
     /**
@@ -69,22 +90,22 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! FoodTinderTableViewCell
             
             //
             cell.delegate = self
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-//            let dish = menu[indexPath.row]
-            let dish = menu[randomTinderDishes()]
+            
+            let dish = menu[indexPath.row]
             cell.dish = dish
-            
-            
-            
+               
+                
             //sets the image
             cell.imageView?.image = dish.image
-            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
+            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
+
             return cell
     }
     
@@ -111,7 +132,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     Delegate function that segues between the dish cells and the dish info view
     */
     func viewDishInfo(selectedDish: Dish) {
-        performSegueWithIdentifier("foodTinderSegue", sender: selectedDish)
+        performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
     

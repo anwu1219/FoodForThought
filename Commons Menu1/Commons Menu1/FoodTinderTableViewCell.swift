@@ -1,10 +1,11 @@
 //
-//  MenuTableViewCell.swift
+//  FoodTinderTableViewCell.swift
 //  Commons Menu1
 //
-//  Created by Bjorn Ordoubadian on 18/6/15.
+//  Created by Bjorn Ordoubadian on 30/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
+
 
 import UIKit
 import QuartzCore
@@ -14,7 +15,7 @@ import Parse
 /**
 Manages the cell representation of a dish in a menu
 */
-class MenuTableViewCell: UITableViewCell {
+class FoodTinderTableViewCell: UITableViewCell {
     let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
@@ -23,7 +24,7 @@ class MenuTableViewCell: UITableViewCell {
     let label: UILabel
     var itemLikeLayer = CALayer()
     // The object that acts as delegate for this cell
-    var delegate: MenuTableViewCellDelegate?
+    var delegate: FoodTinderViewCellDelegate?
     // The dish that this cell renders
     var dish: Dish? {
         didSet {
@@ -117,7 +118,7 @@ class MenuTableViewCell: UITableViewCell {
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
     }
-
+    
     
     /**
     MARK: - horizontal pan gesture methods
@@ -156,8 +157,12 @@ class MenuTableViewCell: UITableViewCell {
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
+                    
+                    //removes cell once it is liked
+                   delegate!.toDoItemDeleted(dish!)
 
-
+                    
+                    
                 }
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
