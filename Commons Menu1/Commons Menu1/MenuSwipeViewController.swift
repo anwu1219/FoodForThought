@@ -12,7 +12,7 @@ import Parse
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, PreferenceListViewControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
    
     var menuLoad : [Dish]?
@@ -147,19 +147,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    // MARK: - PreferenceListViewControllerDelegate
-    
-    func revertCellToOriginalColor(dish: Dish) {
-            var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
-            println("We've made it into the revertCellToOriginalColor method")
-        //self[index].backgoundColor = UIColor.clearColor()
-    }
-    
-    func identifyDish(dish: Dish) {
-        // no need to do anything in this viewcontroller
-    }
-    
-    
     // MARK: - Table view delegate
 //    func colorForIndex(index: Int) -> UIColor {
 //        let itemCount = menu.count - 1
@@ -200,6 +187,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
             // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = preferences
+            preferencelistViewController.delegate = self
+        }
+    }
+    
+    func updatePreferences(preferenceList: [Dish]){
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
+        self.preferences.removeAll(keepCapacity: false)
+        for dish: Dish in preferenceList{
+            if dish.like{
+                preferences.append(dish)
+            }
         }
     }
     

@@ -73,8 +73,8 @@ class preferenceListTableViewCell: UITableViewCell {
             if deleteOnDragRelease {
                 if self.delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
-                    self.delegate!.toDoItemDeleted(dish!)
                     dish!.like = false
+                    self.delegate!.toDoItemDeleted(dish!)
                 }
             }
             else {
