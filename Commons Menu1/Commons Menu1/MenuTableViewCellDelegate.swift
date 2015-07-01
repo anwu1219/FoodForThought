@@ -15,7 +15,7 @@ protocol MenuTableViewCellDelegate {
     */
     func toDoItemDeleted(dish: Dish)
     
-    
+
     /**
     indicates which item has been selected and provide appropriate information for a segue to dish info
     */

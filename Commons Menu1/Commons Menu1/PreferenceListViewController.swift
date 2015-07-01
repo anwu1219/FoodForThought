@@ -30,6 +30,18 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.rowHeight = 100;
     }
     
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            println("This VC is 'will' be popped. i.e. the back button was pressed.")
+            if delegate != nil {
+                if let preferences = preferences{
+                    delegate?.updatePreferences(preferences)
+                }
+            }
+        }
+    }
+    
     
     //number of section
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -85,7 +97,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     func deleteFromPreferences(dish: Dish) {
         
     }
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {

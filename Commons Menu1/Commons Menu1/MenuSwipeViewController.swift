@@ -12,7 +12,7 @@ import Parse
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, PreferenceListViewControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
    
     var menuLoad : [Dish]?
@@ -155,10 +155,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         //self[index].backgoundColor = UIColor.clearColor()
     }
     
-    func identifyDish(dish: Dish) {
-        // no need to do anything in this viewcontroller
-    }
-    
     
     // MARK: - Table view delegate
 //    func colorForIndex(index: Int) -> UIColor {
@@ -200,6 +196,16 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
             // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = preferences
+            preferencelistViewController.delegate = self
+        }
+    }
+    
+    func updatePreferences(preferenceList: [Dish]){
+        self.preferences.removeAll(keepCapacity: false)
+        for dish: Dish in preferenceList{
+            if dish.like{
+                preferences.append(dish)
+            }
         }
     }
     

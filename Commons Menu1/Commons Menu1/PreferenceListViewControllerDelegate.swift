@@ -13,6 +13,5 @@ protocol PreferenceListViewControllerDelegate {
     /**
     Reverts cell background color to original when removed from preference list
     */
-    func revertCellToOriginalColor(dish: Dish)
-    
+    func updatePreferences(preferenceList: [Dish])
 }
