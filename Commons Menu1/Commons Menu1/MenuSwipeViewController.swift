@@ -147,15 +147,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    // MARK: - PreferenceListViewControllerDelegate
-    
-    func revertCellToOriginalColor(dish: Dish) {
-            var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
-            println("We've made it into the revertCellToOriginalColor method")
-        //self[index].backgoundColor = UIColor.clearColor()
-    }
-    
-    
     // MARK: - Table view delegate
 //    func colorForIndex(index: Int) -> UIColor {
 //        let itemCount = menu.count - 1
@@ -201,6 +192,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func updatePreferences(preferenceList: [Dish]){
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
         self.preferences.removeAll(keepCapacity: false)
         for dish: Dish in preferenceList{
             if dish.like{
