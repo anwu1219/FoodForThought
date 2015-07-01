@@ -17,11 +17,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
-    var preferenceList = [Dish]()
+    var preferences = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
     var location : String?
-    var delegate: updatePreferenceListDelegate?
+    var delegate: updateRestaurantPreferenceListDelegate?
     
     
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
             if delegate != nil {
                 if let location = location{
-                delegate?.updatePreference(preferenceList,location: location)
+                delegate?.updatePreference(preferences,location: location)
             }
             }
         }
@@ -121,6 +121,27 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /**
+    Delegate functions that updates the preference list
+    */
+    
+    func addToPreferences(dish: Dish){
+        if !contains(preferences, dish){
+            preferences.append(dish)
+        } else{
+            let index = find(preferences,dish)
+            preferences.removeAtIndex(index!)
+        }
+    }
+    
+    func deleteFromPreferences(dish: Dish){
+        if contains(preferences, dish){
+            let index = find(preferences,dish)
+            preferences.removeAtIndex(index!)
+        }
+    }
+    
+    
     // MARK: - PreferenceListViewControllerDelegate
     
     func revertCellToOriginalColor(dish: Dish) {
@@ -169,31 +190,22 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        // Segues to the preference list
+        // Segues to the preference list of the single menu
         if segue.identifier  == "menuToPreferenceSegue" {
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
-            updatePreferenceList()
+            uploadPreferenceList()
             // Passes the list of liked dishes to the preference list view
-            preferencelistViewController.preferences = preferenceList
+            println(preferences)
+            preferencelistViewController.preferences = preferences
         }
     }
+    
     
     
     /**
-    Updates the preferenceList  %anwu
+    Upload the preference list
     */
-    func updatePreferenceList() {
-        upLoadPreferenceList()
-        for dish: Dish in menu {
-            if dish.like && !contains(preferenceList, dish){
-                preferenceList.append(dish)
-            }
-        }
-        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
-    }
-    
-    
-    func upLoadPreferenceList(){
+    func uploadPreferenceList(){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Preference")

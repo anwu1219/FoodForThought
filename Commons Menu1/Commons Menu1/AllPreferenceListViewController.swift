@@ -8,6 +8,6 @@
 
 import UIKit
 
-class allPreferenceListViewController: UIViewController {
+class AllPreferenceListViewController: UIViewController {
 
 }
