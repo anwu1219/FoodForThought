@@ -107,7 +107,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             //sets the image
             cell.imageView?.image = dish.image
   
-                        
+            
             cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             cell.imageView?.clipsToBounds = true
