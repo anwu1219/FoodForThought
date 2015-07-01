@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-protocol updatePreferenceListDelegate{
+protocol updateRestaurantPreferenceListDelegate{
     func updatePreference(preferences: [Dish], location: String)
 }
 
@@ -17,7 +17,7 @@ protocol updatePreferenceListDelegate{
 /**
 Shows all the resturants with available menus
 */
-class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
+class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var horizonScroll: UIScrollView!
@@ -27,6 +27,8 @@ class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
     var menu: [Dish]?
     var restaurants :[String: [Dish]]?
     var preferenceList = [String: [Dish]]()
+    var delegate: updatePreferenceListDelegate?
+    var location: String?
     
     
     override func viewDidLoad() {
@@ -48,6 +50,19 @@ class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
     func addKeysToPreferenceList(keys: [String]){
         for key in keys{
             preferenceList[key] = []
+        }
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            println(preferenceList)
+            println("This VC is 'will' be popped. i.e. the back button was pressed.")
+            if delegate != nil {
+                if let location = location{
+                    delegate?.updatePreference(preferenceList)
+                }
+            }
         }
     }
     
@@ -90,6 +105,7 @@ class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
             if let title = button.titleLabel?.text {
                 menuSwipeViewController.menuLoad = restaurants[title]
                 menuSwipeViewController.location = title
+                menuSwipeViewController.delegate = self
             }
         }
         }
@@ -97,6 +113,7 @@ class RestMenuViewController: UIViewController, updatePreferenceListDelegate{
     
     func updatePreference(preferences: [Dish], location: String) {
         preferenceList[location] = preferences
+        self.location = location
     }
     
     override func didReceiveMemoryWarning() {
