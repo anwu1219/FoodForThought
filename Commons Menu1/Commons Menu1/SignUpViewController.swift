@@ -12,10 +12,16 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailAddress: UITextField!
+    @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
@@ -104,10 +110,32 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "wheat")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
+        
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
         
-        // Do any additional setup after loading the view.
+        emailAddress.layer.masksToBounds = false
+        emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+        emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
+        emailAddress.layer.shadowOpacity = 0.3
+        emailAddress.layer.shadowRadius = 5.0
+        emailAddress.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        
+        password.layer.masksToBounds = false
+        password.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+        password.layer.shadowColor = UIColor.blackColor().CGColor
+        password.layer.shadowOpacity = 0.3
+        password.layer.shadowRadius = 5.0
+        password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
