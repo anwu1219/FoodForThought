@@ -74,6 +74,7 @@ class preferenceListTableViewCell: UITableViewCell {
                 if self.delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     self.delegate!.toDoItemDeleted(dish!)
+                    dish!.like = false
                 }
             }
             else {

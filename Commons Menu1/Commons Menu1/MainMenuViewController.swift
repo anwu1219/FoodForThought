@@ -12,11 +12,18 @@ import Parse
 /**
 Welcome page view controller and search type for user
 */
-class MainMenuViewController: UIViewController {
+
+protocol updatePreferenceListDelegate{
+    func updatePreference(preferenceList: [String: [Dish]])
+}
+
+
+class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
+    var preferenceList = [String: [Dish]]()
     
 
     @IBAction func showRestaurants(sender: AnyObject) {
@@ -43,9 +50,15 @@ class MainMenuViewController: UIViewController {
         menuButton.layer.borderWidth = 1
         
         self.getData("test")
-
-        
     }
+    
+    
+    func addKeysToPreferenceList(keys: [String]){
+        for key in keys{
+            preferenceList[key] = []
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,8 +76,14 @@ class MainMenuViewController: UIViewController {
             menu.sort({$0.name<$1.name})
             restMenuViewController.menu = menu
             restMenuViewController.restaurants = restaurants
+            restMenuViewController.delegate = self
+        }
+        if segue.identifier == "mainToAllPreferencesSegue"{
+            let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
+            println("Pref: \(preferenceList)")
         }
     }
+    
     
     
     
@@ -98,7 +117,6 @@ class MainMenuViewController: UIViewController {
         }
     }
     
-    
     func addToRestaurant(location: String, dish: Dish){
         if !contains(self.restaurants.keys, location){
             restaurants[location] = [Dish]()
@@ -106,5 +124,12 @@ class MainMenuViewController: UIViewController {
         restaurants[location]?.append(dish)
     }
     
+    
+    /**
+    delegate function that pass the preferencelist back from restaurant menu view controller
+    */
+    func updatePreference(preferenceList: [String: [Dish]]){
+        self.preferenceList = preferenceList
+    }
 }
 

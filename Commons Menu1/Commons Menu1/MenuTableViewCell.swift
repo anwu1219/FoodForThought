@@ -28,7 +28,6 @@ class MenuTableViewCell: UITableViewCell {
     var dish: Dish? {
         didSet {
             label.text = dish!.name
-            
             itemLikeLayer.hidden = !dish!.like
         }
     }
@@ -103,7 +102,7 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     
-    let kLabelLeftMargin: CGFloat = 150.0
+    let kLabelLeftMargin: CGFloat = 200.0
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -151,15 +150,16 @@ class MenuTableViewCell: UITableViewCell {
             if deleteOnDragRelease {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
+                    dish!.like = false
                     delegate!.toDoItemDeleted(dish!)
+                    delegate!.deleteFromPreferences(dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
-
-
+                    delegate!.addToPreferences(dish!)
+                    itemLikeLayer.hidden = !dish!.like
                 }
-                itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})

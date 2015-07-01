@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 
+//extension to shuffle a mutating array
+//from http://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
 extension Array {
     mutating func shuffle() {
         if count < 2 { return }
@@ -35,10 +37,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         foodTinderTableView.dataSource = self
         foodTinderTableView.delegate = self
-        foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "cell")
+        foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "tinderCell")
         foodTinderTableView.separatorStyle = .SingleLine
         //tableView.backgroundColor = UIColor.blackColor()
-        foodTinderTableView.backgroundView = styles.backgroundImage
+        //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         foodTinderTableView.rowHeight = 600;
         //self.createMenu()
@@ -49,7 +51,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         
-        //shuffles the goddamn dishes
+        //shuffles the dishes for the tinder swiping
         menu.shuffle()
         
     }
@@ -63,7 +65,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     //Fisher-Yates function to get random dishes into the tinder swiper
-    
+    //From http://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
     func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C {
         let c = count(list)
         if c < 2 { return list }
@@ -90,7 +92,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! FoodTinderTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("tinderCell", forIndexPath: indexPath) as! FoodTinderTableViewCell
             
             //
             cell.delegate = self
@@ -100,11 +102,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             
             let dish = menu[indexPath.row]
             cell.dish = dish
-               
-                
+            
+            
             //sets the image
             cell.imageView?.image = dish.image
-            cell.imageView?.frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
+  
+            
+            cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+            cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+            cell.imageView?.clipsToBounds = true
 
             return cell
     }

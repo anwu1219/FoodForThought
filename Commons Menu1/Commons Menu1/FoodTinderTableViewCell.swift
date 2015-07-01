@@ -103,20 +103,26 @@ class FoodTinderTableViewCell: UITableViewCell {
         addGestureRecognizer(tapRecognizer)
     }
     
-    
+    //Label Location in cell
     let kLabelLeftMargin: CGFloat = 150.0
+    let kLabelTopMargin: CGFloat = -250.0
+
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
     override func layoutSubviews() {
         super.layoutSubviews()
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
-        label.frame = CGRect(x: kLabelLeftMargin, y: 0,
+        label.frame = CGRect(x: kLabelLeftMargin, y: kLabelTopMargin,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
+        
+        self.imageView?.bounds = CGRectMake(0, 0, 200, 200)
+        
+
     }
     
     

@@ -78,7 +78,13 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
 
+    func addToPreferences(dish: Dish) {
+        
+    }
     
+    func deleteFromPreferences(dish: Dish) {
+        
+    }
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
