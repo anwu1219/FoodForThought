@@ -56,8 +56,6 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            println(preferenceList)
-            println("This VC is 'will' be popped. i.e. the back button was pressed.")
             if delegate != nil {
                 if let location = location{
                     delegate?.updatePreference(preferenceList)
