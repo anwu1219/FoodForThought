@@ -86,6 +86,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     
     
     
+    
     func getData(name: String) {
         var query = PFQuery(className:"dishInfo")
         query.findObjectsInBackgroundWithBlock{
@@ -130,7 +131,5 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     func updatePreference(preferenceList: [String: [Dish]]){
         self.preferenceList = preferenceList
     }
-    
-    
 }
 
