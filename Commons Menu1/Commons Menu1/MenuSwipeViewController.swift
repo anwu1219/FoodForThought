@@ -188,6 +188,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = preferences
             preferencelistViewController.delegate = self
+            preferencelistViewController.location = location
         }
     }
     
