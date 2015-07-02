@@ -46,14 +46,16 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //self.createMenu()
         
         if let menuLoad = menuLoad {
+
             for dish in menuLoad {
                 menu.append(dish)
-            }
+                }
         }
-        
         //shuffles the dishes for the tinder swiping
         menu.shuffle()
         
+        //filters menu from dishes that have already been swiped
+        menu = menu.filter({$0.dealtWith != true})
     }
     
     // MARK: - Table view data source
@@ -99,15 +101,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-            
             let dish = menu[indexPath.row]
             cell.dish = dish
             
-            
             //sets the image
             cell.imageView?.image = dish.image
-  
-            
             cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             cell.imageView?.clipsToBounds = true

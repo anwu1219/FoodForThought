@@ -153,12 +153,17 @@ class MenuTableViewCell: UITableViewCell {
                     dish!.like = false
                     delegate!.toDoItemDeleted(dish!)
                     delegate!.deleteFromPreferences(dish!)
+                    dish?.dealtWith = true
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
                     delegate!.addToPreferences(dish!)
                     itemLikeLayer.hidden = !dish!.like
+                   // dish?.dealtWith = true
+
+                    dish?.dealtWith = !dish!.dealtWith
+
                 }
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {
