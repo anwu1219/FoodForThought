@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
+    var preferenceListLoad = [String: [String]]()
     var preferenceList = [String: [Dish]]()
     
 
@@ -48,8 +49,8 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
         menuButton.backgroundColor = styles.buttonBackgoundColor
         menuButton.layer.cornerRadius = styles.buttonCornerRadius
         menuButton.layer.borderWidth = 1
-        
         self.getData("test")
+        self.fetchPreferenceData()
     }
     
     
@@ -77,10 +78,12 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
             restMenuViewController.menu = menu
             restMenuViewController.restaurants = restaurants
             restMenuViewController.delegate = self
+            restMenuViewController.preferenceListLoad = preferenceList
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            println("Pref: \(preferenceList)")
+            println(preferenceList)
+            allPreferenceListViewController.preferenceListLoad = preferenceList
         }
     }
     
@@ -131,5 +134,53 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     func updatePreference(preferenceList: [String: [Dish]]){
         self.preferenceList = preferenceList
     }
+    
+    func fetchPreferenceData(){
+    if let currentUser = PFUser.currentUser(){
+        var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let restaurant = pFObject["location"] as?String{
+                                    if let dish = pFObject["String"] as? String{
+                                        self.addToPreferenceListLoad(restaurant, dish: dish)
+                                        self.updateMenu()
+                                        self.updatePreferenceList()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    /**
+    Update the preference list with data pulled in parse
+    */
+    func addToPreferenceListLoad(restaurant: String, dish: String){
+        if !contains(self.preferenceListLoad.keys, restaurant) {
+            preferenceListLoad[restaurant] = []
+        }
+        preferenceListLoad[restaurant]?.append(dish)
+    }
+    
+    
+    func updateMenu(){
+        
+    }
+    
+    
+    func updatePreferenceList(){
+        
+    }
+    
 }
 
