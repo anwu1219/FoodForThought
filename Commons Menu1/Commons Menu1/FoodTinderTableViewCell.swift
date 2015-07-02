@@ -159,6 +159,8 @@ class FoodTinderTableViewCell: UITableViewCell {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     delegate!.toDoItemDeleted(dish!)
+                    dish?.dealtWith = true
+
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
@@ -167,7 +169,8 @@ class FoodTinderTableViewCell: UITableViewCell {
                     //removes cell once it is liked
                    delegate!.toDoItemDeleted(dish!)
 
-                    
+                    dish?.dealtWith = true
+
                     
                 }
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden

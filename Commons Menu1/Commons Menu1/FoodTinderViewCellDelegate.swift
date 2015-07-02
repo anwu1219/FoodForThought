@@ -20,6 +20,6 @@ protocol FoodTinderViewCellDelegate {
     indicates which item has been selected and provide appropriate information for a segue to dish info
     */
     func viewDishInfo(dish: Dish)
-
+    
 
 }
