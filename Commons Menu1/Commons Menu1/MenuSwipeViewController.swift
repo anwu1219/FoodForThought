@@ -133,7 +133,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addToPreferences(dish: Dish){
         if !contains(preferences, dish){
             preferences.append(dish)
-        } else{
+        } else {
             let index = find(preferences,dish)
             preferences.removeAtIndex(index!)
         }

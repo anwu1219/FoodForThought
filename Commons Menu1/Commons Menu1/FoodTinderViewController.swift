@@ -27,14 +27,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     var menuLoad : [Dish]?
     var menu = [Dish]()
-    var preferenceList = [Dish]()
+    var preferences = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
     var queriedDishes = [Int]()
+    var foodTinderDelegate: updateFoodTinderPreferenceListDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         foodTinderTableView.dataSource = self
         foodTinderTableView.delegate = self
         foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "tinderCell")
@@ -57,6 +58,34 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //filters menu from dishes that have already been swiped
         menu = menu.filter({$0.dealtWith != true})
     }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            if let foodTinderDelegate = foodTinderDelegate {
+            foodTinderDelegate.updatePreferences(preferences)
+                println(preferences)
+            }
+        }
+    }
+    
+
+    func addToPreferences(dish: Dish){
+        if !contains(preferences, dish){
+            preferences.append(dish)
+        } else{
+            let index = find(preferences,dish)
+            preferences.removeAtIndex(index!)
+        }
+    }
+    
+    func deleteFromPreferences(dish: Dish){
+        if contains(preferences, dish){
+            let index = find(preferences,dish)
+            preferences.removeAtIndex(index!)
+        }
+    }
+
     
     // MARK: - Table view data source
     /**
@@ -189,27 +218,28 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         // Segues to the preference list
-        if segue.identifier  == "menuToPreferenceSegue" {
-            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
-            updatePreferenceList()
-            // Passes the list of liked dishes to the preference list view
-            preferencelistViewController.preferences = preferenceList
-        }
+//        if segue.identifier  == "menuToPreferenceSegue" {
+//            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
+//            updatePreferenceList()
+//            // Passes the list of liked dishes to the preference list view
+//         //   preferencelistViewController.preferences = preferenceList
+//        }
     }
     
     
     /**
     Updates the preferenceList  %anwu
     */
-    func updatePreferenceList() {
-        for dish: Dish in menu {
-            //println(dish.like)
-            if dish.like && !contains(preferenceList, dish){
-                preferenceList.append(dish)
-            }
-        }
-        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
-    }
+    
+//    func updatePreferenceList() {
+//        for dish: Dish in menu {
+//            //println(dish.like)
+//            if dish.like && !contains(preferenceList, dish){
+//                preferenceList.append(dish)
+//            }
+//        }
+//        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
+//    }
     
     
     

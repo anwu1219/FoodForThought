@@ -17,8 +17,11 @@ protocol updatePreferenceListDelegate{
     func updatePreference(preferenceList: [String: [Dish]])
 }
 
+protocol updateFoodTinderPreferenceListDelegate{
+    func updatePreferences(preferenceList: [Dish])
+}
 
-class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
+class MainMenuViewController: UIViewController, updatePreferenceListDelegate, updateFoodTinderPreferenceListDelegate {
     
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
@@ -71,6 +74,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
             menu.sort({$0.name<$1.name})
             foodTinderViewController.menuLoad = menu
+            foodTinderViewController.foodTinderDelegate = self
         }
         if segue.identifier == "mainToRestaurantsSegue" {
             let restMenuViewController = segue.destinationViewController as! RestMenuViewController
@@ -88,7 +92,16 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     }
     
     
+    func updatePreferences(preferenceListLoad:[Dish]){
     
+        for dish: Dish in preferenceListLoad {
+            if !contains(preferenceList.keys, dish.location!) {
+                preferenceList[dish.location!] = []
+            }
+            
+            preferenceList[dish.location!]?.append(dish)
+        }
+    }
     
     func getData(name: String) {
         var query = PFQuery(className:"dishInfo")
@@ -181,6 +194,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate {
     func updatePreferenceList(){
         
     }
+    
     
 }
 
