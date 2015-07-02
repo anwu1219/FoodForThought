@@ -82,7 +82,6 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             button.setTitle(keys[i], forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
-            
             var image = UIImageView(image: UIImage(named: "heartHands"))
             image.frame = CGRectMake(leftAlign + x, (y+height+5), width, width)
             
