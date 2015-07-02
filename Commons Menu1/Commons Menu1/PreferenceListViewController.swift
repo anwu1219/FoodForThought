@@ -17,7 +17,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences: [Dish]!
     var delegate: PreferenceListViewControllerDelegate?
-
+    var location: String!
     
     
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "Commons"
+            return location!
     }
     
     
