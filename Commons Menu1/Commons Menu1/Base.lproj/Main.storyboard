@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -71,6 +71,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="preferenceListTableView" destination="qbY-vt-aiF" id="HLb-is-rIf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g0-Ce-3Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -593,7 +596,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="signUp:" destination="bha-uc-Tnm" eventType="touchUpInside" id="KOr-9T-ByP"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="h1o-BV-nCj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
@@ -975,7 +978,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lco-8q-pbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1986" y="202"/>
+            <point key="canvasLocation" x="-2118" y="202"/>
         </scene>
         <!--Restaurant Menus-->
         <scene sceneID="27M-76-1o5">
@@ -1146,7 +1149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCp-JQ-udo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="42"/>
+            <point key="canvasLocation" x="195" y="202"/>
         </scene>
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
@@ -1268,7 +1271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="-839"/>
+            <point key="canvasLocation" x="195" y="-1103"/>
         </scene>
     </scenes>
     <resources>
@@ -1277,7 +1280,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rGS-du-9ia"/>
+        <segue reference="h1o-BV-nCj"/>
         <segue reference="4iJ-fy-ZFU"/>
         <segue reference="rGS-du-9ia"/>
     </inferredMetricsTieBreakers>
