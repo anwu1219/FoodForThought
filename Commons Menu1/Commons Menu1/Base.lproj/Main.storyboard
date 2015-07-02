@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -133,6 +133,9 @@
                                         <exclude reference="zGU-uy-ivY"/>
                                     </mask>
                                 </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="235" y="458" width="130" height="40"/>
+                                </variation>
                                 <connections>
                                     <segue destination="WVm-va-1Bq" kind="show" identifier="foodTinderSegue" id="fRk-GI-yso"/>
                                 </connections>
@@ -144,6 +147,9 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="194" y="162" width="213" height="40"/>
+                                </variation>
                                 <connections>
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="qdn-dh-PAV"/>
                                 </connections>
@@ -180,7 +186,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
                             <connections>
                                 <action selector="signOut:" destination="vXZ-lx-hvc" id="CbE-eA-QcA"/>
-                                <segue destination="bha-uc-Tnm" kind="show" identifier="" id="BBf-Ep-yK9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -471,7 +476,8 @@
                                         <exclude reference="utQ-oR-6Yo"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="51" y="126" width="492" height="56"/>
                                     <mask key="constraints">
                                         <include reference="I0e-rS-P2K"/>
                                         <exclude reference="KSx-Vr-jT3"/>
@@ -535,6 +541,9 @@
                             </textField>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lzq-2o-lDV">
                                 <rect key="frame" x="290" y="379" width="20" height="20"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="187" y="413" width="220" height="20"/>
+                                </variation>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="45" y="351" width="125" height="43"/>
@@ -596,7 +605,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="h1o-BV-nCj"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="sOs-16-xd3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
@@ -614,7 +623,8 @@
                                         <exclude reference="qEO-Ne-hiP"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="45" y="62" width="498" height="129"/>
                                     <mask key="constraints">
                                         <include reference="qEO-Ne-hiP"/>
                                     </mask>
@@ -627,6 +637,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="119" y="463" width="357" height="43"/>
+                                </variation>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -971,14 +984,13 @@
                         <outlet property="forgotPasswordButton" destination="bYP-O1-7OV" id="aLK-HT-GCW"/>
                         <outlet property="password" destination="xbZ-KB-OJR" id="hhG-aB-ayT"/>
                         <outlet property="passwordLabel" destination="kfS-hu-XbJ" id="e8G-Fl-BaS"/>
-                        <outlet property="signInButton" destination="Cot-IL-hPO" id="UZ0-B2-9KB"/>
                         <outlet property="signUpButton" destination="Nox-A2-GYD" id="R2J-JH-xfJ"/>
                         <outlet property="welcomeLabel" destination="POE-fj-PE4" id="NcL-9n-392"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lco-8q-pbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2118" y="202"/>
+            <point key="canvasLocation" x="-2217" y="-719"/>
         </scene>
         <!--Restaurant Menus-->
         <scene sceneID="27M-76-1o5">
@@ -1208,12 +1220,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Sz7-A6-VFo"/>
+                        <segue destination="bha-uc-Tnm" kind="relationship" relationship="rootViewController" id="Z4n-Rp-1Qi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHO-dO-KSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2383.125" y="-718.30985915492954"/>
+            <point key="canvasLocation" x="-3073.5" y="-719"/>
         </scene>
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
@@ -1280,8 +1292,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h1o-BV-nCj"/>
-        <segue reference="4iJ-fy-ZFU"/>
         <segue reference="rGS-du-9ia"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>
