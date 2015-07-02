@@ -25,7 +25,8 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     //let viewContainer = UIView()
     var styles = Styles()
     var menu: [Dish]?
-    var restaurants :[String: [Dish]]?
+    var restaurants : [String: [Dish]]?
+    var preferenceListLoad : [String: [Dish]]?
     var preferenceList = [String: [Dish]]()
     var delegate: updatePreferenceListDelegate?
     var location: String?
@@ -40,10 +41,13 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         //horizonScroll.addSubview(viewContainer)
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
+            keys.sort({$0 < $1})
             addKeysToPreferenceList(keys)
             placeButtons(keys)
         }
-        
+        if let preferenceListLoad = preferenceListLoad {
+            preferenceList = preferenceListLoad
+        }
     }
     
     
