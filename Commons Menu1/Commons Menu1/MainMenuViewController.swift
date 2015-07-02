@@ -26,7 +26,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
-    var preferenceListLoad = [String: [String]]()
     var preferenceList = [String: [Dish]]()
     
 
@@ -52,7 +51,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         menuButton.backgroundColor = styles.buttonBackgoundColor
         menuButton.layer.cornerRadius = styles.buttonCornerRadius
         menuButton.layer.borderWidth = 1
-        self.getData("test")
+        self.getData()
         self.fetchPreferenceData()
     }
     
@@ -103,7 +102,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         }
     }
     
-    func getData(name: String) {
+    func getData() {
         var query = PFQuery(className:"dishInfo")
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -161,9 +160,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dish = pFObject["String"] as? String{
-                                        self.addToPreferenceListLoad(restaurant, dish: dish)
-                                        self.updateMenu()
-                                        self.updatePreferenceList()
+                                        self.addToPreferenceList(restaurant, dishName: dish)
                                     }
                                 }
                             }
@@ -178,23 +175,15 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     /**
     Update the preference list with data pulled in parse
     */
-    func addToPreferenceListLoad(restaurant: String, dish: String){
-        if !contains(self.preferenceListLoad.keys, restaurant) {
-            preferenceListLoad[restaurant] = []
+    func addToPreferenceList(restaurant: String, dishName: String){
+        if !contains(self.preferenceList.keys, restaurant) {
+            preferenceList[restaurant] = []
         }
-        preferenceListLoad[restaurant]?.append(dish)
+        for dish: Dish in preferenceList[restaurant]! {
+            if dish.name == dishName {
+                preferenceList[restaurant]?.append(dish)
+            }
+        }
     }
-    
-    
-    func updateMenu(){
-        
-    }
-    
-    
-    func updatePreferenceList(){
-        
-    }
-    
-    
 }
 
