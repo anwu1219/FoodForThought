@@ -21,5 +21,8 @@ protocol FoodTinderViewCellDelegate {
     */
     func viewDishInfo(dish: Dish)
     
+    func addToPreferences(dish: Dish)
+    
+    func deleteFromPreferences(dish: Dish)
 
 }
