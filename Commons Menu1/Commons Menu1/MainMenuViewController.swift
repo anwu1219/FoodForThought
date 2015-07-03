@@ -214,6 +214,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     Update the preference list with data pulled in parse
     */
     func addToPreferenceList(restaurant: String, dishName: String){
+        println(dishName)
         if !contains(self.preferenceList.keys, restaurant) {
             preferenceList[restaurant] = []
         }
