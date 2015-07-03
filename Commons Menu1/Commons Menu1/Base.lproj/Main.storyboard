@@ -45,12 +45,11 @@
                     <connections>
                         <outlet property="foodTinderTableView" destination="PF2-Xu-cZ2" id="2cI-MW-Q79"/>
                         <segue destination="f2Y-jF-9VT" kind="show" identifier="mealInfoSegue" id="mba-Fe-ynv"/>
-                        <segue destination="m4B-Z7-P1R" kind="show" identifier="menuToPreferenceSegue" id="3o2-Y1-34R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utx-Oj-X5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-624" y="-719"/>
+            <point key="canvasLocation" x="-636" y="-719"/>
         </scene>
         <!--My Preferences-->
         <scene sceneID="jys-nA-lZm">
@@ -79,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="preferenceListTableView" destination="qbY-vt-aiF" id="HLb-is-rIf"/>
+                        <segue destination="f2Y-jF-9VT" kind="show" identifier="preferenceInfoSegue" id="3Lq-rH-UIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g0-Ce-3Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,13 +195,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
-                            <connections>
-                                <action selector="signOut:" destination="vXZ-lx-hvc" id="CbE-eA-QcA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB"/>
                     <connections>
                         <outlet property="foodTinderMenuButton" destination="7Yh-Ow-tTM" id="q7K-ND-TVr"/>
                         <outlet property="myPrefMenuButton" destination="XwZ-3x-4nw" id="hdQ-68-oKx"/>
@@ -211,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1362" y="-719"/>
+            <point key="canvasLocation" x="-1386" y="-719"/>
         </scene>
         <!--Sustainability Info-->
         <scene sceneID="1a4-ct-bCe">
@@ -431,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oD3-eF-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1362" y="527"/>
+            <point key="canvasLocation" x="-2357" y="631"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
@@ -1071,7 +1065,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-624" y="202"/>
+            <point key="canvasLocation" x="-1386" y="306"/>
         </scene>
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
@@ -1132,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCp-JQ-udo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="195" y="202"/>
+            <point key="canvasLocation" x="-636" y="306"/>
         </scene>
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
@@ -1180,7 +1174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4R-hW-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-719"/>
+            <point key="canvasLocation" x="203" y="306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
@@ -1254,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="195" y="-1103"/>
+            <point key="canvasLocation" x="919" y="-719"/>
         </scene>
     </scenes>
     <resources>
@@ -1264,7 +1258,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3o2-Y1-34R"/>
-        <segue reference="mba-Fe-ynv"/>
+        <segue reference="aIz-rM-qCJ"/>
     </inferredMetricsTieBreakers>
 </document>

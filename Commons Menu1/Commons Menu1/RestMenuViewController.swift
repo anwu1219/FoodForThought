@@ -26,7 +26,6 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     var styles = Styles()
     var menu: [Dish]?
     var restaurants : [String: [Dish]]?
-    var preferenceListLoad : [String: [Dish]]?
     var preferenceList = [String: [Dish]]()
     var delegate: updatePreferenceListDelegate?
     var location: String?
@@ -53,9 +52,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             addKeysToPreferenceList(keys)
             placeButtons(keys)
         }
-        if let preferenceListLoad = preferenceListLoad {
-            preferenceList = preferenceListLoad
-        }
+        
     }
     
     
@@ -69,9 +66,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         super.willMoveToParentViewController(parent)
         if parent == nil {
             if delegate != nil {
-                if let location = location{
-                    delegate?.updatePreference(preferenceList)
-                }
+                delegate?.updatePreference(preferenceList)
             }
         }
     }
@@ -83,10 +78,10 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
             var button = UIButton()
-            var downAlign: CGFloat = 10
+            var downAlign: CGFloat = 20
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
             var height: CGFloat = 0.3 * verticalRestMenuScroll.bounds.height
-            var x: CGFloat = (0 - (0.5 * width)) //(width+10) * CGFloat(i)
+            var x: CGFloat = (0 + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
             button.frame = CGRectMake(x, y + downAlign , width, height)
             button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
@@ -94,7 +89,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             var image = UIImageView(image: UIImage(named: "menuButton"))
-            image.frame = CGRectMake(10 + x, (y+height+5), width, width)
+            image.frame = CGRectMake( x, (y+height+5), width, width)
             
             verticalRestMenuScroll.addSubview(button)
             verticalRestMenuScroll.addSubview(image)
@@ -118,15 +113,50 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
                 menuSwipeViewController.menuLoad = restaurants[title]
                 menuSwipeViewController.location = title
                 menuSwipeViewController.delegate = self
+                deletePreferenceList(title)
             }
         }
         }
     }
     
+    
+    /**
+    Delegate function
+    */
+    
     func updatePreference(preferences: [Dish], location: String) {
         preferenceList[location] = preferences
         self.location = location
     }
+    
+    
+    /**
+    Deletes the preference list class in parse
+    */
+    func deletePreferenceList(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+                var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+                var query = PFQuery(className:"Preference")
+                query.whereKey("createdBy", equalTo: user)
+                query.findObjectsInBackgroundWithBlock{
+                    (objects: [AnyObject]?, error: NSError?) -> Void in
+                    if error == nil && objects != nil{
+                        if let objectsArray = objects{
+                            for object: AnyObject in objectsArray{
+                                if let pFObject: PFObject = object as? PFObject{
+                                    if let rest = pFObject["location"] as? String{
+                                        if rest == restaurant {
+                                            pFObject.delete()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

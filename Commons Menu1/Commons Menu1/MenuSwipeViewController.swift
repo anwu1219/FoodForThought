@@ -53,8 +53,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
             if delegate != nil {
                 if let location = location{
-                    uploadPreferenceList()
+                    //deletePreferenceList()
                     delegate?.updatePreference(preferences,location: location)
+                    uploadPreferenceList()
                 }
             }
         }
@@ -181,7 +182,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     mealInfoViewController.dish = menu[index]
             }
         }
-        
         // Segues to the preference list of the single menu
         if segue.identifier  == "menuToPreferenceSegue" {
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
@@ -204,48 +204,28 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+
+    
     /**
-    Upload the preference list
+    Uploads the preference list
     */
     func uploadPreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            if let location = location{
-                var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-                var query = PFQuery(className:"Preference")
-                query.whereKey("createdBy", equalTo: user)
-                query.findObjectsInBackgroundWithBlock{
-                    (objects: [AnyObject]?, error: NSError?) -> Void in
-                    if error == nil && objects != nil{
-                        if let objectsArray = objects{
-                            for object: AnyObject in objectsArray{
-                                if let pFObject: PFObject = object as? PFObject{
-                                    if let restaurant = pFObject["location"] as? String{
-                                        if restaurant == location {
-                                            pFObject.delete()
-                                        }
-                                    }
-                                }
-                            }
+        println(preferences)
+        for dish: Dish in preferences{
+                if let user = PFUser.currentUser(){
+                    let newPreference = PFObject(className:"Preference")
+                    newPreference["createdBy"] = PFUser.currentUser()
+                    newPreference["dishName"] = dish.name
+                    newPreference["location"] = dish.location
+                    newPreference.saveInBackgroundWithBlock({
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            // The object has been saved.
+                        } else {
+                            // There was a problem, check error.description
                         }
-                    }
+                    })
                 }
             }
         }
-        for dish: Dish in preferences{
-            if let user = PFUser.currentUser(){
-                let newPreference = PFObject(className:"Preference")
-                newPreference["createdBy"] = PFUser.currentUser()
-                newPreference["dishName"] = dish.name
-                newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                })
-            }
-        }
-    }
 }

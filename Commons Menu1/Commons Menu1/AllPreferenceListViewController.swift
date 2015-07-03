@@ -13,6 +13,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferenceListLoad: [String: [Dish]]?
+    var preferenceListFromParse: [String: [Dish]]!
     var preferenceList = [String: [Dish]]()
     var keys = [String]()
     var delegate: PreferenceListViewControllerDelegate?
@@ -30,6 +31,17 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if let preferenceListLoad = preferenceListLoad {
             preferenceList = preferenceListLoad
         }
+        for key: String in preferenceListFromParse.keys {
+            if !contains(preferenceList.keys, key){
+                preferenceList[key] = [Dish]()
+            }
+            for dish: Dish in preferenceListFromParse[key]!{
+                if !contains(preferenceList[key]!, dish) && dish.like{
+                    preferenceList[key]!.append(dish)
+                }
+            }
+        }
+        
         keys = preferenceList.keys.array
         keys.sort({$0 < $1})
     }
@@ -81,15 +93,15 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     
     func toDoItemDeleted(dish: Dish){
-//        //Finds index of swiped dish and removes it from the array
-//        var index = find(preferences, dish)!
-//        preferences.removeAtIndex(index)
-//        
-//        // use the UITableView to animate the removal of this row
-//        preferenceListTableView.beginUpdates()
-//        let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
-//        preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-//        preferenceListTableView.endUpdates()
+        //Finds index of swiped dish and removes it from the array
+        var index = find(preferenceList[dish.location!]!, dish)
+        preferenceList[dish.location!]!.removeAtIndex(index!)
+        
+        // use the UITableView to animate the removal of this row
+        preferenceListTableView.beginUpdates()
+        let indexPathForRow = NSIndexPath(forRow: index!, inSection: find(keys, dish.location!)!)
+        preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        preferenceListTableView.endUpdates()
     }
     
     
@@ -102,12 +114,12 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "preferenceInfoSegue" {
-//            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-//            let selectedMeal = sender! as! Dish
-//            if let index = find(preferences, selectedMeal) {
-//                mealInfoViewController.dish = preferences[index]
-//            }
-//        }
+        if segue.identifier == "preferenceInfoSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(preferenceList[selectedMeal.location!]!, selectedMeal) {
+                mealInfoViewController.dish = preferenceList[selectedMeal.location!]![index]
+            }
+        }
     }
 }
