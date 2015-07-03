@@ -21,6 +21,23 @@ extension Array {
     }
 }
 
+
+// A protocol that the TableViewCell uses to inform its delegate of state change
+protocol FoodTinderViewCellDelegate {
+    /**
+    indicates that the given item has been deleted
+    */
+    func toDoItemDeleted(dish: Dish)
+    
+    
+    /**
+    indicates which item has been selected and provide appropriate information for a segue to dish info
+    */
+    func viewDishInfo(dish: Dish)
+}
+
+
+
 class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate {
     
     @IBOutlet weak var foodTinderTableView: UITableView!
