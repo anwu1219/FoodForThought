@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */; };
 		1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB91B3C5E9100C5C49A /* AppStylings.swift */; };
 		1376EEC01B3C894500C5C49A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1376EEBE1B3C894500C5C49A /* Main.storyboard */; };
 		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
@@ -57,7 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		1376EEB91B3C5E9100C5C49A /* AppStylings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStylings.swift; sourceTree = "<group>"; };
 		1376EEBF1B3C894500C5C49A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
 				F3E5290F1B39966A0081FFDC /* MenuTableViewCellDelegate.swift */,
 				4082719D1B41A0170095597E /* FoodTinderViewCellDelegate.swift */,
-				1376EEB71B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
 				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
@@ -349,7 +346,6 @@
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
-				1376EEB81B3C4E7600C5C49A /* PreferenceListViewControllerDelegate.swift in Sources */,
 				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,

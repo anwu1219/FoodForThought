@@ -152,13 +152,11 @@ class MenuTableViewCell: UITableViewCell {
                     // notify the delegate that this item should be deleted
                     dish!.like = false
                     delegate!.toDoItemDeleted(dish!)
-                    delegate!.deleteFromPreferences(dish!)
                     dish?.dealtWith = true
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
-                    delegate!.addToPreferences(dish!)
                     itemLikeLayer.hidden = !dish!.like
                    // dish?.dealtWith = true
 

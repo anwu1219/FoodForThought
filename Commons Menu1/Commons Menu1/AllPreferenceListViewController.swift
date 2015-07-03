@@ -12,12 +12,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     
     @IBOutlet weak var preferenceListTableView: UITableView!
-    var preferenceListLoad: [String: [Dish]]?
-    var preferenceListFromParse: [String: [Dish]]!
     var preferenceList = [String: [Dish]]()
-    var keys = [String]()
-    var delegate: PreferenceListViewControllerDelegate?
-    
+    var restaurants : [String: [Dish]]!
+    var keys = [String]()    
     
     
     override func viewDidLoad() {
@@ -30,21 +27,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.separatorStyle = .SingleLine
       //preferenceListTableView.backgroundColor = UIColor.blackColor()
         preferenceListTableView.rowHeight = 100;
-      
-        if let preferenceListLoad = preferenceListLoad {
-            preferenceList = preferenceListLoad
-        }
-        for key: String in preferenceListFromParse.keys {
-            if !contains(preferenceList.keys, key){
-                preferenceList[key] = [Dish]()
-            }
-            for dish: Dish in preferenceListFromParse[key]!{
-                if !contains(preferenceList[key]!, dish) && dish.like{
-                    preferenceList[key]!.append(dish)
-                }
-            }
-        }
-        
+        self.addToPreferences()
         keys = preferenceList.keys.array
         keys.sort({$0 < $1})
     }
@@ -53,6 +36,19 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         super.willMoveToParentViewController(parent)
         if parent == nil {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
+        }
+    }
+    
+    func addToPreferences(){
+        for key in restaurants.keys.array {
+            if !contains(preferenceList.keys.array, key){
+                preferenceList[key] = [Dish]()
+            }
+            for dish: Dish in restaurants[key]!{
+                if dish.like {
+                    preferenceList[key]?.append(dish)
+                }
+            }
         }
     }
     
@@ -107,14 +103,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.endUpdates()
     }
     
-    
-    func addToPreferences(dish: Dish) {
-        
-    }
-    
-    func deleteFromPreferences(dish: Dish) {
-        
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {

@@ -9,19 +9,22 @@
 import UIKit
 import Parse
 
+protocol MenuSwipeViewControllerDelegate {
+    func reloadTable()
+}
+
+
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, PreferenceListViewControllerDelegate {
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
-    var preferences = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
     var location : String?
-    var delegate: updateRestaurantPreferenceListDelegate?
     
     
     override func viewDidLoad() {
@@ -44,24 +47,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 menu.append(dish)
             }
         }
-        for dish in menu {
-            if dish.like {
-                preferences.append(dish)
-            }
-        }
     }
     
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
-            if delegate != nil {
-                if let location = location{
-                    //deletePreferenceList()
-                    delegate?.updatePreference(preferences,location: location)
-                    uploadPreferenceList()
-                }
-            }
+                uploadPreferenceList()
         }
     }
     
@@ -131,26 +123,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    /**
-    Delegate functions that updates the preference list
-    */
-    
-    func addToPreferences(dish: Dish){
-        if !contains(preferences, dish){
-            preferences.append(dish)
-        } else {
-            let index = find(preferences,dish)
-            preferences.removeAtIndex(index!)
-        }
-    }
-    
-    func deleteFromPreferences(dish: Dish){
-        if contains(preferences, dish){
-            let index = find(preferences,dish)
-            preferences.removeAtIndex(index!)
-        }
-    }
-    
     
     // MARK: - Table view delegate
 //    func colorForIndex(index: Int) -> UIColor {
@@ -190,32 +162,37 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier  == "menuToPreferenceSegue" {
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
             // Passes the list of liked dishes to the preference list view
-            preferencelistViewController.preferences = preferences
-            preferencelistViewController.delegate = self
+            preferencelistViewController.preferences = createPreferenceList()
             preferencelistViewController.location = location
-        }
-    }
-    
-    func updatePreferences(preferenceList: [Dish]){
-        tableView.beginUpdates()
-        tableView.reloadData()
-        tableView.endUpdates()
-        self.preferences.removeAll(keepCapacity: false)
-        for dish: Dish in preferenceList{
-            if dish.like{
-                preferences.append(dish)
-            }
+            preferencelistViewController.delegate = self
         }
     }
     
 
+    func createPreferenceList() -> [Dish] {
+        var preferences = [Dish]()
+        for dish: Dish in menu {
+            if dish.like {
+                preferences.append(dish)
+            }
+        }
+        return preferences
+    }
+    
+    func reloadTable() {
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
+    }
+    
+    
     
     /**
     Uploads the preference list
     */
     func uploadPreferenceList(){
-        println(preferences)
-        for dish: Dish in preferences{
+        for dish: Dish in menu {
+            if dish.like{
                 if let user = PFUser.currentUser(){
                     let newPreference = PFObject(className:"Preference")
                     newPreference["createdBy"] = PFUser.currentUser()
@@ -232,4 +209,5 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
+    }
 }

@@ -9,25 +9,19 @@
 import UIKit
 import Parse
 
-protocol updateRestaurantPreferenceListDelegate{
-    func updatePreference(preferences: [Dish], location: String)
-}
 
 
 /**
 Shows all the resturants with available menus
 */
-class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDelegate{
+class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var verticalRestMenuScroll: UIScrollView!
     
     //let viewContainer = UIView()
     var styles = Styles()
-    var menu: [Dish]?
     var restaurants : [String: [Dish]]?
-    var preferenceList = [String: [Dish]]()
-    var delegate: updatePreferenceListDelegate?
     var location: String?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
@@ -54,28 +48,17 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
             keys.sort({$0 < $1})
-            addKeysToPreferenceList(keys)
             placeButtons(keys)
         }
         
     }
     
     
-    func addKeysToPreferenceList(keys: [String]){
-        for key in keys{
-            preferenceList[key] = []
-        }
-    }
-    
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            if delegate != nil {
-                delegate?.updatePreference(preferenceList)
-            }
         }
     }
-    
     
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
@@ -121,22 +104,12 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             if let title = button.titleLabel?.text {
                 menuSwipeViewController.menuLoad = restaurants[title]
                 menuSwipeViewController.location = title
-                menuSwipeViewController.delegate = self
                 deletePreferenceList(title)
             }
         }
         }
     }
     
-    
-    /**
-    Delegate function
-    */
-    
-    func updatePreference(preferences: [Dish], location: String) {
-        preferenceList[location] = preferences
-        self.location = location
-    }
     
     
     /**
