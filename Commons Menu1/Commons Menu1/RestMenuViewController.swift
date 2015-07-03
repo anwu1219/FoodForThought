@@ -26,7 +26,6 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     var styles = Styles()
     var menu: [Dish]?
     var restaurants : [String: [Dish]]?
-    var preferenceListLoad : [String: [Dish]]?
     var preferenceList = [String: [Dish]]()
     var delegate: updatePreferenceListDelegate?
     var location: String?
@@ -53,9 +52,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             addKeysToPreferenceList(keys)
             placeButtons(keys)
         }
-        if let preferenceListLoad = preferenceListLoad {
-            preferenceList = preferenceListLoad
-        }
+        
     }
     
     
@@ -69,9 +66,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         super.willMoveToParentViewController(parent)
         if parent == nil {
             if delegate != nil {
-                if let location = location{
-                    delegate?.updatePreference(preferenceList)
-                }
+                delegate?.updatePreference(preferenceList)
             }
         }
     }
@@ -118,14 +113,48 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
                 menuSwipeViewController.menuLoad = restaurants[title]
                 menuSwipeViewController.location = title
                 menuSwipeViewController.delegate = self
+                deletePreferenceList(title)
             }
         }
         }
     }
     
+    
+    /**
+    Delegate function
+    */
+    
     func updatePreference(preferences: [Dish], location: String) {
         preferenceList[location] = preferences
         self.location = location
+    }
+    
+    
+    /**
+    Deletes the preference list class in parse
+    */
+    func deletePreferenceList(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+                var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+                var query = PFQuery(className:"Preference")
+                query.whereKey("createdBy", equalTo: user)
+                query.findObjectsInBackgroundWithBlock{
+                    (objects: [AnyObject]?, error: NSError?) -> Void in
+                    if error == nil && objects != nil{
+                        if let objectsArray = objects{
+                            for object: AnyObject in objectsArray{
+                                if let pFObject: PFObject = object as? PFObject{
+                                    if let rest = pFObject["location"] as? String{
+                                        if rest == restaurant {
+                                            pFObject.delete()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
     }
     
     

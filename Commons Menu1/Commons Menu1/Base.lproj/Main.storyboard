@@ -79,6 +79,7 @@
                     </view>
                     <connections>
                         <outlet property="preferenceListTableView" destination="qbY-vt-aiF" id="HLb-is-rIf"/>
+                        <segue destination="f2Y-jF-9VT" kind="show" identifier="preferenceInfoSegue" id="3Lq-rH-UIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g0-Ce-3Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1218,7 +1219,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
                                 <rect key="frame" x="9" y="291" width="497" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="s0J-gk-ZGC" secondAttribute="height" multiplier="582:301" id="5jd-6R-qK7"/>
@@ -1258,7 +1259,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3Lq-rH-UIY"/>
         <segue reference="rGS-du-9ia"/>
-        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>

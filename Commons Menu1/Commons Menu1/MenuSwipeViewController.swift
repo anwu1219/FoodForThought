@@ -204,34 +204,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    /**
-    Deletes the preference list class in parse
-    */
-    func deletePreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            if let location = location{
-                var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-                var query = PFQuery(className:"Preference")
-                query.whereKey("createdBy", equalTo: user)
-                query.findObjectsInBackgroundWithBlock{
-                    (objects: [AnyObject]?, error: NSError?) -> Void in
-                    if error == nil && objects != nil{
-                        if let objectsArray = objects{
-                            for object: AnyObject in objectsArray{
-                                if let pFObject: PFObject = object as? PFObject{
-                                    if let restaurant = pFObject["location"] as? String{
-                                        if restaurant == location {
-                                            pFObject.delete()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+
     
     /**
     Uploads the preference list

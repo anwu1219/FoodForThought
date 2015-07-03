@@ -117,7 +117,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
             restMenuViewController.menu = menu
             restMenuViewController.restaurants = restaurants
             restMenuViewController.delegate = self
-            restMenuViewController.preferenceListLoad = preferenceList
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
@@ -126,7 +125,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
             allPreferenceListViewController.preferenceListFromParse = preferenceListLoad
         }
     }
-    
     
     func updatePreferences(preferenceListLoad:[Dish]){
     
@@ -143,10 +141,10 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     
     
     /**
-    delegate function that pass the preferencelist back from restaurant menu view controller
+    delegate function that pass the preferencelist back from restaurant menu view controller and merge with the preference list in main
     */
     func updatePreference(preferenceList: [String: [Dish]]){
-        self.preferenceList = preferenceList
+        
     }
     
     func fetchPreferenceData(){
@@ -185,6 +183,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
                 preferenceListLoad[restaurant]?.append(dish)
+                dish.like = true
             }
         }
     }
