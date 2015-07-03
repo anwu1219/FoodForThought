@@ -44,10 +44,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     
     
-    @IBAction func signOut(sender: AnyObject) {
-        PFUser.logOut()
-    }
-    
     let styles = Styles()
     
     override func viewDidLoad() {
@@ -75,10 +71,25 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         sustInfoMenuButton.frame = styles.buttonFrame
 
         
+        let backButton = UIBarButtonItem(
+            title: "Log out",
+            style: UIBarButtonItemStyle.Plain,
+            target: nil,
+            action: nil
+        )
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         self.getData()
         self.fetchPreferenceData()
     }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            PFUser.logOut()
+        }
+    }
+    
     
     
     func addKeysToPreferenceList(keys: [String]){

@@ -146,12 +146,6 @@
                                 <state key="normal" title="myPrefMenuButton" backgroundImage="menuButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2K1-QI-Yl8"/>
-                                        <exclude reference="zGU-uy-ivY"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="sXz-wK-Xvd"/>
                                 </connections>
@@ -201,13 +195,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="6Rm-Ws-IKh">
-                            <connections>
-                                <action selector="signOut:" destination="vXZ-lx-hvc" id="CbE-eA-QcA"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB"/>
                     <connections>
                         <outlet property="foodTinderMenuButton" destination="7Yh-Ow-tTM" id="q7K-ND-TVr"/>
                         <outlet property="myPrefMenuButton" destination="XwZ-3x-4nw" id="hdQ-68-oKx"/>
@@ -1211,7 +1199,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
                                 <rect key="frame" x="9" y="291" width="497" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="s0J-gk-ZGC" secondAttribute="height" multiplier="582:301" id="5jd-6R-qK7"/>
@@ -1251,7 +1239,7 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3o2-Y1-34R"/>
-        <segue reference="mba-Fe-ynv"/>
+        <segue reference="rGS-du-9ia"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>
