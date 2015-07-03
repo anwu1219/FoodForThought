@@ -87,6 +87,13 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         if parent == nil {
             PFUser.logOut()
             signUpViewControllerDelegate?.clearTextField()
+            self.refreshMenu()
+        }
+    }
+    
+    func refreshMenu(){
+        for dish: Dish in menu{
+            dish.like = false
         }
     }
     
@@ -160,6 +167,9 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dishName = pFObject["dishName"] as? String{
                                         println(dishName)
+                                        println(dishName)
+                                        println(dishName)
+                                        println(dishName)
                                         self.addToPreferenceList(restaurant, dishName: dishName)
                                     }
                                 }
@@ -176,7 +186,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     Update the preference list with data pulled in parse
     */
     func addToPreferenceList(restaurant: String, dishName: String){
-        println(dishName)
         if !contains(self.preferenceListLoad.keys, restaurant) {
             preferenceListLoad[restaurant] = [Dish]()
         }
