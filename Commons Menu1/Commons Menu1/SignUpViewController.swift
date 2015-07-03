@@ -10,7 +10,7 @@ import Parse
 import UIKit
 
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -65,20 +65,19 @@ class SignUpViewController: UIViewController {
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.performSegueWithIdentifier("signInToNavigation", sender: self)
-                }
+                println("Signed up successfully")
+                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 
             } else {
-                
-                self.activityIndicator.stopAnimating()
-                
-                if let message: AnyObject = error!.userInfo!["error"] {
-                    self.message.text = "\(message)"
-                }				
+                println(error)
+//                self.activityIndicator.stopAnimating()
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     
@@ -90,19 +89,12 @@ class SignUpViewController: UIViewController {
         userEmailAddress = userEmailAddress.lowercaseString
         
         var userPassword = password.text
-        
-        PFUser.logInWithUsernameInBackground(userEmailAddress, password:userPassword) {
+        PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
-            if user != nil {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
-                }
-            } else {
-                self.activityIndicator.stopAnimating()
-                
-                if let message: AnyObject = error!.userInfo!["error"] {
-                    self.message.text = "\(message)"
-                }
+            if error == nil {
+                println("Logged in successfully")
+                } else {
+                println(error)
             }
         }
     }
@@ -135,6 +127,8 @@ class SignUpViewController: UIViewController {
         password.layer.shadowRadius = 5.0
         password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
         
+        self.emailAddress.delegate = self
+        self.password.delegate = self
         
     }
     
