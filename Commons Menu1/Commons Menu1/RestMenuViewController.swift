@@ -46,7 +46,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         verticalRestMenuScroll.contentSize.height = 1000
 
         verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
-        //horizonScroll.addSubview(viewContainer)
+        //verticalRestMenuScroll(viewContainer)
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
             keys.sort({$0 < $1})
@@ -75,23 +75,26 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             }
         }
     }
+    //verticalRestMenuScroll.contentSize.width = 300
+    //verticalRestMenuScroll.contentSize.height = 1000
+
     
     
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
             var button = UIButton()
-            var leftAlign: CGFloat = 10
+            var downAlign: CGFloat = 10
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
             var height: CGFloat = 0.3 * verticalRestMenuScroll.bounds.height
-            var x: CGFloat = (width+10) * CGFloat(i)
-            var y: CGFloat = (0 - (0.5 * height))
-            button.frame = CGRectMake(leftAlign + x, y, width, height)
+            var x: CGFloat = (0 - (0.5 * width)) //(width+10) * CGFloat(i)
+            var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
+            button.frame = CGRectMake(x, y + downAlign , width, height)
             button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
             button.setTitle(keys[i], forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
-            var image = UIImageView(image: UIImage(named: "heartHands"))
-            image.frame = CGRectMake(leftAlign + x, (y+height+5), width, width)
+            var image = UIImageView(image: UIImage(named: "menuButton"))
+            image.frame = CGRectMake(10 + x, (y+height+5), width, width)
             
             verticalRestMenuScroll.addSubview(button)
             verticalRestMenuScroll.addSubview(image)

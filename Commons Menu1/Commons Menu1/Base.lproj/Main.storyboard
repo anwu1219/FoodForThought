@@ -146,12 +146,6 @@
                                 <state key="normal" title="myPrefMenuButton" backgroundImage="menuButton">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2K1-QI-Yl8"/>
-                                        <exclude reference="zGU-uy-ivY"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="sXz-wK-Xvd"/>
                                 </connections>
@@ -1230,7 +1224,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
                                 <rect key="frame" x="9" y="291" width="497" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="s0J-gk-ZGC" secondAttribute="height" multiplier="582:301" id="5jd-6R-qK7"/>
