@@ -45,12 +45,11 @@
                     <connections>
                         <outlet property="foodTinderTableView" destination="PF2-Xu-cZ2" id="2cI-MW-Q79"/>
                         <segue destination="f2Y-jF-9VT" kind="show" identifier="mealInfoSegue" id="mba-Fe-ynv"/>
-                        <segue destination="m4B-Z7-P1R" kind="show" identifier="menuToPreferenceSegue" id="3o2-Y1-34R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utx-Oj-X5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-624" y="-719"/>
+            <point key="canvasLocation" x="-636" y="-719"/>
         </scene>
         <!--My Preferences-->
         <scene sceneID="jys-nA-lZm">
@@ -206,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1362" y="-719"/>
+            <point key="canvasLocation" x="-1386" y="-719"/>
         </scene>
         <!--Sustainability Info-->
         <scene sceneID="1a4-ct-bCe">
@@ -426,7 +425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oD3-eF-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1362" y="527"/>
+            <point key="canvasLocation" x="-2357" y="631"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
@@ -1066,7 +1065,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-624" y="202"/>
+            <point key="canvasLocation" x="-1386" y="306"/>
         </scene>
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
@@ -1127,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCp-JQ-udo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="195" y="202"/>
+            <point key="canvasLocation" x="-636" y="306"/>
         </scene>
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
@@ -1175,7 +1174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4R-hW-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-719"/>
+            <point key="canvasLocation" x="203" y="306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
@@ -1219,7 +1218,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0J-gk-ZGC">
                                 <rect key="frame" x="9" y="291" width="497" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="s0J-gk-ZGC" secondAttribute="height" multiplier="582:301" id="5jd-6R-qK7"/>
@@ -1249,7 +1248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="195" y="-1103"/>
+            <point key="canvasLocation" x="919" y="-719"/>
         </scene>
     </scenes>
     <resources>
@@ -1259,7 +1258,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Lq-rH-UIY"/>
-        <segue reference="rGS-du-9ia"/>
+        <segue reference="aIz-rM-qCJ"/>
     </inferredMetricsTieBreakers>
 </document>
