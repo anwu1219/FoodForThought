@@ -20,6 +20,7 @@ class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
     var restaurants : [String: [Dish]]!
+    var preferences : [String: [String]]!
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
@@ -73,20 +74,34 @@ class MainMenuViewController: UIViewController {
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.fetchPreferenceData()
+        self.applyPreferences()
+        self.refreshMenu()
     }
     
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
             PFUser.logOut()
+            println("Logged out")
             signUpViewControllerDelegate?.clearTextField()
-            self.refreshMenu()
         }
     }
     
     func refreshMenu(){
         for dish: Dish in menu{
             dish.like = false
+        }
+    }
+    
+    func applyPreferences(){
+        for key in preferences.keys{
+            for dishName: String in preferences[key]!{
+                for dish in restaurants[key]!{
+                    if dish.name == dishName {
+                        dish.like = true
+                    }
+                }
+            }
         }
     }
     

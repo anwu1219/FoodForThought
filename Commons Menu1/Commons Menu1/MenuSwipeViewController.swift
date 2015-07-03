@@ -14,6 +14,22 @@ protocol MenuSwipeViewControllerDelegate {
 }
 
 
+// A protocol that the TableViewCell uses to inform its delegate of state change
+protocol MenuTableViewCellDelegate {
+    /**
+    indicates that the given item has been deleted
+    */
+    func toDoItemDeleted(dish: Dish)
+    
+    
+    /**
+    indicates which item has been selected and provide appropriate information for a segue to dish info
+    */
+    // #spchadinha
+    func viewDishInfo(dish: Dish)
+}
+
+
 /**
 Displays menus as food tinder
 */
