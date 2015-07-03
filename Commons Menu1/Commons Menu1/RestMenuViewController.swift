@@ -42,7 +42,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-        verticalRestMenuScroll.contentSize.width = 350
+        verticalRestMenuScroll.contentSize.width = 300
         verticalRestMenuScroll.contentSize.height = 1000
 
         verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
