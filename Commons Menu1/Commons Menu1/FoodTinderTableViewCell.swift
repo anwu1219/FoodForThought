@@ -158,19 +158,16 @@ class FoodTinderTableViewCell: UITableViewCell {
             if deleteOnDragRelease {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
+                    dish?.like = false
                     delegate!.toDoItemDeleted(dish!)
-                    delegate!.deleteFromPreferences(dish!)
                     dish?.dealtWith = true
 
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = !dish!.like
-                    delegate!.addToPreferences(dish!)
-
                     //removes cell once it is liked
                    delegate!.toDoItemDeleted(dish!)
-
                     dish?.dealtWith = true
 
                     

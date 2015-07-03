@@ -21,10 +21,4 @@ protocol MenuTableViewCellDelegate {
     */
     // #spchadinha
     func viewDishInfo(dish: Dish)
-    
-    func deleteFromPreferences(dish: Dish)
-    
-    func addToPreferences(dish: Dish)
-
-    
 }
