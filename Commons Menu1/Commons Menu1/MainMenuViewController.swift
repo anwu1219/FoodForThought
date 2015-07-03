@@ -27,6 +27,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
     var preferenceList = [String: [Dish]]()
+    var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
     @IBAction func showRestaurants(sender: AnyObject) {
@@ -87,6 +88,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         super.willMoveToParentViewController(parent)
         if parent == nil {
             PFUser.logOut()
+            signUpViewControllerDelegate?.clearTextField()
         }
     }
     
