@@ -17,13 +17,14 @@ struct Styles {
     let buttonCornerRadius = 5.0 as CGFloat
     let buttonBorderWidth = 1.0 as CGFloat 
     let buttonBorderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    let buttonFrame = CGRectMake(0, 0, 100, 100)
     
     // label styles controls
     let labelTextColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
     let labelBackgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     
     // view styles controls 
-    let backgroundImage = UIImageView(image: UIImage(named: "davidsonLogo"))
+    let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
     let viewBackgoundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
     

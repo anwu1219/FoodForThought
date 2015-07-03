@@ -20,7 +20,7 @@ Shows all the resturants with available menus
 class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var horizonScroll: UIScrollView!
+    @IBOutlet weak var verticalRestMenuScroll: UIScrollView!
     
     //let viewContainer = UIView()
     var styles = Styles()
@@ -35,9 +35,17 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "RestaurantpickerBackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
         
-        horizonScroll.contentSize.width = 1000
-        horizonScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
+        verticalRestMenuScroll.contentSize.width = 350
+        verticalRestMenuScroll.contentSize.height = 1000
+
+        verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
         //horizonScroll.addSubview(viewContainer)
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
@@ -73,8 +81,8 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         for i in 0..<keys.count {
             var button = UIButton()
             var leftAlign: CGFloat = 10
-            var width: CGFloat = 0.2 * horizonScroll.bounds.width
-            var height: CGFloat = 0.3 * horizonScroll.bounds.height
+            var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
+            var height: CGFloat = 0.3 * verticalRestMenuScroll.bounds.height
             var x: CGFloat = (width+10) * CGFloat(i)
             var y: CGFloat = (0 - (0.5 * height))
             button.frame = CGRectMake(leftAlign + x, y, width, height)
@@ -85,8 +93,8 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             var image = UIImageView(image: UIImage(named: "heartHands"))
             image.frame = CGRectMake(leftAlign + x, (y+height+5), width, width)
             
-            horizonScroll.addSubview(button)
-            horizonScroll.addSubview(image)
+            verticalRestMenuScroll.addSubview(button)
+            verticalRestMenuScroll.addSubview(image)
         }
     }
     

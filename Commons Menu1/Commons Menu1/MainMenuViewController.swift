@@ -37,8 +37,13 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
     
-    @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var sustainabilityInfoButton: UIButton!
+   
+    @IBOutlet weak var restMenuButton: UIButton!
+    @IBOutlet weak var foodTinderMenuButton: UIButton!
+    @IBOutlet weak var myPrefMenuButton: UIButton!
+    @IBOutlet weak var sustInfoMenuButton: UIButton!
+    
+    
     @IBAction func signOut(sender: AnyObject) {
         PFUser.logOut()
     }
@@ -47,10 +52,30 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "MainMenuBackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
                
-        menuButton.backgroundColor = styles.buttonBackgoundColor
-        menuButton.layer.cornerRadius = styles.buttonCornerRadius
-        menuButton.layer.borderWidth = 1
+       // restMenuButton.backgroundColor = styles.buttonBackgoundColor
+       // restMenuButton.layer.cornerRadius = styles.buttonCornerRadius
+       // restMenuButton.layer.borderWidth = 1
+        restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
+        foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
+        myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
+        sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
+
+        
+        restMenuButton.frame = styles.buttonFrame
+        myPrefMenuButton.frame = styles.buttonFrame
+        foodTinderMenuButton.frame = styles.buttonFrame
+        sustInfoMenuButton.frame = styles.buttonFrame
+
+        
+        
         self.getData()
         self.fetchPreferenceData()
     }
