@@ -439,33 +439,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
-                                <rect key="frame" x="45" y="285" width="498" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="298" id="0cK-eL-gwN"/>
-                                    <constraint firstAttribute="height" constant="30" id="5M3-Rj-KAf"/>
-                                    <constraint firstAttribute="width" secondItem="xbZ-KB-OJR" secondAttribute="height" multiplier="149:15" id="8uu-rM-eAX"/>
-                                    <constraint firstAttribute="height" constant="30" id="Zsf-hc-pBQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="0cK-eL-gwN"/>
-                                        <exclude reference="5M3-Rj-KAf"/>
-                                        <exclude reference="8uu-rM-eAX"/>
-                                        <exclude reference="Zsf-hc-pBQ"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="0cK-eL-gwN"/>
-                                        <include reference="5M3-Rj-KAf"/>
-                                        <include reference="8uu-rM-eAX"/>
-                                        <exclude reference="Zsf-hc-pBQ"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
                                 <rect key="frame" x="51" y="150" width="83" height="33"/>
                                 <constraints>
@@ -582,6 +555,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="signUp:" destination="bha-uc-Tnm" eventType="touchUpInside" id="KZA-Nk-cX5"/>
+                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="6HG-gM-2cC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
@@ -641,9 +615,36 @@
                                 </variation>
                                 <connections>
                                     <action selector="signIn:" destination="bha-uc-Tnm" eventType="touchUpInside" id="qNu-ow-u8k"/>
-                                    <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="sgC-Bv-FR4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
+                                <rect key="frame" x="45" y="285" width="498" height="30"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="298" id="0cK-eL-gwN"/>
+                                    <constraint firstAttribute="height" constant="30" id="5M3-Rj-KAf"/>
+                                    <constraint firstAttribute="width" secondItem="xbZ-KB-OJR" secondAttribute="height" multiplier="149:15" id="8uu-rM-eAX"/>
+                                    <constraint firstAttribute="height" constant="30" id="Zsf-hc-pBQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0cK-eL-gwN"/>
+                                        <exclude reference="5M3-Rj-KAf"/>
+                                        <exclude reference="8uu-rM-eAX"/>
+                                        <exclude reference="Zsf-hc-pBQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="0cK-eL-gwN"/>
+                                        <include reference="5M3-Rj-KAf"/>
+                                        <include reference="8uu-rM-eAX"/>
+                                        <exclude reference="Zsf-hc-pBQ"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -987,6 +988,7 @@
                         <outlet property="forgotPasswordButton" destination="bYP-O1-7OV" id="aLK-HT-GCW"/>
                         <outlet property="password" destination="xbZ-KB-OJR" id="hhG-aB-ayT"/>
                         <outlet property="passwordLabel" destination="kfS-hu-XbJ" id="e8G-Fl-BaS"/>
+                        <outlet property="signInButton" destination="Cot-IL-hPO" id="QBj-Ep-fab"/>
                         <outlet property="signUpButton" destination="Nox-A2-GYD" id="R2J-JH-xfJ"/>
                         <outlet property="welcomeLabel" destination="POE-fj-PE4" id="NcL-9n-392"/>
                     </connections>
@@ -1270,6 +1272,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4iJ-fy-ZFU"/>
+        <segue reference="3Lq-rH-UIY"/>
     </inferredMetricsTieBreakers>
 </document>

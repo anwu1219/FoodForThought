@@ -19,6 +19,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
+    var preferences = [String: [String]]()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -74,8 +75,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
                 println("Signed up successfully")
-                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
-                
             } else {
                 println(error)
 //                self.activityIndicator.stopAnimating()
@@ -100,7 +99,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
+                self.fetchPreferenceData()
                 println("Logged in successfully")
+                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 } else {
                 println(error)
             }
@@ -153,6 +154,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.menu = menu
             mainMenuViewController.restaurants = restaurants
+            mainMenuViewController.preferences = preferences
         }
     }
     
@@ -192,6 +194,38 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             restaurants[location] = [Dish]()
         }
         restaurants[location]?.append(dish)
+    }
+    
+    func fetchPreferenceData(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let restaurant = pFObject["location"] as?String{
+                                    if let dishName = pFObject["dishName"] as? String{
+                                        self.addToPreferences(restaurant, dishName: dishName)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func addToPreferences(restaurant: String, dishName: String){
+        if !contains(preferences.keys, restaurant){
+            preferences[restaurant] = [String]()
+        }
+        preferences[restaurant]?.append(dishName)
     }
     
     
