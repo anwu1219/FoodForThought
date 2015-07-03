@@ -166,10 +166,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dishName = pFObject["dishName"] as? String{
-                                        println(dishName)
-                                        println(dishName)
-                                        println(dishName)
-                                        println(dishName)
                                         self.addToPreferenceList(restaurant, dishName: dishName)
                                     }
                                 }
