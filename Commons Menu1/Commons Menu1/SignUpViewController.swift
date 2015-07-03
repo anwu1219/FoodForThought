@@ -9,8 +9,11 @@
 import Parse
 import UIKit
 
+protocol SignUpViewControllerDelegate {
+    func clearTextField()
+}
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -130,6 +133,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.emailAddress.delegate = self
         self.password.delegate = self
         
+    }
+    
+    
+    func clearTextField(){
+        emailAddress.text = ""
+        password.text = ""
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "signInToNavigationSegue" {
+            let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
+            mainMenuViewController.signUpViewControllerDelegate = self
+        }
     }
     
     override func didReceiveMemoryWarning() {

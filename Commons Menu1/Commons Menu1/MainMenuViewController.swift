@@ -27,6 +27,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
     var preferenceList = [String: [Dish]]()
+    var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
     @IBAction func showRestaurants(sender: AnyObject) {
@@ -43,10 +44,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     
-    
-    @IBAction func signOut(sender: AnyObject) {
-        PFUser.logOut()
-    }
     
     let styles = Styles()
     
@@ -75,10 +72,26 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         sustInfoMenuButton.frame = styles.buttonFrame
 
         
+        let backButton = UIBarButtonItem(
+            title: "Log out",
+            style: UIBarButtonItemStyle.Plain,
+            target: nil,
+            action: nil
+        )
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         self.getData()
         self.fetchPreferenceData()
     }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            PFUser.logOut()
+            signUpViewControllerDelegate?.clearTextField()
+        }
+    }
+    
     
     
     func addKeysToPreferenceList(keys: [String]){
@@ -201,6 +214,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     Update the preference list with data pulled in parse
     */
     func addToPreferenceList(restaurant: String, dishName: String){
+        println(dishName)
         if !contains(self.preferenceList.keys, restaurant) {
             preferenceList[restaurant] = []
         }
