@@ -44,6 +44,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         foodTinderTableView.rowHeight = 600;
+        foodTinderTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+
         //self.createMenu()
         
         if let menuLoad = menuLoad {

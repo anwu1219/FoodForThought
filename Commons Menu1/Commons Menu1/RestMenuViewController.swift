@@ -29,6 +29,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     var preferenceList = [String: [Dish]]()
     var delegate: updatePreferenceListDelegate?
     var location: String?
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     
     override func viewDidLoad() {
@@ -41,10 +42,14 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-        verticalRestMenuScroll.contentSize.width = 300
-        verticalRestMenuScroll.contentSize.height = 1000
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        verticalRestMenuScroll.contentSize.width = 375
+        verticalRestMenuScroll.contentSize.height = 600
+        verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
 
-        verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
+        //verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
         //verticalRestMenuScroll(viewContainer)
         if let restaurants = restaurants{
             var keys = restaurants.keys.array
@@ -70,29 +75,33 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             }
         }
     }
-    //verticalRestMenuScroll.contentSize.width = 300
-    //verticalRestMenuScroll.contentSize.height = 1000
-
     
     
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
             var button = UIButton()
             var downAlign: CGFloat = 20
+            
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
-            var height: CGFloat = 0.3 * verticalRestMenuScroll.bounds.height
-            var x: CGFloat = (0 + (0.5 * width))
+            var height: CGFloat = 0.15 * verticalRestMenuScroll.bounds.height
+            var x: CGFloat = (50 + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
-            button.frame = CGRectMake(x, y + downAlign , width, height)
-            button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
+            button.frame = CGRectMake(x - 40, y + 10, 250, 46)
+           // button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
             button.setTitle(keys[i], forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
-            var image = UIImageView(image: UIImage(named: "menuButton"))
-            image.frame = CGRectMake( x, (y+height+5), width, width)
+            //button.titleLabel?.textColor = UIColor.whiteColor()
+            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            
+          //  var image = UIImageView(image: UIImage(named: "menuButton"))
+            let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
+           // button.setImage(backgroundImage, forState: UIControlState.Normal)
+           // image.frame = CGRectMake( x, (y+height+5), width, width)
+            backgroundImage.frame = button.frame
             
             verticalRestMenuScroll.addSubview(button)
-            verticalRestMenuScroll.addSubview(image)
+            verticalRestMenuScroll.addSubview(backgroundImage)
         }
     }
     

@@ -30,6 +30,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
+        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        
+
+        
         //tableView.backgroundColor = UIColor.blackColor()
         //tableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill

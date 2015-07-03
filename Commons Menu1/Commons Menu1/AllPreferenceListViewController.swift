@@ -22,12 +22,15 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
-        preferenceListTableView.backgroundColor = UIColor.blackColor()
+      //preferenceListTableView.backgroundColor = UIColor.blackColor()
         preferenceListTableView.rowHeight = 100;
+      
         if let preferenceListLoad = preferenceListLoad {
             preferenceList = preferenceListLoad
         }
