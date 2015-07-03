@@ -13,20 +13,13 @@ import Parse
 Welcome page view controller and search type for user
 */
 
-protocol updatePreferenceListDelegate{
-    func updatePreference(preferenceList: [String: [Dish]])
-}
 
-protocol updateFoodTinderPreferenceListDelegate{
-    func updatePreferences(preferenceList: [Dish])
-}
 
-class MainMenuViewController: UIViewController, updatePreferenceListDelegate, updateFoodTinderPreferenceListDelegate {
+
+class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
     var restaurants : [String: [Dish]]!
-    var preferenceListLoad = [String: [Dish]]()
-    var preferenceList = [String: [Dish]]()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
@@ -98,13 +91,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     }
     
     
-    
-    func addKeysToPreferenceList(keys: [String]){
-        for key in keys{
-            preferenceList[key] = []
-        }
-    }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,42 +102,19 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
             menu.sort({$0.name<$1.name})
             foodTinderViewController.menuLoad = menu
-            foodTinderViewController.foodTinderDelegate = self
         }
         if segue.identifier == "mainToRestaurantsSegue" {
             let restMenuViewController = segue.destinationViewController as! RestMenuViewController
             menu.sort({$0.name<$1.name})
-            restMenuViewController.menu = menu
             restMenuViewController.restaurants = restaurants
-            restMenuViewController.delegate = self
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            allPreferenceListViewController.preferenceListLoad = preferenceList
-            allPreferenceListViewController.preferenceListFromParse = preferenceListLoad
-        }
-    }
-    
-    func updatePreferences(preferenceListLoad:[Dish]){
-    
-        for dish: Dish in preferenceListLoad {
-            if !contains(preferenceList.keys, dish.location!) {
-                preferenceList[dish.location!] = []
-            }
-            
-            preferenceList[dish.location!]?.append(dish)
+            allPreferenceListViewController.restaurants = restaurants
         }
     }
     
 
-    
-    
-    /**
-    delegate function that pass the preferencelist back from restaurant menu view controller and merge with the preference list in main
-    */
-    func updatePreference(preferenceList: [String: [Dish]]){
-        self.preferenceList = preferenceList
-    }
     
     func fetchPreferenceData(){
     if let currentUser = PFUser.currentUser(){
@@ -182,12 +145,8 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     Update the preference list with data pulled in parse
     */
     func addToPreferenceList(restaurant: String, dishName: String){
-        if !contains(self.preferenceListLoad.keys, restaurant) {
-            preferenceListLoad[restaurant] = [Dish]()
-        }
         for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
-                preferenceListLoad[restaurant]?.append(dish)
                 dish.like = true
             }
         }

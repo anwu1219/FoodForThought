@@ -16,8 +16,8 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
 
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences: [Dish]!
-    var delegate: PreferenceListViewControllerDelegate?
     var location: String!
+    var delegate: MenuSwipeViewControllerDelegate!
     
     
     override func viewDidLoad() {
@@ -33,14 +33,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            println("This VC is 'will' be popped. i.e. the back button was pressed.")
-            if delegate != nil {
-                if let preferences = preferences{
-                    delegate?.updatePreferences(preferences)
-                }
-            }
+            delegate.reloadTable()
         }
     }
+    
     
     
     //number of section
@@ -66,7 +62,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             return location!
     }
@@ -89,14 +84,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.endUpdates()
     }
     
-
-    func addToPreferences(dish: Dish) {
-        
-    }
-    
-    func deleteFromPreferences(dish: Dish) {
-        
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {

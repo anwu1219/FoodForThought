@@ -27,11 +27,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     var menuLoad : [Dish]?
     var menu = [Dish]()
-    var preferences = [Dish]()
-    var menuPFObjects: [PFObject]?
     let styles = Styles()
     var queriedDishes = [Int]()
-    var foodTinderDelegate: updateFoodTinderPreferenceListDelegate?
 
     
     override func viewDidLoad() {
@@ -47,7 +44,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //self.createMenu()
         
         if let menuLoad = menuLoad {
-
             for dish in menuLoad {
                 menu.append(dish)
                 }
@@ -62,27 +58,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            if let foodTinderDelegate = foodTinderDelegate {
-            foodTinderDelegate.updatePreferences(preferences)
-                println(preferences)
-            }
-        }
-    }
-    
-
-    func addToPreferences(dish: Dish){
-        if !contains(preferences, dish){
-            preferences.append(dish)
-        } else{
-            let index = find(preferences,dish)
-            preferences.removeAtIndex(index!)
-        }
-    }
-    
-    func deleteFromPreferences(dish: Dish){
-        if contains(preferences, dish){
-            let index = find(preferences,dish)
-            preferences.removeAtIndex(index!)
+            //upload data to parse
         }
     }
 
@@ -169,19 +145,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    // MARK: - PreferenceListViewControllerDelegate
-    
-    func revertCellToOriginalColor(dish: Dish) {
-        var index = NSIndexPath(forRow:find(menu, dish)!, inSection: 0)
-        println("We've made it into the revertCellToOriginalColor method")
-        //self[index].backgoundColor = UIColor.clearColor()
-    }
-    
-    func identifyDish(dish: Dish) {
-        // no need to do anything in this viewcontroller
-    }
-    
-    
     // MARK: - Table view delegate
     //    func colorForIndex(index: Int) -> UIColor {
     //        let itemCount = menu.count - 1
@@ -216,31 +179,5 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 mealInfoViewController.dish = menu[index]
             }
         }
-        
-        // Segues to the preference list
-//        if segue.identifier  == "menuToPreferenceSegue" {
-//            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
-//            updatePreferenceList()
-//            // Passes the list of liked dishes to the preference list view
-//         //   preferencelistViewController.preferences = preferenceList
-//        }
     }
-    
-    
-    /**
-    Updates the preferenceList  %anwu
-    */
-    
-//    func updatePreferenceList() {
-//        for dish: Dish in menu {
-//            //println(dish.like)
-//            if dish.like && !contains(preferenceList, dish){
-//                preferenceList.append(dish)
-//            }
-//        }
-//        preferenceList = preferenceList.filter{contains(self.menu, $0) && $0.like}
-//    }
-    
-    
-    
 }
