@@ -23,9 +23,9 @@ protocol updateFoodTinderPreferenceListDelegate{
 
 class MainMenuViewController: UIViewController, updatePreferenceListDelegate, updateFoodTinderPreferenceListDelegate {
     
-    var menuPFObjects = [PFObject]()
-    var menu = [Dish]()
-    var restaurants = [String: [Dish]]()
+    var menu : [Dish]!
+    var restaurants : [String: [Dish]]!
+    var preferenceListLoad = [String: [Dish]]()
     var preferenceList = [String: [Dish]]()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
@@ -79,8 +79,6 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        
-        self.getData()
         self.fetchPreferenceData()
     }
     
@@ -125,6 +123,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             println(preferenceList)
             allPreferenceListViewController.preferenceListLoad = preferenceList
+            allPreferenceListViewController.preferenceListFromParse = preferenceListLoad
         }
     }
     
@@ -140,42 +139,7 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
         }
     }
     
-    func getData() {
-        var query = PFQuery(className:"dishInfo")
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil && objects != nil{
-                if let objectsArray = objects{
-                    for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
-                        if let name = object["name"] as? String {
-                            if let userImageFile = object["image"] as? PFFile{
-                                userImageFile.getDataInBackgroundWithBlock {
-                                    (imageData: NSData?, error: NSError?) ->Void in
-                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                        if let location = object["location"] as? String{
-                                            let dish = Dish(name: name, image: image, location: location)
-                                            self.menu.append(dish)
-                                            self.addToRestaurant(location, dish: dish)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func addToRestaurant(location: String, dish: Dish){
-        if !contains(self.restaurants.keys, location){
-            restaurants[location] = [Dish]()
-        }
-        restaurants[location]?.append(dish)
-    }
+
     
     
     /**
@@ -197,8 +161,8 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
                         for object: AnyObject in objectsArray{
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
-                                    if let dish = pFObject["String"] as? String{
-                                        self.addToPreferenceList(restaurant, dishName: dish)
+                                    if let dishName = pFObject["dishName"] as? String{
+                                        self.addToPreferenceList(restaurant, dishName: dishName)
                                     }
                                 }
                             }
@@ -215,12 +179,12 @@ class MainMenuViewController: UIViewController, updatePreferenceListDelegate, up
     */
     func addToPreferenceList(restaurant: String, dishName: String){
         println(dishName)
-        if !contains(self.preferenceList.keys, restaurant) {
-            preferenceList[restaurant] = []
+        if !contains(self.preferenceListLoad.keys, restaurant) {
+            preferenceListLoad[restaurant] = [Dish]()
         }
-        for dish: Dish in preferenceList[restaurant]! {
+        for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
-                preferenceList[restaurant]?.append(dish)
+                preferenceListLoad[restaurant]?.append(dish)
             }
         }
     }

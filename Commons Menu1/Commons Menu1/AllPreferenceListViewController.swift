@@ -13,6 +13,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferenceListLoad: [String: [Dish]]?
+    var preferenceListFromParse: [String: [Dish]]!
     var preferenceList = [String: [Dish]]()
     var keys = [String]()
     var delegate: PreferenceListViewControllerDelegate?
@@ -30,6 +31,17 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if let preferenceListLoad = preferenceListLoad {
             preferenceList = preferenceListLoad
         }
+        for key: String in preferenceListFromParse.keys {
+            if !contains(preferenceList.keys, key){
+                preferenceList[key] = [Dish]()
+            }
+            for dish: Dish in preferenceListFromParse[key]!{
+                if !contains(preferenceList[key]!, dish){
+                    preferenceList[key]!.append(dish)
+                }
+            }
+        }
+        
         keys = preferenceList.keys.array
         keys.sort({$0 < $1})
     }

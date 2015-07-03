@@ -83,10 +83,10 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
     func placeButtons(keys: [String]) {
         for i in 0..<keys.count {
             var button = UIButton()
-            var downAlign: CGFloat = 10
+            var downAlign: CGFloat = 20
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
             var height: CGFloat = 0.3 * verticalRestMenuScroll.bounds.height
-            var x: CGFloat = (0 - (0.5 * width)) //(width+10) * CGFloat(i)
+            var x: CGFloat = (0 + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
             button.frame = CGRectMake(x, y + downAlign , width, height)
             button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
@@ -94,7 +94,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             var image = UIImageView(image: UIImage(named: "menuButton"))
-            image.frame = CGRectMake(10 + x, (y+height+5), width, width)
+            image.frame = CGRectMake( x, (y+height+5), width, width)
             
             verticalRestMenuScroll.addSubview(button)
             verticalRestMenuScroll.addSubview(image)
@@ -127,6 +127,7 @@ class RestMenuViewController: UIViewController, updateRestaurantPreferenceListDe
         preferenceList[location] = preferences
         self.location = location
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

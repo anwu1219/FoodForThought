@@ -14,6 +14,11 @@ protocol SignUpViewControllerDelegate {
 }
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
+    
+    
+    var menuPFObjects = [PFObject]()
+    var menu = [Dish]()
+    var restaurants = [String: [Dish]]()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -132,7 +137,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         
         self.emailAddress.delegate = self
         self.password.delegate = self
-        
+        self.getData()
     }
     
     
@@ -146,8 +151,49 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         if segue.identifier == "signInToNavigationSegue" {
             let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
             mainMenuViewController.signUpViewControllerDelegate = self
+            mainMenuViewController.menu = menu
+            mainMenuViewController.restaurants = restaurants
         }
     }
+    
+    
+    func getData() {
+        var query = PFQuery(className:"dishInfo")
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil && objects != nil{
+                if let objectsArray = objects{
+                    for object: AnyObject in objectsArray{
+                        self.menuPFObjects.append(object as! PFObject)
+                        if let name = object["name"] as? String {
+                            if let userImageFile = object["image"] as? PFFile{
+                                userImageFile.getDataInBackgroundWithBlock {
+                                    (imageData: NSData?, error: NSError?) ->Void in
+                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                                        if let location = object["location"] as? String{
+                                            let dish = Dish(name: name, image: image, location: location)
+                                            self.menu.append(dish)
+                                            self.addToRestaurant(location, dish: dish)
+                                        }
+                                        }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func addToRestaurant(location: String, dish: Dish){
+        if !contains(self.restaurants.keys, location){
+            restaurants[location] = [Dish]()
+        }
+        restaurants[location]?.append(dish)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
