@@ -160,17 +160,17 @@ class FoodTinderTableViewCell: UITableViewCell {
                     // notify the delegate that this item should be deleted
                     dish?.like = false
                     delegate!.toDoItemDeleted(dish!)
+                    delegate!.addToDislikes(dish!)
                     dish?.dealtWith = true
 
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
-                    dish!.like = !dish!.like
+                    dish!.like = true
                     //removes cell once it is liked
-                   delegate!.toDoItemDeleted(dish!)
+                    delegate!.toDoItemDeleted(dish!)
+                    delegate!.addToPreferenceList(dish!)
                     dish?.dealtWith = true
-
-                    
                 }
                 itemLikeLayer.hidden = !self.itemLikeLayer.hidden
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})

@@ -84,6 +84,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.endUpdates()
     }
     
+    func addToDislikes(dish: Dish){
+        
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {

@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
     var preferences = [String: [String]]()
+    var dislikes = [String: [String]]()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -100,6 +101,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
                 self.fetchPreferenceData()
+                self.fetchDisLikesData()
                 println("Logged in successfully")
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 } else {
@@ -155,6 +157,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             mainMenuViewController.menu = menu
             mainMenuViewController.restaurants = restaurants
             mainMenuViewController.preferences = preferences
+            mainMenuViewController.dislikes = dislikes
         }
     }
     
@@ -226,6 +229,38 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             preferences[restaurant] = [String]()
         }
         preferences[restaurant]?.append(dishName)
+    }
+    
+    
+    func fetchDisLikesData(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Disliked")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let restaurant = pFObject["location"] as?String{
+                                    if let dishName = pFObject["dishName"] as? String{
+                                        self.addToDislikes(restaurant, dishName: dishName)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func addToDislikes(restaurant: String, dishName: String){
+        if !contains(dislikes.keys, restaurant){
+            dislikes[restaurant] = [String]()
+        }
+        dislikes[restaurant]?.append(dishName)
     }
     
     
