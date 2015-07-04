@@ -87,6 +87,7 @@ class RestMenuViewController: UIViewController {
                 menuSwipeViewController.menuLoad = restaurants[title]
                 menuSwipeViewController.location = title
                 deletePreferenceList(title)
+                deleteDislikes(title)
             }
         }
         }
@@ -119,6 +120,31 @@ class RestMenuViewController: UIViewController {
                     }
                 }
             }
+    }
+    
+    
+    func deleteDislikes(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Disliked")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let rest = pFObject["location"] as? String{
+                                    if rest == restaurant {
+                                        pFObject.delete()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     

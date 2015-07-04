@@ -21,6 +21,7 @@ class MainMenuViewController: UIViewController {
     var menu : [Dish]!
     var restaurants : [String: [Dish]]!
     var preferences : [String: [String]]!
+    var dislikes : [String : [String]]!
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
@@ -74,7 +75,9 @@ class MainMenuViewController: UIViewController {
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.fetchPreferenceData()
+        self.fetchDislikeData()
         self.applyPreferences()
+        self.applyDislikes()
         self.refreshMenu()
     }
     
@@ -90,6 +93,7 @@ class MainMenuViewController: UIViewController {
     func refreshMenu(){
         for dish: Dish in menu{
             dish.like = false
+            dish.dealtWith = false
         }
     }
     
@@ -99,6 +103,19 @@ class MainMenuViewController: UIViewController {
                 for dish in restaurants[key]!{
                     if dish.name == dishName {
                         dish.like = true
+                        dish.dealtWith = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func applyDislikes(){
+        for key in dislikes.keys{
+            for dishName: String in dislikes[key]!{
+                for dish in restaurants[key]!{
+                    if dish.name == dishName{
+                        dish.dealtWith = true
                     }
                 }
             }
@@ -163,8 +180,47 @@ class MainMenuViewController: UIViewController {
         for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
                 dish.like = true
+                dish.dealtWith = true
             }
         }
     }
+    
+    
+    func fetchDislikeData(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let restaurant = pFObject["location"] as?String{
+                                    if let dishName = pFObject["dishName"] as? String{
+                                        self.addToDealtWith(restaurant, dishName: dishName)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+    Update the preference list with data pulled in parse
+    */
+    func addToDealtWith(restaurant: String, dishName: String){
+        for dish: Dish in restaurants[restaurant]!{
+            if dish.name == dishName {
+                dish.dealtWith = true
+            }
+        }
+    }
+    
+    
 }
 

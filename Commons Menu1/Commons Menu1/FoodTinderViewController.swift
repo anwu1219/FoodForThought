@@ -34,6 +34,10 @@ protocol FoodTinderViewCellDelegate {
     indicates which item has been selected and provide appropriate information for a segue to dish info
     */
     func viewDishInfo(dish: Dish)
+    
+    func addToPreferenceList(dish: Dish)
+    
+    func addToDislikes(dish: Dish)
 }
 
 
@@ -45,8 +49,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var menuLoad : [Dish]?
     var menu = [Dish]()
     let styles = Styles()
-    var queriedDishes = [Int]()
-
+    var preferences = [Dish]()
+    var disLikes = [Dish]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +80,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         super.willMoveToParentViewController(parent)
         if parent == nil {
             //upload data to parse
+            self.uploadPreferenceList()
+            self.uploadDislikes()
         }
     }
 
@@ -154,12 +160,22 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
+    func addToPreferenceList(dish: Dish){
+        preferences.append(dish)
+    }
+    
+    
+    func addToDislikes(dish: Dish) {
+        disLikes.append(dish)
+    }
+    
     /**
     Delegate function that segues between the dish cells and the dish info view
     */
     func viewDishInfo(selectedDish: Dish) {
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
+
     
     
     // MARK: - Table view delegate
@@ -197,4 +213,48 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
+    
+    /**
+    Uploads the preference list
+    */
+    func uploadPreferenceList(){
+        for dish: Dish in preferences {
+            if let user = PFUser.currentUser(){
+                let newPreference = PFObject(className:"Preference")
+                newPreference["createdBy"] = PFUser.currentUser()
+                newPreference["dishName"] = dish.name
+                newPreference["location"] = dish.location
+                newPreference.saveInBackgroundWithBlock({
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                })
+            }
+        }
+    }
+    
+    func uploadDislikes(){
+        for dish: Dish in disLikes {
+            if let user = PFUser.currentUser(){
+                let newPreference = PFObject(className:"Disliked")
+                newPreference["createdBy"] = PFUser.currentUser()
+                newPreference["dishName"] = dish.name
+                newPreference["location"] = dish.location
+                newPreference.saveInBackgroundWithBlock({
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                })
+            }
+        }
+    }
+    
+    
 }

@@ -27,6 +27,9 @@ protocol MenuTableViewCellDelegate {
     */
     // #spchadinha
     func viewDishInfo(dish: Dish)
+    
+    func addToDislikes(dish: Dish)
+    
 }
 
 
@@ -40,6 +43,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var menu = [Dish]()
     var menuPFObjects: [PFObject]?
     let styles = Styles()
+    var disLikes = [Dish]()
     var location : String?
     
     
@@ -66,6 +70,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if parent == nil {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
                 uploadPreferenceList()
+                uploadDislikes()
         }
     }
     
@@ -134,6 +139,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
+    
+    /**
+    Delegate function that add dish to dislikes when it's deleted
+    */
+    func addToDislikes(dish: Dish) {
+        disLikes.append(dish)
+    }
     
     
     // MARK: - Table view delegate
@@ -219,6 +231,26 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     })
                 }
+            }
+        }
+    }
+    
+    
+    func uploadDislikes(){
+        for dish: Dish in disLikes {
+            if let user = PFUser.currentUser(){
+                let newPreference = PFObject(className:"Disliked")
+                newPreference["createdBy"] = PFUser.currentUser()
+                newPreference["dishName"] = dish.name
+                newPreference["location"] = dish.location
+                newPreference.saveInBackgroundWithBlock({
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                })
             }
         }
     }
