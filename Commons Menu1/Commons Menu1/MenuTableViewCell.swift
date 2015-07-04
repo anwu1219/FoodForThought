@@ -152,6 +152,7 @@ class MenuTableViewCell: UITableViewCell {
                     // notify the delegate that this item should be deleted
                     dish!.like = false
                     delegate!.toDoItemDeleted(dish!)
+                    delegate!.addToDislikes(dish!)
                     dish?.dealtWith = true
                 }
             } else if likeOnDragRelease {
@@ -161,7 +162,6 @@ class MenuTableViewCell: UITableViewCell {
                    // dish?.dealtWith = true
 
                     dish?.dealtWith = !dish!.dealtWith
-
                 }
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {
