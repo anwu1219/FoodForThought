@@ -35,6 +35,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
+        if isValidEmail(emailAddress.text) == true {
         let alertController = UIAlertController(title: "Agree to terms and conditions",
             message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
             preferredStyle: UIAlertControllerStyle.Alert
@@ -51,6 +52,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         // Display alert
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    }
     
     func processSignUp() {
         
@@ -61,6 +63,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         userEmailAddress = userEmailAddress.lowercaseString
         
         // Add email address validation
+        if isValidEmail(userEmailAddress) == false {
+            println("The email you entered is not valid")
+        }
         
         // Start activity indicator
         activityIndicator.hidden = false
@@ -81,11 +86,36 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
 //                self.activityIndicator.stopAnimating()
             }
         }
+      
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+    
+    //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if identifier == "signInToNavigationSegue" {
+             var segueShouldOccur = true // you determine this
+            if isValidEmail(emailAddress.text) == false {
+            // perform your computation to determine whether segue should occur
+                segueShouldOccur = false
+            }
+           
+            if !segueShouldOccur {
+                let notPermitted = UIAlertView(title: "Alert", message: "Email is not valid.", delegate: nil, cancelButtonTitle: "OK")
+                
+                // shows alert to user
+                notPermitted.show()
+                
+                // prevent segue from occurring
+                return false
+            }
+        }
+        
+        // by default perform the segue transitio
+        return true
     }
     
     @IBAction func signIn(sender: AnyObject) {
@@ -105,6 +135,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 } else {
                 println(error)
+                let notPermitted = UIAlertView(title: "Alert", message: "Username or password is not valid.", delegate: nil, cancelButtonTitle: "OK")
+                // shows alert to user
+                notPermitted.show()
+                self.clearTextField()
+
             }
         }
     }
