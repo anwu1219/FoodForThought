@@ -1176,7 +1176,7 @@
             </objects>
             <point key="canvasLocation" x="-636" y="306"/>
         </scene>
-        <!--Rest Profile View Controller-->
+        <!--Restaurant Name-->
         <scene sceneID="9R5-Uz-jaH">
             <objects>
                 <viewController id="zoT-e7-Njf" customClass="RestProfileViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
@@ -1187,8 +1187,33 @@
                     <view key="view" contentMode="scaleToFill" id="K4t-XW-smP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="JF3-Lu-1do">
+                                <rect key="frame" x="169" y="72" width="262" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="158" id="KJH-6l-G7l"/>
+                                    <constraint firstAttribute="width" constant="262" id="Kje-Ds-AgW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-io-2n0">
+                                <rect key="frame" x="78" y="273" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="8" id="REW-Ev-zG8"/>
+                            <constraint firstAttribute="centerX" secondItem="JF3-Lu-1do" secondAttribute="centerX" id="onY-Kj-DSP"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Restaurant Name" id="axK-Vv-1c2" userLabel="Restaurant name"/>
+                    <connections>
+                        <outlet property="restProfDescription" destination="1EG-io-2n0" id="rFo-Lw-RQW"/>
+                        <outlet property="restProfImage" destination="JF3-Lu-1do" id="EMj-h0-RYm"/>
+                        <outlet property="restProfName" destination="axK-Vv-1c2" id="rSJ-1w-eJq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6IF-hl-dO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

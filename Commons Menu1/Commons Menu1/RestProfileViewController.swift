@@ -10,8 +10,15 @@ import UIKit
 
 class RestProfileViewController: UIViewController {
 
+    @IBOutlet weak var restProfDescription: UILabel!
+    @IBOutlet weak var restProfImage: UIImageView!
+    @IBOutlet weak var restProfName: UINavigationItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+ //       restProfName.title = RestProfile?.name
+
 
         // Do any additional setup after loading the view.
     }

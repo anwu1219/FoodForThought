@@ -46,10 +46,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     let styles = Styles()
     var disLikes = [Dish]()
     var location : String?
-    
+    var restProf: RestProfile?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //restImageButton.imageView = restProf?.image
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")

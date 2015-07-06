@@ -17,6 +17,7 @@
 		407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */; };
 		40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */; };
 		40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D502111B4AC2520027F1DD /* RestProfileViewController.swift */; };
+		40D502141B4AC4E30027F1DD /* RestProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D502131B4AC4E30027F1DD /* RestProfile.swift */; };
 		40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842261B308C6A00D39DCD /* AppDelegate.swift */; };
 		40E842291B308C6A00D39DCD /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E842281B308C6A00D39DCD /* MainMenuViewController.swift */; };
 		40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422D1B308C6A00D39DCD /* Images.xcassets */; };
@@ -65,6 +66,7 @@
 		407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderViewController.swift; sourceTree = "<group>"; };
 		40D502111B4AC2520027F1DD /* RestProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfileViewController.swift; sourceTree = "<group>"; };
+		40D502131B4AC4E30027F1DD /* RestProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfile.swift; sourceTree = "<group>"; };
 		40E842211B308C6A00D39DCD /* Commons Menu1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Commons Menu1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E842251B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E842261B308C6A00D39DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
+				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
 				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
@@ -337,6 +340,7 @@
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
 				F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */,
 				40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */,
+				40D502141B4AC4E30027F1DD /* RestProfile.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
