@@ -199,6 +199,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         restaurants[location]?.append(dish)
     }
     
+    //regex function to check if email is in valid format
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
+    
     
     func getRestaurant() {
         var query = PFQuery(className:"Restaurant")

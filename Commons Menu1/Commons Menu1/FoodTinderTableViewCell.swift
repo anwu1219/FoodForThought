@@ -192,7 +192,6 @@ class FoodTinderTableViewCell: UITableViewCell {
         }
     }
     
-    
     /**
     Returns true when a gesture should begin
     */
