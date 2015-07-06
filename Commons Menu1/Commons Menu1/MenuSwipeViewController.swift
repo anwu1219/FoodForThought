@@ -225,7 +225,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    
     /**
     Uploads the preference list
     */

@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     
     
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferenceList = [String: [Dish]]()
+    var menu : [Dish]!
     var restaurants : [String: [Dish]]!
     var keys = [String]()    
     
@@ -36,6 +38,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         super.willMoveToParentViewController(parent)
         if parent == nil {
      //       println("This VC is 'will' be popped. i.e. the back button was pressed.")
+            self.uploadPreferenceList()
         }
     }
     
@@ -113,6 +116,33 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             let selectedMeal = sender! as! Dish
             if let index = find(preferenceList[selectedMeal.location!]!, selectedMeal) {
                 mealInfoViewController.dish = preferenceList[selectedMeal.location!]![index]
+            }
+        }
+    }
+    
+    
+    /**
+    Uploads the preference list
+    */
+    func uploadPreferenceList(){
+        for restaurant: String in preferenceList.keys {
+            for dish : Dish in preferenceList[restaurant]!{
+                if dish.like{
+                    if let user = PFUser.currentUser(){
+                        let newPreference = PFObject(className:"Preference")
+                        newPreference["createdBy"] = PFUser.currentUser()
+                        newPreference["dishName"] = dish.name
+                        newPreference["location"] = dish.location
+                        newPreference.saveInBackgroundWithBlock({
+                            (success: Bool, error: NSError?) -> Void in
+                            if (success) {
+                                // The object has been saved.
+                            } else {
+                                // There was a problem, check error.description
+                            }
+                        })
+                    }
+                }
             }
         }
     }

@@ -156,7 +156,9 @@ class MainMenuViewController: UIViewController {
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
+            self.deletePreferenceList()
             allPreferenceListViewController.restaurants = restaurants
+            allPreferenceListViewController.menu = menu
         }
     }
     
@@ -235,6 +237,29 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    /**
+    Deletes the preference list class in parse
+    */
+    func deletePreferenceList(){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                pFObject.delete()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }
 
