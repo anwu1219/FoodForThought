@@ -20,7 +20,7 @@ class Dish: NSObject {
     var allergens: [String]?
     // food source, and other sustainability info
     var chefNote: [String]?
-    var ecoLabel: [UIImage]?
+    var ecoLabel: [String]?
     // for on campus dining service
     var nutritionistNote: String?
     var price: Double?
@@ -53,7 +53,7 @@ class Dish: NSObject {
         self.location = location
     }
     
-    init (name: String, ingredients: [String], image: UIImage, allergens: [String], chefNote: [String], ecoLabel: [UIImage], nutritionistNote: String, price: Double){
+    init (name: String, ingredients: [String], image: UIImage, allergens: [String], chefNote: [String], ecoLabel: [String], nutritionistNote: String, price: Double){
         self.name = name
         self.ingredients = ingredients
         self.image = image

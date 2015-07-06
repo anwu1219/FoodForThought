@@ -20,8 +20,10 @@ class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
     var restaurants : [String: [Dish]]!
+    var restauranto : [RestProfile]!
     var preferences : [String: [String]]!
     var dislikes : [String : [String]]!
+    var restauranten = [RestProfile: [Dish]]()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     
 
@@ -85,6 +87,7 @@ class MainMenuViewController: UIViewController {
         self.applyPreferences()
         self.applyDislikes()
         self.refreshMenu()
+        println(restauranto)
     }
     
     override func willMoveToParentViewController(parent: UIViewController?) {
@@ -128,6 +131,12 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    func makeRestauranten() {
+        for restaurant: RestProfile in restauranto{
+            
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {
