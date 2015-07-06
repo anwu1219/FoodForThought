@@ -23,7 +23,7 @@ class RestMenuViewController: UIViewController {
     
     //let viewContainer = UIView()
     var styles = Styles()
-    var restaurants : [String: [Dish]]?
+    var restauranten : [RestProfile: [Dish]]!
     var location: String?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
@@ -52,9 +52,9 @@ class RestMenuViewController: UIViewController {
 
         //verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
         //verticalRestMenuScroll(viewContainer)
-        if let restaurants = restaurants{
-            var keys = restaurants.keys.array
-            keys.sort({$0 < $1})
+        if let restauranten = restauranten{
+            var keys = restauranten.keys.array
+            keys.sort({$0.name < $1.name})
             placeButtons(keys)
         }
         
@@ -67,7 +67,7 @@ class RestMenuViewController: UIViewController {
         }
     }
     
-    func placeButtons(keys: [String]) {
+    func placeButtons(keys: [RestProfile]) {
         for i in 0..<keys.count {
             var button = UIButton()
             var downAlign: CGFloat = 20
@@ -78,7 +78,7 @@ class RestMenuViewController: UIViewController {
             var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
             button.frame = CGRectMake(x - 40, y + 10, 250, 46)
            // button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
-            button.setTitle(keys[i], forState: UIControlState.Normal)
+            button.setTitle(keys[i].name, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             //button.titleLabel?.textColor = UIColor.whiteColor()
@@ -108,15 +108,19 @@ class RestMenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "restToMenuSegue"{
         let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
-        if let restaurants = restaurants {
+        if let restauranten = restauranten {
             let button = sender as! UIButton
             if let title = button.titleLabel?.text {
-                menuSwipeViewController.menuLoad = restaurants[title]
-                menuSwipeViewController.location = title
-                deletePreferenceList(title)
-                deleteDislikes(title)
+                for restaurant : RestProfile in restauranten.keys{
+                    if restaurant.name == title{
+                        menuSwipeViewController.menuLoad = restauranten[restaurant]
+                        menuSwipeViewController.restProf = restaurant
+                        deletePreferenceList(title)
+                        deleteDislikes(title)
+                        }
+                    }
+                }
             }
-        }
         }
     }
     
@@ -173,7 +177,6 @@ class RestMenuViewController: UIViewController {
             }
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

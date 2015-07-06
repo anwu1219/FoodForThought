@@ -86,7 +86,7 @@ class MainMenuViewController: UIViewController {
         self.applyPreferences()
         self.applyDislikes()
         self.refreshMenu()
-        println(restauranto)
+        self.makeRestauranten()
     }
     
     override func willMoveToParentViewController(parent: UIViewController?) {
@@ -152,7 +152,7 @@ class MainMenuViewController: UIViewController {
         if segue.identifier == "mainToRestaurantsSegue" {
             let restMenuViewController = segue.destinationViewController as! RestMenuViewController
             menu.sort({$0.name<$1.name})
-            restMenuViewController.restaurants = restaurants
+            restMenuViewController.restauranten = restauranten
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
