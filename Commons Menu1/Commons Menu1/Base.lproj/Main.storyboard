@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -616,6 +616,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cot-IL-hPO">
                                 <rect key="frame" x="45" y="351" width="125" height="43"/>
@@ -987,7 +990,6 @@
                         <outlet property="activityIndicator" destination="lzq-2o-lDV" id="d8N-h0-TEc"/>
                         <outlet property="emailAddress" destination="HkO-JZ-QH7" id="4uF-AC-OcL"/>
                         <outlet property="emailLabel" destination="YHF-gB-QOn" id="OS5-Ze-wjl"/>
-                        <outlet property="forgotPasswordButton" destination="bYP-O1-7OV" id="aLK-HT-GCW"/>
                         <outlet property="password" destination="xbZ-KB-OJR" id="hhG-aB-ayT"/>
                         <outlet property="passwordLabel" destination="kfS-hu-XbJ" id="e8G-Fl-BaS"/>
                         <outlet property="signInButton" destination="Cot-IL-hPO" id="QBj-Ep-fab"/>
@@ -1118,7 +1120,7 @@
                                     <constraint firstAttribute="width" constant="257" id="4JI-yb-uEc"/>
                                     <constraint firstAttribute="height" constant="156" id="T92-sA-FtH"/>
                                 </constraints>
-                                <state key="normal">
+                                <state key="normal" image="DavisCafe">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -1130,15 +1132,15 @@
                                     <segue destination="zoT-e7-Njf" kind="show" id="RYE-Yv-cAa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxI-jG-K2n">
-                                <rect key="frame" x="0.0" y="221" width="151.5" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurant Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxI-jG-K2n">
+                                <rect key="frame" x="0.0" y="221" width="310.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGw-kh-VPq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurant Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGw-kh-VPq">
                                 <rect key="frame" x="0.0" y="249" width="204" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1150,7 +1152,7 @@
                                     <constraint firstAttribute="width" constant="300" id="aFj-Qw-7gQ"/>
                                     <constraint firstAttribute="width" constant="200" id="mF1-T9-TMN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -1467,6 +1469,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DavisCafe" width="226" height="244"/>
         <image name="greenEarth" width="202" height="208"/>
         <image name="heartHands" width="225" height="225"/>
         <image name="menuButton" width="559" height="84"/>
