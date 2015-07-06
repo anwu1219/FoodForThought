@@ -37,3 +37,9 @@ struct Styles {
     // can add any special or unique button or view styles, however, it is best to limit
     // the number of unique styles to keep the look of the app consistent
 }
+
+struct restMenuButtonStyles {
+    
+    // let textFont =
+
+}

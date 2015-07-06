@@ -201,6 +201,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Main Menu" id="WAr-q3-nAB"/>
                     <connections>
+                        <outlet property="food4ThoughtLabel" destination="iXq-R8-JcK" id="a4h-3a-qtW"/>
                         <outlet property="foodTinderMenuButton" destination="7Yh-Ow-tTM" id="q7K-ND-TVr"/>
                         <outlet property="myPrefMenuButton" destination="XwZ-3x-4nw" id="hdQ-68-oKx"/>
                         <outlet property="restMenuButton" destination="84R-Va-e5n" id="w5q-Et-xcx"/>
@@ -1067,6 +1068,7 @@
                     <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="jKN-Gc-OYb" id="RWX-xo-oWE"/>
+                        <outlet property="selectARestLabel" destination="gzD-2y-G6f" id="hgc-Pe-wHd"/>
                         <outlet property="verticalRestMenuScroll" destination="n3j-Sf-0h6" id="i6i-Jd-Tnu"/>
                         <segue destination="5dj-oE-vjJ" kind="show" identifier="restToMenuSegue" id="KRS-cz-WCt"/>
                     </connections>
@@ -1097,11 +1099,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-p8-vCb">
-                                <rect key="frame" x="0.0" y="225" width="600" height="375"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CxL-p8-vCb">
+                                <rect key="frame" x="0.0" y="279" width="600" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="protCell" id="rHH-34-zTX" customClass="TableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="protCell" rowHeight="38" id="rHH-34-zTX" customClass="TableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rHH-34-zTX" id="rLY-sE-uJe">
@@ -1114,39 +1116,104 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-Va-bll">
-                                <rect key="frame" x="172" y="67" width="257" height="156"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="156"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="257" id="4JI-yb-uEc"/>
                                     <constraint firstAttribute="height" constant="156" id="T92-sA-FtH"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="sloth">
+                                <state key="normal" image="DavisCafe">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4JI-yb-uEc"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="zoT-e7-Njf" kind="show" id="RYE-Yv-cAa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurant Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxI-jG-K2n">
+                                <rect key="frame" x="0.0" y="221" width="292" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Restaurant Phone Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGw-kh-VPq">
+                                <rect key="frame" x="0.0" y="249" width="292" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Open Hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6A-Zn-Si1">
+                                <rect key="frame" x="400" y="221" width="200" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="BSF-Kr-TTm"/>
+                                    <constraint firstAttribute="width" constant="300" id="Vsu-XC-Xkj"/>
+                                    <constraint firstAttribute="width" constant="300" id="aFj-Qw-7gQ"/>
+                                    <constraint firstAttribute="width" constant="200" id="mF1-T9-TMN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Vsu-XC-Xkj"/>
+                                        <exclude reference="aFj-Qw-7gQ"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="CxL-p8-vCb" secondAttribute="trailing" id="0hw-FI-HJW"/>
+                            <constraint firstAttribute="trailing" secondItem="b6A-Zn-Si1" secondAttribute="trailing" id="3zK-el-Rhd"/>
+                            <constraint firstItem="gsa-Va-bll" firstAttribute="top" secondItem="GUr-P8-itM" secondAttribute="bottom" id="4zh-tt-8tE"/>
+                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="rxI-jG-K2n" secondAttribute="bottom" constant="31.5" id="6Cx-2u-XVK"/>
                             <constraint firstItem="CxL-p8-vCb" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="6Ki-Rb-QI8"/>
+                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="59" id="7dl-la-cKq"/>
+                            <constraint firstItem="bGw-kh-VPq" firstAttribute="top" secondItem="rxI-jG-K2n" secondAttribute="bottom" constant="1.5" id="7sL-4i-uGv"/>
+                            <constraint firstItem="rxI-jG-K2n" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="8" id="8ZI-cl-uWM"/>
                             <constraint firstAttribute="trailing" secondItem="CxL-p8-vCb" secondAttribute="trailing" id="D0f-aK-Bby"/>
+                            <constraint firstItem="rxI-jG-K2n" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="K0s-1r-9io"/>
+                            <constraint firstItem="bGw-kh-VPq" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="29" id="K46-Dx-u8R"/>
+                            <constraint firstItem="gsa-Va-bll" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="OLh-Cz-eLE"/>
                             <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="GUr-P8-itM" secondAttribute="bottom" constant="161" id="P3b-4H-X7j"/>
+                            <constraint firstItem="b6A-Zn-Si1" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="1" id="PZ4-1j-qX9"/>
                             <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="Mk8-ef-Eal" secondAttribute="top" id="R7h-ot-PLP"/>
+                            <constraint firstItem="b6A-Zn-Si1" firstAttribute="leading" secondItem="bGw-kh-VPq" secondAttribute="trailing" constant="8" id="X8P-Fh-9PF"/>
                             <constraint firstAttribute="centerX" secondItem="gsa-Va-bll" secondAttribute="centerX" id="XIX-uu-oJI"/>
                             <constraint firstItem="SED-wd-owW" firstAttribute="top" secondItem="CxL-p8-vCb" secondAttribute="bottom" id="XWd-30-7ep"/>
+                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="bGw-kh-VPq" secondAttribute="bottom" constant="1" id="a6O-Ea-hwF"/>
                             <constraint firstAttribute="bottom" secondItem="CxL-p8-vCb" secondAttribute="bottom" id="byl-ny-Owh"/>
+                            <constraint firstItem="rxI-jG-K2n" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="fmh-6N-ONk"/>
+                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="rxI-jG-K2n" secondAttribute="bottom" constant="3" id="hTp-ZV-jkr"/>
                             <constraint firstItem="CxL-p8-vCb" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="hlh-LT-QDt"/>
                             <constraint firstItem="gsa-Va-bll" firstAttribute="top" secondItem="GUr-P8-itM" secondAttribute="bottom" constant="3" id="lb4-f9-UoF"/>
+                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="rxI-jG-K2n" secondAttribute="bottom" constant="3" id="mbt-Wh-gVn"/>
                             <constraint firstAttribute="centerX" secondItem="CxL-p8-vCb" secondAttribute="centerX" id="o0t-a9-11r"/>
-                            <constraint firstItem="CxL-p8-vCb" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="2" id="xT6-dP-IAB"/>
+                            <constraint firstItem="b6A-Zn-Si1" firstAttribute="leading" secondItem="bGw-kh-VPq" secondAttribute="trailing" constant="8" id="oBe-2o-4zo"/>
+                            <constraint firstItem="rxI-jG-K2n" firstAttribute="top" secondItem="gsa-Va-bll" secondAttribute="bottom" constant="1" id="rAp-6v-q8j"/>
+                            <constraint firstAttribute="trailing" secondItem="gsa-Va-bll" secondAttribute="trailing" id="tDB-6t-Hfa"/>
+                            <constraint firstAttribute="trailing" secondItem="rxI-jG-K2n" secondAttribute="trailing" id="uS0-aG-d9a"/>
+                            <constraint firstAttribute="trailing" secondItem="b6A-Zn-Si1" secondAttribute="trailing" id="w4F-2A-fuR"/>
+                            <constraint firstItem="bGw-kh-VPq" firstAttribute="leading" secondItem="Mk8-ef-Eal" secondAttribute="leading" id="yzh-0J-nxJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="lb4-f9-UoF"/>
+                                <exclude reference="8ZI-cl-uWM"/>
+                                <exclude reference="K0s-1r-9io"/>
+                                <exclude reference="uS0-aG-d9a"/>
+                                <exclude reference="7sL-4i-uGv"/>
                                 <exclude reference="0hw-FI-HJW"/>
+                                <exclude reference="P3b-4H-X7j"/>
                                 <exclude reference="R7h-ot-PLP"/>
+                                <exclude reference="hTp-ZV-jkr"/>
                                 <exclude reference="hlh-LT-QDt"/>
+                                <exclude reference="mbt-Wh-gVn"/>
+                                <exclude reference="X8P-Fh-9PF"/>
+                                <exclude reference="oBe-2o-4zo"/>
                                 <exclude reference="XWd-30-7ep"/>
                             </mask>
                         </variation>
@@ -1168,7 +1235,10 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="restAddressLabel" destination="rxI-jG-K2n" id="ugQ-7J-doA"/>
                         <outlet property="restImageButton" destination="gsa-Va-bll" id="XHC-1y-VD9"/>
+                        <outlet property="restOpenHoursLabel" destination="b6A-Zn-Si1" id="8SK-FX-Ft0"/>
+                        <outlet property="restPhoneNumbLabel" destination="bGw-kh-VPq" id="MjU-Y6-htP"/>
                         <outlet property="tableView" destination="CxL-p8-vCb" id="yvU-AW-Tuf"/>
                     </connections>
                 </viewController>
@@ -1343,6 +1413,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DavisCafe" width="226" height="244"/>
         <image name="greenEarth" width="202" height="208"/>
         <image name="heartHands" width="225" height="225"/>
         <image name="menuButton" width="559" height="84"/>

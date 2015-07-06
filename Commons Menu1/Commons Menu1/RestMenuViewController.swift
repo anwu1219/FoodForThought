@@ -18,6 +18,8 @@ class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var verticalRestMenuScroll: UIScrollView!
+    @IBOutlet weak var selectARestLabel: UILabel!
+    
     
     //let viewContainer = UIView()
     var styles = Styles()
@@ -35,6 +37,11 @@ class RestMenuViewController: UIViewController {
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
+        
+        selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        selectARestLabel.layer.shadowRadius = 5
+        selectARestLabel.layer.shadowOpacity = 1.0
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -76,8 +83,10 @@ class RestMenuViewController: UIViewController {
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             //button.titleLabel?.textColor = UIColor.whiteColor()
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-            
-          //  var image = UIImageView(image: UIImage(named: "menuButton"))
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+            button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
+
+            //  var image = UIImageView(image: UIImage(named: "menuButton"))
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
            // button.setImage(backgroundImage, forState: UIControlState.Normal)
            // image.frame = CGRectMake( x, (y+height+5), width, width)

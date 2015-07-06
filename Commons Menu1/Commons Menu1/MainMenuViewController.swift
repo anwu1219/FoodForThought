@@ -38,6 +38,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
+    @IBOutlet weak var food4ThoughtLabel: UILabel!
     
     
     let styles = Styles()
@@ -59,6 +60,11 @@ class MainMenuViewController: UIViewController {
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
+        
+        food4ThoughtLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        food4ThoughtLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        food4ThoughtLabel.layer.shadowRadius = 5
+        food4ThoughtLabel.layer.shadowOpacity = 1.0
 
         
         restMenuButton.frame = styles.buttonFrame

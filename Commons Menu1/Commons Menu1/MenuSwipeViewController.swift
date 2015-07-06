@@ -39,6 +39,9 @@ Displays menus as food tinder
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restImageButton: UIButton!
+    @IBOutlet weak var restOpenHoursLabel: UILabel!
+    @IBOutlet weak var restPhoneNumbLabel: UILabel!
+    @IBOutlet weak var restAddressLabel: UILabel!
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
@@ -51,7 +54,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //restImageButton.imageView = restProf?.image
+        
+        //restImageButton.imageView = UIImage(named: "sloth")
+        //restOpenHoursLabel.text = restProf.openhours
+        //restPhoneNumbLabel = restProf.phonenumb
+        //restAddressLabel = restProf.address
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")

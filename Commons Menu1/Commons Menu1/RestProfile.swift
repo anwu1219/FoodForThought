@@ -20,8 +20,4 @@ class RestProfile: NSObject {
         self.image = image
         self.restDescript = restDescript
     }
-
-    
-
-
 }
