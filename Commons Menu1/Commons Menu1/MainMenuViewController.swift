@@ -133,7 +133,7 @@ class MainMenuViewController: UIViewController {
     
     func makeRestauranten() {
         for restaurant: RestProfile in restauranto{
-            
+            restauranten[restaurant] = restaurants[restaurant.name]
         }
     }
     
