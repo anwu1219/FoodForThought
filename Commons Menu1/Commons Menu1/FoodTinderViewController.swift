@@ -54,7 +54,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.delegate = self
         foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "tinderCell")
         foodTinderTableView.separatorStyle = .SingleLine
-        //tableView.backgroundColor = UIColor.blackColor()
         //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         foodTinderTableView.rowHeight = 600;

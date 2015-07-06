@@ -32,11 +32,9 @@ class MenuTableViewCell: UITableViewCell {
         }
     }
     
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
-    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
@@ -65,7 +63,6 @@ class MenuTableViewCell: UITableViewCell {
         crossLabel.text = "\u{2717}"
         crossLabel.textAlignment = .Left
         
-        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(label)
@@ -83,7 +80,6 @@ class MenuTableViewCell: UITableViewCell {
         gradientLayer.colors = [color1, color2, color3, color4]
         gradientLayer.locations = [0.0, 0.01, 0.95, 1.0]
         layer.insertSublayer(gradientLayer, atIndex: 0)
-        
         
         // add a layer that renders a green background when a user like the dish %anwu
         itemLikeLayer = CALayer(layer: layer)
@@ -116,7 +112,6 @@ class MenuTableViewCell: UITableViewCell {
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
     }
-
     
     /**
     MARK: - horizontal pan gesture methods

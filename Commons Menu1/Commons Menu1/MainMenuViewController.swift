@@ -72,7 +72,6 @@ class MainMenuViewController: UIViewController {
         foodTinderMenuButton.frame = styles.buttonFrame
         sustInfoMenuButton.frame = styles.buttonFrame
 
-        
         let backButton = UIBarButtonItem(
             title: "Log out",
             style: UIBarButtonItemStyle.Plain,
