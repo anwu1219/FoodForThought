@@ -15,7 +15,6 @@ protocol SignUpViewControllerDelegate {
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
-    
     var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
@@ -88,7 +87,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         return false
     }
     
-    
     @IBAction func signIn(sender: AnyObject) {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
@@ -160,7 +158,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             mainMenuViewController.dislikes = dislikes
         }
     }
-    
     
     func getData() {
         var query = PFQuery(className:"dishInfo")

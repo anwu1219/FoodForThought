@@ -24,15 +24,11 @@ extension Array {
 
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol FoodTinderViewCellDelegate {
-    /**
-    indicates that the given item has been deleted
-    */
+    
+    //indicates that the given item has been deleted
     func toDoItemDeleted(dish: Dish)
-    
-    
-    /**
-    indicates which item has been selected and provide appropriate information for a segue to dish info
-    */
+   
+    //indicates which item has been selected and provide appropriate information for a segue to dish info
     func viewDishInfo(dish: Dish)
     
     func addToPreferenceList(dish: Dish)
@@ -108,15 +104,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         return list
     }
     
-    
-    
     /**
     Returns the number of rows in the table
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu.count
     }
-    
     
     /**
     Generates cells and adds items to the table
@@ -136,13 +129,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             
             //sets the image
             cell.imageView?.image = dish.image
-           // cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
+            //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-          //  cell.imageView?.clipsToBounds = true
+            //cell.imageView?.clipsToBounds = true
 
             return cell
     }
-    
     
     //MARK: - Table view cell delegate
     /**
@@ -161,11 +153,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.endUpdates()
     }
     
-    
     func addToPreferenceList(dish: Dish){
         preferences.append(dish)
     }
-    
     
     func addToDislikes(dish: Dish) {
         disLikes.append(dish)
@@ -177,8 +167,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func viewDishInfo(selectedDish: Dish) {
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
-
-    
     
     // MARK: - Table view delegate
     //    func colorForIndex(index: Int) -> UIColor {
@@ -200,7 +188,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             return tableView.rowHeight;
     }
     
-    
     /**
     Prepares for segue
     */
@@ -214,8 +201,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 mealInfoViewController.dish = menu[index]
             }
         }
+        if segue.identifier == "mealInfoSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
+                mealInfoViewController.dish = menu[index]
+            }
+        }
     }
-    
     
     /**
     Uploads the preference list
@@ -257,6 +251,5 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
-    
     
 }

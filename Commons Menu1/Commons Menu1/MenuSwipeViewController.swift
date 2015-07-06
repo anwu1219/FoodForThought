@@ -38,6 +38,7 @@ Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var restImageButton: UIButton!
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
@@ -54,9 +55,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
         tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
-        
 
-        
+        self.automaticallyAdjustsScrollViewInsets = false;
+
         //tableView.backgroundColor = UIColor.blackColor()
         //tableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill

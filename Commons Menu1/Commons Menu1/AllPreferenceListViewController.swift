@@ -35,7 +35,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            println("This VC is 'will' be popped. i.e. the back button was pressed.")
+     //       println("This VC is 'will' be popped. i.e. the back button was pressed.")
         }
     }
     
