@@ -55,8 +55,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         restImageButton.setImage(restProf.image, forState: .Normal)
         restOpenHoursLabel.text = restProf!.hours
+        
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
+        
         
         tableView.dataSource = self
         tableView.delegate = self

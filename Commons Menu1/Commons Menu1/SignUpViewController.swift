@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     var preferences = [String: [String]]()
     var dislikes = [String: [String]]()
     var restauranto = [RestProfile]()
+    var acceptedTerms = Boolean()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -33,20 +34,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
         if isValidEmail(emailAddress.text) == true {
         let alertController = UIAlertController(title: "Agree to terms and conditions",
             message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
             preferredStyle: UIAlertControllerStyle.Alert
-        )
+            )
         alertController.addAction(UIAlertAction(title: "I AGREE",
             style: UIAlertActionStyle.Default,
-            handler: { alertController in self.processSignUp()})
+            handler: { alertController in self.processSignUp()}
+            )
         )
         alertController.addAction(UIAlertAction(title: "I do NOT agree",
             style: UIAlertActionStyle.Default,
-            handler: nil)
+            handler: nil
+            )
         )
         
         // Display alert
@@ -83,7 +87,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 println("Signed up successfully")
             } else {
                 println(error)
-//                self.activityIndicator.stopAnimating()
+               self.activityIndicator.stopAnimating()
             }
         }
       
@@ -138,7 +142,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 let notPermitted = UIAlertView(title: "Alert", message: "Username or password is not valid.", delegate: nil, cancelButtonTitle: "OK")
                 // shows alert to user
                 notPermitted.show()
-                self.clearTextField()
+                self.password.text == ""
 
             }
         }
@@ -346,8 +350,56 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
     }
     
-    
-    
+    //button action to reset forgotten password
+    //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
+    @IBAction func resetPasswordPressed(sender: AnyObject) {
+        let titlePrompt = UIAlertController(title: "Reset password",
+            message: "Enter the email you registered with:",
+            preferredStyle: .Alert)
+        
+        var titleTextField: UITextField?
+        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            titleTextField = textField
+            textField.placeholder = "Email"
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        
+        titlePrompt.addAction(cancelAction)
+        
+        titlePrompt.addAction(UIAlertAction(title: "Reset", style: .Destructive, handler: { (action) -> Void in
+            if let textField = titleTextField {
+                self.resetPassword(textField.text)
+            }
+        }))
+        
+        self.presentViewController(titlePrompt, animated: true, completion: nil)
+    }
+ 
+    //Parse function to reset forgotten password
+    func resetPassword(email : String){
+        
+        // convert the email string to lower case
+        let emailToLowerCase = email.lowercaseString
+        // remove any whitespaces before and after the email address
+        let emailClean = emailToLowerCase.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        PFUser.requestPasswordResetForEmailInBackground(emailClean) { (success, error) -> Void in
+            if (error == nil) {
+                let success = UIAlertController(title: "Success", message: "Success! Check your email!", preferredStyle: .Alert)
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                success.addAction(okButton)
+                self.presentViewController(success, animated: false, completion: nil)
+                
+            }else {
+                let errormessage = error!.userInfo!["error"] as! NSString
+                let error = UIAlertController(title: "Cannot complete request", message: errormessage as String, preferredStyle: .Alert)
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                error.addAction(okButton)
+                self.presentViewController(error, animated: false, completion: nil)
+            }
+        }
+    }
     
     
     func addToDislikes(restaurant: String, dishName: String){
