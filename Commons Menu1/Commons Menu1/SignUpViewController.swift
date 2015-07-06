@@ -20,6 +20,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     var restaurants = [String: [Dish]]()
     var preferences = [String: [String]]()
     var dislikes = [String: [String]]()
+    var restauranto = [RestProfile]()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -138,7 +139,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         
         self.emailAddress.delegate = self
         self.password.delegate = self
-        self.getData()
+        self.getDishes()
+//        self.getRestaurant()
     }
     
     
@@ -159,7 +161,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
     }
     
-    func getData() {
+    func getDishes() {
         var query = PFQuery(className:"dishInfo")
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -175,7 +177,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                         if let location = object["location"] as? String{
                                             let dish = Dish(name: name, image: image, location: location)
                                             self.menu.append(dish)
-                                            self.addToRestaurant(location, dish: dish)
+                                            self.addToRestaurants(location, dish: dish)
                                         }
                                         }
                                         }
@@ -189,12 +191,52 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
     }
     
-    func addToRestaurant(location: String, dish: Dish){
+    func addToRestaurants(location: String, dish: Dish){
         if !contains(self.restaurants.keys, location){
             restaurants[location] = [Dish]()
         }
         restaurants[location]?.append(dish)
     }
+    
+    
+//    func getRestaurant() {
+//        var query = PFQuery(className:"Restaurant")
+//        query.findObjectsInBackgroundWithBlock{
+//            (objects: [AnyObject]?, error: NSError?) -> Void in
+//            if error == nil && objects != nil{
+//                if let objectsArray = objects{
+//                    for object: AnyObject in objectsArray{
+//                        self.menuPFObjects.append(object as! PFObject)
+//                        if let name = object["name"] as? String {
+//                            if let userImageFile = object["image"] as? PFFile{
+//                                userImageFile.getDataInBackgroundWithBlock {
+//                                    (imageData: NSData?, error: NSError?) ->Void in
+//                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+//                                        if let address = object["address"] as? String{
+//                                            if let phoneNumber = object["number"] as? String{
+//                                            if let  hours = object["openHours"] as? String{
+//                                            let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, phoneNumber: phoneNumber, label: label)
+//                                            self.addToRestauranto(restaurant)
+//                                            }
+//                                            }
+//                                        }
+//                                        }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    
+//    func addToRestauranto(restaurant: RestProfile){
+//        restauranto.append(restaurant)
+//    }
+//    
     
     func fetchPreferenceData(){
         if let currentUser = PFUser.currentUser(){
