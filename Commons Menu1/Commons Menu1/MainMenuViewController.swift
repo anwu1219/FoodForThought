@@ -156,7 +156,7 @@ class MainMenuViewController: UIViewController {
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            //self.deletePreferenceList()
+            self.deletePreferenceList()
             allPreferenceListViewController.restaurants = restaurants
             allPreferenceListViewController.menu = menu
         }
