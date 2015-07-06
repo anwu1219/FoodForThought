@@ -13,9 +13,6 @@ import Parse
 Welcome page view controller and search type for user
 */
 
-
-
-
 class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
@@ -25,17 +22,7 @@ class MainMenuViewController: UIViewController {
     var dislikes : [String : [String]]!
     var restauranten = [RestProfile: [Dish]]()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
-    
-
-    @IBAction func showRestaurants(sender: AnyObject) {
-        performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
-    }
-    
-    @IBAction func foodTinderAction(sender: AnyObject) {
-        performSegueWithIdentifier("foodTinderSegue", sender: sender)
-    }
-    
-   
+    let styles = Styles()
     @IBOutlet weak var restMenuButton: UIButton!
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
@@ -43,11 +30,9 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var food4ThoughtLabel: UILabel!
     
     
-    let styles = Styles()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "MainMenuBackground")
@@ -62,7 +47,7 @@ class MainMenuViewController: UIViewController {
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
-        
+
         food4ThoughtLabel.layer.shadowColor = UIColor.blackColor().CGColor
         food4ThoughtLabel.layer.shadowOffset = CGSizeMake(5, 5)
         food4ThoughtLabel.layer.shadowRadius = 5
@@ -74,6 +59,7 @@ class MainMenuViewController: UIViewController {
         foodTinderMenuButton.frame = styles.buttonFrame
         sustInfoMenuButton.frame = styles.buttonFrame
 
+        //change the backbutton title
         let backButton = UIBarButtonItem(
             title: "Log out",
             style: UIBarButtonItemStyle.Plain,
@@ -81,6 +67,8 @@ class MainMenuViewController: UIViewController {
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+    
+        
         self.fetchPreferenceData()
         self.fetchDislikeData()
         self.applyPreferences()
@@ -89,6 +77,10 @@ class MainMenuViewController: UIViewController {
         self.makeRestauranten()
     }
     
+    
+    /**
+    Logs out and clears the text field when go back
+    */
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
@@ -98,6 +90,10 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    /**
+    Sets the states of dishes to default when relog in
+    */
     func refreshMenu(){
         for dish: Dish in menu{
             dish.like = false
@@ -105,6 +101,10 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    /**
+    Sets the like and dealtWith attributes to true for each dish object in preferences
+    */
     func applyPreferences(){
         for key in preferences.keys{
             for dishName: String in preferences[key]!{
@@ -118,6 +118,10 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
+    /**
+    Sets the dislike and dealtWith attributes to true for each dish object in dislikes
+    */
     func applyDislikes(){
         for key in dislikes.keys{
             for dishName: String in dislikes[key]!{
@@ -131,39 +135,25 @@ class MainMenuViewController: UIViewController {
     }
     
     
+    /**
+    Creates a map of RestProfile to its Dishes
+    */
     func makeRestauranten() {
         for restaurant: RestProfile in restauranto{
             restauranten[restaurant] = restaurants[restaurant.name]
         }
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "foodTinderSegue"{
-            let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
-            menu.sort({$0.name<$1.name})
-            foodTinderViewController.menuLoad = menu
-        }
-        if segue.identifier == "mainToRestaurantsSegue" {
-            let restMenuViewController = segue.destinationViewController as! RestMenuViewController
-            menu.sort({$0.name<$1.name})
-            restMenuViewController.restauranten = restauranten
-        }
-        if segue.identifier == "mainToAllPreferencesSegue"{
-            let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            self.deletePreferenceList()
-            allPreferenceListViewController.restaurants = restaurants
-            allPreferenceListViewController.menu = menu
-        }
-    }
     
-
-    
+    /**
+    Fetches preference data from Parse and sets the corresponding dish object's dealtWith and like to true
+    */
     func fetchPreferenceData(){
     if let currentUser = PFUser.currentUser(){
         var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
@@ -190,7 +180,7 @@ class MainMenuViewController: UIViewController {
     
     
     /**
-    Update the preference list with data pulled in parse
+    Sets the like and dealtWith attribute of a dish object to true
     */
     func addToPreferenceList(restaurant: String, dishName: String){
         for dish: Dish in restaurants[restaurant]!{
@@ -202,6 +192,9 @@ class MainMenuViewController: UIViewController {
     }
     
     
+    /**
+    Fetches dislike data from Parse and sets the corresponding dish object's dealtWith to true
+    */
     func fetchDislikeData(){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
@@ -226,8 +219,9 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    
     /**
-    Update the preference list with data pulled in parse
+    Sets the dealWith attribute of a dish object to true
     */
     func addToDealtWith(restaurant: String, dishName: String){
         for dish: Dish in restaurants[restaurant]!{
@@ -258,6 +252,39 @@ class MainMenuViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    
+    @IBAction func showRestaurants(sender: AnyObject) {
+        performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
+    }
+    
+    
+    @IBAction func foodTinderAction(sender: AnyObject) {
+        performSegueWithIdentifier("foodTinderSegue", sender: sender)
+    }
+ 
+    
+    /**
+    Prepares for segues
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "foodTinderSegue"{
+            let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
+            menu.sort({$0.name<$1.name})
+            foodTinderViewController.menuLoad = menu
+        }
+        if segue.identifier == "mainToRestaurantsSegue" {
+            let restMenuViewController = segue.destinationViewController as! RestMenuViewController
+            menu.sort({$0.name<$1.name})
+            restMenuViewController.restauranten = restauranten
+        }
+        if segue.identifier == "mainToAllPreferencesSegue"{
+            let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
+            self.deletePreferenceList()
+            allPreferenceListViewController.restaurants = restaurants
+            allPreferenceListViewController.menu = menu
         }
     }
     

@@ -19,9 +19,6 @@ class RestMenuViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var verticalRestMenuScroll: UIScrollView!
     @IBOutlet weak var selectARestLabel: UILabel!
-    
-    
-    //let viewContainer = UIView()
     var styles = Styles()
     var restauranten : [RestProfile: [Dish]]!
     var location: String?
@@ -30,7 +27,7 @@ class RestMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "RestaurantpickerBackground")
@@ -38,20 +35,23 @@ class RestMenuViewController: UIViewController {
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        //Formats the select a restaurant label
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
         selectARestLabel.layer.shadowRadius = 5
         selectARestLabel.layer.shadowOpacity = 1.0
         
+        //Gets the size of the screen
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         
+        //Formats the scroll view
         verticalRestMenuScroll.contentSize.width = 375
         verticalRestMenuScroll.contentSize.height = 600
         verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
 
         //verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
-        //verticalRestMenuScroll(viewContainer)
+        //Places the button with the list of restaurants get from restaurant map
         if let restauranten = restauranten{
             var keys = restauranten.keys.array
             keys.sort({$0.name < $1.name})
@@ -61,23 +61,22 @@ class RestMenuViewController: UIViewController {
     }
     
     
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        if parent == nil {
-        }
-    }
-    
+    /**
+    Places buttons that points to different restaurant menus
+    */
     func placeButtons(keys: [RestProfile]) {
         for i in 0..<keys.count {
             var button = UIButton()
             var downAlign: CGFloat = 20
-            
+            // Sets the size and position of the button
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
             var height: CGFloat = 0.15 * verticalRestMenuScroll.bounds.height
             var x: CGFloat = (50 + (0.5 * width))
-            var y: CGFloat = (height+10) * CGFloat(i) //(0 - (0.5 * height))
+            var y: CGFloat = (height+10) * CGFloat(i)
             button.frame = CGRectMake(x - 40, y + 10, 250, 46)
            // button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
+            
+            //Sets the content of the buttons
             button.setTitle(keys[i].name, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -85,11 +84,7 @@ class RestMenuViewController: UIViewController {
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-
-            //  var image = UIImageView(image: UIImage(named: "menuButton"))
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
-           // button.setImage(backgroundImage, forState: UIControlState.Normal)
-           // image.frame = CGRectMake( x, (y+height+5), width, width)
             backgroundImage.frame = button.frame
             
             verticalRestMenuScroll.addSubview(button)
@@ -97,26 +92,35 @@ class RestMenuViewController: UIViewController {
         }
     }
     
+    
+    /**
+    The function that the button will perform when pressed
+    */
     func toMenu(sender: UIButton!) {
-        // use get data function to get the menu for the selected restaurant
-        // call performSegueWithIdentifier to menuSwipeViewController 
-        //self.getData(sender.titleLabel!.text!)
         performSegueWithIdentifier("restToMenuSegue", sender: sender)
     }
 
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "restToMenuSegue"{
-        let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
-        if let restauranten = restauranten {
-            let button = sender as! UIButton
-            if let title = button.titleLabel?.text {
-                for restaurant : RestProfile in restauranten.keys{
-                    if restaurant.name == title{
-                        menuSwipeViewController.menuLoad = restauranten[restaurant]
-                        menuSwipeViewController.restProf = restaurant
-                        deletePreferenceList(title)
-                        deleteDislikes(title)
+    
+    /**
+    Deletes the preference list class in parse
+    */
+    func deletePreferenceList(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let rest = pFObject["location"] as? String{
+                                    if rest == restaurant {
+                                        pFObject.delete()
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -125,35 +129,9 @@ class RestMenuViewController: UIViewController {
     }
     
     
-    
     /**
-    Deletes the preference list class in parse
+    Deletes the dislike objects of current user and current restaurant in parse
     */
-    func deletePreferenceList(restaurant: String){
-        if let currentUser = PFUser.currentUser(){
-                var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-                var query = PFQuery(className:"Preference")
-                query.whereKey("createdBy", equalTo: user)
-                query.findObjectsInBackgroundWithBlock{
-                    (objects: [AnyObject]?, error: NSError?) -> Void in
-                    if error == nil && objects != nil{
-                        if let objectsArray = objects{
-                            for object: AnyObject in objectsArray{
-                                if let pFObject: PFObject = object as? PFObject{
-                                    if let rest = pFObject["location"] as? String{
-                                        if rest == restaurant {
-                                            pFObject.delete()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    }
-    
-    
     func deleteDislikes(restaurant: String){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
@@ -178,7 +156,28 @@ class RestMenuViewController: UIViewController {
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "restToMenuSegue"{
+            let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController
+            if let restauranten = restauranten {
+                let button = sender as! UIButton
+                if let title = button.titleLabel?.text {
+                    for restaurant : RestProfile in restauranten.keys{
+                        if restaurant.name == title{
+                            menuSwipeViewController.menuLoad = restauranten[restaurant]
+                            menuSwipeViewController.restProf = restaurant
+                            deletePreferenceList(title)
+                            deleteDislikes(title)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
