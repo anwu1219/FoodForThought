@@ -48,17 +48,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var menuPFObjects: [PFObject]?
     let styles = Styles()
     var disLikes = [Dish]()
-    var location : String?
-    var restProf: RestProfile?
+    var restProf: RestProfile!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //restImageButton.imageView = UIImage(named: "sloth")
-        //restOpenHoursLabel.text = restProf.openhours
-        //restPhoneNumbLabel = restProf.phonenumb
-        //restAddressLabel = restProf.address
+        restImageButton.setImage(restProf.image, forState: .Normal)
+        restOpenHoursLabel.text = restProf!.hours
+        restPhoneNumbLabel.text = restProf!.phoneNumber
+        restAddressLabel.text = restProf!.address
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -68,9 +66,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         self.automaticallyAdjustsScrollViewInsets = false;
 
-        //tableView.backgroundColor = UIColor.blackColor()
-        //tableView.backgroundView = styles.backgroundImage
-        //tableView.backgroundView?.contentMode = .ScaleAspectFill
+        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundView = styles.backgroundImage
+        tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
         //self.createMenu()
         if let menuLoad = menuLoad {
@@ -202,7 +200,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
             // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = createPreferenceList()
-            preferencelistViewController.location = location
+            preferencelistViewController.location = restProf?.name
             preferencelistViewController.delegate = self
         }
     }

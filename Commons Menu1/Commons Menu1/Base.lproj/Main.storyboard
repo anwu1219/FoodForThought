@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -765,27 +765,6 @@
                                 <exclude reference="AHh-ee-mb3"/>
                                 <exclude reference="P0X-PV-jQM"/>
                                 <exclude reference="zT4-7X-g7W"/>
-                                <exclude reference="562-gp-4iU"/>
-                                <exclude reference="BGs-hY-yGL"/>
-                                <exclude reference="EHE-lc-UiB"/>
-                                <exclude reference="IrT-CH-mmG"/>
-                                <exclude reference="N7x-QZ-IBG"/>
-                                <exclude reference="PEA-pI-Mwf"/>
-                                <exclude reference="Pu9-qO-wvI"/>
-                                <exclude reference="VjT-m5-bFx"/>
-                                <exclude reference="afT-IK-Big"/>
-                                <exclude reference="nQh-gb-fpN"/>
-                                <exclude reference="y2g-Ho-9ol"/>
-                                <exclude reference="7eD-6q-myZ"/>
-                                <exclude reference="Ags-wd-rO9"/>
-                                <exclude reference="DNj-1b-1lX"/>
-                                <exclude reference="JAp-MP-ZYf"/>
-                                <exclude reference="McF-rv-mwa"/>
-                                <exclude reference="OFR-4U-ctZ"/>
-                                <exclude reference="Val-kH-Yqg"/>
-                                <exclude reference="Yb4-aD-tkr"/>
-                                <exclude reference="il9-Q6-hqI"/>
-                                <exclude reference="sOS-Aj-TL4"/>
                                 <exclude reference="5Vw-gC-CUx"/>
                                 <exclude reference="67L-2y-rZh"/>
                                 <exclude reference="EZG-4Q-WR6"/>
@@ -866,6 +845,27 @@
                                 <exclude reference="nzq-Wy-Bez"/>
                                 <exclude reference="xqL-ab-UOc"/>
                                 <exclude reference="zZ4-PD-iGm"/>
+                                <exclude reference="562-gp-4iU"/>
+                                <exclude reference="BGs-hY-yGL"/>
+                                <exclude reference="EHE-lc-UiB"/>
+                                <exclude reference="IrT-CH-mmG"/>
+                                <exclude reference="N7x-QZ-IBG"/>
+                                <exclude reference="PEA-pI-Mwf"/>
+                                <exclude reference="Pu9-qO-wvI"/>
+                                <exclude reference="VjT-m5-bFx"/>
+                                <exclude reference="afT-IK-Big"/>
+                                <exclude reference="nQh-gb-fpN"/>
+                                <exclude reference="y2g-Ho-9ol"/>
+                                <exclude reference="7eD-6q-myZ"/>
+                                <exclude reference="Ags-wd-rO9"/>
+                                <exclude reference="DNj-1b-1lX"/>
+                                <exclude reference="JAp-MP-ZYf"/>
+                                <exclude reference="McF-rv-mwa"/>
+                                <exclude reference="OFR-4U-ctZ"/>
+                                <exclude reference="Val-kH-Yqg"/>
+                                <exclude reference="Yb4-aD-tkr"/>
+                                <exclude reference="il9-Q6-hqI"/>
+                                <exclude reference="sOS-Aj-TL4"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -878,27 +878,6 @@
                                 <include reference="AHh-ee-mb3"/>
                                 <include reference="P0X-PV-jQM"/>
                                 <include reference="zT4-7X-g7W"/>
-                                <include reference="562-gp-4iU"/>
-                                <include reference="BGs-hY-yGL"/>
-                                <exclude reference="EHE-lc-UiB"/>
-                                <exclude reference="IrT-CH-mmG"/>
-                                <exclude reference="N7x-QZ-IBG"/>
-                                <exclude reference="PEA-pI-Mwf"/>
-                                <exclude reference="Pu9-qO-wvI"/>
-                                <exclude reference="VjT-m5-bFx"/>
-                                <exclude reference="afT-IK-Big"/>
-                                <include reference="nQh-gb-fpN"/>
-                                <include reference="y2g-Ho-9ol"/>
-                                <exclude reference="7eD-6q-myZ"/>
-                                <exclude reference="Ags-wd-rO9"/>
-                                <exclude reference="DNj-1b-1lX"/>
-                                <include reference="JAp-MP-ZYf"/>
-                                <exclude reference="McF-rv-mwa"/>
-                                <exclude reference="OFR-4U-ctZ"/>
-                                <include reference="Val-kH-Yqg"/>
-                                <include reference="Yb4-aD-tkr"/>
-                                <include reference="il9-Q6-hqI"/>
-                                <exclude reference="sOS-Aj-TL4"/>
                                 <exclude reference="5Vw-gC-CUx"/>
                                 <exclude reference="67L-2y-rZh"/>
                                 <exclude reference="EZG-4Q-WR6"/>
@@ -979,6 +958,27 @@
                                 <exclude reference="nzq-Wy-Bez"/>
                                 <include reference="xqL-ab-UOc"/>
                                 <include reference="zZ4-PD-iGm"/>
+                                <include reference="562-gp-4iU"/>
+                                <include reference="BGs-hY-yGL"/>
+                                <exclude reference="EHE-lc-UiB"/>
+                                <exclude reference="IrT-CH-mmG"/>
+                                <exclude reference="N7x-QZ-IBG"/>
+                                <exclude reference="PEA-pI-Mwf"/>
+                                <exclude reference="Pu9-qO-wvI"/>
+                                <exclude reference="VjT-m5-bFx"/>
+                                <exclude reference="afT-IK-Big"/>
+                                <include reference="nQh-gb-fpN"/>
+                                <include reference="y2g-Ho-9ol"/>
+                                <exclude reference="7eD-6q-myZ"/>
+                                <exclude reference="Ags-wd-rO9"/>
+                                <exclude reference="DNj-1b-1lX"/>
+                                <include reference="JAp-MP-ZYf"/>
+                                <exclude reference="McF-rv-mwa"/>
+                                <exclude reference="OFR-4U-ctZ"/>
+                                <include reference="Val-kH-Yqg"/>
+                                <include reference="Yb4-aD-tkr"/>
+                                <include reference="il9-Q6-hqI"/>
+                                <exclude reference="sOS-Aj-TL4"/>
                             </mask>
                         </variation>
                     </view>
@@ -1118,7 +1118,7 @@
                                     <constraint firstAttribute="width" constant="257" id="4JI-yb-uEc"/>
                                     <constraint firstAttribute="height" constant="156" id="T92-sA-FtH"/>
                                 </constraints>
-                                <state key="normal" image="DavisCafe">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -1467,7 +1467,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DavisCafe" width="226" height="244"/>
         <image name="greenEarth" width="202" height="208"/>
         <image name="heartHands" width="225" height="225"/>
         <image name="menuButton" width="559" height="84"/>
@@ -1475,6 +1474,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aIz-rM-qCJ"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>
