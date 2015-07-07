@@ -172,8 +172,8 @@ class RestMenuViewController: UIViewController {
                         if restaurant.name == title{
                             menuSwipeViewController.menuLoad = restauranten[restaurant]
                             menuSwipeViewController.restProf = restaurant
-                            deletePreferenceList(title)
-                            deleteDislikes(title)
+                            //deletePreferenceList(title)
+                            //deleteDislikes(title)
                         }
                     }
                 }

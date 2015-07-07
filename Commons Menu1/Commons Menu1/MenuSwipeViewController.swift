@@ -89,8 +89,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.willMoveToParentViewController(parent)
         if parent == nil {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
-                uploadPreferenceList()
-                uploadDislikes()
+                uploadPreferenceList(restProf.name)
+                uploadDislikes(restProf.name)
         }
     }
     
@@ -214,8 +214,37 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     /**
     Uploads the preference list
     */
-    func uploadPreferenceList(){
-        for dish: Dish in menu {
+    func uploadPreferenceList(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let rest = pFObject["location"] as? String{
+                                    if rest == restaurant {
+                                        pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                            if (success) {
+                                                println("Successfully deleted")
+                                            } else {
+                                                println("Failed")
+                                            }
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+        for dish: Dish in self.menu {
             if dish.like{
                 if let user = PFUser.currentUser(){
                     let newPreference = PFObject(className:"Preference")
@@ -233,14 +262,44 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
+        }
     }
     
     
     /**
     Uploads the dislike list
     */
-    func uploadDislikes(){
-        for dish: Dish in disLikes {
+    func uploadDislikes(restaurant: String){
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Disliked")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                if let rest = pFObject["location"] as? String{
+                                    if rest == restaurant {
+                                        pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                            if (success) {
+                                                println("Successfully deleted")
+                                            } else {
+                                                println("Failed")
+                                            }
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+        for dish: Dish in self.disLikes {
             if let user = PFUser.currentUser(){
                 let newPreference = PFObject(className:"Disliked")
                 newPreference["createdBy"] = PFUser.currentUser()
@@ -255,6 +314,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 })
             }
+        }
         }
     }
     

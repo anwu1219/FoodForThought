@@ -269,7 +269,14 @@ class MainMenuViewController: UIViewController {
                     if let objectsArray = objects{
                         for object: AnyObject in objectsArray{
                             if let pFObject: PFObject = object as? PFObject{
-                                pFObject.delete()
+                                pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                    if (success) {
+                                        println("Successfully deleted")
+                                    } else {
+                                        println("Failed")
+                                    }
+                                })
+                                //pFObject.pinInBackground({})
                             }
                         }
                     }
@@ -305,7 +312,7 @@ class MainMenuViewController: UIViewController {
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            self.deletePreferenceList()
+            //self.deletePreferenceList()
             allPreferenceListViewController.restaurants = restaurants
         }
     }

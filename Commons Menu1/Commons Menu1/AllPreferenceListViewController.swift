@@ -151,8 +151,34 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     Uploads the preference list
     */
     func uploadPreferences(){
-        for restaurant: String in preferences.keys {
-            for dish : Dish in preferences[restaurant]!{
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            var query = PFQuery(className:"Preference")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
+                                    if (success) {
+                                        println("Successfully deleted")
+                                    } else {
+                                        println("Failed")
+                                    }
+                                })
+                                //pFObject.pinInBackground({})
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 2))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+        for restaurant: String in self.preferences.keys {
+            for dish : Dish in self.preferences[restaurant]!{
                 if dish.like{
                     if let user = PFUser.currentUser(){
                         let newPreference = PFObject(className:"Preference")
@@ -170,6 +196,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                     }
                 }
             }
+        }
         }
     }
     
