@@ -175,7 +175,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 2))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
         for restaurant: String in self.preferences.keys {
             for dish : Dish in self.preferences[restaurant]!{
@@ -188,6 +188,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         newPreference.saveInBackgroundWithBlock({
                             (success: Bool, error: NSError?) -> Void in
                             if (success) {
+                                println("Successfully saved")
                                 // The object has been saved.
                             } else {
                                 // There was a problem, check error.description

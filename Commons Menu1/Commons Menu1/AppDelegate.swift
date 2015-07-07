@@ -28,23 +28,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func isMultiTaskingSupported() -> Bool {
-        return UIDevice.currentDevice().multitaskingSupported
-    }
-    
-
-    func timerMethod(sender: NSTimer) {
-        
+//    func isMultiTaskingSupported() -> Bool {
+//        return UIDevice.currentDevice().multitaskingSupported
+//    }
+//    
+//
+//    func timerMethod(sender: NSTimer) {
+//        
         //Things we do in our timer
         
-        let backgroundTimeRemaining = UIApplication.sharedApplication().backgroundTimeRemaining
-        
-        if backgroundTimeRemaining == DBL_MAX{
-            println("Background Time Remaining = Undetermined")
-        } else {
-            println("Background Time Remaining \(backgroundTimeRemaining) Seconds")
-        }
-    }
+//        let backgroundTimeRemaining = UIApplication.sharedApplication().backgroundTimeRemaining
+//        
+//        if backgroundTimeRemaining == DBL_MAX{
+//            println("Background Time Remaining = Undetermined")
+//        } else {
+//            println("Background Time Remaining \(backgroundTimeRemaining) Seconds")
+//        }
+//    }
     
     
     func applicationWillResignActive(application: UIApplication) {
@@ -56,34 +56,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        if isMultiTaskingSupported() == false{
-            return
-        }
-        myTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerMethod:", userInfo: nil, repeats: true)
-        
-        backgroundTaskIdentifier = application.beginBackgroundTaskWithName("task1", expirationHandler: {[weak self] in self!.endBackgroundTask()})
+//        if isMultiTaskingSupported() == false{
+//            return
+//        }
+//        myTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerMethod:", userInfo: nil, repeats: true)
+//        
+//        backgroundTaskIdentifier = application.beginBackgroundTaskWithName("task1", expirationHandler: {[weak self] in self!.endBackgroundTask()})
     }
 
     
     func endBackgroundTask() {
-        let mainQueue = dispatch_get_main_queue()
-        
-        dispatch_async(mainQueue, {[weak self] in
-            if let timer = self!.myTimer{
-                timer.invalidate()
-                self?.myTimer = nil
-                UIApplication.sharedApplication().endBackgroundTask(self!.backgroundTaskIdentifier)
-                self!.backgroundTaskIdentifier = UIBackgroundTaskInvalid
-            }
-        })
+//        let mainQueue = dispatch_get_main_queue()
+//        
+//        dispatch_async(mainQueue, {[weak self] in
+//            if let timer = self!.myTimer{
+//                timer.invalidate()
+//                self?.myTimer = nil
+//                UIApplication.sharedApplication().endBackgroundTask(self!.backgroundTaskIdentifier)
+//                self!.backgroundTaskIdentifier = UIBackgroundTaskInvalid
+//            }
+//        })
     }
     
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        if backgroundTaskIdentifier != UIBackgroundTaskInvalid {
-            endBackgroundTask()
-        }
+//        if backgroundTaskIdentifier != UIBackgroundTaskInvalid {
+//            endBackgroundTask()
+//        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -93,10 +93,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         println("I'm closed, but I will be back")
-        if let vc = self.window?.rootViewController?.presentedViewController{
-            if vc.isKindOfClass(MenuSwipeViewController){
-                
-            }
-        }
     }
 }
