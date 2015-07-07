@@ -46,8 +46,8 @@ class RestMenuViewController: UIViewController {
         let screenHeight = screenSize.height
         
         //Formats the scroll view
-        verticalRestMenuScroll.contentSize.width = 375
-        verticalRestMenuScroll.contentSize.height = 600
+        verticalRestMenuScroll.contentSize.width = 325
+        verticalRestMenuScroll.contentSize.height = 450
         verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
 
         //verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)

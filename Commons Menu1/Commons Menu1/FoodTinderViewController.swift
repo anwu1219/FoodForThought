@@ -29,7 +29,7 @@ protocol FoodTinderViewCellDelegate {
     func toDoItemDeleted(dish: Dish)
    
     //indicates which item has been selected and provide appropriate information for a segue to dish info
-    func viewDishInfo(dish: Dish)
+  //  func viewDishInfo(dish: Dish)
     
     func addToPreferenceList(dish: Dish)
     
@@ -172,15 +172,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func addToDislikes(dish: Dish) {
         disLikes.append(dish)
     }
-    
-    
-    /**
-    Delegate function that segues between the dish cells and the dish info view
-    */
-    func viewDishInfo(selectedDish: Dish) {
-        performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
-    }
-    
+
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
@@ -254,13 +246,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 mealInfoViewController.dish = menu[index]
             }
         }
-        if segue.identifier == "mealInfoSegue" {
-            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-            let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
-                // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
-            }
-        }
+
     }
 }

@@ -97,10 +97,6 @@ class FoodTinderTableViewCell: UITableViewCell {
         var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
-        // add a tap recognizer
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
-        tapRecognizer.delegate = self
-        addGestureRecognizer(tapRecognizer)
     }
     
     //Label Location in cell
@@ -183,13 +179,7 @@ class FoodTinderTableViewCell: UITableViewCell {
     /**
     MARK: - tap gesture methods
     */
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        if recognizer.state == .Ended {
-            if delegate != nil && dish != nil {
-                delegate!.viewDishInfo(dish!)
-            }
-        }
-    }
+    
     
     /**
     Returns true when a gesture should begin
