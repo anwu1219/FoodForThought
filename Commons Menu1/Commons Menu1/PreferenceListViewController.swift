@@ -30,6 +30,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.rowHeight = 100;
     }
     
+    
+    /**
+    Reloads table when go back to the menu swipe view controller
+    */
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
@@ -38,18 +42,26 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     
-    
-    //number of section
+    // MARK: - Table view data source
+    /**
+    Returns the number of sections in the table
+    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1 //can be customized to number of restuarant
+        return 1
     }
     
     
+    /**
+    Returns the number of rows in the table
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return preferences.count
     }
     
     
+    /**
+    Generates cells and adds items to the table
+    */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! preferenceListTableViewCell
@@ -62,16 +74,27 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
+    
+    /**
+    Sets the background color of a table cell
+    */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             return location!
     }
     
     
+    //MARK: - Preference table view cell delegate
+    /**
+    Delegate function that views the dish information view controller
+    */
     func viewDishInfo(selectedDish: Dish) {
         performSegueWithIdentifier("preferenceInfoSegue", sender: selectedDish)
     }
     
     
+    /**
+    Delegate function that finds and deletes the dish that is swiped
+    */
     func toDoItemDeleted(dish: Dish){
         //Finds index of swiped dish and removes it from the array
         var index = find(preferences, dish)!
@@ -83,6 +106,8 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         preferenceListTableView.endUpdates()
     }
+    
+    
     
     func addToDislikes(dish: Dish){
         
