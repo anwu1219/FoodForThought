@@ -222,7 +222,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     newPreference["createdBy"] = PFUser.currentUser()
                     newPreference["dishName"] = dish.name
                     newPreference["location"] = dish.location
-                    newPreference.saveEventually({
+                    newPreference.saveInBackgroundWithBlock({
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
                             // The object has been saved.
@@ -246,7 +246,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 newPreference["createdBy"] = PFUser.currentUser()
                 newPreference["dishName"] = dish.name
                 newPreference["location"] = dish.location
-                newPreference.saveEventually({
+                newPreference.saveInBackgroundWithBlock({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
