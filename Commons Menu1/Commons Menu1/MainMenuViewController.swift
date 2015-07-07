@@ -284,7 +284,6 @@ class MainMenuViewController: UIViewController {
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             self.deletePreferenceList()
             allPreferenceListViewController.restaurants = restaurants
-            allPreferenceListViewController.menu = menu
         }
     }
     

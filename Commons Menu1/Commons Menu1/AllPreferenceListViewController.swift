@@ -153,7 +153,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         newPreference["createdBy"] = PFUser.currentUser()
                         newPreference["dishName"] = dish.name
                         newPreference["location"] = dish.location
-                        newPreference.saveInBackgroundWithBlock({
+                        newPreference.saveEventually({
                             (success: Bool, error: NSError?) -> Void in
                             if (success) {
                                 // The object has been saved.
