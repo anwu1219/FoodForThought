@@ -33,6 +33,52 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "wheat")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
+        
+        activityIndicator.hidden = true
+        activityIndicator.hidesWhenStopped = true
+        
+        emailAddress.layer.masksToBounds = false
+        emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+        emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
+        emailAddress.layer.shadowOpacity = 0.3
+        emailAddress.layer.shadowRadius = 5.0
+        emailAddress.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        
+        password.layer.masksToBounds = false
+        password.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+        password.layer.shadowColor = UIColor.blackColor().CGColor
+        password.layer.shadowOpacity = 0.3
+        password.layer.shadowRadius = 5.0
+        password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        
+        self.emailAddress.delegate = self
+        self.password.delegate = self
+        self.getDishes()
+        self.getRestaurant()
+        if let user = PFUser.currentUser() {
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                self.emailAddress.text = user.username
+                self.password.text = user.password
+                self.fetchPreferenceData()
+                self.fetchDisLikesData()
+                println("Logged in successfully")
+                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
+            }
+        }
+    }
+    
+    
     //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
@@ -117,7 +163,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             }
         }
         
-        // by default perform the segue transitio
+        // by default perform the segue transition
         return true
     }
     
@@ -135,6 +181,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 self.fetchPreferenceData()
                 self.fetchDisLikesData()
                 println("Logged in successfully")
+                
+                // Cache the user name
+                PFUser.currentUser()?.pinInBackgroundWithBlock({
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+                    }
+                })
+                
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 } else {
                 println(error)
@@ -145,40 +202,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
 
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "wheat")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
-        
-        
-        activityIndicator.hidden = true
-        activityIndicator.hidesWhenStopped = true
-        
-        emailAddress.layer.masksToBounds = false
-        emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
-        emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
-        emailAddress.layer.shadowOpacity = 0.3
-        emailAddress.layer.shadowRadius = 5.0
-        emailAddress.layer.shadowOffset = CGSizeMake(5.0, 5.0)
-        
-        password.layer.masksToBounds = false
-        password.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
-        password.layer.shadowColor = UIColor.blackColor().CGColor
-        password.layer.shadowOpacity = 0.3
-        password.layer.shadowRadius = 5.0
-        password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
-        
-        self.emailAddress.delegate = self
-        self.password.delegate = self
-        self.getDishes()
-        self.getRestaurant()
     }
     
     
