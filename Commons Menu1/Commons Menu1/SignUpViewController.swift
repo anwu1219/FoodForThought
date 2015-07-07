@@ -21,7 +21,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     var preferences = [String: [String]]()
     var dislikes = [String: [String]]()
     var restauranto = [RestProfile]()
-    var acceptedTerms = Boolean()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -189,17 +188,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "signInToNavigationSegue" {
-            let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
-            mainMenuViewController.signUpViewControllerDelegate = self
-            mainMenuViewController.menu = menu
-            mainMenuViewController.restaurants = restaurants
-            mainMenuViewController.preferences = preferences
-            mainMenuViewController.dislikes = dislikes
-            mainMenuViewController.restauranto = restauranto
-        }
-    }
     
     func getDishes() {
         var query = PFQuery(className:"dishInfo")
@@ -415,4 +403,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "signInToNavigationSegue" {
+            let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
+            mainMenuViewController.signUpViewControllerDelegate = self
+            mainMenuViewController.menu = menu
+            mainMenuViewController.restaurants = restaurants
+            mainMenuViewController.preferences = preferences
+            mainMenuViewController.dislikes = dislikes
+            mainMenuViewController.restauranto = restauranto
+        }
+    }
 }
