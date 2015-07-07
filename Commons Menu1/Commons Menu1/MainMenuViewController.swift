@@ -97,13 +97,13 @@ class MainMenuViewController: UIViewController {
     func refreshMenu(){
         for dish: Dish in menu{
             dish.like = false
-            dish.dealtWith = false
+            dish.dislike = false
         }
     }
     
     
     /**
-    Sets the like and dealtWith attributes to true for each dish object in preferences
+    Sets the like attribute to true for each dish object in preferences
     */
     func applyPreferences(){
         for key in preferences.keys{
@@ -111,7 +111,6 @@ class MainMenuViewController: UIViewController {
                 for dish in restaurants[key]!{
                     if dish.name == dishName {
                         dish.like = true
-                        dish.dealtWith = true
                     }
                 }
             }
@@ -120,14 +119,14 @@ class MainMenuViewController: UIViewController {
     
     
     /**
-    Sets the dislike and dealtWith attributes to true for each dish object in dislikes
+    Sets the dislike attribute to true for each dish object in dislikes
     */
     func applyDislikes(){
         for key in dislikes.keys{
             for dishName: String in dislikes[key]!{
                 for dish in restaurants[key]!{
                     if dish.name == dishName{
-                        dish.dealtWith = true
+                        dish.dislike = true
                     }
                 }
             }
@@ -152,7 +151,7 @@ class MainMenuViewController: UIViewController {
     
     
     /**
-    Fetches preference data from Parse and sets the corresponding dish object's dealtWith and like to true
+    Fetches preference data from Parse and sets the corresponding dish object like to true
     */
     func fetchPreferenceData(){
     if let currentUser = PFUser.currentUser(){
@@ -180,20 +179,19 @@ class MainMenuViewController: UIViewController {
     
     
     /**
-    Sets the like and dealtWith attribute of a dish object to true
+    Sets the like attribute of a dish object to true
     */
     func addToPreferenceList(restaurant: String, dishName: String){
         for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
                 dish.like = true
-                dish.dealtWith = true
             }
         }
     }
     
     
     /**
-    Fetches dislike data from Parse and sets the corresponding dish object's dealtWith to true
+    Fetches dislike data from Parse and sets the corresponding dish object's dislike to true
     */
     func fetchDislikeData(){
         if let currentUser = PFUser.currentUser(){
@@ -208,7 +206,7 @@ class MainMenuViewController: UIViewController {
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dishName = pFObject["dishName"] as? String{
-                                        self.addToDealtWith(restaurant, dishName: dishName)
+                                        self.addToDislike(restaurant, dishName: dishName)
                                     }
                                 }
                             }
@@ -223,10 +221,10 @@ class MainMenuViewController: UIViewController {
     /**
     Sets the dealWith attribute of a dish object to true
     */
-    func addToDealtWith(restaurant: String, dishName: String){
+    func addToDislike(restaurant: String, dishName: String){
         for dish: Dish in restaurants[restaurant]!{
             if dish.name == dishName {
-                dish.dealtWith = true
+                dish.dislike = true
             }
         }
     }

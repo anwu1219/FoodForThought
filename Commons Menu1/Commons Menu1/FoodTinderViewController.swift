@@ -70,7 +70,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         menu.shuffle()
         
         //filters menu from dishes that have already been swiped
-        menu = menu.filter({$0.dealtWith != true})
+        menu = menu.filter({$0.like != true})
+        menu = menu.filter({$0.dislike != true})
     }
     
     
