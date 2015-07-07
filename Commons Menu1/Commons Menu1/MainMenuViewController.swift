@@ -90,8 +90,7 @@ class MainMenuViewController: UIViewController {
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-    
-        
+
         self.fetchPreferenceData()
         self.fetchDislikeData()
         self.applyPreferences()
@@ -316,6 +315,7 @@ class MainMenuViewController: UIViewController {
             allPreferenceListViewController.restaurants = restaurants
         }
     }
+    
     
 }
 

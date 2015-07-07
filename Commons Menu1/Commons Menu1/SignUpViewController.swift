@@ -436,6 +436,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signInToNavigationSegue" {
             let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
+            println("Hello \(PFUser.currentUser())")
             mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.menu = menu
             mainMenuViewController.restaurants = restaurants
