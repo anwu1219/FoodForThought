@@ -63,9 +63,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         }
-        // If there is no preferences for a restaurant, the restaurant won't show up
+        //If there is no preferences for a restaurant, the restaurant won't show up
         for key in preferences.keys{
-            if (preferences[key]?.isEmpty != nil){
+            if (preferences[key]!.isEmpty){
                 preferences.removeValueForKey(key)
             }
         }
@@ -159,7 +159,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         newPreference["createdBy"] = PFUser.currentUser()
                         newPreference["dishName"] = dish.name
                         newPreference["location"] = dish.location
-                        newPreference.saveEventually({
+                        newPreference.saveInBackgroundWithBlock({
                             (success: Bool, error: NSError?) -> Void in
                             if (success) {
                                 // The object has been saved.
