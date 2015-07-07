@@ -324,6 +324,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Segues to single dish info
+        if segue.identifier == "restProfileSegue" {
+            let restProfileViewController = segue.destinationViewController as! RestProfileViewController
+            restProfileViewController.restProf = restProf
+            
+        }
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish

@@ -1143,7 +1143,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="zoT-e7-Njf" kind="show" id="RYE-Yv-cAa"/>
+                                    <segue destination="zoT-e7-Njf" kind="show" identifier="restProfileSegue" id="RYE-Yv-cAa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="restAddr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxI-jG-K2n">

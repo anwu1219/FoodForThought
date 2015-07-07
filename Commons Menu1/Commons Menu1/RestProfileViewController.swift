@@ -13,13 +13,13 @@ class RestProfileViewController: UIViewController {
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
+    var restProf : RestProfile!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
  //       restProfName.title = RestProfile?.name
-
-
+        restProfImage.image = restProf.image
         // Do any additional setup after loading the view.
     }
 
