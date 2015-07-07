@@ -19,7 +19,6 @@ class MealInfoViewController: UIViewController {
     @IBOutlet weak var scrollInfo: UIScrollView!
     var dish: Dish?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +31,6 @@ class MealInfoViewController: UIViewController {
         scrollInfo.layer.borderColor = UIColor.greenColor().CGColor
         scrollInfo.layer.borderWidth = 2
         layoutPage()
-        
         
     }
     
@@ -77,7 +75,6 @@ class MealInfoViewController: UIViewController {
             scrollInfo.addSubview(label)
             y += 1.3 * height
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

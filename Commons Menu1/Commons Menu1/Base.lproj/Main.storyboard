@@ -97,7 +97,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84R-Va-e5n">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84R-Va-e5n">
                                 <rect key="frame" x="160" y="204" width="280" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="5SD-W9-Ob9"/>
@@ -128,7 +128,7 @@
                                     <segue destination="QQv-te-0r1" kind="show" identifier="mainToRestaurantsSegue" id="eaJ-MC-UDD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-Ow-tTM">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-Ow-tTM">
                                 <rect key="frame" x="160" y="274" width="280" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="1Od-nV-GHE"/>
@@ -143,7 +143,7 @@
                                     <segue destination="WVm-va-1Bq" kind="show" identifier="foodTinderSegue" id="Bpi-AZ-viF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-3x-4nw">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-3x-4nw">
                                 <rect key="frame" x="160" y="344" width="280" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="FIZ-QO-RjR"/>
@@ -157,7 +157,7 @@
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="sXz-wK-Xvd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaB-WN-Yol">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaB-WN-Yol">
                                 <rect key="frame" x="160" y="414" width="280" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="kbK-GD-efa"/>
@@ -172,7 +172,7 @@
                                     <segue destination="BYz-6F-mJb" kind="show" id="2sF-BO-Jmm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food4Thought" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXq-R8-JcK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Food4Thought" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXq-R8-JcK">
                                 <rect key="frame" x="181" y="73.5" width="238" height="39.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -827,14 +827,6 @@
                                 <exclude reference="s4b-wm-eSa"/>
                                 <exclude reference="tpL-ri-1LS"/>
                                 <exclude reference="wL0-Cd-gEY"/>
-                                <exclude reference="7eD-6q-myZ"/>
-                                <exclude reference="Ags-wd-rO9"/>
-                                <exclude reference="DNj-1b-1lX"/>
-                                <exclude reference="LZO-LN-XCq"/>
-                                <exclude reference="McF-rv-mwa"/>
-                                <exclude reference="OFR-4U-ctZ"/>
-                                <exclude reference="auv-yV-Idw"/>
-                                <exclude reference="sOS-Aj-TL4"/>
                                 <exclude reference="5TQ-qt-0OZ"/>
                                 <exclude reference="BA2-YJ-G96"/>
                                 <exclude reference="HP0-Gm-TQs"/>
@@ -852,17 +844,6 @@
                                 <exclude reference="qcQ-HS-fsp"/>
                                 <exclude reference="rqB-Mh-P0b"/>
                                 <exclude reference="xHK-FL-NhI"/>
-                                <exclude reference="EHE-lc-UiB"/>
-                                <exclude reference="Gdc-K2-7VN"/>
-                                <exclude reference="IrT-CH-mmG"/>
-                                <exclude reference="N7x-QZ-IBG"/>
-                                <exclude reference="P0T-2A-JSa"/>
-                                <exclude reference="PEA-pI-Mwf"/>
-                                <exclude reference="Pu9-qO-wvI"/>
-                                <exclude reference="RlW-RS-7d8"/>
-                                <exclude reference="VjT-m5-bFx"/>
-                                <exclude reference="afT-IK-Big"/>
-                                <exclude reference="bMS-Bb-PXE"/>
                                 <exclude reference="2Q3-UT-sny"/>
                                 <exclude reference="39B-fy-Y6Q"/>
                                 <exclude reference="AsN-SS-VbO"/>
@@ -875,6 +856,25 @@
                                 <exclude reference="fVZ-5t-vBl"/>
                                 <exclude reference="nzq-Wy-Bez"/>
                                 <exclude reference="zZ4-PD-iGm"/>
+                                <exclude reference="EHE-lc-UiB"/>
+                                <exclude reference="Gdc-K2-7VN"/>
+                                <exclude reference="IrT-CH-mmG"/>
+                                <exclude reference="N7x-QZ-IBG"/>
+                                <exclude reference="P0T-2A-JSa"/>
+                                <exclude reference="PEA-pI-Mwf"/>
+                                <exclude reference="Pu9-qO-wvI"/>
+                                <exclude reference="RlW-RS-7d8"/>
+                                <exclude reference="VjT-m5-bFx"/>
+                                <exclude reference="afT-IK-Big"/>
+                                <exclude reference="bMS-Bb-PXE"/>
+                                <exclude reference="7eD-6q-myZ"/>
+                                <exclude reference="Ags-wd-rO9"/>
+                                <exclude reference="DNj-1b-1lX"/>
+                                <exclude reference="LZO-LN-XCq"/>
+                                <exclude reference="McF-rv-mwa"/>
+                                <exclude reference="OFR-4U-ctZ"/>
+                                <exclude reference="auv-yV-Idw"/>
+                                <exclude reference="sOS-Aj-TL4"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -927,14 +927,6 @@
                                 <exclude reference="s4b-wm-eSa"/>
                                 <exclude reference="tpL-ri-1LS"/>
                                 <exclude reference="wL0-Cd-gEY"/>
-                                <exclude reference="7eD-6q-myZ"/>
-                                <exclude reference="Ags-wd-rO9"/>
-                                <exclude reference="DNj-1b-1lX"/>
-                                <exclude reference="LZO-LN-XCq"/>
-                                <exclude reference="McF-rv-mwa"/>
-                                <exclude reference="OFR-4U-ctZ"/>
-                                <include reference="auv-yV-Idw"/>
-                                <exclude reference="sOS-Aj-TL4"/>
                                 <exclude reference="5TQ-qt-0OZ"/>
                                 <exclude reference="BA2-YJ-G96"/>
                                 <include reference="HP0-Gm-TQs"/>
@@ -952,17 +944,6 @@
                                 <exclude reference="qcQ-HS-fsp"/>
                                 <exclude reference="rqB-Mh-P0b"/>
                                 <exclude reference="xHK-FL-NhI"/>
-                                <exclude reference="EHE-lc-UiB"/>
-                                <include reference="Gdc-K2-7VN"/>
-                                <exclude reference="IrT-CH-mmG"/>
-                                <exclude reference="N7x-QZ-IBG"/>
-                                <exclude reference="P0T-2A-JSa"/>
-                                <exclude reference="PEA-pI-Mwf"/>
-                                <exclude reference="Pu9-qO-wvI"/>
-                                <exclude reference="RlW-RS-7d8"/>
-                                <exclude reference="VjT-m5-bFx"/>
-                                <exclude reference="afT-IK-Big"/>
-                                <include reference="bMS-Bb-PXE"/>
                                 <exclude reference="2Q3-UT-sny"/>
                                 <exclude reference="39B-fy-Y6Q"/>
                                 <exclude reference="AsN-SS-VbO"/>
@@ -975,6 +956,25 @@
                                 <include reference="fVZ-5t-vBl"/>
                                 <exclude reference="nzq-Wy-Bez"/>
                                 <exclude reference="zZ4-PD-iGm"/>
+                                <exclude reference="EHE-lc-UiB"/>
+                                <include reference="Gdc-K2-7VN"/>
+                                <exclude reference="IrT-CH-mmG"/>
+                                <exclude reference="N7x-QZ-IBG"/>
+                                <exclude reference="P0T-2A-JSa"/>
+                                <exclude reference="PEA-pI-Mwf"/>
+                                <exclude reference="Pu9-qO-wvI"/>
+                                <exclude reference="RlW-RS-7d8"/>
+                                <exclude reference="VjT-m5-bFx"/>
+                                <exclude reference="afT-IK-Big"/>
+                                <include reference="bMS-Bb-PXE"/>
+                                <exclude reference="7eD-6q-myZ"/>
+                                <exclude reference="Ags-wd-rO9"/>
+                                <exclude reference="DNj-1b-1lX"/>
+                                <exclude reference="LZO-LN-XCq"/>
+                                <exclude reference="McF-rv-mwa"/>
+                                <exclude reference="OFR-4U-ctZ"/>
+                                <include reference="auv-yV-Idw"/>
+                                <exclude reference="sOS-Aj-TL4"/>
                             </mask>
                         </variation>
                     </view>
@@ -1009,7 +1009,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
                                 <rect key="frame" x="0.0" y="237" width="600" height="363"/>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzD-2y-G6f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select A Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzD-2y-G6f">
                                 <rect key="frame" x="132" y="72" width="337.5" height="56.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1583,6 +1583,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aIz-rM-qCJ"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>

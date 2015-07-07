@@ -75,8 +75,6 @@ class MainMenuViewController: UIViewController {
         food4ThoughtLabel.layer.shadowRadius = 5
         food4ThoughtLabel.layer.shadowOpacity = 1.0
 
-
-        
         restMenuButton.frame = styles.buttonFrame
         myPrefMenuButton.frame = styles.buttonFrame
         foodTinderMenuButton.frame = styles.buttonFrame

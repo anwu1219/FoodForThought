@@ -42,10 +42,9 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
-        label.textColor = styles.labelTextColor
+        label.textColor = UIColor.whiteColor()
         label.font = UIFont.boldSystemFontOfSize(16)
-        label.backgroundColor = UIColor.clearColor()
-        
+        label.backgroundColor = UIColor.purpleColor()
         
         /**
         utility method for creating the contextual cues

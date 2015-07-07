@@ -30,7 +30,6 @@ class SustainabilityInfoViewController: UIViewController {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //scrollView.contentSize.height = 1000

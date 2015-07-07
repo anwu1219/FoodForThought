@@ -9,8 +9,6 @@
 import UIKit
 import Parse
 
-
-
 /**
 Shows all the resturants with available menus
 */
@@ -23,7 +21,6 @@ class RestMenuViewController: UIViewController {
     var restauranten : [RestProfile: [Dish]]!
     var location: String?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +54,7 @@ class RestMenuViewController: UIViewController {
             keys.sort({$0.name < $1.name})
             placeButtons(keys)
         }
-        
+    
     }
     
     
@@ -172,8 +169,6 @@ class RestMenuViewController: UIViewController {
                         if restaurant.name == title{
                             menuSwipeViewController.menuLoad = restauranten[restaurant]
                             menuSwipeViewController.restProf = restaurant
-                            //deletePreferenceList(title)
-                            //deleteDislikes(title)
                         }
                     }
                 }
