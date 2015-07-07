@@ -116,8 +116,9 @@ class FoodTinderTableViewCell: UITableViewCell {
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         
-        self.imageView?.bounds = CGRectMake(0, 0, 200, 200)
-        
+     //   self.imageView?.bounds = CGRectMake(0, 0, 200, 200)
+        self.imageView?.frame = CGRect(x: 100, y: 100, width: 150, height: 150)
+
 
     }
     

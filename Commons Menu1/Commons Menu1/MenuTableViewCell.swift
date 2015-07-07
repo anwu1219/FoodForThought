@@ -120,6 +120,9 @@ class MenuTableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
+        self.imageView?.frame = CGRect(x: 30, y: 5, width: 50, height: 60)
+      //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
+
     }
     
     /**
