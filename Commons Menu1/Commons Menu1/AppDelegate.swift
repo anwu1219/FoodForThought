@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     
+    var backgroundTaskIdentifier : UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var myTimer : NSTimer?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -58,12 +59,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isMultiTaskingSupported() == false{
             return
         }
-        myTimer = NSTimer
+        myTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerMethod:", userInfo: nil, repeats: true)
         
+        backgroundTaskIdentifier = application.beginBackgroundTaskWithName("task1", expirationHandler: {[weak self] in self!.endBackgroundTask()})
     }
 
+    
+    func endBackgroundTask() {
+        let mainQueue = dispatch_get_main_queue()
+        
+        dispatch_async(mainQueue, {[weak self] in
+            if let timer = self!.myTimer{
+                timer.invalidate()
+                self?.myTimer = nil
+                UIApplication.sharedApplication().endBackgroundTask(self!.backgroundTaskIdentifier)
+                self!.backgroundTaskIdentifier = UIBackgroundTaskInvalid
+            }
+        })
+    }
+    
+    
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        if backgroundTaskIdentifier != UIBackgroundTaskInvalid {
+            endBackgroundTask()
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
