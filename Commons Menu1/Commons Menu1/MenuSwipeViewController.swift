@@ -254,7 +254,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     newPreference.saveInBackgroundWithBlock({
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
-                            // The object has been saved.
+                             println("Successfully Saved")
                         } else {
                             // There was a problem, check error.description
                         }
@@ -308,7 +308,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 newPreference.saveInBackgroundWithBlock({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
-                        // The object has been saved.
+                         println("Successfully Saved")
                     } else {
                         // There was a problem, check error.description
                     }
