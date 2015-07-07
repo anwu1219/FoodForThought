@@ -140,8 +140,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //self.view.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
-        return false
     }
     
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
