@@ -14,17 +14,19 @@ class RestProfile: NSObject {
     var image: UIImage
     var restDescript: [String]
     var address: String
-    var hours: String
+    var weekdayHours: String
+    var weekendHours: String
     var phoneNumber: String
     var label: [[String]]
 
     
-    init(name: String, image: UIImage, restDescript: [String], address: String, hours: String, phoneNumber: String, label: [[String]]){
+    init(name: String, image: UIImage, restDescript: [String], address: String, weekdayHours: String, weekendHours: String, phoneNumber: String, label: [[String]]){
         self.name = name
         self.image = image
         self.restDescript = restDescript
         self.address = address
-        self.hours = hours
+        self.weekdayHours = weekdayHours
+        self.weekendHours = weekendHours
         self.phoneNumber = phoneNumber
         self.label = label
     }

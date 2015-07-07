@@ -162,6 +162,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
         
+        emailLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        emailLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        emailLabel.layer.shadowRadius = 5
+        emailLabel.layer.shadowOpacity = 1.0
+        
+        passwordLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        passwordLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        passwordLabel.layer.shadowRadius = 5
+        passwordLabel.layer.shadowOpacity = 1.0
+        
         emailAddress.layer.masksToBounds = false
         emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
         emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
@@ -267,7 +277,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                 if let restDescript = object["restDescription"] as? String{
                                                     if let susDescript = object["susDescription"] as? [String]{
                                                         if let label = object["labelDescription"] as? [[String]]{
-                                                            let restaurant =    RestProfile(name: name, image: image, restDescript: susDescript, address: address, hours: hours, phoneNumber: phoneNumber, label: label)
+                                                            let restaurant =    RestProfile(name: name, image: image, restDescript: susDescript, address: address, weekdayHours: hours, weekendHours: hours, phoneNumber: phoneNumber, label: label)
                                                             self.addToRestauranto(restaurant)
                                                         }
                                                     }
