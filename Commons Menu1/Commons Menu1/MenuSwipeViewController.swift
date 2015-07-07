@@ -130,7 +130,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             
             //sets the image
                 cell.imageView?.image = dish.image
-                cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35.0, height: 35.0)
+             //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             return cell
     }
     
