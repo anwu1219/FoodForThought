@@ -73,6 +73,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         menu = menu.filter({$0.dealtWith != true})
     }
     
+    
+    /**
+    Uploads preferences and dislikes
+    */
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
@@ -152,13 +156,22 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.endUpdates()
     }
     
+    
+    /**
+    Delegate function that adds a dish to preferences
+    */
     func addToPreferenceList(dish: Dish){
         preferences.append(dish)
     }
     
+    
+    /**
+    Delegate function that adds a dish to dislikes
+    */
     func addToDislikes(dish: Dish) {
         disLikes.append(dish)
     }
+    
     
     /**
     Delegate function that segues between the dish cells and the dish info view
@@ -166,13 +179,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func viewDishInfo(selectedDish: Dish) {
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
-    
-    // MARK: - Table view delegate
-    //    func colorForIndex(index: Int) -> UIColor {
-    //        let itemCount = menu.count - 1
-    //        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-    //        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-    //    }
     
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
@@ -186,29 +192,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
     }
-    
-    /**
-    Prepares for segue
-    */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Segues to single dish info
-        if segue.identifier == "foodTinderSegue" {
-            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-            let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
-                // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
-            }
-        }
-        if segue.identifier == "mealInfoSegue" {
-            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-            let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
-                // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
-            }
-        }
-    }
+
     
     /**
     Uploads the preference list
@@ -232,6 +216,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    
+    /**
+    Uploads the preference list
+    */
     func uploadDislikes(){
         for dish: Dish in disLikes {
             if let user = PFUser.currentUser(){
@@ -239,7 +227,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 newPreference["createdBy"] = PFUser.currentUser()
                 newPreference["dishName"] = dish.name
                 newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
+                newPreference.saveEventually({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
@@ -251,4 +239,27 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    
+    /**
+    Prepares for segue
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Segues to single dish info
+        if segue.identifier == "foodTinderSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
+                mealInfoViewController.dish = menu[index]
+            }
+        }
+        if segue.identifier == "mealInfoSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
+                mealInfoViewController.dish = menu[index]
+            }
+        }
+    }
 }

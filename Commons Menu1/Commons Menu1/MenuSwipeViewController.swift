@@ -53,9 +53,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Formats the labels in the view controller
         restImageButton.setImage(restProf.image, forState: .Normal)
         restOpenHoursLabel.text = restProf!.hours
-        
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
         
@@ -72,7 +72,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
-        //self.createMenu()
         if let menuLoad = menuLoad {
             for dish in menuLoad {
                 menu.append(dish)
@@ -80,6 +79,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    
+    /**
+    Uploads preferences and dislikes to parse when go back
+    */
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
@@ -88,6 +91,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 uploadDislikes()
         }
     }
+    
     
     // MARK: - Table view data source
     /**
@@ -129,6 +133,37 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /**
+    Sets the background color of a table cell
+    */
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+        forRowAtIndexPath indexPath: NSIndexPath) {
+            cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
+    }
+    
+    
+    // support for versions of iOS prior to iOS 8
+    func tableView(tableView: UITableView, heightForRowAtIndexPath
+        indexPath: NSIndexPath) -> CGFloat {
+            return tableView.rowHeight;
+    }
+    
+    
+    
+    /**
+    Creates preference list that is passed to preference list view controller
+    */
+    func createPreferenceList() -> [Dish] {
+        var preferences = [Dish]()
+        for dish: Dish in menu {
+            if dish.like {
+                preferences.append(dish)
+            }
+        }
+        return preferences
+    }
+    
+    
     //MARK: - Table view cell delegate
     /**
     Delegate function that finds and deletes the dish that is swiped
@@ -161,63 +196,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addToDislikes(dish: Dish) {
         disLikes.append(dish)
     }
-    
-    
-    // MARK: - Table view delegate
-//    func colorForIndex(index: Int) -> UIColor {
-//        let itemCount = menu.count - 1
-//        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-//        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-//    }
-    
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-        forRowAtIndexPath indexPath: NSIndexPath) {
-            cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
-    }
-    
-    
-    // support for versions of iOS prior to iOS 8
-    func tableView(tableView: UITableView, heightForRowAtIndexPath
-        indexPath: NSIndexPath) -> CGFloat {
-            return tableView.rowHeight;
-    }
-    
-    
-    /**
-    Prepares for segue
-    */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Segues to single dish info
-        if segue.identifier == "mealInfoSegue" {
-            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-            let selectedMeal = sender! as! Dish
-                if let index = find(menu, selectedMeal) {
-                // Sets the dish info in the new view to selected cell's dish
-                    mealInfoViewController.dish = menu[index]
-            }
-        }
-        // Segues to the preference list of the single menu
-        if segue.identifier  == "menuToPreferenceSegue" {
-            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
-            // Passes the list of liked dishes to the preference list view
-            preferencelistViewController.preferences = createPreferenceList()
-            preferencelistViewController.location = restProf?.name
-            preferencelistViewController.delegate = self
-        }
-    }
-    
 
-    func createPreferenceList() -> [Dish] {
-        var preferences = [Dish]()
-        for dish: Dish in menu {
-            if dish.like {
-                preferences.append(dish)
-            }
-        }
-        return preferences
-    }
     
+    //MARK: - menu swipe view delegate
+    /**
+    Delegate function that reloads the table view when go back from preference list
+    */
     func reloadTable() {
         tableView.beginUpdates()
         tableView.reloadData()
@@ -236,7 +220,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     newPreference["createdBy"] = PFUser.currentUser()
                     newPreference["dishName"] = dish.name
                     newPreference["location"] = dish.location
-                    newPreference.saveInBackgroundWithBlock({
+                    newPreference.saveEventually({
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
                             // The object has been saved.
@@ -250,6 +234,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /**
+    Uploads the dislike list
+    */
     func uploadDislikes(){
         for dish: Dish in disLikes {
             if let user = PFUser.currentUser(){
@@ -257,7 +244,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 newPreference["createdBy"] = PFUser.currentUser()
                 newPreference["dishName"] = dish.name
                 newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
+                newPreference.saveEventually({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
@@ -266,6 +253,31 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 })
             }
+        }
+    }
+    
+    
+    
+    /**
+    Prepares for segue
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Segues to single dish info
+        if segue.identifier == "mealInfoSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
+                mealInfoViewController.dish = menu[index]
+            }
+        }
+        // Segues to the preference list of the single menu
+        if segue.identifier  == "menuToPreferenceSegue" {
+            let preferencelistViewController = segue.destinationViewController as! PreferenceListViewController
+            // Passes the list of liked dishes to the preference list view
+            preferencelistViewController.preferences = createPreferenceList()
+            preferencelistViewController.location = restProf?.name
+            preferencelistViewController.delegate = self
         }
     }
 }
