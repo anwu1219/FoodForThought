@@ -63,6 +63,12 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         }
+        // If there is no preferences for a restaurant, the restaurant won't show up
+        for key in preferences.keys{
+            if (preferences[key]?.isEmpty != nil){
+                preferences.removeValueForKey(key)
+            }
+        }
     }
     
     
