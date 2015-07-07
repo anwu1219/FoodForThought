@@ -22,6 +22,8 @@ class MenuTableViewCell: UITableViewCell {
     var tickLabel: UILabel, crossLabel: UILabel
     let label: UILabel
     var itemLikeLayer = CALayer()
+    var itemDislikeLayer = CALayer()
+
     // The object that acts as delegate for this cell
     var delegate: MenuTableViewCellDelegate?
     // The dish that this cell renders
@@ -29,6 +31,7 @@ class MenuTableViewCell: UITableViewCell {
         didSet {
             label.text = dish!.name
             itemLikeLayer.hidden = !dish!.like
+            itemDislikeLayer.hidden = !dish!.dislike
         }
     }
     
@@ -83,9 +86,15 @@ class MenuTableViewCell: UITableViewCell {
         
         // add a layer that renders a green background when a user like the dish %anwu
         itemLikeLayer = CALayer(layer: layer)
-        itemLikeLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).CGColor
+        itemLikeLayer.backgroundColor = UIColor(red: 0.75, green: 0.9, blue: 0.75, alpha: 1.0).CGColor
         itemLikeLayer.hidden = true
         layer.insertSublayer(itemLikeLayer, atIndex: 0)
+        
+        itemDislikeLayer = CALayer(layer: layer)
+        itemDislikeLayer.backgroundColor = UIColor(red: 0.9, green: 0.75, blue: 0.75, alpha: 1.0).CGColor
+        
+        itemDislikeLayer.hidden = true
+        layer.insertSublayer(itemDislikeLayer, atIndex: 0)
         
         // add a pan recognizer
         var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
@@ -105,6 +114,7 @@ class MenuTableViewCell: UITableViewCell {
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
+        itemDislikeLayer.frame = bounds
         label.frame = CGRect(x: kLabelLeftMargin, y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
@@ -149,6 +159,7 @@ class MenuTableViewCell: UITableViewCell {
                     delegate!.toDoItemDeleted(dish!)
                     delegate!.addToDislikes(dish!)
                     dish!.dislike = true
+                    itemDislikeLayer.hidden = !dish!.dislike
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
