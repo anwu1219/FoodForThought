@@ -11,15 +11,19 @@ import UIKit
 class RestProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
+    var restProf : RestProfile!
 
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
-    var restProf : RestProfile!
     @IBOutlet weak var restProfile: UITableView!
     @IBOutlet weak var restScrollView: UIScrollView!
     @IBOutlet var restProfileView: UIView!
     
+    @IBOutlet weak var restAddressLabel: UILabel!
+    @IBOutlet weak var restPhoneNumLabel: UILabel!
+    @IBOutlet weak var restWeekdayHoursLabel: UILabel!
+    @IBOutlet weak var restWeekendHoursLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,11 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         restScrollView.contentSize.width = screenSize.width
         restScrollView.contentSize.height = 600
+        
+        restWeekdayHoursLabel.text = restProf!.weekdayHours
+        restWeekendHoursLabel.text = restProf!.weekendHours
+        restPhoneNumLabel.text = restProf!.phoneNumber
+        restAddressLabel.text = restProf!.address
 
     }
 
