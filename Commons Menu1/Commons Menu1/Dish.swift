@@ -15,6 +15,7 @@ class Dish: NSObject {
     // a text description of this item.
     var name: String
     var ingredients: [String]?
+    var label: [[String]]?
     var image: UIImage?
     // for off-campus dining service
     var allergens: [String]?
@@ -28,7 +29,7 @@ class Dish: NSObject {
     var like: Bool = false
     var dislike: Bool = false
     var location: String?
-    //var dealtWith: Bool = false
+    var type: String?
 
     
     init(name: String) {
@@ -41,10 +42,13 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage, location: String){
+    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], label: [[String]]){
         self.name = name
         self.image = image
         self.location = location
+        self.type = type
+        self.ingredients = ingredients
+        self.label = label
     }
     
     init(name: String, image: UIImage, like: Bool, location: String) {

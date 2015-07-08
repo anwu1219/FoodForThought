@@ -232,10 +232,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                     (imageData: NSData?, error: NSError?) ->Void in
                                     if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
                                         if let location = object["location"] as? String{
-                                            let dish = Dish(name: name, image: image, location: location)
+                                            if let ingredients = object["ingredients"] as? [String]{
+                                                if let labels = object["labels"] as? [[String]]{
+                                                    if let type = object["type"] as? String{
+                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, label: labels)
                                             self.menu.append(dish)
                                             self.addToRestaurants(location, dish: dish)
-                                        }
+                                                    }
+                                                }
+                                            }
+                                            }
                                         }
                                         }
                                     }
