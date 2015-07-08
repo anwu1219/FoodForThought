@@ -25,6 +25,7 @@ class MealInfoViewController: UIViewController {
         dishName.title = dish?.name
         dishImage.image = dish?.image
         dish?.price = 8.54
+        
         scrollInfo.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
         scrollInfo.contentSize.height = 800
         scrollInfo.layer.borderColor = UIColor.greenColor().CGColor

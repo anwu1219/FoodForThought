@@ -25,6 +25,7 @@ class FoodTinderTableViewCell: UITableViewCell {
     var itemLikeLayer = CALayer()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var chefNoteLabel: UILabel
+    var susLabels: UIScrollView
     //var ecoLabel: UILabel
 
     // The object that acts as delegate for this cell
@@ -58,7 +59,9 @@ class FoodTinderTableViewCell: UITableViewCell {
         chefNoteLabel.textColor = styles.labelTextColor
         //chefNoteLabel.font = UIFont.boldSystemFontOfSize(16)
         chefNoteLabel.backgroundColor = UIColor.clearColor()
-
+        
+        susLabels = UIScrollView(frame: CGRect.nullRect)
+        
         
         
         /**
@@ -128,16 +131,16 @@ class FoodTinderTableViewCell: UITableViewCell {
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
-        label.frame = CGRect(x: 0, y: -70,
+        label.frame = CGRect(x: (screenWidth*0.06), y: -90,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         label.textAlignment = NSTextAlignment.Center
-        chefNoteLabel.frame = CGRect(x: 0, y: 20,
+
+        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 20,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textAlignment = NSTextAlignment.Center
-
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        chefNoteLabel.numberOfLines = 7
+        chefNoteLabel.numberOfLines = 0
         
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
@@ -145,7 +148,8 @@ class FoodTinderTableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
         
         self.imageView?.bounds = CGRectMake(0, 0, screenWidth, screenHeight * 0.3)
-        self.imageView?.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight * 0.3)
+        self.imageView?.frame = CGRect(x: 0, y: 10, width: screenWidth, height: screenHeight * 0.3)
+        self.imageView?.backgroundColor = UIColor.greenColor()
         self.imageView?.contentMode = .ScaleAspectFit
         
 
