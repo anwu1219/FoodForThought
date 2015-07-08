@@ -1399,17 +1399,31 @@
                                     <constraint firstAttribute="width" constant="262" id="Kje-Ds-AgW"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-io-2n0">
-                                <rect key="frame" x="78" y="273" width="86" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nv6-YL-Emz">
+                                <rect key="frame" x="0.0" y="238" width="600" height="318"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-io-2n0">
+                                        <rect key="frame" x="257" y="19" width="86" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="1EG-io-2n0" secondAttribute="centerX" id="JhU-es-FrT"/>
+                                    <constraint firstItem="1EG-io-2n0" firstAttribute="top" secondItem="nv6-YL-Emz" secondAttribute="top" constant="19" id="xLQ-mJ-HjQ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2ED-kE-Hhe" firstAttribute="top" secondItem="nv6-YL-Emz" secondAttribute="bottom" id="84W-UH-7zb"/>
+                            <constraint firstAttribute="trailing" secondItem="nv6-YL-Emz" secondAttribute="trailing" id="Dhv-SP-J9A"/>
+                            <constraint firstItem="nv6-YL-Emz" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="8" id="JAW-iN-T8R"/>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="8" id="REW-Ev-zG8"/>
+                            <constraint firstAttribute="centerX" secondItem="nv6-YL-Emz" secondAttribute="centerX" id="aMU-OQ-wAj"/>
                             <constraint firstAttribute="centerX" secondItem="JF3-Lu-1do" secondAttribute="centerX" id="onY-Kj-DSP"/>
+                            <constraint firstItem="nv6-YL-Emz" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leading" id="tIx-rP-Lxh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Name" id="axK-Vv-1c2" userLabel="Restaurant name"/>
@@ -1417,6 +1431,8 @@
                         <outlet property="restProfDescription" destination="1EG-io-2n0" id="rFo-Lw-RQW"/>
                         <outlet property="restProfImage" destination="JF3-Lu-1do" id="EMj-h0-RYm"/>
                         <outlet property="restProfName" destination="axK-Vv-1c2" id="rSJ-1w-eJq"/>
+                        <outlet property="restProfileView" destination="K4t-XW-smP" id="Vgl-4l-1Fi"/>
+                        <outlet property="restScrollView" destination="nv6-YL-Emz" id="Gyx-gH-13G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6IF-hl-dO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1505,7 +1521,7 @@
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
             <objects>
-                <viewController title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageContentViewController" title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgw-pN-LjJ"/>
                         <viewControllerLayoutGuide type="bottom" id="0nw-ug-gXp"/>

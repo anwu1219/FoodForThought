@@ -9,14 +9,16 @@
 import UIKit
 
 class RestProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
 
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
     var restProf : RestProfile!
-    
     @IBOutlet weak var restProfile: UITableView!
-    
+    @IBOutlet weak var restScrollView: UIScrollView!
+    @IBOutlet var restProfileView: UIView!
     
     
     override func viewDidLoad() {
@@ -24,6 +26,17 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
  //       restProfName.title = RestProfile?.name
         restProfImage.image = restProf.image
         // Do any additional setup after loading the view.
+        
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "forkmenubackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
+        restScrollView.contentSize.width = screenSize.width
+        restScrollView.contentSize.height = 600
+
     }
 
     override func didReceiveMemoryWarning() {
