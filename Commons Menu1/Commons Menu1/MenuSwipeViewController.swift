@@ -47,9 +47,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
    
     var menuLoad : [Dish]?
-    var menu = [Dish]()
+    var menu = [String : [Dish]]()
     let styles = Styles()
     var disLikes = [Dish]()
+    var types = [String]()
     var restProf: RestProfile!
     var edited = false
     
@@ -80,10 +81,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 80;
         if let menuLoad = menuLoad {
-            for dish in menuLoad {
-                menu.append(dish)
-            }
+            self.makeMenu(menuLoad)
         }
+        types = menu.keys.array
+        types.sort({$0 < $1})
     }
     
     
@@ -117,12 +118,22 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    func makeMenu(inputMenu : [Dish]){
+        for dish : Dish in inputMenu {
+            if !contains(menu.keys, dish.type){
+                menu[dish.type] = [Dish]()
+            }
+            menu[dish.type]?.append(dish)
+        }
+    }
+    
+    
     // MARK: - Table view data source
     /**
     Returns the number of sections in the table
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return menu.keys.array.count
     }
     
     
@@ -130,7 +141,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Returns the number of rows in the table
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu.count
+        return menu[types[section]]!.count
     }
     
     
@@ -141,19 +152,28 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
-    
-            //
+            
             cell.delegate = self
             cell.selectionStyle = .None
             
             //passes a dish to each cell
-                let dish = menu[indexPath.row]
+            let type = types[indexPath.section]
+            if let dishes = menu[type]{
+                let dish = dishes[indexPath.row]
                 cell.dish = dish
-            
             //sets the image
                 cell.imageView?.image = dish.image
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
+            }
             return cell
+    }
+    
+    
+    /**
+    Returns the title of each section
+    */
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return types[section]
     }
     
     
@@ -179,9 +199,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func createPreferenceList() -> [Dish] {
         var preferences = [Dish]()
-        for dish: Dish in menu {
-            if dish.like {
-                preferences.append(dish)
+        for type : String in types {
+            for dish: Dish in menu[type]! {
+                if dish.like {
+                    preferences.append(dish)
+                }
             }
         }
         return preferences
@@ -194,12 +216,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func toDoItemDeleted(dish: Dish) {
         //Finds index of swiped dish and removes it from the array
-        var index = find(menu, dish)!
+        var index = find(menu[dish.type]!, dish)!
         //menu.removeAtIndex(index)
         
         // use the UITableView to animate the removal of this row
         tableView.beginUpdates()
-        self.menu.removeAtIndex(index)
+        self.menu[dish.type]!.removeAtIndex(index)
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
         tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         tableView.endUpdates()
@@ -272,24 +294,26 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let delay =  param * Double(NSEC_PER_SEC)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(delayTime, dispatch_get_main_queue()){
-        for dish: Dish in self.menu {
-            if dish.like{
-                if let user = PFUser.currentUser(){
-                    let newPreference = PFObject(className:"Preference")
-                    newPreference["createdBy"] = PFUser.currentUser()
-                    newPreference["dishName"] = dish.name
-                    newPreference["location"] = dish.location
-                    newPreference.saveInBackgroundWithBlock({
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                             println("Successfully Saved")
-                        } else {
-                            // There was a problem, check error.description
+            for type : String in self.types{
+                for dish: Dish in self.menu[type]! {
+                    if dish.like{
+                        if let user = PFUser.currentUser(){
+                            let newPreference = PFObject(className:"Preference")
+                            newPreference["createdBy"] = PFUser.currentUser()
+                            newPreference["dishName"] = dish.name
+                            newPreference["location"] = dish.location
+                            newPreference.saveInBackgroundWithBlock({
+                                (success: Bool, error: NSError?) -> Void in
+                                if (success) {
+                                    println("Successfully Saved")
+                                } else {
+                                    // There was a problem, check error.description
+                                }
+                            })
                         }
-                    })
+                    }
                 }
             }
-        }
         }
     }
     
@@ -362,9 +386,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
+            if let index = find(menu[selectedMeal.type]!, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
+                mealInfoViewController.dish = menu[selectedMeal.type]![index]
             }
         }
         // Segues to the preference list of the single menu
