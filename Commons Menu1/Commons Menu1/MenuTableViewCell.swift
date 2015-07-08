@@ -158,11 +158,11 @@ class MenuTableViewCell: UITableViewCell {
             if deleteOnDragRelease {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
-                    dish!.like = false
-                    delegate!.toDoItemDeleted(dish!)
                     delegate!.addToDislikes(dish!)
                     dish!.dislike = true
-                    itemDislikeLayer.hidden = false
+                    itemLikeLayer.hidden = true
+                    itemDislikeLayer.hidden = !dish!.dislike
+                    dish!.like = false
                     delegate!.edit()
                 }
             } else if likeOnDragRelease {
@@ -173,10 +173,8 @@ class MenuTableViewCell: UITableViewCell {
                     dish!.dislike = false
                     delegate!.edit()
                 }
-                UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
-            } else {
-                UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             }
+            UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
         }
     }
     
