@@ -23,12 +23,19 @@ class FoodTinderTableViewCell: UITableViewCell {
     var tickLabel: UILabel, crossLabel: UILabel
     let label: UILabel
     var itemLikeLayer = CALayer()
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    var chefNoteLabel: UILabel
+    //var ecoLabel: UILabel
+
     // The object that acts as delegate for this cell
     var delegate: FoodTinderViewCellDelegate?
     // The dish that this cell renders
     var dish: Dish? {
         didSet {
             label.text = dish!.name
+         //   chefNoteLabel.text = dish!.chefNote
+               chefNoteLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+         //   ecoLabel.text = dish!.ecoLabel
             
             itemLikeLayer.hidden = !dish!.like
         }
@@ -46,6 +53,12 @@ class FoodTinderTableViewCell: UITableViewCell {
         label.textColor = styles.labelTextColor
         label.font = UIFont.boldSystemFontOfSize(16)
         label.backgroundColor = UIColor.clearColor()
+        
+        chefNoteLabel = UILabel(frame: CGRect.nullRect)
+        chefNoteLabel.textColor = styles.labelTextColor
+        //chefNoteLabel.font = UIFont.boldSystemFontOfSize(16)
+        chefNoteLabel.backgroundColor = UIColor.clearColor()
+
         
         
         /**
@@ -71,6 +84,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(label)
+        addSubview(chefNoteLabel)
         addSubview(tickLabel)
         addSubview(crossLabel)
         // remove the default blue highlight for selected cells
@@ -100,24 +114,38 @@ class FoodTinderTableViewCell: UITableViewCell {
     }
     
     //Label Location in cell
-    let kLabelLeftMargin: CGFloat = 150.0
-    let kLabelTopMargin: CGFloat = -250.0
+    let kLabelLeftMargin: CGFloat = 50.0
+    let kLabelTopMargin: CGFloat = 0.0
 
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        let halfScreen = screenWidth/2
+        
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
-        label.frame = CGRect(x: kLabelLeftMargin, y: kLabelTopMargin,
+        label.frame = CGRect(x: 0, y: -70,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+        label.textAlignment = NSTextAlignment.Center
+        chefNoteLabel.frame = CGRect(x: 0, y: 20,
+            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+        chefNoteLabel.bounds = CGRectMake(0, 100, screenWidth, 200)
+        chefNoteLabel.textAlignment = NSTextAlignment.Center
+
+        chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        chefNoteLabel.numberOfLines = 7
+        
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         
-     //   self.imageView?.bounds = CGRectMake(0, 0, 200, 200)
-        self.imageView?.frame = CGRect(x: 100, y: 100, width: 150, height: 150)
+        self.imageView?.bounds = CGRectMake(0, 0, screenWidth, screenHeight * 0.3)
+        self.imageView?.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight * 0.3)
 
 
     }
