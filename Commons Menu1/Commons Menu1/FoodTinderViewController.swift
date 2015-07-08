@@ -47,6 +47,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let styles = Styles()
     var preferences = [Dish]()
     var disLikes = [Dish]()
+    var edited = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,8 +84,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         super.willMoveToParentViewController(parent)
         if parent == nil {
             //upload data to parse
-            self.uploadPreferenceList()
-            self.uploadDislikes()
+            if edited {
+                self.uploadPreferenceList()
+                self.uploadDislikes()
+            }
         }
     }
 
@@ -148,7 +152,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //Finds index of swiped dish and removes it from the array
         var index = find(menu, dish)!
         //menu.removeAtIndex(index)
-        
+        edited = true
         // use the UITableView to animate the removal of this row
         foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)

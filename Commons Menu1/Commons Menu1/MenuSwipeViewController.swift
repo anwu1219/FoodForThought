@@ -30,6 +30,8 @@ protocol MenuTableViewCellDelegate {
     
     func addToDislikes(dish: Dish)
     
+    func edit()
+    
 }
 
 
@@ -46,11 +48,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
-    var menuPFObjects: [PFObject]?
     let styles = Styles()
     var disLikes = [Dish]()
     var restProf: RestProfile!
-
+    var edited = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +89,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
+            if edited {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
                 uploadPreferenceList(restProf.name)
                 uploadDislikes(restProf.name)
+            }
         }
     }
     
@@ -200,6 +203,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     
+    func edit(){
+        self.edited = true
+    }
+    
     //MARK: - menu swipe view delegate
     /**
     Delegate function that reloads the table view when go back from preference list
@@ -242,7 +249,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        let param = Double(self.menu.count) * 0.05
+        let delay =  param * Double(NSEC_PER_SEC)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(delayTime, dispatch_get_main_queue()){
         for dish: Dish in self.menu {
             if dish.like{
@@ -297,7 +306,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        let param = Double(self.menu.count) * 0.05
+        let delay =  param * Double(NSEC_PER_SEC)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(delayTime, dispatch_get_main_queue()){
         for dish: Dish in self.disLikes {
             if let user = PFUser.currentUser(){
@@ -317,7 +328,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         }
     }
-    
+
     
     /**
     Prepares for segue

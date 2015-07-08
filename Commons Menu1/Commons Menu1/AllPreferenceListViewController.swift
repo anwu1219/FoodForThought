@@ -20,7 +20,14 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var preferences = [String: [Dish]]()
     var restaurants : [String: [Dish]]!
     var keys = [String]()    
-    
+    let savedAlert = UIAlertController(title: "Saved", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    let saveAlert = UIAlertController(title: "Sync your preference?",
+        message: "",
+        preferredStyle: UIAlertControllerStyle.Alert
+    )
+    var edited = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +41,17 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.addToPreferences()
         keys = preferences.keys.array
         keys.sort({$0 < $1})
+        saveAlert.addAction(UIAlertAction(title: "Cancel",
+            style: UIAlertActionStyle.Default,
+            handler: nil
+            )
+        )
+        saveAlert.addAction(UIAlertAction(title: "OK",
+            style: UIAlertActionStyle.Default,
+            handler: { alertController in self.uploadPreferences()}
+            )
+        )
+
     }
     
     
@@ -43,8 +61,26 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
+            if edited {
+            presentViewController(savingAlert, animated: true, completion: nil)
             //println("This VC is 'will' be popped. i.e. the back button was pressed.")
+            //presentViewController(saveAlert, animated: true, completion: nil)
             self.uploadPreferences()
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 1.5))
+            dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                self.presentViewController(self.savedAlert, animated: true, completion: nil)
+                let param = Double(self.preferences.keys.array.count) * 0.25
+                let delay =  param * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+                    self.savedAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
+                    })
+                }
+            })
+            }
+        }
         }
     }
     
@@ -131,10 +167,10 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     Delegate function that finds and deletes the dish that is swiped
     */
     func toDoItemDeleted(dish: Dish){
+        edited = true
         //Finds index of swiped dish and removes it from the array
         var index = find(preferences[dish.location!]!, dish)
         preferences[dish.location!]!.removeAtIndex(index!)
-        
         // use the UITableView to animate the removal of this row
         preferenceListTableView.beginUpdates()
         let indexPathForRow = NSIndexPath(forRow: index!, inSection: find(keys, dish.location!)!)
@@ -146,6 +182,10 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         
     }
     
+    
+    func edit(){
+        
+    }
     
     /**
     Uploads the preference list
@@ -175,7 +215,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                 }
             }
         }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        let param = Double(self.preferences.keys.array.count) * 0.25
+        let delay =  param * Double(NSEC_PER_SEC)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(delayTime, dispatch_get_main_queue()){
         for restaurant: String in self.preferences.keys {
             for dish : Dish in self.preferences[restaurant]!{
