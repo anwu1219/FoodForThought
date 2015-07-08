@@ -71,11 +71,25 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
             
             //
+            cell.textLabel?.text = "test"
             cell.selectionStyle = .None
 
             return cell
     }
     
+    
+    /**
+    Returns the title of each section
+    */
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Environmental"
+        }
+        if section == 1 {
+            return "Social"
+        }
+        return "Economic"
+    }
 
     /*
     // MARK: - Navigation

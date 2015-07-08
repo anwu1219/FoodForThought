@@ -133,7 +133,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         label.textAlignment = NSTextAlignment.Center
         chefNoteLabel.frame = CGRect(x: 0, y: 20,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
-        chefNoteLabel.bounds = CGRectMake(0, 100, screenWidth, 200)
+        chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textAlignment = NSTextAlignment.Center
 
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -146,6 +146,8 @@ class FoodTinderTableViewCell: UITableViewCell {
         
         self.imageView?.bounds = CGRectMake(0, 0, screenWidth, screenHeight * 0.3)
         self.imageView?.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight * 0.3)
+        self.imageView?.contentMode = .ScaleAspectFit
+        
 
 
     }
