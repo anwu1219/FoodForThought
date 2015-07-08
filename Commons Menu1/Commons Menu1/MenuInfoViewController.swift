@@ -64,9 +64,8 @@ class MealInfoViewController: UIViewController {
             label.numberOfLines = 0 // allows for undetermined number of lines to be used to display text
             //label.frame =
             var test = ""
-            test += "Ingredients:\n asdf \n asdf \n asdf "
-            for ing in ingredients {
-                test += " - \(ing)\n"
+            for ingredient in ingredients {
+                test += " - \(ingredient)\n"
             }
             label.lineBreakMode = NSLineBreakMode.ByWordWrapping
             label.sizeToFit()

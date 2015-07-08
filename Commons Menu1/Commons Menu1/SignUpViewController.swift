@@ -38,12 +38,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         super.viewDidLoad()
         
         let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "wheat")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
-        
         
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
@@ -51,16 +50,43 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         emailAddress.layer.masksToBounds = false
         emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
         emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
-        emailAddress.layer.shadowOpacity = 0.3
-        emailAddress.layer.shadowRadius = 5.0
+        emailAddress.layer.shadowOpacity = 0.5
+        emailAddress.layer.shadowRadius = 4.0
         emailAddress.layer.shadowOffset = CGSizeMake(5.0, 5.0)
         
         password.layer.masksToBounds = false
         password.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
         password.layer.shadowColor = UIColor.blackColor().CGColor
-        password.layer.shadowOpacity = 0.3
-        password.layer.shadowRadius = 5.0
+        password.layer.shadowOpacity = 0.5
+        password.layer.shadowRadius = 4.0
         password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        
+        signUpButton.layer.shadowColor = UIColor.blackColor().CGColor
+        signUpButton.layer.shadowOffset = CGSizeMake(5, 5)
+        signUpButton.layer.shadowRadius = 2
+        signUpButton.layer.shadowOpacity = 1.0
+        
+        signInButton.layer.shadowColor = UIColor.blackColor().CGColor
+        signInButton.layer.shadowOffset = CGSizeMake(5, 5)
+        signInButton.layer.shadowRadius = 2
+        signInButton.layer.shadowOpacity = 1.0
+        
+        welcomeLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        welcomeLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        welcomeLabel.layer.shadowRadius = 5
+        welcomeLabel.layer.shadowOpacity = 1.0
+        
+        
+        passwordLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        passwordLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        passwordLabel.layer.shadowRadius = 5
+        passwordLabel.layer.shadowOpacity = 1.0
+        
+        emailLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        emailLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        emailLabel.layer.shadowRadius = 5
+        emailLabel.layer.shadowOpacity = 1.0
+
 
         self.emailAddress.delegate = self
         self.password.delegate = self
@@ -102,6 +128,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         // Display alert
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = true
+        super.viewWillAppear(animated)
+    }
+    
+    
+    override func viewWillDisappear(animated: Bool) {
+        if (navigationController?.topViewController != self) {
+            navigationController?.navigationBarHidden = false
+        }
+        super.viewWillDisappear(animated)
     }
     
     func processSignUp() {
