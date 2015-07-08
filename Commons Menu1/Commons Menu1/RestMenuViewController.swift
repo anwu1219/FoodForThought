@@ -43,7 +43,7 @@ class RestMenuViewController: UIViewController {
         let screenHeight = screenSize.height
         
         //Formats the scroll view
-        verticalRestMenuScroll.contentSize.width = 325
+        verticalRestMenuScroll.contentSize.width = screenSize.width
         verticalRestMenuScroll.contentSize.height = 450
         verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
 
@@ -66,11 +66,12 @@ class RestMenuViewController: UIViewController {
             var button = UIButton()
             var downAlign: CGFloat = 20
             // Sets the size and position of the button
+            var buttonWidth = verticalRestMenuScroll.contentSize.width
             var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
             var height: CGFloat = 0.15 * verticalRestMenuScroll.bounds.height
-            var x: CGFloat = (50 + (0.5 * width))
+            var x: CGFloat = ((buttonWidth*0.05) + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i)
-            button.frame = CGRectMake(x - 40, y + 10, 250, 46)
+            button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)
            // button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
             
             //Sets the content of the buttons
