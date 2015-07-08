@@ -85,6 +85,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         types = menu.keys.array
         types.sort({$0 < $1})
+        for type: String in types {
+            menu[type]!.sort({$0.name < $1.name})
+        }
     }
     
     
@@ -206,6 +209,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
+        preferences.sort({$0.name < $1.name})
         return preferences
     }
     
