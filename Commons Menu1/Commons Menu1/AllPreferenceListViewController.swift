@@ -19,8 +19,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences = [String: [Dish]]()
     var restaurants : [String: [Dish]]!
-    var keys = [String]()    
-    let savedAlert = UIAlertController(title: "Saved", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let saveAlert = UIAlertController(title: "Sync your preference?",
         message: "",
@@ -66,18 +65,12 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             //println("This VC is 'will' be popped. i.e. the back button was pressed.")
             //presentViewController(saveAlert, animated: true, completion: nil)
             self.uploadPreferences()
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 1.5))
+            let param = Double(self.preferences.keys.array.count) * 0.3
+            let delay =  param * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
             self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.presentViewController(self.savedAlert, animated: true, completion: nil)
-                let param = Double(self.preferences.keys.array.count) * 0.25
-                let delay =  param * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-                    self.savedAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
-                    })
-                }
+            
             })
             }
         }

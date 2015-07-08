@@ -48,6 +48,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var preferences = [Dish]()
     var disLikes = [Dish]()
     var edited = false
+    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     
     
     override func viewDidLoad() {
@@ -85,8 +86,17 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         if parent == nil {
             //upload data to parse
             if edited {
+                presentViewController(savingAlert, animated: true, completion: nil)
                 self.uploadPreferenceList()
                 self.uploadDislikes()
+                let param = Double(self.preferences.count) * 0.05 + Double(self.disLikes.count) * 0.05
+                let delay =  param * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+                    self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
+                    })
+                }
             }
         }
     }
