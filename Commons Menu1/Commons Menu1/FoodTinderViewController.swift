@@ -48,8 +48,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var preferences = [Dish]()
     var disLikes = [Dish]()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-
-    
+    var edited = false
+    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
@@ -84,8 +85,19 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         super.willMoveToParentViewController(parent)
         if parent == nil {
             //upload data to parse
-            self.uploadPreferenceList()
-            self.uploadDislikes()
+            if edited {
+                presentViewController(savingAlert, animated: true, completion: nil)
+                self.uploadPreferenceList()
+                self.uploadDislikes()
+                let param = Double(self.preferences.count) * 0.05 + Double(self.disLikes.count) * 0.05
+                let delay =  param * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+                    self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
+                    })
+                }
+            }
         }
     }
 
@@ -150,7 +162,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //Finds index of swiped dish and removes it from the array
         var index = find(menu, dish)!
         //menu.removeAtIndex(index)
-        
+        edited = true
         // use the UITableView to animate the removal of this row
         foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
