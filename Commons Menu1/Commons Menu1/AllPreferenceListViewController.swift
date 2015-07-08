@@ -42,6 +42,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.addToPreferences()
         keys = preferences.keys.array
         keys.sort({$0 < $1})
+        for key: String in keys {
+            preferences[key]!.sort({$0.name < $1.name})
+        }
         saveAlert.addAction(UIAlertAction(title: "Cancel",
             style: UIAlertActionStyle.Default,
             handler: nil
