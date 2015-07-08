@@ -48,6 +48,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
    
     var menuLoad : [Dish]?
     var menu = [Dish]()
+    var menuDictionary = [String : [Dish]]()
     let styles = Styles()
     var disLikes = [Dish]()
     var restProf: RestProfile!

@@ -235,7 +235,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                             if let ingredients = object["ingredients"] as? [String]{
                                                 if let labels = object["labels"] as? [[String]]{
                                                     if let type = object["type"] as? String{
-                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, label: labels)
+                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels)
                                             self.menu.append(dish)
                                             self.addToRestaurants(location, dish: dish)
                                                     }
