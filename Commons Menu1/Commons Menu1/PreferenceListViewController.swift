@@ -114,6 +114,10 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     
+    func edit(){
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
