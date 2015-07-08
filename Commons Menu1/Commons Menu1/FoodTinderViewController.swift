@@ -50,7 +50,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-        
+    var ecoLabelsArray: [String]!
+    //let ecoLabelScrollView: UIScrollView!
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
@@ -75,7 +79,36 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //filters menu from dishes that have already been swiped
         menu = menu.filter({$0.like != true})
         menu = menu.filter({$0.dislike != true})
+        
+        if let ecoLabelsArray = ecoLabelsArray {
+     //       var keys = ecoLabelsArray.keys.array
+     //       keys.sort({$0.name < $1.name})
+     //       placeEcoLabels(keys)
+        }
     }
+    
+    func placeEcoLabels(keys: [Label]) {
+        for i in 0..<keys.count {
+            var image = UIImage()
+            var downAlign: CGFloat = 20
+            // Sets the size and position of the button
+            var width: CGFloat = 25
+            var height: CGFloat = 25
+            var x: CGFloat = (50 + (0.5 * width))
+            var y: CGFloat = (height+10) * CGFloat(i)
+     //       image.frame = CGRectMake(x - 40, y + 10, 250, 46)
+            //image.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
+            
+            //Sets the content of the buttons
+            
+           // let backgroundImage = Label()
+           // backgroundImage.frame = image.frame
+            
+     //       ecoLabelScrollView.addSubview(button)
+     //       ecoLabelScrollView.addSubview(backgroundImage)
+        }
+    }
+
     
     
     /**

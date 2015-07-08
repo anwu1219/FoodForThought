@@ -73,7 +73,6 @@ class RestMenuViewController: UIViewController {
             var y: CGFloat = (height+10) * CGFloat(i)
             button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)
            // button.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
-            
             //Sets the content of the buttons
             button.setTitle(keys[i].name, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)

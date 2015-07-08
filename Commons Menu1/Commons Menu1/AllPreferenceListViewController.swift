@@ -31,6 +31,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         //Formats the table view
+        self.automaticallyAdjustsScrollViewInsets = false;
+
         preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
