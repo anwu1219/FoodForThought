@@ -29,7 +29,7 @@ class Dish: NSObject {
     var like: Bool = false
     var dislike: Bool = false
     var location: String?
-    var type: String?
+    var type = String()
 
     
     init(name: String) {
