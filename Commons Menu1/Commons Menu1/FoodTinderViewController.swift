@@ -47,6 +47,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let styles = Styles()
     var preferences = [Dish]()
     var disLikes = [Dish]()
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.separatorStyle = .SingleLine
         //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
-        foodTinderTableView.rowHeight = 600;
+        foodTinderTableView.rowHeight = screenSize.height;
         foodTinderTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
 
         //self.createMenu()
