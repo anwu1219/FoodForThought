@@ -219,16 +219,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Delegate function that finds and deletes the dish that is swiped
     */
     func toDoItemDeleted(dish: Dish) {
-        //Finds index of swiped dish and removes it from the array
-        var index = find(menu[dish.type]!, dish)!
-        //menu.removeAtIndex(index)
-        println(index)
-        // use the UITableView to animate the removal of this row
-        tableView.beginUpdates()
-        self.menu[dish.type]!.removeAtIndex(index)
-        let indexPathForRow = NSIndexPath(forRow: index, inSection: find(types, dish.type)!)
-        tableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-        tableView.endUpdates()
+
     }
     
     

@@ -26,9 +26,9 @@ struct Label {
         "label5": UIImage(named: "sloth")
         ]
     let nutLabels = [
-        "CC": UIImage(named: "sloth"),
-        "HF": UIImage(named: "sloth"),
-        "LP": UIImage(named: "sloth"),
-        "VN": UIImage(named: "sloth"),
+        "CE": UIImage(named: "CE"),
+        "HF": UIImage(named: "HF"),
+        "PP": UIImage(named: "PP"),
+        "VN": UIImage(named: "VN")
     ]
 }
