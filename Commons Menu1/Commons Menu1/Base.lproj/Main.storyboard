@@ -608,6 +608,9 @@
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="45" y="401" width="89" height="43"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="388" width="105" height="256"/>
+                                </variation>
                                 <connections>
                                     <action selector="signUp:" destination="bha-uc-Tnm" eventType="touchUpInside" id="KZA-Nk-cX5"/>
                                     <segue destination="vXZ-lx-hvc" kind="show" identifier="signInToNavigationSegue" id="6HG-gM-2cC"/>
@@ -1003,7 +1006,6 @@
                                 <exclude reference="cvC-lo-loY"/>
                                 <include reference="fVZ-5t-vBl"/>
                                 <exclude reference="nzq-Wy-Bez"/>
-                                <exclude reference="zZ4-PD-iGm"/>
                             </mask>
                         </variation>
                     </view>
