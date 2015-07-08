@@ -44,8 +44,8 @@ class MenuTableViewCell: UITableViewCell {
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
         label.font = UIFont.boldSystemFontOfSize(16)
-        label.backgroundColor = UIColor.purpleColor()
-        
+        //label.backgroundColor = UIColor.purpleColor()
+
         /**
         utility method for creating the contextual cues
         */
@@ -122,6 +122,7 @@ class MenuTableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
         self.imageView?.frame = CGRect(x: 30, y: 5, width: 50, height: 60)
       //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
+        self.backgroundColor = UIColor.purpleColor()
 
     }
     
