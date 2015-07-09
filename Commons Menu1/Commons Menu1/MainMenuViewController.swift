@@ -33,6 +33,7 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
@@ -40,7 +41,15 @@ class MainMenuViewController: UIViewController {
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
-               
+        
+//        //sets nav bar to be non see through
+//        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+//        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        bar.shadowImage = UIImage()
+//        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        
+        
        // restMenuButton.backgroundColor = styles.buttonBackgoundColor
        // restMenuButton.layer.cornerRadius = styles.buttonCornerRadius
        // restMenuButton.layer.borderWidth = 1

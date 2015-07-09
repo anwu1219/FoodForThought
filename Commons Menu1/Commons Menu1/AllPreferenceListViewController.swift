@@ -16,6 +16,7 @@ Class that shows all the preferences of the current user
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     
     
+    @IBOutlet var preferenceListView: UIView!
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences = [String: [Dish]]()
     var restaurants : [String: [Dish]]!
@@ -32,7 +33,20 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         super.viewDidLoad()
         //Formats the table view
         self.automaticallyAdjustsScrollViewInsets = false;
-
+        //sets nav bar to be see through
+        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "blurrypreferencepicture")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
+        
         preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
@@ -137,6 +151,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             cell.selectionStyle = .None
             cell.dish = dish
             cell.imageView?.image = dish.image
+           // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
+           // cell.detailTextLabel?.textAlignment = .Center
+
         }
         return cell
             

@@ -36,9 +36,10 @@ class preferenceListTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.whiteColor()
         label.font = UIFont.boldSystemFontOfSize(16)
-        //label.backgroundColor = UIColor.purpleColor()
+      //  let lightbrownColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
+      //  label.backgroundColor = lightbrownColor
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -58,11 +59,17 @@ class preferenceListTableViewCell: UITableViewCell {
         var width = 0.01 * bounds.size.width
         var height = 0.01 * bounds.size.height
         super.layoutSubviews()
-        self.imageView?.frame = CGRect(x: 10 * width, y: 20 * height, width: 18 * width, height: 60 * height)
+        self.imageView?.frame = CGRect(x: 5 * width, y: 2 * width, width: 25 * width, height: 75 * height)
+        self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
+        self.imageView?.layer.borderWidth = 2.0
+        self.backgroundColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
         let kLabelLeftMargin: CGFloat = 36 * width
         label.frame = CGRect(x: kLabelLeftMargin, y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+        
+        self.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
 
+        //self.backgroundColor = UIColor
     }
     
     
