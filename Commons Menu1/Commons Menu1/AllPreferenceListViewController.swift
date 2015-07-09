@@ -77,8 +77,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             }
             self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
                     
-            })
-        }
+                })
+            }
         }
     }
     
@@ -133,7 +133,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         let key = keys[indexPath.section]
         if let preferences = preferences[key]{
             let dish = preferences[indexPath.row]
-            cell.textLabel?.text = dish.name
             cell.delegate = self
             cell.selectionStyle = .None
             cell.dish = dish

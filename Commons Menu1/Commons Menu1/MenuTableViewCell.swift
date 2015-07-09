@@ -108,6 +108,8 @@ class MenuTableViewCell: UITableViewCell {
     
     let kLabelLeftMargin: CGFloat = 200.0
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
+    
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         // ensure the gradient layer occupies the full bounds
