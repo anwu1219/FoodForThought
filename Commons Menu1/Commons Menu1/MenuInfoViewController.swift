@@ -27,7 +27,7 @@ class MealInfoViewController: UIViewController {
         dish?.price = 8.54
         
         scrollInfo.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
-        scrollInfo.contentSize.height = 800
+        scrollInfo.contentSize.height = 2000
         scrollInfo.layer.borderColor = UIColor.greenColor().CGColor
         scrollInfo.layer.borderWidth = 2
         layoutPage()
@@ -35,46 +35,64 @@ class MealInfoViewController: UIViewController {
     }
     
     func layoutPage() {
-        var x: CGFloat = 0.05 * scrollInfo.bounds.width
-        var y: CGFloat = 0.05 * scrollInfo.bounds.height
-        var width: CGFloat = 0.5 * scrollInfo.bounds.width
-        var height: CGFloat = 0.1 * scrollInfo.bounds.height
+        var x: CGFloat = 0.02 * scrollInfo.bounds.width // current x coordinate
+        var y: CGFloat = 0.05 * scrollInfo.bounds.height // current y coordinate
+        var width: CGFloat = 0.01 * scrollInfo.bounds.width // a unit of x
+        var height: CGFloat = 0.01 * scrollInfo.bounds.height // a unit of y
         
         if let location = dish?.location {
             var label = UILabel()
             label.text = "Location: \(location)"
-            label.frame = CGRectMake(x, y, width, height)
+            label.frame = CGRectMake( x, y, 20 * width, 10 * height)
             label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             scrollInfo.addSubview(label)
-            y += 1.3 * height
+            y += 10 * height
         }
         
         if let price = dish?.price {
             var label = UILabel()
             label.text = "Price: $\(price)"
-            label.frame = CGRectMake(x, y, width, height)
+            label.frame = CGRectMake(x, y, 20 * width, 10 * height)
+            label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             scrollInfo.addSubview(label)
-            y += 1.3 * height
+            y += 10 * height
         }
         
         
         if let ingredients = dish?.ingredients {
-            var maxLabelSize = CGSizeMake(CGFloat(FLT_MAX), CGFloat(FLT_MAX))
-            var label = UILabel()
-            label.numberOfLines = 0 // allows for undetermined number of lines to be used to display text
-            //label.frame =
-            var test = ""
-            for ingredient in ingredients {
-                test += " - \(ingredient)\n"
+            //label.numberOfLines = 0 // allows for undetermined number of lines to be used to display text
+            var ingreident = UILabel()
+            ingreident.text = "Ingredients:"
+            ingreident.frame = CGRectMake(x, y, 20 * width, 10 * height)
+            scrollInfo.addSubview(ingreident)
+            y += 12 * height
+            for var i = 0; i < ingredients.count; i++ {
+                var ingredient = UILabel()
+                ingredient.text = "- \(ingredients[i])"
+                ingreident.lineBreakMode = NSLineBreakMode.ByWordWrapping
+                var num = CGFloat(2 * count(ingredients[i]))
+                ingredient.frame = CGRectMake( 2 * x, y, num * width, 10 * height)
+                ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
+                ingredient.sizeToFit()
+                scrollInfo.addSubview(ingredient)
+
+                if let labels = dish?.labels {
+                    if !labels.isEmpty{
+                        var nutLabelXPosition = ingredient.frame.size.width + width
+                        for label: String in labels[i] {
+                            var nutLabel = UIImageView(frame: CGRectMake( 2 * x + nutLabelXPosition, y - 2 * height, 10 * height, 10 * height))
+                            var image = UIImage(named: label)
+                            nutLabel.image = image
+                            scrollInfo.addSubview(nutLabel)
+                            nutLabelXPosition += 11 * height
+                        }
+                    }
+                }
+                y += 10 * height
             }
-            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            label.sizeToFit()
-            label.text = test
-            label.frame = CGRectMake(x, y, width, height*CGFloat(ingredients.count))
-            scrollInfo.addSubview(label)
-            y += 1.3 * height
         }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
