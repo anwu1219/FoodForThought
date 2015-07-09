@@ -66,7 +66,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
 
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! preferenceListTableViewCell
         let dish = preferences[indexPath.row]
-        cell.textLabel?.text = dish.name
         cell.delegate = self
         cell.selectionStyle = .None
         cell.dish = dish

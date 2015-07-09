@@ -14,12 +14,16 @@ Manages the cell representation of a dish in a preference list
 class preferenceListTableViewCell: UITableViewCell {
     var delegate: MenuTableViewCellDelegate?
     // The item that this cell renders.
-    var dish: Dish?
     // Var that determines if the cell needs to be deleted 
     var deleteOnDragRelease = false
     // Center point of the cell
     var originalCenter = CGPoint()
-    
+    let label: UILabel
+    var dish: Dish?{
+        didSet {
+            label.text = dish!.name
+        }
+    }
     
 //    // Label to help visualize the deletion of a cell
 //    var crossLabel: UILabel
@@ -29,10 +33,16 @@ class preferenceListTableViewCell: UITableViewCell {
         fatalError("NSCoding not supported")
     }
     
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        // create a label that renders the to-do item text
+        label = UILabel(frame: CGRect.nullRect)
+        label.textColor = UIColor.blackColor()
+        label.font = UIFont.boldSystemFontOfSize(16)
+        //label.backgroundColor = UIColor.purpleColor()
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        addSubview(label)
       
         var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
@@ -42,6 +52,19 @@ class preferenceListTableViewCell: UITableViewCell {
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
     }
+    
+    
+    override func layoutSubviews() {
+        var width = 0.01 * bounds.size.width
+        var height = 0.01 * bounds.size.height
+        super.layoutSubviews()
+        self.imageView?.frame = CGRect(x: 10 * width, y: 5 * width, width: 15 * width, height: 50 * height)
+        let kLabelLeftMargin: CGFloat = 36 * width
+        label.frame = CGRect(x: kLabelLeftMargin, y: 0,
+            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+
+    }
+    
     
 
     func handleTap(recognizer: UITapGestureRecognizer) {
