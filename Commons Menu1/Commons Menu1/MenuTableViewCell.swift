@@ -106,23 +106,23 @@ class MenuTableViewCell: UITableViewCell {
     }
     
     
-    let kLabelLeftMargin: CGFloat = 200.0
-    let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
-    
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
         itemDislikeLayer.frame = bounds
+        var width = 0.01 * bounds.size.width
+        var height = 0.01 * bounds.size.height
+        let kLabelLeftMargin: CGFloat = 36 * width
+        let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
         label.frame = CGRect(x: kLabelLeftMargin, y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
-        self.imageView?.frame = CGRect(x: 30, y: 5, width: 50, height: 60)
+        self.imageView?.frame = CGRect(x: 10 * width, y: 20 * height, width: 18 * width, height: 60 * height)
       //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
         self.backgroundColor = UIColor.purpleColor()
 

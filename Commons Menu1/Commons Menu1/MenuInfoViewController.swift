@@ -19,26 +19,34 @@ class MealInfoViewController: UIViewController {
     @IBOutlet weak var scrollInfo: UIScrollView!
     var dish: Dish?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dishName.title = dish?.name
         dishImage.image = dish?.image
         dish?.price = 8.54
-        
         scrollInfo.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
-        scrollInfo.contentSize.height = 2000
+        var scrollViewHeight = 350
+        if let ingredient = dish?.ingredients{
+            scrollViewHeight += ingredient.count * 30
+        }
+        scrollInfo.contentSize.height = CGFloat(scrollViewHeight)
         scrollInfo.layer.borderColor = UIColor.greenColor().CGColor
         scrollInfo.layer.borderWidth = 2
         layoutPage()
         
     }
     
+    
+    /**
+    Put dish information into the scrollInfo
+    */
     func layoutPage() {
-        var x: CGFloat = 0.02 * scrollInfo.bounds.width // current x coordinate
-        var y: CGFloat = 0.05 * scrollInfo.bounds.height // current y coordinate
         var width: CGFloat = 0.01 * scrollInfo.bounds.width // a unit of x
         var height: CGFloat = 0.01 * scrollInfo.bounds.height // a unit of y
+        var x: CGFloat = 0.02 * scrollInfo.bounds.width // current x coordinate
+        var y: CGFloat = 0.05 * scrollInfo.bounds.height // current y coordinate
         
         if let location = dish?.location {
             var label = UILabel()
