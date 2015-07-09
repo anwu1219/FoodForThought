@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Enable local data store
         Parse.enableLocalDatastore()
         // Override point for customization after application launch.
-        Parse.setApplicationId("YwH5uZAZTNeun59PpcrL2Rk9qE4Oc1zl1dPjDr8x", clientKey: "pXj8wTsLjDHZta12STdVxEBJMxGZvi8vhjqSCuoG")
+        Parse.setApplicationId
 
         return true
     }
