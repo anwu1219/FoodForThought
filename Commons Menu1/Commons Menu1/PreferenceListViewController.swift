@@ -70,6 +70,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         cell.selectionStyle = .None
         cell.dish = dish
         cell.imageView?.image = dish.image
+
         return cell
     }
     
