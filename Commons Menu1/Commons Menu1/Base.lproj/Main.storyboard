@@ -47,7 +47,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe right to add dish to Food Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efo-XS-UQq">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.84313725490196079" green="0.79607843137254897" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -151,44 +151,63 @@
                                 <rect key="frame" x="0.0" y="204" width="600" height="396"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sloth" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Pp-qPg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redberrycup" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Pp-qPg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="141"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkG-pd-owt">
                                 <rect key="frame" x="0.0" y="145" width="178" height="46"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="145" width="191" height="45"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1KI-Pp-qPg" secondAttribute="trailing" id="Fil-kX-2eB"/>
-                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="Du2-mr-E4w" secondAttribute="bottom" constant="127" id="Gpa-J2-BUl"/>
-                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="Du2-mr-E4w" secondAttribute="bottom" constant="140" id="IZf-Hq-ZRX"/>
+                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="Du2-mr-E4w" secondAttribute="bottom" constant="127" id="Gpa-J2-BUl">
+                                <variation key="widthClass=compact" constant="155"/>
+                            </constraint>
                             <constraint firstItem="h7c-a2-MKj" firstAttribute="top" secondItem="qbY-vt-aiF" secondAttribute="bottom" id="TSB-Ai-AwF"/>
-                            <constraint firstItem="1KI-Pp-qPg" firstAttribute="top" secondItem="Du2-mr-E4w" secondAttribute="bottom" id="V9v-2j-vdO"/>
                             <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="N2Z-ty-PEv" secondAttribute="leading" id="cAR-EB-2Qr"/>
-                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="1KI-Pp-qPg" secondAttribute="bottom" constant="-1" id="dRw-1p-TNT"/>
+                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="1KI-Pp-qPg" secondAttribute="bottom" constant="-1" id="dRw-1p-TNT">
+                                <variation key="widthClass=compact" constant="14"/>
+                            </constraint>
                             <constraint firstItem="qbY-vt-aiF" firstAttribute="leading" secondItem="N2Z-ty-PEv" secondAttribute="leading" id="k6C-bP-89w"/>
                             <constraint firstAttribute="trailing" secondItem="qbY-vt-aiF" secondAttribute="trailing" id="rDe-iN-jtj"/>
+                            <constraint firstItem="qbY-vt-aiF" firstAttribute="leading" secondItem="N2Z-ty-PEv" secondAttribute="leadingMargin" constant="-5" id="rbO-9R-lbH"/>
+                            <constraint firstItem="1KI-Pp-qPg" firstAttribute="top" secondItem="N2Z-ty-PEv" secondAttribute="top" id="tIH-ul-mKL">
+                                <variation key="widthClass=compact" constant="20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="qbY-vt-aiF" secondAttribute="trailing" constant="-6" id="wl8-R6-cCQ"/>
                             <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="N2Z-ty-PEv" secondAttribute="top" id="yLc-lZ-yEA"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="tIH-ul-mKL"/>
                                 <exclude reference="Gpa-J2-BUl"/>
+                                <exclude reference="rbO-9R-lbH"/>
+                                <exclude reference="wl8-R6-cCQ"/>
                                 <exclude reference="yLc-lZ-yEA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <include reference="tIH-ul-mKL"/>
                                 <include reference="Gpa-J2-BUl"/>
+                                <exclude reference="k6C-bP-89w"/>
+                                <exclude reference="rDe-iN-jtj"/>
+                                <include reference="rbO-9R-lbH"/>
+                                <include reference="wl8-R6-cCQ"/>
                                 <exclude reference="yLc-lZ-yEA"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="preferenceListTableView" destination="qbY-vt-aiF" id="HLb-is-rIf"/>
+                        <outlet property="preferenceListView" destination="N2Z-ty-PEv" id="db9-TE-FpA"/>
                         <segue destination="f2Y-jF-9VT" kind="show" identifier="preferenceInfoSegue" id="3Lq-rH-UIY"/>
                     </connections>
                 </viewController>
@@ -590,12 +609,6 @@
                                     <constraint firstAttribute="bottom" secondItem="evv-n7-ETi" secondAttribute="bottom" constant="736" id="zsB-eu-R0o"/>
                                 </constraints>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sub-title 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-tx-0Sx">
-                                <rect key="frame" x="10" y="10" width="288" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Environmental Sustainability" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZc-gv-hia">
                                 <rect key="frame" x="16" y="72" width="288" height="21"/>
                                 <constraints>
@@ -1599,6 +1612,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDO-7i-Hr5">
                                 <rect key="frame" x="0.0" y="241" width="55" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.84313725490196079" green="0.79607843137254897" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcZ-p9-etz">
@@ -1896,10 +1910,10 @@
         <image name="greenEarth" width="202" height="208"/>
         <image name="heartHands" width="225" height="225"/>
         <image name="menuButton" width="559" height="84"/>
-        <image name="sloth" width="625" height="469"/>
+        <image name="redberrycup" width="1050" height="600"/>
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4iJ-fy-ZFU"/>
+        <segue reference="3Lq-rH-UIY"/>
     </inferredMetricsTieBreakers>
 </document>

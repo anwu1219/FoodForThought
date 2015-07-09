@@ -13,6 +13,7 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
 
     
     var backgroundTaskIdentifier : UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
@@ -23,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         // Override point for customization after application launch.
         Parse.setApplicationId("YwH5uZAZTNeun59PpcrL2Rk9qE4Oc1zl1dPjDr8x", clientKey: "pXj8wTsLjDHZta12STdVxEBJMxGZvi8vhjqSCuoG")
-
+       
+        var addStatusBar = UIView()
+        addStatusBar.frame = CGRectMake(0, 0, screenSize.width, 20);
+        addStatusBar.backgroundColor = UIColor.whiteColor()
+        self.window?.rootViewController?.view .addSubview(addStatusBar)
+        
         return true
     }
     
