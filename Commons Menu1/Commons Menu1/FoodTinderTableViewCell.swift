@@ -27,7 +27,7 @@ class FoodTinderTableViewCell: UITableViewCell {
     var chefNoteLabel: UILabel
     var susLabels: UIScrollView
     
-    let boarder: UIView
+    //let boarder: UIView
     //var ecoLabel: UILabel
 
     // The object that acts as delegate for this cell
@@ -37,7 +37,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         didSet {
             label.text = dish!.name
          //   chefNoteLabel.text = dish!.chefNote
-               chefNoteLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+               chefNoteLabel.text = "Lorem ipsum"
          //   ecoLabel.text = dish!.ecoLabel
             
             itemLikeLayer.hidden = !dish!.like
@@ -64,7 +64,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         
         susLabels = UIScrollView(frame: CGRect.nullRect)
         
-        boarder = UIView(frame: CGRect.nullRect)
+        //boarder = UIView(frame: CGRect.nullRect)
         
         
         
@@ -94,7 +94,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         addSubview(chefNoteLabel)
         addSubview(tickLabel)
         addSubview(crossLabel)
-        addSubview(boarder)
+        //addSubview(boarder)
         // remove the default blue highlight for selected cells
         selectionStyle = .None
         
@@ -136,31 +136,39 @@ class FoodTinderTableViewCell: UITableViewCell {
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
-        label.frame = CGRect(x: (screenWidth*0.06), y: -65,
+        label.frame = CGRect(x: (screenWidth*0.06), y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         label.textAlignment = NSTextAlignment.Center
 
-        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 45,
+        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 85,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textAlignment = NSTextAlignment.Center
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         chefNoteLabel.numberOfLines = 0
         
-        boarder.frame = CGRectMake(screenWidth*0.15, screenHeight*0.0, screenWidth*0.7, screenHeight * 0.31)
-        boarder.bounds = CGRectMake(screenWidth*0.25, 10.5, screenWidth*0.7, screenHeight * 0.4)
-        boarder.backgroundColor = UIColor.greenColor()
-        self.sendSubviewToBack(boarder)
+       //boarder.frame = CGRectMake(screenWidth*0.15, screenHeight*0.0, screenWidth*0.7, screenHeight * 0.31)
+       //boarder.bounds = CGRectMake(screenWidth*0.25, 10.5, screenWidth*0.7, screenHeight * 0.4)
+        //boarder.backgroundColor = UIColor.greenColor()
+        //self.sendSubviewToBack(boarder)
         
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         
-        self.imageView?.bounds = CGRectMake(0, 0, screenWidth, screenHeight * 0.3)
-        self.imageView?.frame = CGRect(x: screenWidth*0.2, y: 30, width: screenWidth*0.6, height: screenHeight * 0.3)
-        self.imageView?.backgroundColor = UIColor.greenColor()
+        self.imageView?.bounds = CGRectMake(0, 0, screenWidth - 20, screenHeight * 0.5 - 20)
+        self.imageView?.frame = CGRect(x: 0, y: 0, width: screenWidth - 20, height: screenHeight * 0.5 - 20)
+        //self.imageView?.backgroundColor = UIColor.greenColor()
         self.imageView?.contentMode = .ScaleToFill
+        let darkGreenColor = UIColor(red: 22.0/255, green: 104.0/255, blue: 76.0/255, alpha: 1.0)
+        self.imageView?.layer.borderColor = darkGreenColor.CGColor
+        self.imageView?.layer.borderWidth = 8.0
+        self.imageView?.layer.cornerRadius = 5
+        self.imageView?.clipsToBounds = true
+        self.imageView?.layer.masksToBounds = true
+
+
         
 
 

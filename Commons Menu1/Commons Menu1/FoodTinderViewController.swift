@@ -41,6 +41,7 @@ protocol FoodTinderViewCellDelegate {
 class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate {
     
     @IBOutlet weak var foodTinderTableView: UITableView!
+    @IBOutlet var foodTinderView: UIView!
     
     var menuLoad : [Dish]?
     var menu = [Dish]()
@@ -64,7 +65,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         foodTinderTableView.rowHeight = screenSize.height;
-        foodTinderTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        foodTinderTableView.backgroundColor = UIColor.clearColor()
+        foodTinderView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        foodTinderTableView.layer.cornerRadius = 5
+
+
 
         //self.createMenu()
         
@@ -182,7 +187,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.imageView?.image = dish.image
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-            //cell.imageView?.clipsToBounds = true
+
 
             return cell
     }
