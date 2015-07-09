@@ -166,13 +166,20 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func toDoItemDeleted(dish: Dish){
         edited = true
-        //Finds index of swiped dish and removes it from the array
-        var index = find(preferences[dish.location!]!, dish)
-        preferences[dish.location!]!.removeAtIndex(index!)
         // use the UITableView to animate the removal of this row
+        var index = find(preferences[dish.location]!, dish)
+        preferences[dish.location]!.removeAtIndex(index!)
         preferenceListTableView.beginUpdates()
-        let indexPathForRow = NSIndexPath(forRow: index!, inSection: find(keys, dish.location!)!)
+        //Finds index of swiped dish and removes it from the array
+        let indexPathForRow = NSIndexPath(forRow: index!, inSection: find(keys, dish.location)!)
         preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        if preferences[dish.location]!.isEmpty {
+            preferences.removeValueForKey(dish.location)
+            var indexSet = NSIndexSet(index: find(keys, dish.location)!)
+            preferenceListTableView.deleteSections(indexSet, withRowAnimation: .Fade)
+            keys = preferences.keys.array
+            keys.sort({$0 < $1})
+        }
         preferenceListTableView.endUpdates()
     }
     
@@ -246,8 +253,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if segue.identifier == "preferenceInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(preferences[selectedMeal.location!]!, selectedMeal) {
-                mealInfoViewController.dish = preferences[selectedMeal.location!]![index]
+            if let index = find(preferences[selectedMeal.location]!, selectedMeal) {
+                mealInfoViewController.dish = preferences[selectedMeal.location]![index]
             }
         }
     }

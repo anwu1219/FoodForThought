@@ -28,7 +28,7 @@ class Dish: NSObject {
     // a Boolean value that determines whether the user liked the dish %anwu
     var like: Bool = false
     var dislike: Bool = false
-    var location: String?
+    var location = String()
     var type = String()
 
     
