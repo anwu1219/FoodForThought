@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController {
     var restauranten = [RestProfile: [Dish]]()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     let styles = Styles()
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var restMenuButton: UIButton!
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
@@ -47,28 +48,27 @@ class MainMenuViewController: UIViewController {
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
-
-        /* Not working right now..
+        
         restMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        restMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
-        restMenuButton.layer.shadowRadius = 5
+        restMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
+        restMenuButton.layer.shadowRadius = 10
         restMenuButton.layer.shadowOpacity = 1.0
         
         foodTinderMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        foodTinderMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
+        foodTinderMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
         foodTinderMenuButton.layer.shadowRadius = 5
         foodTinderMenuButton.layer.shadowOpacity = 1.0
 
         myPrefMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        myPrefMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
+        myPrefMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
         myPrefMenuButton.layer.shadowRadius = 5
         myPrefMenuButton.layer.shadowOpacity = 1.0
 
         sustInfoMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        sustInfoMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
+        sustInfoMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
         sustInfoMenuButton.layer.shadowRadius = 5
         sustInfoMenuButton.layer.shadowOpacity = 1.0
-        */
+
 
         food4ThoughtLabel.layer.shadowColor = UIColor.blackColor().CGColor
         food4ThoughtLabel.layer.shadowOffset = CGSizeMake(5, 5)

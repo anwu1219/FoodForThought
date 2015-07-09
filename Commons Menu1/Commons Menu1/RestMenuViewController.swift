@@ -76,6 +76,7 @@ class RestMenuViewController: UIViewController {
             //Sets the content of the buttons
             button.setTitle(keys[i].name, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             //button.titleLabel?.textColor = UIColor.whiteColor()
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)

@@ -65,8 +65,18 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         //foodTinderTableView.backgroundView = styles.backgroundImage
         //tableView.backgroundView?.contentMode = .ScaleAspectFill
         foodTinderTableView.rowHeight = screenSize.height;
+        
+        
         foodTinderTableView.backgroundColor = UIColor.clearColor()
-        foodTinderView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        //foodTinderView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "DishLevelPagebackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
         foodTinderTableView.layer.cornerRadius = 5
 
 

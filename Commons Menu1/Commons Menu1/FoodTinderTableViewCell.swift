@@ -26,8 +26,6 @@ class FoodTinderTableViewCell: UITableViewCell {
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var chefNoteLabel: UILabel
     var susLabels: UIScrollView
-    
-    //let boarder: UIView
     //var ecoLabel: UILabel
 
     // The object that acts as delegate for this cell
@@ -63,9 +61,6 @@ class FoodTinderTableViewCell: UITableViewCell {
         chefNoteLabel.backgroundColor = UIColor.clearColor()
         
         susLabels = UIScrollView(frame: CGRect.nullRect)
-        
-        //boarder = UIView(frame: CGRect.nullRect)
-        
         
         
         /**
@@ -139,19 +134,16 @@ class FoodTinderTableViewCell: UITableViewCell {
         label.frame = CGRect(x: (screenWidth*0.06), y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         label.textAlignment = NSTextAlignment.Center
+        label.textColor = UIColor.whiteColor()
 
         chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 85,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
+        chefNoteLabel.textColor = UIColor.whiteColor()
         chefNoteLabel.textAlignment = NSTextAlignment.Center
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         chefNoteLabel.numberOfLines = 0
-        
-       //boarder.frame = CGRectMake(screenWidth*0.15, screenHeight*0.0, screenWidth*0.7, screenHeight * 0.31)
-       //boarder.bounds = CGRectMake(screenWidth*0.25, 10.5, screenWidth*0.7, screenHeight * 0.4)
-        //boarder.backgroundColor = UIColor.greenColor()
-        //self.sendSubviewToBack(boarder)
-        
+
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
@@ -159,18 +151,13 @@ class FoodTinderTableViewCell: UITableViewCell {
         
         self.imageView?.bounds = CGRectMake(0, 0, screenWidth - 20, screenHeight * 0.5 - 20)
         self.imageView?.frame = CGRect(x: 0, y: 0, width: screenWidth - 20, height: screenHeight * 0.5 - 20)
-        //self.imageView?.backgroundColor = UIColor.greenColor()
         self.imageView?.contentMode = .ScaleToFill
-        let darkGreenColor = UIColor(red: 22.0/255, green: 104.0/255, blue: 76.0/255, alpha: 1.0)
-        self.imageView?.layer.borderColor = darkGreenColor.CGColor
+        let darkBlueColor = UIColor(red: 0.0/255, green: 7.0/255, blue: 72.0/255, alpha: 0.75)
+        self.imageView?.layer.borderColor = darkBlueColor.CGColor
         self.imageView?.layer.borderWidth = 8.0
-        self.imageView?.layer.cornerRadius = 5
+        //self.imageView?.layer.cornerRadius = 5
         self.imageView?.clipsToBounds = true
         self.imageView?.layer.masksToBounds = true
-
-
-        
-
 
     }
     
