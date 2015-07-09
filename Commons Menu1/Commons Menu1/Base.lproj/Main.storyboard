@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -86,17 +86,17 @@
                                 <exclude reference="efo-XS-UQq"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ZHQ-AW-r2f"/>
+                                <exclude reference="ZSu-OA-z5m"/>
+                                <exclude reference="Je9-oV-oMl"/>
+                                <exclude reference="sk7-Fg-tMm"/>
                                 <exclude reference="3LY-3z-aOd"/>
                                 <exclude reference="UGH-wQ-O4d"/>
                                 <exclude reference="flx-3x-djU"/>
                                 <exclude reference="mpd-4g-UA7"/>
-                                <exclude reference="Je9-oV-oMl"/>
-                                <exclude reference="sk7-Fg-tMm"/>
-                                <exclude reference="ZHQ-AW-r2f"/>
-                                <exclude reference="ZSu-OA-z5m"/>
+                                <exclude reference="dci-Ua-bwe"/>
                                 <exclude reference="apg-AI-gel"/>
                                 <exclude reference="dvg-pR-sPl"/>
-                                <exclude reference="dci-Ua-bwe"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -106,6 +106,10 @@
                                 <include reference="efo-XS-UQq"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ZHQ-AW-r2f"/>
+                                <include reference="ZSu-OA-z5m"/>
+                                <include reference="Je9-oV-oMl"/>
+                                <include reference="sk7-Fg-tMm"/>
                                 <include reference="3LY-3z-aOd"/>
                                 <exclude reference="8ha-nd-MKl"/>
                                 <exclude reference="BY7-Ka-eCA"/>
@@ -115,14 +119,10 @@
                                 <include reference="flx-3x-djU"/>
                                 <include reference="mpd-4g-UA7"/>
                                 <exclude reference="vaJ-2x-iWC"/>
-                                <include reference="Je9-oV-oMl"/>
-                                <include reference="sk7-Fg-tMm"/>
-                                <include reference="ZHQ-AW-r2f"/>
-                                <include reference="ZSu-OA-z5m"/>
-                                <include reference="apg-AI-gel"/>
-                                <include reference="dvg-pR-sPl"/>
                                 <exclude reference="G89-0o-an7"/>
                                 <include reference="dci-Ua-bwe"/>
+                                <include reference="apg-AI-gel"/>
+                                <include reference="dvg-pR-sPl"/>
                             </mask>
                         </variation>
                     </view>
@@ -602,7 +602,7 @@
                                     <constraint firstAttribute="height" constant="21" id="UVZ-nd-Qh6"/>
                                     <constraint firstAttribute="width" constant="288" id="xh9-Z4-wk1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
