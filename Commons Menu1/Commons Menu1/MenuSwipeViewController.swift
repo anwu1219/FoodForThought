@@ -79,7 +79,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundColor = UIColor.blackColor()
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 80;
+        tableView.rowHeight = 100;
         if let menuLoad = menuLoad {
             self.makeMenu(menuLoad)
         }

@@ -16,11 +16,13 @@ Class that shows all the preferences of the current user
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
     
     
+    @IBOutlet weak var myPreferenceLabel: UILabel!
     @IBOutlet var preferenceListView: UIView!
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences = [String: [Dish]]()
     var restaurants : [String: [Dish]]!
     var keys = [String]()
+    var headerText = UILabel()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let saveAlert = UIAlertController(title: "Sync your preference?",
         message: "",
@@ -46,13 +48,21 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
+        myPreferenceLabel.layer.shadowRadius = 5
+        myPreferenceLabel.layer.shadowOpacity = 1.0
         
-        preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        preferenceListTableView.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
+        preferenceListTableView.layer.borderWidth = 2.0
+        
+    //    preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.rowHeight = 100;
+        preferenceListTableView.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
         self.addToPreferences()
         keys = preferences.keys.array
         keys.sort({$0 < $1})
@@ -167,6 +177,15 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         return keys[section]
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100))
+        headerText = UILabel(frame: CGRect.nullRect)
+        headerText.text = keys[section]
+        headerText.textColor = UIColor.whiteColor()
+        headerText.font = UIFont.boldSystemFontOfSize(16)        
+        headerView.backgroundColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
+        return headerView
+    }
     
     //MARK: - Table view cell delegate
     /**
