@@ -19,11 +19,20 @@ struct Label {
         "label5": UIImage(named: "sloth")
         ]
     let restLabels = [
-        "label1": UIImage(named:"sloth"),
-        "label2": UIImage(named: "sloth"),
-        "label3": UIImage(named: "sloth"),
-        "label4": UIImage(named: "sloth"),
-        "label5": UIImage(named: "sloth")
+        "FD": UIImage(named:"FD"),
+        "MD": UIImage(named: "MD"),
+        "AI": UIImage(named: "FD"),
+        "FS": UIImage(named: "MD"),
+        "VO": UIImage(named: "VO"),
+        "CA": UIImage(named: "CA"),
+        "C": UIImage(named:"C"),
+        "R": UIImage(named: "R"),
+        "L": UIImage(named: "L"),
+        "ES": UIImage(named: "L"),
+        "EC": UIImage(named: "C"),
+        "98": UIImage(named: "sloth"),
+        "LB": UIImage(named: "sloth"),
+        "LW": UIImage(named: "sloth")
         ]
     let nutLabels = [
         "CE": UIImage(named: "CE"),
