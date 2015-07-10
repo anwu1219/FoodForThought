@@ -45,7 +45,6 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
         restWeekendHoursLabel.text = restProf!.weekendHours
         restPhoneNumLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
-
     }
 
     override func didReceiveMemoryWarning() {

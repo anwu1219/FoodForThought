@@ -339,7 +339,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    
     func dealtWith(location: String, name: String) -> Bool {
         var key : RestProfile
         for restaurant: RestProfile in dishes.dishes.keys{
@@ -356,7 +355,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
         return false
     }
-    
     
     
     /**
