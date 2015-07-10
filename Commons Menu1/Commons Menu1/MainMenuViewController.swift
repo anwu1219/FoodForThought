@@ -111,7 +111,6 @@ class MainMenuViewController: UIViewController {
 
         self.fetchPreferenceData()
         self.fetchDislikeData()
-        //self.refreshMenu()
     }
     
  
@@ -126,17 +125,9 @@ class MainMenuViewController: UIViewController {
             PFUser.logOut()
             println("Logged out")
             signUpViewControllerDelegate?.clearTextField()
-        }
-    }
-    
-    
-    /**
-    Sets the states of dishes to default when relog in
-    */
-    func refreshMenu(){
-        for dish: Dish in menu{
-            dish.like = false
-            dish.dislike = false
+            for restaurant : RestProfile in dishes.dishes.keys {
+                dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+            }//needs update to cache
         }
     }
     

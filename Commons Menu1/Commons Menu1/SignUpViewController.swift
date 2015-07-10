@@ -95,6 +95,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
             }
         }
+        for restaurant : RestProfile in dishes.dishes.keys {
+            dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+        }//needs update to cache
+
     }
     
     
