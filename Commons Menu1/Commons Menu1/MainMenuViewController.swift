@@ -16,8 +16,8 @@ Welcome page view controller and search type for user
 class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
+    var dishes: Dishes!
     var restaurants : [String: [Dish]]!
-    var restauranto : [RestProfile]!
     var preferences : [String: [String]]!
     var dislikes : [String : [String]]!
     var restauranten = [RestProfile: [Dish]]()

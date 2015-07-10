@@ -15,12 +15,12 @@ protocol SignUpViewControllerDelegate {
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
-    var menuPFObjects = [PFObject]()
     var menu = [Dish]()
     var restaurants = [String: [Dish]]()
     var preferences = [String: [String]]()
     var dislikes = [String: [String]]()
-    var restauranto = [RestProfile]()
+    //var restauranto = [RestProfile]()
+    var dishes = Dishes()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -264,7 +264,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             if error == nil && objects != nil{
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
                         if let name = object["name"] as? String {
                             if let userImageFile = object["image"] as? PFFile{
                                 userImageFile.getDataInBackgroundWithBlock {
@@ -317,7 +316,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             if error == nil && objects != nil{
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
                         if let name = object["name"] as? String {
                             if let userImageFile = object["image"] as? PFFile{
                                 userImageFile.getDataInBackgroundWithBlock {
@@ -330,7 +328,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                     if let susDescript = object["susDescription"] as? [String]{
                                                         if let label = object["labelDescription"] as? [[String]]{
                                                             let restaurant =    RestProfile(name: name, image: image, restDescript: susDescript, address: address, weekdayHours: hours, weekendHours: hours, phoneNumber: phoneNumber, label: label)
-                                                            self.addToRestauranto(restaurant)
+                                                            //self.addToRestauranto(restaurant)
+                                                            self.dishes.addRestaurant(restaurant)
                                                         }
                                                     }
                                                 }
@@ -350,9 +349,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     
-    func addToRestauranto(restaurant: RestProfile){
-        restauranto.append(restaurant)
-    }
+//    func addToRestauranto(restaurant: RestProfile){
+//        restauranto.append(restaurant)
+//    }
     
     
     func fetchPreferenceData(){
@@ -487,7 +486,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             mainMenuViewController.restaurants = restaurants
             mainMenuViewController.preferences = preferences
             mainMenuViewController.dislikes = dislikes
-            mainMenuViewController.restauranto = restauranto
+            mainMenuViewController.dishes = dishes
+            //mainMenuViewController.restauranto = restauranto
         }
     }
 }
