@@ -63,7 +63,7 @@ class preferenceListTableViewCell: UITableViewCell {
         self.imageView?.layer.borderWidth = 2.0
         self.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
         self.layer.borderWidth = 1.0
-        self.backgroundColor = UIColor(red: 197.0/255, green: 174.0/255, blue: 151.0/255, alpha: 0.75)
+        self.backgroundColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
         let kLabelLeftMargin: CGFloat = 36 * width
         label.frame = CGRect(x: kLabelLeftMargin, y: 0, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         self.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)

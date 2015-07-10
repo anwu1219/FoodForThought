@@ -40,6 +40,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
         
+        //sets background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "blurrypreferencepicture")
@@ -165,7 +166,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
 
         }
         return cell
-            
     }
     
     
@@ -177,10 +177,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let headerViewLabel = UILabel()
         headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
-        headerViewLabel.backgroundColor = UIColor(red: 215/255.0, green: 203/255.0, blue: 188/255.0, alpha: 1)
+        headerViewLabel.backgroundColor = UIColor(red: 166/255.0, green: 149/255.0, blue: 135/255.0, alpha: 1)
         headerViewLabel.text = keys[section]
         headerViewLabel.textAlignment = .Center
         headerViewLabel.textColor = UIColor.whiteColor()

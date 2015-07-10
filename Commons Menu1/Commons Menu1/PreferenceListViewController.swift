@@ -26,8 +26,16 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
-        preferenceListTableView.backgroundColor = UIColor.blackColor()
+        preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.rowHeight = 100;
+        
+        //set background image
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "blurrypreferencepicture")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
     }
     
     

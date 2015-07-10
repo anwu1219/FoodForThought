@@ -67,16 +67,23 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
         
+        //sets backgroundimage
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "forkmenubackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
-        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+       // tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
 
         self.automaticallyAdjustsScrollViewInsets = false;
 
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.clearColor()
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
