@@ -48,10 +48,10 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-        myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        myPreferenceLabel.layer.shadowRadius = 5
-        myPreferenceLabel.layer.shadowOpacity = 1.0
+//        myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
+//        myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
+//        myPreferenceLabel.layer.shadowRadius = 5
+//        myPreferenceLabel.layer.shadowOpacity = 1.0
         
         preferenceListTableView.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
