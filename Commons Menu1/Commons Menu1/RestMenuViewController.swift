@@ -110,24 +110,21 @@ class RestMenuViewController: UIViewController {
     */
     func toMenu(sender: UIButton!) {
         if let restaurants = restaurants {
-            let button = sender as! UIButton
-            if let title = button.titleLabel?.text {
+            if let title = sender!.titleLabel?.text {
                 for restaurant : RestProfile in restaurants.keys{
-                    if loaded[find(keys, restaurant)!] == false {
-                        if restaurant.name == title{
+                    if restaurant.name == title{
+                        if loaded[find(keys, restaurant)!] == false {
                             self.addDishWithLocation(restaurant.name)
                             loaded[find(keys, restaurant)!] = true
                             presentViewController(loadingAlert, animated: true, completion: nil)
                             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
                             dispatch_after(delayTime, dispatch_get_main_queue()){
-                            self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-                            }
                             self.loadingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            
+                                self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
                             })
                         }
-                    } else {
-                         self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
+                    }
+                    self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
                     }
                 }
             }
@@ -147,33 +144,25 @@ class RestMenuViewController: UIViewController {
                         if let name = object["name"] as? String {
                             if let location = object["location"] as? String{
                                 if self.hasBeenAdded(name, location: location) {
-                                        if let userImageFile = object["image"] as? PFFile{
-                                                userImageFile.getDataInBackgroundWithBlock {
-                                                        (imageData: NSData?, error: NSError?) ->Void in
-                                                        if error == nil {
-                                                                if let data = imageData{                                                        if let image = UIImage(data: data){
-                                                                        if let ingredients = object["ingredients"] as? [String]{
-                                                                                if let labels = object["labels"] as? [[String]]{
-                                                                                        if let type = object["type"] as? String{
-                                                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels)
-                                                            
-                                                                                                self.dishes.addDish(location, dish: dish)
-                                                                                        }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }else {
-                                if let location = object["location"] as? String{
                                     if let ingredients = object["ingredients"] as? [String]{
                                         if let labels = object["labels"] as? [[String]]{
                                             if let type = object["type"] as? String{
-                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels)
-                                                self.dishes.addDish(location, dish: dish)
+                                                if let index = object["index"] as? Int{
+                                                    if let userImageFile = object["image"] as? PFFile{
+                                                        userImageFile.getDataInBackgroundWithBlock {
+                                                            (imageData: NSData?, error: NSError?) ->Void in
+                                                            if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                                self.dishes.addDish(location, dish: dish)
+                                                                }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else{
+                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                        self.dishes.addDish(location, dish: dish)
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -185,6 +174,7 @@ class RestMenuViewController: UIViewController {
             }
         }
     }
+
     
     
     
