@@ -40,6 +40,7 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         restScrollView.contentSize.width = screenSize.width
         restScrollView.contentSize.height = 600
+        restScrollView.backgroundColor = UIColor.whiteColor()
         
         restWeekdayHoursLabel.text = restProf!.weekdayHours
         restWeekendHoursLabel.text = restProf!.weekendHours

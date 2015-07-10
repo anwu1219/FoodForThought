@@ -44,7 +44,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var restAddressLabel: UILabel!
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
-   
+       
+    
     var menu = [String : [Dish]]()
     var dishes : Dishes!
     let styles = Styles()
@@ -63,22 +64,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restImageButton.setImage(restProf.image, forState: .Normal)
         restWeekdayOpenHoursLabel.text = restProf!.weekdayHours
         restWeekendOpenHoursLabel.text = restProf!.weekendHours
+        restWeekdayOpenHoursLabel.numberOfLines = 2
+        restWeekendOpenHoursLabel.numberOfLines = 2
+        
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
         
-        //sets backgroundimage
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "forkmenubackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
        // tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        tableView.layer.borderWidth = 2
+        tableView.layer.borderColor = UIColor.blackColor().CGColor
 
         self.automaticallyAdjustsScrollViewInsets = false;
 
@@ -185,6 +184,26 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return types[section]
     }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerViewLabel = UILabel()
+        headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
+        headerViewLabel.backgroundColor = UIColor(red: 122/255.0, green: 118/255.0, blue: 162/255.0, alpha: 1)
+        
+        headerViewLabel.text = types[section]
+        headerViewLabel.textAlignment = .Center
+        headerViewLabel.textColor = UIColor.whiteColor()
+        headerViewLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        headerViewLabel.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
+        headerViewLabel.layer.borderWidth = 1.0
+        
+        return headerViewLabel
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
     
     
     /**
