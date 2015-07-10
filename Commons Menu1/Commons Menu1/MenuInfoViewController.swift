@@ -29,7 +29,6 @@ class MealInfoViewController: UIViewController {
         
         dishName.title = dish?.name
         dishImage.image = dish?.image
-        dish?.price = 8.54
         scrollInfo.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)
         var scrollViewHeight = 350
         if let ingredient = dish?.ingredients{
@@ -63,23 +62,31 @@ class MealInfoViewController: UIViewController {
                 y += 20 * height
                 
                 var labelPics = UIScrollView()
-                labelPics.frame = title.frame
+                var labelWidth = 18*height
+                var labelHeight = 18*height
+                var labelSpace = 2*width
+                labelPics.frame = CGRectMake(x, y, title.frame.width, title.frame.height)
+                labelPics.contentSize = CGSizeMake(CGFloat(susLabels.count)*(labelWidth+labelSpace)+labelSpace, labelHeight)
+                labelPics.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
                 
-                /*
-                Dynamically resize the scroll view to center itself on the page
-                    - determine the number of labels to be placed in view
-                    - set content size == (numlabels*size) + (numlabels - 1) * spacing
-                    - if content size is lower than the outer view width, place the beginning of the scrollview half the difference between the content size and the outer view width
-                    - else make frame equal to the outer width size
-                */
-//                var scrollLabels = UIScrollView()
-//                var imageX =
-//                for label in susLabels {
-//                    
-//                }
+                var initX = x
+                if labelPics.contentSize.width < labelPics.frame.width {
+                    initX = (labelPics.frame.width/2) - (labelPics.contentSize.width/2)
+                }
+                
+                for var i = 0; i < susLabels.count; i++ {
+                    println(initX)
+                    var labelImage = UIImageView()
+                    labelImage.frame = CGRectMake(initX, height, labelWidth, labelWidth)
+                    labelImage.image = UIImage(named: "C")
+                    labelImage.contentMode = .ScaleToFill
+                    labelPics.addSubview(labelImage)
+                    initX += labelSpace + labelWidth
+                }
+                
+                scrollInfo.addSubview(labelPics)
+                y += 20 * height
             }
-            
-            
         }
         
         if let location = dish?.location {
