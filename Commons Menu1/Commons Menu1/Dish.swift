@@ -16,7 +16,7 @@ class Dish: NSObject {
     var name: String
     var ingredients: [String]?
     var labels : [[String]]?
-    var image: UIImage?
+    var image: UIImage? = UIImage(named: "sloth")
     // for off-campus dining service
     var allergens: [String]?
     // food source, and other sustainability info
@@ -50,6 +50,17 @@ class Dish: NSObject {
         self.ingredients = ingredients
         self.labels = labels
     }
+    
+    
+    
+    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]]){
+        self.name = name
+        self.location = location
+        self.type = type
+        self.ingredients = ingredients
+        self.labels = labels
+    }
+    
     
     init(name: String, image: UIImage, like: Bool, location: String) {
         self.name = name

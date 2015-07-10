@@ -37,9 +37,9 @@ class preferenceListTableViewCell: UITableViewCell {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont.boldSystemFontOfSize(16)
-      //  let lightbrownColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
-      //  label.backgroundColor = lightbrownColor
+        //label.font = UIFont.boldSystemFontOfSize(20)
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 20.0)
+        
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -54,25 +54,20 @@ class preferenceListTableViewCell: UITableViewCell {
         addGestureRecognizer(panRecognizer)
     }
     
-    
     override func layoutSubviews() {
         var width = 0.01 * bounds.size.width
         var height = 0.01 * bounds.size.height
         super.layoutSubviews()
-        self.imageView?.frame = CGRect(x: 5 * width, y: 2 * width, width: 25 * width, height: 75 * height)
+        self.imageView?.frame = CGRect(x: 5 * width, y: 3 * width, width: 25 * width, height: 75 * height)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 2.0
+        self.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
+        self.layer.borderWidth = 1.0
         self.backgroundColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
         let kLabelLeftMargin: CGFloat = 36 * width
-        label.frame = CGRect(x: kLabelLeftMargin, y: 0,
-            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
-        
+        label.frame = CGRect(x: kLabelLeftMargin, y: 0, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         self.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
-
-        //self.backgroundColor = UIColor
     }
-    
-    
 
     func handleTap(recognizer: UITapGestureRecognizer) {
         if recognizer.state == .Ended {

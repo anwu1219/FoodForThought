@@ -16,11 +16,7 @@ Welcome page view controller and search type for user
 class MainMenuViewController: UIViewController {
     
     var menu : [Dish]!
-    var restaurants : [String: [Dish]]!
-    var restauranto : [RestProfile]!
-    var preferences : [String: [String]]!
-    var dislikes : [String : [String]]!
-    var restauranten = [RestProfile: [Dish]]()
+    var dishes: Dishes!
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     let styles = Styles()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -58,26 +54,41 @@ class MainMenuViewController: UIViewController {
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
         
-        restMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        restMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
-        restMenuButton.layer.shadowRadius = 10
+        restMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
+        restMenuButton.layer.shadowRadius = 5
         restMenuButton.layer.shadowOpacity = 1.0
         
-        foodTinderMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        foodTinderMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
+        foodTinderMenuButton.layer.shadowOffset = CGSizeMake(4, 4)
         foodTinderMenuButton.layer.shadowRadius = 5
         foodTinderMenuButton.layer.shadowOpacity = 1.0
-
-        myPrefMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        myPrefMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
+        
+        myPrefMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
         myPrefMenuButton.layer.shadowRadius = 5
         myPrefMenuButton.layer.shadowOpacity = 1.0
-
-        sustInfoMenuButton.setTitleShadowColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        sustInfoMenuButton.titleLabel?.shadowOffset = CGSizeMake(5, 5)
+        
+        sustInfoMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
         sustInfoMenuButton.layer.shadowRadius = 5
         sustInfoMenuButton.layer.shadowOpacity = 1.0
-
+        
+        restMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        restMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        restMenuButton.titleLabel?.layer.shadowRadius = 2
+        restMenuButton.titleLabel?.layer.shadowOpacity = 1.0
+        
+        foodTinderMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        foodTinderMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        foodTinderMenuButton.titleLabel?.layer.shadowRadius = 2
+        foodTinderMenuButton.titleLabel?.layer.shadowOpacity = 1.0
+        
+        myPrefMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        myPrefMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        myPrefMenuButton.titleLabel?.layer.shadowRadius = 2
+        myPrefMenuButton.titleLabel?.layer.shadowOpacity = 1.0
+        
+        sustInfoMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        sustInfoMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        sustInfoMenuButton.titleLabel?.layer.shadowRadius = 2
+        sustInfoMenuButton.titleLabel?.layer.shadowOpacity = 1.0
 
         food4ThoughtLabel.layer.shadowColor = UIColor.blackColor().CGColor
         food4ThoughtLabel.layer.shadowOffset = CGSizeMake(5, 5)
@@ -100,10 +111,7 @@ class MainMenuViewController: UIViewController {
 
         self.fetchPreferenceData()
         self.fetchDislikeData()
-        self.applyPreferences()
-        self.applyDislikes()
-        self.refreshMenu()
-        self.makeRestauranten()
+        //self.refreshMenu()
     }
     
  
@@ -133,48 +141,6 @@ class MainMenuViewController: UIViewController {
     }
     
     
-    /**
-    Sets the like attribute to true for each dish object in preferences
-    */
-    func applyPreferences(){
-        for key in preferences.keys{
-            for dishName: String in preferences[key]!{
-                for dish in restaurants[key]!{
-                    if dish.name == dishName {
-                        dish.like = true
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    /**
-    Sets the dislike attribute to true for each dish object in dislikes
-    */
-    func applyDislikes(){
-        for key in dislikes.keys{
-            for dishName: String in dislikes[key]!{
-                for dish in restaurants[key]!{
-                    if dish.name == dishName{
-                        dish.dislike = true
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    /**
-    Creates a map of RestProfile to its Dishes
-    */
-    func makeRestauranten() {
-        for restaurant: RestProfile in restauranto{
-            restauranten[restaurant] = restaurants[restaurant.name]
-        }
-    }
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -197,7 +163,7 @@ class MainMenuViewController: UIViewController {
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dishName = pFObject["dishName"] as? String{
-                                        self.addToPreferenceList(restaurant, dishName: dishName)
+                                        self.addDishWithName(restaurant, name: dishName, like: true, dislike: false)
                                     }
                                 }
                             }
@@ -209,13 +175,52 @@ class MainMenuViewController: UIViewController {
     }
     
     
-    /**
-    Sets the like attribute of a dish object to true
-    */
-    func addToPreferenceList(restaurant: String, dishName: String){
-        for dish: Dish in restaurants[restaurant]!{
-            if dish.name == dishName {
-                dish.like = true
+    func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
+        var query = PFQuery(className:"dishInfo")
+        query.whereKey("name", equalTo: name)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil && objects != nil{
+                if let objectsArray = objects{
+                    for object: AnyObject in objectsArray{
+                        if let name = object["name"] as? String {
+                            if let userImageFile = object["image"] as? PFFile{
+                                userImageFile.getDataInBackgroundWithBlock {
+                                    (imageData: NSData?, error: NSError?) ->Void in
+                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                                        if let location = object["location"] as? String{
+                                            if let ingredients = object["ingredients"] as? [String]{
+                                                if let labels = object["labels"] as? [[String]]{
+                                                    if let type = object["type"] as? String{
+                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels)
+                                                        dish.like = like
+                                                        dish.dislike = dislike
+                                                        self.dishes.addDish(location, dish: dish)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                            if let location = object["location"] as? String{
+                                if let ingredients = object["ingredients"] as? [String]{
+                                    if let labels = object["labels"] as? [[String]]{
+                                        if let type = object["type"] as? String{
+                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels)
+                                            dish.like = like
+                                            dish.dislike = dislike
+                                            self.dishes.addDish(location, dish: dish)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -227,7 +232,7 @@ class MainMenuViewController: UIViewController {
     func fetchDislikeData(){
         if let currentUser = PFUser.currentUser(){
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
+            var query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -237,52 +242,10 @@ class MainMenuViewController: UIViewController {
                             if let pFObject: PFObject = object as? PFObject{
                                 if let restaurant = pFObject["location"] as?String{
                                     if let dishName = pFObject["dishName"] as? String{
-                                        self.addToDislike(restaurant, dishName: dishName)
+                                        self.addDishWithName(restaurant, name: dishName, like: false, dislike: true)
+                                        
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    /**
-    Sets the dealWith attribute of a dish object to true
-    */
-    func addToDislike(restaurant: String, dishName: String){
-        for dish: Dish in restaurants[restaurant]!{
-            if dish.name == dishName {
-                dish.dislike = true
-            }
-        }
-    }
-    
-    
-    /**
-    Deletes the preference list class in parse
-    */
-    func deletePreferenceList(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let pFObject: PFObject = object as? PFObject{
-                                pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                    if (success) {
-                                        println("Successfully deleted")
-                                    } else {
-                                        println("Failed")
-                                    }
-                                })
-                                //pFObject.pinInBackground({})
                             }
                         }
                     }
@@ -308,18 +271,14 @@ class MainMenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "foodTinderSegue"{
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
-            menu.sort({$0.name<$1.name})
-            foodTinderViewController.menuLoad = menu
         }
         if segue.identifier == "mainToRestaurantsSegue" {
             let restMenuViewController = segue.destinationViewController as! RestMenuViewController
-            menu.sort({$0.name<$1.name})
-            restMenuViewController.restauranten = restauranten
+            restMenuViewController.dishes = dishes
         }
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
-            //self.deletePreferenceList()
-            allPreferenceListViewController.restaurants = restaurants
+            allPreferenceListViewController.dishes = dishes
         }
     }
     

@@ -54,8 +54,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
