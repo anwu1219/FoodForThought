@@ -20,7 +20,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     @IBOutlet var preferenceListView: UIView!
     @IBOutlet weak var preferenceListTableView: UITableView!
     var preferences = [String: [Dish]]()
-    var restaurants : [String: [Dish]]!
+    var dishes : Dishes!
     var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let saveAlert = UIAlertController(title: "Sync your preference?",
@@ -78,6 +78,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             handler: { alertController in self.uploadPreferences()}
             )
         )
+        println(dishes.dishes)
 
     }
     
@@ -110,13 +111,13 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     Add liked dishes to preferences
     */
     func addToPreferences(){
-        for key in restaurants.keys.array {
-            if !contains(preferences.keys.array, key){
-                preferences[key] = [Dish]()
+        for key in dishes.dishes.keys {
+            if !contains(preferences.keys.array, key.name){
+                preferences[key.name] = [Dish]()
             }
-            for dish: Dish in restaurants[key]!{
+            for dish: Dish in dishes.dishes[key]!{
                 if dish.like {
-                    preferences[key]?.append(dish)
+                    preferences[key.name]?.append(dish)
                 }
             }
         }
