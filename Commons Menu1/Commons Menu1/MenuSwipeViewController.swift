@@ -46,8 +46,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
    
-    var menuLoad : [Dish]?
     var menu = [String : [Dish]]()
+    var dishes : Dishes!
     let styles = Styles()
     var disLikes = [Dish]()
     var types = [String]()
@@ -87,8 +87,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 100;
-        if let menuLoad = menuLoad {
-            self.makeMenu(menuLoad)
+        if let dishes = dishes {
+            self.makeMenu(dishes.dishes[restProf]!)
         }
         types = menu.keys.array
         types.sort({$0 < $1})
