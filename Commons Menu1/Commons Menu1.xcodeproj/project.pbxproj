@@ -26,6 +26,7 @@
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3CD7F541B4F280D0051AFF4 /* Dishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F531B4F280D0051AFF4 /* Dishes.swift */; };
+		F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F551B5063950051AFF4 /* Reachability.swift */; };
 		F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */; };
 		F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */; };
 		F3EBAF961B3B29C500BFFD93 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAF951B3B29C500BFFD93 /* Parse.framework */; };
@@ -82,6 +83,7 @@
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3CD7F531B4F280D0051AFF4 /* Dishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
+		F3CD7F551B5063950051AFF4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = preferenceListTableViewCell.swift; sourceTree = "<group>"; };
 		F3E7070F1B3460850072E442 /* PreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListViewController.swift; sourceTree = "<group>"; };
 		F3EBAF951B3B29C500BFFD93 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				4028413B1B505BD400A9972D /* RestaurantProfileTableViewCell.swift */,
 				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
+				F3CD7F551B5063950051AFF4 /* Reachability.swift */,
 				F3E529111B399F860081FFDC /* preferenceListTableViewCell.swift */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
@@ -357,6 +360,7 @@
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
+				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				F3E529121B399F860081FFDC /* preferenceListTableViewCell.swift in Sources */,
 				F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */,

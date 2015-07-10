@@ -60,6 +60,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Formats the labels in the view controller
         restImageButton.setImage(restProf.image, forState: .Normal)
         restWeekdayOpenHoursLabel.text = restProf!.weekdayHours
@@ -93,6 +94,91 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         for type: String in types {
             menu[type]!.sort({$0.name < $1.name})
         }
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+        if Reachability.isConnectedToNetwork() == true {
+            self.refresh(refreshControl)
+        }
+    }
+    
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        if Reachability.isConnectedToNetwork() == true {
+            self.addDishWithLocation(restProf.name)
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                self.tableView.reloadData()
+                refreshControl.endRefreshing()
+            }
+        } else {
+             let alert = UIAlertController(title: "Internet Connection Required", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                alert.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+                })
+            }
+        }
+    }
+
+
+    func addDishWithLocation(location: String){
+        var query = PFQuery(className:"dishInfo")
+        query.whereKey("location", equalTo: location)
+        query.findObjectsInBackgroundWithBlock{
+            (objects: [AnyObject]?, error: NSError?) -> Void in
+            if error == nil && objects != nil{
+                if let objectsArray = objects{
+                    for object: AnyObject in objectsArray{
+                        if let name = object["name"] as? String {
+                            if let location = object["location"] as? String{
+                                if self.hasBeenAdded(name, location: location) {
+                                    if let ingredients = object["ingredients"] as? [String]{
+                                        if let labels = object["labels"] as? [[String]]{
+                                            if let type = object["type"] as? String{
+                                                if let index = object["index"] as? Int{
+                                                    if let userImageFile = object["image"] as? PFFile{
+                                                        userImageFile.getDataInBackgroundWithBlock {
+                                                            (imageData: NSData?, error: NSError?) ->Void in
+                                                            if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                                self.dishes.addDish(location, dish: dish)
+                                                                }
+                                                                }
+                                                            }
+                                                        }
+                                                    } else{
+                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                        self.dishes.addDish(location, dish: dish)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func hasBeenAdded(name : String, location: String)-> Bool {
+        var rest : RestProfile? = nil
+        for restaurant: RestProfile in dishes.dishes.keys{
+            if restaurant.name == location{
+                rest = restaurant
+            }
+        }
+        for dish: Dish in dishes.dishes[rest!]!{
+            if dish.name == name {
+                return false
+            }
+        }
+        return true
     }
     
     
@@ -104,26 +190,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if parent == nil {
             if edited {
             println("This VC is 'will' be popped. i.e. the back button was pressed.")
-                if parent == nil {
-                    if edited {
-                        presentViewController(savingAlert, animated: true, completion: nil)
+                presentViewController(savingAlert, animated: true, completion: nil)
                         //println("This VC is 'will' be popped. i.e. the back button was pressed.")
                         //presentViewController(saveAlert, animated: true, completion: nil)
-                        self.uploadPreferenceList(restProf.name)
-                        self.uploadDislikes(restProf.name)
-                        let param = Double(self.menu.count) * 0.05
-                        let delay =  param * Double(NSEC_PER_SEC)
-                        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                self.uploadPreferenceList(restProf.name)
+                self.uploadDislikes(restProf.name)
+                let param = Double(self.menu.count) * 0.05
+                let delay =  param * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                         dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-                        }
                     }
                 }
             }
-        }
         self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
 
         })
-
     }
     
     

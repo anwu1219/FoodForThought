@@ -174,13 +174,6 @@ class RestMenuViewController: UIViewController {
             }
         }
     }
-
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     
     func hasBeenAdded(name : String, location: String)-> Bool {
@@ -196,6 +189,11 @@ class RestMenuViewController: UIViewController {
             }
         }
         return true
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     

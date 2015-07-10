@@ -31,7 +31,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if Reachability.isConnectedToNetwork() == false {
+            let alertController = UIAlertController(title: "No Internet Connection",
+                message: "Make sure your device is connected to the internet",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "OK",
+                style: UIAlertActionStyle.Default,
+                handler: nil))
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "wheat")
