@@ -30,6 +30,7 @@ class Dish: NSObject {
     var dislike: Bool = false
     var location = String()
     var type = String()
+    var index = 0
 
     
     init(name: String) {
@@ -42,23 +43,25 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]]){
+    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int){
         self.name = name
         self.image = image
         self.location = location
         self.type = type
         self.ingredients = ingredients
         self.labels = labels
+        self.index = index
     }
     
     
     
-    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]]){
+    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int){
         self.name = name
         self.location = location
         self.type = type
         self.ingredients = ingredients
         self.labels = labels
+        self.index = index
     }
     
     

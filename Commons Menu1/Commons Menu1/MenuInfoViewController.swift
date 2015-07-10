@@ -17,6 +17,10 @@ class MealInfoViewController: UIViewController {
     @IBOutlet weak var dishImage: UIImageView!
     @IBOutlet weak var dishName: UINavigationItem!
     @IBOutlet weak var scrollInfo: UIScrollView!
+    
+    @IBOutlet weak var susLabelView: UIScrollView!
+    @IBOutlet weak var labelsLabel: UILabel!
+    
     var dish: Dish?
     
     
@@ -47,6 +51,36 @@ class MealInfoViewController: UIViewController {
         var height: CGFloat = 0.01 * scrollInfo.bounds.height // a unit of y
         var x: CGFloat = 0.02 * scrollInfo.bounds.width // current x coordinate
         var y: CGFloat = 0.05 * scrollInfo.bounds.height // current y coordinate
+        
+        if let susLabels = dish?.labels {
+            if susLabels.count > 0 {
+                var title = UILabel()
+                title.text = "Dish Sustainability Info \(susLabels.count)"
+                title.frame = CGRectMake(x, y, 57*width, 20*height)
+                title.textAlignment = .Center
+                title.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+                scrollInfo.addSubview(title)
+                y += 20 * height
+                
+                var labelPics = UIScrollView()
+                labelPics.frame = title.frame
+                
+                /*
+                Dynamically resize the scroll view to center itself on the page
+                    - determine the number of labels to be placed in view
+                    - set content size == (numlabels*size) + (numlabels - 1) * spacing
+                    - if content size is lower than the outer view width, place the beginning of the scrollview half the difference between the content size and the outer view width
+                    - else make frame equal to the outer width size
+                */
+//                var scrollLabels = UIScrollView()
+//                var imageX =
+//                for label in susLabels {
+//                    
+//                }
+            }
+            
+            
+        }
         
         if let location = dish?.location {
             var label = UILabel()
@@ -86,9 +120,9 @@ class MealInfoViewController: UIViewController {
 
                 if let labels = dish?.labels {
                     if !labels.isEmpty{
-                        var nutLabelXPosition = ingredient.frame.size.width + width
+                        var nutLabelXPosition = 10 * height
                         for label: String in labels[i] {
-                            var nutLabel = UIImageView(frame: CGRectMake( 2 * x + nutLabelXPosition, y - 2 * height, 10 * height, 10 * height))
+                            var nutLabel = UIImageView(frame: CGRectMake( 330 - nutLabelXPosition, y - 2 * height, 10 * height, 10 * height))
                             var image = UIImage(named: label)
                             nutLabel.image = image
                             scrollInfo.addSubview(nutLabel)
