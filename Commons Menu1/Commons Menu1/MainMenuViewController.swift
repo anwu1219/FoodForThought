@@ -253,40 +253,40 @@ class MainMenuViewController: UIViewController {
         query.whereKey("index", equalTo: randomIndex)
             query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
                 if let object = object {
-                        if let name = object["name"] as? String {
-                            if let location = object["location"] as? String{
-                                if !self.dealtWith(location, name: name) {
-                                    if let ingredients = object["ingredients"] as? [String]{
-                                        if let labels = object["labels"] as? [[String]]{
-                                            if let type = object["type"] as? String{
-                                                if let index = object["index"] as? Int{
-                                                    if let userImageFile = object["image"] as? PFFile{
-                                                        userImageFile.getDataInBackgroundWithBlock {
-                                                            (imageData: NSData?, error: NSError?) ->Void in
-                                                            if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                                self.dishes.addDish(location, dish: dish)
-                                                                self.random.append(dish)
-                                                                }
-                                                                }
+                    if let name = object["name"] as? String {
+                        if let location = object["location"] as? String{
+                            if !self.dealtWith(location, name: name) {
+                                if let ingredients = object["ingredients"] as? [String]{
+                                    if let labels = object["labels"] as? [[String]]{
+                                        if let type = object["type"] as? String{
+                                            if let index = object["index"] as? Int{
+                                                if let userImageFile = object["image"] as? PFFile{
+                                                    userImageFile.getDataInBackgroundWithBlock {
+                                                        (imageData: NSData?, error: NSError?) ->Void in
+                                                        if error == nil {                              if let data = imageData{                                               if let image = UIImage(data: data){
+                                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                            self.dishes.addDish(location, dish: dish)
+                                                            self.random.append(dish)
+                                                            }
                                                             }
                                                         }
-                                                    } else{
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                        self.dishes.addDish(location, dish: dish)
-                                                        self.random.append(dish)
                                                     }
+                                                } else{
+                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                    self.dishes.addDish(location, dish: dish)
+                                                    self.random.append(dish)
                                                 }
                                             }
                                         }
                                     }
-                                } else {
-                                    i--
                                 }
+                            } else {
+                                i--
                             }
                         }
                     }
-                })
+                }
+            })
         }
     }
 
@@ -316,18 +316,9 @@ class MainMenuViewController: UIViewController {
     
     
     @IBAction func foodTinderAction(sender: AnyObject) {
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
-        self.fetchRandomDishes(numberOfDishes, number: 1)
+        for var i = 0; i < 15; i++ {
+            self.fetchRandomDishes(numberOfDishes, number: 1)
+        }
         presentViewController(preparingAlert, animated: true, completion: nil)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
