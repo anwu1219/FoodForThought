@@ -110,7 +110,7 @@ class RestMenuViewController: UIViewController {
     */
     func toMenu(sender: UIButton!) {
         if let restaurants = restaurants {
-            let button = sender as! UIButton
+            let button = sender as UIButton
             if let title = button.titleLabel?.text {
                 for restaurant : RestProfile in restaurants.keys{
                     if loaded[find(keys, restaurant)!] == false {

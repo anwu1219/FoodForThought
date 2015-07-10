@@ -37,8 +37,10 @@ class preferenceListTableViewCell: UITableViewCell {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
-        //label.font = UIFont.boldSystemFontOfSize(20)
-        label.font = UIFont(name: "HelveticaNeue-Light", size: 20.0)
+        label.textAlignment = NSTextAlignment.Left;
+        label.numberOfLines = 2
+        //label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
