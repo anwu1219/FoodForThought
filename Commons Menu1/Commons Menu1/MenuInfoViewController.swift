@@ -62,6 +62,9 @@ class MealInfoViewController: UIViewController {
                 scrollInfo.addSubview(title)
                 y += 20 * height
                 
+                var labelPics = UIScrollView()
+                labelPics.frame = title.frame
+                
                 /*
                 Dynamically resize the scroll view to center itself on the page
                     - determine the number of labels to be placed in view
