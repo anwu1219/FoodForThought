@@ -16,7 +16,6 @@ Welcome page view controller and search type for user
 class MainMenuViewController: UIViewController {
     
     var dishes: Dishes!
-    var numberOfDishes : Int!
     var random = [Dish]()
     var randomIndice = Set<Int>()
     var signUpViewControllerDelegate: SignUpViewControllerDelegate?
@@ -247,7 +246,7 @@ class MainMenuViewController: UIViewController {
     }
     
     
-    func fetchRandomDishes(numberOfDishes: Int, number: Int) -> Int{
+    func fetchRandomDishes(numberOfDishes: Int) -> Int{
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while contains(randomIndice, randomIndex){
@@ -308,12 +307,11 @@ class MainMenuViewController: UIViewController {
     @IBAction func foodTinderAction(sender: AnyObject) {
         random.removeAll(keepCapacity: false)
         for i in 1...15 {
-            self.fetchRandomDishes(self.numberOfDishes, number: 1)
+            self.fetchRandomDishes(self.dishes.numberOfDishes)
         }
         presentViewController(preparingAlert, animated: true, completion: nil)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
-            println(self.random)
             self.preparingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
                 self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
             })
@@ -329,7 +327,6 @@ class MainMenuViewController: UIViewController {
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
             foodTinderViewController.menuLoad = random
             foodTinderViewController.dishes = dishes
-            foodTinderViewController.numberOfDishes = numberOfDishes
         }
         if segue.identifier == "mainToRestaurantsSegue" {
             let restMenuViewController = segue.destinationViewController as! RestMenuViewController
