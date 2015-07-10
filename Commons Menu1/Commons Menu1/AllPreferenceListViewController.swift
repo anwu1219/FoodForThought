@@ -10,10 +10,25 @@ import UIKit
 import Parse
 
 
+protocol PreferenceMenuTableViewCellDelegate{
+    /**
+    indicates that the given item has been deleted
+    */
+    func toDoItemDeleted(dish: Dish)
+    
+    
+    /**
+    indicates which item has been selected and provide appropriate information for a segue to dish info
+    */
+    // #spchadinha
+    func viewDishInfo(dish: Dish)
+}
+
+
 /**
 Class that shows all the preferences of the current user
 */
-class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate {
     
     
     @IBOutlet weak var allPrefTopImage: UIImageView!
@@ -220,6 +235,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func toDoItemDeleted(dish: Dish){
         edited = true
+        self.dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
         var index = find(preferences[dish.location]!, dish)
         preferences[dish.location]!.removeAtIndex(index!)
@@ -236,15 +252,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
         preferenceListTableView.endUpdates()
     }
-    
-    func addToDislikes(dish: Dish){
-        
-    }
-    
-    
-    func edit(){
-        
-    }
+
     
     /**
     Uploads the preference list

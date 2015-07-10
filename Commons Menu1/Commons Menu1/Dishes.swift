@@ -10,6 +10,9 @@ import Foundation
 
 class Dishes{
     var dishes = [RestProfile: [Dish]]()
+    var numberOfDishes = 0
+    var dealtWith = Set<Int>()
+    
     
     func addDish(location: String, dish : Dish){
         for restaurant : RestProfile in dishes.keys {
@@ -24,6 +27,23 @@ class Dishes{
             dishes[restaurant] = [Dish]()
         }
     }
+    
+    
+    func setNumberOfDishes(number: Int){
+        self.numberOfDishes = number
+    }
+    
+    
+    
+    func addToDealtWith(index: Int){
+        self.dealtWith.insert(index)
+    }
+    
+    
+    func removeFromDealtWith(index: Int){
+        self.dealtWith.remove(index)
+    }
+    
     
     
     init (){

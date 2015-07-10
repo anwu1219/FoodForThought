@@ -122,6 +122,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
 
     
     
+    
     /**
     Uploads preferences and dislikes
     */
@@ -203,6 +204,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     Delegate function that finds and deletes the dish that is swiped
     */
     func toDoItemDeleted(dish: Dish) {
+        self.dishes.addToDealtWith(dish.index)
         //Finds index of swiped dish and removes it from the array
         var index = find(menu, dish)!
         //menu.removeAtIndex(index)

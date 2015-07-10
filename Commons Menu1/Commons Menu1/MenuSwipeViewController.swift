@@ -16,11 +16,6 @@ protocol MenuSwipeViewControllerDelegate {
 
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol MenuTableViewCellDelegate {
-    /**
-    indicates that the given item has been deleted
-    */
-    func toDoItemDeleted(dish: Dish)
-    
     
     /**
     indicates which item has been selected and provide appropriate information for a segue to dish info
@@ -32,6 +27,10 @@ protocol MenuTableViewCellDelegate {
     
     func edit()
     
+    func handleDealtWithOnLike(dish: Dish)
+    
+    
+    func handleDealtWithOnDislike(dish : Dish)
 }
 
 
@@ -223,13 +222,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     //MARK: - Table view cell delegate
-    /**
-    Delegate function that finds and deletes the dish that is swiped
-    */
-    func toDoItemDeleted(dish: Dish) {
-
-    }
-    
     
     /**
     Delegate function that segues between the dish cells and the dish info view
@@ -250,6 +242,26 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func edit(){
         self.edited = true
     }
+    
+    
+    func handleDealtWithOnLike(dish: Dish){
+        if dish.like{
+            dishes.addToDealtWith(dish.index)
+        } else {
+            dishes.removeFromDealtWith(dish.index)
+        }
+    }
+    
+    
+    func handleDealtWithOnDislike(dish : Dish){
+        if dish.dislike{
+            dishes.addToDealtWith(dish.index)
+        } else {
+            dishes.removeFromDealtWith(dish.index)
+        }
+    }
+
+    
     
     //MARK: - menu swipe view delegate
     /**
@@ -400,6 +412,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             // Passes the list of liked dishes to the preference list view
             preferencelistViewController.preferences = createPreferenceList()
             preferencelistViewController.location = restProf?.name
+            preferencelistViewController.dishes = dishes
             preferencelistViewController.delegate = self
         }
     }
