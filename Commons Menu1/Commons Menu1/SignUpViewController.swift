@@ -16,7 +16,6 @@ protocol SignUpViewControllerDelegate {
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
-    var numberOfDishes = Int()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -308,7 +307,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
                 if let value = object["value"] as? Int {
-                    self.numberOfDishes = value
+                    self.dishes.setNumberOfDishes(value)
                 }
             }
         }
@@ -378,7 +377,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             println("Hello \(PFUser.currentUser())")
             mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.dishes = dishes
-            mainMenuViewController.numberOfDishes = numberOfDishes
         }
     }
 }

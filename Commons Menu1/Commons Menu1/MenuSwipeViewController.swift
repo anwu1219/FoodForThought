@@ -415,7 +415,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "restProfileSegue" {
             let restProfileViewController = segue.destinationViewController as! RestProfileViewController
             restProfileViewController.restProf = restProf
-            
         }
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
