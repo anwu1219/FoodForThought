@@ -46,8 +46,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
    
-    var menuLoad : [Dish]?
     var menu = [String : [Dish]]()
+    var dishes : Dishes!
     let styles = Styles()
     var disLikes = [Dish]()
     var types = [String]()
@@ -67,21 +67,28 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
         
+        //sets backgroundimage
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "forkmenubackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
-        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+       // tableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
 
         self.automaticallyAdjustsScrollViewInsets = false;
 
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.clearColor()
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 80;
-        if let menuLoad = menuLoad {
-            self.makeMenu(menuLoad)
+        tableView.rowHeight = 100;
+        if let dishes = dishes {
+            self.makeMenu(dishes.dishes[restProf]!)
         }
         types = menu.keys.array
         types.sort({$0 < $1})

@@ -15,12 +15,8 @@ protocol SignUpViewControllerDelegate {
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
-    var menuPFObjects = [PFObject]()
-    var menu = [Dish]()
-    var restaurants = [String: [Dish]]()
-    var preferences = [String: [String]]()
-    var dislikes = [String: [String]]()
-    var restauranto = [RestProfile]()
+    var dishes = Dishes()
+    var numberOfDishes = Int()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -90,19 +86,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
 
         self.emailAddress.delegate = self
         self.password.delegate = self
-        self.getDishes()
         self.getRestaurant()
+        self.getNumberOfDishes()
         if let user = PFUser.currentUser() {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
             dispatch_after(delayTime, dispatch_get_main_queue()){
                 self.emailAddress.text = user.username
                 self.password.text = user.password
-                self.fetchPreferenceData()
-                self.fetchDisLikesData()
                 println("Logged in successfully")
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
             }
         }
+        for restaurant : RestProfile in dishes.dishes.keys {
+            dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+        }//needs update to cache
+
     }
     
     
@@ -223,8 +221,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
-                self.fetchPreferenceData()
-                self.fetchDisLikesData()
                 println("Logged in successfully")
                 
                 // Cache the user name
@@ -257,49 +253,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     
-    func getDishes() {
-        var query = PFQuery(className:"dishInfo")
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil && objects != nil{
-                if let objectsArray = objects{
-                    for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
-                        if let name = object["name"] as? String {
-                            if let userImageFile = object["image"] as? PFFile{
-                                userImageFile.getDataInBackgroundWithBlock {
-                                    (imageData: NSData?, error: NSError?) ->Void in
-                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                        if let location = object["location"] as? String{
-                                            if let ingredients = object["ingredients"] as? [String]{
-                                                if let labels = object["labels"] as? [[String]]{
-                                                    if let type = object["type"] as? String{
-                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels)
-                                            self.menu.append(dish)
-                                            self.addToRestaurants(location, dish: dish)
-                                                    }
-                                                }
-                                            }
-                                            }
-                                        }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func addToRestaurants(location: String, dish: Dish){
-        if !contains(self.restaurants.keys, location){
-            restaurants[location] = [Dish]()
-        }
-        restaurants[location]?.append(dish)
-    }
-    
     //regex function to check if email is in valid format
     func isValidEmail(testStr:String) -> Bool {
         // println("validate calendar: \(testStr)")
@@ -317,7 +270,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             if error == nil && objects != nil{
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        self.menuPFObjects.append(object as! PFObject)
                         if let name = object["name"] as? String {
                             if let userImageFile = object["image"] as? PFFile{
                                 userImageFile.getDataInBackgroundWithBlock {
@@ -330,7 +282,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                     if let susDescript = object["susDescription"] as? [String]{
                                                         if let label = object["labelDescription"] as? [[String]]{
                                                             let restaurant =    RestProfile(name: name, image: image, restDescript: susDescript, address: address, weekdayHours: hours, weekendHours: hours, phoneNumber: phoneNumber, label: label)
-                                                            self.addToRestauranto(restaurant)
+                                                            self.dishes.addRestaurant(restaurant)
                                                         }
                                                     }
                                                 }
@@ -348,65 +300,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             }
         }
     }
+
     
-    
-    func addToRestauranto(restaurant: RestProfile){
-        restauranto.append(restaurant)
-    }
-    
-    
-    func fetchPreferenceData(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let pFObject: PFObject = object as? PFObject{
-                                if let restaurant = pFObject["location"] as?String{
-                                    if let dishName = pFObject["dishName"] as? String{
-                                        self.addToPreferences(restaurant, dishName: dishName)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    func addToPreferences(restaurant: String, dishName: String){
-        if !contains(preferences.keys, restaurant){
-            preferences[restaurant] = [String]()
-        }
-        preferences[restaurant]?.append(dishName)
-    }
-    
-    
-    func fetchDisLikesData(){
-        if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Disliked")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let pFObject: PFObject = object as? PFObject{
-                                if let restaurant = pFObject["location"] as?String{
-                                    if let dishName = pFObject["dishName"] as? String{
-                                        self.addToDislikes(restaurant, dishName: dishName)
-                                    }
-                                }
-                            }
-                        }
-                    }
+    func getNumberOfDishes(){
+        var query = PFQuery(className:"Constants")
+        query.whereKey("name", equalTo: "dishNumber")
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let object = object {
+                if let value = object["value"] as? Int {
+                    self.numberOfDishes = value
                 }
             }
         }
@@ -464,14 +366,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     
-    func addToDislikes(restaurant: String, dishName: String){
-        if !contains(dislikes.keys, restaurant){
-            dislikes[restaurant] = [String]()
-        }
-        dislikes[restaurant]?.append(dishName)
-    }
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -483,11 +377,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
             println("Hello \(PFUser.currentUser())")
             mainMenuViewController.signUpViewControllerDelegate = self
-            mainMenuViewController.menu = menu
-            mainMenuViewController.restaurants = restaurants
-            mainMenuViewController.preferences = preferences
-            mainMenuViewController.dislikes = dislikes
-            mainMenuViewController.restauranto = restauranto
+            mainMenuViewController.dishes = dishes
+            mainMenuViewController.numberOfDishes = numberOfDishes
         }
     }
 }

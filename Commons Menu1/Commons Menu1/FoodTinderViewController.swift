@@ -43,7 +43,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var foodTinderTableView: UITableView!
     @IBOutlet var foodTinderView: UIView!
     
+    var dishes: Dishes!
     var menuLoad : [Dish]?
+    var numberOfDishes : Int!
     var menu = [Dish]()
     let styles = Styles()
     var preferences = [Dish]()
@@ -54,8 +56,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
@@ -90,10 +90,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
         //shuffles the dishes for the tinder swiping
         menu.shuffle()
-        
-        //filters menu from dishes that have already been swiped
-        menu = menu.filter({$0.like != true})
-        menu = menu.filter({$0.dislike != true})
         
         if let ecoLabelsArray = ecoLabelsArray {
      //       var keys = ecoLabelsArray.keys.array
@@ -293,6 +289,72 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
+    
+    func fetchRandomDishes(numberOfDishes: Int, number: Int) {
+        var query = PFQuery(className:"dishInfo")
+        for var i = 0; i < number; i++ {
+            var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+            println(randomIndex)
+            query.whereKey("index", equalTo: randomIndex)
+            query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+                if let object = object {
+                    if let name = object["name"] as? String {
+                        if let location = object["location"] as? String{
+                            if !self.dealtWith(location, name: name) {
+                                if let ingredients = object["ingredients"] as? [String]{
+                                    if let labels = object["labels"] as? [[String]]{
+                                        if let type = object["type"] as? String{
+                                            if let index = object["index"] as? Int{
+                                                if let userImageFile = object["image"] as? PFFile{
+                                                    userImageFile.getDataInBackgroundWithBlock {
+                                                        (imageData: NSData?, error: NSError?) ->Void in
+                                                        if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                            self.dishes.addDish(location, dish: dish)
+                                                            self.menu.append(dish)
+                                                            }
+                                                            }
+                                                        }
+                                                    }
+                                                } else{
+                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                    self.dishes.addDish(location, dish: dish)
+                                                    self.menu.append(dish)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                i--
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    
+    
+    func dealtWith(location: String, name: String) -> Bool {
+        var key : RestProfile
+        for restaurant: RestProfile in dishes.dishes.keys{
+            if restaurant.name == location{
+                key = restaurant
+                for dish : Dish in dishes.dishes[key]!{
+                    if dish.name == name {
+                        if dish.like || dish.dislike{
+                            return true
+                        }
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
     
     
     /**
