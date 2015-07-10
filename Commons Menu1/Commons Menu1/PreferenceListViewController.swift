@@ -11,10 +11,11 @@ import UIKit
 /**
 Shows the preference list of the current menu
 */
-class PreferenceListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class PreferenceListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate {
     
 
     @IBOutlet weak var preferenceListTableView: UITableView!
+    var dishes : Dishes!
     var preferences: [Dish]!
     var location: String!
     var delegate: MenuSwipeViewControllerDelegate!
@@ -107,7 +108,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         //Finds index of swiped dish and removes it from the array
         var index = find(preferences, dish)!
         preferences.removeAtIndex(index)
-        
+        dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
         preferenceListTableView.beginUpdates()
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
@@ -115,16 +116,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.endUpdates()
     }
     
-    
-    
-    func addToDislikes(dish: Dish){
-        
-    }
-    
-    
-    func edit(){
-        
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {
