@@ -16,6 +16,7 @@ protocol SignUpViewControllerDelegate {
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
+    var numberOfDishes = Int()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -86,6 +87,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         self.emailAddress.delegate = self
         self.password.delegate = self
         self.getRestaurant()
+        self.getNumberOfDishes()
         if let user = PFUser.currentUser() {
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
             dispatch_after(delayTime, dispatch_get_main_queue()){
@@ -300,6 +302,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
 
     
+    func getNumberOfDishes(){
+        var query = PFQuery(className:"Constants")
+        query.whereKey("name", equalTo: "dishNumber")
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let object = object {
+                if let value = object["value"] as? Int {
+                    self.numberOfDishes = value
+                }
+            }
+        }
+    }
     
     //button action to reset forgotten password
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
@@ -365,7 +378,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             println("Hello \(PFUser.currentUser())")
             mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.dishes = dishes
-            //mainMenuViewController.restauranto = restauranto
+            mainMenuViewController.numberOfDishes = numberOfDishes
         }
     }
 }
