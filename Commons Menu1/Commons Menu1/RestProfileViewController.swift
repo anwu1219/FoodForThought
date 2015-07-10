@@ -17,8 +17,8 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
     @IBOutlet weak var restProfile: UITableView!
-    @IBOutlet weak var restScrollView: UIScrollView!
     @IBOutlet var restProfileView: UIView!
+    @IBOutlet weak var restProfTable: UITableView!
     
     @IBOutlet weak var restAddressLabel: UILabel!
     @IBOutlet weak var restPhoneNumLabel: UILabel!
@@ -30,19 +30,12 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
  //       restProfName.title = RestProfile?.name
         restProfImage.image = restProf.image
         // Do any additional setup after loading the view.
-        
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "forkmenubackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
-        
-        restScrollView.contentSize.width = screenSize.width
-        restScrollView.contentSize.height = 600
-        
+        restProfTable.rowHeight = 200;
+
         restWeekdayHoursLabel.text = restProf!.weekdayHours
         restWeekendHoursLabel.text = restProf!.weekendHours
+        restWeekdayHoursLabel.numberOfLines = 2
+        restWeekendHoursLabel.numberOfLines = 2
         restPhoneNumLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
     }
