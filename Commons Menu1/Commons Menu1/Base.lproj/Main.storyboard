@@ -1749,6 +1749,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hEG-P7-zyl" id="R10-gD-f9y">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="f2Y-jF-9VT" kind="show" identifier="preferenceInfoSegue" id="aIz-rM-qCJ"/>
@@ -1915,6 +1916,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Lq-rH-UIY"/>
+        <segue reference="aIz-rM-qCJ"/>
     </inferredMetricsTieBreakers>
 </document>

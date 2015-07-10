@@ -285,6 +285,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                         }
                                     }
                                 }
+                            } else {
+                                if let location = object["location"] as? String{
+                                    if let ingredients = object["ingredients"] as? [String]{
+                                        if let labels = object["labels"] as? [[String]]{
+                                            if let type = object["type"] as? String{
+                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels)
+                                                self.menu.append(dish)
+                                                self.addToRestaurants(location, dish: dish)
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

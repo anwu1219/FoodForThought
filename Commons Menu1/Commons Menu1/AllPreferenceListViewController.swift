@@ -22,7 +22,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var preferences = [String: [Dish]]()
     var restaurants : [String: [Dish]]!
     var keys = [String]()
-    var headerText = UILabel()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let saveAlert = UIAlertController(title: "Sync your preference?",
         message: "",
@@ -178,13 +177,22 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 100))
-        headerText = UILabel(frame: CGRect.nullRect)
-        headerText.text = keys[section]
-        headerText.textColor = UIColor.whiteColor()
-        headerText.font = UIFont.boldSystemFontOfSize(16)        
-        headerView.backgroundColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
-        return headerView
+        
+        let headerViewLabel = UILabel()
+        headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
+        headerViewLabel.backgroundColor = UIColor(red: 215/255.0, green: 203/255.0, blue: 188/255.0, alpha: 1)
+        headerViewLabel.text = keys[section]
+        headerViewLabel.textAlignment = .Center
+        headerViewLabel.textColor = UIColor.whiteColor()
+        headerViewLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
+        headerViewLabel.layer.borderColor = UIColor.blackColor().CGColor
+        headerViewLabel.layer.borderWidth = 1.0
+       
+        return headerViewLabel
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     //MARK: - Table view cell delegate
