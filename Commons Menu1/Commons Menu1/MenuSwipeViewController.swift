@@ -141,7 +141,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         if let index = object["index"] as? Int{
-                            if self.dishes.pulled.contains(index){
+                            if !self.dishes.pulled.contains(index){
                                     if let name = object["name"] as? String {
                                         if let location = object["location"] as? String{
                                             if let ingredients = object["ingredients"] as? [String]{

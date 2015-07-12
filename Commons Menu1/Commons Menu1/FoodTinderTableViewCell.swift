@@ -197,7 +197,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     dish?.like = false
-                    delegate!.addToDislikes(dish!)
+                    delegate!.uploadDislike(dish!)
                     dish?.dislike = true
                     delegate!.toDoItemDeleted(dish!)
                 }
@@ -206,7 +206,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                     dish!.like = true
                     //removes cell once it is liked
                     dish?.dislike = false
-                    delegate!.addToPreferenceList(dish!)
+                    delegate!.uploadPreference(dish!)
                     delegate!.toDoItemDeleted(dish!)
                 }
             } else {

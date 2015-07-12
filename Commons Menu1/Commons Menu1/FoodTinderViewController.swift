@@ -15,13 +15,13 @@ protocol FoodTinderViewCellDelegate {
     
     //indicates that the given item has been deleted
     func toDoItemDeleted(dish: Dish)
-   
+    
     //indicates which item has been selected and provide appropriate information for a segue to dish info
-  //  func viewDishInfo(dish: Dish)
+    //  func viewDishInfo(dish: Dish)
     
-    func addToPreferenceList(dish: Dish)
+    func uploadPreference(dish: Dish)
     
-    func addToDislikes(dish: Dish)
+    func uploadDislike(dish: Dish)
 }
 
 
@@ -33,8 +33,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var dishes: Dishes!
     var menu = [Dish]()
     let styles = Styles()
-    var preferences = [Dish]()
-    var disLikes = [Dish]()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
@@ -43,8 +41,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
     let refreshControl = UIRefreshControl()
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
@@ -67,12 +65,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         self.view.sendSubviewToBack(bkgdImage)
         
         foodTinderTableView.layer.cornerRadius = 5
-
+        
         
         if let ecoLabelsArray = ecoLabelsArray {
-     //       var keys = ecoLabelsArray.keys.array
-     //       keys.sort({$0.name < $1.name})
-     //       placeEcoLabels(keys)
+            //       var keys = ecoLabelsArray.keys.array
+            //       keys.sort({$0.name < $1.name})
+            //       placeEcoLabels(keys)
         }
         
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
@@ -91,18 +89,18 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func refresh(refreshControl: UIRefreshControl) {
         if dishes.dealtWith.count != dishes.numberOfDishes{
             self.fetchRandomDishes(self.dishes.numberOfDishes)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 0.5))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.foodTinderTableView.reloadData()
-            refreshControl.endRefreshing()
-            self.foodTinderTableView.scrollEnabled = false
-        }
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 0.5))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                UIView.transitionWithView(self.foodTinderTableView, duration:0.2, options:.TransitionCrossDissolve,animations: { () -> Void in
+                    self.foodTinderTableView.reloadData() }, completion: nil)
+                refreshControl.endRefreshing()
+            }
         } else {
             presentViewController(completeAlert, animated: true, completion: nil)
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
             dispatch_after(delayTime, dispatch_get_main_queue()){
                 self.completeAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-
+                    
                 })
             }
         }
@@ -118,45 +116,19 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             var height: CGFloat = 25
             var x: CGFloat = (50 + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i)
-     //       image.frame = CGRectMake(x - 40, y + 10, 250, 46)
+            //       image.frame = CGRectMake(x - 40, y + 10, 250, 46)
             //image.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
             
             //Sets the content of the buttons
             
-           // let backgroundImage = Label()
-           // backgroundImage.frame = image.frame
+            // let backgroundImage = Label()
+            // backgroundImage.frame = image.frame
             
-     //       ecoLabelScrollView.addSubview(button)
-     //       ecoLabelScrollView.addSubview(backgroundImage)
+            //       ecoLabelScrollView.addSubview(button)
+            //       ecoLabelScrollView.addSubview(backgroundImage)
         }
     }
-
     
-    
-    
-    /**
-    Uploads preferences and dislikes
-    */
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        if parent == nil {
-            //upload data to parse
-            if edited {
-                presentViewController(savingAlert, animated: true, completion: nil)
-                self.uploadPreferenceList()
-                self.uploadDislikes()
-                let param = Double(self.preferences.count) * 0.05 + Double(self.disLikes.count) * 0.05
-                let delay =  param * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-                }
-                self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                })
-            }
-        }
-    }
-
     
     // MARK: - Table view data source
     /**
@@ -205,8 +177,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.imageView?.image = dish.image
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-
-
+            
+            
             return cell
     }
     
@@ -231,22 +203,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    /**
-    Delegate function that adds a dish to preferences
-    */
-    func addToPreferenceList(dish: Dish){
-        preferences.append(dish)
-    }
-    
-    
-    /**
-    Delegate function that adds a dish to dislikes
-    */
-    func addToDislikes(dish: Dish) {
-        disLikes.append(dish)
-    }
-
-    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
             cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
@@ -258,27 +214,25 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
     }
-
+    
     
     /**
     Uploads the preference list
     */
-    func uploadPreferenceList(){
-        for dish: Dish in preferences {
-            if let user = PFUser.currentUser(){
-                let newPreference = PFObject(className:"Preference")
-                newPreference["createdBy"] = PFUser.currentUser()
-                newPreference["dishName"] = dish.name
-                newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                })
-            }
+    func uploadPreference(dish: Dish){
+        if let user = PFUser.currentUser(){
+            let newPreference = PFObject(className:"Preference")
+            newPreference["createdBy"] = PFUser.currentUser()
+            newPreference["dishName"] = dish.name
+            newPreference["location"] = dish.location
+            newPreference.saveInBackgroundWithBlock({
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
+            })
         }
     }
     
@@ -286,22 +240,20 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     /**
     Uploads the preference list
     */
-    func uploadDislikes(){
-        for dish: Dish in disLikes {
-            if let user = PFUser.currentUser(){
-                let newPreference = PFObject(className:"Disliked")
-                newPreference["createdBy"] = PFUser.currentUser()
-                newPreference["dishName"] = dish.name
-                newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                })
-            }
+    func uploadDislike(dish: Dish){
+        if let user = PFUser.currentUser(){
+            let newPreference = PFObject(className:"Disliked")
+            newPreference["createdBy"] = PFUser.currentUser()
+            newPreference["dishName"] = dish.name
+            newPreference["location"] = dish.location
+            newPreference.saveInBackgroundWithBlock({
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
+            })
         }
     }
     
@@ -318,32 +270,31 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
                 if let index = object["index"] as? Int{
-                        if let name = object["name"] as? String {
-                            if let location = object["location"] as? String{
-                                if let ingredients = object["ingredients"] as? [String]{
-                                    if let labels = object["labels"] as? [[String]]{
-                                        if let type = object["type"] as? String{
-                                            if let userImageFile = object["image"] as? PFFile{
-                                                userImageFile.getDataInBackgroundWithBlock {
-                                                    (imageData: NSData?, error: NSError?) ->Void in
-                                                    if error == nil {                              if let data = imageData{                                                if let image = UIImage(data: data){
-                                                        if !self.hasBeenAdded(name, location: name){
+                    if let name = object["name"] as? String {
+                        if let location = object["location"] as? String{
+                            if let ingredients = object["ingredients"] as? [String]{
+                                if let labels = object["labels"] as? [[String]]{
+                                    if let type = object["type"] as? String{
+                                        if let userImageFile = object["image"] as? PFFile{
+                                            userImageFile.getDataInBackgroundWithBlock {
+                                                (imageData: NSData?, error: NSError?) ->Void in
+                                                if error == nil {                              if let data = imageData{                                                if let image = UIImage(data: data){
+                                                    if !self.hasBeenAdded(name, location: name){
                                                         let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
                                                         self.dishes.addPulled(index)
-                                                        }
-                                                        }
-                                                        }
+                                                    }
+                                                    }
                                                     }
                                                 }
-                                            } else{
-                                                if !self.hasBeenAdded(name, location: name){
+                                            }
+                                        } else{
+                                            if !self.hasBeenAdded(name, location: name){
                                                 let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                 self.dishes.addDish(location, dish: dish)
                                                 self.menu.append(dish)
                                                 self.dishes.addPulled(index)
-                                                }
                                             }
                                         }
                                     }
@@ -352,6 +303,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                 }
+            }
         })
         return randomIndex
     }
@@ -390,6 +342,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 mealInfoViewController.dish = menu[index]
             }
         }
-
+        
     }
 }

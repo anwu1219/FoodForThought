@@ -170,22 +170,21 @@ class MainMenuViewController: UIViewController {
     func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("name", equalTo: name)
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil && objects != nil{
-                if let objectsArray = objects{
-                    for object: AnyObject in objectsArray{
-                        if let name = object["name"] as? String {
-                            if let location = object["location"] as? String{
-                                if let ingredients = object["ingredients"] as? [String]{
-                                    if let labels = object["labels"] as? [[String]]{
-                                        if let type = object["type"] as? String{
-                                            if let index = object["index"] as? Int{
-                                            if let userImageFile = object["image"] as? PFFile{
-                                                userImageFile.getDataInBackgroundWithBlock {
-                                                    (imageData: NSData?, error: NSError?) ->Void in
-                                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+        query.getFirstObjectInBackgroundWithBlock{
+            (object: PFObject?, error: NSError?) -> Void in
+            if let object = object{
+                if let name = object["name"] as? String {
+                    if let location = object["location"] as? String{
+                        if let ingredients = object["ingredients"] as? [String]{
+                            if let labels = object["labels"] as? [[String]]{
+                                if let type = object["type"] as? String{
+                                    if let index = object["index"] as? Int{
+                                        if let userImageFile = object["image"] as? PFFile{
+                                            userImageFile.getDataInBackgroundWithBlock {
+                                                (imageData: NSData?, error: NSError?) ->Void in
+                                                if error == nil {
+                                                    if let data = imageData{                                                if let image = UIImage(data: data){
+                                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                             dish.like = like
                                                             dish.dislike = dislike
                                                             self.dishes.addToDealtWith(index)
@@ -196,14 +195,12 @@ class MainMenuViewController: UIViewController {
                                                 }
                                             }
                                         } else{
-                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                dish.like = like
-                                                dish.dislike = dislike
-                                                self.dishes.addToDealtWith(index)
-                                                self.dishes.addDish(location, dish: dish)
-                                                self.dishes.addPulled(index)
-                                                }
-                                            }
+                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                            dish.like = like
+                                            dish.dislike = dislike
+                                            self.dishes.addToDealtWith(index)
+                                            self.dishes.addDish(location, dish: dish)
+                                            self.dishes.addPulled(index)
                                         }
                                     }
                                 }
