@@ -81,7 +81,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 1.0))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 2))
         dispatch_after(delayTime, dispatch_get_main_queue()){
         }
         refreshControl.sendActionsForControlEvents(.ValueChanged)
@@ -90,22 +90,20 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func refresh(refreshControl: UIRefreshControl) {
-        if dishes.dealtWith.count != dishes.numberOfDishes{
-            self.fetchRandomDishes(self.dishes.numberOfDishes)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 0.5))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                    self.foodTinderTableView.reloadData() }, completion: nil)
-                refreshControl.endRefreshing()
+        if Reachability.isConnectedToNetwork() {
+            if dishes.dealtWith.count != dishes.numberOfDishes{
+                self.fetchRandomDishes(self.dishes.numberOfDishes)
+            } else {
+                presentViewController(completeAlert, animated: true, completion: nil)
+                let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 2))
+                dispatch_after(delayTime, dispatch_get_main_queue()){
+                    self.completeAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                    })
+                }
             }
-        } else {
-            presentViewController(completeAlert, animated: true, completion: nil)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                self.completeAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                })
-            }
+        } else{
+            noInternetAlert("Unable to Get New Food for Thought")
+            refreshControl.endRefreshing()
         }
     }
     
@@ -287,6 +285,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
                                                         self.dishes.addPulled(index)
+                                                        UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                                            self.foodTinderTableView.reloadData() }, completion: nil)
+                                                        self.refreshControl.endRefreshing()
+
                                                     }
                                                     }
                                                     }

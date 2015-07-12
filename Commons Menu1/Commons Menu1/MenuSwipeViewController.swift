@@ -128,6 +128,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         } else{
             noInternetAlert("Unable to Refresh")
+            refreshControl.endRefreshing()
         }
     }
 
