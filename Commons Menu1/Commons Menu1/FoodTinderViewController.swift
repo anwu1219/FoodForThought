@@ -91,13 +91,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     func refresh(refreshControl: UIRefreshControl) {
         if dishes.dealtWith.count != dishes.numberOfDishes{
-        // Do your job, when done:
-            for i in 1...15 {
-                if dishes.dealtWith.count != dishes.numberOfDishes{
-                    self.fetchRandomDishes(self.dishes.numberOfDishes)
-                }
-            }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            self.fetchRandomDishes(self.dishes.numberOfDishes)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 0.5))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             self.foodTinderTableView.reloadData()
             refreshControl.endRefreshing()
@@ -321,7 +316,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         randomIndice.insert(randomIndex)
-        randomIndice.removeAll(keepCapacity: false)
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
@@ -335,17 +329,21 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                 userImageFile.getDataInBackgroundWithBlock {
                                                     (imageData: NSData?, error: NSError?) ->Void in
                                                     if error == nil {                              if let data = imageData{                                                if let image = UIImage(data: data){
+                                                        if !self.hasBeenAdded(name, location: name){
                                                         let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
                                                         }
                                                         }
+                                                        }
                                                     }
                                                 }
                                             } else{
+                                                if !self.hasBeenAdded(name, location: name){
                                                 let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                 self.dishes.addDish(location, dish: dish)
                                                 self.menu.append(dish)
+                                                }
                                             }
                                         }
                                     }
@@ -362,6 +360,20 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     func dealtWith(index: Int) -> Bool {
         return contains(dishes.dealtWith, index)
+    }
+    
+    
+    func hasBeenAdded(name : String, location: String)-> Bool {
+        for restaurant in dishes.dishes.keys{
+            if restaurant.name == location{
+                for dish: Dish in dishes.dishes[restaurant]!{
+                    if dish.name == name {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
     }
     
     
