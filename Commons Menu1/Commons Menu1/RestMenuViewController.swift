@@ -20,11 +20,10 @@ class RestMenuViewController: UIViewController {
     var styles = Styles()
     var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
-    var loaded = [Bool]()
     var keys = [RestProfile]()
     var location: String?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let loadingAlert = UIAlertController(title: "Loading...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +57,6 @@ class RestMenuViewController: UIViewController {
             keys = restaurants.keys.array
             keys.sort({$0.name < $1.name})
             placeButtons(keys)
-            for var i = 0; i < keys.count; i++ {
-                loaded.append(false)
-            }
         }
     }
     
@@ -109,30 +105,26 @@ class RestMenuViewController: UIViewController {
     The function that the button will perform when pressed
     */
     func toMenu(sender: UIButton!) {
-        if let restaurants = restaurants {
-            if let title = sender!.titleLabel?.text {
-                for restaurant : RestProfile in restaurants.keys{
-                    if restaurant.name == title{
-                        if loaded[find(keys, restaurant)!] == false {
+        if Reachability.isConnectedToNetwork() {
+            if let restaurants = restaurants {
+                if let title = sender!.titleLabel?.text {
+                    for restaurant : RestProfile in restaurants.keys{
+                        if restaurant.name == title{
                             self.addDishWithLocation(restaurant.name)
-                            loaded[find(keys, restaurant)!] = true
-                            presentViewController(loadingAlert, animated: true, completion: nil)
                             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
                             dispatch_after(delayTime, dispatch_get_main_queue()){
-                            self.loadingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
                                 self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-                            })
+                            }
                         }
-                    }
-                    self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
                     }
                 }
             }
+        } else{
+        self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
         }
     }
 
-    
-    
+
     func addDishWithLocation(location: String){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)

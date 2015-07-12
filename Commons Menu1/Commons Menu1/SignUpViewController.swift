@@ -31,7 +31,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if Reachability.isConnectedToNetwork() == false {
+        if !Reachability.isConnectedToNetwork() {
             let alertController = UIAlertController(title: "No Internet Connection",
                 message: "Make sure your device is connected to the internet",
                 preferredStyle: UIAlertControllerStyle.Alert
@@ -87,12 +87,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         passwordLabel.layer.shadowRadius = 5
         passwordLabel.layer.shadowOpacity = 1.0
         
+        
         emailLabel.layer.shadowColor = UIColor.blackColor().CGColor
         emailLabel.layer.shadowOffset = CGSizeMake(5, 5)
         emailLabel.layer.shadowRadius = 5
         emailLabel.layer.shadowOpacity = 1.0
 
-
+        
         self.emailAddress.delegate = self
         self.password.delegate = self
         self.getRestaurant()
@@ -134,7 +135,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         
         // Display alert
         self.presentViewController(alertController, animated: true, completion: nil)
-    }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -151,21 +152,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     func processSignUp() {
-        
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
         
+        
         // Ensure username is lowercase
         userEmailAddress = userEmailAddress.lowercaseString
+        
         
         // Add email address validation
         if isValidEmail(userEmailAddress) == false {
             println("The email you entered is not valid")
         }
         
+        
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
+        
         
         // Create the user
         var user = PFUser()
@@ -182,8 +186,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                self.activityIndicator.stopAnimating()
             }
         }
-      
     }
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //self.view.endEditing(true)
@@ -191,9 +195,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         return true
     }
     
+    
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
+    
     
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
