@@ -13,6 +13,20 @@ protocol SignUpViewControllerDelegate {
     func clearTextField()
 }
 
+
+extension UIViewController {
+    func noInternetAlert(message: String) {
+        let alertController = UIAlertController(title: "No Internet Connection",
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        self.presentViewController(alertController, animated: true, completion: nil)
+        UIView.transitionWithView(self.view, duration: 1.5, options:.TransitionCrossDissolve,animations: { () -> Void in
+            alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
+            })}, completion: nil)
+    }
+}
+
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
@@ -32,15 +46,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         if !Reachability.isConnectedToNetwork() {
-            let alertController = UIAlertController(title: "No Internet Connection",
-                message: "Make sure your device is connected to the internet",
-                preferredStyle: UIAlertControllerStyle.Alert
-            )
-            alertController.addAction(UIAlertAction(title: "OK",
-                style: UIAlertActionStyle.Default,
-                handler: nil))
-            // Display alert
-            self.presentViewController(alertController, animated: true, completion: nil)
+            noInternetAlert("")
         }
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)

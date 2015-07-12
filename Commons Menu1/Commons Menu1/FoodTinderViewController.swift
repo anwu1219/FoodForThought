@@ -9,18 +9,6 @@
 import UIKit
 import Parse
 
-//extension to shuffle a mutating array
-//from http://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
-extension Array {
-    mutating func shuffle() {
-        if count < 2 { return }
-        for i in 0..<(count - 1) {
-            let j = Int(arc4random_uniform(UInt32(count - i))) + i
-            swap(&self[i], &self[j])
-        }
-    }
-}
-
 
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol FoodTinderViewCellDelegate {
@@ -37,14 +25,12 @@ protocol FoodTinderViewCellDelegate {
 }
 
 
-
 class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate {
     
     @IBOutlet weak var foodTinderTableView: UITableView!
     @IBOutlet var foodTinderView: UIView!
     
     var dishes: Dishes!
-    var menuLoad : [Dish]?
     var randomIndice = Set<Int>()
     var menu = [Dish]()
     let styles = Styles()
@@ -54,10 +40,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let preparingAlert = UIAlertController(title: "Preparing...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let scrollAlert = UIAlertController(title: "Scroll down to swipe more...", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
     let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
+    let refreshControl = UIRefreshControl()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,16 +69,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         foodTinderTableView.layer.cornerRadius = 5
 
-
-    
-        
-        if let menuLoad = menuLoad {
-            for dish in menuLoad {
-                menu.append(dish)
-                }
-        }
-        //shuffles the dishes for the tinder swiping
-        //menu.shuffle()
         
         if let ecoLabelsArray = ecoLabelsArray {
      //       var keys = ecoLabelsArray.keys.array
@@ -99,20 +76,27 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
      //       placeEcoLabels(keys)
         }
         
-        
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         foodTinderTableView.addSubview(refreshControl)
         
     }
     
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshControl.sendActionsForControlEvents(.ValueChanged)
+    }
+    
+    
+    
     func refresh(refreshControl: UIRefreshControl) {
         if dishes.dealtWith.count != dishes.numberOfDishes{
         // Do your job, when done:
-        for i in 1...15{
-            self.fetchRandomDishes(dishes.numberOfDishes)
-        }
+            for i in 1...15 {
+                if dishes.dealtWith.count != dishes.numberOfDishes{
+                    self.fetchRandomDishes(self.dishes.numberOfDishes)
+                }
+            }
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             self.foodTinderTableView.reloadData()
@@ -240,24 +224,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         self.dishes.addToDealtWith(dish.index)
         //Finds index of swiped dish and removes it from the array
         var index = find(menu, dish)!
-        //menu.removeAtIndex(index)
         edited = true
         // use the UITableView to animate the removal of this row
         foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
-        if menu.isEmpty {
-            self.foodTinderTableView.scrollEnabled = true
-            presentViewController(scrollAlert, animated: true, completion: nil)
-            let delay =  4 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-            }
-            self.scrollAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                
-            })
-        }
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
         foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        if menu.isEmpty {
+            refreshControl.sendActionsForControlEvents(.ValueChanged)
+        }
         foodTinderTableView.endUpdates()
     }
     
@@ -341,7 +316,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while contains(randomIndice, randomIndex){
-            randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+            while dealtWith(randomIndex){
+                randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+            }
         }
         randomIndice.insert(randomIndex)
         randomIndice.removeAll(keepCapacity: false)
@@ -349,7 +326,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
                 if let index = object["index"] as? Int{
-                    if !self.dealtWith(index){
                         if let name = object["name"] as? String {
                             if let location = object["location"] as? String{
                                 if let ingredients = object["ingredients"] as? [String]{
@@ -378,7 +354,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         }
                     }
                 }
-            }
         })
         return randomIndex
     }

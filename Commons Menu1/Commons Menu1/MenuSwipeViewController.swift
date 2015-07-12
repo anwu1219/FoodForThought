@@ -115,16 +115,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func refresh(refreshControl: UIRefreshControl) {
-        println("called")
-        self.addDishWithLocation(restProf.name)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-        for type: String in self.types {
-            self.menu[type]!.sort({$0.name < $1.name})
-        }
-        UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
-            self.tableView.reloadData()}, completion: nil)
-            refreshControl.endRefreshing()
+        if Reachability.isConnectedToNetwork() {
+            self.addDishWithLocation(restProf.name)
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                for type: String in self.types {
+                    self.menu[type]!.sort({$0.name < $1.name})
+                }
+                UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
+                    self.tableView.reloadData()}, completion: nil)
+                    refreshControl.endRefreshing()
+            }
+        } else{
+            noInternetAlert("Unable to Refresh")
         }
     }
 
