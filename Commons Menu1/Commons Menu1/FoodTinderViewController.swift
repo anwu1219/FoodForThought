@@ -81,6 +81,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 1.0))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+        }
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     
@@ -91,7 +94,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             self.fetchRandomDishes(self.dishes.numberOfDishes)
             let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 0.5))
             dispatch_after(delayTime, dispatch_get_main_queue()){
-                UIView.transitionWithView(self.foodTinderTableView, duration:0.2, options:.TransitionCrossDissolve,animations: { () -> Void in
+                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                     self.foodTinderTableView.reloadData() }, completion: nil)
                 refreshControl.endRefreshing()
             }
