@@ -24,7 +24,6 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var food4ThoughtLabel: UILabel!
-    let preparingAlert = UIAlertController(title: "Preparing...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     
     
     override func viewDidLoad() {
@@ -249,13 +248,7 @@ class MainMenuViewController: UIViewController {
     
     
     @IBAction func foodTinderAction(sender: AnyObject) {
-        presentViewController(preparingAlert, animated: true, completion: nil)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.preparingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
-            })
-        }
+        self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
  
     
