@@ -12,6 +12,7 @@ class Dishes{
     var dishes = [RestProfile: [Dish]]()
     var numberOfDishes = 0
     var dealtWith = Set<Int>()
+    var pulled = Set<Int>()
     var cached = [RestProfile: Bool]()
     
     func addDish(location: String, dish : Dish){
@@ -47,6 +48,11 @@ class Dishes{
     
     func cached(restaurant: RestProfile) {
         self.cached[restaurant] = true
+    }
+    
+    
+    func addPulled(index: Int){
+        self.pulled.insert(index)
     }
     
     init (){

@@ -31,7 +31,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var foodTinderView: UIView!
     
     var dishes: Dishes!
-    var randomIndice = Set<Int>()
     var menu = [Dish]()
     let styles = Styles()
     var preferences = [Dish]()
@@ -310,12 +309,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func fetchRandomDishes(numberOfDishes: Int) -> Int{
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
-        while contains(randomIndice, randomIndex){
+        while dishes.pulled.contains(randomIndex){
             while dealtWith(randomIndex){
                 randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
             }
         }
-        randomIndice.insert(randomIndex)
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
@@ -333,6 +331,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                         let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
+                                                        self.dishes.addPulled(index)
                                                         }
                                                         }
                                                         }
@@ -343,6 +342,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                 let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                 self.dishes.addDish(location, dish: dish)
                                                 self.menu.append(dish)
+                                                self.dishes.addPulled(index)
                                                 }
                                             }
                                         }

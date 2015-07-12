@@ -190,6 +190,7 @@ class MainMenuViewController: UIViewController {
                                                             dish.dislike = dislike
                                                             self.dishes.addToDealtWith(index)
                                                             self.dishes.addDish(location, dish: dish)
+                                                            self.dishes.addPulled(index)
                                                         }
                                                     }
                                                 }
@@ -200,6 +201,7 @@ class MainMenuViewController: UIViewController {
                                                 dish.dislike = dislike
                                                 self.dishes.addToDealtWith(index)
                                                 self.dishes.addDish(location, dish: dish)
+                                                self.dishes.addPulled(index)
                                                 }
                                             }
                                         }
