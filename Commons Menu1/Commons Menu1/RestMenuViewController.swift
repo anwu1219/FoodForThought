@@ -105,23 +105,23 @@ class RestMenuViewController: UIViewController {
     The function that the button will perform when pressed
     */
     func toMenu(sender: UIButton!) {
-        if Reachability.isConnectedToNetwork() {
-            if let restaurants = restaurants {
-                if let title = sender!.titleLabel?.text {
-                    for restaurant : RestProfile in restaurants.keys{
-                        if restaurant.name == title{
-                            self.addDishWithLocation(restaurant.name)
-                            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-                            dispatch_after(delayTime, dispatch_get_main_queue()){
-                                self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-                            }
-                        }
-                    }
-                }
-            }
-        } else{
+//        if Reachability.isConnectedToNetwork() {
+//            if let restaurants = restaurants {
+//                if let title = sender!.titleLabel?.text {
+//                    for restaurant : RestProfile in restaurants.keys{
+//                        if restaurant.name == title{
+//                            self.addDishWithLocation(restaurant.name)
+//                            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+//                            dispatch_after(delayTime, dispatch_get_main_queue()){
+//                                self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } else{
         self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-        }
+//        }
     }
 
 

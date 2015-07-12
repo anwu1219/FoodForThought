@@ -53,7 +53,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var types = [String]()
     var restProf: RestProfile!
     var edited = false
-    
+    let refreshControl = UIRefreshControl()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let savedAlert = UIAlertController(title: "Saved", message: "", preferredStyle: UIAlertControllerStyle.Alert)
 
@@ -88,37 +88,43 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = 100;
         if let dishes = dishes {
             self.makeMenu(dishes.dishes[restProf]!)
+            for type: String in self.types {
+                self.menu[type]!.sort({$0.name < $1.name})
+            }
         }
-        types = menu.keys.array
-        types.sort({$0 < $1})
-        for type: String in types {
-            menu[type]!.sort({$0.name < $1.name})
-        }
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
-        if Reachability.isConnectedToNetwork() == true {
-            self.refresh(refreshControl)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let foo = dishes.cached[restProf]{
+            if !foo {
+                tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
+                let delay =  0.5 * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { () -> Void
+                    in
+                    self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+                    self.dishes.cached(self.restProf)
+                    self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
+                }
+            }
         }
     }
     
     
     func refresh(refreshControl: UIRefreshControl) {
-        if Reachability.isConnectedToNetwork() == true {
-            self.addDishWithLocation(restProf.name)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                self.tableView.reloadData()
-                refreshControl.endRefreshing()
-            }
-        } else {
-             let alert = UIAlertController(title: "Internet Connection Required", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                alert.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-                })
-            }
+        println("called")
+        self.addDishWithLocation(restProf.name)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+        for type: String in self.types {
+            self.menu[type]!.sort({$0.name < $1.name})
+        }
+        UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
+            self.tableView.reloadData()}, completion: nil)
+            refreshControl.endRefreshing()
         }
     }
 
@@ -144,6 +150,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                             if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
                                                                 let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                                 self.dishes.addDish(location, dish: dish)
+                                                                self.addDishToMenu(dish)
                                                                 }
                                                                 }
                                                             }
@@ -151,6 +158,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                     } else{
                                                         let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                         self.dishes.addDish(location, dish: dish)
+                                                        self.addDishToMenu(dish)
                                                     }
                                                 }
                                             }
@@ -167,13 +175,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func hasBeenAdded(name : String, location: String)-> Bool {
-        var rest : RestProfile? = nil
-        for restaurant: RestProfile in dishes.dishes.keys{
-            if restaurant.name == location{
-                rest = restaurant
-            }
-        }
-        for dish: Dish in dishes.dishes[rest!]!{
+        for dish: Dish in dishes.dishes[restProf]!{
             if dish.name == name {
                 return false
             }
@@ -203,21 +205,27 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-
         })
     }
     
     
     func makeMenu(inputMenu : [Dish]){
         for dish : Dish in inputMenu {
-            if !contains(menu.keys, dish.type){
-                menu[dish.type] = [Dish]()
-            }
-            menu[dish.type]?.append(dish)
+             addDishToMenu(dish)
         }
     }
     
     
+    func addDishToMenu(dish: Dish){
+        if !contains(menu.keys, dish.type){
+            menu[dish.type] = [Dish]()
+            self.types.append(dish.type)
+            self.types.sort({$0 < $1})
+        }
+        menu[dish.type]?.append(dish)
+    }
+
+
     // MARK: - Table view data source
     /**
     Returns the number of sections in the table
