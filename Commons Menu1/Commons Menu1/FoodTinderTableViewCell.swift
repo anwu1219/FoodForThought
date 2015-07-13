@@ -121,8 +121,10 @@ class FoodTinderTableViewCell: UITableViewCell {
     let kLabelTopMargin: CGFloat = 0.0
 
     let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -158,13 +160,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         //self.imageView?.layer.cornerRadius = 5
         self.imageView?.clipsToBounds = true
         self.imageView?.layer.masksToBounds = true
-
     }
-    
-    func prefPressed(dish: Dish) {
-        
-    }
-    
     
     
     /**
@@ -200,20 +196,18 @@ class FoodTinderTableViewCell: UITableViewCell {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     dish?.like = false
-                    delegate!.toDoItemDeleted(dish!)
-                    delegate!.addToDislikes(dish!)
                     dish?.dislike = true
-
+                    self.delegate!.toDoItemDeleted(self.dish!)
+                    self.delegate!.uploadDislike(self.dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = true
                     //removes cell once it is liked
-                    delegate!.toDoItemDeleted(dish!)
-                    delegate!.addToPreferenceList(dish!)
+                    dish?.dislike = false
+                    self.delegate!.toDoItemDeleted(self.dish!)
+                    self.delegate!.uploadPreference(self.dish!)
                 }
-                itemLikeLayer.hidden = !self.itemLikeLayer.hidden
-                UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             } else {
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             }

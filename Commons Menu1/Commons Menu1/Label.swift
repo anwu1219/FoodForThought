@@ -21,7 +21,7 @@ struct Label {
     let restLabels = [
         "FD": UIImage(named:"FD"),
         "MD": UIImage(named: "MD"),
-        "AI": UIImage(named: "FD"),
+        "AI": UIImage(named: "AI"),
         "FS": UIImage(named: "MD"),
         "VO": UIImage(named: "VO"),
         "CA": UIImage(named: "CA"),

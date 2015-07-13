@@ -10,12 +10,28 @@ import UIKit
 import Parse
 
 
+protocol PreferenceMenuTableViewCellDelegate{
+    /**
+    indicates that the given item has been deleted
+    */
+    func toDoItemDeleted(dish: Dish)
+    
+    
+    /**
+    indicates which item has been selected and provide appropriate information for a segue to dish info
+    */
+    // #spchadinha
+    func viewDishInfo(dish: Dish)
+}
+
+
 /**
 Class that shows all the preferences of the current user
 */
-class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate {
+class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate {
     
     
+    @IBOutlet weak var allPrefTopImage: UIImageView!
     @IBOutlet weak var myPreferenceLabel: UILabel!
     @IBOutlet var preferenceListView: UIView!
     @IBOutlet weak var preferenceListTableView: UITableView!
@@ -23,10 +39,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var dishes : Dishes!
     var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let saveAlert = UIAlertController(title: "Sync your preference?",
-        message: "",
-        preferredStyle: UIAlertControllerStyle.Alert
-    )
     var edited = false
 
     
@@ -48,12 +60,21 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        //bottom border between top image and table view
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: allPrefTopImage.frame.size.height - width + 45, width:  allPrefTopImage.frame.size.width, height: allPrefTopImage.frame.size.height)
+        border.borderWidth = width
+        allPrefTopImage.layer.addSublayer(border)
+        allPrefTopImage.layer.masksToBounds = true
+        
         myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
         myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
         myPreferenceLabel.layer.shadowRadius = 5
         myPreferenceLabel.layer.shadowOpacity = 1.0
         
-        preferenceListTableView.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
+        preferenceListTableView.layer.borderColor = UIColor(red: 132/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
         
     //    preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
@@ -69,18 +90,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         for key: String in keys {
             preferences[key]!.sort({$0.name < $1.name})
         }
-        saveAlert.addAction(UIAlertAction(title: "Cancel",
-            style: UIAlertActionStyle.Default,
-            handler: nil
-            )
-        )
-        saveAlert.addAction(UIAlertAction(title: "OK",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.uploadPreferences()}
-            )
-        )
-        println(dishes.dishes)
-
     }
     
     
@@ -180,12 +189,13 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerViewLabel = UILabel()
         headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
-        headerViewLabel.backgroundColor = UIColor(red: 166/255.0, green: 149/255.0, blue: 135/255.0, alpha: 1)
+        headerViewLabel.backgroundColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1)
+
         headerViewLabel.text = keys[section]
         headerViewLabel.textAlignment = .Center
         headerViewLabel.textColor = UIColor.whiteColor()
         headerViewLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
-        headerViewLabel.layer.borderColor = UIColor.blackColor().CGColor
+        headerViewLabel.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
         headerViewLabel.layer.borderWidth = 1.0
        
         return headerViewLabel
@@ -209,6 +219,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func toDoItemDeleted(dish: Dish){
         edited = true
+        self.dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
         var index = find(preferences[dish.location]!, dish)
         preferences[dish.location]!.removeAtIndex(index!)
@@ -225,15 +236,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
         preferenceListTableView.endUpdates()
     }
-    
-    func addToDislikes(dish: Dish){
-        
-    }
-    
-    
-    func edit(){
-        
-    }
+
     
     /**
     Uploads the preference list

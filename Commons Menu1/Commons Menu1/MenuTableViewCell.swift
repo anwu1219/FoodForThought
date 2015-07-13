@@ -124,7 +124,8 @@ class MenuTableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
         self.imageView?.frame = CGRect(x: 10 * width, y: 20 * height, width: 18 * width, height: 60 * height)
       //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
-        self.backgroundColor = UIColor.purpleColor()
+        self.backgroundColor = UIColor(red: 147/255.0, green: 143/255.0, blue: 161/255.0, alpha: 0.75)
+
 
     }
     
@@ -164,9 +165,9 @@ class MenuTableViewCell: UITableViewCell {
                     dish!.dislike = !dish!.dislike
                     itemLikeLayer.hidden = true
                     itemDislikeLayer.hidden = !dish!.dislike
-                    
                     dish!.like = false
                     delegate!.edit()
+                    delegate!.handleDealtWithOnLike(dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
@@ -175,6 +176,7 @@ class MenuTableViewCell: UITableViewCell {
                     itemDislikeLayer.hidden = true
                     dish!.dislike = false
                     delegate!.edit()
+                    delegate!.handleDealtWithOnDislike(dish!)
                 }
             }
             UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
