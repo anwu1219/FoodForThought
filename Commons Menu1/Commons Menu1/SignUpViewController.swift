@@ -90,20 +90,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         self.emailAddress.delegate = self
         self.password.delegate = self
         self.getRestaurant()
-        self.getNumberOfDishes()
-        if let user = PFUser.currentUser() {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                self.emailAddress.text = user.username
-                self.password.text = user.password
-                println("Logged in successfully")
-                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
-            }
-        }
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
-
     }
     
     
@@ -280,47 +269,50 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                     for object: AnyObject in objectsArray{
                         if let name = object["name"] as? String {
                             if let userImageFile = object["image"] as? PFFile{
-                                userImageFile.getDataInBackgroundWithBlock {
-                                    (imageData: NSData?, error: NSError?) ->Void in
-                                    if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                        if let address = object["address"] as? String{
-                                            if let phoneNumber = object["number"] as? String{
-                                            if let  hours = object["openHours"] as? String{
-                                                if let restDescript = object["restDescription"] as? String{
-                                                    if let susDescript = object["susDescription"] as? [String]{
-                                                        if let label = object["labelDescription"] as? [[String]]{
-                                                            let restaurant =    RestProfile(name: name, image: image, restDescript: susDescript, address: address, weekdayHours: hours, weekendHours: hours, phoneNumber: phoneNumber, label: label)
-                                                            self.dishes.addRestaurant(restaurant)
+                            userImageFile.getDataInBackgroundWithBlock {
+                                (imageData: NSData?, error: NSError?) ->Void in
+                                if error == nil {
+                                    if let data = imageData{
+                                        if let image = UIImage(data: data){
+                                            if let address = object["address"] as? String{
+                                                if let phoneNumber = object["number"] as? String{
+                                                    if let hours = object["hours"] as? [String]{
+                                                        if let restDescript = object["restDescription"] as? String{
+                                                            if let susDescript = object["susDescription"] as? [String]{
+                                                                if let labels = object["labelDescription"] as? [[String]]{
+                                                                    if let healthScore = object["healthScore"] as? Double{
+                                                                        if let mealPlanHours = object["mealPlanHours"] as? [String]{
+                                                                            if let url = object["website"] as? String {
+                                                                                let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url)
+                                                                                self.dishes.addRestaurant(restaurant)
+                                                                                }
+
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
-                                                }
                                             }
-                                        }
-                                        }
                                         }
                                     }
                                 }
                             }
                         }
                     }
+                    if let user = PFUser.currentUser() {
+                        self.emailAddress.text = user.username
+                        self.password.text = user.password
+                        println("Logged in successfully")
+                        self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
+                    }
                 }
             }
         }
     }
-
     
-    func getNumberOfDishes(){
-        var query = PFQuery(className:"Constants")
-        query.whereKey("name", equalTo: "dishNumber")
-        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-            if let object = object {
-                if let value = object["value"] as? Int {
-                    self.dishes.setNumberOfDishes(value)
-                }
-            }
-        }
-    }
     
     //button action to reset forgotten password
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function

@@ -233,12 +233,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                             if let ingredients = object["ingredients"] as? [String]{
                                 if let labels = object["labels"] as? [[String]]{
                                     if let type = object["type"] as? String{
+                                        if let susLabels = object["susLabels"] as? [String]{
+                                            if let price = object["price"] as? String{
                                         if let userImageFile = object["image"] as? PFFile{
                                             userImageFile.getDataInBackgroundWithBlock {
                                                 (imageData: NSData?, error: NSError?) ->Void in
-                                                if error == nil {                              if let data = imageData{                                                if let image = UIImage(data: data){
+                                                if error == nil {
+                                                    if let data = imageData{                                                if let image = UIImage(data: data){
                                                     if !self.hasBeenAdded(name, location: name){
-                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
                                                         self.dishes.addPulled(index)
@@ -252,7 +255,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                             }
                                         } else{
                                             if !self.hasBeenAdded(name, location: name){
-                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                 self.dishes.addDish(location, dish: dish)
                                                 self.menu.append(dish)
                                                 self.dishes.addPulled(index)
@@ -264,6 +267,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                 }
                             }
                         }
+                    }
+                    }
                     }
                 }
             }

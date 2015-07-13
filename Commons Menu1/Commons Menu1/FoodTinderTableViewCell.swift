@@ -89,6 +89,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         addSubview(chefNoteLabel)
         addSubview(tickLabel)
         addSubview(crossLabel)
+        addSubview(susLabels)
         //addSubview(boarder)
         // remove the default blue highlight for selected cells
         selectionStyle = .None
@@ -136,6 +137,8 @@ class FoodTinderTableViewCell: UITableViewCell {
         label.frame = CGRect(x: (screenWidth*0.06), y: 0,
             width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
         label.textAlignment = NSTextAlignment.Center
+        label.numberOfLines = 0
+        label.lineBreakMode = .ByWordWrapping
         label.textColor = UIColor.whiteColor()
 
         chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 85,
@@ -145,6 +148,11 @@ class FoodTinderTableViewCell: UITableViewCell {
         chefNoteLabel.textAlignment = NSTextAlignment.Center
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         chefNoteLabel.numberOfLines = 0
+        
+        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.57, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
+        susLabels.backgroundColor = UIColor.blackColor()
+        placeLabels()
+        
 
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
@@ -211,6 +219,21 @@ class FoodTinderTableViewCell: UITableViewCell {
             } else {
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})
             }
+        }
+    }
+    
+    func placeLabels() {
+        if let labels = dish?.susLabels {
+            var x: CGFloat = 0
+            var icon = UIImageView()
+            for var i = 0; i < labels.count; i++ {
+                icon.frame = CGRectMake(x, 0, screenSize.height*0.9, screenSize.height*0.9)
+                icon.image = UIImage(named: labels[i])
+                icon.contentMode = .ScaleAspectFit
+                susLabels.addSubview(icon)
+                x += icon.frame.width + screenSize.width*0.05
+            }
+            susLabels.contentSize.width = (icon.frame.width + screenSize.width*0.05) * CGFloat(labels.count)
         }
     }
     

@@ -11,7 +11,7 @@ import UIKit
 /**
 Manages the cell representation of a dish in a preference list
 */
-class preferenceListTableViewCell: UITableViewCell {
+class PreferenceListTableViewCell: UITableViewCell {
     var delegate: PreferenceMenuTableViewCellDelegate?
     // The item that this cell renders.
     // Var that determines if the cell needs to be deleted 

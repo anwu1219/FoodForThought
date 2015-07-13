@@ -30,17 +30,12 @@ class MealInfoViewController: UIViewController {
         
         dishName.title = dish?.name
         dishImage.image = dish?.image
-        dishImage.contentMode = .ScaleAspectFit
-//        dishImage.layer.borderWidth = 6
-//        dishImage.layer.borderColor = UIColor(red: 0.1, green: 0.3, blue: 0.1, alpha: 1.0).CGColor
-        
-//        let mealImage = UIImageView()
-//        mealImage.frame = CGRectMake(0.02*screenSize.width, 0.05*screenSize.height, screenSize.width-(0.04*screenSize.width), 0.3*screenSize.height)
-//        mealImage.bounds = mealImage.frame
-//        mealImage.image = dish?.image
-//        mealImage.contentMode = .ScaleAspectFit
-//        self.view.addSubview(mealImage)
-        
+        dishImage.contentMode = .ScaleAspectFill
+        dishImage.layer.borderWidth = 6
+        dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
+        dishImage.layer.masksToBounds = true
+        //scrollInfo.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
+
         var background = UIImageView()
         background.bounds = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height)
         background.frame = background.bounds
@@ -62,9 +57,9 @@ class MealInfoViewController: UIViewController {
         var height: CGFloat = 0.01 * screenSize.height // a unit of y
         var x: CGFloat = 0.02 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
-        
-        if let susLabels = dish?.labels {
-            if susLabels.count > 0 {
+        println(y)
+        if let susLabels = dish?.susLabels {
+            if count(susLabels) > 0 {
                 
                 var container = UIView()
                 
@@ -79,7 +74,7 @@ class MealInfoViewController: UIViewController {
                 y += 10 * height
                 
                 var labelPics = UIScrollView()
-                var labelWidth = 9*height
+                var labelWidth = 6*height
                 var labelHeight = 9*height
                 var labelSpace = 2*width
                 labelPics.frame = CGRectMake(0, y, title.frame.width, title.frame.height)
@@ -92,10 +87,9 @@ class MealInfoViewController: UIViewController {
                 }
                 
                 for var i = 0; i < susLabels.count; i++ {
-                    println(initX)
                     var labelImage = UIImageView()
                     labelImage.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                    labelImage.image = UIImage(named: "C")
+                    labelImage.image = UIImage(named: susLabels[i])
                     labelImage.contentMode = .ScaleToFill
                     labelPics.addSubview(labelImage)
                     initX += labelSpace + labelWidth
@@ -110,8 +104,10 @@ class MealInfoViewController: UIViewController {
                 container.layer.shadowOffset = CGSizeMake(2.0, 2.0)
                 container.layer.shadowOpacity = 0.7
                 scrollInfo.addSubview(container)
+                
             }
         }
+        println(y)
         
         if let location = dish?.location {
             var label = UILabel()
@@ -119,42 +115,54 @@ class MealInfoViewController: UIViewController {
             label.frame = CGRectMake( x, y, 91 * width, 10 * height)
             label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
             label.textColor = UIColor.whiteColor()
+            label.numberOfLines = 0
+            label.sizeToFit()
             //label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             scrollInfo.addSubview(label)
-            y += 5 * height
+            y += label.frame.height + (3*height)
         }
         
         if let price = dish?.price {
-            var label = UILabel()
-            label.text = "Price: $\(price)"
-            label.frame = CGRectMake(x, y, 91 * width, 10 * height)
-            label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
-            label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
-            label.textColor = UIColor.whiteColor()
-            scrollInfo.addSubview(label)
-            y += 5 * height
+            if count(price) > 0 {
+                var label = UILabel()
+                //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
+                label.text = "Price: \(price)"
+                label.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                label.numberOfLines = 0
+                label.sizeToFit()
+                label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                label.textColor = UIColor.whiteColor()
+                scrollInfo.addSubview(label)
+                y += label.frame.height + (3*height)
+            }
         }
         
         
         if let ingredients = dish?.ingredients {
             //label.numberOfLines = 0 // allows for undetermined number of lines to be used to display text
-            var ingreident = UILabel()
-            ingreident.text = "Ingredients:"
-            ingreident.frame = CGRectMake(x, y, 91 * width, 10 * height)
-            ingreident.font = UIFont(name: "Helvetica-Neue Light", size: 14)
-            ingreident.textColor = UIColor.whiteColor()
-            scrollInfo.addSubview(ingreident)
-            y += 9 * height
+            if count(ingredients) > 0 {
+                var ingLabel = UILabel()
+                //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
+                ingLabel.text = "Ingredients:"
+                ingLabel.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                ingLabel.numberOfLines = 0
+                ingLabel.sizeToFit()
+                ingLabel.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                ingLabel.textColor = UIColor.whiteColor()
+                scrollInfo.addSubview(ingLabel)
+                y += ingLabel.frame.height + (3*height)
+            }
             for var i = 0; i < ingredients.count; i++ {
                 var ingredient = UILabel()
                 ingredient.font = UIFont(name: "Helvetica-Neue Light", size: 14)
                 ingredient.textColor = UIColor.whiteColor()
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
                 ingredient.text = "- \(ingredients[i])"
-                ingreident.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                ingreident.numberOfLines = 0
+                ingredient.lineBreakMode = NSLineBreakMode.ByWordWrapping
+                ingredient.numberOfLines = 0
                 var num = CGFloat(2 * count(ingredients[i]))
-                
+                ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
+
                 //ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
                 ingredient.sizeToFit()
                 scrollInfo.addSubview(ingredient)
@@ -163,7 +171,7 @@ class MealInfoViewController: UIViewController {
                     if !labels.isEmpty{
                         var nutLabelXPosition = 3 * height
                         for label: String in labels[i] {
-                            var nutLabel = UIImageView(frame: CGRectMake( 330 - nutLabelXPosition, y - 2 * height, 6 * height, 6 * height))
+                            var nutLabel = UIImageView(frame: CGRectMake( 330 - nutLabelXPosition, y - 2 * height, 5 * height, 5 * height))
                             var image = UIImage(named: label)
                             nutLabel.image = image
                             scrollInfo.addSubview(nutLabel)
@@ -171,10 +179,11 @@ class MealInfoViewController: UIViewController {
                         }
                     }
                 }
-                y += 7 * height
+                y += 5 * height
             }
         }
         scrollInfo.contentSize.height = y
+        println()
     }
     
     

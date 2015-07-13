@@ -178,29 +178,32 @@ class MainMenuViewController: UIViewController {
                         if let ingredients = object["ingredients"] as? [String]{
                             if let labels = object["labels"] as? [[String]]{
                                 if let type = object["type"] as? String{
+                                    if let susLabels = object["susLabels"] as? [String]{
                                     if let index = object["index"] as? Int{
+                                        if let price = object["price"] as? String{
                                         if let userImageFile = object["image"] as? PFFile{
                                             userImageFile.getDataInBackgroundWithBlock {
-                                                (imageData: NSData?, error: NSError?) ->Void in
+                                                (imageData: NSData?, error: NSError?) -> Void in
                                                 if error == nil {
                                                     if let data = imageData{                                                if let image = UIImage(data: data){
-                                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                            dish.like = like
-                                                            dish.dislike = dislike
-                                                            self.dishes.addToDealtWith(index)
-                                                            self.dishes.addDish(location, dish: dish)
-                                                            self.dishes.addPulled(index)
+                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                dish.like = like
+                                                                dish.dislike = dislike
+                                                                self.dishes.addToDealtWith(index)
+                                                                self.dishes.addDish(location, dish: dish)
+                                                                self.dishes.addPulled(index)
                                                         }
                                                     }
                                                 }
                                             }
                                         } else{
-                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                             dish.like = like
                                             dish.dislike = dislike
                                             self.dishes.addToDealtWith(index)
                                             self.dishes.addDish(location, dish: dish)
                                             self.dishes.addPulled(index)
+                                        }
                                         }
                                     }
                                 }
@@ -208,6 +211,7 @@ class MainMenuViewController: UIViewController {
                         }
                     }
                 }
+            }
             }
         }
     }
@@ -241,6 +245,20 @@ class MainMenuViewController: UIViewController {
     }
     
     
+    func getNumberOfDishes(){
+        var query = PFQuery(className:"Constants")
+        query.whereKey("name", equalTo: "dishNumber")
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let object = object {
+                if let value = object["value"] as? Int {
+                    self.dishes.setNumberOfDishes(value)
+                }
+            }
+        }
+    }
+    
+    
+    
     @IBAction func showRestaurants(sender: AnyObject) {
         performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
     }
@@ -257,6 +275,7 @@ class MainMenuViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "foodTinderSegue"{
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
+            self.getNumberOfDishes()
             foodTinderViewController.dishes = dishes
         }
         if segue.identifier == "mainToRestaurantsSegue" {
