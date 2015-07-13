@@ -30,13 +30,21 @@ class MealInfoViewController: UIViewController {
         
         dishName.title = dish?.name
         dishImage.image = dish?.image
-        dishImage.layer.borderWidth = 6
-        dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
+        dishImage.contentMode = .ScaleAspectFit
+//        dishImage.layer.borderWidth = 6
+//        dishImage.layer.borderColor = UIColor(red: 0.1, green: 0.3, blue: 0.1, alpha: 1.0).CGColor
+        
+//        let mealImage = UIImageView()
+//        mealImage.frame = CGRectMake(0.02*screenSize.width, 0.05*screenSize.height, screenSize.width-(0.04*screenSize.width), 0.3*screenSize.height)
+//        mealImage.bounds = mealImage.frame
+//        mealImage.image = dish?.image
+//        mealImage.contentMode = .ScaleAspectFit
+//        self.view.addSubview(mealImage)
         
         var background = UIImageView()
         background.bounds = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height)
         background.frame = background.bounds
-        background.image = UIImage(named: "blurrypreferencepicture")
+        background.image = UIImage(named: "dishlevelInfopagebackground")
         background.contentMode = .ScaleAspectFill
         self.view.addSubview(background)
         self.view.sendSubviewToBack(background)
@@ -113,7 +121,7 @@ class MealInfoViewController: UIViewController {
             label.textColor = UIColor.whiteColor()
             //label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             scrollInfo.addSubview(label)
-            y += 10 * height
+            y += 5 * height
         }
         
         if let price = dish?.price {
@@ -124,7 +132,7 @@ class MealInfoViewController: UIViewController {
             label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
             label.textColor = UIColor.whiteColor()
             scrollInfo.addSubview(label)
-            y += 10 * height
+            y += 5 * height
         }
         
         
@@ -141,10 +149,12 @@ class MealInfoViewController: UIViewController {
                 var ingredient = UILabel()
                 ingredient.font = UIFont(name: "Helvetica-Neue Light", size: 14)
                 ingredient.textColor = UIColor.whiteColor()
+                ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
                 ingredient.text = "- \(ingredients[i])"
                 ingreident.lineBreakMode = NSLineBreakMode.ByWordWrapping
+                ingreident.numberOfLines = 0
                 var num = CGFloat(2 * count(ingredients[i]))
-                ingredient.frame = CGRectMake( 2 * x, y, num * width, 10 * height)
+                
                 //ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
                 ingredient.sizeToFit()
                 scrollInfo.addSubview(ingredient)
