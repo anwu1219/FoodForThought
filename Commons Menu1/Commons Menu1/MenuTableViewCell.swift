@@ -44,6 +44,8 @@ class MenuTableViewCell: UITableViewCell {
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
         label.font = UIFont.boldSystemFontOfSize(16)
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
         //label.backgroundColor = UIColor.purpleColor()
 
         /**
@@ -117,7 +119,7 @@ class MenuTableViewCell: UITableViewCell {
         let kLabelLeftMargin: CGFloat = 36 * width
         let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
         label.frame = CGRect(x: kLabelLeftMargin, y: 0,
-            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+            width: bounds.size.width - kLabelLeftMargin-20, height: bounds.size.height)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
