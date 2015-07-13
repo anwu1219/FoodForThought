@@ -14,19 +14,6 @@ protocol SignUpViewControllerDelegate {
 }
 
 
-extension UIViewController {
-    func noInternetAlert(message: String) {
-        let alertController = UIAlertController(title: "No Internet Connection",
-            message: message,
-            preferredStyle: UIAlertControllerStyle.Alert
-        )
-        self.presentViewController(alertController, animated: true, completion: nil)
-        UIView.transitionWithView(self.view, duration: 1.5, options:.TransitionCrossDissolve,animations: { () -> Void in
-            alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
-            })}, completion: nil)
-    }
-}
-
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()

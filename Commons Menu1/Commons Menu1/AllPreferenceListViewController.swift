@@ -39,10 +39,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var dishes : Dishes!
     var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let saveAlert = UIAlertController(title: "Sync your preference?",
-        message: "",
-        preferredStyle: UIAlertControllerStyle.Alert
-    )
     var edited = false
 
     
@@ -94,18 +90,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         for key: String in keys {
             preferences[key]!.sort({$0.name < $1.name})
         }
-        saveAlert.addAction(UIAlertAction(title: "Cancel",
-            style: UIAlertActionStyle.Default,
-            handler: nil
-            )
-        )
-        saveAlert.addAction(UIAlertAction(title: "OK",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.uploadPreferences()}
-            )
-        )
-        println(dishes.dishes)
-
     }
     
     

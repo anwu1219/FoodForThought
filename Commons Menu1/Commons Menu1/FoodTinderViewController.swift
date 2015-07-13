@@ -81,9 +81,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double (NSEC_PER_SEC) * 2))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-        }
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     
@@ -197,9 +194,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         self.menu.removeAtIndex(index)
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
         foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-        if menu.isEmpty {
-            refreshControl.sendActionsForControlEvents(.ValueChanged)
-        }
+        refreshControl.sendActionsForControlEvents(.ValueChanged)
         foodTinderTableView.endUpdates()
     }
     
@@ -214,48 +209,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, heightForRowAtIndexPath
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
-    }
-    
-    
-    /**
-    Uploads the preference list
-    */
-    func uploadPreference(dish: Dish){
-        if let user = PFUser.currentUser(){
-            let newPreference = PFObject(className:"Preference")
-            newPreference["createdBy"] = PFUser.currentUser()
-            newPreference["dishName"] = dish.name
-            newPreference["location"] = dish.location
-            newPreference.saveInBackgroundWithBlock({
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    // The object has been saved.
-                } else {
-                    // There was a problem, check error.description
-                }
-            })
-        }
-    }
-    
-    
-    /**
-    Uploads the preference list
-    */
-    func uploadDislike(dish: Dish){
-        if let user = PFUser.currentUser(){
-            let newPreference = PFObject(className:"Disliked")
-            newPreference["createdBy"] = PFUser.currentUser()
-            newPreference["dishName"] = dish.name
-            newPreference["location"] = dish.location
-            newPreference.saveInBackgroundWithBlock({
-                (success: Bool, error: NSError?) -> Void in
-                if (success) {
-                    // The object has been saved.
-                } else {
-                    // There was a problem, check error.description
-                }
-            })
-        }
     }
     
     
