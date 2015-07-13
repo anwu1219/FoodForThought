@@ -25,7 +25,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
-        preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
+        preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.rowHeight = 100;
@@ -73,7 +73,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! preferenceListTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         let dish = preferences[indexPath.row]
         cell.delegate = self
         cell.selectionStyle = .None

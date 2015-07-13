@@ -80,7 +80,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     //    preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
-        preferenceListTableView.registerClass(preferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
+        preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.rowHeight = 100;
         preferenceListTableView.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
@@ -162,7 +162,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // initiates a cell
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! preferenceListTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         // passes data to each cell
         let key = keys[indexPath.section]
         if let preferences = preferences[key]{

@@ -57,20 +57,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var restProf: RestProfile!
     var edited = false
     let refreshControl = UIRefreshControl()
-    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let savedAlert = UIAlertController(title: "Saved", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Formats the labels in the view controller
         restImageButton.setImage(restProf.image, forState: .Normal)
-        restWeekdayOpenHoursLabel.text = restProf!.weekdayHours
-        restWeekendOpenHoursLabel.text = restProf!.weekendHours
-        restWeekdayOpenHoursLabel.numberOfLines = 2
-        restWeekendOpenHoursLabel.numberOfLines = 2
+        println("Day:\(self.getDayOfWeek())")
+            restWeekdayOpenHoursLabel.text = restProf!.hours[self.getDayOfWeek()]
+            restWeekendOpenHoursLabel.text = restProf!.mealPlanHours[self.getDayOfWeek()]
+            restWeekdayOpenHoursLabel.numberOfLines = 2
+            restWeekendOpenHoursLabel.numberOfLines = 2
         
+    
         restPhoneNumbLabel.text = restProf!.phoneNumber
         restAddressLabel.text = restProf!.address
         
