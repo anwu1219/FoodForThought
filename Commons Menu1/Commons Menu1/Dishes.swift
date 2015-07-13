@@ -13,7 +13,6 @@ class Dishes{
     var numberOfDishes = 0
     var dealtWith = Set<Int>()
     
-    
     func addDish(location: String, dish : Dish){
         for restaurant : RestProfile in dishes.keys {
             if restaurant.name == location {
@@ -43,7 +42,6 @@ class Dishes{
     func removeFromDealtWith(index: Int){
         self.dealtWith.remove(index)
     }
-    
     
     
     init (){

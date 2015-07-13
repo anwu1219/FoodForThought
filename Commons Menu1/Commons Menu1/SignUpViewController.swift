@@ -16,7 +16,6 @@ protocol SignUpViewControllerDelegate {
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
-    var numberOfDishes = Int()
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -32,7 +31,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if Reachability.isConnectedToNetwork() == false {
+            let alertController = UIAlertController(title: "No Internet Connection",
+                message: "Make sure your device is connected to the internet",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "OK",
+                style: UIAlertActionStyle.Default,
+                handler: nil))
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "wheat")
@@ -308,7 +317,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
                 if let value = object["value"] as? Int {
-                    self.numberOfDishes = value
+                    self.dishes.setNumberOfDishes(value)
                 }
             }
         }
@@ -378,7 +387,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             println("Hello \(PFUser.currentUser())")
             mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.dishes = dishes
-            mainMenuViewController.numberOfDishes = numberOfDishes
         }
     }
 }

@@ -45,7 +45,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     var dishes: Dishes!
     var menuLoad : [Dish]?
-    var numberOfDishes : Int!
+    var randomIndice = Set<Int>()
     var menu = [Dish]()
     let styles = Styles()
     var preferences = [Dish]()
@@ -53,6 +53,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    let preparingAlert = UIAlertController(title: "Preparing...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    let scrollAlert = UIAlertController(title: "Scroll down to swipe more...", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+    let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
 
@@ -80,8 +83,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.layer.cornerRadius = 5
 
 
-
-        //self.createMenu()
+    
         
         if let menuLoad = menuLoad {
             for dish in menuLoad {
@@ -89,14 +91,45 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 }
         }
         //shuffles the dishes for the tinder swiping
-        menu.shuffle()
+        //menu.shuffle()
         
         if let ecoLabelsArray = ecoLabelsArray {
      //       var keys = ecoLabelsArray.keys.array
      //       keys.sort({$0.name < $1.name})
      //       placeEcoLabels(keys)
         }
+        
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        foodTinderTableView.addSubview(refreshControl)
+        
     }
+    
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        if dishes.dealtWith.count != dishes.numberOfDishes{
+        // Do your job, when done:
+        for i in 1...15{
+            self.fetchRandomDishes(dishes.numberOfDishes)
+        }
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.foodTinderTableView.reloadData()
+            refreshControl.endRefreshing()
+            self.foodTinderTableView.scrollEnabled = false
+        }
+        } else {
+            presentViewController(completeAlert, animated: true, completion: nil)
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+            dispatch_after(delayTime, dispatch_get_main_queue()){
+                self.completeAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+
+                })
+            }
+        }
+    }
+    
     
     func placeEcoLabels(keys: [Label]) {
         for i in 0..<keys.count {
@@ -212,6 +245,17 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         // use the UITableView to animate the removal of this row
         foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
+        if menu.isEmpty {
+            self.foodTinderTableView.scrollEnabled = true
+            presentViewController(scrollAlert, animated: true, completion: nil)
+            let delay =  4 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+            }
+            self.scrollAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+            })
+        }
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
         foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         foodTinderTableView.endUpdates()
@@ -293,70 +337,57 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func fetchRandomDishes(numberOfDishes: Int, number: Int) {
+    func fetchRandomDishes(numberOfDishes: Int) -> Int{
         var query = PFQuery(className:"dishInfo")
-        for var i = 0; i < number; i++ {
-            var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
-            println(randomIndex)
-            query.whereKey("index", equalTo: randomIndex)
-            query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
-                if let object = object {
-                    if let name = object["name"] as? String {
-                        if let location = object["location"] as? String{
-                            if !self.dealtWith(location, name: name) {
+        var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+        while contains(randomIndice, randomIndex){
+            randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+        }
+        randomIndice.insert(randomIndex)
+        randomIndice.removeAll(keepCapacity: false)
+        query.whereKey("index", equalTo: randomIndex)
+        query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+            if let object = object {
+                if let index = object["index"] as? Int{
+                    if !self.dealtWith(index){
+                        if let name = object["name"] as? String {
+                            if let location = object["location"] as? String{
                                 if let ingredients = object["ingredients"] as? [String]{
                                     if let labels = object["labels"] as? [[String]]{
                                         if let type = object["type"] as? String{
-                                            if let index = object["index"] as? Int{
-                                                if let userImageFile = object["image"] as? PFFile{
-                                                    userImageFile.getDataInBackgroundWithBlock {
-                                                        (imageData: NSData?, error: NSError?) ->Void in
-                                                        if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                                            let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                            self.dishes.addDish(location, dish: dish)
-                                                            self.menu.append(dish)
-                                                            }
-                                                            }
+                                            if let userImageFile = object["image"] as? PFFile{
+                                                userImageFile.getDataInBackgroundWithBlock {
+                                                    (imageData: NSData?, error: NSError?) ->Void in
+                                                    if error == nil {                              if let data = imageData{                                                if let image = UIImage(data: data){
+                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                        self.dishes.addDish(location, dish: dish)
+                                                        self.menu.append(dish)
+                                                        }
                                                         }
                                                     }
-                                                } else{
-                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                    self.dishes.addDish(location, dish: dish)
-                                                    self.menu.append(dish)
                                                 }
+                                            } else{
+                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                self.dishes.addDish(location, dish: dish)
+                                                self.menu.append(dish)
                                             }
                                         }
                                     }
                                 }
-                            } else {
-                                i--
                             }
                         }
                     }
                 }
-            })
-        }
-    }
-    
-    
-    
-    func dealtWith(location: String, name: String) -> Bool {
-        var key : RestProfile
-        for restaurant: RestProfile in dishes.dishes.keys{
-            if restaurant.name == location{
-                key = restaurant
-                for dish : Dish in dishes.dishes[key]!{
-                    if dish.name == name {
-                        if dish.like || dish.dislike{
-                            return true
-                        }
-                    }
-                }
             }
-        }
-        return false
+        })
+        return randomIndex
     }
     
+    
+    
+    func dealtWith(index: Int) -> Bool {
+        return contains(dishes.dealtWith, index)
+    }
     
     
     /**
