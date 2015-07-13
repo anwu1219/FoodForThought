@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -786,8 +786,7 @@
                                         <exclude reference="iSy-Di-8bd"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="438" width="70" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="8iC-Gi-nNe"/>
                                         <include reference="Dxa-KA-n2P"/>
@@ -869,8 +868,7 @@
                                         <exclude reference="eIA-L0-fLb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="289" y="438" width="70" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="0rn-zt-FQS"/>
                                         <include reference="Ekx-sd-uNS"/>
@@ -2241,7 +2239,7 @@
                                     </mask>
                                 </variation>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
                                 <rect key="frame" x="9" y="72" width="582" height="195"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="582" id="3Hn-gC-tVS"/>
@@ -2358,6 +2356,6 @@
         <image name="treeCoin" width="275" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Lq-rH-UIY"/>
+        <segue reference="4iJ-fy-ZFU"/>
     </inferredMetricsTieBreakers>
 </document>
