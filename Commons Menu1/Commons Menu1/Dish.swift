@@ -15,7 +15,7 @@ class Dish: NSObject {
     // a text description of this item.
     var name: String
     var ingredients: [String]?
-    var labels : [[String]]?
+    var labels : [[String]]? //Nutritionist Labels for Commons
     var image: UIImage? = UIImage(named: "sloth")
     // for off-campus dining service
     var allergens: [String]?
@@ -31,6 +31,7 @@ class Dish: NSObject {
     var location = String()
     var type = String()
     var index = 0
+    var susLabels = [String]() //Sustainability Labels on dish level
 
     
     init(name: String) {
@@ -43,7 +44,7 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int){
+    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String]){
         self.name = name
         self.image = image
         self.location = location
@@ -51,36 +52,22 @@ class Dish: NSObject {
         self.ingredients = ingredients
         self.labels = labels
         self.index = index
-    }
-    
-    
-    
-    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int){
-        self.name = name
-        self.location = location
-        self.type = type
-        self.ingredients = ingredients
-        self.labels = labels
-        self.index = index
-    }
-    
-    
-    init(name: String, image: UIImage, like: Bool, location: String) {
-        self.name = name
-        self.image = image
-        self.like = like
-        self.location = location
-    }
-    
-    init (name: String, ingredients: [String], image: UIImage, allergens: [String], chefNote: String, ecoLabel: [String], nutritionistNote: String, price: String){
-        self.name = name
-        self.ingredients = ingredients
-        self.image = image
-        self.allergens = allergens
-        self.chefNote = chefNote
-        self.ecoLabel = ecoLabel
-        self.nutritionistNote = nutritionistNote
         self.price = price
+        self.susLabels = susLabels
     }
+    
+    
+    
+    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int,  price: String, susLabels: [String]){
+        self.name = name
+        self.location = location
+        self.type = type
+        self.ingredients = ingredients
+        self.labels = labels
+        self.index = index
+        self.price = price
+        self.susLabels = susLabels
+    }
+
     
 }
