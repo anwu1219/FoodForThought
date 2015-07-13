@@ -167,14 +167,14 @@
 				40D502171B4B29F30027F1DD /* Main.storyboard */,
 				F3E529131B39F9A00081FFDC /* View Controller */,
 				F32372D21B5455D3008A7C91 /* Extension */,
-				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
 				F32372D31B545602008A7C91 /* TableCells */,
 				F39905971B3311A4004E74C6 /* Dish.swift */,
+				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
 				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
 				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
-				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
+				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
 			);
 			path = "Commons Menu1";

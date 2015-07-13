@@ -302,14 +302,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Segues to single dish info
-        if segue.identifier == "foodTinderSegue" {
-            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
-            let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
-                // Sets the dish info in the new view to selected cell's dish
-                mealInfoViewController.dish = menu[index]
-            }
+        if segue.identifier == "tinderToAllPreferencesSegue" {
+            let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
+            allPreferenceListViewController.dishes = dishes
         }
-        
     }
 }
