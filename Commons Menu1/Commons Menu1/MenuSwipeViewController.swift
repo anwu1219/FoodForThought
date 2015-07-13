@@ -134,18 +134,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                     if let name = object["name"] as? String {
                                         if let location = object["location"] as? String{
                                             if let ingredients = object["ingredients"] as? [String]{
+                                                if let susLabels = object["susLabels"] as? [String]{
                                                 if let labels = object["labels"] as? [[String]]{
                                                     if let type = object["type"] as? String{
+                                                        if let price = object["price"] as? String{
                                                         if let userImageFile = object["image"] as? PFFile{
                                                             if let data = userImageFile.getData(){                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.addDishToMenu(dish)
                                                                 self.dishes.addPulled(index)
                                                             }
                                                         }
                                                     } else{
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
+                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.addDishToMenu(dish)
                                                     }
@@ -155,6 +157,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                     }
                                 }
                             }
+                        }
+                        }
                         }
                     }
                     for type: String in self.types {
