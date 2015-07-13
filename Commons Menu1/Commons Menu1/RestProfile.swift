@@ -12,24 +12,26 @@ import UIKit
 class RestProfile: NSObject {
     var name: String
     var image: UIImage
-    var restDescript: [String]
+    var restDescript: String
     var address: String
-    var weekdayHours: String
-    var weekendHours: String
+    var hours: [String]
+    var mealPlanHours: [String]
     var phoneNumber: String
-    var label: [[String]]
+    var labels: [[String]]
     var healthScore: Double
+    var url: String
 
     
-    init(name: String, image: UIImage, restDescript: [String], address: String, weekdayHours: String, weekendHours: String, phoneNumber: String, label: [[String]], heathScore: Double){
+    init(name: String, image: UIImage, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String){
         self.name = name
         self.image = image
         self.restDescript = restDescript
         self.address = address
-        self.weekdayHours = weekdayHours
-        self.weekendHours = weekendHours
+        self.hours = hours
+        self.mealPlanHours = mealPlanHours
         self.phoneNumber = phoneNumber
-        self.label = label
+        self.labels = labels
         self.healthScore = heathScore
+        self.url = url
     }
 }

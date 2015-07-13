@@ -10,9 +10,6 @@
 //http://www.brianjcoleman.com/tutorial-check-for-internet-connection-in-swift/
 import Foundation
 public class Reachability {
-    
-    
-
     class func isConnectedToNetwork()->Bool{
         
         var Status:Bool = false

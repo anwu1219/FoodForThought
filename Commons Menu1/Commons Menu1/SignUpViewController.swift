@@ -276,13 +276,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                         if let image = UIImage(data: data){
                                             if let address = object["address"] as? String{
                                                 if let phoneNumber = object["number"] as? String{
-                                                    if let  hours = object["openHours"] as? String{
+                                                    if let hours = object["hours"] as? [String]{
                                                         if let restDescript = object["restDescription"] as? String{
                                                             if let susDescript = object["susDescription"] as? [String]{
-                                                                if let label = object["labelDescription"] as? [[String]]{
+                                                                if let labels = object["labelDescription"] as? [[String]]{
                                                                     if let healthScore = object["healthScore"] as? Double{
-                                                                        let restaurant = RestProfile(name: name, image: image, restDescript: susDescript, address: address, weekdayHours: hours, weekendHours: hours, phoneNumber: phoneNumber, label: label, heathScore: healthScore)
-                                                                        self.dishes.addRestaurant(restaurant)
+                                                                        if let mealPlanHours = object["mealPlanHours"] as? [String]{
+                                                                            if let url = object["website"] as? String {
+                                                                                let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url)
+                                                                                self.dishes.addRestaurant(restaurant)
+                                                                                }
+
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
