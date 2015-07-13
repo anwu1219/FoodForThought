@@ -160,7 +160,6 @@ class FoodTinderTableViewCell: UITableViewCell {
         //self.imageView?.layer.cornerRadius = 5
         self.imageView?.clipsToBounds = true
         self.imageView?.layer.masksToBounds = true
-
     }
     
     
@@ -197,17 +196,17 @@ class FoodTinderTableViewCell: UITableViewCell {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     dish?.like = false
-                    delegate!.addToDislikes(dish!)
                     dish?.dislike = true
-                    delegate!.toDoItemDeleted(dish!)
+                    self.delegate!.toDoItemDeleted(self.dish!)
+                    self.delegate!.uploadDislike(self.dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
                     dish!.like = true
                     //removes cell once it is liked
                     dish?.dislike = false
-                    delegate!.addToPreferenceList(dish!)
-                    delegate!.toDoItemDeleted(dish!)
+                    self.delegate!.toDoItemDeleted(self.dish!)
+                    self.delegate!.uploadPreference(self.dish!)
                 }
             } else {
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})

@@ -29,8 +29,11 @@ protocol MenuTableViewCellDelegate {
     
     func handleDealtWithOnLike(dish: Dish)
     
-    
     func handleDealtWithOnDislike(dish : Dish)
+    
+    func uploadPreference(dish: Dish)
+    
+    func uploadDislike(dish: Dish)
 }
 
 
@@ -53,7 +56,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var types = [String]()
     var restProf: RestProfile!
     var edited = false
-    
+    let refreshControl = UIRefreshControl()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let savedAlert = UIAlertController(title: "Saved", message: "", preferredStyle: UIAlertControllerStyle.Alert)
 
@@ -88,38 +91,33 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.rowHeight = 100;
         if let dishes = dishes {
             self.makeMenu(dishes.dishes[restProf]!)
+            for type: String in self.types {
+                self.menu[type]!.sort({$0.name < $1.name})
+            }
         }
-        types = menu.keys.array
-        types.sort({$0 < $1})
-        for type: String in types {
-            menu[type]!.sort({$0.name < $1.name})
-        }
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
-        if Reachability.isConnectedToNetwork() == true {
-            self.refresh(refreshControl)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let foo = dishes.cached[restProf]{
+            if !foo {
+                tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
+                self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+                self.dishes.cached(self.restProf)
+            }
         }
     }
     
     
     func refresh(refreshControl: UIRefreshControl) {
-        if Reachability.isConnectedToNetwork() == true {
+        if Reachability.isConnectedToNetwork() {
             self.addDishWithLocation(restProf.name)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                self.tableView.reloadData()
-                refreshControl.endRefreshing()
-            }
-        } else {
-             let alert = UIAlertController(title: "Internet Connection Required", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                alert.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-                })
-            }
+        } else{
+            noInternetAlert("Unable to Refresh")
         }
+        refreshControl.endRefreshing()
     }
 
 
@@ -131,26 +129,25 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             if error == nil && objects != nil{
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        if let name = object["name"] as? String {
-                            if let location = object["location"] as? String{
-                                if self.hasBeenAdded(name, location: location) {
-                                    if let ingredients = object["ingredients"] as? [String]{
-                                        if let labels = object["labels"] as? [[String]]{
-                                            if let type = object["type"] as? String{
-                                                if let index = object["index"] as? Int{
-                                                    if let userImageFile = object["image"] as? PFFile{
-                                                        userImageFile.getDataInBackgroundWithBlock {
-                                                            (imageData: NSData?, error: NSError?) ->Void in
-                                                            if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
+                        if let index = object["index"] as? Int{
+                            if !self.dishes.pulled.contains(index){
+                                    if let name = object["name"] as? String {
+                                        if let location = object["location"] as? String{
+                                            if let ingredients = object["ingredients"] as? [String]{
+                                                if let labels = object["labels"] as? [[String]]{
+                                                    if let type = object["type"] as? String{
+                                                        if let userImageFile = object["image"] as? PFFile{
+                                                            if let data = userImageFile.getData(){                                                if let image = UIImage(data: data){
                                                                 let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                                 self.dishes.addDish(location, dish: dish)
-                                                                }
-                                                                }
+                                                                self.addDishToMenu(dish)
+                                                                self.dishes.addPulled(index)
                                                             }
                                                         }
                                                     } else{
                                                         let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
                                                         self.dishes.addDish(location, dish: dish)
+                                                        self.addDishToMenu(dish)
                                                     }
                                                 }
                                             }
@@ -160,25 +157,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                     }
+                    for type: String in self.types {
+                        self.menu[type]!.sort({$0.name < $1.name})
+                    }
+                    UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
+                        self.tableView.reloadData()}, completion: nil)
+                    self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
                 }
             }
         }
-    }
-    
-    
-    func hasBeenAdded(name : String, location: String)-> Bool {
-        var rest : RestProfile? = nil
-        for restaurant: RestProfile in dishes.dishes.keys{
-            if restaurant.name == location{
-                rest = restaurant
-            }
-        }
-        for dish: Dish in dishes.dishes[rest!]!{
-            if dish.name == name {
-                return false
-            }
-        }
-        return true
     }
     
     
@@ -189,35 +176,32 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.willMoveToParentViewController(parent)
         if parent == nil {
             if edited {
-            println("This VC is 'will' be popped. i.e. the back button was pressed.")
-                presentViewController(savingAlert, animated: true, completion: nil)
-                        //println("This VC is 'will' be popped. i.e. the back button was pressed.")
-                        //presentViewController(saveAlert, animated: true, completion: nil)
-                self.uploadPreferenceList(restProf.name)
-                self.uploadDislikes(restProf.name)
-                let param = Double(self.menu.count) * 0.05
-                let delay =  param * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                        dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-                    }
+                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+                    self.uploadPreferenceList(self.restProf.name)
+                    self.uploadDislikes(self.restProf.name)
                 }
             }
-        self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-
-        })
+        }
     }
     
     
     func makeMenu(inputMenu : [Dish]){
         for dish : Dish in inputMenu {
-            if !contains(menu.keys, dish.type){
-                menu[dish.type] = [Dish]()
-            }
-            menu[dish.type]?.append(dish)
+             addDishToMenu(dish)
         }
     }
     
     
+    func addDishToMenu(dish: Dish){
+        if !contains(menu.keys, dish.type){
+            menu[dish.type] = [Dish]()
+            self.types.append(dish.type)
+            self.types.sort({$0 < $1})
+        }
+        menu[dish.type]?.append(dish)
+    }
+
+
     // MARK: - Table view data source
     /**
     Returns the number of sections in the table
@@ -401,30 +385,25 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 }
                             }
                         }
-                    }
-                }
-            }
-        }
-        let param = Double(self.menu.count) * 0.05
-        let delay =  param * Double(NSEC_PER_SEC)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-            for type : String in self.types{
-                for dish: Dish in self.menu[type]! {
-                    if dish.like{
-                        if let user = PFUser.currentUser(){
-                            let newPreference = PFObject(className:"Preference")
-                            newPreference["createdBy"] = PFUser.currentUser()
-                            newPreference["dishName"] = dish.name
-                            newPreference["location"] = dish.location
-                            newPreference.saveInBackgroundWithBlock({
-                                (success: Bool, error: NSError?) -> Void in
-                                if (success) {
-                                    println("Successfully Saved")
-                                } else {
-                                    // There was a problem, check error.description
+                        for type : String in self.types{
+                            for dish: Dish in self.menu[type]! {
+                                if dish.like{
+                                    if let user = PFUser.currentUser(){
+                                        let newPreference = PFObject(className:"Preference")
+                                        newPreference["createdBy"] = PFUser.currentUser()
+                                        newPreference["dishName"] = dish.name
+                                        newPreference["location"] = dish.location
+                                        newPreference.saveInBackgroundWithBlock({
+                                            (success: Bool, error: NSError?) -> Void in
+                                            if (success) {
+                                                println("Successfully Saved")
+                                            } else {
+                                                // There was a problem, check error.description
+                                            }
+                                        })
+                                    }
                                 }
-                            })
+                            }
                         }
                     }
                 }
@@ -460,30 +439,25 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 }
                             }
                         }
+                        for dish: Dish in self.disLikes {
+                            if let user = PFUser.currentUser(){
+                                let newPreference = PFObject(className:"Disliked")
+                                newPreference["createdBy"] = PFUser.currentUser()
+                                newPreference["dishName"] = dish.name
+                                newPreference["location"] = dish.location
+                                newPreference.saveInBackgroundWithBlock({
+                                    (success: Bool, error: NSError?) -> Void in
+                                    if (success) {
+                                        println("Successfully Saved")
+                                    } else {
+                                        // There was a problem, check error.description
+                                    }
+                                })
+                            }
+                        }
                     }
                 }
             }
-        }
-        let param = Double(self.menu.count) * 0.05
-        let delay =  param * Double(NSEC_PER_SEC)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-        for dish: Dish in self.disLikes {
-            if let user = PFUser.currentUser(){
-                let newPreference = PFObject(className:"Disliked")
-                newPreference["createdBy"] = PFUser.currentUser()
-                newPreference["dishName"] = dish.name
-                newPreference["location"] = dish.location
-                newPreference.saveInBackgroundWithBlock({
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                         println("Successfully Saved")
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                })
-            }
-        }
         }
     }
 
