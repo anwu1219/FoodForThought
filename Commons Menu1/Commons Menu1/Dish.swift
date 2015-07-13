@@ -15,7 +15,7 @@ class Dish: NSObject {
     // a text description of this item.
     var name: String
     var ingredients: [String]?
-    var labels : [[String]]?
+    var labels : [[String]]? //Nutritionist Labels for Commons
     var image: UIImage? = UIImage(named: "sloth")
     // for off-campus dining service
     var allergens: [String]?
@@ -31,7 +31,7 @@ class Dish: NSObject {
     var location = String()
     var type = String()
     var index = 0
-    var susLabels = [String]()
+    var susLabels = [String]() //Sustainability Labels on dish level
 
     
     init(name: String) {
