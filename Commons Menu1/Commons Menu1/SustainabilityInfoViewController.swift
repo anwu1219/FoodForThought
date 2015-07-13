@@ -38,11 +38,11 @@ class SustainabilityInfoViewController: UIViewController {
         
         super.viewDidLoad()
         
-        testView.frame = CGRectMake(widthPadding, 110.0, screenSize.width-(2*widthPadding), 520)
+        testView.frame = CGRectMake(widthPadding, 3*verticalSpace, screenSize.width-(2*widthPadding), screenSize.height - (4*verticalSpace))
         let background = UIImageView()
         background.image = UIImage(named: "wheat")
-        background.frame = CGRectMake(173.0, -10.0, 30, 800) // will need to change with new images
-        background.bounds = self.view.bounds
+        background.frame = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height) // will need to change with new images
+        background.bounds = background.bounds
         background.contentMode = .ScaleToFill
         self.view.addSubview(background)
         //self.view.sendSubviewToBack(background)
@@ -83,7 +83,7 @@ class SustainabilityInfoViewController: UIViewController {
             body.numberOfLines = 0
             body.frame = CGRectMake(0.0, y, 1000, 1000)
             body.sizeToFit()
-            body.frame = CGRectMake(5.0, y, testView.frame.width - 10, body.frame.height)
+            body.frame = CGRectMake(widthPadding, y, testView.frame.width - (2*widthPadding), body.frame.height)
             body.textAlignment = .Center
             testView.addSubview(body)
             y += body.frame.height + verticalSpace
