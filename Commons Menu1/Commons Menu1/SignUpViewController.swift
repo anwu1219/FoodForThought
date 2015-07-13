@@ -90,19 +90,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         self.emailAddress.delegate = self
         self.password.delegate = self
         self.getRestaurant()
-        if let user = PFUser.currentUser() {
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-            dispatch_after(delayTime, dispatch_get_main_queue()){
-                self.emailAddress.text = user.username
-                self.password.text = user.password
-                println("Logged in successfully")
-                self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
-            }
-        }
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
-
     }
     
     
@@ -306,6 +296,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                 }
                             }
                         }
+                    }
+                    if let user = PFUser.currentUser() {
+                        self.emailAddress.text = user.username
+                        self.password.text = user.password
+                        println("Logged in successfully")
+                        self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                     }
                 }
             }
