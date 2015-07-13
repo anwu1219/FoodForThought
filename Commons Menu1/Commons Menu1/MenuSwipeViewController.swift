@@ -105,13 +105,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             if !foo {
                 tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
                 self.refreshControl.sendActionsForControlEvents(.ValueChanged)
-                let delay =  1 * Double(NSEC_PER_SEC)
-                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                dispatch_after(time, dispatch_get_main_queue()) { () -> Void
-                        in
-                    self.dishes.cached(self.restProf)
-                    self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
-                }
+                self.dishes.cached(self.restProf)
             }
         }
     }
@@ -168,6 +162,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()}, completion: nil)
+                    self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
                 }
             }
         }
