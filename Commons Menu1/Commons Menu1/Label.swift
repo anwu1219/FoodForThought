@@ -11,31 +11,31 @@ import UIKit
 
 struct Label {
     //Stores the dish level and retaurant level labels
-    let dishLabels = [
-        "label1": UIImage(named:"sloth"),
-        "label2": UIImage(named: "sloth"),
-        "label3": UIImage(named: "sloth"),
-        "label4": UIImage(named: "sloth"),
-        "label5": UIImage(named: "sloth")
-        ]
-    let restLabels = [
+    let Labels = [
+
+        
+
+        "EC": UIImage(named: "EC"),
+        "FS": UIImage(named:"FS"),
+        "L": UIImage(named: "L"),
+        "SE": UIImage(named: "SE"),
+        
+       
+        "AI": UIImage(named: "AI"),
+        "CA": UIImage(named: "CA"),
         "FD": UIImage(named:"FD"),
         "MD": UIImage(named: "MD"),
-        "AI": UIImage(named: "AI"),
-        "FS": UIImage(named: "MD"),
         "VO": UIImage(named: "VO"),
-        "CA": UIImage(named: "CA"),
+        
+        
         "C": UIImage(named:"C"),
-        "R": UIImage(named: "R"),
         "L": UIImage(named: "L"),
-        "ES": UIImage(named: "L"),
-        "EC": UIImage(named: "C"),
-        "98": UIImage(named: "sloth"),
-        "LB": UIImage(named: "sloth"),
-        "LW": UIImage(named: "sloth")
-        ]
-    let nutLabels = [
+        "LA": UIImage(named: "LA"),
+        "R": UIImage(named: "R"),
+        
+        
         "CE": UIImage(named: "CE"),
+        "ES": UIImage(named: "ES"),
         "HF": UIImage(named: "HF"),
         "PP": UIImage(named: "PP"),
         "VN": UIImage(named: "VN")
