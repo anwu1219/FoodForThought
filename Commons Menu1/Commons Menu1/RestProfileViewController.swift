@@ -12,11 +12,12 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
+    let styles = Styles()
+
 
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
-    @IBOutlet weak var restProfile: UITableView!
     @IBOutlet var restProfileView: UIView!
     @IBOutlet weak var restProfTable: UITableView!
     
@@ -27,11 +28,19 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
- //       restProfName.title = RestProfile?.name
+        self.title = restProf?.name
         restProfImage.image = restProf.image
         // Do any additional setup after loading the view.
+        restProfTable.dataSource = self
+        restProfTable.delegate = self
         restProfTable.rowHeight = 200;
-
+        restProfTable.layer.borderWidth = 2
+        restProfTable.layer.borderColor = UIColor.blackColor().CGColor
+        restProfTable.backgroundColor = UIColor(red: 122/255.0, green: 118/255.0, blue: 162/255.0, alpha: 1)
+        restProfTable.separatorStyle = .SingleLine
+        restProfTable.backgroundView = styles.backgroundImage
+        restProfTable.backgroundView?.contentMode = .ScaleAspectFill
+        
         restWeekdayHoursLabel.text = restProf!.weekdayHours
         restWeekendHoursLabel.text = restProf!.weekendHours
         restWeekdayHoursLabel.numberOfLines = 2
@@ -69,9 +78,15 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("restProfCell", forIndexPath: indexPath) as! RestaurantProfileTableViewCell
+            let restCommentsLabel = UILabel()
             
+            restCommentsLabel.frame = CGRectMake(30, 50, self.restProfTable.frame.size.width, 50)
             //
+            restCommentsLabel.textAlignment = .Center
+            restCommentsLabel.text = "Restaurant Comments"
+            restCommentsLabel.textColor = UIColor.whiteColor()
+
             cell.textLabel?.text = "test"
             cell.selectionStyle = .None
 
@@ -89,8 +104,40 @@ class RestProfileViewController: UIViewController, UITableViewDataSource, UITabl
         if section == 1 {
             return "Social"
         }
-        return "Economic"
+       return "Economic"
     }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerViewLabel = UILabel()
+        headerViewLabel.frame = CGRectMake(0, 0, restProfTable.frame.size.width, 100)
+        headerViewLabel.backgroundColor = UIColor(red: 122/255.0, green: 118/255.0, blue: 162/255.0, alpha: 1)
+        
+        
+        if section == 0 {
+            headerViewLabel.text = "Environmental"
+        }
+        if section == 1 {
+            headerViewLabel.text =  "Social"
+        }
+        if section == 2 {
+            headerViewLabel.text =  "Economic"
+        }
+        
+        headerViewLabel.textAlignment = .Center
+        headerViewLabel.textColor = UIColor.whiteColor()
+        headerViewLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+        headerViewLabel.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
+        headerViewLabel.layer.borderWidth = 1.0
+        
+        return headerViewLabel
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    
 
     /*
     // MARK: - Navigation
