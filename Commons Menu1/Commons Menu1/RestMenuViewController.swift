@@ -20,11 +20,10 @@ class RestMenuViewController: UIViewController {
     var styles = Styles()
     var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
-    var loaded = [Bool]()
     var keys = [RestProfile]()
     var location: String?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let loadingAlert = UIAlertController(title: "Loading...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +57,6 @@ class RestMenuViewController: UIViewController {
             keys = restaurants.keys.array
             keys.sort({$0.name < $1.name})
             placeButtons(keys)
-            for var i = 0; i < keys.count; i++ {
-                loaded.append(false)
-            }
         }
     }
     
@@ -109,86 +105,7 @@ class RestMenuViewController: UIViewController {
     The function that the button will perform when pressed
     */
     func toMenu(sender: UIButton!) {
-        if let restaurants = restaurants {
-            if let title = sender!.titleLabel?.text {
-                for restaurant : RestProfile in restaurants.keys{
-                    if restaurant.name == title{
-                        if loaded[find(keys, restaurant)!] == false {
-                            self.addDishWithLocation(restaurant.name)
-                            loaded[find(keys, restaurant)!] = true
-                            presentViewController(loadingAlert, animated: true, completion: nil)
-                            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
-                            dispatch_after(delayTime, dispatch_get_main_queue()){
-                            self.loadingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-                            })
-                        }
-                    }
-                    self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
-                    }
-                }
-            }
-        }
-    }
-
-    
-    
-    func addDishWithLocation(location: String){
-        var query = PFQuery(className:"dishInfo")
-        query.whereKey("location", equalTo: location)
-        query.findObjectsInBackgroundWithBlock{
-            (objects: [AnyObject]?, error: NSError?) -> Void in
-            if error == nil && objects != nil{
-                if let objectsArray = objects{
-                    for object: AnyObject in objectsArray{
-                        if let name = object["name"] as? String {
-                            if let location = object["location"] as? String{
-                                if self.hasBeenAdded(name, location: location) {
-                                    if let ingredients = object["ingredients"] as? [String]{
-                                        if let labels = object["labels"] as? [[String]]{
-                                            if let type = object["type"] as? String{
-                                                if let index = object["index"] as? Int{
-                                                    if let userImageFile = object["image"] as? PFFile{
-                                                        userImageFile.getDataInBackgroundWithBlock {
-                                                            (imageData: NSData?, error: NSError?) ->Void in
-                                                            if error == nil {                               if let data = imageData{                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                                self.dishes.addDish(location, dish: dish)
-                                                                }
-                                                                }
-                                                            }
-                                                        }
-                                                    } else{
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index)
-                                                        self.dishes.addDish(location, dish: dish)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    func hasBeenAdded(name : String, location: String)-> Bool {
-        var rest : RestProfile? = nil
-        for restaurant: RestProfile in restaurants.keys{
-            if restaurant.name == location{
-                rest = restaurant
-            }
-        }
-        for dish: Dish in dishes.dishes[rest!]!{
-            if dish.name == name {
-                return false
-            }
-        }
-        return true
+        self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
     }
     
     

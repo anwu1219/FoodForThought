@@ -24,6 +24,7 @@
 		40E8422E1B308C6A00D39DCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422D1B308C6A00D39DCD /* Images.xcassets */; };
 		40E842311B308C6A00D39DCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */; };
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
+		F32372CF1B535135008A7C91 /* UploadExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372CE1B535135008A7C91 /* UploadExtension.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3CD7F541B4F280D0051AFF4 /* Dishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F531B4F280D0051AFF4 /* Dishes.swift */; };
 		F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F551B5063950051AFF4 /* Reachability.swift */; };
@@ -81,6 +82,7 @@
 		40E842361B308C6A00D39DCD /* Commons Menu1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Commons Menu1Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E8423B1B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
+		F32372CE1B535135008A7C91 /* UploadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadExtension.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3CD7F531B4F280D0051AFF4 /* Dishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
 		F3CD7F551B5063950051AFF4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				F3E529131B39F9A00081FFDC /* View Controller */,
 				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
+				F32372CE1B535135008A7C91 /* UploadExtension.swift */,
 				4028413B1B505BD400A9972D /* RestaurantProfileTableViewCell.swift */,
 				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
 				F3CD7F551B5063950051AFF4 /* Reachability.swift */,
@@ -366,6 +369,7 @@
 				F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
+				F32372CF1B535135008A7C91 /* UploadExtension.swift in Sources */,
 				406ABA641B42DFD90096A21F /* FoodTinderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
