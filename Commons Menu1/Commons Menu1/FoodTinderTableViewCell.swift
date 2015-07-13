@@ -198,9 +198,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                     dish?.like = false
                     dish?.dislike = true
                     self.delegate!.toDoItemDeleted(self.dish!)
-                    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
-                        self.delegate!.uploadDislike(self.dish!)
-                    }
+                    self.delegate!.uploadDislike(self.dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
@@ -208,9 +206,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                     //removes cell once it is liked
                     dish?.dislike = false
                     self.delegate!.toDoItemDeleted(self.dish!)
-                    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
-                        self.delegate!.uploadPreference(self.dish!)
-                    }
+                    self.delegate!.uploadPreference(self.dish!)
                 }
             } else {
                 UIView.animateWithDuration(0.3, animations: {self.frame = originalFrame})

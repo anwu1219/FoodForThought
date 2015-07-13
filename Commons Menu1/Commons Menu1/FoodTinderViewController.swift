@@ -185,16 +185,20 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     Delegate function that finds and deletes the dish that is swiped
     */
     func toDoItemDeleted(dish: Dish) {
-        self.dishes.addToDealtWith(dish.index)
         //Finds index of swiped dish and removes it from the array
-        var index = find(menu, dish)!
         edited = true
         // use the UITableView to animate the removal of this row
-        foodTinderTableView.beginUpdates()
+        var index = find(self.menu, dish)!
+        self.dishes.addToDealtWith(dish.index)
+        self.foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
         let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
-        foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
-        refreshControl.sendActionsForControlEvents(.ValueChanged)
+        self.foodTinderTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        let delay =  0.1 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
+            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+        }
         foodTinderTableView.endUpdates()
     }
     
@@ -240,7 +244,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                         self.dishes.addPulled(index)
                                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                             self.foodTinderTableView.reloadData() }, completion: nil)
-                                                        self.refreshControl.endRefreshing()
 
                                                     }
                                                     }
@@ -253,6 +256,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                 self.dishes.addDish(location, dish: dish)
                                                 self.menu.append(dish)
                                                 self.dishes.addPulled(index)
+                                                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                                    self.foodTinderTableView.reloadData() }, completion: nil)
                                             }
                                         }
                                     }
