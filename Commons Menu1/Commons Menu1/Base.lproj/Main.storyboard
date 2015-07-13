@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -1779,18 +1779,18 @@
                                 <exclude reference="YPC-d7-0z1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="REW-Ev-zG8"/>
-                                <exclude reference="cwC-Re-VaN"/>
-                                <exclude reference="TA7-cf-c7x"/>
-                                <exclude reference="UDb-N6-yOP"/>
-                                <exclude reference="hky-zz-Szd"/>
-                                <exclude reference="ocY-lt-VxB"/>
-                                <exclude reference="qCF-rZ-SdF"/>
                                 <exclude reference="nkR-97-2KC"/>
                                 <exclude reference="nyE-em-3SR"/>
                                 <exclude reference="rPy-rG-TDD"/>
                                 <exclude reference="wJP-o0-cHu"/>
                                 <exclude reference="wrr-cZ-b8f"/>
+                                <exclude reference="TA7-cf-c7x"/>
+                                <exclude reference="UDb-N6-yOP"/>
+                                <exclude reference="hky-zz-Szd"/>
+                                <exclude reference="ocY-lt-VxB"/>
+                                <exclude reference="qCF-rZ-SdF"/>
+                                <exclude reference="REW-Ev-zG8"/>
+                                <exclude reference="cwC-Re-VaN"/>
                                 <exclude reference="2LL-xk-Siw"/>
                                 <exclude reference="VFZ-WV-hPw"/>
                             </mask>
@@ -1801,19 +1801,19 @@
                                 <include reference="YPC-d7-0z1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="cwC-Re-VaN"/>
-                                <exclude reference="e1B-kp-fzf"/>
-                                <exclude reference="onY-Kj-DSP"/>
-                                <include reference="TA7-cf-c7x"/>
-                                <include reference="UDb-N6-yOP"/>
-                                <exclude reference="hky-zz-Szd"/>
-                                <include reference="ocY-lt-VxB"/>
-                                <exclude reference="qCF-rZ-SdF"/>
                                 <exclude reference="nkR-97-2KC"/>
                                 <include reference="nyE-em-3SR"/>
                                 <include reference="rPy-rG-TDD"/>
                                 <exclude reference="wJP-o0-cHu"/>
                                 <include reference="wrr-cZ-b8f"/>
+                                <include reference="TA7-cf-c7x"/>
+                                <include reference="UDb-N6-yOP"/>
+                                <exclude reference="hky-zz-Szd"/>
+                                <include reference="ocY-lt-VxB"/>
+                                <exclude reference="qCF-rZ-SdF"/>
+                                <include reference="cwC-Re-VaN"/>
+                                <exclude reference="e1B-kp-fzf"/>
+                                <exclude reference="onY-Kj-DSP"/>
                                 <include reference="2LL-xk-Siw"/>
                                 <include reference="VFZ-WV-hPw"/>
                             </mask>

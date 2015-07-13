@@ -30,13 +30,15 @@ class MealInfoViewController: UIViewController {
         
         dishName.title = dish?.name
         dishImage.image = dish?.image
-        dishImage.layer.borderWidth = 6
-        dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
+        dishImage.contentMode = .ScaleAspectFit
+//        dishImage.layer.borderWidth = 6
+//        dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
+        scrollInfo.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
         
         var background = UIImageView()
         background.bounds = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height)
         background.frame = background.bounds
-        background.image = UIImage(named: "blurrypreferencepicture")
+        background.image = UIImage(named: "dishlevelInfopagebackground")
         background.contentMode = .ScaleAspectFill
         self.view.addSubview(background)
         self.view.sendSubviewToBack(background)
@@ -55,7 +57,7 @@ class MealInfoViewController: UIViewController {
         var x: CGFloat = 0.02 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
         
-        if let susLabels = dish?.labels {
+        if let susLabels = dish?.susLabels {
             if susLabels.count > 0 {
                 
                 var container = UIView()
@@ -117,14 +119,17 @@ class MealInfoViewController: UIViewController {
         }
         
         if let price = dish?.price {
-            var label = UILabel()
-            label.text = "Price: $\(price)"
-            label.frame = CGRectMake(x, y, 91 * width, 10 * height)
-            label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
-            label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
-            label.textColor = UIColor.whiteColor()
-            scrollInfo.addSubview(label)
-            y += 10 * height
+            if count(price) > 0 {
+                var label = UILabel()
+                label.text = "Price: \(price)"
+                label.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                label.numberOfLines = 0
+                label.sizeToFit()
+                label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                label.textColor = UIColor.whiteColor()
+                scrollInfo.addSubview(label)
+                y += 10 * height
+            }
         }
         
         
