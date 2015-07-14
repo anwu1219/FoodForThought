@@ -20,7 +20,6 @@ class SustainabilityInfoViewController: UIViewController {
     let susLabels = ["Environmental", "Social", "Economic"]
     let susInfo = ["Foremost, emphasis is placed on the environmental sustainability of various food products. Organic food avoids the artificiality and pollutants of ecologically harmful fertilizers, while local food requires fewer “food miles”, meaning less carbon dioxide emissions to transport the produce. Different eco labels take into account these characteristics of foods.  Education in this leads to a healthier environment that avoids unnecessary contamination and degradation of the planet.", "We also analyze the social impacts of various foods at local dining facilities, like the Vail cafeteria and the Pickled Peach restaurant. Part of this is nutritional, a society cannot function best without healthy members. We analyze the foods that are highest in protein and lowest in fat, among other criteria. This information leads potentially to changes in food-related decisions. We also consider fundamentals like farmers’ working conditions and wages.", "In order to survive in a world with limited resources, we must eat purchase food that is convenient and affordable. Our app becomes relevant for this purpose when reviewing meals outside of the Vail cafeteria, a dining hall that sets a fixed price (roughly $10-12) for all-you-can-eat meals. At other dining facilities, price can, depending on your priorities, become a significant factor when deciding on meal choices."]
 
-    @IBOutlet weak var scrollView: UIScrollView!
 
     @IBAction func learnMoreAction(sender: UIButton!) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
@@ -30,22 +29,23 @@ class SustainabilityInfoViewController: UIViewController {
         let verticalSpace = 0.05 * screenSize.height
         let widthPadding = 0.05 * screenSize.width
         var y: CGFloat = 0.0
-        susView.backgroundColor = UIColor(red: 0.6, green: 0.78, blue: 0.6, alpha: 1.0)
-        susView.layer.borderColor = UIColor(red: 0.1, green: 0.35, blue: 0.1, alpha: 1.0).CGColor
+        susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
+        susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
         susView.layer.borderWidth = 10
         susView.layer.cornerRadius = 5
 
         
         super.viewDidLoad()
         
-        susView.frame = CGRectMake(widthPadding, 3*verticalSpace, screenSize.width-(2*widthPadding), screenSize.height - (4*verticalSpace))
+        susView.frame = CGRectMake(widthPadding, 3.5*verticalSpace, screenSize.width-(2*widthPadding), screenSize.height - (4*verticalSpace))
         let background = UIImageView()
-        background.image = UIImage(named: "wheat")
+        background.image = UIImage(named: "SustyPageBackground")
         background.frame = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height) // will need to change with new images
         background.bounds = background.bounds
         background.contentMode = .ScaleToFill
         self.view.addSubview(background)
         //self.view.sendSubviewToBack(background)
+
         
         for var i = 0; i < 3; i++ {
             let container = UIView()
@@ -78,7 +78,8 @@ class SustainabilityInfoViewController: UIViewController {
             
             // set the subsection's body text
             body.text = susInfo[i]
-            body.textColor = UIColor.whiteColor()
+            body.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+            body.textColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95)
             body.lineBreakMode = NSLineBreakMode.ByWordWrapping
             body.numberOfLines = 0
             body.frame = CGRectMake(0.0, y, 1000, 1000)
@@ -99,8 +100,7 @@ class SustainabilityInfoViewController: UIViewController {
         }
         susView.contentSize.height = y + verticalSpace
         self.view.addSubview(susView)
-        scrollView.hidden = true
-        //scrollView.contentSize.height = 1000
+
     }
     
     override func didReceiveMemoryWarning() {

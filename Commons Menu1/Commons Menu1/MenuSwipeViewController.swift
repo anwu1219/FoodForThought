@@ -340,8 +340,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             dishes.removeFromDealtWith(dish.index)
         }
     }
-
-    
     
     //MARK: - menu swipe view delegate
     /**
@@ -352,7 +350,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
         tableView.endUpdates()
     }
-    
     
     /**
     Uploads the preference list
@@ -406,7 +403,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-    
     
     /**
     Uploads the dislike list
