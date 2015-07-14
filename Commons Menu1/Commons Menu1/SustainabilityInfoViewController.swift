@@ -33,6 +33,7 @@ class SustainabilityInfoViewController: UIViewController {
         susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
         susView.layer.borderWidth = 10
         susView.layer.cornerRadius = 5
+        self.navigationController?.navigationBar.translucent = true
 
         
         super.viewDidLoad()

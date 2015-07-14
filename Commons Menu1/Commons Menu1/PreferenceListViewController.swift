@@ -29,6 +29,8 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.rowHeight = 100;
+        self.navigationController?.navigationBar.translucent = true
+
         
         //set background image
         let bkgdImage = UIImageView()
@@ -83,14 +85,12 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    
     /**
     Sets the background color of a table cell
     */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
             return location!
     }
-    
     
     //MARK: - Preference table view cell delegate
     /**

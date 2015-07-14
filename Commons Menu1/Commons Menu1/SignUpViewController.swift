@@ -231,15 +231,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 // prevent segue from occurring
                 return false
             }
-            
+
             if !segueShouldOccurEULA {
                 // prevent segue from occurring
                 return false
             }
         }
-        
-      
-        
         // by default perform the segue transition
         return true
     }

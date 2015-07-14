@@ -43,10 +43,11 @@ class MenuTableViewCell: UITableViewCell {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont.boldSystemFontOfSize(16)
+        //label.font = UIFont.boldSystemFontOfSize(16)
+        //label.font = UIFont(name: "Helvetica-Neue Light", size: 16)
+
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //label.backgroundColor = UIColor.purpleColor()
 
         /**
         utility method for creating the contextual cues
@@ -118,15 +119,16 @@ class MenuTableViewCell: UITableViewCell {
         var height = 0.01 * bounds.size.height
         let kLabelLeftMargin: CGFloat = 36 * width
         let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
-        label.frame = CGRect(x: kLabelLeftMargin, y: 0,
+        label.frame = CGRect(x: kLabelLeftMargin - 20, y: 0,
             width: bounds.size.width - kLabelLeftMargin-20, height: bounds.size.height)
+        label.font = UIFont(name: "Helvetica-Neue Light", size: 16)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
-        self.imageView?.frame = CGRect(x: 10 * width, y: 20 * height, width: 18 * width, height: 60 * height)
+        self.imageView?.frame = CGRect(x: 5 * width, y: 20 * height, width: 18 * width, height: 60 * height)
       //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
-        self.backgroundColor = UIColor(red: 147/255.0, green: 143/255.0, blue: 161/255.0, alpha: 0.75)
+        self.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.1)
 
 
     }

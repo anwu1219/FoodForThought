@@ -30,7 +30,7 @@ class RestMenuViewController: UIViewController {
         //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "RestaurantpickerBackground")
+        bkgdImage.image = UIImage(named: "restaurantPickerBackground2")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
@@ -80,6 +80,7 @@ class RestMenuViewController: UIViewController {
             button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)
             button.setTitle(keys[i].name, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
             button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -88,8 +89,8 @@ class RestMenuViewController: UIViewController {
             
             //button shadows NOT WORKING ATM
             button.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-            button.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
-            button.titleLabel?.layer.shadowRadius = 2
+            button.titleLabel?.layer.shadowOffset = CGSizeMake(4, 4)
+            button.titleLabel?.layer.shadowRadius = 5
             button.titleLabel?.layer.shadowOpacity = 1.0
             
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
