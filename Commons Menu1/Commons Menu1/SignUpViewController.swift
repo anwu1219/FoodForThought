@@ -93,6 +93,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
+        
+        //keyboard listener
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+    }
+    
+    //functions that raise the view when keyboard is shown, so that the password field is not hidden underneath
+    //the keyboard. From http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
+    func keyboardWillShow(sender: NSNotification) {
+        if self.view.frame.origin.y > -60 {
+            self.view.frame.origin.y -= 30
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     
@@ -181,6 +198,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
+    
     
     
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert

@@ -20,7 +20,6 @@ class SustainabilityInfoViewController: UIViewController {
     let susLabels = ["Environmental", "Social", "Economic"]
     let susInfo = ["Foremost, emphasis is placed on the environmental sustainability of various food products. Organic food avoids the artificiality and pollutants of ecologically harmful fertilizers, while local food requires fewer “food miles”, meaning less carbon dioxide emissions to transport the produce. Different eco labels take into account these characteristics of foods.  Education in this leads to a healthier environment that avoids unnecessary contamination and degradation of the planet.", "We also analyze the social impacts of various foods at local dining facilities, like the Vail cafeteria and the Pickled Peach restaurant. Part of this is nutritional, a society cannot function best without healthy members. We analyze the foods that are highest in protein and lowest in fat, among other criteria. This information leads potentially to changes in food-related decisions. We also consider fundamentals like farmers’ working conditions and wages.", "In order to survive in a world with limited resources, we must eat purchase food that is convenient and affordable. Our app becomes relevant for this purpose when reviewing meals outside of the Vail cafeteria, a dining hall that sets a fixed price (roughly $10-12) for all-you-can-eat meals. At other dining facilities, price can, depending on your priorities, become a significant factor when deciding on meal choices."]
 
-    @IBOutlet weak var scrollView: UIScrollView!
 
     @IBAction func learnMoreAction(sender: UIButton!) {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
@@ -99,8 +98,7 @@ class SustainabilityInfoViewController: UIViewController {
         }
         susView.contentSize.height = y + verticalSpace
         self.view.addSubview(susView)
-        scrollView.hidden = true
-        //scrollView.contentSize.height = 1000
+
     }
     
     override func didReceiveMemoryWarning() {
