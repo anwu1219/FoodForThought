@@ -225,15 +225,25 @@ class FoodTinderTableViewCell: UITableViewCell {
     
     func placeLabels() {
         if let labels = dish?.susLabels {
-            var x: CGFloat = screenSize.width*0.025
+            let space = screenSize.width*0.05
+            let labelDimensions = screenSize.height*0.09
+            var x: CGFloat = 0
+            var numLabels: CGFloat = 0
+            for var i = 0; i < labels.count; i++ {
+                if count(labels[i]) > 0 {
+                    numLabels++
+                }
+            }
+            x = susLabels.frame.width - (0.5 * numLabels*labelDimensions + (numLabels-1)*space)
+            
             for var i = 0; i < labels.count; i++ {
                 if count(labels[i]) > 0 {
                     var icon = UIImageView()
-                    icon.frame = CGRectMake(x, screenSize.height*0.005, screenSize.height*0.09, screenSize.height*0.09)
+                    icon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
                     icon.image = UIImage(named: labels[i])
                     icon.contentMode = .ScaleAspectFit
                     susLabels.addSubview(icon)
-                    x += icon.frame.width + screenSize.width*0.05
+                    x += icon.frame.width + space
                 }
             }
             susLabels.contentSize.width = (x)
