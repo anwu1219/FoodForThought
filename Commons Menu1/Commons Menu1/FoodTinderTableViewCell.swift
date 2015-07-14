@@ -234,7 +234,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                     numLabels++
                 }
             }
-            x = susLabels.frame.width - (0.5 * numLabels*labelDimensions + (numLabels-1)*space)
+            x = 0.5*susLabels.frame.width - (0.5*(numLabels*labelDimensions + (numLabels-1)*space))
             
             for var i = 0; i < labels.count; i++ {
                 if count(labels[i]) > 0 {
@@ -247,6 +247,7 @@ class FoodTinderTableViewCell: UITableViewCell {
                 }
             }
             susLabels.contentSize.width = (x)
+            x = 0
         }
     }
     
