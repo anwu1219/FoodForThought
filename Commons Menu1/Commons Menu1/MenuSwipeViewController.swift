@@ -72,7 +72,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.separatorStyle = .SingleLine
-        tableView.layer.borderWidth = 2
+        tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.blackColor().CGColor
 
         self.automaticallyAdjustsScrollViewInsets = false;
@@ -89,6 +89,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
+        
+        //set the background image
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "genericBackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -249,7 +257,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerViewLabel = UILabel()
         headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
-        headerViewLabel.backgroundColor = UIColor(red: 122/255.0, green: 118/255.0, blue: 162/255.0, alpha: 1)
+        headerViewLabel.backgroundColor = UIColor(red: 38/255.0, green: 42/255.0, blue: 49/255.0, alpha: 1)
         
         headerViewLabel.text = types[section]
         headerViewLabel.textAlignment = .Center
@@ -272,7 +280,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath) {
-            cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
+          //  cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
     }
     
     
