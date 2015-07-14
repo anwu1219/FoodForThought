@@ -76,12 +76,20 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         foodTinderTableView.addSubview(refreshControl)
         
+        var logButton = UIBarButtonItem(title: "My Preferences", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
+        self.navigationItem.rightBarButtonItem = logButton
+        
     }
     
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         refreshControl.sendActionsForControlEvents(.ValueChanged)
+    }
+    
+    
+    func viewPreferences(button: UIBarButtonItem?){
+        performSegueWithIdentifier("tinderToAllPreferencesSegue", sender: button)
     }
     
     
@@ -302,7 +310,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Segues to single dish info
-        if segue.identifier == "tinderToAllPreferencesSegue" {
+        if segue.identifier == "foodTinderSegue" {
+            let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
+            let selectedMeal = sender! as! Dish
+            if let index = find(menu, selectedMeal) {
+                // Sets the dish info in the new view to selected cell's dish
+                mealInfoViewController.dish = menu[index]
+            }
+        }
+        if segue.identifier == "tinderToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             allPreferenceListViewController.dishes = dishes
         }
