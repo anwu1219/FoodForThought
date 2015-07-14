@@ -41,6 +41,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
     let refreshControl = UIRefreshControl()
+    let instructLabel = CATextLayer()
+    
     
     
     override func viewDidLoad() {
@@ -78,7 +80,18 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         var logButton = UIBarButtonItem(title: "My Preferences", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
         self.navigationItem.rightBarButtonItem = logButton
-        
+        instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
+        instructLabel.string = "\n Swipe right to add dish to Food Preferences\n or \nSwipe left to pass on dish"
+        let fontName: CFStringRef = "Helvetica-Light"
+        instructLabel.font = CTFontCreateWithName(fontName, 10, nil)
+        instructLabel.fontSize = self.view.frame.height / 40
+        instructLabel.backgroundColor = UIColor.lightGrayColor().CGColor
+        instructLabel.foregroundColor = UIColor.darkGrayColor().CGColor
+        instructLabel.wrapped = true
+        instructLabel.alignmentMode = kCAAlignmentCenter
+        instructLabel.contentsScale = UIScreen.mainScreen().scale
+        view.layer.addSublayer(instructLabel)
+        //self.view.layer.insertSublayer(instructLayer, above: view.layer)
     }
     
     
@@ -194,7 +207,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     func toDoItemDeleted(dish: Dish) {
         //Finds index of swiped dish and removes it from the array
-        edited = true
+        if !edited {
+            instructLabel.hidden = true
+            edited = true
+        }
         // use the UITableView to animate the removal of this row
         var index = find(self.menu, dish)!
         self.dishes.addToDealtWith(dish.index)
@@ -243,40 +259,40 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                     if let type = object["type"] as? String{
                                         if let susLabels = object["susLabels"] as? [String]{
                                             if let price = object["price"] as? String{
-                                        if let userImageFile = object["image"] as? PFFile{
-                                            userImageFile.getDataInBackgroundWithBlock {
-                                                (imageData: NSData?, error: NSError?) ->Void in
-                                                if error == nil {
-                                                    if let data = imageData{                                                if let image = UIImage(data: data){
+                                                if let userImageFile = object["image"] as? PFFile{
+                                                    userImageFile.getDataInBackgroundWithBlock {
+                                                        (imageData: NSData?, error: NSError?) ->Void in
+                                                        if error == nil {
+                                                            if let data = imageData{                                                if let image = UIImage(data: data){
+                                                                if !self.hasBeenAdded(name, location: name){
+                                                                    let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                    self.dishes.addDish(location, dish: dish)
+                                                                    self.menu.append(dish)
+                                                                    self.dishes.addPulled(index)
+                                                                    UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                                                        self.foodTinderTableView.reloadData() }, completion: nil)
+                                                                    
+                                                                }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                } else{
                                                     if !self.hasBeenAdded(name, location: name){
-                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.menu.append(dish)
                                                         self.dishes.addPulled(index)
                                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                             self.foodTinderTableView.reloadData() }, completion: nil)
-
-                                                    }
-                                                    }
                                                     }
                                                 }
-                                            }
-                                        } else{
-                                            if !self.hasBeenAdded(name, location: name){
-                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
-                                                self.dishes.addDish(location, dish: dish)
-                                                self.menu.append(dish)
-                                                self.dishes.addPulled(index)
-                                                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                                                    self.foodTinderTableView.reloadData() }, completion: nil)
                                             }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                    }
                     }
                 }
             }
