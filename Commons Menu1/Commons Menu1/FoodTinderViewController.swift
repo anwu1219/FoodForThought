@@ -80,6 +80,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         var logButton = UIBarButtonItem(title: "My Preferences", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
         self.navigationItem.rightBarButtonItem = logButton
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
         instructLabel.string = "\n Swipe right to add dish to Food Preferences\n or \nSwipe left to pass on dish"
         let fontName: CFStringRef = "Helvetica-Light"
@@ -91,12 +96,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         instructLabel.alignmentMode = kCAAlignmentCenter
         instructLabel.contentsScale = UIScreen.mainScreen().scale
         view.layer.addSublayer(instructLabel)
-        //self.view.layer.insertSublayer(instructLayer, above: view.layer)
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         refreshControl.sendActionsForControlEvents(.ValueChanged)
     }
     
