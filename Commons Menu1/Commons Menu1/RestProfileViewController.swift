@@ -26,6 +26,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.title = restProf?.name
         restProfImage.image = restProf.image
+        restProfImage.layer.borderColor = UIColor.blueColor().CGColor
+        restProfImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
         restProfScrollView.delegate = self
         restProfScrollView.layer.borderWidth = 2

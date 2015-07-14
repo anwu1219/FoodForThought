@@ -35,7 +35,7 @@ class MealInfoViewController: UIViewController {
         dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
         dishImage.layer.masksToBounds = true
         //scrollInfo.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
-        
+
         var background = UIImageView()
         background.bounds = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height)
         background.frame = background.bounds
@@ -156,11 +156,13 @@ class MealInfoViewController: UIViewController {
                 var ingredient = UILabel()
                 ingredient.font = UIFont(name: "Helvetica-Neue Light", size: 14)
                 ingredient.textColor = UIColor.whiteColor()
+                ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
                 ingredient.text = "- \(ingredients[i])"
                 ingredient.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 ingredient.numberOfLines = 0
                 var num = CGFloat(2 * count(ingredients[i]))
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
+
                 //ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
                 ingredient.sizeToFit()
                 scrollInfo.addSubview(ingredient)
