@@ -151,6 +151,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     
     func cancelSignUp() -> Bool {
         // cancels signup, needs stop segue to next menu
+        self.activityIndicator.stopAnimating()
         return true
     }
     
@@ -188,6 +189,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                self.activityIndicator.stopAnimating()
             }
         }
+        
+        //performs automatic segue to main menu
+        performSegueWithIdentifier("signInToNavigationSegue", sender: nil)
+
     }
     
     
@@ -397,12 +402,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signInToNavigationSegue" {
