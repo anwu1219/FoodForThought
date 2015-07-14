@@ -13,7 +13,6 @@ protocol SignUpViewControllerDelegate {
     func clearTextField()
 }
 
-
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
@@ -29,7 +28,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if !Reachability.isConnectedToNetwork() {
@@ -93,6 +91,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
+        
+        //keyboard listener
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+    }
+    
+    //functions that raise the view when keyboard is shown, so that the password field is not hidden underneath
+    //the keyboard. From http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
+    func keyboardWillShow(sender: NSNotification) {
+        if self.view.frame.origin.y > -60 {
+            self.view.frame.origin.y -= 30
+        }
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0
     }
     
     
@@ -111,7 +126,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         )
         alertController.addAction(UIAlertAction(title: "I do NOT agree",
             style: UIAlertActionStyle.Default,
-            handler: nil
+            //handler: nil
+            handler: { alertController in self.cancelSignUp() }
             )
         )
         
@@ -133,6 +149,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         super.viewWillDisappear(animated)
     }
     
+    func cancelSignUp() -> Bool {
+        // cancels signup, needs stop segue to next menu
+        self.activityIndicator.stopAnimating()
+        return true
+    }
+    
     func processSignUp() {
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
@@ -146,7 +168,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         if isValidEmail(userEmailAddress) == false {
             println("The email you entered is not valid")
         }
-        
         
         // Start activity indicator
         activityIndicator.hidden = false
@@ -168,6 +189,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                self.activityIndicator.stopAnimating()
             }
         }
+        
+        //performs automatic segue to main menu
+        performSegueWithIdentifier("signInToNavigationSegue", sender: nil)
+
     }
     
     
@@ -187,9 +212,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if identifier == "signInToNavigationSegue" {
              var segueShouldOccur = true // you determine this
+             var segueShouldOccurEULA = true
             if isValidEmail(emailAddress.text) == false {
             // perform your computation to determine whether segue should occur
                 segueShouldOccur = false
+            }
+            
+            if cancelSignUp() == true {
+                segueShouldOccurEULA = false
             }
            
             if !segueShouldOccur {
@@ -201,7 +231,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 // prevent segue from occurring
                 return false
             }
+            
+            if !segueShouldOccurEULA {
+                // prevent segue from occurring
+                return false
+            }
         }
+        
+      
         
         // by default perform the segue transition
         return true
@@ -365,12 +402,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signInToNavigationSegue" {
