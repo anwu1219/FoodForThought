@@ -35,7 +35,7 @@ class FoodTinderTableViewCell: UITableViewCell {
         didSet {
             label.text = dish!.name
          //   chefNoteLabel.text = dish!.chefNote
-               chefNoteLabel.text = "Lorem ipsum"
+               chefNoteLabel.text = "Sustainability Labels"
          //   ecoLabel.text = dish!.ecoLabel
             
             itemLikeLayer.hidden = !dish!.like
@@ -141,16 +141,17 @@ class FoodTinderTableViewCell: UITableViewCell {
         label.lineBreakMode = .ByWordWrapping
         label.textColor = UIColor.whiteColor()
 
-        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: 85,
-            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.52,
+            width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textColor = UIColor.whiteColor()
         chefNoteLabel.textAlignment = NSTextAlignment.Center
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         chefNoteLabel.numberOfLines = 0
         
-        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.57, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
-        susLabels.backgroundColor = UIColor.blackColor()
+        susLabels.subviews.map({ $0.removeFromSuperview() })
+        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.6, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
+        susLabels.backgroundColor = UIColor.clearColor()
         placeLabels()
         
 
@@ -224,16 +225,18 @@ class FoodTinderTableViewCell: UITableViewCell {
     
     func placeLabels() {
         if let labels = dish?.susLabels {
-            var x: CGFloat = 0
-            var icon = UIImageView()
+            var x: CGFloat = screenSize.width*0.025
             for var i = 0; i < labels.count; i++ {
-                icon.frame = CGRectMake(x, 0, screenSize.height*0.9, screenSize.height*0.9)
-                icon.image = UIImage(named: labels[i])
-                icon.contentMode = .ScaleAspectFit
-                susLabels.addSubview(icon)
-                x += icon.frame.width + screenSize.width*0.05
+                if count(labels[i]) > 0 {
+                    var icon = UIImageView()
+                    icon.frame = CGRectMake(x, screenSize.height*0.005, screenSize.height*0.09, screenSize.height*0.09)
+                    icon.image = UIImage(named: labels[i])
+                    icon.contentMode = .ScaleAspectFit
+                    susLabels.addSubview(icon)
+                    x += icon.frame.width + screenSize.width*0.05
+                }
             }
-            susLabels.contentSize.width = (icon.frame.width + screenSize.width*0.05) * CGFloat(labels.count)
+            susLabels.contentSize.width = (x)
         }
     }
     
