@@ -32,12 +32,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsv-H4-bFd">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to pass on dish" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGz-HB-lG5">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -60,16 +54,9 @@
                             <constraint firstAttribute="centerX" secondItem="efo-XS-UQq" secondAttribute="centerX" id="Je9-oV-oMl"/>
                             <constraint firstAttribute="trailing" secondItem="PF2-Xu-cZ2" secondAttribute="trailing" id="LNS-CK-8NZ"/>
                             <constraint firstAttribute="centerX" secondItem="PF2-Xu-cZ2" secondAttribute="centerX" id="UGH-wQ-O4d"/>
-                            <constraint firstItem="Zsv-H4-bFd" firstAttribute="top" secondItem="efo-XS-UQq" secondAttribute="bottom" constant="12.5" id="ZHQ-AW-r2f">
-                                <variation key="widthClass=compact" constant="8"/>
-                            </constraint>
-                            <constraint firstAttribute="centerX" secondItem="Zsv-H4-bFd" secondAttribute="centerX" id="ZSu-OA-z5m"/>
-                            <constraint firstItem="xGz-HB-lG5" firstAttribute="top" secondItem="Zsv-H4-bFd" secondAttribute="bottom" constant="14" id="apg-AI-gel">
-                                <variation key="widthClass=compact" constant="8"/>
-                            </constraint>
                             <constraint firstItem="PF2-Xu-cZ2" firstAttribute="leading" secondItem="ZOa-hq-kbh" secondAttribute="leading" id="dKx-1u-4dC"/>
                             <constraint firstItem="xGa-zw-20F" firstAttribute="top" secondItem="PF2-Xu-cZ2" secondAttribute="bottom" constant="123" id="dci-Ua-bwe">
-                                <variation key="widthClass=compact" constant="95"/>
+                                <variation key="widthClass=compact" constant="58"/>
                             </constraint>
                             <constraint firstAttribute="centerX" secondItem="xGz-HB-lG5" secondAttribute="centerX" id="dvg-pR-sPl"/>
                             <constraint firstItem="PF2-Xu-cZ2" firstAttribute="top" secondItem="ioU-lh-XbZ" secondAttribute="bottom" constant="8" id="flx-3x-djU"/>
@@ -77,41 +64,32 @@
                             <constraint firstItem="efo-XS-UQq" firstAttribute="top" secondItem="PF2-Xu-cZ2" secondAttribute="bottom" constant="14" id="sk7-Fg-tMm">
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
+                            <constraint firstItem="xGz-HB-lG5" firstAttribute="top" secondItem="efo-XS-UQq" secondAttribute="bottom" constant="8" id="vDm-8d-r2B"/>
                             <constraint firstItem="PF2-Xu-cZ2" firstAttribute="top" secondItem="ZOa-hq-kbh" secondAttribute="top" id="vaJ-2x-iWC"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Zsv-H4-bFd"/>
                                 <exclude reference="xGz-HB-lG5"/>
                                 <exclude reference="efo-XS-UQq"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ZHQ-AW-r2f"/>
-                                <exclude reference="ZSu-OA-z5m"/>
-                                <exclude reference="Je9-oV-oMl"/>
-                                <exclude reference="sk7-Fg-tMm"/>
-                                <exclude reference="apg-AI-gel"/>
-                                <exclude reference="dvg-pR-sPl"/>
                                 <exclude reference="3LY-3z-aOd"/>
                                 <exclude reference="UGH-wQ-O4d"/>
                                 <exclude reference="flx-3x-djU"/>
                                 <exclude reference="mpd-4g-UA7"/>
+                                <exclude reference="Je9-oV-oMl"/>
+                                <exclude reference="sk7-Fg-tMm"/>
+                                <exclude reference="dvg-pR-sPl"/>
+                                <exclude reference="vDm-8d-r2B"/>
                                 <exclude reference="dci-Ua-bwe"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Zsv-H4-bFd"/>
                                 <include reference="xGz-HB-lG5"/>
                                 <include reference="efo-XS-UQq"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ZHQ-AW-r2f"/>
-                                <include reference="ZSu-OA-z5m"/>
-                                <include reference="Je9-oV-oMl"/>
-                                <include reference="sk7-Fg-tMm"/>
-                                <include reference="apg-AI-gel"/>
-                                <include reference="dvg-pR-sPl"/>
                                 <include reference="3LY-3z-aOd"/>
                                 <exclude reference="8ha-nd-MKl"/>
                                 <exclude reference="BY7-Ka-eCA"/>
@@ -121,6 +99,10 @@
                                 <include reference="flx-3x-djU"/>
                                 <include reference="mpd-4g-UA7"/>
                                 <exclude reference="vaJ-2x-iWC"/>
+                                <include reference="Je9-oV-oMl"/>
+                                <include reference="sk7-Fg-tMm"/>
+                                <include reference="dvg-pR-sPl"/>
+                                <include reference="vDm-8d-r2B"/>
                                 <exclude reference="G89-0o-an7"/>
                                 <include reference="dci-Ua-bwe"/>
                             </mask>
@@ -456,7 +438,7 @@
             </objects>
             <point key="canvasLocation" x="-1386" y="-719"/>
         </scene>
-        <!--Sustainability Info-->
+        <!--About Sustainability-->
         <scene sceneID="1a4-ct-bCe">
             <objects>
                 <viewController id="BYz-6F-mJb" customClass="SustainabilityInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
@@ -469,7 +451,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sustainability Info" id="r1B-Ie-odl"/>
+                    <navigationItem key="navigationItem" title="About Sustainability" id="r1B-Ie-odl"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="600"/>
                 </viewController>
@@ -1282,7 +1264,6 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                 <state key="normal" title="Restaurant Profile">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1818,7 +1799,7 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="4iJ-fy-ZFU"/>
         <segue reference="ut7-Ma-1wo"/>
-        <segue reference="3Lq-rH-UIY"/>
     </inferredMetricsTieBreakers>
 </document>
