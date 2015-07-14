@@ -13,7 +13,6 @@ protocol SignUpViewControllerDelegate {
     func clearTextField()
 }
 
-
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
@@ -29,7 +28,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if !Reachability.isConnectedToNetwork() {
@@ -128,7 +126,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         )
         alertController.addAction(UIAlertAction(title: "I do NOT agree",
             style: UIAlertActionStyle.Default,
-            handler: nil
+            //handler: nil
+            handler: { alertController in self.cancelSignUp() }
             )
         )
         
@@ -150,6 +149,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         super.viewWillDisappear(animated)
     }
     
+    func cancelSignUp() -> Bool {
+        // cancels signup, needs stop segue to next menu
+        return true
+    }
+    
     func processSignUp() {
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
@@ -163,7 +167,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         if isValidEmail(userEmailAddress) == false {
             println("The email you entered is not valid")
         }
-        
         
         // Start activity indicator
         activityIndicator.hidden = false
@@ -200,14 +203,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     }
     
     
-    
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if identifier == "signInToNavigationSegue" {
              var segueShouldOccur = true // you determine this
+             var segueShouldOccurEULA = true
             if isValidEmail(emailAddress.text) == false {
             // perform your computation to determine whether segue should occur
                 segueShouldOccur = false
+            }
+            
+            if cancelSignUp() == true {
+                segueShouldOccurEULA = false
             }
            
             if !segueShouldOccur {
@@ -219,7 +226,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 // prevent segue from occurring
                 return false
             }
+            
+            if !segueShouldOccurEULA {
+                // prevent segue from occurring
+                return false
+            }
         }
+        
+      
         
         // by default perform the segue transition
         return true
