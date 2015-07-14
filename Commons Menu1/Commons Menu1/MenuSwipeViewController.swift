@@ -42,12 +42,11 @@ Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var restImageButton: UIButton!
-    @IBOutlet weak var restPhoneNumbLabel: UILabel!
-    @IBOutlet weak var restAddressLabel: UILabel!
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
-       
+    @IBOutlet weak var restProfileButton: UIButton!
+    @IBOutlet weak var restImage: UIImageView!
+    
     
     var menu = [String : [Dish]]()
     var dishes : Dishes!
@@ -62,18 +61,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         
         //Formats the labels in the view controller
-        restImageButton.setImage(restProf.image, forState: .Normal)
         println("Day:\(self.getDayOfWeek())")
             restWeekdayOpenHoursLabel.text = restProf!.hours[self.getDayOfWeek()]
             restWeekendOpenHoursLabel.text = restProf!.mealPlanHours[self.getDayOfWeek()]
             restWeekdayOpenHoursLabel.numberOfLines = 2
             restWeekendOpenHoursLabel.numberOfLines = 2
         
-    
-        restPhoneNumbLabel.text = restProf!.phoneNumber
-        restAddressLabel.text = restProf!.address
-        
-        
+        restImage.image = restProf.image
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
