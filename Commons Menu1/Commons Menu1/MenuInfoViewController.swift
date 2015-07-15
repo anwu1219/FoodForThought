@@ -57,7 +57,6 @@ class MealInfoViewController: UIViewController {
         var height: CGFloat = 0.01 * screenSize.height // a unit of y
         var x: CGFloat = 0.02 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
-        println(y)
         if let susLabels = dish?.susLabels {
             if count(susLabels) > 0 {
                 
@@ -107,8 +106,6 @@ class MealInfoViewController: UIViewController {
                 
             }
         }
-        println(y)
-        
         if let location = dish?.location {
             var label = UILabel()
             label.text = "Location: \(location)"
@@ -183,7 +180,6 @@ class MealInfoViewController: UIViewController {
             }
         }
         scrollInfo.contentSize.height = y
-        println()
     }
     
     

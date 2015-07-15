@@ -122,7 +122,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addDishWithLocation(location: String){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)
-        query.findObjectsInBackgroundWithBlock{
+        query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
                 if let objectsArray = objects{

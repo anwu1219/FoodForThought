@@ -101,8 +101,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if parent == nil {
             if edited {
             presentViewController(savingAlert, animated: true, completion: nil)
-            //println("This VC is 'will' be popped. i.e. the back button was pressed.")
-            //presentViewController(saveAlert, animated: true, completion: nil)
             self.uploadPreferences()
             let param = Double(self.preferences.keys.array.count) * 0.3
             let delay =  param * Double(NSEC_PER_SEC)
