@@ -165,7 +165,6 @@ class MenuTableViewCell: UITableViewCell {
             if deleteOnDragRelease {
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
-                    delegate!.addToDislikes(dish!)
                     dish!.dislike = !dish!.dislike
                     itemLikeLayer.hidden = true
                     itemDislikeLayer.hidden = !dish!.dislike
