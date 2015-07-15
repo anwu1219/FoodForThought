@@ -15,10 +15,11 @@ extension UIViewController {
             message: message,
             preferredStyle: UIAlertControllerStyle.Alert
         )
+        alertController.addAction(UIAlertAction(title: "OK", style: .Cancel) { action -> Void in
+            //Just dismiss the action sheet
+            }        )
+
         self.presentViewController(alertController, animated: true, completion: nil)
-        UIView.transitionWithView(self.view, duration: 1.5, options:.TransitionCrossDissolve,animations: { () -> Void in
-            alertController.dismissViewControllerAnimated(true, completion: { () -> Void in
-            })}, completion: nil)
     }
     
     

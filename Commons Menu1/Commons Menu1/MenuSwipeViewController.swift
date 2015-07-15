@@ -54,6 +54,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var restProf: RestProfile!
     var edited = false
     let refreshControl = UIRefreshControl()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +96,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.frame = CGRectMake(tableView.bounds.width / 2, tableView.bounds.height / 2, 10, 10)
+        self.tableView.addSubview(activityIndicator)
     }
     
     override func viewDidAppear(animated: Bool) {
