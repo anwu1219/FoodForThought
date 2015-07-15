@@ -64,7 +64,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         let border = CALayer()
         let width = CGFloat(2.0)
         border.borderColor = UIColor.darkGrayColor().CGColor
-        border.frame = CGRect(x: 0, y: allPrefTopImage.frame.size.height - width + 45, width:  allPrefTopImage.frame.size.width, height: allPrefTopImage.frame.size.height)
+        border.frame = CGRect(x: 0, y: allPrefTopImage.frame.size.height - width + 55, width:  allPrefTopImage.frame.size.width, height: allPrefTopImage.frame.size.height)
         border.borderWidth = width
         allPrefTopImage.layer.addSublayer(border)
         allPrefTopImage.layer.masksToBounds = true
@@ -77,7 +77,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.layer.borderColor = UIColor(red: 132/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
         
-    //    preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+        //preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")

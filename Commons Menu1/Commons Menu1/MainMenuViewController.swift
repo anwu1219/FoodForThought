@@ -23,7 +23,6 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
-    @IBOutlet weak var food4ThoughtLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -87,11 +86,6 @@ class MainMenuViewController: UIViewController {
         sustInfoMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
         sustInfoMenuButton.titleLabel?.layer.shadowRadius = 2
         sustInfoMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-
-        food4ThoughtLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        food4ThoughtLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        food4ThoughtLabel.layer.shadowRadius = 5
-        food4ThoughtLabel.layer.shadowOpacity = 1.0
 
         restMenuButton.frame = styles.buttonFrame
         myPrefMenuButton.frame = styles.buttonFrame
