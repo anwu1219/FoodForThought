@@ -117,6 +117,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.addSubview(address)
         y += address.frame.height + space
         
+        let searchInMaps = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        searchInMaps.setTitle("Address:\n" + restProf.address, forState: .Normal)
+        searchInMaps.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        searchInMaps.sizeToFit()
+        searchInMaps.addTarget(self, action: "mapSearch:", forControlEvents: UIControlEvents.TouchUpInside)
+        restProfScrollView.addSubview(searchInMaps)
+        y += searchInMaps.frame.height + space
+        
         var phone = UILabel()
         phone.text = "Phone:\n" + restProf.phoneNumber
         phone.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
@@ -126,14 +134,13 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.addSubview(phone)
         y += phone.frame.height + space
         
-        //throws SIGABRT ERROR right now, plz fixs
-//        var phone1 = UIButton()
-//        phone1.setTitle("Phone: " + restProf.phoneNumber, forState: .Normal)
-//        phone1.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
-//        phone1.sizeToFit()
-//        phone1.addTarget(self, action: "callNumber", forControlEvents: UIControlEvents.TouchUpInside)
-//        restProfScrollView.addSubview(phone1)
-//        y += phone1.frame.height + space
+        let callRestaurant = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        callRestaurant.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        callRestaurant.setTitle("Phone: " + restProf.phoneNumber, forState: .Normal)
+        callRestaurant.sizeToFit()
+        callRestaurant.addTarget(self, action: "callNumber:", forControlEvents: UIControlEvents.TouchUpInside)
+        restProfScrollView.addSubview(callRestaurant)
+        y += callRestaurant.frame.height + space
         
         var url = UILabel()
         url.text = "Website:\n" + restProf.url
@@ -212,17 +219,17 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-//    func callPhone(sender: UIButton) {
-//        var url:NSURL = NSURL(fileURLWithPath: restProf.phoneNumber)!
-//        UIApplication.sharedApplication().openURL(url)
-//    }
+    @IBAction func callNumber(sender:UIButton) {
+        if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
+            println("Call Made")
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     
-    private func callNumber(phoneNumber:String) {
-        if let phoneCallURL:NSURL = NSURL(string: "tel://\(restProf.phoneNumber)") {
-            let application:UIApplication = UIApplication.sharedApplication()
-            if (application.canOpenURL(phoneCallURL)) {
-                application.openURL(phoneCallURL);
-            }
+    @IBAction func mapSearch(sender:UIButton) {
+        if let url = NSURL(string: restProf.address) {
+        println("Search Made")
+        UIApplication.sharedApplication().openURL(url)
         }
     }
     
