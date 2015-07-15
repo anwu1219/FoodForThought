@@ -55,7 +55,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
         let labels = ["Environmental", "Social", "Economic"]
-        var y: CGFloat = height*0.01
+        var y: CGFloat = height * 0.01
         for var i = 0; i < restProf.labels.count; i++ {
             var scroll = UIScrollView()
             var label = UILabel()
