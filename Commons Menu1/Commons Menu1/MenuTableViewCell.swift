@@ -43,7 +43,6 @@ class MenuTableViewCell: UITableViewCell {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = UIColor.whiteColor()
-        //label.font = UIFont.boldSystemFontOfSize(16)
         //label.font = UIFont(name: "Helvetica-Neue Light", size: 16)
 
         label.numberOfLines = 0
@@ -121,7 +120,7 @@ class MenuTableViewCell: UITableViewCell {
         let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
         label.frame = CGRect(x: kLabelLeftMargin - 20, y: 0,
             width: bounds.size.width - kLabelLeftMargin-20, height: bounds.size.height)
-        label.font = UIFont(name: "Helvetica-Neue Light", size: 16)
+        label.font = UIFont(name: "Helvetica-Neue Light", size: 16.0)
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,

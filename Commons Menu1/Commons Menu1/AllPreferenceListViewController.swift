@@ -55,7 +55,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         //sets background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "blurrypreferencepicture")
+        bkgdImage.image = UIImage(named: "preferenceBackground")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
@@ -68,6 +68,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         border.borderWidth = width
         allPrefTopImage.layer.addSublayer(border)
         allPrefTopImage.layer.masksToBounds = true
+        self.navigationController?.navigationBar.translucent = true
+
         
         myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
         myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)

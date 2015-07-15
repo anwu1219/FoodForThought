@@ -35,7 +35,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         //set background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "blurrypreferencepicture")
+        bkgdImage.image = UIImage(named: "preferenceBackground")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
@@ -86,10 +86,16 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     /**
-    Sets the background color of a table cell
+    Sets the title of the table view subtitle
     */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return location!
+        if preferences.count == 0 {
+
+            return "No Dishes in your Preference list"
+        }
+        else {
+            return location! + " Preferences"
+        }
     }
     
     //MARK: - Preference table view cell delegate

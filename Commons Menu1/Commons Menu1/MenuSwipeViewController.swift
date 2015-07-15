@@ -73,13 +73,22 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.separatorStyle = .SingleLine
         tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
+        //sets nav bar to be see through
+        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        self.navigationController?.navigationBar.translucent = true
 
+        restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         self.automaticallyAdjustsScrollViewInsets = false;
 
         tableView.backgroundColor = UIColor.clearColor()
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 100;
+        tableView.rowHeight = 85;
         if let dishes = dishes {
             self.makeMenu(dishes.dishes[restProf]!)
             for type: String in self.types {
