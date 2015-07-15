@@ -1870,7 +1870,7 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXz-wK-Xvd"/>
         <segue reference="4iJ-fy-ZFU"/>
+        <segue reference="ut7-Ma-1wo"/>
     </inferredMetricsTieBreakers>
 </document>
