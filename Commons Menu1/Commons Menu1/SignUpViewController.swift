@@ -35,7 +35,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         }
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "wheat")
+        bkgdImage.image = UIImage(named: "SignInBackground")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
