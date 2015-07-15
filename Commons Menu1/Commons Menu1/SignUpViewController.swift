@@ -16,6 +16,7 @@ protocol SignUpViewControllerDelegate {
 class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
     
     var dishes = Dishes()
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
 
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -101,8 +102,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     //functions that raise the view when keyboard is shown, so that the password field is not hidden underneath
     //the keyboard. From http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
     func keyboardWillShow(sender: NSNotification) {
-        if self.view.frame.origin.y > -60 {
-            self.view.frame.origin.y -= 30
+        let screenHeight = screenSize.height
+        if self.view.frame.origin.y > -0.4 * screenHeight {
+            self.view.frame.origin.y -= 0.2 * screenHeight
         }
     }
     

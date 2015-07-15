@@ -77,9 +77,15 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var x: CGFloat = width*0.05
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var icon = UIImageView()
-                    icon.image = UIImage(named: restProf.labels[i][j])
-                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    
+                    var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    var icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    icon.addTarget(self, action: "popup:", forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    
+//                    var icon = UIImageView()
+//                    icon.image = UIImage(named: restProf.labels[i][j])
+//                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
                 }
@@ -87,6 +93,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             scroll.contentSize.width = x
         }
         susView.contentSize.height = y
+    }
+    
+    func popup(sender: UIButton!) {
+        var button = sender as! IconButton
+        println(button.name)
     }
     
     func layoutScroll() {
@@ -207,8 +218,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 y += hour.frame.height + height*0.01
             }
         }
-        
-        
         
         restProfScrollView.contentSize.height = y
     }

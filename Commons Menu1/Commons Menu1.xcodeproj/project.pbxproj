@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB91B3C5E9100C5C49A /* AppStylings.swift */; };
 		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
+		13C777011B57072700BD2A39 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777001B57072700BD2A39 /* IconButton.swift */; };
 		406ABA641B42DFD90096A21F /* FoodTinderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */; };
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
@@ -63,6 +64,7 @@
 /* Begin PBXFileReference section */
 		1376EEB91B3C5E9100C5C49A /* AppStylings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStylings.swift; sourceTree = "<group>"; };
 		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
+		13C777001B57072700BD2A39 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderTableViewCell.swift; sourceTree = "<group>"; };
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F3FB7E6E1B41EFB000AD38B7 /* Framework */,
-				40E842231B308C6A00D39DCD /* Commons Menu1 */,
+				40E842231B308C6A00D39DCD /* FoodForThought */,
 				40E842391B308C6A00D39DCD /* Commons Menu1Tests */,
 				40E842221B308C6A00D39DCD /* Products */,
 			);
@@ -160,7 +162,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		40E842231B308C6A00D39DCD /* Commons Menu1 */ = {
+		40E842231B308C6A00D39DCD /* FoodForThought */ = {
 			isa = PBXGroup;
 			children = (
 				40E842261B308C6A00D39DCD /* AppDelegate.swift */,
@@ -176,7 +178,9 @@
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
+				13C777001B57072700BD2A39 /* IconButton.swift */,
 			);
+			name = FoodForThought;
 			path = "Commons Menu1";
 			sourceTree = "<group>";
 		};
@@ -321,7 +325,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */;
+			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Commons Menu1" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -380,6 +384,7 @@
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
+				13C777011B57072700BD2A39 /* IconButton.swift in Sources */,
 				F3E529121B399F860081FFDC /* PreferenceListTableViewCell.swift in Sources */,
 				F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
@@ -595,7 +600,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */ = {
+		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Commons Menu1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40E8423E1B308C6A00D39DCD /* Debug */,

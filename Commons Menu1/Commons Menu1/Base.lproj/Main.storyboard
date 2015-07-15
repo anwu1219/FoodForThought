@@ -9,7 +9,7 @@
         <!--Food Tinder-->
         <scene sceneID="YNv-EA-n1e">
             <objects>
-                <viewController title="Food Tinder" id="WVm-va-1Bq" customClass="FoodTinderViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Food Tinder" id="WVm-va-1Bq" customClass="FoodTinderViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ioU-lh-XbZ"/>
                         <viewControllerLayoutGuide type="bottom" id="xGa-zw-20F"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinderCell" id="2Av-9g-xZi" customClass="FoodTinderTableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinderCell" id="2Av-9g-xZi" customClass="FoodTinderTableViewCell" customModule="FoodForThought" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Av-9g-xZi" id="C9R-my-HcX">
@@ -92,7 +92,7 @@
         <!--My Preferences-->
         <scene sceneID="jys-nA-lZm">
             <objects>
-                <viewController title="My Preferences" id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Preferences" id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Du2-mr-E4w"/>
                         <viewControllerLayoutGuide type="bottom" id="h7c-a2-MKj"/>
@@ -104,7 +104,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redberrycup" translatesAutoresizingMaskIntoConstraints="NO" id="1KI-Pp-qPg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="141"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qbY-vt-aiF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qbY-vt-aiF">
                                 <rect key="frame" x="0.0" y="204" width="600" height="396"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -177,7 +177,7 @@
         <!--Main Menu-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MainMenuViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainMenuViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -413,7 +413,7 @@
         <!--About Sustainability-->
         <scene sceneID="1a4-ct-bCe">
             <objects>
-                <viewController id="BYz-6F-mJb" customClass="SustainabilityInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYz-6F-mJb" customClass="SustainabilityInfoViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NA9-8z-cSa"/>
                         <viewControllerLayoutGuide type="bottom" id="V4Z-DJ-aE0"/>
@@ -434,7 +434,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
             <objects>
-                <viewController storyboardIdentifier="SignUpPage" id="bha-uc-Tnm" customClass="SignUpViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpPage" id="bha-uc-Tnm" customClass="SignUpViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x6x-p8-c8K"/>
                         <viewControllerLayoutGuide type="bottom" id="HY5-m2-oXd"/>
@@ -476,7 +476,7 @@
                                     <constraint firstAttribute="height" constant="30" id="jwy-DJ-QU0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="YhL-uS-ZmK"/>
@@ -709,7 +709,9 @@
                             <constraint firstAttribute="centerX" secondItem="lzq-2o-lDV" secondAttribute="centerX" id="HP0-Gm-TQs"/>
                             <constraint firstItem="Cot-IL-hPO" firstAttribute="width" secondItem="Nox-A2-GYD" secondAttribute="width" id="IrT-CH-mmG"/>
                             <constraint firstItem="Nox-A2-GYD" firstAttribute="leading" secondItem="4EP-YF-uCt" secondAttribute="leadingMargin" constant="25" id="J3c-6K-yib"/>
-                            <constraint firstItem="Nox-A2-GYD" firstAttribute="top" secondItem="xbZ-KB-OJR" secondAttribute="bottom" constant="38" id="JH6-G0-503"/>
+                            <constraint firstItem="Nox-A2-GYD" firstAttribute="top" secondItem="xbZ-KB-OJR" secondAttribute="bottom" constant="38" id="JH6-G0-503">
+                                <variation key="widthClass=compact" constant="25"/>
+                            </constraint>
                             <constraint firstItem="YHF-gB-QOn" firstAttribute="top" secondItem="x6x-p8-c8K" secondAttribute="bottom" constant="127" id="JjA-tI-fiJ"/>
                             <constraint firstItem="xbZ-KB-OJR" firstAttribute="top" secondItem="kfS-hu-XbJ" secondAttribute="bottom" constant="8" id="KkV-9i-0qD"/>
                             <constraint firstItem="Nox-A2-GYD" firstAttribute="leading" secondItem="4EP-YF-uCt" secondAttribute="leadingMargin" constant="-6" id="LZO-LN-XCq"/>
@@ -733,7 +735,9 @@
                             <constraint firstItem="bYP-O1-7OV" firstAttribute="top" secondItem="Cot-IL-hPO" secondAttribute="bottom" constant="70" id="TP1-oB-OMJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kfS-hu-XbJ" secondAttribute="trailing" constant="257" id="UCm-9L-H2M"/>
                             <constraint firstItem="xbZ-KB-OJR" firstAttribute="top" secondItem="kfS-hu-XbJ" secondAttribute="bottom" constant="13" id="UEi-S3-bKc"/>
-                            <constraint firstItem="Cot-IL-hPO" firstAttribute="top" secondItem="xbZ-KB-OJR" secondAttribute="bottom" constant="38" id="UuP-8s-3vm"/>
+                            <constraint firstItem="Cot-IL-hPO" firstAttribute="top" secondItem="xbZ-KB-OJR" secondAttribute="bottom" constant="38" id="UuP-8s-3vm">
+                                <variation key="widthClass=compact" constant="25"/>
+                            </constraint>
                             <constraint firstItem="kfS-hu-XbJ" firstAttribute="leading" secondItem="4EP-YF-uCt" secondAttribute="leadingMargin" constant="29" id="V2d-ZB-xA9"/>
                             <constraint firstItem="Cot-IL-hPO" firstAttribute="height" secondItem="Nox-A2-GYD" secondAttribute="height" id="VjT-m5-bFx"/>
                             <constraint firstAttribute="trailing" secondItem="POE-fj-PE4" secondAttribute="trailing" id="Vob-2n-5yK"/>
@@ -1035,7 +1039,7 @@
         <!--Restaurant Selection-->
         <scene sceneID="27M-76-1o5">
             <objects>
-                <viewController title="Restaurant Selection" id="QQv-te-0r1" customClass="RestMenuViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Restaurant Selection" id="QQv-te-0r1" customClass="RestMenuViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SPf-I2-z9n"/>
                         <viewControllerLayoutGuide type="bottom" id="MJr-EW-Q7S"/>
@@ -1149,7 +1153,7 @@
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
             <objects>
-                <viewController id="5dj-oE-vjJ" customClass="MenuSwipeViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5dj-oE-vjJ" customClass="MenuSwipeViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GUr-P8-itM"/>
                         <viewControllerLayoutGuide type="bottom" id="SED-wd-owW"/>
@@ -1162,7 +1166,7 @@
                                 <rect key="frame" x="0.0" y="279" width="600" height="321"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="protCell" rowHeight="38" id="rHH-34-zTX" customClass="TableViewCell" customModule="Commons_Menu1" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="protCell" rowHeight="38" id="rHH-34-zTX" customClass="TableViewCell" customModule="FoodForThought" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rHH-34-zTX" id="rLY-sE-uJe">
@@ -1454,7 +1458,7 @@
         <!--Restaurant Name-->
         <scene sceneID="9R5-Uz-jaH">
             <objects>
-                <viewController id="zoT-e7-Njf" customClass="RestProfileViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zoT-e7-Njf" customClass="RestProfileViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aJ5-r0-iGk"/>
                         <viewControllerLayoutGuide type="bottom" id="2ED-kE-Hhe"/>
@@ -1624,7 +1628,7 @@
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
             <objects>
-                <viewController id="m4B-Z7-P1R" customClass="PreferenceListViewController" customModule="Commons_Menu1" sceneMemberID="viewController">
+                <viewController id="m4B-Z7-P1R" customClass="PreferenceListViewController" customModule="FoodForThought" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7E8-36-N0j"/>
                         <viewControllerLayoutGuide type="bottom" id="yxy-Sa-cjH"/>
@@ -1715,7 +1719,7 @@
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
             <objects>
-                <viewController storyboardIdentifier="PageContentViewController" title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="Commons_Menu1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageContentViewController" title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgw-pN-LjJ"/>
                         <viewControllerLayoutGuide type="bottom" id="0nw-ug-gXp"/>

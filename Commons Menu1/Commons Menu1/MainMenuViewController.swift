@@ -30,7 +30,7 @@ class MainMenuViewController: UIViewController {
         //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "mainMenuBackground")
+        bkgdImage.image = UIImage(named: "MainMenuBackground")
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
@@ -123,7 +123,6 @@ class MainMenuViewController: UIViewController {
             }//needs update to cache
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -251,7 +250,6 @@ class MainMenuViewController: UIViewController {
             }
         }
     }
-    
     
     
     @IBAction func showRestaurants(sender: AnyObject) {
