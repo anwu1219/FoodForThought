@@ -23,8 +23,6 @@ protocol MenuTableViewCellDelegate {
     // #spchadinha
     func viewDishInfo(dish: Dish)
     
-    func addToDislikes(dish: Dish)
-    
     func edit()
     
     func handleDealtWithOnLike(dish: Dish)
@@ -51,7 +49,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var menu = [String : [Dish]]()
     var dishes : Dishes!
     let styles = Styles()
-    var disLikes = [Dish]()
+    var disLikes = Set<Dish>()
     var types = [String]()
     var restProf: RestProfile!
     var edited = false
@@ -322,11 +320,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     /**
     Delegate function that add dish to dislikes when it's deleted
     */
-    func addToDislikes(dish: Dish) {
-        disLikes.append(dish)
-    }
-
-    
     func edit(){
         self.edited = true
     }
@@ -439,20 +432,24 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 }
                             }
                         }
-                        for dish: Dish in self.disLikes {
-                            if let user = PFUser.currentUser(){
-                                let newPreference = PFObject(className:"Disliked")
-                                newPreference["createdBy"] = PFUser.currentUser()
-                                newPreference["dishName"] = dish.name
-                                newPreference["location"] = dish.location
-                                newPreference.saveInBackgroundWithBlock({
-                                    (success: Bool, error: NSError?) -> Void in
-                                    if (success) {
-                                        println("Successfully Saved")
-                                    } else {
-                                        // There was a problem, check error.description
+                        for type : String in self.types{
+                            for dish: Dish in self.menu[type]! {
+                                if dish.dislike{
+                                    if let user = PFUser.currentUser(){
+                                        let newPreference = PFObject(className:"Disliked")
+                                        newPreference["createdBy"] = PFUser.currentUser()
+                                        newPreference["dishName"] = dish.name
+                                        newPreference["location"] = dish.location
+                                        newPreference.saveInBackgroundWithBlock({
+                                            (success: Bool, error: NSError?) -> Void in
+                                            if (success) {
+                                                println("Successfully Saved")
+                                            } else {
+                                                    // There was a problem, check error.description
+                                            }
+                                        })
                                     }
-                                })
+                                }
                             }
                         }
                     }
