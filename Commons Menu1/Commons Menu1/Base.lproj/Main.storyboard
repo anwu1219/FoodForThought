@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -445,7 +444,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
-                                <rect key="frame" x="57" y="216" width="60" height="26.5"/>
+                                <rect key="frame" x="57" y="216" width="60" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="YHF-gB-QOn" secondAttribute="height" multiplier="292:33" id="KSx-Vr-jT3"/>
                                     <constraint firstAttribute="width" secondItem="YHF-gB-QOn" secondAttribute="height" multiplier="14:11" id="utQ-oR-6Yo"/>
@@ -468,7 +467,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
                                 <rect key="frame" x="51" y="250" width="498" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YhL-uS-ZmK">
@@ -494,7 +493,7 @@
                                     <rect key="frame" x="45" y="278" width="298" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
                                 <rect key="frame" x="51" y="339" width="498" height="30"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -539,8 +538,8 @@
                                     <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
-                                <rect key="frame" x="57" y="299" width="105" height="26.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
+                                <rect key="frame" x="57" y="299" width="105" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kfS-hu-XbJ" secondAttribute="height" multiplier="19:8" id="Umg-Df-Biu"/>
                                     <constraint firstAttribute="width" secondItem="kfS-hu-XbJ" secondAttribute="height" multiplier="73:8" id="nse-af-Ac6"/>
@@ -567,14 +566,14 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
-                                <rect key="frame" x="177" y="100" width="246" height="62.5"/>
+                                <rect key="frame" x="177" y="100" width="246" height="63"/>
                                 <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="54"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="41" y="407" width="125" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="8iC-Gi-nNe"/>
@@ -1362,15 +1361,14 @@
                                 <exclude reference="r3l-Ai-k6t"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="DaB-P3-6oi"/>
+                                <exclude reference="FoQ-8r-W1y"/>
+                                <exclude reference="Nrr-45-6PZ"/>
+                                <exclude reference="RUF-7w-fZM"/>
+                                <exclude reference="kl5-4i-Qm7"/>
                                 <exclude reference="G78-UM-MTy"/>
                                 <exclude reference="LGn-SI-Wzb"/>
                                 <exclude reference="jld-y4-qLV"/>
-                                <exclude reference="2nW-Hn-eXf"/>
-                                <exclude reference="IfR-uv-sfU"/>
-                                <exclude reference="XcU-C8-xxE"/>
-                                <exclude reference="kox-up-GCo"/>
-                                <exclude reference="QC3-by-b6L"/>
-                                <exclude reference="mi3-c7-b54"/>
                                 <exclude reference="0hw-FI-HJW"/>
                                 <exclude reference="7wh-ft-uzB"/>
                                 <exclude reference="Khc-0c-0To"/>
@@ -1381,12 +1379,13 @@
                                 <exclude reference="aJw-r7-0dY"/>
                                 <exclude reference="crg-1H-YPW"/>
                                 <exclude reference="hlh-LT-QDt"/>
-                                <exclude reference="DaB-P3-6oi"/>
-                                <exclude reference="FoQ-8r-W1y"/>
-                                <exclude reference="Nrr-45-6PZ"/>
-                                <exclude reference="RUF-7w-fZM"/>
-                                <exclude reference="kl5-4i-Qm7"/>
                                 <exclude reference="XWd-30-7ep"/>
+                                <exclude reference="QC3-by-b6L"/>
+                                <exclude reference="mi3-c7-b54"/>
+                                <exclude reference="2nW-Hn-eXf"/>
+                                <exclude reference="IfR-uv-sfU"/>
+                                <exclude reference="XcU-C8-xxE"/>
+                                <exclude reference="kox-up-GCo"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1397,15 +1396,14 @@
                                 <include reference="r3l-Ai-k6t"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="DaB-P3-6oi"/>
+                                <exclude reference="FoQ-8r-W1y"/>
+                                <exclude reference="Nrr-45-6PZ"/>
+                                <include reference="RUF-7w-fZM"/>
+                                <include reference="kl5-4i-Qm7"/>
                                 <include reference="G78-UM-MTy"/>
                                 <include reference="LGn-SI-Wzb"/>
                                 <include reference="jld-y4-qLV"/>
-                                <include reference="2nW-Hn-eXf"/>
-                                <exclude reference="IfR-uv-sfU"/>
-                                <include reference="XcU-C8-xxE"/>
-                                <exclude reference="kox-up-GCo"/>
-                                <include reference="QC3-by-b6L"/>
-                                <include reference="mi3-c7-b54"/>
                                 <exclude reference="6Ki-Rb-QI8"/>
                                 <include reference="7wh-ft-uzB"/>
                                 <exclude reference="D0f-aK-Bby"/>
@@ -1416,11 +1414,12 @@
                                 <exclude reference="byl-ny-Owh"/>
                                 <exclude reference="crg-1H-YPW"/>
                                 <exclude reference="o0t-a9-11r"/>
-                                <include reference="DaB-P3-6oi"/>
-                                <exclude reference="FoQ-8r-W1y"/>
-                                <exclude reference="Nrr-45-6PZ"/>
-                                <include reference="RUF-7w-fZM"/>
-                                <include reference="kl5-4i-Qm7"/>
+                                <include reference="QC3-by-b6L"/>
+                                <include reference="mi3-c7-b54"/>
+                                <include reference="2nW-Hn-eXf"/>
+                                <exclude reference="IfR-uv-sfU"/>
+                                <include reference="XcU-C8-xxE"/>
+                                <exclude reference="kox-up-GCo"/>
                             </mask>
                         </variation>
                     </view>
@@ -1726,7 +1725,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
-                                <rect key="frame" x="9" y="72" width="450.5" height="151"/>
+                                <rect key="frame" x="9" y="72" width="451" height="151"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="582" id="3Hn-gC-tVS"/>
                                     <constraint firstAttribute="width" secondItem="CJN-4S-V6S" secondAttribute="height" multiplier="194:65" id="6ae-Ti-wLC">
