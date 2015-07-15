@@ -208,8 +208,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        
-        
         restProfScrollView.contentSize.height = y
     }
     

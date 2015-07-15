@@ -123,7 +123,6 @@ class MainMenuViewController: UIViewController {
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -250,7 +249,6 @@ class MainMenuViewController: UIViewController {
             }
         }
     }
-    
     
     
     @IBAction func showRestaurants(sender: AnyObject) {

@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				F3FB7E6E1B41EFB000AD38B7 /* Framework */,
-				40E842231B308C6A00D39DCD /* Commons Menu1 */,
+				40E842231B308C6A00D39DCD /* FoodForThought */,
 				40E842391B308C6A00D39DCD /* Commons Menu1Tests */,
 				40E842221B308C6A00D39DCD /* Products */,
 			);
@@ -160,7 +160,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		40E842231B308C6A00D39DCD /* Commons Menu1 */ = {
+		40E842231B308C6A00D39DCD /* FoodForThought */ = {
 			isa = PBXGroup;
 			children = (
 				40E842261B308C6A00D39DCD /* AppDelegate.swift */,
@@ -177,6 +177,7 @@
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
 			);
+			name = FoodForThought;
 			path = "Commons Menu1";
 			sourceTree = "<group>";
 		};
@@ -321,7 +322,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */;
+			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Commons Menu1" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -595,7 +596,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */ = {
+		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Commons Menu1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40E8423E1B308C6A00D39DCD /* Debug */,
