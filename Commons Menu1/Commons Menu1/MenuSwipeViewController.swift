@@ -236,13 +236,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let ecoIcon = SuperIconButton(restProf.eco, frame, "eco")
+        let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "eco")
         x += frame.width
         frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let humaneIcon = SuperIconButton(restProf.humane, frame, "humane")
+        let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "humane")
         x += frame.width
         frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let fairIcon = SuperIconButton(restProf.fair, frame, "fair")
+        let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "fair")
         x += frame.width
         
         scroll.addSubview(ecoIcon)
