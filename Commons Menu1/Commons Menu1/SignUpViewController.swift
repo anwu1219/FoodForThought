@@ -319,10 +319,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                                     if let healthScore = object["healthScore"] as? Double{
                                                                         if let mealPlanHours = object["mealPlanHours"] as? [String]{
                                                                             if let url = object["website"] as? String {
-                                                                                let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url)
+                                                                                if let eco = object["eco"] as? [String] {
+                                                                                    if let fair = object["fair"] as? [String]{
+                                                                                        if let humane = object["humane"] as? [String] {
+                                                                                            let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane)
                                                                                 self.dishes.addRestaurant(restaurant)
+                                                                                        }
+                                                                                    }
                                                                                 }
-
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
