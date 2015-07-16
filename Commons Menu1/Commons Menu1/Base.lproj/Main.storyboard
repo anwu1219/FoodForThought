@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -284,6 +284,30 @@
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="sXz-wK-Xvd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8o-pg-Xq7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="122" id="hIb-89-WmQ"/>
+                                </constraints>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hIb-89-WmQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="hIb-89-WmQ"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="logoutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I5u-y0-I9S"/>
+                                    <segue destination="bha-uc-Tnm" kind="show" identifier="logOutSegue" id="rSJ-Ob-iMA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -305,6 +329,7 @@
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="312" id="PCA-Gn-1yB"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="Q9g-xF-K0B"/>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="RYl-uB-eMf"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="s8o-pg-Xq7" secondAttribute="bottom" constant="25" id="S91-5w-p3c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AaB-WN-Yol" secondAttribute="trailing" constant="190" id="Sc9-d9-hjC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="44" id="U5p-QE-eR7"/>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="aHt-ME-EfK"/>
@@ -313,6 +338,7 @@
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="51" id="cva-FG-v8z"/>
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="d29-Gm-KcB"/>
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="dPW-9x-eHE"/>
+                            <constraint firstItem="s8o-pg-Xq7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="dQC-im-E59"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="dim-Ro-Yke"/>
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="ecK-Or-cAR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="14" id="fiP-dO-fd6"/>
@@ -327,6 +353,9 @@
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="178" id="r21-2i-EBS"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="s8o-pg-Xq7"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="9To-Bf-mFC"/>
@@ -357,11 +386,16 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <exclude reference="hh9-qX-cZX"/>
                                 <exclude reference="nMK-a1-OYq"/>
+                                <exclude reference="dQC-im-E59"/>
+                                <exclude reference="S91-5w-p3c"/>
                                 <exclude reference="b6u-Q0-AiW"/>
                                 <exclude reference="nBh-AB-Xjd"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="s8o-pg-Xq7"/>
+                            </mask>
                             <mask key="constraints">
                                 <include reference="2nP-pD-4f0"/>
                                 <include reference="9To-Bf-mFC"/>
@@ -389,6 +423,8 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <include reference="hh9-qX-cZX"/>
                                 <include reference="nMK-a1-OYq"/>
+                                <include reference="dQC-im-E59"/>
+                                <include reference="S91-5w-p3c"/>
                                 <exclude reference="nBh-AB-Xjd"/>
                             </mask>
                         </variation>
@@ -467,7 +503,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
                                 <rect key="frame" x="51" y="250" width="498" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YhL-uS-ZmK">
@@ -493,7 +529,7 @@
                                     <rect key="frame" x="45" y="278" width="298" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
                                 <rect key="frame" x="51" y="339" width="498" height="30"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -538,7 +574,7 @@
                                     <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
                                 <rect key="frame" x="57" y="299" width="105" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kfS-hu-XbJ" secondAttribute="height" multiplier="19:8" id="Umg-Df-Biu"/>
@@ -573,7 +609,7 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="41" y="407" width="125" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="8iC-Gi-nNe"/>
@@ -1714,6 +1750,9 @@
                                         <exclude reference="ffw-VS-muO"/>
                                     </mask>
                                 </variation>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="16" y="78" width="368" height="522"/>
+                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1929,7 +1968,8 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="sXz-wK-Xvd"/>
         <segue reference="4iJ-fy-ZFU"/>
-        <segue reference="ut7-Ma-1wo"/>
     </inferredMetricsTieBreakers>
 </document>
