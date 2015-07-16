@@ -64,9 +64,9 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 label.frame = CGRectMake(0.01*width, y, susView.frame.width/2, 50)
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(0.5*susView.frame.width, y, 0.65*susView.frame.width, label.frame.height)
+                scroll.frame = CGRectMake(0.5 * susView.frame.width, y, 0.65*susView.frame.width, label.frame.height)
                 susView.addSubview(scroll)
-                y += label.frame.height + height*0.01
+                y += label.frame.height + height * 0.01
             }
             else {
                 label.text = "No \(labels[i]) Labels"
@@ -77,7 +77,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var x: CGFloat = width*0.05
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    
                     var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     var icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)

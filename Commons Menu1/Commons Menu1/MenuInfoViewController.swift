@@ -21,6 +21,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var susLabelView: UIScrollView!
     @IBOutlet weak var labelsLabel: UILabel!
     
+    
     var dish: Dish?
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
@@ -73,9 +74,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 y += 10 * height
                 
                 var labelPics = UIScrollView()
-                var labelWidth = 6*height
-                var labelHeight = 9*height
-                var labelSpace = 2*width
+                var labelWidth = 6 * height
+                var labelHeight = 9 * height
+                var labelSpace = 2 * width
                 labelPics.frame = CGRectMake(0, y, title.frame.width, title.frame.height)
                 labelPics.contentSize = CGSizeMake(CGFloat(susLabels.count)*(labelWidth+labelSpace)+labelSpace, labelHeight)
                 //labelPics.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
