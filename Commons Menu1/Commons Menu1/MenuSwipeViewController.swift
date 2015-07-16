@@ -38,7 +38,7 @@ protocol MenuTableViewCellDelegate {
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
@@ -105,18 +105,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicator.frame = CGRectMake(tableView.bounds.width / 2, tableView.bounds.height / 2, 10, 10)
-        self.tableView.addSubview(activityIndicator)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if let foo = dishes.cached[restProf]{
             if !foo {
+                activityIndicator.hidden = false
+                activityIndicator.startAnimating()
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+                activityIndicator.frame = CGRectMake(view.bounds.midX, tableView.bounds.midY, 0, 0)
+                self.tableView.addSubview(activityIndicator)
                 tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
                 self.refreshControl.sendActionsForControlEvents(.ValueChanged)
                 self.dishes.cached(self.restProf)
@@ -181,6 +181,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()}, completion: nil)
                     self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }

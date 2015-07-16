@@ -15,7 +15,7 @@ import Parse
 /**
 Manages the cell representation of a dish in a menu
 */
-class FoodTinderTableViewCell: UITableViewCell {
+class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
@@ -238,10 +238,8 @@ class FoodTinderTableViewCell: UITableViewCell {
             
             for var i = 0; i < labels.count; i++ {
                 if count(labels[i]) > 0 {
-                    var icon = UIImageView()
-                    icon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
-                    icon.image = UIImage(named: labels[i])
-                    icon.contentMode = .ScaleAspectFit
+                    let icon = IconButton(name: labels[i], frame: CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions))
+                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     susLabels.addSubview(icon)
                     x += icon.frame.width + space
                 }
@@ -251,6 +249,10 @@ class FoodTinderTableViewCell: UITableViewCell {
         }
     }
     
+    
+    func showLabelInfo(sender: AnyObject){
+        delegate!.showLabelInfo(sender)
+    }
     
     /**
     MARK: - tap gesture methods
@@ -276,3 +278,6 @@ class FoodTinderTableViewCell: UITableViewCell {
         return false
     }
 }
+
+
+

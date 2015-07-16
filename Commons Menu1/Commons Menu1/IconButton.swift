@@ -11,30 +11,11 @@ import UIKit
 
 class IconButton: UIButton {
     let name: String
-    
-    let descriptions = [
-        "EC" : "This label is awarded to foods that contain healthy carbs",
-        "FS" : "",
-        "L" : "",
-        "CE" : "",
-        "HF" : "",
-        "PP" : "",
-        "VN" : "",
-        "SE" : "",
-        "C" : "",
-        "ES" : "",
-        "LA" : "",
-        "R" : "",
-        "AI" : "" ,
-        "CA" : "",
-        "FD" : "",
-        "MD": "",
-        "VO" : ""
-    ]
+    let descriptionText: String?
     
     init(name: String, frame: CGRect){
         self.name = name
-        
+        self.descriptionText = IconDescription().descriptions[name]
         super.init(frame: frame)
         
         let image = UIImage(named: name)

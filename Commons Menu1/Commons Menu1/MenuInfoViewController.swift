@@ -12,7 +12,7 @@ import UIKit
 Displays information on a given dish
 */
 
-class MealInfoViewController: UIViewController {
+class MealInfoViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var dishImage: UIImageView!
     @IBOutlet weak var dishName: UINavigationItem!
@@ -86,10 +86,9 @@ class MealInfoViewController: UIViewController {
                 }
                 
                 for var i = 0; i < susLabels.count; i++ {
-                    var labelImage = UIImageView()
-                    labelImage.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                    labelImage.image = UIImage(named: susLabels[i])
-                    labelImage.contentMode = .ScaleToFill
+                    
+                    var labelImage = IconButton(name: susLabels[i], frame: CGRectMake(initX, height, labelWidth, labelWidth))
+                    labelImage.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     labelPics.addSubview(labelImage)
                     initX += labelSpace + labelWidth
                 }
@@ -168,9 +167,9 @@ class MealInfoViewController: UIViewController {
                     if !labels.isEmpty{
                         var nutLabelXPosition = 3 * height
                         for label: String in labels[i] {
-                            var nutLabel = UIImageView(frame: CGRectMake( 330 - nutLabelXPosition, y - 2 * height, 5 * height, 5 * height))
-                            var image = UIImage(named: label)
-                            nutLabel.image = image
+                            println(label)
+                            var nutLabel = IconButton(name: label, frame: CGRectMake( 330 - nutLabelXPosition, y - 2 * height, 5 * height, 5 * height))
+                            nutLabel.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                             scrollInfo.addSubview(nutLabel)
                             nutLabelXPosition += 8 * height
                         }
@@ -185,5 +184,43 @@ class MealInfoViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    func showLabelInfo(sender: AnyObject) {
+        let vc = UIViewController()
+        let button = sender as! IconButton
+        
+        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.modalPresentationStyle = .Popover
+        
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
+        description.center = CGPointMake(100, 50)
+        description.lineBreakMode = .ByWordWrapping
+        description.numberOfLines = 0
+        description.textAlignment = NSTextAlignment.Center
+        description.text = button.descriptionText!
+        vc.view.addSubview(description)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
+        }
+    }
+}
+
+
+
+extension MealInfoViewController : UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+        
     }
 }
