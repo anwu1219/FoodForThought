@@ -228,6 +228,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             
         }
+        var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+        let ecoIcon = SuperIconButton(restProf.eco, frame, "eco")
+        x += frame.width
+        frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+        let humaneIcon = SuperIconButton(restProf.humane, frame, "humane")
+        x += frame.width
+        frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+        let fairIcon = SuperIconButton(restProf.fair, frame, "fair")
+        x += frame.width
+        
+        scroll.addSubview(ecoIcon)
+        scroll.addSubview(humaneIcon)
+        scroll.addSubview(fairIcon)
+        
         scroll.contentSize.width = x
         scroll.contentSize.height = y
     }
