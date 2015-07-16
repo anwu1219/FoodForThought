@@ -73,12 +73,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         welcomeLabel.layer.shadowRadius = 5
         welcomeLabel.layer.shadowOpacity = 1.0
         
-        
         passwordLabel.layer.shadowColor = UIColor.blackColor().CGColor
         passwordLabel.layer.shadowOffset = CGSizeMake(5, 5)
         passwordLabel.layer.shadowRadius = 5
         passwordLabel.layer.shadowOpacity = 1.0
-        
         
         emailLabel.layer.shadowColor = UIColor.blackColor().CGColor
         emailLabel.layer.shadowOffset = CGSizeMake(5, 5)
@@ -91,7 +89,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         self.getRestaurant()
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
-        }//needs update to cache
+        } //needs update to cache
         
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);

@@ -12,7 +12,7 @@ import UIKit
 /**
 Displays information of sustainability and links to sustainability info
 */
-class SustainabilityInfoViewController: UIViewController {
+class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let susView = UIScrollView()
@@ -22,8 +22,28 @@ class SustainabilityInfoViewController: UIViewController {
 
 
     @IBAction func learnMoreAction(sender: UIButton!) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")!)
-    }
+            let vc = UIViewController()
+            vc.preferredContentSize = CGSizeMake(screenSize.width, screenSize.height)
+            vc.modalPresentationStyle = .Popover
+            if let pres = vc.popoverPresentationController {
+                pres.delegate = self
+            }
+            
+            let wv = UIWebView()
+            vc.view.addSubview(wv)
+            wv.frame = vc.view.bounds
+            wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+            let url = NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")
+            let request = NSURLRequest(URL: url!)
+            wv.loadRequest(request)
+            
+            self.presentViewController(vc, animated: true, completion: nil)
+            
+            if let pop = vc.popoverPresentationController {
+                pop.sourceView = (sender as UIView)
+                pop.sourceRect = (sender as UIView).bounds
+            }
+        }
     
     override func viewDidLoad() {
         let verticalSpace = 0.05 * screenSize.height
@@ -106,5 +126,24 @@ class SustainabilityInfoViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+
+//https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
+extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .FullScreen
+    }
+    
+     func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let vc = controller.presentedViewController
+        let nav = UINavigationController(rootViewController: vc)
+        let b = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissHelp:")
+        vc.navigationItem.rightBarButtonItem = b
+        return nav
+    }
+    
+    func dismissHelp(sender:AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
