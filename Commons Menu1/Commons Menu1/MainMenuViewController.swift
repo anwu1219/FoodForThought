@@ -190,13 +190,16 @@ class MainMenuViewController: UIViewController {
                                 if let type = object["type"] as? String{
                                     if let susLabels = object["susLabels"] as? [String]{
                                         if let index = object["index"] as? Int{
+                                            if let eco = object["eco"] as? [String] {
+                                                if let fair = object["fair"] as? [String]{
+                                                    if let humane = object["humane"] as? [String] {
                                             if let price = object["price"] as? String{
                                                 if let userImageFile = object["image"] as? PFFile{
                                                     userImageFile.getDataInBackgroundWithBlock {
                                                         (imageData: NSData?, error: NSError?) -> Void in
                                                         if error == nil {
                                                             if let data = imageData{                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                                 dish.like = like
                                                                 dish.dislike = dislike
                                                                 self.dishes.addToDealtWith(index)
@@ -207,7 +210,7 @@ class MainMenuViewController: UIViewController {
                                                         }
                                                     }
                                                 } else{
-                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                     dish.like = like
                                                     dish.dislike = dislike
                                                     self.dishes.addToDealtWith(index)
@@ -219,6 +222,9 @@ class MainMenuViewController: UIViewController {
                                     }
                                 }
                             }
+                        }
+                    }
+                }
                         }
                     }
                 }

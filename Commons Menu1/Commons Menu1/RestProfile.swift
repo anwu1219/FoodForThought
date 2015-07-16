@@ -20,9 +20,12 @@ class RestProfile: NSObject {
     var labels: [[String]]
     var healthScore: Double
     var url: String
+    var eco = [String]()
+    var fair = [String]()
+    var humane = [String]()
 
     
-    init(name: String, image: UIImage, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String){
+    init(name: String, image: UIImage, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String]){
         self.name = name
         self.image = image
         self.restDescript = restDescript
@@ -33,5 +36,8 @@ class RestProfile: NSObject {
         self.labels = labels
         self.healthScore = heathScore
         self.url = url
+        self.eco = eco
+        self.fair = fair
+        self.humane = humane
     }
 }

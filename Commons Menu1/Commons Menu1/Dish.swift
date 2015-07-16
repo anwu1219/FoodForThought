@@ -32,6 +32,10 @@ class Dish: NSObject {
     var type = String()
     var index = 0
     var susLabels = [String]() //Sustainability Labels on dish level
+    var eco = [String]()
+    var fair = [String]()
+    var humane = [String]()
+    
 
     
     init(name: String) {
@@ -44,7 +48,7 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String]){
+    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String], eco : [String], fair : [String], humane : [String]){
         self.name = name
         self.image = image
         self.location = location
@@ -54,11 +58,14 @@ class Dish: NSObject {
         self.index = index
         self.price = price
         self.susLabels = susLabels
+        self.eco = eco
+        self.fair = fair
+        self.humane = humane
     }
     
     
     
-    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int,  price: String, susLabels: [String]){
+    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int,  price: String, susLabels: [String], eco : [String], fair : [String], humane : [String]){
         self.name = name
         self.location = location
         self.type = type
