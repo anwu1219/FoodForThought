@@ -236,18 +236,28 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "eco")
-        x += frame.width
-        frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "humane")
-        x += frame.width
-        frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
-        let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "fair")
-        x += frame.width
+        if restProf.eco.count > 0 {
+            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "sloth")
+            ecoIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            x += frame.width
+            frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+            scroll.addSubview(ecoIcon)
+        }
         
-        scroll.addSubview(ecoIcon)
-        scroll.addSubview(humaneIcon)
-        scroll.addSubview(fairIcon)
+        if restProf.humane.count > 0 {
+            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "sloth")
+            humaneIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            x += frame.width
+            frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+            scroll.addSubview(humaneIcon)
+        }
+        
+        if restProf.fair.count > 0 {
+            let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "sloth")
+            fairIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            x += frame.width
+            scroll.addSubview(fairIcon)
+        }
         
         scroll.contentSize.width = x
         scroll.contentSize.height = y
@@ -587,6 +597,34 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText!
+        vc.view.addSubview(description)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
+        }
+    }
+    
+    func showLabelInfo2(sender: AnyObject) {
+        let vc = UIViewController()
+        let button = sender as! SuperIconButton
+        
+        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.modalPresentationStyle = .Popover
+        
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
+        description.center = CGPointMake(100, 50)
+        description.lineBreakMode = .ByWordWrapping
+        description.numberOfLines = 0
+        description.textAlignment = NSTextAlignment.Center
+        description.text = button.descriptionText
         vc.view.addSubview(description)
         
         self.presentViewController(vc, animated: true, completion: nil)
