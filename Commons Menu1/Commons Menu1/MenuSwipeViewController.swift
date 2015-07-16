@@ -38,7 +38,7 @@ protocol MenuTableViewCellDelegate {
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate{
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!

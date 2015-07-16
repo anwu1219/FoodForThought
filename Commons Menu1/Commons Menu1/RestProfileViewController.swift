@@ -80,7 +80,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     
                     var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     var icon = IconButton(name: restProf.labels[i][j], frame: frame)
-                    icon.addTarget(self, action: "popup:", forControlEvents: UIControlEvents.TouchUpInside)
+                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     
                     
 //                    var icon = UIImageView()
@@ -94,6 +94,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
         susView.contentSize.height = y
     }
+    
     
     func popup(sender: UIButton!) {
         var button = sender as! IconButton
@@ -243,14 +244,41 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    func showLabelInfo(sender: AnyObject) {
+        let vc = UIViewController()
+        let button = sender as! IconButton
+        
+        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.modalPresentationStyle = .Popover
+        
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
+        description.center = CGPointMake(100, 50)
+        description.lineBreakMode = .ByWordWrapping
+        description.numberOfLines = 0
+        description.textAlignment = NSTextAlignment.Center
+        description.text = button.descriptionText!
+        vc.view.addSubview(description)
+
+        self.presentViewController(vc, animated: true, completion: nil)
+            
+
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
+        }
     }
-    */
-    
+}
+
+
+
+extension RestProfileViewController : UIPopoverPresentationControllerDelegate {
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+
+    }
 }

@@ -22,10 +22,12 @@ protocol FoodTinderViewCellDelegate {
     func uploadPreference(dish: Dish)
     
     func uploadDislike(dish: Dish)
+    
+    func showLabelInfo(sender: AnyObject)
 }
 
 
-class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate {
+class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var foodTinderTableView: UITableView!
     @IBOutlet var foodTinderView: UIView!
@@ -337,5 +339,42 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             allPreferenceListViewController.dishes = dishes
         }
+    }
+    
+    
+    func showLabelInfo(sender: AnyObject) {
+        let vc = UIViewController()
+        let button = sender as! IconButton
+        
+        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.modalPresentationStyle = .Popover
+        
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
+        description.center = CGPointMake(100, 50)
+        description.lineBreakMode = .ByWordWrapping
+        description.numberOfLines = 0
+        description.textAlignment = NSTextAlignment.Center
+        description.text = button.descriptionText!
+        vc.view.addSubview(description)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
+        }
+    }
+}
+
+
+
+extension FoodTinderViewController : UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+        
     }
 }
