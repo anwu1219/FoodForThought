@@ -260,32 +260,40 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                     if let type = object["type"] as? String{
                                         if let susLabels = object["susLabels"] as? [String]{
                                             if let price = object["price"] as? String{
+                                                if let index = object["index"] as? Int{
+                                                    if let eco = object["eco"] as? [String] {
+                                                        if let fair = object["fair"] as? [String]{
+                                                            if let humane = object["humane"] as? [String]{
                                                 if let userImageFile = object["image"] as? PFFile{
                                                     userImageFile.getDataInBackgroundWithBlock {
                                                         (imageData: NSData?, error: NSError?) ->Void in
                                                         if error == nil {
                                                             if let data = imageData{                                                if let image = UIImage(data: data){
                                                                 if !self.hasBeenAdded(name, location: name){
-                                                                    let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                    let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                                     self.dishes.addDish(location, dish: dish)
                                                                     self.menu.append(dish)
                                                                     self.dishes.addPulled(index)
                                                                     UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                                         self.foodTinderTableView.reloadData() }, completion: nil)
                                                                     
-                                                                }
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
-                                                    }
-                                                } else{
-                                                    if !self.hasBeenAdded(name, location: name){
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
-                                                        self.dishes.addDish(location, dish: dish)
-                                                        self.menu.append(dish)
-                                                        self.dishes.addPulled(index)
-                                                        UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                                    } else{
+                                                        if !self.hasBeenAdded(name, location: name){
+                                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
+                                                            self.dishes.addDish(location, dish: dish)
+                                                            self.menu.append(dish)
+                                                            self.dishes.addPulled(index)
+                                                            UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                             self.foodTinderTableView.reloadData() }, completion: nil)
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
