@@ -17,21 +17,7 @@
                BlueprintIdentifier = "40E842201B308C6A00D39DCD"
                BuildableName = "FoodForThought.app"
                BlueprintName = "FoodForThought"
-               ReferencedContainer = "container:Commons Menu1.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40E842351B308C6A00D39DCD"
-               BuildableName = "FoodForThoughtTests.xctest"
-               BlueprintName = "FoodForThoughtTests"
-               ReferencedContainer = "container:Commons Menu1.xcodeproj">
+               ReferencedContainer = "container:FoodForThought.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,16 +28,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40E842351B308C6A00D39DCD"
-               BuildableName = "FoodForThoughtTests.xctest"
-               BlueprintName = "FoodForThoughtTests"
-               ReferencedContainer = "container:Commons Menu1.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -59,7 +35,7 @@
             BlueprintIdentifier = "40E842201B308C6A00D39DCD"
             BuildableName = "FoodForThought.app"
             BlueprintName = "FoodForThought"
-            ReferencedContainer = "container:Commons Menu1.xcodeproj">
+            ReferencedContainer = "container:FoodForThought.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -79,7 +55,7 @@
             BlueprintIdentifier = "40E842201B308C6A00D39DCD"
             BuildableName = "FoodForThought.app"
             BlueprintName = "FoodForThought"
-            ReferencedContainer = "container:Commons Menu1.xcodeproj">
+            ReferencedContainer = "container:FoodForThought.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -98,7 +74,7 @@
             BlueprintIdentifier = "40E842201B308C6A00D39DCD"
             BuildableName = "FoodForThought.app"
             BlueprintName = "FoodForThought"
-            ReferencedContainer = "container:Commons Menu1.xcodeproj">
+            ReferencedContainer = "container:FoodForThought.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
