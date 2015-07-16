@@ -116,9 +116,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         label.backgroundColor = UIColor.blackColor()
         label.font = UIFont(name: "HelveticaNeue", size: 14)
         label.numberOfLines = 0
-        self.view.addSubview(label)
-        
-        scroll.frame = CGRectMake(width * 0.01, 0.325 * height , 0.42 * width, 0.075 * height)
+        self.view.addSubview(label)        
+        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height+0.05*height, 0.4 * width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
