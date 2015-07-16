@@ -100,9 +100,10 @@ class MainMenuViewController: UIViewController {
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-
-        self.fetchPreferenceData()
-        self.fetchDislikeData()
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            self.fetchPreferenceData()
+            self.fetchDislikeData()
+        }
     }
     
  

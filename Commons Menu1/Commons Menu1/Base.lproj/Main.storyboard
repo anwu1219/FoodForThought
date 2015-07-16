@@ -1491,6 +1491,7 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="137" id="1b0-br-3lW"/>
                             <constraint firstItem="2ED-kE-Hhe" firstAttribute="top" secondItem="vIh-f9-H1j" secondAttribute="bottom" id="2LL-xk-Siw"/>
@@ -1611,6 +1612,9 @@
                                 <exclude reference="VFZ-WV-hPw"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Wfk-28-IdD" appends="YES" id="2l0-dX-mzE"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Restaurant Name" id="axK-Vv-1c2" userLabel="Restaurant name"/>
                     <connections>
@@ -1622,8 +1626,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6IF-hl-dO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Wfk-28-IdD"/>
             </objects>
-            <point key="canvasLocation" x="-636" y="1040"/>
+            <point key="canvasLocation" x="-596" y="1037"/>
         </scene>
         <!--Preference List-->
         <scene sceneID="9ha-IG-Aia">
