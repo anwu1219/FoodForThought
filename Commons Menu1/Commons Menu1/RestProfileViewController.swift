@@ -92,6 +92,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     
                     
+                    
 //                    var icon = UIImageView()
 //                    icon.image = UIImage(named: restProf.labels[i][j])
 //                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
