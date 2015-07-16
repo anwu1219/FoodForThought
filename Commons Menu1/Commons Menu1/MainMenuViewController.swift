@@ -28,6 +28,7 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //set the background image
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
@@ -36,17 +37,6 @@ class MainMenuViewController: UIViewController {
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-        //        //sets nav bar to be non see through
-        //        let bar:UINavigationBar! =  self.navigationController?.navigationBar
-        //        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        //        bar.shadowImage = UIImage()
-        //        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
-        
-        
-        // restMenuButton.backgroundColor = styles.buttonBackgoundColor
-        // restMenuButton.layer.cornerRadius = styles.buttonCornerRadius
-        // restMenuButton.layer.borderWidth = 1
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
@@ -110,6 +100,7 @@ class MainMenuViewController: UIViewController {
         
     }
     
+    //creates the log out alert
     @IBAction func logoutAction(sender: AnyObject) {
         println("log out started")
         
@@ -199,13 +190,16 @@ class MainMenuViewController: UIViewController {
                                 if let type = object["type"] as? String{
                                     if let susLabels = object["susLabels"] as? [String]{
                                         if let index = object["index"] as? Int{
+                                            if let eco = object["eco"] as? [String] {
+                                                if let fair = object["fair"] as? [String]{
+                                                    if let humane = object["humane"] as? [String] {
                                             if let price = object["price"] as? String{
                                                 if let userImageFile = object["image"] as? PFFile{
                                                     userImageFile.getDataInBackgroundWithBlock {
                                                         (imageData: NSData?, error: NSError?) -> Void in
                                                         if error == nil {
                                                             if let data = imageData{                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                                 dish.like = like
                                                                 dish.dislike = dislike
                                                                 self.dishes.addToDealtWith(index)
@@ -216,7 +210,7 @@ class MainMenuViewController: UIViewController {
                                                         }
                                                     }
                                                 } else{
-                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                     dish.like = like
                                                     dish.dislike = dislike
                                                     self.dishes.addToDealtWith(index)
@@ -228,6 +222,9 @@ class MainMenuViewController: UIViewController {
                                     }
                                 }
                             }
+                        }
+                    }
+                }
                         }
                     }
                 }

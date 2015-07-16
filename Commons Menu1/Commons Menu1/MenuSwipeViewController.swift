@@ -110,14 +110,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, 0.20 * height , 0.35 * width, 0.02 * height))
+        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, 0.3 * height , 0.42 * width, 0.02 * height))
         label.text = "Sustainability Labels:"
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.blackColor()
         label.font = UIFont(name: "HelveticaNeue", size: 14)
         label.numberOfLines = 0
-        self.view.addSubview(label)
-        
+        self.view.addSubview(label)        
         scroll.frame = CGRectMake(width * 0.05, restImage.frame.height+0.05*height, 0.4 * width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
@@ -164,6 +163,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             if !self.dishes.pulled.contains(index){
                                     if let name = object["name"] as? String {
                                         if let location = object["location"] as? String{
+                                            if let index = object["index"] as? Int{
+                                                if let eco = object["eco"] as? [String] {
+                                                    if let fair = object["fair"] as? [String]{
+                                                        if let humane = object["humane"] as? [String]{
                                             if let ingredients = object["ingredients"] as? [String]{
                                                 if let susLabels = object["susLabels"] as? [String]{
                                                 if let labels = object["labels"] as? [[String]]{
@@ -171,14 +174,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                         if let price = object["price"] as? String{
                                                         if let userImageFile = object["image"] as? PFFile{
                                                             if let data = userImageFile.getData(){                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.addDishToMenu(dish)
                                                                 self.dishes.addPulled(index)
                                                             }
                                                         }
                                                     } else{
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                         self.dishes.addDish(location, dish: dish)
                                                         self.addDishToMenu(dish)
                                                     }
@@ -190,6 +193,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                         }
+                        }
+                                        }
+                                }
+                            }
                         }
                     }
                     for type: String in self.types {

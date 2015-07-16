@@ -109,11 +109,9 @@ class RestMenuViewController: UIViewController {
         self.performSegueWithIdentifier("restToMenuSegue", sender: sender)
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "restToMenuSegue"{

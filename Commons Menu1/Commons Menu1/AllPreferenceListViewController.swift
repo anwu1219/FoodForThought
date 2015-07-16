@@ -69,7 +69,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         allPrefTopImage.layer.addSublayer(border)
         allPrefTopImage.layer.masksToBounds = true
         self.navigationController?.navigationBar.translucent = true
-
         
         myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
         myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
@@ -293,7 +292,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
         }
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {
