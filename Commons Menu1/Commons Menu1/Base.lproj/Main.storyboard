@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="-636" y="-719"/>
         </scene>
-        <!--My Preferences-->
+        <!--My Favorites-->
         <scene sceneID="jys-nA-lZm">
             <objects>
-                <viewController title="My Preferences" id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="My Favorites" id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Du2-mr-E4w"/>
                         <viewControllerLayoutGuide type="bottom" id="h7c-a2-MKj"/>
@@ -109,7 +109,7 @@
                                 <rect key="frame" x="0.0" y="204" width="600" height="396"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Preferences" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkG-pd-owt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkG-pd-owt">
                                 <rect key="frame" x="0.0" y="145" width="178" height="46"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1370,7 +1370,6 @@
                             <constraint firstAttribute="trailing" secondItem="LdT-eP-0P6" secondAttribute="trailing" id="jld-y4-qLV">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="r3l-Ai-k6t" firstAttribute="top" secondItem="GUr-P8-itM" secondAttribute="bottom" constant="90" id="kFP-3N-ey5"/>
                             <constraint firstAttribute="trailing" secondItem="r3l-Ai-k6t" secondAttribute="trailing" id="kl5-4i-Qm7">
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
@@ -1400,7 +1399,6 @@
                                 <exclude reference="abB-oU-I5T"/>
                                 <exclude reference="cfx-zI-rsW"/>
                                 <exclude reference="hCI-ug-YcO"/>
-                                <exclude reference="kFP-3N-ey5"/>
                                 <exclude reference="kl5-4i-Qm7"/>
                                 <exclude reference="G78-UM-MTy"/>
                                 <exclude reference="LGn-SI-Wzb"/>
@@ -1466,7 +1464,6 @@
                                 <exclude reference="abB-oU-I5T"/>
                                 <include reference="cfx-zI-rsW"/>
                                 <include reference="hCI-ug-YcO"/>
-                                <include reference="kFP-3N-ey5"/>
                                 <exclude reference="kl5-4i-Qm7"/>
                                 <include reference="G78-UM-MTy"/>
                                 <include reference="LGn-SI-Wzb"/>
@@ -1524,7 +1521,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="alU-qR-iZh">
                                 <rect key="frame" x="233" y="7" width="99" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="My Preference">
+                                <state key="normal" title="My Favorites">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1967,7 +1964,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="sXz-wK-Xvd"/>
         <segue reference="4iJ-fy-ZFU"/>
+        <segue reference="ut7-Ma-1wo"/>
     </inferredMetricsTieBreakers>
 </document>
