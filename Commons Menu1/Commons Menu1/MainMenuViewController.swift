@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
+    @IBOutlet weak var logOutButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -35,17 +36,17 @@ class MainMenuViewController: UIViewController {
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-//        //sets nav bar to be non see through
-//        let bar:UINavigationBar! =  self.navigationController?.navigationBar
-//        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-//        bar.shadowImage = UIImage()
-//        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        //        //sets nav bar to be non see through
+        //        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        //        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //        bar.shadowImage = UIImage()
+        //        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         
         
-       // restMenuButton.backgroundColor = styles.buttonBackgoundColor
-       // restMenuButton.layer.cornerRadius = styles.buttonCornerRadius
-       // restMenuButton.layer.borderWidth = 1
+        // restMenuButton.backgroundColor = styles.buttonBackgoundColor
+        // restMenuButton.layer.cornerRadius = styles.buttonCornerRadius
+        // restMenuButton.layer.borderWidth = 1
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
@@ -86,42 +87,66 @@ class MainMenuViewController: UIViewController {
         sustInfoMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
         sustInfoMenuButton.titleLabel?.layer.shadowRadius = 2
         sustInfoMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-
+        
         restMenuButton.frame = styles.buttonFrame
         myPrefMenuButton.frame = styles.buttonFrame
         foodTinderMenuButton.frame = styles.buttonFrame
         sustInfoMenuButton.frame = styles.buttonFrame
-
+        
+        // logOutButton.addTarget(self, action: "logoutAlert:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         //change the backbutton title
         let backButton = UIBarButtonItem(
-            title: "Log out",
+            title: "",
             style: UIBarButtonItemStyle.Plain,
             target: nil,
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
-            self.fetchPreferenceData()
-            self.fetchDislikeData()
-        }
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
+        self.fetchPreferenceData()
+        self.fetchDislikeData()
+        
     }
     
- 
+    @IBAction func logoutAction(sender: AnyObject) {
+        println("log out started")
+        
+        let alert = UIAlertController(title: "Log Out?",
+            message: "Are you sure you want to Log Out?",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(
+            title: "Yes",
+            style: UIAlertActionStyle.Destructive,
+            handler: { alertAction in self.logOutSegue() }
+            )
+        )
+        
+        alert.addAction(UIAlertAction(
+            title: "No",
+            style: UIAlertActionStyle.Cancel,
+            handler: nil
+            )
+        )
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     
     /**
     Logs out and clears the text field when go back
     */
-    override func willMoveToParentViewController(parent: UIViewController?) {
-        super.willMoveToParentViewController(parent)
-        if parent == nil {
-            PFUser.logOut()
-            println("Logged out")
-            signUpViewControllerDelegate?.clearTextField()
-            for restaurant : RestProfile in dishes.dishes.keys {
-                dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
-            }//needs update to cache
-        }
+    func logOutSegue(){
+        PFUser.logOut()
+        println("Logged out")
+        signUpViewControllerDelegate?.clearTextField()
+        for restaurant : RestProfile in dishes.dishes.keys {
+            dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+        }//needs update to cache
+        
+        performSegueWithIdentifier("logOutSegue", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,8 +159,8 @@ class MainMenuViewController: UIViewController {
     Fetches preference data from Parse and sets the corresponding dish object like to true
     */
     func fetchPreferenceData(){
-    if let currentUser = PFUser.currentUser(){
-        var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+        if let currentUser = PFUser.currentUser(){
+            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
@@ -173,31 +198,32 @@ class MainMenuViewController: UIViewController {
                             if let labels = object["labels"] as? [[String]]{
                                 if let type = object["type"] as? String{
                                     if let susLabels = object["susLabels"] as? [String]{
-                                    if let index = object["index"] as? Int{
-                                        if let price = object["price"] as? String{
-                                        if let userImageFile = object["image"] as? PFFile{
-                                            userImageFile.getDataInBackgroundWithBlock {
-                                                (imageData: NSData?, error: NSError?) -> Void in
-                                                if error == nil {
-                                                    if let data = imageData{                                                if let image = UIImage(data: data){
-                                                        let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                        if let index = object["index"] as? Int{
+                                            if let price = object["price"] as? String{
+                                                if let userImageFile = object["image"] as? PFFile{
+                                                    userImageFile.getDataInBackgroundWithBlock {
+                                                        (imageData: NSData?, error: NSError?) -> Void in
+                                                        if error == nil {
+                                                            if let data = imageData{                                                if let image = UIImage(data: data){
+                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
                                                                 dish.like = like
                                                                 dish.dislike = dislike
                                                                 self.dishes.addToDealtWith(index)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.dishes.addPulled(index)
+                                                                }
+                                                            }
                                                         }
                                                     }
+                                                } else{
+                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
+                                                    dish.like = like
+                                                    dish.dislike = dislike
+                                                    self.dishes.addToDealtWith(index)
+                                                    self.dishes.addDish(location, dish: dish)
+                                                    self.dishes.addPulled(index)
                                                 }
                                             }
-                                        } else{
-                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels)
-                                            dish.like = like
-                                            dish.dislike = dislike
-                                            self.dishes.addToDealtWith(index)
-                                            self.dishes.addDish(location, dish: dish)
-                                            self.dishes.addPulled(index)
-                                        }
                                         }
                                     }
                                 }
@@ -205,7 +231,6 @@ class MainMenuViewController: UIViewController {
                         }
                     }
                 }
-            }
             }
         }
     }
@@ -260,7 +285,7 @@ class MainMenuViewController: UIViewController {
     @IBAction func foodTinderAction(sender: AnyObject) {
         self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
- 
+    
     
     /**
     Prepares for segues
