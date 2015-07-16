@@ -41,7 +41,6 @@ Displays menus as food tinder
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
-    @IBOutlet weak var restWeekendOpenHoursLabel: UILabel!
     @IBOutlet weak var restProfileButton: UIButton!
     @IBOutlet weak var restImage: UIImageView!
     
@@ -55,16 +54,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var edited = false
     let refreshControl = UIRefreshControl()
     var activityIndicator = UIActivityIndicatorView()
+    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    let scroll = UIScrollView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Formats the labels in the view controller
-        println("Day:\(self.getDayOfWeek())")
-            restWeekdayOpenHoursLabel.text = restProf!.hours[self.getDayOfWeek()]
-            restWeekendOpenHoursLabel.text = restProf!.mealPlanHours[self.getDayOfWeek()]
-            restWeekdayOpenHoursLabel.numberOfLines = 2
-            restWeekendOpenHoursLabel.numberOfLines = 2
+        restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
+        restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
+        restWeekdayOpenHoursLabel.numberOfLines = 0
+        restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         
         restImage.image = restProf.image
         tableView.dataSource = self
@@ -105,6 +106,22 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
+        
+        let height: CGFloat = screenSize.height
+        let width: CGFloat = screenSize.width
+
+        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, 0.20 * height , 0.35 * width, 0.02 * height))
+        label.text = "Sustainability Labels:"
+        label.textColor = UIColor.whiteColor()
+        label.backgroundColor = UIColor.blackColor()
+        label.font = UIFont(name: "HelveticaNeue", size: 14)
+        label.numberOfLines = 0
+        self.view.addSubview(label)
+        
+        scroll.frame = CGRectMake(width * 0.01, 0.24 * height , 0.39 * width, 0.075 * height)
+        self.addLabels()
+        self.view.addSubview(scroll)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -185,6 +202,34 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
+    }
+    
+    
+    func addLabels() {
+        let height: CGFloat = screenSize.height
+        let width: CGFloat = screenSize.width
+        let labels = ["Restaurant Label"]
+        var x: CGFloat = width * 0.01
+        var y: CGFloat = height * 0.01
+        for var i = 0; i < restProf.labels.count; i++ {
+            for var j = 0; j < restProf.labels[i].count; j++ {
+                if count(restProf.labels[i][j]) > 0 {
+                    var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84 * scroll.frame.height)
+                    var icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    
+                    //                    var icon = UIImageView()
+                    //                    icon.image = UIImage(named: restProf.labels[i][j])
+                    //                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    scroll.addSubview(icon)
+                    x += icon.frame.width + width*0.01
+                }
+            }
+            
+        }
+        scroll.contentSize.width = x
+        scroll.contentSize.height = y
     }
     
     
@@ -502,5 +547,43 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             preferencelistViewController.dishes = dishes
             preferencelistViewController.delegate = self
         }
+    }
+
+    func showLabelInfo(sender: AnyObject) {
+        let vc = UIViewController()
+        let button = sender as! IconButton
+        
+        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.modalPresentationStyle = .Popover
+        
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
+        description.center = CGPointMake(100, 50)
+        description.lineBreakMode = .ByWordWrapping
+        description.numberOfLines = 0
+        description.textAlignment = NSTextAlignment.Center
+        description.text = button.descriptionText!
+        vc.view.addSubview(description)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
+        }
+    }
+}
+
+
+
+extension MenuSwipeViewController : UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+        
     }
 }
