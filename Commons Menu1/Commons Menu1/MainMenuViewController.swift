@@ -39,7 +39,7 @@ class MainMenuViewController: UIViewController {
         
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
-        myPrefMenuButton.setTitle(" My Preferences", forState: .Normal)
+        myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
         
         restMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
