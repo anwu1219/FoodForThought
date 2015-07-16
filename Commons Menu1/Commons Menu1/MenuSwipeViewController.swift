@@ -118,7 +118,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         label.numberOfLines = 0
         self.view.addSubview(label)
         
-        scroll.frame = CGRectMake(width * 0.01, 0.24 * height , 0.39 * width, 0.075 * height)
+        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height+0.05*height, 0.4 * width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         

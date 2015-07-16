@@ -84,7 +84,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             // this is the end of label stuff
             
-            var x: CGFloat = width*0.05 // move this var outside for i loop and rename
+            var x: CGFloat = 0// move this var outside for i loop and rename
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
                     var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
@@ -121,7 +121,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var description = UILabel()
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
-            description.frame = CGRectMake(0.1*width, y, restProfScrollView.frame.width-(0.05*width), 50)
+            description.frame = CGRectMake(0.1*width, y, restProfScrollView.frame.width*0.4, 50)
             description.lineBreakMode = .ByWordWrapping
             description.numberOfLines = 0
             description.sizeToFit()
@@ -131,7 +131,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var address = UILabel()
         address.text = "Address:\n" + restProf.address
-        address.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        address.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         address.lineBreakMode = .ByWordWrapping
         address.numberOfLines = 0
         address.sizeToFit()
@@ -148,7 +148,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var phone = UILabel()
         phone.text = "Phone:\n" + restProf.phoneNumber
-        phone.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        phone.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         phone.lineBreakMode = .ByWordWrapping
         phone.numberOfLines = 0
         phone.sizeToFit()
@@ -165,7 +165,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var url = UILabel()
         url.text = "Website:\n" + restProf.url
-        url.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        url.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         url.lineBreakMode = .ByWordWrapping
         url.numberOfLines = 0
         url.sizeToFit()
@@ -174,7 +174,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
-        health.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        health.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         health.lineBreakMode = .ByWordWrapping
         health.numberOfLines = 0
         health.sizeToFit()
@@ -199,7 +199,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             else {
                 hour.text = days[i] + "Closed"
             }
-            hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width-(0.05*width), 50)
+            hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
             hour.lineBreakMode = .ByWordWrapping
             hour.numberOfLines = 0
             hour.sizeToFit()
@@ -220,7 +220,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             for var i = 0; i < restProf.mealPlanHours.count; i++ {
                 var hour = UILabel()
                 hour.text = days[i] + restProf.mealPlanHours[i]
-                hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width-(0.05*width), 50)
+                hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
                 hour.lineBreakMode = .ByWordWrapping
                 hour.numberOfLines = 0
                 hour.sizeToFit()

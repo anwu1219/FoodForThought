@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -357,6 +358,7 @@
                                 <exclude reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="dQC-im-E59"/>
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -386,7 +388,6 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <exclude reference="hh9-qX-cZX"/>
                                 <exclude reference="nMK-a1-OYq"/>
-                                <exclude reference="dQC-im-E59"/>
                                 <exclude reference="S91-5w-p3c"/>
                                 <exclude reference="b6u-Q0-AiW"/>
                                 <exclude reference="nBh-AB-Xjd"/>
@@ -397,6 +398,7 @@
                                 <include reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="dQC-im-E59"/>
                                 <include reference="2nP-pD-4f0"/>
                                 <include reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -423,7 +425,6 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <include reference="hh9-qX-cZX"/>
                                 <include reference="nMK-a1-OYq"/>
-                                <include reference="dQC-im-E59"/>
                                 <include reference="S91-5w-p3c"/>
                                 <exclude reference="nBh-AB-Xjd"/>
                             </mask>
@@ -479,7 +480,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
                                 <rect key="frame" x="57" y="216" width="60" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="YHF-gB-QOn" secondAttribute="height" multiplier="292:33" id="KSx-Vr-jT3"/>
@@ -503,7 +504,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
                                 <rect key="frame" x="51" y="250" width="498" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YhL-uS-ZmK">
@@ -529,7 +530,7 @@
                                     <rect key="frame" x="45" y="278" width="298" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
                                 <rect key="frame" x="51" y="339" width="498" height="30"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -574,7 +575,7 @@
                                     <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
                                 <rect key="frame" x="57" y="299" width="105" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kfS-hu-XbJ" secondAttribute="height" multiplier="19:8" id="Umg-Df-Biu"/>
@@ -601,7 +602,7 @@
                                     <rect key="frame" x="51" y="323" width="292" height="32"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POE-fj-PE4">
                                 <rect key="frame" x="177" y="100" width="246" height="63"/>
                                 <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="54"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -609,7 +610,7 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="41" y="407" width="125" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="8iC-Gi-nNe"/>
@@ -1084,13 +1085,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select A Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzD-2y-G6f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select A Restaurant" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzD-2y-G6f">
                                 <rect key="frame" x="150" y="72" width="300" height="57"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
                                 <rect key="frame" x="0.0" y="237" width="600" height="363"/>
                             </scrollView>
                         </subviews>
@@ -1387,6 +1388,15 @@
                                 <exclude reference="b6A-Zn-Si1"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="K9j-wI-fBW"/>
+                                <exclude reference="Lch-yy-Wu9"/>
+                                <exclude reference="Nrr-45-6PZ"/>
+                                <exclude reference="RUF-7w-fZM"/>
+                                <exclude reference="abB-oU-I5T"/>
+                                <exclude reference="cfx-zI-rsW"/>
+                                <exclude reference="hCI-ug-YcO"/>
+                                <exclude reference="kFP-3N-ey5"/>
+                                <exclude reference="kl5-4i-Qm7"/>
                                 <exclude reference="G78-UM-MTy"/>
                                 <exclude reference="LGn-SI-Wzb"/>
                                 <exclude reference="jld-y4-qLV"/>
@@ -1411,15 +1421,12 @@
                                 <exclude reference="hGX-hF-FAy"/>
                                 <exclude reference="hlh-LT-QDt"/>
                                 <exclude reference="mmr-Rh-scF"/>
-                                <exclude reference="K9j-wI-fBW"/>
-                                <exclude reference="Lch-yy-Wu9"/>
-                                <exclude reference="Nrr-45-6PZ"/>
-                                <exclude reference="RUF-7w-fZM"/>
-                                <exclude reference="abB-oU-I5T"/>
-                                <exclude reference="cfx-zI-rsW"/>
-                                <exclude reference="hCI-ug-YcO"/>
-                                <exclude reference="kFP-3N-ey5"/>
-                                <exclude reference="kl5-4i-Qm7"/>
+                                <exclude reference="2WL-2j-fxC"/>
+                                <exclude reference="BDN-PZ-uxP"/>
+                                <exclude reference="L9H-U9-3BF"/>
+                                <exclude reference="XWd-30-7ep"/>
+                                <exclude reference="st6-ZN-LbQ"/>
+                                <exclude reference="whH-Jq-irF"/>
                                 <exclude reference="0Dg-zu-D6I"/>
                                 <exclude reference="1SI-Q5-sNh"/>
                                 <exclude reference="6jk-hP-Aq3"/>
@@ -1439,12 +1446,6 @@
                                 <exclude reference="nPC-rq-TUT"/>
                                 <exclude reference="twQ-US-Ri0"/>
                                 <exclude reference="x6t-Oe-P6f"/>
-                                <exclude reference="2WL-2j-fxC"/>
-                                <exclude reference="BDN-PZ-uxP"/>
-                                <exclude reference="L9H-U9-3BF"/>
-                                <exclude reference="XWd-30-7ep"/>
-                                <exclude reference="st6-ZN-LbQ"/>
-                                <exclude reference="whH-Jq-irF"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1454,6 +1455,15 @@
                                 <include reference="b6A-Zn-Si1"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="K9j-wI-fBW"/>
+                                <exclude reference="Lch-yy-Wu9"/>
+                                <exclude reference="Nrr-45-6PZ"/>
+                                <exclude reference="RUF-7w-fZM"/>
+                                <exclude reference="abB-oU-I5T"/>
+                                <include reference="cfx-zI-rsW"/>
+                                <include reference="hCI-ug-YcO"/>
+                                <include reference="kFP-3N-ey5"/>
+                                <exclude reference="kl5-4i-Qm7"/>
                                 <include reference="G78-UM-MTy"/>
                                 <include reference="LGn-SI-Wzb"/>
                                 <include reference="jld-y4-qLV"/>
@@ -1478,15 +1488,11 @@
                                 <exclude reference="hGX-hF-FAy"/>
                                 <exclude reference="mmr-Rh-scF"/>
                                 <exclude reference="o0t-a9-11r"/>
-                                <include reference="K9j-wI-fBW"/>
-                                <exclude reference="Lch-yy-Wu9"/>
-                                <exclude reference="Nrr-45-6PZ"/>
-                                <exclude reference="RUF-7w-fZM"/>
-                                <exclude reference="abB-oU-I5T"/>
-                                <include reference="cfx-zI-rsW"/>
-                                <include reference="hCI-ug-YcO"/>
-                                <include reference="kFP-3N-ey5"/>
-                                <exclude reference="kl5-4i-Qm7"/>
+                                <include reference="2WL-2j-fxC"/>
+                                <exclude reference="BDN-PZ-uxP"/>
+                                <include reference="L9H-U9-3BF"/>
+                                <exclude reference="st6-ZN-LbQ"/>
+                                <exclude reference="whH-Jq-irF"/>
                                 <exclude reference="0Dg-zu-D6I"/>
                                 <exclude reference="1SI-Q5-sNh"/>
                                 <exclude reference="6jk-hP-Aq3"/>
@@ -1506,11 +1512,6 @@
                                 <include reference="nPC-rq-TUT"/>
                                 <exclude reference="twQ-US-Ri0"/>
                                 <include reference="x6t-Oe-P6f"/>
-                                <include reference="2WL-2j-fxC"/>
-                                <exclude reference="BDN-PZ-uxP"/>
-                                <include reference="L9H-U9-3BF"/>
-                                <exclude reference="st6-ZN-LbQ"/>
-                                <exclude reference="whH-Jq-irF"/>
                             </mask>
                         </variation>
                     </view>
@@ -1822,7 +1823,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-4S-V6S" userLabel="greenEarth">
                                 <rect key="frame" x="9" y="72" width="451" height="151"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="582" id="3Hn-gC-tVS"/>
