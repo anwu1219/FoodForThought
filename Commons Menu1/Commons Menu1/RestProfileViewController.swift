@@ -54,17 +54,24 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     func addLabels() {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
-        let labels = ["Environmental", "Social", "Economic"]
+        let susWidth: CGFloat = susView.frame.width/2
+        
+        let labels = ["Environmental", "Social", "Economic"] // dont need for menu swipe scroll
         var y: CGFloat = height * 0.01
+        
+        // move scroll outside for i loop
         for var i = 0; i < restProf.labels.count; i++ {
             var scroll = UIScrollView()
+            
+            // remove all label stuff for scroll in menu swipe
             var label = UILabel()
+            
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
-                label.frame = CGRectMake(0.01*width, y, susView.frame.width/2, 50)
+                label.frame = CGRectMake(0.01*width, y, susWidth/2, 45)
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(0.5*susView.frame.width, y, 0.65*susView.frame.width, label.frame.height)
+                scroll.frame = CGRectMake(label.frame.width+0.01*width, y, 0.5*susWidth, label.frame.height)
                 susView.addSubview(scroll)
                 y += label.frame.height + height*0.01
             }
@@ -74,7 +81,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 y += label.frame.height + height*0.01
             }
             susView.addSubview(label)
-            var x: CGFloat = width*0.05
+            
+            // this is the end of label stuff
+            
+            var x: CGFloat = width*0.05 // move this var outside for i loop and rename
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
                     
