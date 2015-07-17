@@ -31,7 +31,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
         restProfScrollView.delegate = self
-        restProfScrollView.layer.borderWidth = 2
+        restProfScrollView.layer.borderWidth = 1
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
         restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
@@ -43,10 +43,18 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        //sets nav bar to be see through
+        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        self.navigationController?.navigationBar.translucent = true
+
+        
         susView.delegate = self
-        susView.layer.borderWidth = 2
+        susView.layer.borderWidth = 1
         susView.layer.borderColor = UIColor.blackColor().CGColor
-        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
         layoutScroll()
@@ -77,7 +85,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
-                label.frame = CGRectMake(0.01*width, y, susWidth/2, 45)
+                label.frame = CGRectMake(0.05*width, y, susWidth/2, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 

@@ -1609,14 +1609,21 @@
                             <constraint firstItem="YPC-d7-0z1" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leadingMargin" id="B3t-7K-CpE">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="117" id="O5n-XP-ila"/>
+                            <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="K4t-XW-smP" secondAttribute="top" id="D4M-EM-Q0a"/>
+                            <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="117" id="O5n-XP-ila">
+                                <variation key="widthClass=compact" constant="124"/>
+                            </constraint>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="8" id="REW-Ev-zG8"/>
-                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="130" id="S7p-de-mJZ"/>
+                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="130" id="S7p-de-mJZ">
+                                <variation key="widthClass=compact" constant="93"/>
+                            </constraint>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leadingMargin" id="UTH-ih-PnQ"/>
                             <constraint firstItem="2ED-kE-Hhe" firstAttribute="top" secondItem="YPC-d7-0z1" secondAttribute="bottom" id="VFZ-WV-hPw"/>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="YPC-d7-0z1" secondAttribute="bottom" constant="8" id="a8j-gb-dL1"/>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leading" id="aKJ-nj-ICs"/>
-                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="1" id="cAA-v4-Gvp"/>
+                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="1" id="cAA-v4-Gvp">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" id="cwC-Re-VaN"/>
                             <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="7Sb-Xv-z9M" secondAttribute="bottom" constant="8" id="dWa-AN-Vcl"/>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="380" id="fPT-Ei-guo"/>
@@ -1634,6 +1641,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="D4M-EM-Q0a"/>
                                 <exclude reference="REW-Ev-zG8"/>
                                 <exclude reference="aKJ-nj-ICs"/>
                                 <exclude reference="cwC-Re-VaN"/>
@@ -1667,8 +1675,9 @@
                                 <include reference="7Sb-Xv-z9M"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="D4M-EM-Q0a"/>
                                 <include reference="aKJ-nj-ICs"/>
-                                <include reference="cwC-Re-VaN"/>
+                                <exclude reference="cwC-Re-VaN"/>
                                 <include reference="rEB-bQ-uhw"/>
                                 <include reference="S7p-de-mJZ"/>
                                 <include reference="UTH-ih-PnQ"/>
