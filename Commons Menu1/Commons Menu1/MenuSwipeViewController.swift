@@ -613,15 +613,24 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.sizeToFit()
         vc.view.addSubview(description)
         
+        let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
+        let linkButton = LinkButton(name: button.name, frame: frame)
+        linkButton.setTitle("Learn More", forState: UIControlState.Normal)
+        linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         let popScroll = UIScrollView()
-        if description.frame.width < vc.view.frame.width/2 {
-            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
+        if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {
+            popScroll.frame = CGRectMake(0, 10, description.frame.width, description.frame.height+linkButton.frame.height+10)
         }
         else {
             popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
         }
-        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
+        
+        
+        
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height+linkButton.frame.height)
         popScroll.addSubview(description)
+        popScroll.addSubview(linkButton)
         vc.view.addSubview(popScroll)
         
         vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
@@ -634,6 +643,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
         }
+    }
+    
+    @IBAction func learnMoreLink(sender: UIButton) {
+        let urls = IconDescription().urls
+        let button = sender as! LinkButton
+        if let url = NSURL(string: urls[button.name]!) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+
     }
 }
 
