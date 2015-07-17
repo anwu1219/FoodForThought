@@ -110,14 +110,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, 0.3 * height , 0.42 * width, 0.02 * height))
+        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.06 * height , 0.42 * width, 0.02 * height))
         label.text = "Sustainability Labels:"
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.blackColor()
         label.font = UIFont(name: "HelveticaNeue", size: 14)
         label.numberOfLines = 0
         self.view.addSubview(label)        
-        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height+0.05*height, 0.46 * width, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height + 0.132 * height, 0.4 * width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
@@ -221,7 +221,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84 * scroll.frame.height)
+                    var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
                     var icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     

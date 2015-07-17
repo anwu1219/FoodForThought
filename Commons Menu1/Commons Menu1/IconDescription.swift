@@ -16,6 +16,7 @@ struct IconDescription{
         "SE":  "This label is awarded to foods that contain healthy carbs",
         
         
+        
         "AI":  "This label is awarded to foods that contain healthy carbs",
         "CA":  "This label is awarded to foods that contain healthy carbs",
         "FD":  "This label is awarded to foods that contain healthy carbs",
