@@ -111,14 +111,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.1 * height , 0.42 * width, 0.02 * height))
+        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.03 * height + 2 , 0.42 * width, 0.02 * height))
         label.text = "Sustainability Labels:"
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.blackColor()
         label.font = UIFont(name: "HelveticaNeue", size: 14)
         label.numberOfLines = 0
         self.view.addSubview(label)        
-        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height + 0.132 * height, 0.4 * width, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05 - 5, restImage.frame.height + 0.06 * height + 5, 0.4 * width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
