@@ -220,13 +220,36 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
-        description.center = CGPointMake(100, 50)
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
+        description.sizeToFit()
         vc.view.addSubview(description)
+        
+        let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
+        let linkButton = LinkButton(name: button.name, frame: frame)
+        linkButton.setTitle("Learn More", forState: UIControlState.Normal)
+        linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let popScroll = UIScrollView()
+        if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {
+            popScroll.frame = CGRectMake(0, 10, description.frame.width, description.frame.height+linkButton.frame.height+10)
+        }
+        else {
+            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
+        }
+        
+        
+        
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height+linkButton.frame.height)
+        popScroll.addSubview(description)
+        popScroll.addSubview(linkButton)
+        vc.view.addSubview(popScroll)
+        
+        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
+        vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
         

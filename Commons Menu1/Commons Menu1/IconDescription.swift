@@ -10,31 +10,31 @@ import Foundation
 
 struct IconDescription{
     let descriptions = [
-        "FS":  "This icon indicates that the restaurant prepares meals from scratch. This reduces the purchase and consumption of pre-prepared or processed foods, which can contain many preservatives! \nTo learn more: Link",
-        "L":  "This icon indicates that the restaurant purchases a variety of food grown within 100 miles of the restaurant. This supports local famers, the local economy, reduces emissions from transportation, and brings fresh food to your area!\nTo learn more: Link",
-        "SE": "This icon indicates that an ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources! To learn more: Link",
+        "FS":  "This icon indicates that the restaurant prepares meals from scratch. This reduces the purchase and consumption of pre-prepared or processed foods, which can contain many preservatives! \n ",
+        "L":  "This icon indicates that the restaurant purchases a variety of food grown within 100 miles of the restaurant. This supports local famers, the local economy, reduces emissions from transportation, and brings fresh food to your area!\n ",
+        "SE": "This icon indicates that an ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources!  ",
         
         
-        "FSD": "This icon indicates that the dish was prepared from scratch. Fresh ingredients mean fresh food! \nTo learn more: Link",
+        "FSD": "This icon indicates that the dish was prepared from scratch. Fresh ingredients mean fresh food! \n ",
         
         
-        "AI":  "This icon indicates that the restaurant provides allergen information upon request.  Educated employees provide accurate information to concerned consumers! \nTo learn more: Link",
-        "CA":  "This icon indicates that the restaurant offers catering services. Catering an event is a great way to connect with other members in your community! \nTo learn more: Link",
-        "FD":  "Food donations – This icon indicates that the restaurant frequently donates prepared food to charities, churches, or food banks. In doing so, these restaurants aid in serving the community’s efforts to combat hunger!\nTo learn more: Link",
-        "MD":  "This icon indicates that the restaurant provides monetary donations to charitable groups in the community. Supporting local charities is a great way to promote social welfare! \nTo learn more: Link",
-        "VO":  "This icon indicates that the restaurant promotes volunteering opportunities to its employees. Participating in volunteering activities is a great way to support good causes within the community! \nTo learn more: Link",
+        "AI":  "This icon indicates that the restaurant provides allergen information upon request.  Educated employees provide accurate information to concerned consumers! \n ",
+        "CA":  "This icon indicates that the restaurant offers catering services. Catering an event is a great way to connect with other members in your community! \n ",
+        "FD":  "Food donations – This icon indicates that the restaurant frequently donates prepared food to charities, churches, or food banks. In doing so, these restaurants aid in serving the community’s efforts to combat hunger!\n ",
+        "MD":  "This icon indicates that the restaurant provides monetary donations to charitable groups in the community. Supporting local charities is a great way to promote social welfare! \n ",
+        "VO":  "This icon indicates that the restaurant promotes volunteering opportunities to its employees. Participating in volunteering activities is a great way to support good causes within the community! \n ",
         
         
-        "C":  "This icon indicates that the restaurant actively composts food scraps. Composting is a great way to minimize food waste!\nTo learn more: Link",
-        "LA":  "This icon indicates that the restaurant offers local alcohol options, which promotes the work of local breweries. \nTo learn more: Link",
-        "R":  "This icon indicates that the restaurant recycles appropriate materials, such as cardboards, plastics, or metals. Recycling is a great way to reduce waste sent to landfills! \nTo learn more: Link",
-        "LD": "This icon indicates that an Ingredient in this dish comes from a local producer. Local ingredients minimize time from farm to table, which allows restaurants to serve the freshest ingredient to their customers!\nTo learn more: Link",
+        "C":  "This icon indicates that the restaurant actively composts food scraps. Composting is a great way to minimize food waste!\n ",
+        "LA":  "This icon indicates that the restaurant offers local alcohol options, which promotes the work of local breweries. \n ",
+        "R":  "This icon indicates that the restaurant recycles appropriate materials, such as cardboards, plastics, or metals. Recycling is a great way to reduce waste sent to landfills! \n ",
+        "LD": "This icon indicates that an Ingredient in this dish comes from a local producer. Local ingredients minimize time from farm to table, which allows restaurants to serve the freshest ingredient to their customers!\n ",
         
-        "CE":  "This icon indicates that this ingredient is a good source of carb energy. Carb Energy is the body’s preferred source of fuel and will provide important B vitamins and fiber. \n To learn more: Link",
-        "ES":  "This icon indicates that the restaurant uses Energy Star appliances, which are great for saving energy and money!\nTo learn more: Link",
-        "HF":  "This icon indicates that this ingredient is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins and provide energy. \nTo learn more: Link",
-        "PP":  "This icon indicates that this ingredient is a good source of protein. Proteins form most of the solid material in the body such as hair, muscles, tendons and skin. They also have functional properties for carrying out metabolic processes such as transporting oxygen throughout the body. \nTo learn more: Link",
-        "VN":  "This icon indicates that this ingredient is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune health, energy metabolism and disease prevention.\nTo learn more: Link",
+        "CE":  "This icon indicates that this ingredient is a good source of carb energy. Carb Energy is the body’s preferred source of fuel and will provide important B vitamins and fiber. \n  ",
+        "ES":  "This icon indicates that the restaurant uses Energy Star appliances, which are great for saving energy and money!\n ",
+        "HF":  "This icon indicates that this ingredient is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins and provide energy. \n ",
+        "PP":  "This icon indicates that this ingredient is a good source of protein. Proteins form most of the solid material in the body such as hair, muscles, tendons and skin. They also have functional properties for carrying out metabolic processes such as transporting oxygen throughout the body. \n ",
+        "VN":  "This icon indicates that this ingredient is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune health, energy metabolism and disease prevention.\n ",
         
         
         "Humane": "This humane label is awarded to this restaurant because: \n",
@@ -114,6 +114,114 @@ struct IconDescription{
         "CHRD" : "This restaurant serves Certified Humane Raised and Handled food in this dish, improving the lives of animals",
         
         "GAPD" : "This restaurant serves Global Animal Partnership Certified food in this dish, expressing a commitment to animal welfare"
+        
+    ]
+    
+    let urls = [
+        "FS":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "L":  "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        "SE": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        
+        "FSD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        
+        "AI":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "CA":  "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        "FD":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "MD":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "VO":  "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        
+        "C":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "LA":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "R":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "LD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "CE":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "ES":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "HF":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "PP":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "VN":  "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        
+        "Humane": "http://sites.davidson.edu/sustainabilityscholars/",
+        "Eco": "http://sites.davidson.edu/sustainabilityscholars/",
+        "Fair": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        
+        "COB": "http://sites.davidson.edu/sustainabilityscholars/",
+        "CBF": "http://sites.davidson.edu/sustainabilityscholars/",
+        "CLS": "http://sites.davidson.edu/sustainabilityscholars/",
+        "IFO": "http://sites.davidson.edu/sustainabilityscholars/",
+        "DCB" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "EUO" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FAC" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "MSC" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "MBA": "http://sites.davidson.edu/sustainabilityscholars/",
+        "PHC" :  "http://sites.davidson.edu/sustainabilityscholars/",
+        "RAC" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "USDA" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "EFT": "http://sites.davidson.edu/sustainabilityscholars/",
+        "FFS":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "FL" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FT" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FW" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FJC" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "SPS" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "AGA":  "http://sites.davidson.edu/sustainabilityscholars/",
+        "AHC": "http://sites.davidson.edu/sustainabilityscholars/",
+        "AWA": "http://sites.davidson.edu/sustainabilityscholars/",
+        "CHR" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "GAP" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "COBD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "CBFD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "CLSD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "IFOD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "DCBD":  "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "EUOD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FACD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "MSCD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "MBAD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "PHCD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "RACD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "USDAD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "EFTD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FFSD": "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FLD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FTD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FWD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "FJCD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "SPSD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "AGAD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "AHCD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "AWAD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        
+        "CHRD" : "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        
+        "GAPD" : "http://sites.davidson.edu/sustainabilityscholars/"
         
     ]
 }

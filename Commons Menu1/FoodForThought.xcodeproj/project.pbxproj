@@ -11,6 +11,7 @@
 		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
 		13C777011B57072700BD2A39 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777001B57072700BD2A39 /* IconButton.swift */; };
 		13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777021B583D4600BD2A39 /* SuperIconButton.swift */; };
+		13C777051B599D7300BD2A39 /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777041B599D7300BD2A39 /* LinkButton.swift */; };
 		406ABA641B42DFD90096A21F /* FoodTinderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */; };
 		407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */; };
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
@@ -68,6 +69,7 @@
 		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
 		13C777001B57072700BD2A39 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		13C777021B583D4600BD2A39 /* SuperIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperIconButton.swift; sourceTree = "<group>"; };
+		13C777041B599D7300BD2A39 /* LinkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderTableViewCell.swift; sourceTree = "<group>"; };
 		407305411B31FEFC00DE02D2 /* RestMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMenuViewController.swift; sourceTree = "<group>"; };
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
 				13C777021B583D4600BD2A39 /* SuperIconButton.swift */,
 				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
+				13C777041B599D7300BD2A39 /* LinkButton.swift */,
 			);
 			name = "Local Object Class";
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */,
+				13C777051B599D7300BD2A39 /* LinkButton.swift in Sources */,
 				1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */,
 				F3CD7F541B4F280D0051AFF4 /* Dishes.swift in Sources */,
 				407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */,
