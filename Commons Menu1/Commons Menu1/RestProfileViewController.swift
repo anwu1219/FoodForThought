@@ -239,28 +239,53 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         hours.frame = CGRectMake(0.05*width, y, hours.frame.width, hours.frame.height)
         restProfScrollView.addSubview(hours)
         y += hours.frame.height
-        let days = ["Monday\n", "Tuesday\n", "Wednesday\n", "Thursday\n", "Friday\n", "Saturday\n", "Sunday\n"]
+        let days = ["M", "T", "W", "Th", "F", "Sat", "Sun"]
+        var likeHours = Dictionary<String, [String]>()
+        var valuePositions: [String] = []
         for var i = 0; i < restProf.hours.count; i++ {
-            var hour = UILabel()
-            if count(restProf.hours[i]) > 0 {
-                hour.text = days[i] + restProf.hours[i]
+            
+            if contains(likeHours.keys, restProf.hours[i]) {
+                likeHours[restProf.hours[i]]?.append(days[i])
             }
             else {
-                hour.text = days[i] + "Closed"
+                likeHours[restProf.hours[i]] = [days[i]]
+                valuePositions.append(days[i])
             }
-            hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
-            hour.lineBreakMode = .ByWordWrapping
-            hour.textColor = UIColor.whiteColor()
-            hour.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-            hour.numberOfLines = 0
-            hour.sizeToFit()
-            restProfScrollView.addSubview(hour)
-            y += hour.frame.height + height*0.01
         }
-        y += space
+        
+
+        var trackY: CGFloat = 0
+
+        for key in likeHours.keys {
+            var label = UILabel()
+            label.text = ""
+            var day: [String] = likeHours[key]!
+            println(day)
+            println()
+//            for d in day {
+//                label.text! += d + ", "
+//            }
+            label.text! += day[0] + "-" + day[day.count-1]
+            label.text! += ": " + key
+            
+            label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+            label.sizeToFit()
+            let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
+            label.frame = CGRectMake(0.12*width, placeY, label.frame.width, label.frame.height)
+            //label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+            label.lineBreakMode = .ByWordWrapping
+            label.textColor = UIColor.whiteColor()
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+            label.numberOfLines = 0
+            restProfScrollView.addSubview(label)
+            trackY += label.frame.height
+            
+        }
+        y += trackY + space
         
         // Set up Meal Plan hours
         if count(restProf.mealPlanHours[0]) > 0 {
+            
             var mealPlan = UILabel()
             mealPlan.text = "Davidson Meal Plan Hours:"
             mealPlan.textColor = UIColor.whiteColor()
@@ -270,20 +295,47 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             restProfScrollView.addSubview(mealPlan)
             y += mealPlan.frame.height
             
+            var likeMealHours = Dictionary<String, [String]>()
+            var valuePositions: [String] = []
             for var i = 0; i < restProf.mealPlanHours.count; i++ {
-                var hour = UILabel()
-                hour.text = days[i] + restProf.mealPlanHours[i]
-                hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
-                hour.lineBreakMode = .ByWordWrapping
-                hour.textColor = UIColor.whiteColor()
-                hour.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-                hour.numberOfLines = 0
-                hour.sizeToFit()
-                restProfScrollView.addSubview(hour)
-                y += hour.frame.height + height*0.01
+                if contains(likeMealHours.keys, restProf.mealPlanHours[i]) {
+                    likeMealHours[restProf.mealPlanHours[i]]?.append(days[i])
+                }
+                else {
+                    likeMealHours[restProf.mealPlanHours[i]] = [days[i]]
+                    valuePositions.append(days[i])
+                }
+            }
+            
+            var tY: CGFloat = 0
+            var orderLabels: [UILabel] = [UILabel(), UILabel(), UILabel(), UILabel(), UILabel(), UILabel()]
+            for times in likeMealHours.keys {
+                var mplabel = UILabel()
+                mplabel.text = ""
+                var day: [String] = likeMealHours[times]!
+                println(day)
+                println()
+                //            for d in day {
+                //                label.text! += d + ", "
+                //            }
+                mplabel.text! += day[0] + "-" + day[day.count-1]
+                mplabel.text! += ": " + times
+                var index: Int = find(valuePositions, day[0])!
+                orderLabels.insert(mplabel, atIndex: index)
+
+            }
+            
+            for label in orderLabels {
+                label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+                label.lineBreakMode = .ByWordWrapping
+                label.numberOfLines = 0
+                label.textColor = UIColor.whiteColor()
+                label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+                label.sizeToFit()
+                restProfScrollView.addSubview(label)
+                y += label.frame.height
             }
         }
-        
         restProfScrollView.contentSize.height = y
     }
     
