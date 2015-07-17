@@ -57,7 +57,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let scroll = UIScrollView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +73,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.separatorStyle = .SingleLine
         tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
         
         
         //sets nav bar to be see through
@@ -110,7 +111,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.06 * height , 0.42 * width, 0.02 * height))
+        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.1 * height , 0.42 * width, 0.02 * height))
         label.text = "Sustainability Labels:"
         label.textColor = UIColor.whiteColor()
         label.backgroundColor = UIColor.blackColor()
@@ -224,11 +225,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
                     var icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    
-                    
-                    //                    var icon = UIImageView()
-                    //                    icon.image = UIImage(named: restProf.labels[i][j])
-                    //                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
                 }

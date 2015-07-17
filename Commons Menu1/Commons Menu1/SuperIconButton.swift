@@ -12,14 +12,15 @@ import UIKit
 class SuperIconButton: UIButton {
     let labels: [String]
     let name: String
-    var descriptionText = ""
+    var descriptionText = String()
     
     init(labels: [String], frame: CGRect, name: String){
         self.labels = labels
         self.name = name
         
         let descriptions = IconDescription().descriptions
-        //println(descriptions)
+        //descriptionText = descriptions[name]!
+
         for var i = 0; i < labels.count; i++ {
             if count(labels[i]) > 0 {
                 
