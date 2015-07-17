@@ -174,17 +174,13 @@
 				F3E529131B39F9A00081FFDC /* View Controller */,
 				F32372D21B5455D3008A7C91 /* Extension */,
 				F32372D31B545602008A7C91 /* TableCells */,
-				F39905971B3311A4004E74C6 /* Dish.swift */,
-				13C777001B57072700BD2A39 /* IconButton.swift */,
-				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
-				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
-				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
+				F30E9C3F1B59392D0011C1BC /* Local Object Class */,
 				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 				F32372D61B575DED008A7C91 /* IconDescription.swift */,
+				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,
-				13C777021B583D4600BD2A39 /* SuperIconButton.swift */,
 			);
 			name = FoodForThought;
 			path = "Commons Menu1";
@@ -213,6 +209,18 @@
 				40E8423B1B308C6A00D39DCD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F30E9C3F1B59392D0011C1BC /* Local Object Class */ = {
+			isa = PBXGroup;
+			children = (
+				F39905971B3311A4004E74C6 /* Dish.swift */,
+				13C777001B57072700BD2A39 /* IconButton.swift */,
+				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
+				13C777021B583D4600BD2A39 /* SuperIconButton.swift */,
+				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
+			);
+			name = "Local Object Class";
 			sourceTree = "<group>";
 		};
 		F32372D21B5455D3008A7C91 /* Extension */ = {
