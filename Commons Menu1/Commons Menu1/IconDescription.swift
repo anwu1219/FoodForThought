@@ -24,7 +24,7 @@ struct IconDescription{
         "VO":  "This label is awarded to foods that contain healthy carbs",
         
         
-        "C":  "This label is awarded to foods that contain healthy carbs",
+        "C":  "This label is awarded to foods that contain healthy carbs bbbbbbbbbbbbbb\nthis is new stuff\n gromp womp womp womp shomp \n this is a new defffffff \n asdf;lkajsdf;ljk \n jfida;lkdsjf \n ja;sldkjf;lkj ",
         "LA":  "This label is awarded to foods that contain healthy carbs",
         "R":  "This label is awarded to foods that contain healthy carbs",
         

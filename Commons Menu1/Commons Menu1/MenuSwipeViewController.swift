@@ -591,13 +591,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
-        description.center = CGPointMake(100, 50)
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText!
+        description.sizeToFit()
         vc.view.addSubview(description)
+        
+        vc.preferredContentSize = CGSizeMake(description.frame.width, description.frame.height)
+        vc.modalPresentationStyle = .Popover
+
         
         self.presentViewController(vc, animated: true, completion: nil)
         
@@ -612,20 +616,23 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let vc = UIViewController()
         let button = sender as! SuperIconButton
         
-        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.preferredContentSize = CGSizeMake(200, 200)
         vc.modalPresentationStyle = .Popover
         
         if let pres = vc.popoverPresentationController {
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
-        description.center = CGPointMake(100, 50)
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
+        description.sizeToFit()
         vc.view.addSubview(description)
+        
+        vc.preferredContentSize = CGSizeMake(description.frame.width, description.frame.height)
+        vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
         

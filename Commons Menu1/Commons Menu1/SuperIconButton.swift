@@ -19,9 +19,12 @@ class SuperIconButton: UIButton {
         self.name = name
         
         let descriptions = IconDescription().descriptions
+        //println(descriptions)
         for var i = 0; i < labels.count; i++ {
             if count(labels[i]) > 0 {
-                self.descriptionText += descriptions[labels[i]]!
+                
+                self.descriptionText += descriptions[labels[i]]! + "\n"
+                println(labels[i])
             }
         }
         super.init(frame: frame)
