@@ -8,30 +8,26 @@
 
 import Foundation
 import UIKit
-
-class SuperIconButton: UIButton {
+class SuperIconButton: IconButton {
     let labels: [String]
-    let name: String
-    var descriptionText = String()
     
     init(labels: [String], frame: CGRect, name: String){
         self.labels = labels
-        self.name = name
+        super.init(name: name, frame: frame)
+        let image = UIImage(named: self.name)
+        self.setImage(image, forState: UIControlState.Normal)
         
         let descriptions = IconDescription().descriptions
-   //     descriptionText = descriptions[name]!
+        self.descriptionText = descriptions[name]!
 
         for var i = 0; i < labels.count; i++ {
             if count(labels[i]) > 0 {
-                
-                self.descriptionText += descriptions[labels[i]]! + "\n"
+                var description: String = descriptions[labels[i]]!
+                self.descriptionText += description + "\n"
                 println(labels[i])
             }
         }
-        super.init(frame: frame)
-        
-        let image = UIImage(named: self.name)
-        self.setImage(image, forState: UIControlState.Normal)
+
     }
     
     required init(coder aDecoder: NSCoder) {
