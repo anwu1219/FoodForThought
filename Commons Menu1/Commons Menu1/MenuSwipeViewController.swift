@@ -595,9 +595,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.sizeToFit()
         vc.view.addSubview(description)
         
-        vc.preferredContentSize = CGSizeMake(description.frame.width, description.frame.height)
+        let popScroll = UIScrollView()
+        if description.frame.width < vc.view.frame.width/2 {
+            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
+        }
+        else {
+            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
+        }
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
+        popScroll.addSubview(description)
+        vc.view.addSubview(popScroll)
+        
+        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
         vc.modalPresentationStyle = .Popover
-
         
         self.presentViewController(vc, animated: true, completion: nil)
         
@@ -625,9 +635,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
         description.sizeToFit()
-        vc.view.addSubview(description)
         
-        vc.preferredContentSize = CGSizeMake(description.frame.width, description.frame.height)
+        let popScroll = UIScrollView()
+        if description.frame.width < vc.view.frame.width/2 {
+            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
+        }
+        else {
+            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
+        }
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
+        popScroll.addSubview(description)
+        vc.view.addSubview(popScroll)
+        
+        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
         vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
