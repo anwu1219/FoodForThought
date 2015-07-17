@@ -32,7 +32,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.delegate = self
         restProfScrollView.layer.borderWidth = 2
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
-        restProfScrollView.backgroundColor = UIColor(red: 147/255.0, green: 143/255.0, blue: 161/255.0, alpha: 0.75)
+        restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
         //set the background image
         let bkgdImage = UIImageView()
@@ -45,7 +45,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         susView.delegate = self
         susView.layer.borderWidth = 2
         susView.layer.borderColor = UIColor.blackColor().CGColor
-        susView.backgroundColor = UIColor(red: 147/255.0, green: 143/255.0, blue: 161/255.0, alpha: 0.75)
+        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
         let openHourLabel = UILabel()
         layoutScroll()
@@ -64,7 +64,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let width: CGFloat = screenSize.width
         let susWidth: CGFloat = susView.frame.width/2
         
-        let labels = ["Environmental", "Social", "Economic"] // dont need for menu swipe scroll
+        let labels = ["Environmental:", "Social:", "Economic:"] // dont need for menu swipe scroll
         var y: CGFloat = height * 0.01
         
         // move scroll outside for i loop
@@ -77,6 +77,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
                 label.frame = CGRectMake(0.01*width, y, susWidth/2, 45)
+                label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
                 scroll.frame = CGRectMake(label.frame.width+0.01*width, y, 0.5*susWidth, label.frame.height)
@@ -130,6 +131,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var description = UILabel()
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
+            description.textColor = UIColor.whiteColor()
             description.frame = CGRectMake(0.1*width, y, restProfScrollView.frame.width*0.4, 50)
             description.lineBreakMode = .ByWordWrapping
             description.numberOfLines = 0
@@ -142,6 +144,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         address.text = "Address:\n" + restProf.address
         address.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         address.lineBreakMode = .ByWordWrapping
+        address.textColor = UIColor.whiteColor()
         address.numberOfLines = 0
         address.sizeToFit()
         restProfScrollView.addSubview(address)
@@ -159,6 +162,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         phone.text = "Phone:\n" + restProf.phoneNumber
         phone.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         phone.lineBreakMode = .ByWordWrapping
+        phone.textColor = UIColor.whiteColor()
         phone.numberOfLines = 0
         phone.sizeToFit()
         restProfScrollView.addSubview(phone)
@@ -176,6 +180,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         url.text = "Website:\n" + restProf.url
         url.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         url.lineBreakMode = .ByWordWrapping
+        url.textColor = UIColor.whiteColor()
         url.numberOfLines = 0
         url.sizeToFit()
         restProfScrollView.addSubview(url)
@@ -185,6 +190,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
         health.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         health.lineBreakMode = .ByWordWrapping
+        health.textColor = UIColor.whiteColor()
         health.numberOfLines = 0
         health.sizeToFit()
         restProfScrollView.addSubview(health)
@@ -210,6 +216,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
             hour.lineBreakMode = .ByWordWrapping
+            hour.textColor = UIColor.whiteColor()
             hour.numberOfLines = 0
             hour.sizeToFit()
             restProfScrollView.addSubview(hour)
@@ -231,6 +238,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 hour.text = days[i] + restProf.mealPlanHours[i]
                 hour.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
                 hour.lineBreakMode = .ByWordWrapping
+                hour.textColor = UIColor.whiteColor()
                 hour.numberOfLines = 0
                 hour.sizeToFit()
                 restProfScrollView.addSubview(hour)
@@ -278,6 +286,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
+        description.textColor = UIColor.whiteColor()
         description.text = button.descriptionText!
         vc.view.addSubview(description)
 
