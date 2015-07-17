@@ -11,11 +11,11 @@ import UIKit
 
 class IconButton: UIButton {
     let name: String
-    let descriptionText: String?
+    var descriptionText = String()
     
     init(name: String, frame: CGRect){
         self.name = name
-        self.descriptionText = IconDescription().descriptions[name]
+        self.descriptionText = IconDescription().descriptions[name]!
         super.init(frame: frame)
         
         let image = UIImage(named: name)
