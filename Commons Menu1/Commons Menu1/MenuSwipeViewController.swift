@@ -608,6 +608,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
+        description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         description.text = button.descriptionText
         description.sizeToFit()
         vc.view.addSubview(description)

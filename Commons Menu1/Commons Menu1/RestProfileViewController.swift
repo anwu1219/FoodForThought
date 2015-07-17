@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
+
 
 class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
@@ -298,12 +301,53 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func mapSearch(sender:UIButton) {
-        if let url = NSURL(string: restProf.address) {
-        println("Search Made")
-        UIApplication.sharedApplication().openURL(url)
+        //http://stackoverflow.com/questions/28604429/how-to-open-maps-app-programatically-with-coordinates-in-swift
+        
+        getCoordinates(restProf.address) { lat, long, error in
+            if error != nil {
+                println("Something went wrong with the map button in RestProfileView")
+            } else {
+                // use lat, long here
+                let regionDistance:CLLocationDistance = 10000
+                var coordinates = CLLocationCoordinate2DMake(lat, long)
+                let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+                var options = [
+                    MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
+                    MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
+                ]
+                var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                var mapItem = MKMapItem(placemark: placemark)
+                mapItem.name = "\(self.restProf.address)"
+                mapItem.openInMapsWithLaunchOptions(options)
+            }
         }
     }
     
+    //http://stackoverflow.com/questions/27769859/ios-swift-coordinates-function-returns-nil
+    func getCoordinates(location: String, completionHandler: (lat: CLLocationDegrees!, long: CLLocationDegrees!, error: NSError?) -> ()) -> Void {
+        
+        var lat:CLLocationDegrees
+        var long:CLLocationDegrees
+        var geocoder = CLGeocoder()
+        
+        geocoder.geocodeAddressString(location) { (placemarks: [AnyObject]!, error: NSError!) in
+            
+            if error != nil {
+                println("Geocode failed with error: \(error.localizedDescription)")
+                completionHandler(lat: nil, long: nil, error: error)
+                
+            } else if placemarks.count > 0 {
+                
+                let placemark = placemarks[0] as! CLPlacemark
+                let location = placemark.location
+                
+                let lat = location.coordinate.latitude
+                let long = location.coordinate.longitude
+                
+                completionHandler(lat: lat, long: long, error: nil)
+            }
+        }
+    }
     
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
@@ -339,15 +383,13 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
-        
-        
+                
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
         }
     }
 }
-
 
 
 extension RestProfileViewController : UIPopoverPresentationControllerDelegate {

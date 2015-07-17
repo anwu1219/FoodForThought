@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="-636" y="-719"/>
         </scene>
-        <!--My Favorites-->
+        <!--All Preference List View Controller-->
         <scene sceneID="jys-nA-lZm">
             <objects>
-                <viewController title="My Favorites" id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Du2-mr-E4w"/>
                         <viewControllerLayoutGuide type="bottom" id="h7c-a2-MKj"/>
@@ -111,7 +111,7 @@
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My Favorites" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkG-pd-owt">
                                 <rect key="frame" x="0.0" y="145" width="178" height="46"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="25"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -121,17 +121,23 @@
                             <constraint firstItem="1KI-Pp-qPg" firstAttribute="top" secondItem="N2Z-ty-PEv" secondAttribute="top" id="0aQ-wf-DLl"/>
                             <constraint firstAttribute="trailing" secondItem="1KI-Pp-qPg" secondAttribute="trailing" id="Fil-kX-2eB"/>
                             <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="Du2-mr-E4w" secondAttribute="bottom" constant="140" id="IZf-Hq-ZRX">
-                                <variation key="widthClass=compact" constant="140"/>
+                                <variation key="widthClass=compact" constant="118"/>
                             </constraint>
                             <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="KkG-pd-owt" secondAttribute="trailing" constant="-261" id="JNY-Oi-TTn"/>
-                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="KkG-pd-owt" secondAttribute="bottom" constant="19" id="LRe-tW-kkf"/>
-                            <constraint firstItem="KkG-pd-owt" firstAttribute="top" secondItem="1KI-Pp-qPg" secondAttribute="bottom" constant="-69" id="PjC-jF-Xu4"/>
+                            <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="KkG-pd-owt" secondAttribute="bottom" constant="19" id="LRe-tW-kkf">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="KkG-pd-owt" firstAttribute="top" secondItem="1KI-Pp-qPg" secondAttribute="bottom" constant="-69" id="PjC-jF-Xu4">
+                                <variation key="widthClass=compact" constant="-65"/>
+                            </constraint>
                             <constraint firstItem="h7c-a2-MKj" firstAttribute="top" secondItem="qbY-vt-aiF" secondAttribute="bottom" id="TSB-Ai-AwF"/>
                             <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="N2Z-ty-PEv" secondAttribute="leading" id="cAR-EB-2Qr"/>
                             <constraint firstItem="qbY-vt-aiF" firstAttribute="top" secondItem="1KI-Pp-qPg" secondAttribute="bottom" constant="-1" id="dRw-1p-TNT">
                                 <variation key="widthClass=compact" constant="8"/>
                             </constraint>
-                            <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="KkG-pd-owt" secondAttribute="trailing" constant="-195.5" id="e8V-id-8DH"/>
+                            <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="KkG-pd-owt" secondAttribute="trailing" constant="-195.5" id="e8V-id-8DH">
+                                <variation key="widthClass=compact" constant="-197.5"/>
+                            </constraint>
                             <constraint firstItem="1KI-Pp-qPg" firstAttribute="leading" secondItem="KkG-pd-owt" secondAttribute="trailing" constant="-261" id="gLf-eV-7jP"/>
                             <constraint firstItem="qbY-vt-aiF" firstAttribute="leading" secondItem="N2Z-ty-PEv" secondAttribute="leading" id="k6C-bP-89w">
                                 <variation key="widthClass=compact" constant="16"/>
@@ -330,10 +336,10 @@
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="312" id="PCA-Gn-1yB"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="Q9g-xF-K0B"/>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="RYl-uB-eMf"/>
+                            <constraint firstAttribute="centerX" secondItem="s8o-pg-Xq7" secondAttribute="centerX" id="Rfp-og-itG"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="s8o-pg-Xq7" secondAttribute="bottom" constant="25" id="S91-5w-p3c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AaB-WN-Yol" secondAttribute="trailing" constant="190" id="Sc9-d9-hjC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="44" id="U5p-QE-eR7"/>
-                            <constraint firstItem="s8o-pg-Xq7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-14" id="Ybu-Pd-2KZ"/>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="aHt-ME-EfK"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AaB-WN-Yol" secondAttribute="bottom" constant="86" id="b6u-Q0-AiW"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="248" id="cac-tI-n73"/>
@@ -358,7 +364,6 @@
                                 <exclude reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Ybu-Pd-2KZ"/>
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -388,6 +393,7 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <exclude reference="hh9-qX-cZX"/>
                                 <exclude reference="nMK-a1-OYq"/>
+                                <exclude reference="Rfp-og-itG"/>
                                 <exclude reference="S91-5w-p3c"/>
                                 <exclude reference="b6u-Q0-AiW"/>
                                 <exclude reference="nBh-AB-Xjd"/>
@@ -398,7 +404,6 @@
                                 <include reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Ybu-Pd-2KZ"/>
                                 <include reference="2nP-pD-4f0"/>
                                 <include reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -425,6 +430,7 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <include reference="hh9-qX-cZX"/>
                                 <include reference="nMK-a1-OYq"/>
+                                <include reference="Rfp-og-itG"/>
                                 <include reference="S91-5w-p3c"/>
                                 <exclude reference="nBh-AB-Xjd"/>
                             </mask>
@@ -1165,7 +1171,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurant Menus" id="6xd-mB-umK"/>
+                    <navigationItem key="navigationItem" id="6xd-mB-umK"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="jKN-Gc-OYb" id="RWX-xo-oWE"/>
                         <outlet property="selectARestLabel" destination="gzD-2y-G6f" id="hgc-Pe-wHd"/>
@@ -1969,7 +1975,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="4iJ-fy-ZFU"/>
-        <segue reference="ut7-Ma-1wo"/>
+        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="3Lq-rH-UIY"/>
     </inferredMetricsTieBreakers>
 </document>

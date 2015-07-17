@@ -33,7 +33,8 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         dishImage.image = dish?.image
         dishImage.contentMode = .ScaleAspectFill
         dishImage.layer.borderWidth = 6
-        dishImage.layer.borderColor = UIColor(red: 0.3, green: 0.5, blue: 0.3, alpha: 1.0).CGColor
+        let darkGreenColor = UIColor(red: 25.0/255, green: 58.0/255, blue: 46/255, alpha: 1)
+        dishImage.layer.borderColor = darkGreenColor.CGColor
         dishImage.layer.masksToBounds = true
         //scrollInfo.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
 
