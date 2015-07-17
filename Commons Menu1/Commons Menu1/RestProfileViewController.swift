@@ -25,7 +25,16 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = restProf?.name
-        restProfImage.image = restProf.image
+        restProf.imageFile!.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) ->Void in
+            if error == nil {
+                if let data = imageData{
+                    if let image = UIImage(data: data){
+                        self.restProfImage.image = image
+                    }
+                }
+            }
+        }
         let darkBlueColor = UIColor(red: 0.0/255, green: 7.0/255, blue: 72.0/255, alpha: 0.75)
         restProfImage.layer.borderColor = darkBlueColor.CGColor
         restProfImage.layer.borderWidth = 2

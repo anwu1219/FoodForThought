@@ -40,7 +40,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var edited = false
-
+    var indexTitles = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,6 +213,41 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
     }
+    
+    
+    
+    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String,
+        atIndex index: Int)
+        -> Int {
+        var ind = index
+        while indexTitles[ind] == "."{
+            ind -= 1
+        }
+        for var i = 0; i < keys.count; i++ {
+            if String(Array(keys[i])[0]) == indexTitles[ind] {
+                return i
+            }
+        }
+        return 0
+    }
+    
+    
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+        let alphabet = ["A", "B", "C", "D", "E","F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        var indice = [String]()
+        for name: String in keys{
+            indice.append("\(Array(name)[0])")
+        }
+        for var i: Int = 0; i < alphabet.count; i++ {
+            if contains(indice, alphabet[i]){
+                indexTitles.append(alphabet[i])
+            } else {
+                indexTitles.append(".")
+            }
+        }
+        return indexTitles
+    }
+    
     
     //MARK: - Table view cell delegate
     /**

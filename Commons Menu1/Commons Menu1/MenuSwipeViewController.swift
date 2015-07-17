@@ -57,6 +57,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let scroll = UIScrollView()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -144,7 +145,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 activityIndicator.startAnimating()
                 activityIndicator.hidesWhenStopped = true
                 activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-                activityIndicator.frame = CGRectMake(view.bounds.midX, tableView.bounds.midY, 0, 0)
+                activityIndicator.frame = CGRectMake(view.bounds.midX, tableView.bounds.midY * 0.90, 0, 0)
                 self.tableView.addSubview(activityIndicator)
                 tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
                 self.refreshControl.sendActionsForControlEvents(.ValueChanged)
@@ -393,7 +394,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
     }
-    
     
     
     /**
