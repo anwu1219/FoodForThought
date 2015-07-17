@@ -66,7 +66,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         
-        restImage.image = restProf.image
+        
+        restProf.imageFile!.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) ->Void in
+            if error == nil {
+                if let data = imageData{
+                    if let image = UIImage(data: data){
+                        self.restImage.image = image
+                    }
+                }
+            }
+        }
+    
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -174,13 +186,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                     if let type = object["type"] as? String{
                                                         if let price = object["price"] as? String{
                                                         if let userImageFile = object["image"] as? PFFile{
-                                                            if let data = userImageFile.getData(){                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
+                                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.addDishToMenu(dish)
                                                                 self.dishes.addPulled(index)
-                                                            }
-                                                        }
                                                     } else{
                                                         let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                         self.dishes.addDish(location, dish: dish)
@@ -231,26 +240,24 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             
         }
-        var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
+        var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
         if restProf.eco.count > 0 {
-            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "sloth")
-            ecoIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "Eco")
+            ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             x += frame.width
-            frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
             scroll.addSubview(ecoIcon)
         }
         
         if restProf.humane.count > 0 {
-            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "sloth")
-            humaneIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "Humane")
+            humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             x += frame.width
-            frame = CGRectMake(x, 0.01*scroll.frame.height, 0.84*scroll.frame.height, 0.84*scroll.frame.height)
             scroll.addSubview(humaneIcon)
         }
         
         if restProf.fair.count > 0 {
-            let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "sloth")
-            fairIcon.addTarget(self, action: "showLabelInfo2:", forControlEvents: UIControlEvents.TouchUpInside)
+            let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "Fair")
+            fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             x += frame.width
             scroll.addSubview(fairIcon)
         }
@@ -327,7 +334,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
-                cell.imageView?.image = dish.image
+                dish.imageFile!.getDataInBackgroundWithBlock {
+                    (imageData: NSData?, error: NSError?) ->Void in
+                    if error == nil {
+                        if let data = imageData{
+                            if let image = UIImage(data: data){
+                                cell.imageView?.image = image
+                                dish.image = image
+                            }
+                        }
+                    }
+                }
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
             return cell
@@ -591,50 +608,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
-        description.text = button.descriptionText!
-        description.sizeToFit()
-        vc.view.addSubview(description)
-        
-        let popScroll = UIScrollView()
-        if description.frame.width < vc.view.frame.width/2 {
-            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
-        }
-        else {
-            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
-        }
-        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
-        popScroll.addSubview(description)
-        vc.view.addSubview(popScroll)
-        
-        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
-        vc.modalPresentationStyle = .Popover
-        
-        self.presentViewController(vc, animated: true, completion: nil)
-        
-        
-        if let pop = vc.popoverPresentationController {
-            pop.sourceView = (sender as! UIView)
-            pop.sourceRect = (sender as! UIView).bounds
-        }
-    }
-    
-    func showLabelInfo2(sender: AnyObject) {
-        let vc = UIViewController()
-        let button = sender as! SuperIconButton
-        
-        vc.preferredContentSize = CGSizeMake(200, 200)
-        vc.modalPresentationStyle = .Popover
-        
-        if let pres = vc.popoverPresentationController {
-            pres.delegate = self
-        }
-        
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
-        description.lineBreakMode = .ByWordWrapping
-        description.numberOfLines = 0
-        description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
         description.sizeToFit()
+        vc.view.addSubview(description)
         
         let popScroll = UIScrollView()
         if description.frame.width < vc.view.frame.width/2 {

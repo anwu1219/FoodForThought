@@ -169,7 +169,17 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             cell.delegate = self
             cell.selectionStyle = .None
             cell.dish = dish
-            cell.imageView?.image = dish.image
+            dish.imageFile!.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            cell.imageView?.image = image
+                            dish.image = image
+                        }
+                    }
+                }
+            }
            // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
            // cell.detailTextLabel?.textAlignment = .Center
 

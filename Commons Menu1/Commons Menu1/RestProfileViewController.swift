@@ -31,7 +31,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
         restProfScrollView.delegate = self
-        restProfScrollView.layer.borderWidth = 2
+        restProfScrollView.layer.borderWidth = 1
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
         restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
@@ -43,21 +43,20 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        //sets nav bar to be see through
+        let bar:UINavigationBar! =  self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        self.navigationController?.navigationBar.translucent = true
+
+        
         susView.delegate = self
-        susView.layer.borderWidth = 2
-        susView.layer.borderColor = UIColor.blackColor().CGColor
-        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
         layoutScroll()
         addLabels()
-        
-        // restWeekdayHoursLabel.text = restProf!.weekdayHours
-        // restWeekendHoursLabel.text = restProf!.weekendHours
-        // restWeekdayHoursLabel.numberOfLines = 2
-        // restWeekendHoursLabel.numberOfLines = 2
-        // restPhoneNumLabel.text = restProf!.phoneNumber
-        // restAddressLabel.text = restProf!.address
     }
     
     func addLabels() {
@@ -77,7 +76,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
-                label.frame = CGRectMake(0.01*width, y, susWidth/2, 45)
+                label.frame = CGRectMake(0.05*width, y, susWidth/2, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
@@ -93,12 +92,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             susView.addSubview(label)
             
             // this is the end of label stuff
-            
             var x: CGFloat = 0// move this var outside for i loop and rename
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
-                    var icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     
                     
@@ -108,6 +106,31 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
 //                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
+                }
+            }
+            if i == 0 {
+                if restProf.eco.count > 0 {
+                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "Eco")
+                    ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                    scroll.addSubview(ecoIcon)
+                    x += ecoIcon.frame.width + width*0.01
+                }
+            }
+            if i == 1 {
+                if restProf.humane.count > 0 {
+                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    let ecoIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "Humane")
+                    ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                    scroll.addSubview(ecoIcon)
+                    x += ecoIcon.frame.width + width*0.01
+                }
+                if restProf.fair.count > 0 {
+                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    let ecoIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "Fair")
+                    ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                    scroll.addSubview(ecoIcon)
+                    x += ecoIcon.frame.width + width*0.01
                 }
             }
             scroll.contentSize.width = x
@@ -345,18 +368,31 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
-        description.center = CGPointMake(100, 50)
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
-        description.textColor = UIColor.whiteColor()
-        description.text = button.descriptionText!
+        description.text = button.descriptionText
+        description.sizeToFit()
         vc.view.addSubview(description)
-
+        
+        let popScroll = UIScrollView()
+        if description.frame.width < vc.view.frame.width/2 {
+            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
+        }
+        else {
+            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
+        }
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
+        popScroll.addSubview(description)
+        vc.view.addSubview(popScroll)
+        
+        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
+        vc.modalPresentationStyle = .Popover
+        
         self.presentViewController(vc, animated: true, completion: nil)
-            
-
+        
+        
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds

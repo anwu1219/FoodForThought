@@ -38,7 +38,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let preparingAlert = UIAlertController(title: "Preparing...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
@@ -110,7 +109,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     func refresh(refreshControl: UIRefreshControl) {
         if Reachability.isConnectedToNetwork() {
-            if dishes.dealtWith.count != dishes.numberOfDishes{
+            if dishes.dealtWith.count < dishes.numberOfDishes{
                 self.fetchRandomDishes(self.dishes.numberOfDishes)
             } else {
                 presentViewController(completeAlert, animated: true, completion: nil)
@@ -194,7 +193,17 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.dish = dish
             
             //sets the image
-            cell.imageView?.image = dish.image
+            dish.imageFile!.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            cell.imageView?.image = image
+                            dish.image = image
+                        }
+                    }
+                }
+            }
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             
@@ -265,22 +274,13 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                         if let fair = object["fair"] as? [String]{
                                                             if let humane = object["humane"] as? [String]{
                                                 if let userImageFile = object["image"] as? PFFile{
-                                                    userImageFile.getDataInBackgroundWithBlock {
-                                                        (imageData: NSData?, error: NSError?) ->Void in
-                                                        if error == nil {
-                                                            if let data = imageData{                                                if let image = UIImage(data: data){
                                                                 if !self.hasBeenAdded(name, location: name){
-                                                                    let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
+                                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
                                                                     self.dishes.addDish(location, dish: dish)
                                                                     self.menu.append(dish)
                                                                     self.dishes.addPulled(index)
                                                                     UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                                         self.foodTinderTableView.reloadData() }, completion: nil)
-                                                                    
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
                                                         }
                                                     } else{
                                                         if !self.hasBeenAdded(name, location: name){
@@ -361,15 +361,31 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.bounds.width/2 , vc.view.bounds.height))
-        description.center = CGPointMake(100, 50)
+        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
         description.textAlignment = NSTextAlignment.Center
-        description.text = button.descriptionText!
+        description.text = button.descriptionText
+        description.sizeToFit()
         vc.view.addSubview(description)
         
+        let popScroll = UIScrollView()
+        if description.frame.width < vc.view.frame.width/2 {
+            popScroll.frame = CGRectMake(0, 0, description.frame.width, description.frame.height)
+        }
+        else {
+            popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
+        }
+        popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height)
+        popScroll.addSubview(description)
+        vc.view.addSubview(popScroll)
+        
+        vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
+        vc.modalPresentationStyle = .Popover
+        
         self.presentViewController(vc, animated: true, completion: nil)
+        
+        
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds

@@ -244,6 +244,28 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
                     x += icon.frame.width + space
                 }
             }
+            var frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
+            if dish!.eco.count > 0 {
+                let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
+                ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                x += ecoIcon.frame.width + space
+                susLabels.addSubview(ecoIcon)
+            }
+            
+            if dish!.humane.count > 0 {
+                let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
+                humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                x += humaneIcon.frame.width + space
+                susLabels.addSubview(humaneIcon)
+            }
+            
+            if dish!.fair.count > 0 {
+                let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
+                fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                x += fairIcon.frame.width + space
+                susLabels.addSubview(fairIcon)
+            }
+            
             susLabels.contentSize.width = (x)
             x = 0
         }

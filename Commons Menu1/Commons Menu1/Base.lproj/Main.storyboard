@@ -333,13 +333,13 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="s8o-pg-Xq7" secondAttribute="bottom" constant="25" id="S91-5w-p3c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AaB-WN-Yol" secondAttribute="trailing" constant="190" id="Sc9-d9-hjC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="44" id="U5p-QE-eR7"/>
+                            <constraint firstItem="s8o-pg-Xq7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-14" id="Ybu-Pd-2KZ"/>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="aHt-ME-EfK"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AaB-WN-Yol" secondAttribute="bottom" constant="86" id="b6u-Q0-AiW"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="248" id="cac-tI-n73"/>
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="51" id="cva-FG-v8z"/>
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="d29-Gm-KcB"/>
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="dPW-9x-eHE"/>
-                            <constraint firstItem="s8o-pg-Xq7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="dQC-im-E59"/>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="dim-Ro-Yke"/>
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="ecK-Or-cAR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="14" id="fiP-dO-fd6"/>
@@ -358,7 +358,7 @@
                                 <exclude reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="dQC-im-E59"/>
+                                <exclude reference="Ybu-Pd-2KZ"/>
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -398,7 +398,7 @@
                                 <include reference="s8o-pg-Xq7"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="dQC-im-E59"/>
+                                <include reference="Ybu-Pd-2KZ"/>
                                 <include reference="2nP-pD-4f0"/>
                                 <include reference="9To-Bf-mFC"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -1609,14 +1609,21 @@
                             <constraint firstItem="YPC-d7-0z1" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leadingMargin" id="B3t-7K-CpE">
                                 <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
-                            <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="117" id="O5n-XP-ila"/>
+                            <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="K4t-XW-smP" secondAttribute="top" id="D4M-EM-Q0a"/>
+                            <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="117" id="O5n-XP-ila">
+                                <variation key="widthClass=compact" constant="124"/>
+                            </constraint>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="8" id="REW-Ev-zG8"/>
-                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="130" id="S7p-de-mJZ"/>
+                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="130" id="S7p-de-mJZ">
+                                <variation key="widthClass=compact" constant="93"/>
+                            </constraint>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leadingMargin" id="UTH-ih-PnQ"/>
                             <constraint firstItem="2ED-kE-Hhe" firstAttribute="top" secondItem="YPC-d7-0z1" secondAttribute="bottom" id="VFZ-WV-hPw"/>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="YPC-d7-0z1" secondAttribute="bottom" constant="8" id="a8j-gb-dL1"/>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="leading" secondItem="K4t-XW-smP" secondAttribute="leading" id="aKJ-nj-ICs"/>
-                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="1" id="cAA-v4-Gvp"/>
+                            <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="JF3-Lu-1do" secondAttribute="bottom" constant="1" id="cAA-v4-Gvp">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="JF3-Lu-1do" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" id="cwC-Re-VaN"/>
                             <constraint firstItem="YPC-d7-0z1" firstAttribute="top" secondItem="7Sb-Xv-z9M" secondAttribute="bottom" constant="8" id="dWa-AN-Vcl"/>
                             <constraint firstItem="7Sb-Xv-z9M" firstAttribute="top" secondItem="aJ5-r0-iGk" secondAttribute="bottom" constant="380" id="fPT-Ei-guo"/>
@@ -1634,6 +1641,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="D4M-EM-Q0a"/>
                                 <exclude reference="REW-Ev-zG8"/>
                                 <exclude reference="aKJ-nj-ICs"/>
                                 <exclude reference="cwC-Re-VaN"/>
@@ -1667,8 +1675,9 @@
                                 <include reference="7Sb-Xv-z9M"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="D4M-EM-Q0a"/>
                                 <include reference="aKJ-nj-ICs"/>
-                                <include reference="cwC-Re-VaN"/>
+                                <exclude reference="cwC-Re-VaN"/>
                                 <include reference="rEB-bQ-uhw"/>
                                 <include reference="S7p-de-mJZ"/>
                                 <include reference="UTH-ih-PnQ"/>
@@ -1960,7 +1969,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="sXz-wK-Xvd"/>
         <segue reference="4iJ-fy-ZFU"/>
+        <segue reference="ut7-Ma-1wo"/>
     </inferredMetricsTieBreakers>
 </document>

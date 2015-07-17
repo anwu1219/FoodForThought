@@ -303,11 +303,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                     for object: AnyObject in objectsArray{
                         if let name = object["name"] as? String {
                             if let userImageFile = object["image"] as? PFFile{
-                            userImageFile.getDataInBackgroundWithBlock {
-                                (imageData: NSData?, error: NSError?) ->Void in
-                                if error == nil {
-                                    if let data = imageData{
-                                        if let image = UIImage(data: data){
                                             if let address = object["address"] as? String{
                                                 if let phoneNumber = object["number"] as? String{
                                                     if let hours = object["hours"] as? [String]{
@@ -320,7 +315,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                                                 if let eco = object["eco"] as? [String] {
                                                                                     if let fair = object["fair"] as? [String]{
                                                                                         if let humane = object["humane"] as? [String] {
-                                                                                            let restaurant = RestProfile(name: name, image: image, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane)
+                                                                                            let restaurant = RestProfile(name: name, imageFile: userImageFile, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane)
                                                                                 self.dishes.addRestaurant(restaurant)
                                                                                         }
                                                                                     }
@@ -335,10 +330,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                     }
                                                 }
                                             }
-                                        }
-                                    }
-                                }
-                            }
                         }
                     }
                     if let user = PFUser.currentUser() {

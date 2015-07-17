@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 
 import UIKit
-
+import Parse
 
 /**
 Represents a dish
@@ -16,7 +16,6 @@ class Dish: NSObject {
     var name: String
     var ingredients: [String]?
     var labels : [[String]]? //Nutritionist Labels for Commons
-    var image: UIImage? = UIImage(named: "sloth")
     // for off-campus dining service
     var allergens: [String]?
     // food source, and other sustainability info
@@ -35,7 +34,8 @@ class Dish: NSObject {
     var eco = [String]()
     var fair = [String]()
     var humane = [String]()
-    
+    var imageFile : PFFile?
+    var image : UIImage?
 
     
     init(name: String) {
@@ -48,9 +48,8 @@ class Dish: NSObject {
         self.ingredients = ingredients
     }
     
-    init(name: String, image: UIImage, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String], eco : [String], fair : [String], humane : [String]){
+    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String], eco : [String], fair : [String], humane : [String], imageFile : PFFile){
         self.name = name
-        self.image = image
         self.location = location
         self.type = type
         self.ingredients = ingredients
@@ -61,6 +60,7 @@ class Dish: NSObject {
         self.eco = eco
         self.fair = fair
         self.humane = humane
+        self.imageFile = imageFile
     }
     
     
@@ -75,6 +75,4 @@ class Dish: NSObject {
         self.price = price
         self.susLabels = susLabels
     }
-
-    
 }
