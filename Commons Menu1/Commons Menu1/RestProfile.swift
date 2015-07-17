@@ -13,7 +13,6 @@ import Parse
 
 class RestProfile: NSObject {
     var name: String
-    var image: UIImage?
     var restDescript: String
     var address: String
     var hours: [String]

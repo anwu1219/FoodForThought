@@ -7,21 +7,21 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>FDBAC76F-5735-4F69-A01F-B21F8C2DB6CE</string>
 	<key>IDESourceControlProjectName</key>
-	<string>FoodForThought</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
-		<string>https://github.com/WizuO/FoodForThought.git</string>
+		<string>https://github.com/anwu1219/FoodForThought.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Commons Menu1/FoodForThought.xcodeproj</string>
+	<string>Commons Menu1/FoodForThought.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/WizuO/FoodForThought.git</string>
+	<string>https://github.com/anwu1219/FoodForThought.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>FoodForThought</string>
+			<string>foodforthought</string>
 		</dict>
 	</array>
 </dict>
