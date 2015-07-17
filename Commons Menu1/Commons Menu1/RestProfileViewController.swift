@@ -34,6 +34,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
         restProfScrollView.backgroundColor = UIColor(red: 147/255.0, green: 143/255.0, blue: 161/255.0, alpha: 0.75)
         
+        //set the background image
+        let bkgdImage = UIImageView()
+        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
+        bkgdImage.image = UIImage(named: "genericBackground")
+        bkgdImage.contentMode = .ScaleAspectFill
+        self.view.addSubview(bkgdImage)
+        self.view.sendSubviewToBack(bkgdImage)
+        
         susView.delegate = self
         susView.layer.borderWidth = 2
         susView.layer.borderColor = UIColor.blackColor().CGColor
