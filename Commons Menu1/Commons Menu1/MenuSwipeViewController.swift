@@ -66,7 +66,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         
-        restImage.image = restProf.image
+        
+        restProf.imageFile!.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) ->Void in
+            if error == nil {
+                if let data = imageData{
+                    if let image = UIImage(data: data){
+                        self.restImage.image = image
+                    }
+                }
+            }
+        }
+    
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -325,6 +337,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
+                
                 cell.imageView?.image = dish.image
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }

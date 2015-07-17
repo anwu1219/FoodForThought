@@ -8,10 +8,12 @@
 
 import Foundation
 import UIKit
+import Parse
+
 
 class RestProfile: NSObject {
     var name: String
-    var image: UIImage
+    var image: UIImage?
     var restDescript: String
     var address: String
     var hours: [String]
@@ -23,11 +25,12 @@ class RestProfile: NSObject {
     var eco = [String]()
     var fair = [String]()
     var humane = [String]()
+    var imageFile: PFFile?
 
     
-    init(name: String, image: UIImage, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String]){
+    init(name: String, imageFile: PFFile, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String]){
         self.name = name
-        self.image = image
+        self.imageFile = imageFile
         self.restDescript = restDescript
         self.address = address
         self.hours = hours
