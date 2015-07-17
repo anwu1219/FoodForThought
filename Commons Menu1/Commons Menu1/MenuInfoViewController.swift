@@ -67,7 +67,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 title.text = "Dish Sustainability Info"
                 title.frame = CGRectMake(0, y, 91*width, 10*height)
                 title.textAlignment = .Center
-                title.font = UIFont(name: "Helvetica-Neue Light", size: 24)
+                title.font = UIFont(name: "HelveticaNeue-Light", size: 24)
                 
                 title.textColor = UIColor.whiteColor()
                 container.addSubview(title)
@@ -108,9 +108,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         }
         if let location = dish?.location {
             var label = UILabel()
-            label.text = "Location: \(location)"
+            label.text = "Restaurant: \(location)"
             label.frame = CGRectMake( x, y, 91 * width, 10 * height)
-            label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
             label.textColor = UIColor.whiteColor()
             label.numberOfLines = 0
             label.sizeToFit()
@@ -124,10 +124,10 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 var label = UILabel()
                 //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
                 label.text = "Price: \(price)"
-                label.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                label.frame = CGRectMake(x, y, 91 * width, 25 * height)
                 label.numberOfLines = 0
                 label.sizeToFit()
-                label.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 label.textColor = UIColor.whiteColor()
                 scrollInfo.addSubview(label)
                 y += label.frame.height + (3*height)
@@ -141,17 +141,17 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 var ingLabel = UILabel()
                 //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
                 ingLabel.text = "Ingredients:"
-                ingLabel.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                ingLabel.frame = CGRectMake(x, y, 91 * width, 25 * height)
                 ingLabel.numberOfLines = 0
                 ingLabel.sizeToFit()
-                ingLabel.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                ingLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 ingLabel.textColor = UIColor.whiteColor()
                 scrollInfo.addSubview(ingLabel)
                 y += ingLabel.frame.height + (3*height)
             }
             for var i = 0; i < ingredients.count; i++ {
                 var ingredient = UILabel()
-                ingredient.font = UIFont(name: "Helvetica-Neue Light", size: 14)
+                ingredient.font = UIFont(name: "HelveticaNeue-Light", size: 14)
                 ingredient.textColor = UIColor.whiteColor()
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
                 ingredient.text = "- \(ingredients[i])"

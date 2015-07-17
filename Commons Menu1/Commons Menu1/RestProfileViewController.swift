@@ -52,20 +52,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
 
         
         susView.delegate = self
-        susView.layer.borderWidth = 1
-        susView.layer.borderColor = UIColor.blackColor().CGColor
         susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
         layoutScroll()
         addLabels()
-        
-        // restWeekdayHoursLabel.text = restProf!.weekdayHours
-        // restWeekendHoursLabel.text = restProf!.weekendHours
-        // restWeekdayHoursLabel.numberOfLines = 2
-        // restWeekendHoursLabel.numberOfLines = 2
-        // restPhoneNumLabel.text = restProf!.phoneNumber
-        // restAddressLabel.text = restProf!.address
     }
     
     func addLabels() {
