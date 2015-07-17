@@ -193,7 +193,17 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             cell.dish = dish
             
             //sets the image
-            cell.imageView?.image = dish.image
+            dish.imageFile!.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            cell.imageView?.image = image
+                            dish.image = image
+                        }
+                    }
+                }
+            }
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             
@@ -264,22 +274,13 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                                         if let fair = object["fair"] as? [String]{
                                                             if let humane = object["humane"] as? [String]{
                                                 if let userImageFile = object["image"] as? PFFile{
-                                                    userImageFile.getDataInBackgroundWithBlock {
-                                                        (imageData: NSData?, error: NSError?) ->Void in
-                                                        if error == nil {
-                                                            if let data = imageData{                                                if let image = UIImage(data: data){
                                                                 if !self.hasBeenAdded(name, location: name){
-                                                                    let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
+                                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
                                                                     self.dishes.addDish(location, dish: dish)
                                                                     self.menu.append(dish)
                                                                     self.dishes.addPulled(index)
                                                                     UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                                                         self.foodTinderTableView.reloadData() }, completion: nil)
-                                                                    
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
                                                         }
                                                     } else{
                                                         if !self.hasBeenAdded(name, location: name){

@@ -186,13 +186,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                     if let type = object["type"] as? String{
                                                         if let price = object["price"] as? String{
                                                         if let userImageFile = object["image"] as? PFFile{
-                                                            if let data = userImageFile.getData(){                                                if let image = UIImage(data: data){
-                                                                let dish = Dish(name: name, image: image, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
+                                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.addDishToMenu(dish)
                                                                 self.dishes.addPulled(index)
-                                                            }
-                                                        }
                                                     } else{
                                                         let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
                                                         self.dishes.addDish(location, dish: dish)
@@ -337,8 +334,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
-                
-                cell.imageView?.image = dish.image
+                dish.imageFile!.getDataInBackgroundWithBlock {
+                    (imageData: NSData?, error: NSError?) ->Void in
+                    if error == nil {
+                        if let data = imageData{
+                            if let image = UIImage(data: data){
+                                cell.imageView?.image = image
+                                dish.image = image
+                            }
+                        }
+                    }
+                }
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
             return cell
