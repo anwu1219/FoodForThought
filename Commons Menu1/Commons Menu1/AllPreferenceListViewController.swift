@@ -83,7 +83,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
-        preferenceListTableView.rowHeight = 100;
+        preferenceListTableView.rowHeight = 85;
         preferenceListTableView.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
         self.addToPreferences()
         keys = preferences.keys.array

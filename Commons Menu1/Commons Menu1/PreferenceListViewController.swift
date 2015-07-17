@@ -28,7 +28,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.backgroundColor = UIColor.clearColor()
-        preferenceListTableView.rowHeight = 100;
+        preferenceListTableView.rowHeight = 85;
         self.navigationController?.navigationBar.translucent = true
 
         
@@ -94,7 +94,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
             return "No Dishes in your Preference list"
         }
         else {
-            return location! + " Preferences"
+            return location! + " Favorites"
         }
     }
     
