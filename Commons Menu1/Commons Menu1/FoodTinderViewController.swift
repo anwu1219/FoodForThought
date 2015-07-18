@@ -97,7 +97,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         instructLabel.alignmentMode = kCAAlignmentCenter
         instructLabel.contentsScale = UIScreen.mainScreen().scale
         view.layer.addSublayer(instructLabel)
-        refreshControl.sendActionsForControlEvents(.ValueChanged)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+        }
     }
     
     

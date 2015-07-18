@@ -147,13 +147,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 var label = UILabel()
                 //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
                 label.text = "Price: \(price)"
-                label.frame = CGRectMake(x, y, 91 * width, 25 * height)
+                label.frame = CGRectMake(x, y, 91 * width, 10 * height)
                 label.numberOfLines = 0
-                label.sizeToFit()
+                label.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 label.textColor = UIColor.whiteColor()
                 scrollInfo.addSubview(label)
-                y += label.frame.height + (3*height)
+                y += label.frame.height + (1*height)
             }
         }
         
@@ -164,9 +164,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 var ingLabel = UILabel()
                 //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
                 ingLabel.text = "Ingredients:"
-                ingLabel.frame = CGRectMake(x, y, 91 * width, 25 * height)
+                ingLabel.frame = CGRectMake(x, y, 91 * width, 10 * height)
                 ingLabel.numberOfLines = 0
-                ingLabel.sizeToFit()
+                ingLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 ingLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 ingLabel.textColor = UIColor.whiteColor()
                 scrollInfo.addSubview(ingLabel)
@@ -192,7 +192,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                         var nutLabelXPosition = screenSize.width * 0.85
                         for label: String in labels[i] {
                             println(label)
-                            var nutLabel = IconButton(name: label, frame: CGRectMake(nutLabelXPosition, y - 2 * height, 5 * height, 5 * height))
+                            var nutLabel = IconButton(name: label, frame: CGRectMake(nutLabelXPosition, y - 1 * height, 5 * height, 5 * height))
                             nutLabel.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                             scrollInfo.addSubview(nutLabel)
                             nutLabelXPosition -= 6 * height
