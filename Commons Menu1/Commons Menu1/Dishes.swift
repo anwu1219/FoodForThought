@@ -14,6 +14,7 @@ class Dishes{
     var dealtWith = Set<Int>()
     var pulled = Set<Int>()
     var cached = [RestProfile: Bool]()
+    var learned = ["tinder": false, "menuSwipe": false]
     
     func addDish(location: String, dish : Dish){
         for restaurant : RestProfile in dishes.keys {

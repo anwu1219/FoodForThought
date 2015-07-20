@@ -20,7 +20,7 @@ struct IconDescription{
         
         "AI":  "This icon indicates that the restaurant provides allergen information upon request.  Educated employees provide accurate information to concerned consumers! \n ",
         "CA":  "This icon indicates that the restaurant offers catering services. Catering an event is a great way to connect with other members in your community! \n ",
-        "FD":  "Food donations – This icon indicates that the restaurant frequently donates prepared food to charities, churches, or food banks. In doing so, these restaurants aid in serving the community’s efforts to combat hunger!\n ",
+        "FD":  "This icon indicates that the restaurant frequently donates prepared food to charities, churches, or food banks. In doing so, these restaurants aid in serving the community’s efforts to combat hunger!\n ",
         "MD":  "This icon indicates that the restaurant provides monetary donations to charitable groups in the community. Supporting local charities is a great way to promote social welfare! \n ",
         "VO":  "This icon indicates that the restaurant promotes volunteering opportunities to its employees. Participating in volunteering activities is a great way to support good causes within the community! \n ",
         
