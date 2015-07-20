@@ -135,10 +135,25 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.addLabels()
         self.view.addSubview(scroll)
         
+        
+        if !dishes.learned["menuSwipe"]! {
+            let alertController = UIAlertController(title: "Instruction",
+                message: "Swipe right on the dish to add to Favorites \n or\n swipe left to dislike!",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "OK!",
+                style: UIAlertActionStyle.Default,
+                handler: nil
+                )
+            )
+            self.presentViewController(alertController, animated: true, completion: nil)
+            dishes.learned["menuSwipe"] = true
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         if let foo = dishes.cached[restProf]{
             if !foo {
                 activityIndicator.hidden = false
@@ -152,6 +167,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.dishes.cached(self.restProf)
             }
         }
+        
     }
     
     
