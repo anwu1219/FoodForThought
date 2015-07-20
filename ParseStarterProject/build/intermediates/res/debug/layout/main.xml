@@ -1,12 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/background">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:textAlignment="center"
+        android:text="This is the main menu. \n \n \n \n \n \n"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        />
+    <Button
+        android:id="@+id/buttonSelectRest"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Restaurants"/>
+    <Button
+        android:id="@+id/buttonFoodTinder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Food Tinder"/>
+    <Button
+        android:id="@+id/buttonMyFavs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="My Favorites"/>
+    <Button
+        android:id="@+id/buttonSustInfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sustainability Preferences"/>
 
-</LinearLayout><!-- From: file:/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/res/layout/main.xml -->
+</LinearLayout><!-- From: file:/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/res/layout/main.xml -->

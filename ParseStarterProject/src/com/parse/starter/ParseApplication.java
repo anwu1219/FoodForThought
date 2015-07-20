@@ -20,11 +20,9 @@ public class ParseApplication extends Application {
     Parse.enableLocalDatastore(this);
 
     // Add your initialization code here
-    Parse.initialize(this);
 
     Parse.initialize(this, "YwH5uZAZTNeun59PpcrL2Rk9qE4Oc1zl1dPjDr8x", "pXj8wTsLjDHZta12STdVxEBJMxGZvi8vhjqSCuoG");
 
-      
 
     ParseUser.enableAutomaticUser();
     ParseACL defaultACL = new ParseACL();

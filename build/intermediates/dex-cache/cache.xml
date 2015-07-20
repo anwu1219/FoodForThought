@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/libs/ParseCrashReporting-1.9.4.jar"
+        jar="/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/libs/ParseCrashReporting-1.9.4.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="7a11f2d74111fd9b02c2d091a1b76b82f6a4357e">
-        <dex dex="/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.9.4-77ac9bf6d6e82544f8568f21111bbe0334a3cd8d.jar" />
+        <dex dex="/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.9.4-c4bd1c433f3052b7fb813580885abcfa838fa0fc.jar" />
     </item>
     <item
-        jar="/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/libs/Parse-1.9.4.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="56c22930b5d4f77015b6a40c7f14103d3e101001">
-        <dex dex="/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.9.4-87d101823cde4b6ad83423f132e4a0d44badabf8.jar" />
-    </item>
-    <item
-        jar="/Users/anwu/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jar="/Users/Bjorn/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
         jumboMode="false"
         revision="22.0.0"
         sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="/Users/anwu/Desktop/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-281ad3d9b1d4652598d27c6387ed07d1f0c7cb13.jar" />
+        <dex dex="/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-5b6a2fadc57e7a76e2213e5da6778218e0a338c2.jar" />
+    </item>
+    <item
+        jar="/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/libs/Parse-1.9.4.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="56c22930b5d4f77015b6a40c7f14103d3e101001">
+        <dex dex="/Users/Bjorn/GitRepos/FoodForThoughtAndroid/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.9.4-db6d0abc31f4582c632df9ba20efdb8c9db628b2.jar" />
     </item>
 
 </items>

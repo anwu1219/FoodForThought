@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:2:1
-	xmlns:android
-		ADDED from AndroidManifest.xml:2:11
 	package
 		ADDED from AndroidManifest.xml:3:5
 	android:versionName
@@ -11,6 +9,8 @@ ADDED from AndroidManifest.xml:2:1
 		ADDED from AndroidManifest.xml:4:5
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
+	xmlns:android
+		ADDED from AndroidManifest.xml:2:11
 uses-sdk
 ADDED from AndroidManifest.xml:7:5
 	android:targetSdkVersion
@@ -41,16 +41,16 @@ ADDED from AndroidManifest.xml:12:5
 		ADDED from AndroidManifest.xml:13:9
 meta-data#com.parse.APPLICATION_ID
 ADDED from AndroidManifest.xml:17:9
-	android:name
-		ADDED from AndroidManifest.xml:18:13
 	android:value
 		ADDED from AndroidManifest.xml:19:13
+	android:name
+		ADDED from AndroidManifest.xml:18:13
 meta-data#com.parse.CLIENT_KEY
 ADDED from AndroidManifest.xml:20:9
-	android:name
-		ADDED from AndroidManifest.xml:21:13
 	android:value
 		ADDED from AndroidManifest.xml:22:13
+	android:name
+		ADDED from AndroidManifest.xml:21:13
 activity#com.parse.starter.ParseStarterProjectActivity
 ADDED from AndroidManifest.xml:24:9
 	android:label

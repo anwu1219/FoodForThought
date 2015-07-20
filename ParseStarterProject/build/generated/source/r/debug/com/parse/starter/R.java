@@ -11,7 +11,15 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int background=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+    }
+    public static final class id {
+        public static final int buttonFoodTinder=0x7f050002;
+        public static final int buttonMyFavs=0x7f050003;
+        public static final int buttonSelectRest=0x7f050001;
+        public static final int buttonSustInfo=0x7f050004;
+        public static final int rootLayout=0x7f050000;
     }
     public static final class layout {
         public static final int main=0x7f030000;
