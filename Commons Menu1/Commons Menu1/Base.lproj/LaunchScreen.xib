@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="loadingscreen" translatesAutoresizingMaskIntoConstraints="NO" id="6VW-iE-Ewd">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="511"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food4Thought" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itU-IB-dxu">
+                    <rect key="frame" x="79" y="171" width="333" height="128"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="itU-IB-dxu" secondAttribute="bottom" constant="181" id="2KW-69-nhb"/>
+                <constraint firstItem="itU-IB-dxu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="79" id="Fih-0J-8Qu"/>
+                <constraint firstItem="6VW-iE-Ewd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GST-E6-eUR"/>
+                <constraint firstItem="6VW-iE-Ewd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="T5d-gh-lAe"/>
+                <constraint firstItem="itU-IB-dxu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="171" id="UFN-Oy-wWq"/>
+                <constraint firstAttribute="trailing" secondItem="itU-IB-dxu" secondAttribute="trailing" constant="68" id="cH6-9y-vFT"/>
+                <constraint firstAttribute="bottom" secondItem="6VW-iE-Ewd" secondAttribute="bottom" constant="-31" id="ejA-X6-u7J"/>
+                <constraint firstAttribute="trailing" secondItem="6VW-iE-Ewd" secondAttribute="trailing" id="l2F-pe-bcJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="435" y="418"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="loadingscreen" width="640" height="1136"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
