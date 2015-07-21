@@ -173,7 +173,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
         tableView.rowHeight = 85
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
+        
         
         
         tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
@@ -184,6 +187,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         menuSwipeScroll.addSubview(tableView)
     }
     
+    
+    
+    func bringBack(sender: AnyObject){
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
+    }
     
     
     override func viewDidAppear(animated: Bool) {
