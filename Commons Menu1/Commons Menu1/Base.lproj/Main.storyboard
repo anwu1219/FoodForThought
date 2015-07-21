@@ -1488,6 +1488,11 @@
                         <segue destination="f2Y-jF-9VT" kind="show" identifier="mealInfoSegue" id="aZ9-33-JLe"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="uNN-q4-2E9">
+                    <connections>
+                        <segue destination="zoT-e7-Njf" kind="show" identifier="restProfileSegue" id="AFi-gz-9pX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-636" y="306"/>
         </scene>

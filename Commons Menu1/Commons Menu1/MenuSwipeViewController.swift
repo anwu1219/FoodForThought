@@ -74,6 +74,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
+        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         restWeekdayOpenHoursLabel.textColor = UIColor.whiteColor()
@@ -132,6 +133,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
+        restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)
@@ -693,6 +696,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
+    
+    
+    func showRestaurant(sender: AnyObject){
+        performSegueWithIdentifier("restProfileSegue", sender: sender)
+    }
+    
     
     /**
     Prepares for segue
