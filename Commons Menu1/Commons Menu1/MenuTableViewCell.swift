@@ -101,10 +101,10 @@ class MenuTableViewCell: UITableViewCell {
         var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
-        // add a tap recognizer
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
-        tapRecognizer.delegate = self
-        addGestureRecognizer(tapRecognizer)
+
+        var dishButton = UIButton(frame: self.frame)
+        dishButton.addTarget(self, action: "handleTap:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(dishButton)
     }
     
     
@@ -130,8 +130,6 @@ class MenuTableViewCell: UITableViewCell {
         self.imageView?.layer.borderWidth = 1.0
       //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
         self.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.1)
-
-
     }
     
     /**
@@ -149,10 +147,10 @@ class MenuTableViewCell: UITableViewCell {
             // Updates the center point of the cell so that cell is animatable when panned
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
             // has the user dragged the item far enough to initiate a delete/Like?
-            deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
-            likeOnDragRelease = frame.origin.x > frame.size.width / 2.0
+            deleteOnDragRelease = frame.origin.x < -frame.size.width / 3.0
+            likeOnDragRelease = frame.origin.x > frame.size.width / 3.0
             // fades the contextual clues
-            let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
+            let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 3.0)
             tickLabel.alpha = cueAlpha
             crossLabel.alpha = cueAlpha
             // indicates when the user has pulled the item far enough to invoke the given action
@@ -191,11 +189,9 @@ class MenuTableViewCell: UITableViewCell {
     /**
     MARK: - tap gesture methods
     */
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        if recognizer.state == .Ended {
-            if delegate != nil && dish != nil {
-                delegate!.viewDishInfo(dish!)
-            }
+    func handleTap(sender: AnyObject) {
+        if delegate != nil && dish != nil {
+            delegate!.viewDishInfo(dish!)
         }
     }
     
