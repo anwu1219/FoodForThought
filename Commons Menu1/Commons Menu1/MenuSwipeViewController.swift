@@ -13,6 +13,10 @@ protocol MenuSwipeViewControllerDelegate {
     func reloadTable()
 }
 
+protocol TypesTableViewCellDelegate{
+    func goToType(type: String)
+}
+
 
 // A protocol that the TableViewCell uses to inform its delegate of state change
 protocol MenuTableViewCellDelegate {
@@ -38,7 +42,7 @@ protocol MenuTableViewCellDelegate {
 /**
 Displays menus as food tinder
 */
-class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
+class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate, TypesTableViewCellDelegate{
     var tableView = UITableView()
     var restWeekdayOpenHoursLabel: UILabel!
     var restProfileButton: UIButton!
@@ -57,6 +61,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let scroll = UIScrollView()
     let menuSwipeScroll = UIScrollView()
+    var typesTableView = UITableView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,13 +87,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
         
         menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.4 * view.frame.height, width: 0.9 * view.frame.width, height: 0.6 * view.frame.height)
-        menuSwipeScroll.backgroundColor = UIColor.whiteColor()
-        menuSwipeScroll.contentSize = CGSize(width: 1.33 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
-        menuSwipeScroll.setContentOffset(CGPoint(x: 0.33 * menuSwipeScroll.frame.width, y: 0), animated: false)
+        menuSwipeScroll.backgroundColor = UIColor.clearColor()
+        menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
         menuSwipeScroll.scrollEnabled = false
         view.addSubview(menuSwipeScroll)
         
         addTable()
+        
+        typesTableView.dataSource = self
+        typesTableView.delegate = self
+        typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
+        typesTableView.separatorStyle = .None
+     
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -95,7 +107,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.separatorStyle = .SingleLine
         tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.blackColor().CGColor
-        
         
         
         
@@ -116,7 +127,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        
         tableView.addSubview(refreshControl)
+        
+        
         
         //set the background image
         let bkgdImage = UIImageView()
@@ -155,11 +169,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
         
-        tableView.frame = CGRect(x: 33 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        
+        typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
+        typesTableView.backgroundColor = UIColor.clearColor()
+        tableView.rowHeight = 85
+        menuSwipeScroll.addSubview(typesTableView)
+        
+        
+        tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         tableView.backgroundColor = UIColor.clearColor()
         tableView.backgroundView = styles.backgroundImage
         tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 85;
+        tableView.rowHeight = 85
         menuSwipeScroll.addSubview(tableView)
     }
     
@@ -240,13 +261,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                     }
+                    self.typesTableView.beginUpdates()
+                    self.typesTableView.reloadData()
+                    self.typesTableView.endUpdates()
                     for type: String in self.types {
                         self.menu[type]!.sort({$0.name < $1.name})
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
-                        self.tableView.reloadData()}, completion: nil)
+                        self.tableView.reloadData()
+                        }, completion: nil)
                     self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
                     self.activityIndicator.stopAnimating()
+                    
                 }
             }
         }
@@ -314,6 +340,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    // TypeDelegate
+    func goToType(type: String){
+        let index = find(types, type)!
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.3))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index), atScrollPosition: .Top, animated: true)
+        }
+    }
+    
+    
     func makeMenu(inputMenu : [Dish]){
         for dish : Dish in inputMenu {
              addDishToMenu(dish)
@@ -336,7 +373,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Returns the number of sections in the table
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return menu.keys.array.count
+        if tableView == self.tableView{
+            return types.count
+        } else {
+            return 1
+        }
     }
     
     
@@ -344,7 +385,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Returns the number of rows in the table
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menu[types[section]]!.count
+        if tableView == self.tableView{
+            return menu[types[section]]!.count
+        } else {
+            return types.count
+        }
     }
     
     
@@ -353,6 +398,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            if tableView == self.tableView{
             //initiates the cell
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
             
@@ -379,6 +425,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
             return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+                cell.delegate = self
+                cell.textLabel!.text = types[indexPath.row]
+                cell.textLabel!.backgroundColor = UIColor.clearColor()
+                cell.layer.cornerRadius = 8
+                cell.layer.masksToBounds = true
+                cell.textLabel!.textColor = UIColor.whiteColor()
+                cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
+                return cell
+            }
     }
     
     
@@ -387,6 +444,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == self.tableView{
         let headerView = UIView()
         headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.width / 10)
         headerView.backgroundColor = UIColor(red: 38/255.0, green: 42/255.0, blue: 49/255.0, alpha: 1)
@@ -397,6 +455,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let yUnit = headerView.frame.height / 100
         
         let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 5 * yUnit, width: 90 * yUnit, height: 90 * yUnit))
+        sectionsButton.addTarget(self, action: "showSections:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //Set the image of sections button
         sectionsButton.setImage(UIImage(named: "sloth"), forState: UIControlState.Normal)
         
         
@@ -412,28 +473,23 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         headerView.addSubview(sectionsButton)
         
         return headerView
+        }
+        return nil
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return tableView.frame.width / 10
+        if tableView == self.tableView{
+            return tableView.frame.width / 10
+        }
+        return 0
     }
     
     
     
-    /**
-    Sets the background color of a table cell
-    */
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-        forRowAtIndexPath indexPath: NSIndexPath) {
-          //  cell.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.92, alpha: 0.7)//colorForIndex(indexPath.row)
+    func showSections(sender: AnyObject){
+        self.menuSwipeScroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    
-    // support for versions of iOS prior to iOS 8
-    func tableView(tableView: UITableView, heightForRowAtIndexPath
-        indexPath: NSIndexPath) -> CGFloat {
-            return tableView.rowHeight;
-    }
     
     
     /**
