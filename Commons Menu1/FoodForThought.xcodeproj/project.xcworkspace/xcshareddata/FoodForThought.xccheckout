@@ -10,14 +10,14 @@
 	<string>FoodForThought</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
+		<key>57A47C242724851646EC9251772CE0F761937FAA</key>
 		<string>https://github.com/anwu1219/FoodForThought.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Commons Menu1/FoodForThought.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</key>
+		<key>57A47C242724851646EC9251772CE0F761937FAA</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</string>
+	<string>57A47C242724851646EC9251772CE0F761937FAA</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0B6D3942C62AC37D114B72C01B4EC2EF8DDC9BC7</string>
+			<string>57A47C242724851646EC9251772CE0F761937FAA</string>
 			<key>IDESourceControlWCCName</key>
 			<string>foodforthought</string>
 		</dict>

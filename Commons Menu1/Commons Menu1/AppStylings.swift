@@ -38,8 +38,12 @@ struct Styles {
     // the number of unique styles to keep the look of the app consistent
 }
 
-struct restMenuButtonStyles {
+struct MailMenuButtonStyles {
     
     // let textFont =
+//    foodTinderMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+//    foodTinderMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+//    foodTinderMenuButton.titleLabel?.layer.shadowRadius = 2
+//    foodTinderMenuButton.titleLabel?.layer.shadowOpacity = 1.0
 
 }
