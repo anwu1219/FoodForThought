@@ -40,8 +40,8 @@ Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
     var tableView = UITableView()
-    @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
-    @IBOutlet weak var restProfileButton: UIButton!
+    var restWeekdayOpenHoursLabel: UILabel!
+    var restProfileButton: UIButton!
     @IBOutlet weak var restImage: UIImageView!
     
     
@@ -80,8 +80,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     
         
+        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.4 * view.frame.height, width: 0.9 * view.frame.width, height: 0.6 * view.frame.height)
+        menuSwipeScroll.backgroundColor = UIColor.whiteColor()
+        menuSwipeScroll.contentSize = CGSize(width: 1.33 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.33 * menuSwipeScroll.frame.width, y: 0), animated: false)
+        menuSwipeScroll.scrollEnabled = false
+        view.addSubview(menuSwipeScroll)
         
-        
+        addTable()
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -103,10 +109,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         self.automaticallyAdjustsScrollViewInsets = false;
 
-        tableView.backgroundColor = UIColor.clearColor()
-        tableView.backgroundView = styles.backgroundImage
-        tableView.backgroundView?.contentMode = .ScaleAspectFill
-        tableView.rowHeight = 85;
         if let dishes = dishes {
             self.makeMenu(dishes.dishes[restProf]!)
             for type: String in self.types {
@@ -128,7 +130,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let width: CGFloat = screenSize.width
 
         
-        scroll.frame = CGRectMake(width * 0.05 - 5, restImage.frame.height + 0.06 * height - 25, width, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height + 0.06 * height - 25, width * 0.9, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
@@ -147,6 +149,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             dishes.learned["menuSwipe"] = true
         }
     }
+    
+    
+    func addTable(){
+        let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
+        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+        
+        tableView.frame = CGRect(x: 33 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundView = styles.backgroundImage
+        tableView.backgroundView?.contentMode = .ScaleAspectFill
+        tableView.rowHeight = 85;
+        menuSwipeScroll.addSubview(tableView)
+    }
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
