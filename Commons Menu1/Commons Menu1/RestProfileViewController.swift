@@ -96,11 +96,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 susView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }
-//            else {
-//                label.text = "No \(labels[i]) Labels"
-//                label.frame = CGRectMake(0.05*width, y, susView.frame.width-0.02*width, 50)
-//                y += label.frame.height + height*0.01
-//            }
+
             susView.addSubview(label)
             
             // this is the end of label stuff
@@ -111,11 +107,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     
-                    
-                    
-//                    var icon = UIImageView()
-//                    icon.image = UIImage(named: restProf.labels[i][j])
-//                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
                 }
@@ -142,10 +133,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     let ecoIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "Fair")
                     ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(ecoIcon)
-                    x += ecoIcon.frame.width + width*0.01
+                    x += ecoIcon.frame.width + width * 0.01
                 }
             }
-            scroll.contentSize.width = x
+            scroll.contentSize.width = x + width * 0.1
         }
         susView.contentSize.height = y
     }

@@ -45,11 +45,8 @@ Displays menus as food tinder
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate, TypesTableViewCellDelegate{
     
     var tableView = UITableView()
-    var restWeekdayOpenHoursLabel = UILabel()
     var restProfileButton = UIButton()
-    @IBOutlet weak var restImage: UIImageView!
-    
-    
+    var restImage = UIImageView()
     var menu = [String : [Dish]]()
     var dishes : Dishes!
     let styles = Styles()
@@ -71,17 +68,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100
         
+        
+        var restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
-        restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
+        restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         restWeekdayOpenHoursLabel.textColor = UIColor.whiteColor()
-        restWeekdayOpenHoursLabel.backgroundColor = UIColor.redColor()
-        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 29 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 30.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
         
          view.addSubview(restWeekdayOpenHoursLabel)
+        
+        
+        restImage.frame = CGRect(x: 0, y: 0, width: 100 * xUnit, height: 21 * yUnit)
         
         restProf.imageFile!.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
@@ -93,9 +94,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-    
         
-        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.35 * view.frame.height, width: 0.9 * view.frame.width, height: 0.65 * view.frame.height)
+        self.view.addSubview(restImage)
+        
+        
+        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.38 * view.frame.height, width: 0.9 * view.frame.width, height: 0.62 * view.frame.height)
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
@@ -129,7 +132,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.automaticallyAdjustsScrollViewInsets = false;
 
         
-        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 29 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
+        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 30.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
         restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
@@ -163,7 +166,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let width: CGFloat = screenSize.width
 
         
-        scroll.frame = CGRectMake(width * 0.05, restImage.frame.height + 0.06 * height - 25, width * 0.9, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05, height * 0.21, width * 0.9, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
