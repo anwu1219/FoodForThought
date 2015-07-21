@@ -410,6 +410,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    
+    
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton

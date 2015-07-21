@@ -261,17 +261,16 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         }
                     }
-                    self.typesTableView.beginUpdates()
-                    self.typesTableView.reloadData()
-                    self.typesTableView.endUpdates()
                     for type: String in self.types {
                         self.menu[type]!.sort({$0.name < $1.name})
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()
+                        self.activityIndicator.stopAnimating()
+                        self.typesTableView.reloadData()
+                        self.typesTableView.endUpdates()
                         }, completion: nil)
-                    self.tableView.setContentOffset(CGPoint(x:0, y: 0), animated: true)
-                    self.activityIndicator.stopAnimating()
+
                     
                 }
             }
@@ -515,6 +514,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Delegate function that segues between the dish cells and the dish info view
     */
     func viewDishInfo(selectedDish: Dish) {
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
@@ -689,6 +689,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton
