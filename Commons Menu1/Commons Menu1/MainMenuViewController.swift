@@ -302,6 +302,10 @@ class MainMenuViewController: UIViewController {
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             allPreferenceListViewController.dishes = dishes
         }
+        if segue.identifier == "topDishesSegue" {
+            let topDishesViewController = segue.destinationViewController as! TopDishesViewController
+            topDishesViewController.dishes = self.dishes
+        }
     }
     
     
