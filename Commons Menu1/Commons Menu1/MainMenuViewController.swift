@@ -39,7 +39,7 @@ class MainMenuViewController: UIViewController {
         self.view.sendSubviewToBack(bkgdImage)
         
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
-        foodTinderMenuButton.setTitle(" Food Finder", forState: .Normal)
+        foodTinderMenuButton.setTitle("Food For Thought", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
         topDishesMenuButton.setTitle(" Top Dishes", forState: .Normal)

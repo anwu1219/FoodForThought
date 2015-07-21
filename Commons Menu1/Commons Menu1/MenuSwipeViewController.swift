@@ -43,9 +43,10 @@ protocol MenuTableViewCellDelegate {
 Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate, TypesTableViewCellDelegate{
+    
     var tableView = UITableView()
-    var restWeekdayOpenHoursLabel: UILabel!
-    var restProfileButton: UIButton!
+    var restWeekdayOpenHoursLabel = UILabel()
+    var restProfileButton = UIButton()
     @IBOutlet weak var restImage: UIImageView!
     
     
@@ -67,12 +68,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let yUnit: CGFloat = screenSize.height / 100
+        let xUnit: CGFloat = screenSize.width / 100
+        
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
+        restWeekdayOpenHoursLabel.textColor = UIColor.whiteColor()
+        restWeekdayOpenHoursLabel.backgroundColor = UIColor.redColor()
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 29 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
         
+         view.addSubview(restWeekdayOpenHoursLabel)
         
         restProf.imageFile!.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
@@ -86,7 +94,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     
         
-        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.4 * view.frame.height, width: 0.9 * view.frame.width, height: 0.6 * view.frame.height)
+        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.35 * view.frame.height, width: 0.9 * view.frame.width, height: 0.65 * view.frame.height)
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
@@ -117,9 +125,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.65)
         self.navigationController?.navigationBar.translucent = true
 
-        restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         self.automaticallyAdjustsScrollViewInsets = false;
 
+        
+        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 29 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
+        restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
+        restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
+        restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
+        
+        self.view.addSubview(restProfileButton)
+        self.view.addSubview(restWeekdayOpenHoursLabel)
+        
         if let dishes = dishes {
             self.makeMenu(dishes.dishes[restProf]!)
             for type: String in self.types {
@@ -246,14 +262,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                                     if let type = object["type"] as? String{
                                                         if let price = object["price"] as? String{
                                                         if let userImageFile = object["image"] as? PFFile{
+                                                            if let displayDate = object["displayDate"] as? String{
+                                                                if displayDate == self.getDate() {
                                                                 let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
                                                                 self.dishes.addDish(location, dish: dish)
                                                                 self.addDishToMenu(dish)
                                                                 self.dishes.addPulled(index)
-                                                    } else{
-                                                        let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
-                                                        self.dishes.addDish(location, dish: dish)
-                                                        self.addDishToMenu(dish)
+                                                            }
+                                                        } else {
+                                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
+                                                            self.dishes.addDish(location, dish: dish)
+                                                            self.addDishToMenu(dish)
+                                                            self.dishes.addPulled(index)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -461,9 +482,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let xUnit = headerView.frame.width / 100
         let yUnit = headerView.frame.height / 100
         
+        
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: nil)
+        tableView.headerViewForSection(section)?.addGestureRecognizer(tapRecognizer)
+            
         let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 5 * yUnit, width: 90 * yUnit, height: 90 * yUnit))
         sectionsButton.addTarget(self, action: "showSections:", forControlEvents: UIControlEvents.TouchUpInside)
-        
+            
         //Set the image of sections button
         sectionsButton.setImage(UIImage(named: "sloth"), forState: UIControlState.Normal)
         
