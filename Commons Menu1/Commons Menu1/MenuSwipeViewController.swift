@@ -39,7 +39,7 @@ protocol MenuTableViewCellDelegate {
 Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate{
-    @IBOutlet weak var tableView: UITableView!
+    var tableView = UITableView()
     @IBOutlet weak var restWeekdayOpenHoursLabel: UILabel!
     @IBOutlet weak var restProfileButton: UIButton!
     @IBOutlet weak var restImage: UIImageView!
@@ -56,7 +56,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var activityIndicator = UIActivityIndicatorView()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let scroll = UIScrollView()
-    
+    let menuSwipeScroll = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +79,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     
+        
+        
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -355,27 +358,36 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     /**
     Returns the title of each section
     */
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return types[section]
-    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerViewLabel = UILabel()
-        headerViewLabel.frame = CGRectMake(0, 0, tableView.frame.size.width, 100)
-        headerViewLabel.backgroundColor = UIColor(red: 38/255.0, green: 42/255.0, blue: 49/255.0, alpha: 1)
+        let headerView = UIView()
+        headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.width / 10)
+        headerView.backgroundColor = UIColor(red: 38/255.0, green: 42/255.0, blue: 49/255.0, alpha: 1)
+        headerView.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
+        headerView.layer.borderWidth = 1.0
         
+        let xUnit = headerView.frame.width / 100
+        let yUnit = headerView.frame.height / 100
+        
+        let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 5 * yUnit, width: 90 * yUnit, height: 90 * yUnit))
+        sectionsButton.setImage(UIImage(named: "sloth"), forState: UIControlState.Normal)
+        
+        
+        let headerViewLabel = UILabel()
+        headerViewLabel.frame = CGRectMake(0.15 * tableView.frame.size.width, 0, 0.7 * tableView.frame.size.width, tableView.frame.width / 10)
         headerViewLabel.text = types[section]
         headerViewLabel.textAlignment = .Center
         headerViewLabel.textColor = UIColor.whiteColor()
         headerViewLabel.font = UIFont(name: "HelveticaNeue", size: 20)
-        headerViewLabel.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
-        headerViewLabel.layer.borderWidth = 1.0
         
-        return headerViewLabel
+        headerView.addSubview(headerViewLabel)
+        headerView.addSubview(sectionsButton)
+        
+        return headerView
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return tableView.frame.width / 10
     }
     
     
