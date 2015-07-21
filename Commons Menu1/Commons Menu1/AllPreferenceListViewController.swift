@@ -156,6 +156,12 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     }
     
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    
     /**
     Generates cells and adds items to the table
     */

@@ -352,6 +352,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton
