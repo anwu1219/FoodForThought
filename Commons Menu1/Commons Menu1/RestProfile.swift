@@ -25,10 +25,11 @@ class RestProfile: NSObject {
     var fair = [String]()
     var humane = [String]()
     var imageFile: PFFile?
+    var dynamicTypes : [String]
 
 
     
-    init(name: String, imageFile: PFFile, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String]){
+    init(name: String, imageFile: PFFile, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String], dynamicTypes: [String]){
         self.name = name
         self.imageFile = imageFile
         self.restDescript = restDescript
@@ -42,5 +43,6 @@ class RestProfile: NSObject {
         self.eco = eco
         self.fair = fair
         self.humane = humane
+        self.dynamicTypes = dynamicTypes
     }
 }

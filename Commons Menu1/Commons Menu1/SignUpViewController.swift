@@ -34,6 +34,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         if !Reachability.isConnectedToNetwork() {
             noInternetAlert("")
         }
+        
+        
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
         bkgdImage.image = UIImage(named: "SignInBackground")
@@ -94,6 +96,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+     
+        
+        self.dishes.date = getDate()
         
     }
     
@@ -179,6 +184,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
+
         
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
@@ -252,8 +258,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
-                println("Logged in successfully")
-                
+                if let tinderViewed = PFUser.currentUser()!["tinderViewed"] as? Bool {
+                    if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
+                        self.dishes.learned["tinder"] = tinderViewed
+                        self.dishes.learned["menuSwipe"] = menuViewed
+                        println("Logged in successfully")
+                }
+            }
+            
                 // Cache the user name
                 PFUser.currentUser()?.pinInBackgroundWithBlock({
                     (success: Bool, error: NSError?) -> Void in
@@ -315,8 +327,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                                                                                 if let eco = object["eco"] as? [String] {
                                                                                     if let fair = object["fair"] as? [String]{
                                                                                         if let humane = object["humane"] as? [String] {
-                                                                                            let restaurant = RestProfile(name: name, imageFile: userImageFile, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane)
+                                                                                            if let dynamic = object["dynamic"] as? [String]{
+                                                                                            let restaurant = RestProfile(name: name, imageFile: userImageFile, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane, dynamicTypes : dynamic)
                                                                                 self.dishes.addRestaurant(restaurant)
+                                                                                            }
                                                                                         }
                                                                                     }
                                                                                 }

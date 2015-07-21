@@ -184,6 +184,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             self.presentViewController(alertController, animated: true, completion: nil)
             dishes.learned["menuSwipe"] = true
         }
+        
+        
+        if self.getDate() != dishes.date {
+            for key in dishes.cached.keys {
+                dishes.cached[key] = false
+            }
+            dishes.date = getDate()
+        }
     }
     
     
@@ -252,6 +260,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
+                for type in self.restProf.dynamicTypes{
+                    for rest in self.dishes.dishes.keys.array {
+                        if type == rest.name {
+                       self.dishes.dishes[rest]?.removeAll(keepCapacity: false)
+                        }
+                    }
+                }
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         if let index = object["index"] as? Int{
@@ -631,8 +646,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                         newPreference.saveInBackgroundWithBlock({
                                             (success: Bool, error: NSError?) -> Void in
                                             if (success) {
-                                                println("Successfully Saved")
-                                            } else {
+                                                user["menuViewed"] = true
+                                                user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                                                    
+                                                })                                            } else {
                                                 // There was a problem, check error.description
                                             }
                                         })

@@ -36,6 +36,10 @@ extension UIViewController {
                 (success: Bool, error: NSError?) -> Void in
                 if (success) {
                     // The object has been saved.
+                    user["tinderViewed"] = true
+                    user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        
+                    })
                 } else {
                     // There was a problem, check error.description
                 }

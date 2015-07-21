@@ -85,6 +85,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if !dishes.learned["tinder"]! {
         instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
         instructLabel.string = "\n Swipe right to add dish to Favorites\n or \nSwipe left to pass on dish"
         let fontName: CFStringRef = "Helvetica-Light"
@@ -96,6 +97,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         instructLabel.alignmentMode = kCAAlignmentCenter
         instructLabel.contentsScale = UIScreen.mainScreen().scale
         view.layer.addSublayer(instructLabel)
+        }
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             self.refreshControl.sendActionsForControlEvents(.ValueChanged)

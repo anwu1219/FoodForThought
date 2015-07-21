@@ -109,6 +109,15 @@ class MainMenuViewController: UIViewController {
         self.fetchPreferenceData()
         self.fetchDislikeData()
         
+        if let user =  PFUser.currentUser() {
+        if let tinderViewed = user["tinderViewed"] as? Bool {
+            if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
+                self.dishes.learned["tinder"] = tinderViewed
+                self.dishes.learned["menuSwipe"] = menuViewed
+                println("Logged in successfully")
+                }
+            }
+        }
     }
     
     //creates the log out alert
