@@ -102,7 +102,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     func keyboardWillShow(sender: NSNotification) {
         let screenHeight = screenSize.height
         if self.view.frame.origin.y > -0.4 * screenHeight {
-            self.view.frame.origin.y -= 0.2 * screenHeight
+            self.view.frame.origin.y -= 0.25 * screenHeight
         }
     }
     
