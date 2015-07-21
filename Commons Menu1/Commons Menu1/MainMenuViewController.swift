@@ -39,7 +39,7 @@ class MainMenuViewController: UIViewController {
         self.view.sendSubviewToBack(bkgdImage)
         
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
-        foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
+        foodTinderMenuButton.setTitle(" Food Finder", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
         topDishesMenuButton.setTitle(" Top Dishes", forState: .Normal)
@@ -96,7 +96,7 @@ class MainMenuViewController: UIViewController {
         topDishesMenuButton.frame = styles.buttonFrame
         
         
-        //change the backbutton title
+        //change the backbutton title (hides it)
         let backButton = UIBarButtonItem(
             title: "",
             style: UIBarButtonItemStyle.Plain,
@@ -113,8 +113,6 @@ class MainMenuViewController: UIViewController {
     
     //creates the log out alert
     @IBAction func logoutAction(sender: AnyObject) {
-        println("log out started")
-        
         let alert = UIAlertController(title: "Log Out?",
             message: "Are you sure you want to Log Out?",
             preferredStyle: UIAlertControllerStyle.Alert)
@@ -125,14 +123,12 @@ class MainMenuViewController: UIViewController {
             handler: { alertAction in self.logOutSegue() }
             )
         )
-        
         alert.addAction(UIAlertAction(
             title: "No",
             style: UIAlertActionStyle.Cancel,
             handler: nil
             )
         )
-        
         self.presentViewController(alert, animated: true, completion: nil)
     }
     

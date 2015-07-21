@@ -25,7 +25,7 @@ class TopDishesViewController: UIViewController {
     
     func getPopularDishes() {
         var query = PFQuery(className:"DishInfo")
-        query.orderByDescending("timesliked")
+        query.orderByDescending("likedTime")
         }
     
 
