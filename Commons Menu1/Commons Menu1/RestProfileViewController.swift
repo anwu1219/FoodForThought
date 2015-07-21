@@ -88,11 +88,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
-                label.frame = CGRectMake(0.05*width, y, susWidth/2, 45)
+                label.frame = CGRectMake(0*width, y, susWidth/2, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(label.frame.width+0.01*width, y, 0.5*susWidth, label.frame.height)
+                scroll.frame = CGRectMake(label.frame.width+0.01*width - 25, y, 0.7*susWidth, label.frame.height)
                 susView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }

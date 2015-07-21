@@ -26,6 +26,7 @@ class RestProfile: NSObject {
     var humane = [String]()
     var imageFile: PFFile?
 
+
     
     init(name: String, imageFile: PFFile, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String]){
         self.name = name

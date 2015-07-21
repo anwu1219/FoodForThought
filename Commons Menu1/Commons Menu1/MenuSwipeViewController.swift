@@ -97,7 +97,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         bar.shadowImage = UIImage()
-        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
+        bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.65)
         self.navigationController?.navigationBar.translucent = true
 
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
@@ -127,21 +127,30 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        let label: UILabel = UILabel(frame: CGRectMake(width * 0.015, restImage.frame.height + 0.03 * height + 2 , 0.42 * width, 0.02 * height))
-        label.text = "Sustainability Labels:"
-        label.textColor = UIColor.whiteColor()
-        label.backgroundColor = UIColor.blackColor()
-        label.font = UIFont(name: "HelveticaNeue", size: 14)
-        label.numberOfLines = 0
-        self.view.addSubview(label)        
-        scroll.frame = CGRectMake(width * 0.05 - 5, restImage.frame.height + 0.06 * height + 5, 0.4 * width, 0.095 * height)
+        
+        scroll.frame = CGRectMake(width * 0.05 - 5, restImage.frame.height + 0.06 * height - 25, width, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
+        
+        if !dishes.learned["menuSwipe"]! {
+            let alertController = UIAlertController(title: "Instruction",
+                message: "Swipe right on the dish to add to Favorites \n or\n swipe left to dislike!",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "OK!",
+                style: UIAlertActionStyle.Default,
+                handler: nil
+                )
+            )
+            self.presentViewController(alertController, animated: true, completion: nil)
+            dishes.learned["menuSwipe"] = true
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
         if let foo = dishes.cached[restProf]{
             if !foo {
                 activityIndicator.hidden = false
@@ -155,6 +164,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.dishes.cached(self.restProf)
             }
         }
+        
     }
     
     
@@ -235,7 +245,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
+                    var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
                     var icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(icon)
@@ -379,6 +389,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         headerViewLabel.textAlignment = .Center
         headerViewLabel.textColor = UIColor.whiteColor()
         headerViewLabel.font = UIFont(name: "HelveticaNeue", size: 20)
+
         
         headerView.addSubview(headerViewLabel)
         headerView.addSubview(sectionsButton)
