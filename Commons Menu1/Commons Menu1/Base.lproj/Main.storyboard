@@ -149,24 +149,24 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="PjC-jF-Xu4"/>
+                                <exclude reference="LRe-tW-kkf"/>
+                                <exclude reference="yLc-lZ-yEA"/>
                                 <exclude reference="0aQ-wf-DLl"/>
                                 <exclude reference="JNY-Oi-TTn"/>
                                 <exclude reference="e8V-id-8DH"/>
                                 <exclude reference="gLf-eV-7jP"/>
-                                <exclude reference="PjC-jF-Xu4"/>
-                                <exclude reference="LRe-tW-kkf"/>
-                                <exclude reference="yLc-lZ-yEA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <include reference="PjC-jF-Xu4"/>
+                                <include reference="LRe-tW-kkf"/>
+                                <exclude reference="yLc-lZ-yEA"/>
                                 <include reference="0aQ-wf-DLl"/>
                                 <exclude reference="JNY-Oi-TTn"/>
                                 <include reference="e8V-id-8DH"/>
                                 <exclude reference="gLf-eV-7jP"/>
-                                <include reference="PjC-jF-Xu4"/>
-                                <include reference="LRe-tW-kkf"/>
-                                <exclude reference="yLc-lZ-yEA"/>
                             </mask>
                         </variation>
                     </view>
@@ -1741,8 +1741,8 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXz-wK-Xvd"/>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="aZ9-33-JLe"/>
+        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="aIz-rM-qCJ"/>
     </inferredMetricsTieBreakers>
 </document>

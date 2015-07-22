@@ -96,8 +96,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-     
-        
         self.dishes.date = getDate()
         
     }
@@ -120,6 +118,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
         if isValidEmail(emailAddress.text) == true {
+            //ensure password is longer than 5 characters and is shorter than 20 characters
+            if checkPasswordLengthShort(password.text) == true {
         let alertController = UIAlertController(title: "Agree to terms and conditions",
             message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
             preferredStyle: UIAlertControllerStyle.Alert
@@ -138,6 +138,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         
         // Display alert
         self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            else {
+                let passwordLengthNotPermitted = UIAlertView(title: "Password Length Error", message: "Password must be between 6 and 20 characters", delegate: nil, cancelButtonTitle: "OK")
+                // shows alert to user
+                passwordLengthNotPermitted.show()
+            }
         }
     }
     
@@ -160,25 +166,35 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         return true
     }
     
+    func checkPasswordLengthShort(password: String) -> Bool {
+        if count(password) >= 6 && count(password) <= 20{
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    
     func processSignUp() {
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
-        
+      
         
         // Ensure username is lowercase
         userEmailAddress = userEmailAddress.lowercaseString
-        
         
         // Add email address validation
         if isValidEmail(userEmailAddress) == false {
             println("The email you entered is not valid")
         }
         
+        
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
-        
+
         // Create the user
         var user = PFUser()
         user.username = userEmailAddress
@@ -190,17 +206,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
                 println("Signed up successfully")
+                //performs automatic segue to main menu
+                self.performSegueWithIdentifier("signInToNavigationSegue", sender: nil)
+
             } else {
                 println(error)
+                
+                let signUpFailed = UIAlertView(title: "Sign Up Error", message: "Email Already Exists", delegate: nil, cancelButtonTitle: "OK")
+                // shows alert to user
+                signUpFailed.show()
+
                self.activityIndicator.stopAnimating()
             }
         }
-        
-        //performs automatic segue to main menu
-        performSegueWithIdentifier("signInToNavigationSegue", sender: nil)
-
     }
-    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //self.view.endEditing(true)
@@ -217,8 +236,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
     override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
         if identifier == "signInToNavigationSegue" {
-             var segueShouldOccur = true // you determine this
-             var segueShouldOccurEULA = true
+            var segueShouldOccur = true // you determine this
+            var segueShouldOccurEULA = true
+            
             if isValidEmail(emailAddress.text) == false {
             // perform your computation to determine whether segue should occur
                 segueShouldOccur = false
@@ -271,8 +291,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
+                        println("Successfully cached user name")
                     } else {
                         // There was a problem, check error.description
+                        println("Failed to cache user name")
                     }
                 })
                 
@@ -280,10 +302,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
                 } else {
                 println(error)
                 let notPermitted = UIAlertView(title: "Alert", message: "Username or password is not valid.", delegate: nil, cancelButtonTitle: "OK")
+                self.activityIndicator.stopAnimating()
                 // shows alert to user
                 notPermitted.show()
                 self.password.text == ""
-
             }
         }
     }
@@ -299,7 +321,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
     //regex function to check if email is in valid format
     func isValidEmail(testStr:String) -> Bool {
         // println("validate calendar: \(testStr)")
-        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        let emailRegEx = "^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
