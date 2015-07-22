@@ -568,7 +568,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Delegate function that segues between the dish cells and the dish info view
     */
     func viewDishInfo(selectedDish: Dish) {
-        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         performSegueWithIdentifier("mealInfoSegue", sender: selectedDish)
     }
     
@@ -727,6 +726,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     Prepares for segue
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         // Segues to single dish info
         if segue.identifier == "restProfileSegue" {
             let restProfileViewController = segue.destinationViewController as! RestProfileViewController
