@@ -37,7 +37,7 @@ class Dish: PFObject, PFSubclassing {
     @NSManaged var fair : [String]
     @NSManaged var humane : [String]
     @NSManaged var imageFile : PFFile
-    @NSManaged var image : UIImage
+    var image : UIImage!
 
     
     override class func initialize() {
