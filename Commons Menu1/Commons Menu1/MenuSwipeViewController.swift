@@ -36,6 +36,7 @@ protocol MenuTableViewCellDelegate {
     func uploadPreference(dish: Dish)
     
     func uploadDislike(dish: Dish)
+
 }
 
 
@@ -261,11 +262,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
                 for type in self.restProf.dynamicTypes{
-                    for rest in self.dishes.dishes.keys.array {
-                        if type == rest.name {
-                       self.dishes.dishes[rest]?.removeAll(keepCapacity: false)
-                        }
-                    }
+                    self.menu[type]?.removeAll(keepCapacity: false)
                 }
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
@@ -285,6 +282,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                     dish.humane = object["humane"] as! [String]
                                     dish.price = object["price"] as! String
                                     dish.imageFile = object["image"] as! PFFile
+                                    if let date = object["displayDate"] as? String {
+                                        dish.date = date
+                                    }
                                     self.dishes.addDish(location, dish: dish)
                                     self.dishes.addPulled(dish.index)
                                     self.addDishToMenu(dish)
@@ -302,6 +302,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 dish.humane = object["humane"] as! [String]
                                 dish.price = object["price"] as! String
                                 dish.imageFile = object["image"] as! PFFile
+                                if let date = object["displayDate"] as? String {
+                                    dish.date = date
+                                }
                                 self.dishes.addDish(location, dish: dish)
                                 self.dishes.addPulled(dish.index)
                                 self.addDishToMenu(dish)
@@ -397,7 +400,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func makeMenu(inputMenu : [Dish]){
         for dish : Dish in inputMenu {
-             addDishToMenu(dish)
+            if let date = dish.date {
+                if date == getDate() {
+                    addDishToMenu(dish)
+                }
+            } else {
+                addDishToMenu(dish)
+            }
         }
     }
     

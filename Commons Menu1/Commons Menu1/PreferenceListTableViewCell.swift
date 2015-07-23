@@ -19,6 +19,7 @@ class PreferenceListTableViewCell: UITableViewCell {
     // Center point of the cell
     var originalCenter = CGPoint()
     let label: UILabel
+    let subLabel = UILabel()
     var dish: Dish?{
         didSet {
             label.text = dish!.name
@@ -47,6 +48,15 @@ class PreferenceListTableViewCell: UITableViewCell {
         
         addSubview(label)
       
+        subLabel.frame = CGRect.nullRect
+        subLabel.text = "\n(Not Available Today)"
+        subLabel.textColor = UIColor.darkGrayColor()
+        subLabel.textAlignment = NSTextAlignment.Left;
+        subLabel.numberOfLines = 2
+        //label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        subLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
+        
+        
         var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
@@ -68,9 +78,23 @@ class PreferenceListTableViewCell: UITableViewCell {
         self.backgroundColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)
         let kLabelLeftMargin: CGFloat = 36 * width
         label.frame = CGRect(x: kLabelLeftMargin, y: 0, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
-        self.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
+        subLabel.frame = CGRect(x: kLabelLeftMargin, y: 0.5 * bounds.size.height, width: bounds.size.width - kLabelLeftMargin, height: 0.5 * bounds.size.height)
+        if let date = dish!.date {
+            if date != getDate() {
+                addSubview(subLabel)
+            }
+        }
     }
 
+    
+    func getDate() -> String {
+        let date = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY/MM/dd"
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    
     func handleTap(recognizer: UITapGestureRecognizer) {
         if recognizer.state == .Ended {
             if self.delegate != nil && dish != nil {

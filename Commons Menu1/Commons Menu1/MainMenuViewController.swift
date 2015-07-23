@@ -214,6 +214,9 @@ class MainMenuViewController: UIViewController {
             dish.humane = object["humane"] as! [String]
             dish.price = object["price"] as! String
             dish.imageFile = object["image"] as! PFFile
+            if let date = object["displayDate"] as? String {
+                dish.date = date
+            }
             self.dishes.addToDealtWith(dish.index)
             self.dishes.addDish(location, dish: dish)
             self.dishes.addPulled(dish.index)
