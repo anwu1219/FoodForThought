@@ -471,6 +471,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     }
                 }
+
+                
              //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
             return cell
@@ -497,7 +499,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let headerView = UIView()
         headerView.frame = CGRectMake(0, 0, tableView.frame.size.width, tableView.frame.width / 10)
         headerView.backgroundColor = UIColor(red: 38/255.0, green: 42/255.0, blue: 49/255.0, alpha: 1)
-        headerView.layer.borderColor = UIColor(red: 116/255.0, green: 70/255.0, blue: 37/255.0, alpha: 0.75).CGColor
+        headerView.layer.borderColor = UIColor.blackColor().CGColor
         headerView.layer.borderWidth = 1.0
         
         let xUnit = headerView.frame.width / 100
@@ -507,11 +509,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         var tapRecognizer = UITapGestureRecognizer(target: self, action: nil)
         tableView.headerViewForSection(section)?.addGestureRecognizer(tapRecognizer)
             
-        let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 5 * yUnit, width: 90 * yUnit, height: 90 * yUnit))
+        let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 25 * yUnit, width: 80 * yUnit, height: 50 * yUnit))
         sectionsButton.addTarget(self, action: "showSections:", forControlEvents: UIControlEvents.TouchUpInside)
             
         //Set the image of sections button
-        sectionsButton.setImage(UIImage(named: "sloth"), forState: UIControlState.Normal)
+        sectionsButton.setImage(UIImage(named: "ArrowDropdownButton"), forState: UIControlState.Normal)
         
         
         let headerViewLabel = UILabel()

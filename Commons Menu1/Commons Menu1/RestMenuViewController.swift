@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import QuartzCore
 
 /**
 Shows all the resturants with available menus
@@ -83,15 +84,15 @@ class RestMenuViewController: UIViewController {
             button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
             button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
+          //  button.setBackgroundColor(UIColor(white: 0, alpha: 0.01), forState: UIControlState.Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
             
-            //button shadows NOT WORKING ATM
-            button.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-            button.titleLabel?.layer.shadowOffset = CGSizeMake(4, 4)
-            button.titleLabel?.layer.shadowRadius = 5
-            button.titleLabel?.layer.shadowOpacity = 1.0
+            button.titleLabel?.shadowColor = UIColor.blackColor()
+            button.titleLabel?.shadowOffset = CGSizeMake(3, 3)
+            button.titleLabel?.layer.shadowRadius = 9
+            button.titleLabel?.layer.shadowOpacity = 0.5
             
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
             backgroundImage.frame = button.frame
@@ -131,3 +132,14 @@ class RestMenuViewController: UIViewController {
     }
 }
 }
+
+extension UIButton {
+    func setBackgroundColor(color: UIColor, forState: UIControlState) {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), color.CGColor)
+        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRect(x: 0, y: 0, width: 1, height: 1))
+        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.setBackgroundImage(colorImage, forState: forState)
+    }}
