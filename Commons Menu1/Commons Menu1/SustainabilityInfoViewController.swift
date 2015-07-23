@@ -17,8 +17,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let susView = UIScrollView()
     let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
-    let susLabels = ["Environmental", "Social", "Economic"]
-    let susInfo = ["Foremost, emphasis is placed on the environmental sustainability of various food products. Organic food avoids the artificiality and pollutants of ecologically harmful fertilizers, while local food requires fewer “food miles”, meaning less carbon dioxide emissions to transport the produce. Different eco labels take into account these characteristics of foods.  Education in this leads to a healthier environment that avoids unnecessary contamination and degradation of the planet.", "We also analyze the social impacts of various foods at local dining facilities, like the Vail cafeteria and the Pickled Peach restaurant. Part of this is nutritional, a society cannot function best without healthy members. We analyze the foods that are highest in protein and lowest in fat, among other criteria. This information leads potentially to changes in food-related decisions. We also consider fundamentals like farmers’ working conditions and wages.", "In order to survive in a world with limited resources, we must eat purchase food that is convenient and affordable. Our app becomes relevant for this purpose when reviewing meals outside of the Vail cafeteria, a dining hall that sets a fixed price (roughly $10-12) for all-you-can-eat meals. At other dining facilities, price can, depending on your priorities, become a significant factor when deciding on meal choices."]
+    let susLabels = ["Sustainability", "Environmental", "Social", "Economic"]
+    let susInfo = ["Our sustainability team seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information within a useful meal planning tool. This tool integrates the triple bottom line (equity, environment, economy) into our culture in order to encourage sustainable communities, businesses and lifestyles. \n Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability: \n “In every deliberation, we must consider the impact on the seventh generation” \n The Great Law of the Iroquois\n“Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs”\n Brundtland Commission \n We use the triple bottom line concept coined by John Elkington in his 1994 book, “Cannibals with Forks.” It is a framework to facilitate decision-making because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\n Some examples of sustainability topics include (but are not limited to):\n Food Justice\n Socially and environmentally-conscious businesses\n Fair labor\n Land use\n Waste management\n Resource consumption\n Healthy living. What you can do:\n Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability.  Here are some suggestions:\nAsk if the restaurant sources local food.\nSee if you can determine what farms the food you buy comes from.\n Visit your local farmers market. You’ll get fresh food and support the local economy.", "Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.", "Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability."]
 
 
     @IBAction func learnMoreAction(sender: UIButton!) {
@@ -68,7 +68,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         //self.view.sendSubviewToBack(background)
 
         
-        for var i = 0; i < 3; i++ {
+        for var i = 0; i < 1; i++ {
             let container = UIView()
             let header = UILabel()
             let image = UIImageView()
@@ -114,7 +114,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             button.setTitle("Learn More", forState: UIControlState.Normal)
             button.addTarget(self, action: "learnMoreAction:", forControlEvents: UIControlEvents.TouchUpInside)
             button.frame = CGRectMake(susView.frame.width*0.2, y, susView.frame.width*0.6, 50)
-            button.backgroundColor = UIColor.yellowColor()
+            button.backgroundColor = UIColor.clearColor()
             susView.addSubview(button)
             y += 50 + verticalSpace
             
