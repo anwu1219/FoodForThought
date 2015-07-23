@@ -253,7 +253,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         query.whereKey("index", equalTo: randomIndex)
-        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
                 if !self.hasBeenAdded(object["name"]! as! String, location: object["location"] as! String){
