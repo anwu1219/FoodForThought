@@ -306,7 +306,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                                     if (success) {
                                         println("Successfully deleted")
                                     } else {
-                                        println("Failed")
+                                        println("Failed to delete")
                                     }
                                 })
                                 //pFObject.pinInBackground({})
