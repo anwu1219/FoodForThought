@@ -80,15 +80,14 @@ class RestMenuViewController: UIViewController {
             //Sets the content of the buttons
             button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)
             button.setTitle(keys[i].name, forState: UIControlState.Normal)
-            button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
             button.titleLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
             button.addTarget(self, action: "toMenu:", forControlEvents: UIControlEvents.TouchUpInside)
-          //  button.setBackgroundColor(UIColor(white: 0, alpha: 0.01), forState: UIControlState.Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
             
+            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
             button.titleLabel?.shadowColor = UIColor.blackColor()
             button.titleLabel?.shadowOffset = CGSizeMake(3, 3)
             button.titleLabel?.layer.shadowRadius = 9
