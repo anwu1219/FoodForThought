@@ -272,6 +272,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         dish.imageFile = object["image"] as! PFFile
                         self.dishes.addDish(dish.location, dish: dish)
                         self.dishes.addPulled(dish.index)
+                        if let date = object["displayDate"] as? String {
+                            dish.date = date
+                        }
                         dish.imageFile.getDataInBackgroundWithBlock {
                             (imageData: NSData?, error: NSError?) ->Void in
                             if error == nil {
