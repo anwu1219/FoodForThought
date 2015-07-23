@@ -257,7 +257,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addDishWithLocation(location: String){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)
-        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
@@ -284,6 +283,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             dish.humane = object["humane"] as! [String]
                             dish.price = object["price"] as! String
                             dish.imageFile = object["image"] as! PFFile
+                            //dish.like = false
+                            //dish.dislike = false
                             self.dishes.addDish(location, dish: dish)
                             self.dishes.addPulled(dish.index)
                             self.addDishToMenu(dish)

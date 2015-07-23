@@ -28,8 +28,8 @@ class Dish: PFObject, PFSubclassing {
     @NSManaged var nutritionistNote: String
     @NSManaged var price: String
     // a Boolean value that determines whether the user liked the dish %anwu
-    @NSManaged var like: Bool
-    @NSManaged var dislike: Bool
+    var like: Bool = false
+    var dislike: Bool = false
     @NSManaged var type : String
     @NSManaged var index : Int
     @NSManaged var susLabels : [String] //Sustainability Labels on dish level

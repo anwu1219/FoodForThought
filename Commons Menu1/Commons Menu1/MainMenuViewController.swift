@@ -170,7 +170,6 @@ class MainMenuViewController: UIViewController {
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
-            query.cachePolicy = PFCachePolicy.CacheThenNetwork
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{
@@ -197,7 +196,6 @@ class MainMenuViewController: UIViewController {
     func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("name", equalTo: name)
-        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.getFirstObjectInBackgroundWithBlock{
             (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
@@ -232,7 +230,6 @@ class MainMenuViewController: UIViewController {
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
-            query.cachePolicy = PFCachePolicy.CacheThenNetwork
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{
