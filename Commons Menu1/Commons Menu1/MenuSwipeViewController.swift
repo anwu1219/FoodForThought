@@ -271,24 +271,41 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     for object: AnyObject in objectsArray{
                         let dish = object as! Dish
                         if !self.dishes.pulled.contains(object["index"]! as! Int){
-                            dish.name = object["name"] as! String
-                            dish.location = object["location"] as! String
-                            dish.ingredients = object["ingredients"] as! [String]
-                            dish.labels = object["labels"] as! [[String]]
-                            dish.type = object["type"] as! String
-                            dish.susLabels = object["susLabels"] as! [String]
-                            dish.index = object["index"] as! Int
-                            dish.eco = object["eco"] as! [String]
-                            dish.fair = object["fair"] as! [String]
-                            dish.humane = object["humane"] as! [String]
-                            dish.price = object["price"] as! String
-                            dish.imageFile = object["image"] as! PFFile
-                            //dish.like = false
-                            //dish.dislike = false
-                            self.dishes.addDish(location, dish: dish)
-                            self.dishes.addPulled(dish.index)
-                            self.addDishToMenu(dish)
-                            println(dish)
+                            if let date = object["displayDate"] as? String {
+                                if date == self.dishes.date {
+                                    dish.name = object["name"] as! String
+                                    dish.location = object["location"] as! String
+                                    dish.ingredients = object["ingredients"] as! [String]
+                                    dish.labels = object["labels"] as! [[String]]
+                                    dish.type = object["type"] as! String
+                                    dish.susLabels = object["susLabels"] as! [String]
+                                    dish.index = object["index"] as! Int
+                                    dish.eco = object["eco"] as! [String]
+                                    dish.fair = object["fair"] as! [String]
+                                    dish.humane = object["humane"] as! [String]
+                                    dish.price = object["price"] as! String
+                                    dish.imageFile = object["image"] as! PFFile
+                                    self.dishes.addDish(location, dish: dish)
+                                    self.dishes.addPulled(dish.index)
+                                    self.addDishToMenu(dish)
+                                }
+                            } else {
+                                dish.name = object["name"] as! String
+                                dish.location = object["location"] as! String
+                                dish.ingredients = object["ingredients"] as! [String]
+                                dish.labels = object["labels"] as! [[String]]
+                                dish.type = object["type"] as! String
+                                dish.susLabels = object["susLabels"] as! [String]
+                                dish.index = object["index"] as! Int
+                                dish.eco = object["eco"] as! [String]
+                                dish.fair = object["fair"] as! [String]
+                                dish.humane = object["humane"] as! [String]
+                                dish.price = object["price"] as! String
+                                dish.imageFile = object["image"] as! PFFile
+                                self.dishes.addDish(location, dish: dish)
+                                self.dishes.addPulled(dish.index)
+                                self.addDishToMenu(dish)
+                            }
                         }
                     }
                     for type: String in self.types {

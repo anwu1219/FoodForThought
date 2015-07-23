@@ -272,13 +272,13 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         dish.imageFile = object["image"] as! PFFile
                         self.dishes.addDish(dish.location, dish: dish)
                         self.dishes.addPulled(dish.index)
-                        self.menu.append(dish)
                         dish.imageFile.getDataInBackgroundWithBlock {
                             (imageData: NSData?, error: NSError?) ->Void in
                             if error == nil {
                                 if let data = imageData{
                                     if let image = UIImage(data: data){
                                         dish.image = image
+                                        self.menu.append(dish)
                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                             self.foodTinderTableView.reloadData() }, completion: nil)
                                     }
