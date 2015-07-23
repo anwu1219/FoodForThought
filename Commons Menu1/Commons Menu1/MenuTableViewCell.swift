@@ -105,12 +105,9 @@ class MenuTableViewCell: UITableViewCell {
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
 
-        var dishButton = UIButton(frame: self.frame)
-        dishButton.addTarget(self, action: "handleTap:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.addSubview(dishButton)
-        
-
-        
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        tapRecognizer.delegate = self
+        addGestureRecognizer(tapRecognizer)
         
     }
     
