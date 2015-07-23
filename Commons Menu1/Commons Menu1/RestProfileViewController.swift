@@ -206,16 +206,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.addSubview(callRestaurant)
         y += callRestaurant.frame.height + space
         
-        var url = UILabel()
-        url.text = "Website:\n" + restProf.url
-        url.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
-        url.lineBreakMode = .ByWordWrapping
-        url.textColor = UIColor.whiteColor()
-        url.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-        url.numberOfLines = 0
-        url.sizeToFit()
-        restProfScrollView.addSubview(url)
-        y += url.frame.height + space
+        
+        let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        openUrl.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        openUrl.setTitle("Go To Website", forState: .Normal)
+        openUrl.sizeToFit()
+        openUrl.addTarget(self, action: "openWebsite:", forControlEvents: UIControlEvents.TouchUpInside)
+        restProfScrollView.addSubview(openUrl)
+        y += openUrl.frame.height + space
         
         var health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
@@ -344,6 +342,17 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    @IBAction func openWebsite(sender:UIButton) {
+        if let url = NSURL(string: restProf.url) {
+            println("Opening Website")
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    
     
     @IBAction func callNumber(sender:UIButton) {
         if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
