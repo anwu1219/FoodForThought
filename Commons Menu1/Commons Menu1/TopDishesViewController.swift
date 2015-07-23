@@ -10,10 +10,14 @@ import UIKit
 import Parse
 
 
-class TopDishesViewController: UIViewController {
+class TopDishesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var dishes: Dishes!
     var topDishes = [Dish]()
+    var menu = [String : [Dish]]()
+    var types = [String]()
+    var refreshControl = UIRefreshControl()
+
     
     @IBOutlet weak var topDishesTableView: UITableView!
     
@@ -27,18 +31,36 @@ class TopDishesViewController: UIViewController {
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
-        println(dishes)
+        
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        topDishesTableView.addSubview(refreshControl)
+        
         getPopularDishes()
+        
+        topDishesTableView.delegate = self
+        topDishesTableView.dataSource = self
         
         topDishesTableView.backgroundColor = UIColor.clearColor()
         
         // Do any additional setup after loading the view.
     }
     
+    func refresh(refreshControl: UIRefreshControl){
+        topDishesTableView.beginUpdates()
+        topDishes.removeAll(keepCapacity: false)    
+        getPopularDishes()
+        topDishesTableView.endUpdates()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.refreshControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+        
     }
     
     func checkDishContains(name: String, location: String) -> (contain: Bool, dish: Dish?) {
@@ -61,13 +83,15 @@ class TopDishesViewController: UIViewController {
                 for topdish: PFObject in topdishes {
                     if let restaurant = topdish["location"] as?String{
                         if let dishName = topdish["name"] as? String{
+                            println(dishName)
+
                             let result = self.checkDishContains(dishName, location: restaurant)
                             if !result.contain {
                             self.addDishWithName(restaurant, name: dishName, like: false, dislike: false)
-                            
                             }
                             else {
                                 self.topDishes.append(result.dish!)
+                                self.topDishesTableView.reloadData()
                                 
                             }
                         }
@@ -104,9 +128,50 @@ class TopDishesViewController: UIViewController {
                 self.dishes.addDish(location, dish: dish)
                 self.dishes.addPulled(dish.index)
                 self.topDishes.append(dish)
+                self.topDishesTableView.reloadData()
             }
         }
     }
+    
+    
+    // MARK: - Table view data source
+    /**
+    Returns the number of sections in the table
+    */
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+            return 1
+    }
+    
+    
+    /**
+    Returns the number of rows in the table
+    */
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println(topDishes.count)
+        return topDishes.count
+    }
+
+    
+    
+    
+    /**
+    Generates cells and adds items to the table
+    */
+    func tableView(tableView: UITableView,
+        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+                //initiates the cell
+                let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+                
+                cell.selectionStyle = .None
+                let label = UILabel(frame: cell.frame)
+                let dish = topDishes[indexPath.row]
+                label.text = dish.name
+                cell.addSubview(label)
+
+            return cell
+
+    }
+
     
 
     /*
