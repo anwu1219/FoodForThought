@@ -14,6 +14,9 @@ class Dishes{
     var dealtWith = Set<Int>()
     var pulled = Set<Int>()
     var cached = [RestProfile: Bool]()
+    var learned = [String: Bool]()
+    var date = String()
+    
     
     func addDish(location: String, dish : Dish){
         for restaurant : RestProfile in dishes.keys {
@@ -46,6 +49,7 @@ class Dishes{
         self.dealtWith.remove(index)
     }
     
+    
     func cached(restaurant: RestProfile) {
         self.cached[restaurant] = true
     }
@@ -54,9 +58,10 @@ class Dishes{
     func addPulled(index: Int){
         self.pulled.insert(index)
     }
+        
     
     init (){
-        
+        self.learned = ["tinder": false, "menuSwipe": false]
     }
     
 }

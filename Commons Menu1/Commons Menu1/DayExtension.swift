@@ -17,4 +17,12 @@ extension UIViewController {
         let weekDay = myComponents.weekday
         return weekDay - 1
     }
+    
+    func getDate() -> String {
+        let date = NSDate()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "YYYY/MM/dd"
+        return dateFormatter.stringFromDate(date)
+    }
+    
 }

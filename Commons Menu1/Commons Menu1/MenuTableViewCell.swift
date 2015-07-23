@@ -23,6 +23,7 @@ class MenuTableViewCell: UITableViewCell {
     let label: UILabel
     var itemLikeLayer = CALayer()
     var itemDislikeLayer = CALayer()
+    var arrowImage = CALayer()
 
     // The object that acts as delegate for this cell
     var delegate: MenuTableViewCellDelegate?
@@ -58,6 +59,8 @@ class MenuTableViewCell: UITableViewCell {
             label.backgroundColor = UIColor.clearColor()
             return label
         }
+        
+   
         
         // tick and cross labels for context cues
         tickLabel = createCueLabel()
@@ -101,10 +104,14 @@ class MenuTableViewCell: UITableViewCell {
         var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
-        // add a tap recognizer
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
-        tapRecognizer.delegate = self
-        addGestureRecognizer(tapRecognizer)
+
+        var dishButton = UIButton(frame: self.frame)
+        dishButton.addTarget(self, action: "handleTap:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addSubview(dishButton)
+        
+
+        
+        
     }
     
     
@@ -128,10 +135,17 @@ class MenuTableViewCell: UITableViewCell {
         self.imageView?.frame = CGRect(x: 5 * width, y: 20 * height, width: 18 * width, height: 60 * height)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
-      //  self.imageView?.bounds = CGRectMake(0, 0, 30, 30)
+        
+     
+        
+        var arrowImageView = UIImageView(frame: CGRectMake(90 * width, 42 * height, 4 * width, 20 * height))
+        var arrowImage : UIImage = UIImage(named: "MenuItemArrow")!
+        arrowImageView.image = arrowImage
+        self.backgroundView = UIView()
+        self.backgroundView!.addSubview(arrowImageView)
+        self.bringSubviewToFront(backgroundView!)
+        
         self.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.1)
-
-
     }
     
     /**
@@ -191,11 +205,9 @@ class MenuTableViewCell: UITableViewCell {
     /**
     MARK: - tap gesture methods
     */
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        if recognizer.state == .Ended {
-            if delegate != nil && dish != nil {
-                delegate!.viewDishInfo(dish!)
-            }
+    func handleTap(sender: AnyObject) {
+        if delegate != nil && dish != nil {
+            delegate!.viewDishInfo(dish!)
         }
     }
     

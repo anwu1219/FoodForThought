@@ -88,19 +88,15 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
-                label.frame = CGRectMake(0.05*width, y, susWidth/2, 45)
+                label.frame = CGRectMake(0*width, y, susWidth/2, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(label.frame.width+0.01*width, y, 0.5*susWidth, label.frame.height)
+                scroll.frame = CGRectMake(label.frame.width+0.01*width - 25, y, 0.7*susWidth, label.frame.height)
                 susView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }
-//            else {
-//                label.text = "No \(labels[i]) Labels"
-//                label.frame = CGRectMake(0.05*width, y, susView.frame.width-0.02*width, 50)
-//                y += label.frame.height + height*0.01
-//            }
+
             susView.addSubview(label)
             
             // this is the end of label stuff
@@ -111,11 +107,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     
-                    
-                    
-//                    var icon = UIImageView()
-//                    icon.image = UIImage(named: restProf.labels[i][j])
-//                    icon.frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
                 }
@@ -142,10 +133,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     let ecoIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "Fair")
                     ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(ecoIcon)
-                    x += ecoIcon.frame.width + width*0.01
+                    x += ecoIcon.frame.width + width * 0.01
                 }
             }
-            scroll.contentSize.width = x
+            scroll.contentSize.width = x + width * 0.1
         }
         susView.contentSize.height = y
     }
@@ -215,16 +206,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.addSubview(callRestaurant)
         y += callRestaurant.frame.height + space
         
-        var url = UILabel()
-        url.text = "Website:\n" + restProf.url
-        url.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
-        url.lineBreakMode = .ByWordWrapping
-        url.textColor = UIColor.whiteColor()
-        url.font = UIFont(name: "HelveticaNeue-Light", size: 16)
-        url.numberOfLines = 0
-        url.sizeToFit()
-        restProfScrollView.addSubview(url)
-        y += url.frame.height + space
+        
+        let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        openUrl.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        openUrl.setTitle("Go To Website", forState: .Normal)
+        openUrl.sizeToFit()
+        openUrl.addTarget(self, action: "openWebsite:", forControlEvents: UIControlEvents.TouchUpInside)
+        restProfScrollView.addSubview(openUrl)
+        y += openUrl.frame.height + space
         
         var health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
@@ -379,6 +368,17 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
+    @IBAction func openWebsite(sender:UIButton) {
+        if let url = NSURL(string: restProf.url) {
+            println("Opening Website")
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    
+    
     @IBAction func callNumber(sender:UIButton) {
         if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
             println("Call Made")
@@ -434,6 +434,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
+    
+    
     
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()

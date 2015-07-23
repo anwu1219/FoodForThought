@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController {
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
+    @IBOutlet weak var topDishesMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     
     
@@ -38,9 +39,10 @@ class MainMenuViewController: UIViewController {
         self.view.sendSubviewToBack(bkgdImage)
         
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
-        foodTinderMenuButton.setTitle(" Food Tinder", forState: .Normal)
+        foodTinderMenuButton.setTitle(" Food For Thought", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
+        topDishesMenuButton.setTitle(" Top Dishes", forState: .Normal)
         
         restMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
         restMenuButton.layer.shadowRadius = 5
@@ -57,6 +59,10 @@ class MainMenuViewController: UIViewController {
         sustInfoMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
         sustInfoMenuButton.layer.shadowRadius = 5
         sustInfoMenuButton.layer.shadowOpacity = 1.0
+        
+        topDishesMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
+        topDishesMenuButton.layer.shadowRadius = 5
+        topDishesMenuButton.layer.shadowOpacity = 1.0
         
         restMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
         restMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
@@ -78,14 +84,19 @@ class MainMenuViewController: UIViewController {
         sustInfoMenuButton.titleLabel?.layer.shadowRadius = 2
         sustInfoMenuButton.titleLabel?.layer.shadowOpacity = 1.0
         
+        topDishesMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        topDishesMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        topDishesMenuButton.titleLabel?.layer.shadowRadius = 2
+        topDishesMenuButton.titleLabel?.layer.shadowOpacity = 1.0
+        
         restMenuButton.frame = styles.buttonFrame
         myPrefMenuButton.frame = styles.buttonFrame
         foodTinderMenuButton.frame = styles.buttonFrame
         sustInfoMenuButton.frame = styles.buttonFrame
+        topDishesMenuButton.frame = styles.buttonFrame
         
-        // logOutButton.addTarget(self, action: "logoutAlert:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        //change the backbutton title
+        //change the backbutton title (hides it)
         let backButton = UIBarButtonItem(
             title: "",
             style: UIBarButtonItemStyle.Plain,
@@ -98,12 +109,19 @@ class MainMenuViewController: UIViewController {
         self.fetchPreferenceData()
         self.fetchDislikeData()
         
+        if let user =  PFUser.currentUser() {
+        if let tinderViewed = user["tinderViewed"] as? Bool {
+            if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
+                self.dishes.learned["tinder"] = tinderViewed
+                self.dishes.learned["menuSwipe"] = menuViewed
+                println("Logged in successfully")
+                }
+            }
+        }
     }
     
     //creates the log out alert
     @IBAction func logoutAction(sender: AnyObject) {
-        println("log out started")
-        
         let alert = UIAlertController(title: "Log Out?",
             message: "Are you sure you want to Log Out?",
             preferredStyle: UIAlertControllerStyle.Alert)
@@ -114,14 +132,12 @@ class MainMenuViewController: UIViewController {
             handler: { alertAction in self.logOutSegue() }
             )
         )
-        
         alert.addAction(UIAlertAction(
             title: "No",
             style: UIAlertActionStyle.Cancel,
             handler: nil
             )
         )
-        
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -275,6 +291,8 @@ class MainMenuViewController: UIViewController {
         self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
     
+   
+    
     
     /**
     Prepares for segues
@@ -292,6 +310,10 @@ class MainMenuViewController: UIViewController {
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             allPreferenceListViewController.dishes = dishes
+        }
+        if segue.identifier == "topDishesSegue" {
+            let topDishesViewController = segue.destinationViewController as! TopDishesViewController
+            topDishesViewController.dishes = self.dishes
         }
     }
     

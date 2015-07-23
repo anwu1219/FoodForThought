@@ -36,7 +36,7 @@ class Dish: NSObject {
     var humane = [String]()
     var imageFile : PFFile?
     var image : UIImage?
-
+    
     
     init(name: String) {
         self.name = name

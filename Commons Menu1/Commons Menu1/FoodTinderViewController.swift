@@ -36,7 +36,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     var menu = [Dish]()
     let styles = Styles()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-    var edited = false
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var ecoLabelsArray: [String]!
@@ -86,6 +85,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        if !dishes.learned["tinder"]! {
         instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
         instructLabel.string = "\n Swipe right to add dish to Favorites\n or \nSwipe left to pass on dish"
         let fontName: CFStringRef = "Helvetica-Light"
@@ -97,6 +97,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         instructLabel.alignmentMode = kCAAlignmentCenter
         instructLabel.contentsScale = UIScreen.mainScreen().scale
         view.layer.addSublayer(instructLabel)
+        }
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1))
         dispatch_after(delayTime, dispatch_get_main_queue()){
             self.refreshControl.sendActionsForControlEvents(.ValueChanged)
@@ -210,9 +211,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     */
     func toDoItemDeleted(dish: Dish) {
         //Finds index of swiped dish and removes it from the array
-        if !edited {
+        if !dishes.learned["tinder"]! {
             instructLabel.hidden = true
-            edited = true
+             dishes.learned["tinder"] = true
         }
         // use the UITableView to animate the removal of this row
         var index = find(self.menu, dish)!
@@ -351,6 +352,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             allPreferenceListViewController.dishes = dishes
         }
     }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     
     
     func showLabelInfo(sender: AnyObject) {
