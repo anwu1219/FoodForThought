@@ -31,16 +31,18 @@ Class that shows all the preferences of the current user
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate {
     
     
-    @IBOutlet weak var allPrefTopImage: UIImageView!
-    @IBOutlet weak var myPreferenceLabel: UILabel!
-    @IBOutlet var preferenceListView: UIView!
-    @IBOutlet weak var preferenceListTableView: UITableView!
+    var allPrefTopImage = UIImageView()
+    var preferenceListTableView = UITableView()
     var preferences = [String: [Dish]]()
     var dishes : Dishes!
     var keys = [String]()
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     var edited = false
     var indexTitles = [String]()
+    let menuSwipeScroll = UIScrollView()
+    var typesTableView = UITableView()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,22 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
+        
+        allPrefTopImage.image = UIImage(named: "redberrycup")
+        allPrefTopImage.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 0.23 * self.view.frame.height)
+        
+        view.addSubview(allPrefTopImage)
+        
+        menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.25 * view.frame.height, width: 0.9 * view.frame.width, height: 0.75 * view.frame.height)
+        menuSwipeScroll.backgroundColor = UIColor.clearColor()
+        menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
+        menuSwipeScroll.scrollEnabled = false
+        view.addSubview(menuSwipeScroll)
+        
+        
+        
+        
         //bottom border between top image and table view
         let border = CALayer()
         let width = CGFloat(2.0)
@@ -70,10 +88,18 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         allPrefTopImage.layer.masksToBounds = true
         self.navigationController?.navigationBar.translucent = true
         
-        myPreferenceLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        myPreferenceLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        myPreferenceLabel.layer.shadowRadius = 5
-        myPreferenceLabel.layer.shadowOpacity = 1.0
+        
+        var myPreferenceLabel = UILabel()
+        //Formats the labels in the view controller
+        myPreferenceLabel.text = "My Favorites"
+        myPreferenceLabel.font = UIFont(name: "HelveticaNeue-Light", size: 0.06 * self.view.frame.width)
+        myPreferenceLabel.sizeToFit()
+        myPreferenceLabel.textColor = UIColor.whiteColor()
+        myPreferenceLabel.backgroundColor = UIColor.blackColor()
+        myPreferenceLabel.frame = CGRect(x : 0.05 * view.frame.width, y: 0.15 * view.frame.height, width: 0.4 * view.frame.width, height: 0.08 * view.frame.height)
+        
+        view.addSubview(myPreferenceLabel)
+        
         
         preferenceListTableView.layer.borderColor = UIColor(red: 132/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
@@ -82,6 +108,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
+        preferenceListTableView.scrollEnabled = true
         preferenceListTableView.separatorStyle = .SingleLine
         preferenceListTableView.rowHeight = 85;
         preferenceListTableView.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
@@ -91,7 +118,23 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         for key: String in keys {
             preferences[key]!.sort({$0.name < $1.name})
         }
+        addTable()
+
     }
+    
+    
+    
+    func addTable(){
+        let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
+        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+        
+        preferenceListTableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        preferenceListTableView.backgroundColor = UIColor.clearColor()
+        preferenceListTableView.backgroundView?.contentMode = .ScaleAspectFill
+        preferenceListTableView.rowHeight = 85
+        menuSwipeScroll.addSubview(preferenceListTableView)
+    }
+    
     
     
     /**
@@ -197,9 +240,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     /**
     Returns the title of each section
     */
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return keys[section]
-    }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerViewLabel = UILabel()
