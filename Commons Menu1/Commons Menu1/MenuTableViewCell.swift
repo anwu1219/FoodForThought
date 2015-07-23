@@ -149,10 +149,10 @@ class MenuTableViewCell: UITableViewCell {
             // Updates the center point of the cell so that cell is animatable when panned
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
             // has the user dragged the item far enough to initiate a delete/Like?
-            deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
-            likeOnDragRelease = frame.origin.x > frame.size.width / 2.0
+            deleteOnDragRelease = frame.origin.x < -frame.size.width / 3.0
+            likeOnDragRelease = frame.origin.x > frame.size.width / 3.0
             // fades the contextual clues
-            let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 2.0)
+            let cueAlpha = fabs(frame.origin.x) / (frame.size.width / 3.0)
             tickLabel.alpha = cueAlpha
             crossLabel.alpha = cueAlpha
             // indicates when the user has pulled the item far enough to invoke the given action
