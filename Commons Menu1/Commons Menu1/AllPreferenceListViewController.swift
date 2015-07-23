@@ -175,7 +175,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             cell.delegate = self
             cell.selectionStyle = .None
             cell.dish = dish
-            dish.imageFile!.getDataInBackgroundWithBlock {
+            dish.imageFile.getDataInBackgroundWithBlock {
                 (imageData: NSData?, error: NSError?) ->Void in
                 if error == nil {
                     if let data = imageData{
