@@ -22,7 +22,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var labelsLabel: UILabel!
     
     
-    var dish: Dish?
+    var dish: Dish!
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     override func viewDidLoad() {
@@ -30,7 +30,18 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         
         
         dishName.title = dish?.name
-        dishImage.image = dish?.image
+        
+        dish.imageFile.getDataInBackgroundWithBlock {
+            (imageData: NSData?, error: NSError?) ->Void in
+            if error == nil {
+                if let data = imageData{
+                    if let image = UIImage(data: data){
+                        self.dishImage.image = image
+                    }
+                }
+            }
+        }
+        
         dishImage.contentMode = .ScaleAspectFill
         dishImage.layer.borderWidth = 6
         let darkGreenColor = UIColor(red: 25.0/255, green: 58.0/255, blue: 46/255, alpha: 1)

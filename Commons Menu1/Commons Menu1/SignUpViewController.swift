@@ -335,38 +335,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             if error == nil && objects != nil{
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        if let name = object["name"] as? String {
-                            if let userImageFile = object["image"] as? PFFile{
-                                            if let address = object["address"] as? String{
-                                                if let phoneNumber = object["number"] as? String{
-                                                    if let hours = object["hours"] as? [String]{
-                                                        if let restDescript = object["restDescription"] as? String{
-                                                            if let susDescript = object["susDescription"] as? [String]{
-                                                                if let labels = object["labelDescription"] as? [[String]]{
-                                                                    if let healthScore = object["healthScore"] as? Double{
-                                                                        if let mealPlanHours = object["mealPlanHours"] as? [String]{
-                                                                            if let url = object["website"] as? String {
-                                                                                if let eco = object["eco"] as? [String] {
-                                                                                    if let fair = object["fair"] as? [String]{
-                                                                                        if let humane = object["humane"] as? [String] {
-                                                                                            if let dynamic = object["dynamic"] as? [String]{
-                                                                                            let restaurant = RestProfile(name: name, imageFile: userImageFile, restDescript: restDescript, address: address, hours: hours, mealPlanHours: mealPlanHours, phoneNumber: phoneNumber, labels: labels, heathScore: healthScore, url: url, eco: eco, fair: fair, humane: humane, dynamicTypes : dynamic)
-                                                                                self.dishes.addRestaurant(restaurant)
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                        }
+                        let restaurant = object as! RestProfile
+                        restaurant.name = object["name"] as! String
+                        restaurant.imageFile = object["image"] as! PFFile
+                        restaurant.address = object["address"] as! String
+                        restaurant.phoneNumber = object["number"] as! String
+                        restaurant.hours = object["hours"] as! [String]
+                        restaurant.restDescript = object["restDescription"] as! String
+                        restaurant.labels = object["labelDescription"] as! [[String]]
+                        restaurant.healthScore = object["healthScore"] as! Double
+                        restaurant.mealPlanHours = object["mealPlanHours"] as! [String]
+                        restaurant.url = object["website"] as! String
+                        restaurant.eco = object["eco"] as! [String]
+                        restaurant.fair = object["fair"] as! [String]
+                        restaurant.humane = object["humane"] as! [String]
+                        restaurant.dynamicTypes = object["dynamic"] as! [String]
+                        self.dishes.addRestaurant(restaurant)
                     }
                     if let user = PFUser.currentUser() {
                         self.emailAddress.text = user.username

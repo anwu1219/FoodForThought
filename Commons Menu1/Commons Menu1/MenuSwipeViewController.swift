@@ -84,7 +84,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         restImage.frame = CGRect(x: 0, y: 0, width: 100 * xUnit, height: 21 * yUnit)
         
-        restProf.imageFile!.getDataInBackgroundWithBlock {
+        restProf.imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
             if error == nil {
                 if let data = imageData{
@@ -257,6 +257,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addDishWithLocation(location: String){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)
+        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
@@ -269,46 +270,24 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
-                        if let index = object["index"] as? Int{
-                            if !self.dishes.pulled.contains(index){
-                                    if let name = object["name"] as? String {
-                                        if let location = object["location"] as? String{
-                                            if let index = object["index"] as? Int{
-                                                if let eco = object["eco"] as? [String] {
-                                                    if let fair = object["fair"] as? [String]{
-                                                        if let humane = object["humane"] as? [String]{
-                                            if let ingredients = object["ingredients"] as? [String]{
-                                                if let susLabels = object["susLabels"] as? [String]{
-                                                if let labels = object["labels"] as? [[String]]{
-                                                    if let type = object["type"] as? String{
-                                                        if let price = object["price"] as? String{
-                                                        if let userImageFile = object["image"] as? PFFile{
-                                                            if let displayDate = object["displayDate"] as? String{
-                                                                if displayDate == self.getDate() {
-                                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
-                                                                self.dishes.addDish(location, dish: dish)
-                                                                self.addDishToMenu(dish)
-                                                                self.dishes.addPulled(index)
-                                                            }
-                                                        } else {
-                                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
-                                                            self.dishes.addDish(location, dish: dish)
-                                                            self.addDishToMenu(dish)
-                                                            self.dishes.addPulled(index)
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        }
-                        }
-                                        }
-                                }
-                            }
+                        let dish = object as! Dish
+                        if !self.dishes.pulled.contains(object["index"]! as! Int){
+                            dish.name = object["name"] as! String
+                            dish.location = object["location"] as! String
+                            dish.ingredients = object["ingredients"] as! [String]
+                            dish.labels = object["labels"] as! [[String]]
+                            dish.type = object["type"] as! String
+                            dish.susLabels = object["susLabels"] as! [String]
+                            dish.index = object["index"] as! Int
+                            dish.eco = object["eco"] as! [String]
+                            dish.fair = object["fair"] as! [String]
+                            dish.humane = object["humane"] as! [String]
+                            dish.price = object["price"] as! String
+                            dish.imageFile = object["image"] as! PFFile
+                            self.dishes.addDish(location, dish: dish)
+                            self.dishes.addPulled(dish.index)
+                            self.addDishToMenu(dish)
+                            println(dish)
                         }
                     }
                     for type: String in self.types {
@@ -320,8 +299,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                         self.typesTableView.reloadData()
                         self.typesTableView.endUpdates()
                         }, completion: nil)
-
-                    
                 }
             }
         }
@@ -460,7 +437,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
-                dish.imageFile!.getDataInBackgroundWithBlock {
+                dish.imageFile.getDataInBackgroundWithBlock {
                     (imageData: NSData?, error: NSError?) ->Void in
                     if error == nil {
                         if let data = imageData{
@@ -737,6 +714,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
+            println(selectedMeal)
             if let index = find(menu[selectedMeal.type]!, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[selectedMeal.type]![index]
@@ -818,7 +796,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if let url = NSURL(string: urls[button.name]!) {
             UIApplication.sharedApplication().openURL(url)
         }
-
     }
 }
 

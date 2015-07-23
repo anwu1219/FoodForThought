@@ -8,71 +8,49 @@
 import UIKit
 import Parse
 
+
 /**
 Represents a dish
 */
-class Dish: NSObject {
+class Dish: PFObject, PFSubclassing {
     // a text description of this item.
-    var name: String
-    var ingredients: [String]?
-    var labels : [[String]]? //Nutritionist Labels for Commons
+    @NSManaged var name : String
+    @NSManaged var location : String
+    @NSManaged var ingredients: [String]
+    @NSManaged var labels : [[String]]//Nutritionist Labels for Commons
     // for off-campus dining service
-    var allergens: [String]?
+    
+    @NSManaged var allergens: [String]
     // food source, and other sustainability info
-    var chefNote: String?
-    var ecoLabel: [String]?
+    @NSManaged var chefNote: String
+    @NSManaged var ecoLabel: [String]
     // for on campus dining service
-    var nutritionistNote: String?
-    var price: String?
+    @NSManaged var nutritionistNote: String
+    @NSManaged var price: String
     // a Boolean value that determines whether the user liked the dish %anwu
-    var like: Bool = false
-    var dislike: Bool = false
-    var location = String()
-    var type = String()
-    var index = 0
-    var susLabels = [String]() //Sustainability Labels on dish level
-    var eco = [String]()
-    var fair = [String]()
-    var humane = [String]()
-    var imageFile : PFFile?
-    var image : UIImage?
+    @NSManaged var like: Bool
+    @NSManaged var dislike: Bool
+    @NSManaged var type : String
+    @NSManaged var index : Int
+    @NSManaged var susLabels : [String] //Sustainability Labels on dish level
+    @NSManaged var eco : [String]
+    @NSManaged var fair : [String]
+    @NSManaged var humane : [String]
+    @NSManaged var imageFile : PFFile
+    @NSManaged var image : UIImage
+
     
-    
-    init(name: String) {
-        self.name = name
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
     }
     
     
-    init (name: String, ingredients: [String]?){
-        self.name = name
-        self.ingredients = ingredients
-    }
-    
-    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int, price: String?, susLabels: [String], eco : [String], fair : [String], humane : [String], imageFile : PFFile){
-        self.name = name
-        self.location = location
-        self.type = type
-        self.ingredients = ingredients
-        self.labels = labels
-        self.index = index
-        self.price = price
-        self.susLabels = susLabels
-        self.eco = eco
-        self.fair = fair
-        self.humane = humane
-        self.imageFile = imageFile
-    }
-    
-    
-    
-    init(name: String, location: String, type: String, ingredients: [String], labels: [[String]], index : Int,  price: String, susLabels: [String], eco : [String], fair : [String], humane : [String]){
-        self.name = name
-        self.location = location
-        self.type = type
-        self.ingredients = ingredients
-        self.labels = labels
-        self.index = index
-        self.price = price
-        self.susLabels = susLabels
+    static func parseClassName() -> String {
+        return "dishInfo"
     }
 }

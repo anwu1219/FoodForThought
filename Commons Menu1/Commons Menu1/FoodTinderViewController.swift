@@ -253,55 +253,35 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         query.whereKey("index", equalTo: randomIndex)
+        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
-                if let index = object["index"] as? Int{
-                    if let name = object["name"] as? String {
-                        if let location = object["location"] as? String{
-                            if let ingredients = object["ingredients"] as? [String]{
-                                if let labels = object["labels"] as? [[String]]{
-                                    if let type = object["type"] as? String{
-                                        if let susLabels = object["susLabels"] as? [String]{
-                                            if let price = object["price"] as? String{
-                                                if let index = object["index"] as? Int{
-                                                    if let eco = object["eco"] as? [String] {
-                                                        if let fair = object["fair"] as? [String]{
-                                                            if let humane = object["humane"] as? [String]{
-                                                if let userImageFile = object["image"] as? PFFile{
-                                                                if !self.hasBeenAdded(name, location: name){
-                                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
-                                                                    dish.imageFile!.getDataInBackgroundWithBlock {
-                                                                        (imageData: NSData?, error: NSError?) ->Void in
-                                                                        if error == nil {
-                                                                            if let data = imageData{
-                                                                                if let image = UIImage(data: data){
-                                                                                    dish.image = image
-                                                                                    UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                                                                                        self.foodTinderTableView.reloadData() }, completion: nil)
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    self.dishes.addDish(location, dish: dish)
-                                                                    self.menu.append(dish)
-                                                                    self.dishes.addPulled(index)
-                                                        }
-                                                    } else{
-                                                        if !self.hasBeenAdded(name, location: name){
-                                                            let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
-                                                            self.dishes.addDish(location, dish: dish)
-                                                            self.menu.append(dish)
-                                                            self.dishes.addPulled(index)
-                                                            UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                                                            self.foodTinderTableView.reloadData() }, completion: nil)
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
+                if !self.hasBeenAdded(object["name"]! as! String, location: object["location"] as! String){
+                    let dish = object as! Dish
+                    if !self.dishes.pulled.contains(object["index"]! as! Int){
+                        dish.name = object["name"] as! String
+                        dish.location = object["location"] as! String
+                        dish.ingredients = object["ingredients"] as! [String]
+                        dish.labels = object["labels"] as! [[String]]
+                        dish.type = object["type"] as! String
+                        dish.susLabels = object["susLabels"] as! [String]
+                        dish.index = object["index"] as! Int
+                        dish.eco = object["eco"] as! [String]
+                        dish.fair = object["fair"] as! [String]
+                        dish.humane = object["humane"] as! [String]
+                        dish.price = object["price"] as! String
+                        dish.imageFile = object["image"] as! PFFile
+                        self.dishes.addDish(dish.location, dish: dish)
+                        self.dishes.addPulled(dish.index)
+                        self.menu.append(dish)
+                        dish.imageFile.getDataInBackgroundWithBlock {
+                            (imageData: NSData?, error: NSError?) ->Void in
+                            if error == nil {
+                                if let data = imageData{
+                                    if let image = UIImage(data: data){
+                                        dish.image = image
+                                        UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                            self.foodTinderTableView.reloadData() }, completion: nil)
                                     }
                                 }
                             }

@@ -170,6 +170,7 @@ class MainMenuViewController: UIViewController {
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
+            query.cachePolicy = PFCachePolicy.CacheThenNetwork
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{
@@ -196,46 +197,28 @@ class MainMenuViewController: UIViewController {
     func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
         var query = PFQuery(className:"dishInfo")
         query.whereKey("name", equalTo: name)
+        query.cachePolicy = PFCachePolicy.CacheThenNetwork
         query.getFirstObjectInBackgroundWithBlock{
             (object: PFObject?, error: NSError?) -> Void in
-            if let object = object{
-                if let name = object["name"] as? String {
-                    if let location = object["location"] as? String{
-                        if let ingredients = object["ingredients"] as? [String]{
-                            if let labels = object["labels"] as? [[String]]{
-                                if let type = object["type"] as? String{
-                                    if let susLabels = object["susLabels"] as? [String]{
-                                        if let index = object["index"] as? Int{
-                                            if let eco = object["eco"] as? [String] {
-                                                if let fair = object["fair"] as? [String]{
-                                                    if let humane = object["humane"] as? [String] {
-                                            if let price = object["price"] as? String{
-                                                if let userImageFile = object["image"] as? PFFile{
-                                                                let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane, imageFile: userImageFile)
-                                                                dish.like = like
-                                                                dish.dislike = dislike
-                                                                self.dishes.addToDealtWith(index)
-                                                                self.dishes.addDish(location, dish: dish)
-                                                                self.dishes.addPulled(index)
-                                                } else{
-                                                    let dish = Dish(name: name, location: location, type: type, ingredients: ingredients, labels: labels, index : index, price: price, susLabels: susLabels, eco: eco, fair: fair, humane: humane)
-                                                    dish.like = like
-                                                    dish.dislike = dislike
-                                                    self.dishes.addToDealtWith(index)
-                                                    self.dishes.addDish(location, dish: dish)
-                                                    self.dishes.addPulled(index)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                        }
-                    }
-                }
+            if let object = object {
+            let dish = object as! Dish
+            dish.like = like
+            dish.dislike = dislike
+            dish.name = object["name"] as! String
+            dish.location = object["location"] as! String
+            dish.ingredients = object["ingredients"] as! [String]
+            dish.labels = object["labels"] as! [[String]]
+            dish.type = object["type"] as! String
+            dish.susLabels = object["susLabels"] as! [String]
+            dish.index = object["index"] as! Int
+            dish.eco = object["eco"] as! [String]
+            dish.fair = object["fair"] as! [String]
+            dish.humane = object["humane"] as! [String]
+            dish.price = object["price"] as! String
+            dish.imageFile = object["image"] as! PFFile
+            self.dishes.addToDealtWith(dish.index)
+            self.dishes.addDish(location, dish: dish)
+            self.dishes.addPulled(dish.index)
             }
         }
     }
@@ -249,6 +232,7 @@ class MainMenuViewController: UIViewController {
             var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             var query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
+            query.cachePolicy = PFCachePolicy.CacheThenNetwork
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{

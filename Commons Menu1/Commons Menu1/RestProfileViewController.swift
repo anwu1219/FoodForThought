@@ -28,7 +28,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = restProf?.name
-        restProf.imageFile!.getDataInBackgroundWithBlock {
+        restProf.imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
             if error == nil {
                 if let data = imageData{
