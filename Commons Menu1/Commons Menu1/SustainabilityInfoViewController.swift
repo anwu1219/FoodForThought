@@ -65,10 +65,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
-        menuSwipeScroll.scrollEnabled = true
+        menuSwipeScroll.scrollEnabled = false
         view.addSubview(menuSwipeScroll)
-        
-        
+
         addScrollView()
 
     }
@@ -150,10 +149,26 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             y += 50 + verticalSpace
             
         }
+        
+        let swipeGestureRecognizer = UISwipeGestureRecognizer()
+        swipeGestureRecognizer.direction = .Right
+        swipeGestureRecognizer.addTarget(self, action: "viewMenu:")
+        menuSwipeScroll.addGestureRecognizer(swipeGestureRecognizer)
+        
+        
         susView.contentSize.height = y + verticalSpace
         menuSwipeScroll.addSubview(susView)
     }
     
+    
+    func bringBack(sender: AnyObject){
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
+    }
+    
+    
+    func viewMenu(swipeGestureRecognizer: UISwipeGestureRecognizer) {
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0 * menuSwipeScroll.frame.width, y: 0), animated: true)
+    }
     
     
     
