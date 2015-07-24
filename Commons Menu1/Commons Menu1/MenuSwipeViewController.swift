@@ -61,6 +61,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     let scroll = UIScrollView()
     let menuSwipeScroll = UIScrollView()
     var typesTableView = UITableView()
+    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
     
     override func viewDidLoad() {
@@ -68,6 +69,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100
+    
+        
+        infoButton.frame = CGRect(x: 90 * xUnit, y: 24 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.tintColor = UIColor.whiteColor()
+        infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(infoButton)
         
         
         var restWeekdayOpenHoursLabel = UILabel()
@@ -167,7 +174,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let width: CGFloat = screenSize.width
 
         
-        scroll.frame = CGRectMake(width * 0.05, height * 0.21, width * 0.9, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05, height * 0.21, width * 0.82, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
@@ -194,6 +201,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             dishes.date = getDate()
         }
     }
+    
+    
+    func viewInfoPage(sender: AnyObject){
+        performSegueWithIdentifier("viewInfoPageSegue", sender: sender)
+    }
+    
     
     
     func addTable(){
