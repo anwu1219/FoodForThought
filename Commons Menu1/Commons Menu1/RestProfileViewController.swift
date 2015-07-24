@@ -16,6 +16,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
     let styles = Styles()
+    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+
     
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
@@ -46,6 +48,16 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.layer.borderWidth = 1
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
         restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        
+        let yUnit: CGFloat = screenSize.height / 100
+        let xUnit: CGFloat = screenSize.width / 100
+        
+        infoButton.frame = CGRect(x: 92 * xUnit, y: 30 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.tintColor = UIColor.whiteColor()
+        infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(infoButton)
+        
+
         
         //set the background image
         let bkgdImage = UIImageView()
@@ -89,7 +101,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             if restProf.labels[i].count > 0 {
                 label.text = labels[i]
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 0.05*width)
-                label.frame = CGRectMake(0*width, y, 0.38*susWidth, 45)
+                label.frame = CGRectMake(0.02*width, y, 0.38*susWidth, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
@@ -147,6 +159,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         var button = sender as! IconButton
         println(button.name)
     }
+    
+    func viewInfoPage(sender: AnyObject){
+        performSegueWithIdentifier("viewInfoPageSegue", sender: sender)
+    }
+    
     
     func layoutScroll() {
         let height: CGFloat = screenSize.height
