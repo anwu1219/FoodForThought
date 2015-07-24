@@ -203,7 +203,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
-        tableView.rowHeight = 85
         var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
@@ -510,9 +509,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let yUnit = headerView.frame.height / 100
         
         
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: nil)
-        tableView.headerViewForSection(section)?.addGestureRecognizer(tapRecognizer)
-            
         let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 25 * yUnit, width: 80 * yUnit, height: 50 * yUnit))
         sectionsButton.addTarget(self, action: "showSections:", forControlEvents: UIControlEvents.TouchUpInside)
             
