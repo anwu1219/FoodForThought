@@ -207,7 +207,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
             if error == nil {
                 println("Signed up successfully")
                 //performs automatic segue to main menu
-                self.performSegueWithIdentifier("signInToNavigationSegue", sender: nil)
+                self.performSegueWithIdentifier("instructionSegue", sender: nil)
 
             } else {
                 println(error)
