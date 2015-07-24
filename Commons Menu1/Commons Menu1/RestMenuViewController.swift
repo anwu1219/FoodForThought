@@ -67,7 +67,7 @@ class RestMenuViewController: UIViewController {
     */
     func placeButtons(keys: [RestProfile]) {
         for i in 0..<keys.count {
-            var button = UIButton()
+            var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
             var downAlign: CGFloat = 20
             
             // Sets the size and position of the button
@@ -87,11 +87,18 @@ class RestMenuViewController: UIViewController {
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
             
-            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
-            button.titleLabel?.shadowColor = UIColor.blackColor()
-            button.titleLabel?.shadowOffset = CGSizeMake(3, 3)
-            button.titleLabel?.layer.shadowRadius = 9
-            button.titleLabel?.layer.shadowOpacity = 0.5
+//            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
+//            button.titleLabel?.shadowColor = UIColor.blackColor()
+//            button.titleLabel?.shadowOffset = CGSizeMake(2, 2)
+//            button.titleLabel?.layer.shadowRadius = 4
+//            button.titleLabel?.layer.shadowOpacity = 0.5
+            
+            
+            
+            button.layer.shadowColor = UIColor.blackColor().CGColor
+            button.layer.shadowOffset = CGSizeMake(2, 2)
+            button.layer.shadowRadius = 0.5
+            button.layer.shadowOpacity = 1.0
             
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
             backgroundImage.frame = button.frame
