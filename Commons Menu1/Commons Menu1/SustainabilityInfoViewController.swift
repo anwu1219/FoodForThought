@@ -14,6 +14,9 @@ Displays information of sustainability and links to sustainability info
 */
 class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationControllerDelegate{
     
+    
+    let menuSwipeScroll = UIScrollView()
+    var typesTableView = UITableView()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let susView = UIScrollView()
     let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
@@ -46,19 +49,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
     
     override func viewDidLoad() {
-        let verticalSpace = 0.05 * screenSize.height
-        let widthPadding = 0.05 * screenSize.width
-        var y: CGFloat = 0.0
-        susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
-        susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
-        susView.layer.borderWidth = 10
-        susView.layer.cornerRadius = 5
-        self.navigationController?.navigationBar.translucent = true
-
-        
         super.viewDidLoad()
         
-        susView.frame = CGRectMake(widthPadding, 3.5*verticalSpace, screenSize.width-(2*widthPadding), screenSize.height - (4*verticalSpace))
         let background = UIImageView()
         background.image = UIImage(named: "SustyPageBackground")
         background.frame = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height) // will need to change with new images
@@ -66,7 +58,46 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         background.contentMode = .ScaleToFill
         self.view.addSubview(background)
         //self.view.sendSubviewToBack(background)
+        
+        let verticalSpace = 0.05 * screenSize.height
+        let widthPadding = 0.05 * screenSize.width
+        menuSwipeScroll.frame = CGRect(x: widthPadding, y: 3.5*verticalSpace, width: screenSize.width-(2*widthPadding), height: screenSize.height - (4*verticalSpace))
+        menuSwipeScroll.backgroundColor = UIColor.clearColor()
+        menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
+        menuSwipeScroll.scrollEnabled = true
+        view.addSubview(menuSwipeScroll)
+        
+        
+        addScrollView()
 
+    }
+    
+    
+    func addScrollView(){
+        
+        let verticalSpace = 0.05 * screenSize.height
+        let widthPadding = 0.05 * screenSize.width
+        
+        let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
+        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+        
+        
+        typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
+        typesTableView.backgroundColor = UIColor.clearColor()
+        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        typesTableView.addGestureRecognizer(tapRecognizer)
+        menuSwipeScroll.addSubview(typesTableView)
+        
+
+        var y: CGFloat = 0.0
+        susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
+        self.navigationController?.navigationBar.translucent = true
+        
+        susView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        susView.layer.borderWidth = 10
+        susView.layer.cornerRadius = 5
         
         for var i = 0; i < 1; i++ {
             let container = UIView()
@@ -120,9 +151,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             
         }
         susView.contentSize.height = y + verticalSpace
-        self.view.addSubview(susView)
-
+        menuSwipeScroll.addSubview(susView)
     }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
