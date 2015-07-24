@@ -1250,7 +1250,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1386" y="306"/>
+            <point key="canvasLocation" x="-1237.5" y="-18"/>
         </scene>
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
@@ -1292,6 +1292,11 @@
                 <tapGestureRecognizer id="uNN-q4-2E9">
                     <connections>
                         <segue destination="zoT-e7-Njf" kind="show" identifier="restProfileSegue" id="AFi-gz-9pX"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Fg4-PH-DvF">
+                    <connections>
+                        <segue destination="BYz-6F-mJb" kind="show" identifier="viewInfoPageSegue" id="jG3-F8-hpT"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1706,6 +1711,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="rSJ-Ob-iMA"/>
         <segue reference="sXz-wK-Xvd"/>
-        <segue reference="3Lq-rH-UIY"/>
+        <segue reference="aZ9-33-JLe"/>
+        <segue reference="jG3-F8-hpT"/>
     </inferredMetricsTieBreakers>
 </document>
