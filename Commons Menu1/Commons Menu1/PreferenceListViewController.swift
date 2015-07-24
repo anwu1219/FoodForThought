@@ -39,6 +39,9 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         bkgdImage.contentMode = .ScaleAspectFill
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
+        
+        
+        
     }
     
     

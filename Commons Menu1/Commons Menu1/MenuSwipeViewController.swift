@@ -509,9 +509,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let yUnit = headerView.frame.height / 100
         
         
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: nil)
-        tableView.headerViewForSection(section)?.addGestureRecognizer(tapRecognizer)
-            
         let sectionsButton = UIButton(frame: CGRect(x: 2 * xUnit, y: 25 * yUnit, width: 80 * yUnit, height: 50 * yUnit))
         sectionsButton.addTarget(self, action: "showSections:", forControlEvents: UIControlEvents.TouchUpInside)
             
