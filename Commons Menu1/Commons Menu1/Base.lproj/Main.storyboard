@@ -1580,8 +1580,7 @@
                                         <exclude reference="siO-Vl-qLc"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="16" y="28" width="568" height="239"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="6ae-Ti-wLC"/>
                                     </mask>
@@ -1596,9 +1595,6 @@
                                     <mask key="constraints">
                                         <exclude reference="5jd-6R-qK7"/>
                                     </mask>
-                                </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="9" y="275" width="583" height="317"/>
                                 </variation>
                             </scrollView>
                         </subviews>
