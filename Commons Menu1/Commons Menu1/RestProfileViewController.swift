@@ -359,8 +359,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 restProfScrollView.addSubview(label)
                 y += label.frame.height
             }
+            y += 25
         }
         restProfScrollView.contentSize.height = y
+        
     }
     
     
@@ -382,7 +384,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func callNumber(sender:UIButton) {
         let alert = UIAlertController(title: "Call Restaurant",
-            message: "",
+            message: "" + restProf.phoneNumber,
             preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(
