@@ -240,6 +240,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         var likeHours = Dictionary<String, [String]>()
         var valuePositions: [String] = []
+        
         for var i = 0; i < restProf.hours.count; i++ {
             
             if contains(likeHours.keys, restProf.hours[i]) {
@@ -252,7 +253,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
         
 
-        var trackY: CGFloat = 0
+        var trackY: CGFloat = 30
 
         for key in likeHours.keys {
             var label = UILabel()
@@ -278,16 +279,16 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             
             label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
-            label.sizeToFit()
-            let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
-            label.frame = CGRectMake(0.12*width, placeY, label.frame.width, label.frame.height)
-            //label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+            //let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
             label.lineBreakMode = .ByWordWrapping
             label.textColor = UIColor.whiteColor()
             label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             label.numberOfLines = 0
+            label.sizeToFit()
             restProfScrollView.addSubview(label)
-            trackY += label.frame.height
+            //trackY += label.frame.height
+            y += label.frame.height
+
             
         }
         y += trackY + space
@@ -380,11 +381,25 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func callNumber(sender:UIButton) {
-        if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
-            println("Call Made")
-            UIApplication.sharedApplication().openURL(url)
-        }
+        let alert = UIAlertController(title: "Call Restaurant",
+            message: "",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(
+            title: "Call",
+            style: UIAlertActionStyle.Default,
+            handler: { alertAction in self.makeCall() }
+            )
+        )
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: UIAlertActionStyle.Cancel,
+            handler: nil
+            )
+        )
+        self.presentViewController(alert, animated: true, completion: nil)
     }
+    
     
     @IBAction func mapSearch(sender:UIButton) {
         //http://stackoverflow.com/questions/28604429/how-to-open-maps-app-programatically-with-coordinates-in-swift
@@ -435,6 +450,12 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    func makeCall(){
+        if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
+            println("Call Made")
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     
     
     func showLabelInfo(sender: AnyObject) {

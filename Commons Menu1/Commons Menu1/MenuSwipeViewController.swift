@@ -787,6 +787,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)
+        linkButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         linkButton.setTitle("Learn More", forState: UIControlState.Normal)
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
         
