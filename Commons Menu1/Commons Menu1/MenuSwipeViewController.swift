@@ -71,7 +71,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let xUnit: CGFloat = screenSize.width / 100
     
         
-        infoButton.frame = CGRect(x: 90 * xUnit, y: 24 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.frame = CGRect(x: 90 * xUnit, y: 25.8 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(infoButton)
@@ -85,11 +85,23 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restWeekdayOpenHoursLabel.numberOfLines = 0
         restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
         restWeekdayOpenHoursLabel.textColor = UIColor.whiteColor()
-        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 30.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
         
          view.addSubview(restWeekdayOpenHoursLabel)
         
         
+        var labelTitleLabel = UILabel()
+        labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
+        labelTitleLabel.text = "Restaurant Sustainabiltiy Labels:"
+        labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
+        labelTitleLabel.textColor = UIColor.whiteColor()
+        labelTitleLabel.lineBreakMode = .ByWordWrapping
+        labelTitleLabel.numberOfLines = 0
+        labelTitleLabel.textAlignment = NSTextAlignment.Left
+        
+        
+        view.addSubview(labelTitleLabel)
+
         restImage.frame = CGRect(x: 0, y: 0, width: 100 * xUnit, height: 21 * yUnit)
         
         restProf.imageFile.getDataInBackgroundWithBlock {
@@ -140,7 +152,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.automaticallyAdjustsScrollViewInsets = false;
 
         
-        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 30.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
+        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
         restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
@@ -174,7 +186,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let width: CGFloat = screenSize.width
 
         
-        scroll.frame = CGRectMake(width * 0.05, height * 0.21, width * 0.82, 0.095 * height)
+        scroll.frame = CGRectMake(width * 0.05, height * 0.228, width * 0.82, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
         
