@@ -41,7 +41,7 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
         topDishesTableView.dataSource = self
         
         topDishesTableView.backgroundColor = UIColor.clearColor()
-        
+
         // Do any additional setup after loading the view.
     }
     
@@ -50,7 +50,17 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
         topDishes.removeAll(keepCapacity: false)    
         getPopularDishes()
         topDishesTableView.endUpdates()
+        refreshControl.endRefreshing()
     }
+    
+//    func refresh(refreshControl: UIRefreshControl) {
+//        if Reachability.isConnectedToNetwork() {
+//            self.addDishWithLocation(restProf.name)
+//        } else{
+//            noInternetAlert("Unable to Refresh")
+//        }
+//        refreshControl.endRefreshing()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,7 +69,7 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //self.refreshControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
+      //  self.refreshControl.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         
     }
     
