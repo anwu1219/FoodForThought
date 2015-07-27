@@ -16,7 +16,6 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
     var topDishes = [Dish]()
     var menu = [String : [Dish]]()
     var types = [String]()
-    var refreshControl = UIRefreshControl()
 
     
     @IBOutlet weak var topDishesTableView: UITableView!
@@ -32,35 +31,18 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(bkgdImage)
         self.view.sendSubviewToBack(bkgdImage)
         
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        topDishesTableView.addSubview(refreshControl)
-        
         getPopularDishes()
         
         topDishesTableView.delegate = self
         topDishesTableView.dataSource = self
         
+        //topDishesTableView.scrollEnabled = false
+        
         topDishesTableView.backgroundColor = UIColor.clearColor()
 
         // Do any additional setup after loading the view.
     }
-    
-    func refresh(refreshControl: UIRefreshControl){
-        topDishesTableView.beginUpdates()
-        topDishes.removeAll(keepCapacity: false)    
-        getPopularDishes()
-        topDishesTableView.endUpdates()
-        refreshControl.endRefreshing()
-    }
-    
-//    func refresh(refreshControl: UIRefreshControl) {
-//        if Reachability.isConnectedToNetwork() {
-//            self.addDishWithLocation(restProf.name)
-//        } else{
-//            noInternetAlert("Unable to Refresh")
-//        }
-//        refreshControl.endRefreshing()
-//    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,7 +75,7 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
                 for topdish: PFObject in topdishes {
                     if let restaurant = topdish["location"] as?String{
                         if let dishName = topdish["name"] as? String{
-                            println(dishName)
+                            //println(dishName)
 
                             let result = self.checkDishContains(dishName, location: restaurant)
                             if !result.contain {
@@ -102,11 +84,12 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
                             else {
                                 self.topDishes.append(result.dish!)
                                 self.topDishesTableView.reloadData()
-                                
+                                println(self.topDishes)
                             }
                         }
                     }
                 }
+                self.topDishesTableView.endUpdates()
             }
         }
         }
@@ -159,6 +142,7 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         println(topDishes.count)
         return topDishes.count
+        
     }
 
     
@@ -171,10 +155,10 @@ class TopDishesViewController: UIViewController, UITableViewDataSource, UITableV
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 //initiates the cell
                 let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-                
                 cell.selectionStyle = .None
-                let label = UILabel(frame: cell.frame)
+                let label = UILabel(frame: cell.bounds)
                 let dish = topDishes[indexPath.row]
+                println("Cell: \(dish.name)")
                 label.text = dish.name
                 cell.addSubview(label)
 
