@@ -283,7 +283,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                         dish.image = image
                                         self.menu.append(dish)
                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                                            self.foodTinderTableView.reloadData() }, completion: nil)
+                                            self.foodTinderTableView.reloadData()
+                                            self.foodTinderTableView.endUpdates()
+                                        }, completion: nil)
                                     }
                                 }
                             }
