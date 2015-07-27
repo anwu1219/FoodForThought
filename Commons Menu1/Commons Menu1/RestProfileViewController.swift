@@ -16,6 +16,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
     let styles = Styles()
+    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+
     
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfImage: UIImageView!
@@ -46,6 +48,16 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.layer.borderWidth = 1
         restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
         restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        
+        let yUnit: CGFloat = screenSize.height / 100
+        let xUnit: CGFloat = screenSize.width / 100
+        
+        infoButton.frame = CGRect(x: 92 * xUnit, y: 30 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.tintColor = UIColor.whiteColor()
+        infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(infoButton)
+        
+
         
         //set the background image
         let bkgdImage = UIImageView()
@@ -87,12 +99,13 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var label = UILabel()
             
             if restProf.labels[i].count > 0 {
-               // label.text = labels[i]
-                label.frame = CGRectMake(0*width, y, susWidth/2, 45)
+                label.text = labels[i]
+                label.font = UIFont(name: "HelveticaNeue-Light", size: 0.05*width)
+                label.frame = CGRectMake(0.02*width, y, 0.38*susWidth, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(0, y, 0.95*susWidth, label.frame.height)
+                scroll.frame = CGRectMake(0.38*width, y, 0.6*susWidth, label.frame.height)
                 susView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }
@@ -146,6 +159,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         var button = sender as! IconButton
         println(button.name)
     }
+    
+    func viewInfoPage(sender: AnyObject){
+        performSegueWithIdentifier("viewInfoPageSegue", sender: sender)
+    }
+    
     
     func layoutScroll() {
         let height: CGFloat = screenSize.height
@@ -359,8 +377,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 restProfScrollView.addSubview(label)
                 y += label.frame.height
             }
+            y += 25
         }
         restProfScrollView.contentSize.height = y
+        
     }
     
     
@@ -382,7 +402,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func callNumber(sender:UIButton) {
         let alert = UIAlertController(title: "Call Restaurant",
-            message: "",
+            message: "" + restProf.phoneNumber,
             preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(
@@ -480,6 +500,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)
         linkButton.setTitle("Learn More", forState: UIControlState.Normal)
+        linkButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let popScroll = UIScrollView()
