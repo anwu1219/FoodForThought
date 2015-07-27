@@ -245,6 +245,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func fetchRandomDishes(numberOfDishes: Int) -> Int{
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 3))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.foodTinderTableView.endUpdates()
+        }
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while dishes.pulled.contains(randomIndex){
