@@ -155,6 +155,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         swipeGestureRecognizer.addTarget(self, action: "viewMenu:")
         menuSwipeScroll.addGestureRecognizer(swipeGestureRecognizer)
         
+        let swipeLeftGestureRecognizer = UISwipeGestureRecognizer()
+        swipeLeftGestureRecognizer.direction = .Left
+        swipeLeftGestureRecognizer.addTarget(self, action: "bringBack:")
+        menuSwipeScroll.addGestureRecognizer(swipeLeftGestureRecognizer)
+        
         
         susView.contentSize.height = y + verticalSpace
         menuSwipeScroll.addSubview(susView)
@@ -169,6 +174,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     func viewMenu(swipeGestureRecognizer: UISwipeGestureRecognizer) {
         menuSwipeScroll.setContentOffset(CGPoint(x: 0 * menuSwipeScroll.frame.width, y: 0), animated: true)
     }
+    
     
     
     
