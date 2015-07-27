@@ -13,10 +13,9 @@ import Parse
 Welcome page view controller and search type for user
 */
 
-class MainMenuViewController: UIViewController {
+class MainMenuViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var dishes: Dishes!
-    var signUpViewControllerDelegate: SignUpViewControllerDelegate?
     let styles = Styles()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var restMenuButton: UIButton!
@@ -148,7 +147,6 @@ class MainMenuViewController: UIViewController {
     func logOutSegue(){
         PFUser.logOut()
         println("Logged out")
-        signUpViewControllerDelegate?.clearTextField()
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
@@ -302,5 +300,26 @@ class MainMenuViewController: UIViewController {
     }
     
     
+}
+
+
+
+//https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
+extension MainMenuViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .FullScreen
+    }
+    
+    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let vc = controller.presentedViewController
+        let nav = UINavigationController(rootViewController: vc)
+        let b = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissHelp:")
+        vc.navigationItem.rightBarButtonItem = b
+        return nav
+    }
+    
+    func dismissHelp(sender:AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

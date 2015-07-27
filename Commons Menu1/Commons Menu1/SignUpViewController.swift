@@ -9,11 +9,8 @@
 import Parse
 import UIKit
 
-protocol SignUpViewControllerDelegate {
-    func clearTextField()
-}
 
-class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewControllerDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -424,8 +421,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, SignUpViewCon
         if segue.identifier == "signInToNavigationSegue" {
             let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
             println("Hello \(PFUser.currentUser())")
-            mainMenuViewController.signUpViewControllerDelegate = self
             mainMenuViewController.dishes = dishes
+        }
+        if segue.identifier == "instructionSegue" {
+            let instructionViewController = segue.destinationViewController as! InstructionViewController
+            instructionViewController.dishes = dishes
         }
     }
 }

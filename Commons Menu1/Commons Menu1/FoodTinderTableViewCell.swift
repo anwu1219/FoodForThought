@@ -33,11 +33,10 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     // The dish that this cell renders
     var dish: Dish? {
         didSet {
-            label.text = dish!.name
+            label.text = "\(dish!.name)\n\(dish!.location)"
          //   chefNoteLabel.text = dish!.chefNote
                chefNoteLabel.text = "Sustainability Labels"
          //   ecoLabel.text = dish!.ecoLabel
-            
             itemLikeLayer.hidden = !dish!.like
         }
     }
@@ -54,6 +53,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         label.textColor = styles.labelTextColor
         label.font = UIFont.boldSystemFontOfSize(16)
         label.backgroundColor = UIColor.clearColor()
+        
         
         chefNoteLabel = UILabel(frame: CGRect.nullRect)
         chefNoteLabel.textColor = styles.labelTextColor
@@ -134,14 +134,16 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
-        label.frame = CGRect(x: (screenWidth*0.06), y: 0,
-            width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height)
+        label.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.46,
+            width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.15)
         label.textAlignment = NSTextAlignment.Center
         label.numberOfLines = 0
         label.lineBreakMode = .ByWordWrapping
         label.textColor = UIColor.whiteColor()
+        
+        
 
-        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.52,
+        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.56,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textColor = UIColor.whiteColor()
@@ -150,7 +152,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         
         susLabels.subviews.map({ $0.removeFromSuperview() })
-        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.6, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
+        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.63, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
         susLabels.backgroundColor = UIColor.clearColor()
         placeLabels()
         
@@ -226,7 +228,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     func placeLabels() {
         if let labels = dish?.susLabels {
             let space = screenSize.width*0.05
-            let labelDimensions = screenSize.height*0.09
+            let labelDimensions = screenSize.height*0.07
             var x: CGFloat = 0
             var numLabels: CGFloat = 0
             for var i = 0; i < labels.count; i++ {

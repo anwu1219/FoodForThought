@@ -10,7 +10,7 @@ import UIKit
 
 class InstructionViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    
+    var dishes: Dishes!
     let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
     var images = ["sloth","sloth","sloth","sloth"]
     var count = 0
@@ -62,7 +62,11 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     var index = (viewController as! PageContentViewController).pageIndex!
     index++
     if(index == self.images.count){
-    performSegueWithIdentifier("instructionToMainSegue", sender: self)
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.performSegueWithIdentifier("instructionToMainSegue", sender: self)
+
+        }
     }
     return self.viewControllerAtIndex(index)
     
@@ -99,4 +103,13 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     return 0
     }
     
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "instructionToMainSegue" {
+            let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
+            mainMenuViewController.dishes = dishes
+        }
+    }
 }
