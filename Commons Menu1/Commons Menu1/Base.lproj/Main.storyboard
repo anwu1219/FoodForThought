@@ -207,8 +207,7 @@
                                         <exclude reference="hIb-89-WmQ"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="239" y="545" width="122" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="hIb-89-WmQ"/>
                                     </mask>
@@ -235,8 +234,7 @@
                                         <exclude reference="l44-iF-tIb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="31" y="143" width="538" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="8tr-ft-47r"/>
                                         <exclude reference="l44-iF-tIb"/>
@@ -261,8 +259,7 @@
                                         <exclude reference="dKJ-wF-O37"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="31" y="344" width="539" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="dKJ-wF-O37"/>
                                     </mask>
@@ -285,8 +282,7 @@
                                         <exclude reference="KfL-Mw-2kS"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="31" y="277" width="539" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="KfL-Mw-2kS"/>
                                     </mask>
@@ -310,8 +306,7 @@
                                         <exclude reference="LcQ-kp-kjS"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="31" y="210" width="538" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="LcQ-kp-kjS"/>
                                     </mask>
@@ -335,8 +330,7 @@
                                         <exclude reference="wll-Ur-Dl7"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="31" y="411" width="539" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="wll-Ur-Dl7"/>
                                     </mask>
@@ -427,11 +421,22 @@
                                 <exclude reference="GuE-Sr-8vi"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="RZ1-rI-eOW"/>
+                                <exclude reference="Vbb-CI-ZYw"/>
+                                <exclude reference="bh5-yT-14l"/>
+                                <exclude reference="Rfp-og-itG"/>
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="AL6-UH-jyE"/>
                                 <exclude reference="RYl-uB-eMf"/>
                                 <exclude reference="aHt-ME-EfK"/>
                                 <exclude reference="hBj-lh-M88"/>
+                                <exclude reference="7VN-1X-H79"/>
+                                <exclude reference="9FA-ii-RH2"/>
+                                <exclude reference="FNG-7U-yj1"/>
+                                <exclude reference="FpF-oN-Sm4"/>
+                                <exclude reference="N6I-xa-gAP"/>
+                                <exclude reference="d29-Gm-KcB"/>
+                                <exclude reference="ecK-Or-cAR"/>
                                 <exclude reference="8n6-6O-ea3"/>
                                 <exclude reference="JjM-hK-PjU"/>
                                 <exclude reference="PGj-4A-tIs"/>
@@ -441,13 +446,6 @@
                                 <exclude reference="dim-Ro-Yke"/>
                                 <exclude reference="fiP-dO-fd6"/>
                                 <exclude reference="sPi-3H-2JG"/>
-                                <exclude reference="7VN-1X-H79"/>
-                                <exclude reference="9FA-ii-RH2"/>
-                                <exclude reference="FNG-7U-yj1"/>
-                                <exclude reference="FpF-oN-Sm4"/>
-                                <exclude reference="N6I-xa-gAP"/>
-                                <exclude reference="d29-Gm-KcB"/>
-                                <exclude reference="ecK-Or-cAR"/>
                                 <exclude reference="0DW-Ly-Dii"/>
                                 <exclude reference="6MI-VX-z3J"/>
                                 <exclude reference="6eR-HC-VxE"/>
@@ -457,10 +455,6 @@
                                 <exclude reference="dPW-9x-eHE"/>
                                 <exclude reference="hh9-qX-cZX"/>
                                 <exclude reference="nMK-a1-OYq"/>
-                                <exclude reference="RZ1-rI-eOW"/>
-                                <exclude reference="Vbb-CI-ZYw"/>
-                                <exclude reference="bh5-yT-14l"/>
-                                <exclude reference="Rfp-og-itG"/>
                                 <exclude reference="S91-5w-p3c"/>
                                 <exclude reference="b6u-Q0-AiW"/>
                                 <exclude reference="nBh-AB-Xjd"/>
@@ -472,11 +466,22 @@
                                 <include reference="GuE-Sr-8vi"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="RZ1-rI-eOW"/>
+                                <include reference="Vbb-CI-ZYw"/>
+                                <include reference="bh5-yT-14l"/>
+                                <include reference="Rfp-og-itG"/>
                                 <include reference="2nP-pD-4f0"/>
                                 <exclude reference="AL6-UH-jyE"/>
                                 <include reference="RYl-uB-eMf"/>
                                 <exclude reference="aHt-ME-EfK"/>
                                 <exclude reference="hBj-lh-M88"/>
+                                <include reference="7VN-1X-H79"/>
+                                <include reference="9FA-ii-RH2"/>
+                                <include reference="FNG-7U-yj1"/>
+                                <exclude reference="FpF-oN-Sm4"/>
+                                <exclude reference="N6I-xa-gAP"/>
+                                <exclude reference="d29-Gm-KcB"/>
+                                <include reference="ecK-Or-cAR"/>
                                 <exclude reference="8n6-6O-ea3"/>
                                 <exclude reference="JjM-hK-PjU"/>
                                 <include reference="PGj-4A-tIs"/>
@@ -486,23 +491,12 @@
                                 <exclude reference="dim-Ro-Yke"/>
                                 <include reference="fiP-dO-fd6"/>
                                 <exclude reference="sPi-3H-2JG"/>
-                                <include reference="7VN-1X-H79"/>
-                                <include reference="9FA-ii-RH2"/>
-                                <include reference="FNG-7U-yj1"/>
-                                <exclude reference="FpF-oN-Sm4"/>
-                                <exclude reference="N6I-xa-gAP"/>
-                                <exclude reference="d29-Gm-KcB"/>
-                                <include reference="ecK-Or-cAR"/>
                                 <include reference="0DW-Ly-Dii"/>
                                 <include reference="6MI-VX-z3J"/>
                                 <exclude reference="FEs-is-ZjL"/>
                                 <exclude reference="dPW-9x-eHE"/>
                                 <exclude reference="hh9-qX-cZX"/>
                                 <include reference="nMK-a1-OYq"/>
-                                <include reference="RZ1-rI-eOW"/>
-                                <include reference="Vbb-CI-ZYw"/>
-                                <include reference="bh5-yT-14l"/>
-                                <include reference="Rfp-og-itG"/>
                                 <include reference="S91-5w-p3c"/>
                                 <exclude reference="nBh-AB-Xjd"/>
                             </mask>
@@ -676,8 +670,7 @@
                                         <exclude reference="utQ-oR-6Yo"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="45" y="197" width="492" height="27"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="KSx-Vr-jT3"/>
                                         <exclude reference="utQ-oR-6Yo"/>
@@ -700,8 +693,7 @@
                                         <exclude reference="jwy-DJ-QU0"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="232" width="518" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="YhL-uS-ZmK"/>
                                         <exclude reference="jwy-DJ-QU0"/>
@@ -728,8 +720,7 @@
                                         <exclude reference="k1x-Wf-DcB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="323" width="518" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Zsf-hc-pBQ"/>
                                         <include reference="k1x-Wf-DcB"/>
@@ -750,9 +741,6 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="196" y="529" width="208" height="30"/>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="119" y="463" width="157" height="25"/>
                                 </variation>
@@ -777,8 +765,7 @@
                                         <exclude reference="nse-af-Ac6"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="45" y="287" width="492" height="27"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Umg-Df-Biu"/>
                                         <exclude reference="nse-af-Ac6"/>
@@ -795,9 +782,6 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="56" width="600" height="63"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="41" y="407" width="125" height="43"/>
@@ -846,9 +830,6 @@
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lzq-2o-lDV">
                                 <rect key="frame" x="290" y="443" width="20" height="20"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="290" y="389" width="20" height="20"/>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="187" y="413" width="20" height="20"/>
                                 </variation>
@@ -878,8 +859,7 @@
                                         <exclude reference="eIA-L0-fLb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="454" y="389" width="100" height="43"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="0rn-zt-FQS"/>
                                         <include reference="EEy-Yr-bWU"/>
@@ -1293,15 +1273,9 @@
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="32"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="150" y="39" width="300" height="37"/>
-                                </variation>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Sf-0h6">
                                 <rect key="frame" x="0.0" y="237" width="600" height="363"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="140" width="600" height="460"/>
-                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1648,9 +1622,6 @@
                                         <exclude reference="ffw-VS-muO"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="16" y="34" width="568" height="566"/>
-                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1916,10 +1887,10 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="aZ9-33-JLe"/>
         <segue reference="DIe-8N-XbI"/>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="2sF-BO-Jmm"/>
-        <segue reference="aZ9-33-JLe"/>
+        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="jG3-F8-hpT"/>
     </inferredMetricsTieBreakers>
 </document>
