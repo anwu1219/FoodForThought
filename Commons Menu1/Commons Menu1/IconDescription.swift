@@ -42,78 +42,78 @@ struct IconDescription{
         "Fair": "This Fair label i awarded to this restaurant because: \n",
         
         
-        "COB": "This restaurant uses Canada Organic Biologique Certified ingredients, which reduce the use of artificial agents or fertilizers",
-        "CBF": "This restaurant offers Certified Bird Friendly coffee, which preserves bird habits and minimizes erosion",
-        "CLS": "This restaurant uses Local Food Plus ingredients in its food, promoting sustainable practices by farmers and other food producers",
-        "IFO": "This restaurant uses IFOAM-endorsed standard Certified Organic ingredients. Organic foods can be more eco-friendly than their alternatives",
-        "DCB" : "This restaurant uses Demeter Certified Biodynamic ingredients, promoting biodiversity and the use of natural farming practices",
-        "EUO" : "This restaurant uses European Union Organic ingredients, which avoid the use of GMO’s",
-        "FAC" : "This restaurant uses Food Alliance Certified ingredients. These ingredients contain no artificial preservatives or flavors",
-        "MSC" : "This restaurant serves Marine Stewardship Council Blue seafood. These fish are raised in a sustainable way that maintains their ecosystems",
-        "MBA": "This restaurant serves Monterey Bay Seafood Watch “Best Choice” seafood, which preserves marine populations",
-        "PHC" :  "This restaurant serves Protected Harvest Certified food. These foods are certified for being sustainably grown",
-        "RAC" : "This restaurant offers Rainforest Alliance Certified food products, which are recognized for their social and ecological benevolence",
-        "USDA" : "This restaurant offers USDA Certified Organic food, which are recognized for their protection of resources and promotion of biodiversity",
-        "EFT": "This restaurant serves Ecocert Fair Trade food, recognized for the fair working conditions of the food producers",
-        "FFS":  "This restaurant serves Fair Food Standards Council ingredients, promoting fair labor practices and conditions",
-        "FL" : "This restaurant serves Fair for Life food, which promotes fair working conditions and sustainable food production practices",
-        "FT" : "This restaurant serves Fairtrade certified products, which means flexibility and fair working conditions for the food producers",
-        "FW" : "This restaurant serves FairWild Certified products, which preserves species and habitats",
-        "FJC" : "This restaurant serves Food Justice Certified food, promoting fair wages and other forms of social justice",
-        "SPS" : "This restaurant serves Small Producers’ Symbol food, supporting small, family farms",
-        "AGA":  "This restaurant serves AGA Grassfed food products, respecting the natural habits and needs of animals",
-        "AHC": "This restaurant serves American Humane Certified food products, promoting animal welfare",
-        "AWA": "This restaurant serves Animal Welfare Approved food products, promoting the fair and responsible treatment of animals",
-        "CHR" : "This restaurant serves Certified Humane Raised and Handled food products, improving the lives of animals",
-        "GAP" : "This restaurant serves Global Animal Partnership Certified food products, expressing a commitment to animal welfare",
+        "COB": "This restaurant uses Canada Organic Biologique Certified ingredients, which reduce the use of artificial agents or fertilizers\n",
+        "CBF": "This restaurant offers Certified Bird Friendly coffee, which preserves bird habits and minimizes erosion\n",
+        "CLS": "This restaurant uses Local Food Plus ingredients in its food, promoting sustainable practices by farmers and other food producers\n",
+        "IFO": "This restaurant uses IFOAM-endorsed standard Certified Organic ingredients. Organic foods can be more eco-friendly than their alternatives\n",
+        "DCB" : "This restaurant uses Demeter Certified Biodynamic ingredients, promoting biodiversity and the use of natural farming practices\n",
+        "EUO" : "This restaurant uses European Union Organic ingredients, which avoid the use of GMO’s\n",
+        "FAC" : "This restaurant uses Food Alliance Certified ingredients. These ingredients contain no artificial preservatives or flavors\n",
+        "MSC" : "This restaurant serves Marine Stewardship Council Blue seafood. These fish are raised in a sustainable way that maintains their ecosystems\n",
+        "MBA": "This restaurant serves Monterey Bay Seafood Watch “Best Choice” seafood, which preserves marine populations\n",
+        "PHC" :  "This restaurant serves Protected Harvest Certified food. These foods are certified for being sustainably grown\n",
+        "RAC" : "This restaurant offers Rainforest Alliance Certified food products, which are recognized for their social and ecological benevolence\n",
+        "USDA" : "This restaurant offers USDA Certified Organic food, which are recognized for their protection of resources and promotion of biodiversity\n",
+        "EFT": "This restaurant serves Ecocert Fair Trade food, recognized for the fair working conditions of the food producers\n",
+        "FFS":  "This restaurant serves Fair Food Standards Council ingredients, promoting fair labor practices and conditions\n",
+        "FL" : "This restaurant serves Fair for Life food, which promotes fair working conditions and sustainable food production practices\n",
+        "FT" : "This restaurant serves Fairtrade certified products, which means flexibility and fair working conditions for the food producers\n",
+        "FW" : "This restaurant serves FairWild Certified products, which preserves species and habitats\n",
+        "FJC" : "This restaurant serves Food Justice Certified food, promoting fair wages and other forms of social justice\n",
+        "SPS" : "This restaurant serves Small Producers’ Symbol food, supporting small, family farms\n",
+        "AGA":  "This restaurant serves AGA Grassfed food products, respecting the natural habits and needs of animals\n",
+        "AHC": "This restaurant serves American Humane Certified food products, promoting animal welfare\n",
+        "AWA": "This restaurant serves Animal Welfare Approved food products, promoting the fair and responsible treatment of animals\n",
+        "CHR" : "This restaurant serves Certified Humane Raised and Handled food products, improving the lives of animals\n",
+        "GAP" : "This restaurant serves Global Animal Partnership Certified food products, expressing a commitment to animal welfare\n",
         
-        "COBD" : "This restaurant uses Canada Organic Biologique Certified ingredients in this dish, which reduce the use of artificial agents or fertilizers",
+        "COBD" : "This restaurant uses Canada Organic Biologique Certified ingredients in this dish, which reduce the use of artificial agents or fertilizers\n",
         
-        "CBFD": "This restaurant offers Certified Bird Friendly coffee, which preserves bird habits and minimizes erosion",
+        "CBFD": "This restaurant offers Certified Bird Friendly coffee, which preserves bird habits and minimizes erosion\n",
         
-        "CLSD": "This restaurant uses Local Food Plus ingredients in this dish, promoting sustainable practices by farmers and other food producers",
+        "CLSD": "This restaurant uses Local Food Plus ingredients in this dish, promoting sustainable practices by farmers and other food producers\n",
         
-        "IFOD": "This restaurant uses IFOAM-endorsed standard Certified Organic ingredients in this dish. Organic foods can be more eco-friendly than their alternatives",
+        "IFOD": "This restaurant uses IFOAM-endorsed standard Certified Organic ingredients in this dish. Organic foods can be more eco-friendly than their alternatives\n",
         
-        "DCBD":  "This restaurant uses Demeter Certified Biodynamic ingredients in this dish, promoting biodiversity and the use of natural farming practices",
+        "DCBD":  "This restaurant uses Demeter Certified Biodynamic ingredients in this dish, promoting biodiversity and the use of natural farming practices\n",
         
-        "EUOD": "This restaurant uses European Union Organic ingredients in this dish, which avoid the use of GMO’s",
+        "EUOD": "This restaurant uses European Union Organic ingredients in this dish, which avoid the use of GMO’s\n",
         
-        "FACD": "This restaurant uses Food Alliance Certified ingredients in this dish. These ingredients contain no artificial preservatives or flavors",
+        "FACD": "This restaurant uses Food Alliance Certified ingredients in this dish. These ingredients contain no artificial preservatives or flavors\n",
         
-        "MSCD": "This restaurant serves Marine Stewardship Council Blue seafood in this dish. These fish are raised in a sustainable way that maintains their ecosystems",
+        "MSCD": "This restaurant serves Marine Stewardship Council Blue seafood in this dish. These fish are raised in a sustainable way that maintains their ecosystems\n",
         
-        "MBAD": "This restaurant serves Monterey Bay Seafood Watch “Best Choice” seafood in this dish, which preserves marine populations",
+        "MBAD": "This restaurant serves Monterey Bay Seafood Watch “Best Choice” seafood in this dish, which preserves marine populations\n",
         
-        "PHCD": "This restaurant serves Protected Harvest Certified ingredients in this dish. These foods are certified for being sustainably grown",
+        "PHCD": "This restaurant serves Protected Harvest Certified ingredients in this dish. These foods are certified for being sustainably grown\n",
         
-        "RACD" : "This restaurant offers Rainforest Alliance Certified food products, which are recognized for their social and ecological benevolence",
+        "RACD" : "This restaurant offers Rainforest Alliance Certified food products, which are recognized for their social and ecological benevolence\n",
         
-        "USDAD": "This restaurant offers USDA Certified Organic ingredients in this dish, which are recognized for their protection of resources and promotion of biodiversity",
+        "USDAD": "This restaurant offers USDA Certified Organic ingredients in this dish, which are recognized for their protection of resources and promotion of biodiversity\n",
         
-        "EFTD": "This restaurant serves Ecocert Fair Trade ingredients in this dish, recognized for the fair working conditions of the food producers",
+        "EFTD": "This restaurant serves Ecocert Fair Trade ingredients in this dish, recognized for the fair working conditions of the food producers\n",
         
-        "FFSD": "This restaurant serves Fair Food Standards Council ingredients in this dish, promoting fair labor practices and conditions",
+        "FFSD": "This restaurant serves Fair Food Standards Council ingredients in this dish, promoting fair labor practices and conditions\n",
         
-        "FLD" : "This restaurant serves Fair for Life ingredients in this dish, which promotes fair working conditions and sustainable food production practices",
+        "FLD" : "This restaurant serves Fair for Life ingredients in this dish, which promotes fair working conditions and sustainable food production practices\n",
         
-        "FTD" : "This restaurant serves Fairtrade certified ingredients in this dish, which means flexibility and fair working conditions for the food producers",
+        "FTD" : "This restaurant serves Fairtrade certified ingredients in this dish, which means flexibility and fair working conditions for the food producers\n",
         
-        "FWD" : "This restaurant serves FairWild Certified ingredients in this dish, which preserves species and habitats",
+        "FWD" : "This restaurant serves FairWild Certified ingredients in this dish, which preserves species and habitats\n",
         
-        "FJCD" : "This restaurant serves Food Justice Certified ingredients in this dish, promoting fair wages and other forms of social justice",
+        "FJCD" : "This restaurant serves Food Justice Certified ingredients in this dish, promoting fair wages and other forms of social justice\n",
         
-        "SPSD" : "This restaurant serves Small Producers’ Symbol ingredients in this dish, supporting small, family farms",
+        "SPSD" : "This restaurant serves Small Producers’ Symbol ingredients in this dish, supporting small, family farms\n",
         
-        "AGAD" : "This restaurant serves AGA Grassfed food in this dish, respecting the natural habits and needs of animals",
+        "AGAD" : "This restaurant serves AGA Grassfed food in this dish, respecting the natural habits and needs of animals\n",
         
-        "AHCD" : "This restaurant serves American Humane Certified food in this dish, promoting animal welfare",
+        "AHCD" : "This restaurant serves American Humane Certified food in this dish, promoting animal welfare\n",
         
-        "AWAD" : "This restaurant serves Animal Welfare Approved food in this dish, promoting the fair and responsible treatment of animals",
+        "AWAD" : "This restaurant serves Animal Welfare Approved food in this dish, promoting the fair and responsible treatment of animals\n",
         
-        "CHRD" : "This restaurant serves Certified Humane Raised and Handled food in this dish, improving the lives of animals",
+        "CHRD" : "This restaurant serves Certified Humane Raised and Handled food in this dish, improving the lives of animals\n",
         
-        "GAPD" : "This restaurant serves Global Animal Partnership Certified food in this dish, expressing a commitment to animal welfare"
+        "GAPD" : "This restaurant serves Global Animal Partnership Certified food in this dish, expressing a commitment to animal welfare\n"
         
     ]
     

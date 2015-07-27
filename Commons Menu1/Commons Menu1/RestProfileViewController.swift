@@ -528,6 +528,18 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             pop.sourceRect = (sender as! UIView).bounds
         }
     }
+    
+    
+    /**
+    Prepares for segue
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewInfoPageSegue" {
+            let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
+            // Passes the list of liked dishes to the preference list view
+            sustainabilityInfoViewController.isFromInfo = true
+        }
+    }
 }
 
 
@@ -535,6 +547,5 @@ extension RestProfileViewController : UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
-
     }
 }

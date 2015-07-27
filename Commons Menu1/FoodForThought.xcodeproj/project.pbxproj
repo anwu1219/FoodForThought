@@ -34,6 +34,7 @@
 		F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */; };
 		F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */; };
 		F3AD04111B62CA8C00D737ED /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD04101B62CA8C00D737ED /* InstructionViewController.swift */; };
+		F3AD04131B66E9A000D737ED /* IconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD04121B66E9A000D737ED /* IconInfo.swift */; };
 		F3CD7F541B4F280D0051AFF4 /* Dishes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F531B4F280D0051AFF4 /* Dishes.swift */; };
 		F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD7F551B5063950051AFF4 /* Reachability.swift */; };
 		F3E529121B399F860081FFDC /* PreferenceListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */; };
@@ -100,6 +101,7 @@
 		F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		F3AD04101B62CA8C00D737ED /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		F3AD04121B66E9A000D737ED /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
 		F3CD7F531B4F280D0051AFF4 /* Dishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
 		F3CD7F551B5063950051AFF4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListTableViewCell.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				F30E9C3F1B59392D0011C1BC /* Local Object Class */,
 				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 				F32372D61B575DED008A7C91 /* IconDescription.swift */,
+				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
@@ -427,6 +430,7 @@
 				F32372CF1B535135008A7C91 /* UploadExtension.swift in Sources */,
 				F32372D11B545591008A7C91 /* DayExtension.swift in Sources */,
 				406ABA641B42DFD90096A21F /* FoodTinderTableViewCell.swift in Sources */,
+				F3AD04131B66E9A000D737ED /* IconInfo.swift in Sources */,
 				F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

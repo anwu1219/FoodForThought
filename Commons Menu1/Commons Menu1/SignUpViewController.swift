@@ -359,7 +359,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+
     
     //button action to reset forgotten password
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
@@ -386,6 +386,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         self.presentViewController(titlePrompt, animated: true, completion: nil)
     }
+    
  
     //Parse function to reset forgotten password
     func resetPassword(email : String){
@@ -412,10 +413,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signInToNavigationSegue" {

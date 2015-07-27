@@ -777,6 +777,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             preferencelistViewController.dishes = dishes
             preferencelistViewController.delegate = self
         }
+        if segue.identifier == "viewInfoPageSegue" {
+            let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
+            // Passes the list of liked dishes to the preference list view
+            sustainabilityInfoViewController.isFromInfo = true
+        }
     }
 
     
