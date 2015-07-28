@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfR-9N-8vj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -10,7 +10,7 @@
         <!--Food Tinder View Controller-->
         <scene sceneID="YNv-EA-n1e">
             <objects>
-                <viewController id="WVm-va-1Bq" customClass="FoodTinderViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WVm-va-1Bq" customClass="FoodTinderViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ioU-lh-XbZ"/>
                         <viewControllerLayoutGuide type="bottom" id="xGa-zw-20F"/>
@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinderCell" id="2Av-9g-xZi" customClass="FoodTinderTableViewCell" customModule="FoodForThought" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinderCell" id="2Av-9g-xZi" customClass="FoodTinderTableViewCell" customModule="Foodscape" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Av-9g-xZi" id="C9R-my-HcX">
@@ -93,7 +93,7 @@
         <!--All Preference List View Controller-->
         <scene sceneID="jys-nA-lZm">
             <objects>
-                <viewController id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8Ze-ju-5PB" customClass="AllPreferenceListViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Du2-mr-E4w"/>
                         <viewControllerLayoutGuide type="bottom" id="h7c-a2-MKj"/>
@@ -114,7 +114,7 @@
         <!--Top Dishes View Controller-->
         <scene sceneID="jtD-Kt-Svu">
             <objects>
-                <viewController id="21x-v4-HIz" customClass="TopDishesViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="21x-v4-HIz" customClass="TopDishesViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a67-ua-hN9"/>
                         <viewControllerLayoutGuide type="bottom" id="eu5-gc-uiU"/>
@@ -184,7 +184,7 @@
         <!--Main Menu-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MainMenuViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainMenuViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -529,7 +529,7 @@
         <!--Instruction View Controller-->
         <scene sceneID="GBR-bI-wP9">
             <objects>
-                <viewController id="tQl-c8-7HD" customClass="InstructionViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tQl-c8-7HD" customClass="InstructionViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9NI-9s-vUp"/>
                         <viewControllerLayoutGuide type="bottom" id="b1Y-BL-JEO"/>
@@ -560,7 +560,7 @@
         <!--Page Content View Controller-->
         <scene sceneID="zJ8-QT-3wV">
             <objects>
-                <viewController storyboardIdentifier="PageContentViewController" id="8gA-pi-f7Q" customClass="PageContentViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageContentViewController" id="8gA-pi-f7Q" customClass="PageContentViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AcN-4T-wR6"/>
                         <viewControllerLayoutGuide type="bottom" id="LmX-vo-3B7"/>
@@ -629,7 +629,7 @@
         <!--About Sustainability-->
         <scene sceneID="1a4-ct-bCe">
             <objects>
-                <viewController id="BYz-6F-mJb" customClass="SustainabilityInfoViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYz-6F-mJb" customClass="SustainabilityInfoViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NA9-8z-cSa"/>
                         <viewControllerLayoutGuide type="bottom" id="V4Z-DJ-aE0"/>
@@ -650,7 +650,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
             <objects>
-                <viewController storyboardIdentifier="SignUpPage" id="bha-uc-Tnm" customClass="SignUpViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpPage" id="bha-uc-Tnm" customClass="SignUpViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x6x-p8-c8K"/>
                         <viewControllerLayoutGuide type="bottom" id="HY5-m2-oXd"/>
@@ -1279,7 +1279,7 @@
         <!--Restaurant Selection-->
         <scene sceneID="27M-76-1o5">
             <objects>
-                <viewController title="Restaurant Selection" id="QQv-te-0r1" customClass="RestMenuViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Restaurant Selection" id="QQv-te-0r1" customClass="RestMenuViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SPf-I2-z9n"/>
                         <viewControllerLayoutGuide type="bottom" id="MJr-EW-Q7S"/>
@@ -1399,7 +1399,7 @@
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
             <objects>
-                <viewController id="5dj-oE-vjJ" customClass="MenuSwipeViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5dj-oE-vjJ" customClass="MenuSwipeViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GUr-P8-itM"/>
                         <viewControllerLayoutGuide type="bottom" id="SED-wd-owW"/>
@@ -1449,7 +1449,7 @@
         <!--Restaurant Name-->
         <scene sceneID="9R5-Uz-jaH">
             <objects>
-                <viewController id="zoT-e7-Njf" customClass="RestProfileViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zoT-e7-Njf" customClass="RestProfileViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aJ5-r0-iGk"/>
                         <viewControllerLayoutGuide type="bottom" id="2ED-kE-Hhe"/>
@@ -1711,7 +1711,7 @@
         <!--Dish Info-->
         <scene sceneID="5oC-AP-4wm">
             <objects>
-                <viewController title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="FoodForThought" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Dish Info" id="f2Y-jF-9VT" customClass="MealInfoViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgw-pN-LjJ"/>
                         <viewControllerLayoutGuide type="bottom" id="0nw-ug-gXp"/>
