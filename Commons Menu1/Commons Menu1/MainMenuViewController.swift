@@ -24,6 +24,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var topDishesMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
+    var instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
     
     override func viewDidLoad() {
@@ -117,7 +118,34 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 }
             }
         }
+        
+        
+        
+        instructButton.frame = CGRect(x: 0.94 * view.frame.width, y: 0.95 * view.frame.height, width: 0.05 * view.frame.width, height: 0.05 * view.frame.width)
+        instructButton.tintColor = UIColor.whiteColor()
+        instructButton.addTarget(self, action: "viewInstructPage:", forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(instructButton)
+        
     }
+    
+    
+    func viewInstructPage(sender : UIButton){
+        let vc = InstructionViewController()
+        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+            vc.modalPresentationStyle = .Popover
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+            
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as UIView)
+            pop.sourceRect = (sender as UIView).bounds
+        }
+    }
+    
+    
     
     //creates the log out alert
     @IBAction func logoutAction(sender: AnyObject) {

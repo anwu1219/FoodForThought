@@ -88,6 +88,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
         
+        
     }
     
     
@@ -95,7 +96,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
-        icon.frame = CGRect(x: 0, y: 3 * verticalSpace, width: widthPadding, height: widthPadding)
+        icon.frame = CGRect(x: 0.1 * widthPadding, y: 3.8 * verticalSpace, width: 0.8 * widthPadding, height: verticalSpace)
+        icon.alpha = 0.2
         icon.image = UIImage(named: "arrowIcon")
         icon.contentMode = .ScaleToFill
         self.view.addSubview(icon)
@@ -105,33 +107,18 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     func scrollViewDidScroll(scrollView: UIScrollView){
         if scrollView == susView{
-            icon.hidden = false
+            icon.hidden = true
         }
     }
     
 
-    func scrollViewDidBeginDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if scrollView == susView{
             icon.hidden = false
+            println("Scroll finished")
+        
         }
     }
-    
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView == susView{
-            icon.hidden = false
-        }
-    }
-    
-    
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-        if scrollView == susView{
-            icon.hidden = false
-        }
-    }
-    
-    
-    
     
     
     override func viewDidAppear(animated: Bool) {

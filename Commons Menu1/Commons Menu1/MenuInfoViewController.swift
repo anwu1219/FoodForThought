@@ -150,8 +150,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             label.sizeToFit()
             //label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             scrollInfo.addSubview(label)
-            y += label.frame.height + (3*height)
+            y += label.frame.height + (3 * height)
         }
+        
         
         if let price = dish?.price {
             if count(price) > 0 {

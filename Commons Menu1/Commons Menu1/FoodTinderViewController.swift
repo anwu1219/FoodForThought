@@ -80,6 +80,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         var logButton = UIBarButtonItem(title: "My Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
         self.navigationItem.rightBarButtonItem = logButton
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+        }
     }
     
     
@@ -97,10 +101,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         instructLabel.alignmentMode = kCAAlignmentCenter
         instructLabel.contentsScale = UIScreen.mainScreen().scale
         view.layer.addSublayer(instructLabel)
-        }
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 1))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
         }
     }
     
@@ -245,10 +245,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func fetchRandomDishes(numberOfDishes: Int) -> Int{
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 3))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.foodTinderTableView.endUpdates()
-        }
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while dishes.pulled.contains(randomIndex){
@@ -292,6 +288,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                         }, completion: nil)
                                     }
                                 }
+                            } else {
+                                self.foodTinderTableView.endUpdates()
                             }
                         }
                     }
