@@ -677,7 +677,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="45" y="197.5" width="492" height="26.5"/>
+                                    <rect key="frame" x="45" y="197" width="492" height="26.5"/>
                                     <mask key="constraints">
                                         <exclude reference="KSx-Vr-jT3"/>
                                         <exclude reference="utQ-oR-6Yo"/>
@@ -729,7 +729,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="322.5" width="518" height="40"/>
+                                    <rect key="frame" x="41" y="322" width="518" height="40"/>
                                     <mask key="constraints">
                                         <exclude reference="Zsf-hc-pBQ"/>
                                         <include reference="k1x-Wf-DcB"/>
@@ -847,7 +847,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lzq-2o-lDV">
                                 <rect key="frame" x="290" y="443" width="20" height="20"/>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="290" y="388.5" width="20" height="20"/>
+                                    <rect key="frame" x="290" y="388" width="20" height="20"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="187" y="413" width="20" height="20"/>
@@ -879,7 +879,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="454" y="388.5" width="100" height="43"/>
+                                    <rect key="frame" x="454" y="388" width="100" height="43"/>
                                     <mask key="constraints">
                                         <exclude reference="0rn-zt-FQS"/>
                                         <include reference="EEy-Yr-bWU"/>
@@ -1617,7 +1617,7 @@
         <!--Preference List View Controller-->
         <scene sceneID="9ha-IG-Aia">
             <objects>
-                <viewController id="m4B-Z7-P1R" customClass="PreferenceListViewController" customModule="FoodForThought" sceneMemberID="viewController">
+                <viewController id="m4B-Z7-P1R" customClass="PreferenceListViewController" customModule="Foodscape" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7E8-36-N0j"/>
                         <viewControllerLayoutGuide type="bottom" id="yxy-Sa-cjH"/>

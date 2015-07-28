@@ -287,7 +287,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             if error == nil && objects != nil{
                 for type in self.restProf.dynamicTypes{
                     var dynamicTypeMenu = [Dish]()
-                    for dish in self.menu[type]! {
+                    if let menuType = self.menu[type] {
+                    for dish in menuType {
                         if let date = dish.date {
                             if date == self.getDate() {
                                 
@@ -296,6 +297,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                             }
                         } else {
                             dynamicTypeMenu.append(dish)
+                        }
                         }
                     }
                 }
