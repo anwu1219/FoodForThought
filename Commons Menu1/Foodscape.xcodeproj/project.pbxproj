@@ -85,13 +85,13 @@
 		40D502111B4AC2520027F1DD /* RestProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfileViewController.swift; sourceTree = "<group>"; };
 		40D502131B4AC4E30027F1DD /* RestProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfile.swift; sourceTree = "<group>"; };
 		40D502181B4B29F30027F1DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		40E842211B308C6A00D39DCD /* FoodForThought.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodForThought.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E842211B308C6A00D39DCD /* Foodscape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodscape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E842251B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E842261B308C6A00D39DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40E842281B308C6A00D39DCD /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		40E8422D1B308C6A00D39DCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		40E842301B308C6A00D39DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		40E842361B308C6A00D39DCD /* FoodForThoughtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodForThoughtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E842361B308C6A00D39DCD /* FoodscapeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodscapeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40E8423B1B308C6A00D39DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
 		F32372CE1B535135008A7C91 /* UploadExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadExtension.swift; sourceTree = "<group>"; };
@@ -172,8 +172,8 @@
 		40E842221B308C6A00D39DCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				40E842211B308C6A00D39DCD /* FoodForThought.app */,
-				40E842361B308C6A00D39DCD /* FoodForThoughtTests.xctest */,
+				40E842211B308C6A00D39DCD /* Foodscape.app */,
+				40E842361B308C6A00D39DCD /* FoodscapeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -303,9 +303,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		40E842201B308C6A00D39DCD /* FoodForThought */ = {
+		40E842201B308C6A00D39DCD /* Foodscape */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40E842401B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodForThought" */;
+			buildConfigurationList = 40E842401B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "Foodscape" */;
 			buildPhases = (
 				40E8421D1B308C6A00D39DCD /* Sources */,
 				40E8421E1B308C6A00D39DCD /* Frameworks */,
@@ -315,14 +315,14 @@
 			);
 			dependencies = (
 			);
-			name = FoodForThought;
+			name = Foodscape;
 			productName = "Commons Menu1";
-			productReference = 40E842211B308C6A00D39DCD /* FoodForThought.app */;
+			productReference = 40E842211B308C6A00D39DCD /* Foodscape.app */;
 			productType = "com.apple.product-type.application";
 		};
-		40E842351B308C6A00D39DCD /* FoodForThoughtTests */ = {
+		40E842351B308C6A00D39DCD /* FoodscapeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40E842431B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodForThoughtTests" */;
+			buildConfigurationList = 40E842431B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodscapeTests" */;
 			buildPhases = (
 				40E842321B308C6A00D39DCD /* Sources */,
 				40E842331B308C6A00D39DCD /* Frameworks */,
@@ -333,9 +333,9 @@
 			dependencies = (
 				40E842381B308C6A00D39DCD /* PBXTargetDependency */,
 			);
-			name = FoodForThoughtTests;
+			name = FoodscapeTests;
 			productName = "Commons Menu1Tests";
-			productReference = 40E842361B308C6A00D39DCD /* FoodForThoughtTests.xctest */;
+			productReference = 40E842361B308C6A00D39DCD /* FoodscapeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -357,7 +357,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */;
+			buildConfigurationList = 40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Foodscape" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -370,8 +370,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				40E842201B308C6A00D39DCD /* FoodForThought */,
-				40E842351B308C6A00D39DCD /* FoodForThoughtTests */,
+				40E842201B308C6A00D39DCD /* Foodscape */,
+				40E842351B308C6A00D39DCD /* FoodscapeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -448,7 +448,7 @@
 /* Begin PBXTargetDependency section */
 		40E842381B308C6A00D39DCD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40E842201B308C6A00D39DCD /* FoodForThought */;
+			target = 40E842201B308C6A00D39DCD /* Foodscape */;
 			targetProxy = 40E842371B308C6A00D39DCD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -571,7 +571,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = FoodForThought;
+				PRODUCT_NAME = Foodscape;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -596,7 +596,7 @@
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = FoodForThought;
+				PRODUCT_NAME = Foodscape;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -619,7 +619,7 @@
 				);
 				INFOPLIST_FILE = "Commons Menu1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = FoodForThoughtTests;
+				PRODUCT_NAME = FoodscapeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commons Menu1.app/Commons Menu1";
 			};
 			name = Debug;
@@ -634,7 +634,7 @@
 				);
 				INFOPLIST_FILE = "Commons Menu1Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = FoodForThoughtTests;
+				PRODUCT_NAME = FoodscapeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Commons Menu1.app/Commons Menu1";
 			};
 			name = Release;
@@ -642,7 +642,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "FoodForThought" */ = {
+		40E8421C1B308C6A00D39DCD /* Build configuration list for PBXProject "Foodscape" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40E8423E1B308C6A00D39DCD /* Debug */,
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40E842401B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodForThought" */ = {
+		40E842401B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "Foodscape" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40E842411B308C6A00D39DCD /* Debug */,
@@ -660,7 +660,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40E842431B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodForThoughtTests" */ = {
+		40E842431B308C6A00D39DCD /* Build configuration list for PBXNativeTarget "FoodscapeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40E842441B308C6A00D39DCD /* Debug */,
