@@ -286,7 +286,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
                 for type in self.restProf.dynamicTypes{
-                    self.menu[type]?.removeAll(keepCapacity: false)
+                    var dynamicTypeMenu = [Dish]()
+                    for dish in self.menu[type]! {
+                        if let date = dish.date {
+                            if date == self.getDate() {
+                                
+                            } else {
+                                dynamicTypeMenu.append(dish)
+                            }
+                        } else {
+                            dynamicTypeMenu.append(dish)
+                        }
+                    }
                 }
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{

@@ -15,7 +15,7 @@ import UIKit
 /**
 Displays information of sustainability and links to sustainability info
 */
-class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDataSource, UITableViewDelegate, TypesTableViewCellDelegate{
+class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITableViewDataSource, UITableViewDelegate, TypesTableViewCellDelegate, UIScrollViewDelegate{
     
     
     var isFromInfo : Bool?
@@ -25,6 +25,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
     let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     let susView = UIScrollView()
+    let icon = UIImageView()
     let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
     let susLabels = ["About Sustainability", "Sustainability Labels"]
     let susInfo = ["Our sustainability team seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information within a useful meal planning tool. This tool integrates the triple bottom line (equity, environment, economy) into our culture in order to encourage sustainable communities, businesses and lifestyles. \n Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability: \n “In every deliberation, we must consider the impact on the seventh generation” \n The Great Law of the Iroquois\n“Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs”\n Brundtland Commission \n We use the triple bottom line concept coined by John Elkington in his 1994 book, “Cannibals with Forks.” It is a framework to facilitate decision-making because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\n Some examples of sustainability topics include (but are not limited to):\n Food Justice\n Socially and environmentally-conscious businesses\n Fair labor\n Land use\n Waste management\n Resource consumption\n Healthy living. What you can do:\n Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability.  Here are some suggestions:\nAsk if the restaurant sources local food.\nSee if you can determine what farms the food you buy comes from.\n Visit your local farmers market. You’ll get fresh food and support the local economy.", "Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.", "Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability."]
@@ -58,6 +59,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        susView.delegate = self
+        
+        
         let background = UIImageView()
         background.image = UIImage(named: "SustyPageBackground")
         background.frame = CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height) // will need to change with new images
@@ -66,8 +71,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         self.view.addSubview(background)
         //self.view.sendSubviewToBack(background)
         
-        let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
-        let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
         menuSwipeScroll.frame = CGRect(x: widthPadding, y: 3.5*verticalSpace, width: UIScreen.mainScreen().bounds.width-(2*widthPadding), height: UIScreen.mainScreen().bounds.height - (4*verticalSpace))
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
@@ -77,11 +80,58 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
         addScrollView()
         
+        
+        addScrollIcon()
+        
         typesTableView.dataSource = self
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
+        
     }
+    
+    
+    func addScrollIcon(){
+        let xUnit : CGFloat = self.view.frame.width / 100
+        let yUnit : CGFloat = self.view.frame.height / 100
+        
+        icon.frame = CGRect(x: 0, y: 3 * verticalSpace, width: widthPadding, height: widthPadding)
+        icon.image = UIImage(named: "arrowIcon")
+        icon.contentMode = .ScaleToFill
+        self.view.addSubview(icon)
+        icon.hidden = false
+    }
+    
+    
+    func scrollViewDidScroll(scrollView: UIScrollView){
+        if scrollView == susView{
+            icon.hidden = false
+        }
+    }
+    
+
+    func scrollViewDidBeginDecelerating(scrollView: UIScrollView) {
+        if scrollView == susView{
+            icon.hidden = false
+        }
+    }
+    
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == susView{
+            icon.hidden = false
+        }
+    }
+    
+    
+    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
+        if scrollView == susView{
+            icon.hidden = false
+        }
+    }
+    
+    
+    
     
     
     override func viewDidAppear(animated: Bool) {
