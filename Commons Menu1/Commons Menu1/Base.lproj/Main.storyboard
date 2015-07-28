@@ -295,31 +295,6 @@
                                     <segue destination="8Ze-ju-5PB" kind="show" identifier="mainToAllPreferencesSegue" id="sXz-wK-Xvd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GuE-Sr-8vi">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="LcQ-kp-kjS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
-                                <state key="normal" title="topDishesMenuButton" backgroundImage="menuButton">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="LcQ-kp-kjS"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="411" width="536" height="46"/>
-                                    <mask key="constraints">
-                                        <include reference="LcQ-kp-kjS"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <segue destination="21x-v4-HIz" kind="show" identifier="topDishesSegue" id="yL7-3S-2Bl"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yh-Ow-tTM">
                                 <rect key="frame" x="160" y="274" width="280" height="46"/>
                                 <constraints>
@@ -381,21 +356,12 @@
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="RYl-uB-eMf">
                                 <variation key="widthClass=compact" constant="16"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="GuE-Sr-8vi" secondAttribute="trailing" constant="14" id="RZ1-rI-eOW">
-                                <variation key="widthClass=compact" constant="16"/>
-                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="s8o-pg-Xq7" secondAttribute="centerX" id="Rfp-og-itG"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="s8o-pg-Xq7" secondAttribute="bottom" constant="25" id="S91-5w-p3c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AaB-WN-Yol" secondAttribute="trailing" constant="190" id="Sc9-d9-hjC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XwZ-3x-4nw" secondAttribute="trailing" constant="44" id="U5p-QE-eR7"/>
-                            <constraint firstItem="GuE-Sr-8vi" firstAttribute="top" secondItem="AaB-WN-Yol" secondAttribute="bottom" constant="41" id="Vbb-CI-ZYw">
-                                <variation key="widthClass=compact" constant="21"/>
-                            </constraint>
                             <constraint firstItem="84R-Va-e5n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="aHt-ME-EfK"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="AaB-WN-Yol" secondAttribute="bottom" constant="86" id="b6u-Q0-AiW"/>
-                            <constraint firstItem="GuE-Sr-8vi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="15" id="bh5-yT-14l">
-                                <variation key="widthClass=compact" constant="16"/>
-                            </constraint>
                             <constraint firstItem="XwZ-3x-4nw" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="248" id="cac-tI-n73"/>
                             <constraint firstItem="AaB-WN-Yol" firstAttribute="top" secondItem="XwZ-3x-4nw" secondAttribute="bottom" constant="51" id="cva-FG-v8z"/>
                             <constraint firstItem="7Yh-Ow-tTM" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="44" id="d29-Gm-KcB"/>
@@ -424,12 +390,8 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="s8o-pg-Xq7"/>
-                                <exclude reference="GuE-Sr-8vi"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="RZ1-rI-eOW"/>
-                                <exclude reference="Vbb-CI-ZYw"/>
-                                <exclude reference="bh5-yT-14l"/>
                                 <exclude reference="Rfp-og-itG"/>
                                 <exclude reference="2nP-pD-4f0"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -469,12 +431,8 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="s8o-pg-Xq7"/>
-                                <include reference="GuE-Sr-8vi"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="RZ1-rI-eOW"/>
-                                <include reference="Vbb-CI-ZYw"/>
-                                <include reference="bh5-yT-14l"/>
                                 <include reference="Rfp-og-itG"/>
                                 <include reference="2nP-pD-4f0"/>
                                 <exclude reference="AL6-UH-jyE"/>
@@ -514,7 +472,6 @@
                         <outlet property="myPrefMenuButton" destination="XwZ-3x-4nw" id="hdQ-68-oKx"/>
                         <outlet property="restMenuButton" destination="84R-Va-e5n" id="w5q-Et-xcx"/>
                         <outlet property="sustInfoMenuButton" destination="AaB-WN-Yol" id="yQp-xz-A5h"/>
-                        <outlet property="topDishesMenuButton" destination="GuE-Sr-8vi" id="Avb-Pw-kUV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -1939,7 +1896,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="DIe-8N-XbI"/>
-        <segue reference="Z4n-Rp-1Qi"/>
+        <segue reference="rSJ-Ob-iMA"/>
         <segue reference="sXz-wK-Xvd"/>
         <segue reference="2sF-BO-Jmm"/>
         <segue reference="aZ9-33-JLe"/>
