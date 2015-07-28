@@ -327,8 +327,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             topDishesViewController.dishes = self.dishes
         }
     }
-    
-    
 }
 
 
