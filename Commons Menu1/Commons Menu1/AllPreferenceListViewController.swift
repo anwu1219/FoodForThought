@@ -254,7 +254,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                     if let data = imageData{
                         if let image = UIImage(data: data){
                             cell.imageView?.image = image
-                            dish.image = image
                         }
                     }
                 }

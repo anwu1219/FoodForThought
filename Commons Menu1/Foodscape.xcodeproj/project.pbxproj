@@ -50,7 +50,6 @@
 		F3EBAFA61B3B2A6800BFFD93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFA51B3B2A6800BFFD93 /* QuartzCore.framework */; };
 		F3EBAFA81B3B2A6F00BFFD93 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFA71B3B2A6F00BFFD93 /* Security.framework */; };
 		F3EBAFAA1B3B2A7500BFFD93 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFA91B3B2A7500BFFD93 /* Social.framework */; };
-		F3EBAFAC1B3B2A7C00BFFD93 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAB1B3B2A7C00BFFD93 /* StoreKit.framework */; };
 		F3EBAFAE1B3B2A8200BFFD93 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAD1B3B2A8200BFFD93 /* SystemConfiguration.framework */; };
 		F3EBAFB01B3B2A8800BFFD93 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */; };
 		F3EBAFB21B3B2A8F00BFFD93 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */; };
@@ -102,6 +101,7 @@
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		F3AD04101B62CA8C00D737ED /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		F3AD04121B66E9A000D737ED /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
+		F3C180C11B68024200E5940C /* Foodscape.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Foodscape.entitlements; sourceTree = "<group>"; };
 		F3CD7F531B4F280D0051AFF4 /* Dishes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dishes.swift; sourceTree = "<group>"; };
 		F3CD7F551B5063950051AFF4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceListTableViewCell.swift; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 		F3EBAFA51B3B2A6800BFFD93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F3EBAFA71B3B2A6F00BFFD93 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F3EBAFA91B3B2A7500BFFD93 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		F3EBAFAB1B3B2A7C00BFFD93 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F3EBAFAD1B3B2A8200BFFD93 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -134,7 +133,6 @@
 				F3EBAFB21B3B2A8F00BFFD93 /* libsqlite3.dylib in Frameworks */,
 				F3EBAFB01B3B2A8800BFFD93 /* libz.dylib in Frameworks */,
 				F3EBAFAE1B3B2A8200BFFD93 /* SystemConfiguration.framework in Frameworks */,
-				F3EBAFAC1B3B2A7C00BFFD93 /* StoreKit.framework in Frameworks */,
 				F3EBAFAA1B3B2A7500BFFD93 /* Social.framework in Frameworks */,
 				F3EBAFA81B3B2A6F00BFFD93 /* Security.framework in Frameworks */,
 				F3EBAFA61B3B2A6800BFFD93 /* QuartzCore.framework in Frameworks */,
@@ -162,6 +160,7 @@
 		40E842181B308C6A00D39DCD = {
 			isa = PBXGroup;
 			children = (
+				F3C180C11B68024200E5940C /* Foodscape.entitlements */,
 				F3FB7E6E1B41EFB000AD38B7 /* Framework */,
 				40E842231B308C6A00D39DCD /* FoodForThought */,
 				40E842391B308C6A00D39DCD /* Commons Menu1Tests */,
@@ -284,7 +283,6 @@
 				F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */,
 				F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */,
 				F3EBAFAD1B3B2A8200BFFD93 /* SystemConfiguration.framework */,
-				F3EBAFAB1B3B2A7C00BFFD93 /* StoreKit.framework */,
 				F3EBAFA91B3B2A7500BFFD93 /* Social.framework */,
 				F3EBAFA71B3B2A6F00BFFD93 /* Security.framework */,
 				F3EBAFA51B3B2A6800BFFD93 /* QuartzCore.framework */,
@@ -350,6 +348,17 @@
 					40E842201B308C6A00D39DCD = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 4Z539UE4TT;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					40E842351B308C6A00D39DCD = {
 						CreatedOnToolsVersion = 6.3.2;

@@ -130,19 +130,20 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     
     
     func viewInstructPage(sender : UIButton){
-        let vc = InstructionViewController()
-        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-            vc.modalPresentationStyle = .Popover
-        if let pres = vc.popoverPresentationController {
-            pres.delegate = self
-        }
-        
-        self.presentViewController(vc, animated: true, completion: nil)
-            
-        if let pop = vc.popoverPresentationController {
-            pop.sourceView = (sender as UIView)
-            pop.sourceRect = (sender as UIView).bounds
-        }
+        performSegueWithIdentifier("viewInstructSegue", sender: sender)
+//        let vc = InstructionViewController()
+//        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+//            vc.modalPresentationStyle = .Popover
+//        if let pres = vc.popoverPresentationController {
+//            pres.delegate = self
+//        }
+//        
+//        self.presentViewController(vc, animated: true, completion: nil)
+//            
+//        if let pop = vc.popoverPresentationController {
+//            pop.sourceView = (sender as UIView)
+//            pop.sourceRect = (sender as UIView).bounds
+//        }
     }
     
     

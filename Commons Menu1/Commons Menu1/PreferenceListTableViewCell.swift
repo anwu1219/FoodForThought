@@ -73,6 +73,10 @@ class PreferenceListTableViewCell: UITableViewCell {
         self.imageView?.frame = CGRect(x: 5 * width, y: 3 * width, width: 25 * width, height: 75 * height)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
+        
+        
+        
+        
         self.layer.borderColor = UIColor(red: 153/255.0, green: 102/255.0, blue: 102/255.0, alpha: 1).CGColor
         self.layer.borderWidth = 1.0
         self.backgroundColor = UIColor(red: 215.0/255, green: 203.0/255, blue: 188.0/255, alpha: 0.75)

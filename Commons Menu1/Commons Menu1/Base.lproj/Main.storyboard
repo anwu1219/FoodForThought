@@ -523,6 +523,11 @@
                         <segue destination="WVm-va-1Bq" kind="show" identifier="foodTinderSegue" id="Un8-Dc-qUm"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="ldd-ab-fQE">
+                    <connections>
+                        <segue destination="tQl-c8-7HD" kind="presentation" identifier="viewInstructSegue" id="dYs-g6-cXo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1386" y="-719"/>
         </scene>
@@ -547,7 +552,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3771" y="31"/>
+            <point key="canvasLocation" x="-3786" y="45"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="fAI-Dz-oil">
@@ -555,7 +560,7 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="Ddy-Sb-7mk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSw-r0-CTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3073.5" y="31"/>
+            <point key="canvasLocation" x="-3118.5" y="101"/>
         </scene>
         <!--Page Content View Controller-->
         <scene sceneID="zJ8-QT-3wV">
@@ -1274,7 +1279,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2235" y="-719"/>
+            <point key="canvasLocation" x="-2247" y="-979"/>
         </scene>
         <!--Restaurant Selection-->
         <scene sceneID="27M-76-1o5">
@@ -1916,10 +1921,11 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aZ9-33-JLe"/>
         <segue reference="DIe-8N-XbI"/>
-        <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="dYs-g6-cXo"/>
         <segue reference="sXz-wK-Xvd"/>
-        <segue reference="jG3-F8-hpT"/>
+        <segue reference="2sF-BO-Jmm"/>
+        <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="aZ9-33-JLe"/>
     </inferredMetricsTieBreakers>
 </document>
