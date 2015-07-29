@@ -31,7 +31,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         
         
         setBackground("MainMenuBackground")
-        
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food For Thought", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
@@ -273,8 +272,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
 }
 
 
-
-//https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
 extension MainMenuViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen

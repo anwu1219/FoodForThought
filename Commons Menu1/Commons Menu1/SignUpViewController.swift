@@ -72,22 +72,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         labelStyle(welcomeLabel)
         labelStyle(passwordLabel)
         labelStyle(emailLabel)
-
+   
         
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-
-        
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) { // 1
-            self.getRestaurant()
-            for restaurant : RestProfile in self.dishes.dishes.keys {
-                self.dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
-            } //needs update to cache
-            self.dishes.date = self.getDate()
-        }
         
         
+        
+        // Test if there is internet connection
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
             let isReachable = Reachability.isConnectedToNetwork()
             dispatch_async(dispatch_get_main_queue()) {
@@ -96,6 +89,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        
+        
+        //Fetch Restaurant Data
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+            self.getRestaurant()
+            for restaurant : RestProfile in self.dishes.dishes.keys {
+                self.dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+            } //needs update to cache
+            self.dishes.date = self.getDate()
+        }
     }
     
     
@@ -103,10 +106,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //the keyboard. From http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
     func keyboardWillShow(sender: NSNotification) {
         let screenHeight = screenSize.height
-        if self.view.frame.origin.y > -0.4 * screenHeight {
-            self.view.frame.origin.y -= 0.25 * screenHeight
-        }
+            self.view.frame.origin.y = -0.25 * screenHeight
     }
+    
     
     func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y = 0
@@ -128,7 +130,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        //self.view.endEditing(true)
         textField.resignFirstResponder()
         return true
     }
