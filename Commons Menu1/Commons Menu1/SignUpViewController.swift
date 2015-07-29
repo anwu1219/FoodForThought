@@ -294,6 +294,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         var titleTextField: UITextField?
         titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
             titleTextField = textField
+            titleTextField?.keyboardType = UIKeyboardType.EmailAddress
             textField.placeholder = "Email"
         }
         

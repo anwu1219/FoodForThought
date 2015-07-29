@@ -207,9 +207,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
                 if delegate != nil && dish != nil {
                     // notify the delegate that this item should be deleted
                     dish?.like = false
-                    dish?.dislike = true
+                    dish?.dislike = false
                     self.delegate!.toDoItemDeleted(self.dish!)
-                    self.delegate!.uploadDislike(self.dish!)
                 }
             } else if likeOnDragRelease {
                 if dish != nil {
