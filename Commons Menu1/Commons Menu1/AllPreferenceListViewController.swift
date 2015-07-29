@@ -87,8 +87,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         myPreferenceLabel.sizeToFit()
         myPreferenceLabel.shadowColor = UIColor.blackColor()
         myPreferenceLabel.shadowOffset = CGSizeMake(2, 2)
-        myPreferenceLabel.layer.shadowRadius = 2
-        myPreferenceLabel.layer.shadowOpacity = 1.0
+//        myPreferenceLabel.layer.shadowRadius = 2
+//        myPreferenceLabel.layer.shadowOpacity = 1.0
         myPreferenceLabel.textColor = UIColor.whiteColor()
         myPreferenceLabel.backgroundColor = UIColor.clearColor()
         myPreferenceLabel.frame = CGRect(x : 0.05 * view.frame.width, y: 0.15 * view.frame.height, width: 0.7 * view.frame.width, height: 0.08 * view.frame.height)
