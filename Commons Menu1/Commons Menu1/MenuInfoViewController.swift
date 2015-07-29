@@ -67,7 +67,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         var x: CGFloat = 0.02 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
         if let susLabels = dish?.susLabels {
-            if count(susLabels) > 0 {
                 
                 var container = UIView()
                 
@@ -130,8 +129,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.layer.shadowOffset = CGSizeMake(2.0, 2.0)
                 container.layer.shadowOpacity = 0.7
                 scrollInfo.addSubview(container)
-                
-            }
+            
         }
         if let location = dish?.location {
             var label = UILabel()
