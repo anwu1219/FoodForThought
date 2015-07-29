@@ -31,6 +31,10 @@ class RestMenuViewController: UIViewController {
         //set the background image
         setBackground("restPickerBackground")
 
+        //Gets the size of the screen
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
         
         //Formats the select a restaurant label
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
@@ -38,9 +42,6 @@ class RestMenuViewController: UIViewController {
         selectARestLabel.layer.shadowRadius = 5
         selectARestLabel.layer.shadowOpacity = 1.0
         
-        //Gets the size of the screen
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
         
         //Formats the scroll view
         verticalRestMenuScroll.contentSize.width = screenSize.width
@@ -82,14 +83,7 @@ class RestMenuViewController: UIViewController {
             button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-            
-//            button.setTitleShadowColor(UIColor.blackColor(), forState: .Normal)
-//            button.titleLabel?.shadowColor = UIColor.blackColor()
-//            button.titleLabel?.shadowOffset = CGSizeMake(2, 2)
-//            button.titleLabel?.layer.shadowRadius = 4
-//            button.titleLabel?.layer.shadowOpacity = 0.5
-            
-            
+       
             
             button.layer.shadowColor = UIColor.blackColor().CGColor
             button.layer.shadowOffset = CGSizeMake(2, 2)

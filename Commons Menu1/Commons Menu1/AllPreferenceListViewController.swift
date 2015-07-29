@@ -69,7 +69,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         view.addSubview(menuSwipeScroll)
         
         
-        
         typesTableView.dataSource = self
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
@@ -121,8 +120,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         for key: String in keys {
             preferences[key]!.sort({$0.name < $1.name})
         }
+        
         addTable()
-
     }
     
     

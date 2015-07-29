@@ -77,32 +77,37 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         view.addSubview(infoButton)
         
         
+        func labelStyle(label : UILabel){
+            label.lineBreakMode = .ByWordWrapping
+            label.numberOfLines = 0
+            label.textAlignment = NSTextAlignment.Left
+            label.textColor = UIColor.whiteColor()
+        }
+        
+        
         var restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
-        restWeekdayOpenHoursLabel.lineBreakMode = .ByWordWrapping
-        restWeekdayOpenHoursLabel.numberOfLines = 0
-        restWeekdayOpenHoursLabel.textAlignment = NSTextAlignment.Left
-        restWeekdayOpenHoursLabel.textColor = UIColor.whiteColor()
+        labelStyle(restWeekdayOpenHoursLabel)
         restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
         
-         view.addSubview(restWeekdayOpenHoursLabel)
+        
+        view.addSubview(restWeekdayOpenHoursLabel)
         
         
         var labelTitleLabel = UILabel()
         labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
         labelTitleLabel.text = "Restaurant Sustainabiltiy Labels:"
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
-        labelTitleLabel.textColor = UIColor.whiteColor()
-        labelTitleLabel.lineBreakMode = .ByWordWrapping
-        labelTitleLabel.numberOfLines = 0
-        labelTitleLabel.textAlignment = NSTextAlignment.Left
+        labelStyle(labelTitleLabel)
         
         
         view.addSubview(labelTitleLabel)
 
+        
         restImage.frame = CGRect(x: 0, y: 0, width: 100 * xUnit, height: 21 * yUnit)
+        
         
         restProf.imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
@@ -127,20 +132,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         addTable()
         
-        typesTableView.dataSource = self
-        typesTableView.delegate = self
-        typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
-        typesTableView.separatorStyle = .None
-     
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.separatorStyle = .SingleLine
-        tableView.layer.borderWidth = 1
-        tableView.layer.borderColor = UIColor.blackColor().CGColor
-        
-        
         
         //sets nav bar to be see through
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
@@ -162,12 +153,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)
         
-        if let dishes = dishes {
-            self.makeMenu(dishes.dishes[restProf]!)
-            for type: String in self.types {
-                self.menu[type]!.sort({$0.name < $1.name})
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            if let dishes = self.dishes {
+                self.makeMenu(dishes.dishes[self.restProf]!)
+                for type: String in self.types {
+                    self.menu[type]!.sort({$0.name < $1.name})
+                }
+            }
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+                self.tableView.endUpdates()
             }
         }
+
+        
+        
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         
         tableView.addSubview(refreshControl)
@@ -175,12 +175,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         //set the background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "genericBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+        setBackground("genericBackground")
+
         
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
@@ -233,6 +229,20 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         menuSwipeScroll.addSubview(typesTableView)
         
         
+        typesTableView.dataSource = self
+        typesTableView.delegate = self
+        typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
+        typesTableView.separatorStyle = .None
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.registerClass(MenuTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.separatorStyle = .SingleLine
+        tableView.layer.borderWidth = 1
+        tableView.layer.borderColor = UIColor.blackColor().CGColor
+        
+        
         
         tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         tableView.backgroundColor = UIColor.clearColor()
@@ -260,7 +270,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
                 activityIndicator.frame = CGRectMake(view.bounds.midX * 0.92, tableView.bounds.midY, 0, 0)
                 self.tableView.addSubview(activityIndicator)
-                tableView.setContentOffset(CGPoint(x: 0, y: -0.25 * self.tableView.frame.height), animated: true)
                 self.refreshControl.sendActionsForControlEvents(.ValueChanged)
                 self.dishes.cached(self.restProf)
             }
