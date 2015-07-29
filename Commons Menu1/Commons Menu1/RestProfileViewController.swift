@@ -75,6 +75,9 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
+        
+        restProfScrollView.showsVerticalScrollIndicator = false
+        
         layoutScroll()
         addLabels()
     }
@@ -90,7 +93,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         // move scroll outside for i loop
         for var i = 0; i < restProf.labels.count; i++ {
             var scroll = UIScrollView()
-            
+            scroll.showsHorizontalScrollIndicator = false
             // remove all label stuff for scroll in menu swipe
             var label = UILabel()
             
@@ -500,6 +503,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let popScroll = UIScrollView()
+        popScroll.showsVerticalScrollIndicator = false
         if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {
             popScroll.frame = CGRectMake(0, 10, description.frame.width, description.frame.height+linkButton.frame.height+10)
         }

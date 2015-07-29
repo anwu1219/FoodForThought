@@ -245,9 +245,9 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
                     x += icon.frame.width + space
                 }
             }
-            var frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
             if dish!.eco.count > 0 {
                 let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
+                ecoIcon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
                 ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += ecoIcon.frame.width + space
                 susLabels.addSubview(ecoIcon)
@@ -255,6 +255,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             
             if dish!.humane.count > 0 {
                 let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
+                humaneIcon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
                 humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += humaneIcon.frame.width + space
                 susLabels.addSubview(humaneIcon)
@@ -262,13 +263,13 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             
             if dish!.fair.count > 0 {
                 let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
+                fairIcon.frame = CGRectMake(x, screenSize.height * 0.005, labelDimensions, labelDimensions)
                 fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += fairIcon.frame.width + space
                 susLabels.addSubview(fairIcon)
             }
             
-            susLabels.contentSize.width = (x)
-            x = 0
+            susLabels.contentSize.width = x
         }
     }
     

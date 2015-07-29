@@ -71,6 +71,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let xUnit: CGFloat = screenSize.width / 100
     
         
+        
+        scroll.showsHorizontalScrollIndicator = false
+
+        
         infoButton.frame = CGRect(x: 90 * xUnit, y: 25.8 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
