@@ -76,7 +76,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         
         if !dishes.learned["tinder"]! {
             instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
-            instructLabel.string = "\n Swipe right to add dish to Favorites\n or \nSwipe left to pass on dish"
+            instructLabel.string = "\n Swipe right to add dish to Favorites\n Swipe left to pass on dish"
             let fontName: CFStringRef = "Helvetica-Light"
             instructLabel.font = CTFontCreateWithName(fontName, 10, nil)
             instructLabel.fontSize = self.view.frame.height / 40

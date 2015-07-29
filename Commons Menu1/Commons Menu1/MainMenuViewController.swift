@@ -51,10 +51,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         }
         
         
-        buttonStyle(restMenuButton, "See All Restaurants")
-        buttonStyle(foodTinderMenuButton, "Food For Thought")
-        buttonStyle(myPrefMenuButton, "My Favorite")
-        buttonStyle(sustInfoMenuButton, "Sustainability Info")
+        buttonStyle(restMenuButton, " See All Restaurants")
+        buttonStyle(foodTinderMenuButton, " Food For Thought")
+        buttonStyle(myPrefMenuButton, " My Favorite")
+        buttonStyle(sustInfoMenuButton, " Sustainability Info")
         
         
         //change the backbutton title (hides it)

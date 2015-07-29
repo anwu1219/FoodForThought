@@ -76,7 +76,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(infoButton)
         
-        
         func labelStyle(label : UILabel){
             label.lineBreakMode = .ByWordWrapping
             label.numberOfLines = 0
@@ -91,10 +90,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
         labelStyle(restWeekdayOpenHoursLabel)
         restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
-        
-        
+
         view.addSubview(restWeekdayOpenHoursLabel)
-        
         
         var labelTitleLabel = UILabel()
         labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
@@ -102,13 +99,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
         labelStyle(labelTitleLabel)
         
-        
         view.addSubview(labelTitleLabel)
 
         
         restImage.frame = CGRect(x: 0, y: 0, width: 100 * xUnit, height: 21 * yUnit)
-        
-        
         restProf.imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
             if error == nil {
@@ -119,9 +113,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-        
         self.view.addSubview(restImage)
-        
         
         menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.38 * view.frame.height, width: 0.9 * view.frame.width, height: 0.62 * view.frame.height)
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
@@ -131,8 +123,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         view.addSubview(menuSwipeScroll)
         
         addTable()
-        
-        
+
         //sets nav bar to be see through
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
@@ -141,15 +132,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController?.navigationBar.translucent = true
 
         self.automaticallyAdjustsScrollViewInsets = false;
-
         
         restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
         restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        
+
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)
         
@@ -171,9 +160,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         
         tableView.addSubview(refreshControl)
-        
-        
-        
+
         //set the background image
         setBackground("genericBackground")
 
@@ -181,15 +168,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
 
-        
         scroll.frame = CGRectMake(width * 0.05, height * 0.228, width * 0.82, 0.095 * height)
         self.addLabels()
         self.view.addSubview(scroll)
-        
-        
+  
         if !dishes.learned["menuSwipe"]! {
             let alertController = UIAlertController(title: "Instruction",
-                message: "Swipe right on the dish to add to Favorites \n or\n swipe left to dislike!",
+                message: "Swipe right on the dish to add to Favorites \n \n or\n \n Swipe left to dislike",
                 preferredStyle: UIAlertControllerStyle.Alert
             )
             alertController.addAction(UIAlertAction(title: "OK!",
@@ -214,9 +199,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func viewInfoPage(sender: AnyObject){
         performSegueWithIdentifier("viewInfoPageSegue", sender: sender)
     }
-    
-    
-    
+ 
     func addTable(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
@@ -228,12 +211,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
         
-        
         typesTableView.dataSource = self
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
-        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -241,8 +222,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.separatorStyle = .SingleLine
         tableView.layer.borderWidth = 1
         tableView.layer.borderColor = UIColor.blackColor().CGColor
-        
-        
         
         tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         tableView.backgroundColor = UIColor.clearColor()
@@ -253,11 +232,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    
     func bringBack(sender: AnyObject){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
     }
-    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -274,9 +251,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.dishes.cached(self.restProf)
             }
         }
-        
     }
-    
     
     func refresh(refreshControl: UIRefreshControl) {
         if Reachability.isConnectedToNetwork() {
@@ -543,7 +518,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     /**
     Returns the title of each section
     */
-    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == self.tableView{
         let headerView = UIView()
@@ -570,7 +544,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         headerViewLabel.textColor = UIColor.whiteColor()
         headerViewLabel.font = UIFont(name: "HelveticaNeue", size: 20)
 
-        
         headerView.addSubview(headerViewLabel)
         headerView.addSubview(sectionsButton)
         
@@ -586,12 +559,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         return 0
     }
     
-    
-    
     func showSections(sender: AnyObject){
         self.menuSwipeScroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
     
     
     /**
@@ -696,8 +666,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                             if (success) {
                                                 user["menuViewed"] = true
                                                 user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                                                    
-                                                })                                            } else {
+                                                })}
+                                            else {
                                                 // There was a problem, check error.description
                                             }
                                         })
@@ -763,13 +733,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-
-    
     
     func showRestaurant(sender: AnyObject){
         performSegueWithIdentifier("restProfileSegue", sender: sender)
     }
-    
     
     /**
     Prepares for segue
@@ -811,8 +778,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.didReceiveMemoryWarning()
     }
     
-    
-    
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton
@@ -847,8 +812,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
         }
         
-        
-        
         popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height+linkButton.frame.height)
         popScroll.addSubview(description)
         popScroll.addSubview(linkButton)
@@ -874,8 +837,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 }
-
-
 
 extension MenuSwipeViewController : UIPopoverPresentationControllerDelegate {
     

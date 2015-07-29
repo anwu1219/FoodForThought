@@ -311,7 +311,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         if count(restProf.mealPlanHours[0]) > 0 {
             
             var mealPlan = UILabel()
-            mealPlan.text = "Davidson Meal Plan Hours:"
+            mealPlan.text = "Meal Plan Hours:"
             mealPlan.textColor = UIColor.whiteColor()
             mealPlan.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
             mealPlan.sizeToFit()
