@@ -14,7 +14,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
-
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
@@ -26,12 +25,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !Reachability.isConnectedToNetwork() {
-            noInternetAlert("")
-        }
-        
         
         let bkgdImage = UIImageView()
         bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
@@ -43,59 +39,69 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
         
-        emailAddress.layer.masksToBounds = false
-        emailAddress.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
-        emailAddress.layer.shadowColor = UIColor.blackColor().CGColor
-        emailAddress.layer.shadowOpacity = 0.5
-        emailAddress.layer.shadowRadius = 4.0
-        emailAddress.layer.shadowOffset = CGSizeMake(5.0, 5.0)
         
-        password.layer.masksToBounds = false
-        password.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
-        password.layer.shadowColor = UIColor.blackColor().CGColor
-        password.layer.shadowOpacity = 0.5
-        password.layer.shadowRadius = 4.0
-        password.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+        // - Style of the textfield, button, and label
+        func textFieldStyle(textField : UITextField){
+            textField.layer.masksToBounds = false
+            textField.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.9)
+            textField.layer.shadowColor = UIColor.blackColor().CGColor
+            textField.layer.shadowOpacity = 0.5
+            textField.layer.shadowRadius = 4.0
+            textField.layer.shadowOffset = CGSizeMake(5.0, 5.0)
+            textField.delegate = self
+        }
         
-        signUpButton.layer.shadowColor = UIColor.blackColor().CGColor
-        signUpButton.layer.shadowOffset = CGSizeMake(5, 5)
-        signUpButton.layer.shadowRadius = 2
-        signUpButton.layer.shadowOpacity = 1.0
+        textFieldStyle(emailAddress)
+        textFieldStyle(password)
         
-        signInButton.layer.shadowColor = UIColor.blackColor().CGColor
-        signInButton.layer.shadowOffset = CGSizeMake(5, 5)
-        signInButton.layer.shadowRadius = 2
-        signInButton.layer.shadowOpacity = 1.0
         
-        welcomeLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        welcomeLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        welcomeLabel.layer.shadowRadius = 5
-        welcomeLabel.layer.shadowOpacity = 1.0
+        func buttonStyle(button: UIButton){
+            button.layer.shadowColor = UIColor.blackColor().CGColor
+            button.layer.shadowOffset = CGSizeMake(5, 5)
+            button.layer.shadowRadius = 2
+            button.layer.shadowOpacity = 1.0
+        }
         
-        passwordLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        passwordLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        passwordLabel.layer.shadowRadius = 5
-        passwordLabel.layer.shadowOpacity = 1.0
+        buttonStyle(signUpButton)
+        buttonStyle(signInButton)
         
-        emailLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        emailLabel.layer.shadowOffset = CGSizeMake(5, 5)
-        emailLabel.layer.shadowRadius = 5
-        emailLabel.layer.shadowOpacity = 1.0
+        
+        func labelStyle(label : UILabel){
+            label.layer.shadowColor = UIColor.blackColor().CGColor
+            label.layer.shadowOffset = CGSizeMake(5, 5)
+            label.layer.shadowRadius = 5
+            label.layer.shadowOpacity = 1.0
+        }
+        
+        labelStyle(welcomeLabel)
+        labelStyle(passwordLabel)
+        labelStyle(emailLabel)
 
-        
-        self.emailAddress.delegate = self
-        self.password.delegate = self
-        self.getRestaurant()
-        for restaurant : RestProfile in dishes.dishes.keys {
-            dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
-        } //needs update to cache
         
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        self.dishes.date = getDate()
+
         
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) { // 1
+            self.getRestaurant()
+            for restaurant : RestProfile in self.dishes.dishes.keys {
+                self.dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
+            } //needs update to cache
+            self.dishes.date = self.getDate()
+        }
+        
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+            let isReachable = Reachability.isConnectedToNetwork()
+            dispatch_async(dispatch_get_main_queue()) {
+                if !isReachable {
+                    self.noInternetAlert("")
+                }
+            }
+        }
     }
+    
     
     //functions that raise the view when keyboard is shown, so that the password field is not hidden underneath
     //the keyboard. From http://stackoverflow.com/questions/25693130/move-textfield-when-keyboard-appears-swift
@@ -111,39 +117,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
-    @IBAction func signUp(sender: AnyObject) {
-        // Build the terms and conditions alert
-        if isValidEmail(emailAddress.text) == true {
-            //ensure password is longer than 5 characters and is shorter than 20 characters
-            if checkPasswordLengthShort(password.text) == true {
-        let alertController = UIAlertController(title: "Agree to terms and conditions",
-            message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
-            preferredStyle: UIAlertControllerStyle.Alert
-            )
-        alertController.addAction(UIAlertAction(title: "I AGREE",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.processSignUp()}
-            )
-        )
-        alertController.addAction(UIAlertAction(title: "I do NOT agree",
-            style: UIAlertActionStyle.Default,
-            //handler: nil
-            handler: { alertController in self.cancelSignUp() }
-            )
-        )
-        
-        // Display alert
-        self.presentViewController(alertController, animated: true, completion: nil)
-            }
-            else {
-                let passwordLengthNotPermitted = UIAlertView(title: "Password Length Error", message: "Password must be between 6 and 20 characters", delegate: nil, cancelButtonTitle: "OK")
-                // shows alert to user
-                passwordLengthNotPermitted.show()
-            }
-        }
-    }
-    
     override func viewWillAppear(animated: Bool) {
         navigationController?.navigationBarHidden = true
         super.viewWillAppear(animated)
@@ -157,12 +130,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewWillDisappear(animated)
     }
     
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        //self.view.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    
+    // -: Process sign up and sign in
     func cancelSignUp() -> Bool {
         // cancels signup, needs stop segue to next menu
         self.activityIndicator.stopAnimating()
         return true
     }
     
+    
+    //Check the password's length
     func checkPasswordLengthShort(password: String) -> Bool {
         if count(password) >= 6 && count(password) <= 20{
             return true
@@ -218,51 +207,42 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        //self.view.endEditing(true)
-        textField.resignFirstResponder()
-        return true
-    }
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        self.view.endEditing(true)
-    }
     
-    
-    //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
-    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
-        if identifier == "signInToNavigationSegue" {
-            var segueShouldOccur = true // you determine this
-            var segueShouldOccurEULA = true
-            
-            if isValidEmail(emailAddress.text) == false {
-            // perform your computation to determine whether segue should occur
-                segueShouldOccur = false
-            }
-            
-            if cancelSignUp() == true {
-                segueShouldOccurEULA = false
-            }
-           
-            if !segueShouldOccur {
-                let notPermitted = UIAlertView(title: "Alert", message: "Email is not valid.", delegate: nil, cancelButtonTitle: "OK")
+    //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
+    @IBAction func signUp(sender: AnyObject) {
+        // Build the terms and conditions alert
+        if isValidEmail(emailAddress.text) == true {
+            //ensure password is longer than 6 characters and is shorter than 20 characters
+            if checkPasswordLengthShort(password.text) == true {
+                let alertController = UIAlertController(title: "Agree to terms and conditions",
+                    message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
+                    preferredStyle: UIAlertControllerStyle.Alert
+                )
+                alertController.addAction(UIAlertAction(title: "I AGREE",
+                    style: UIAlertActionStyle.Default,
+                    handler: { alertController in self.processSignUp()}
+                    )
+                )
+                alertController.addAction(UIAlertAction(title: "I do NOT agree",
+                    style: UIAlertActionStyle.Default,
+                    //handler: nil
+                    handler: { alertController in self.cancelSignUp() }
+                    )
+                )
                 
+                // Display alert
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            else {
+                let passwordLengthNotPermitted = UIAlertView(title: "Password Length Error", message: "Password must be between 6 and 20 characters", delegate: nil, cancelButtonTitle: "OK")
                 // shows alert to user
-                notPermitted.show()
-                
-                // prevent segue from occurring
-                return false
-            }
-
-            if !segueShouldOccurEULA {
-                // prevent segue from occurring
-                return false
+                passwordLengthNotPermitted.show()
             }
         }
-        // by default perform the segue transition
-        return true
     }
+    
     
     @IBAction func signIn(sender: AnyObject) {
         activityIndicator.hidden = false
@@ -307,6 +287,33 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    
+    //button action to reset forgotten password
+    //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
+    @IBAction func resetPasswordPressed(sender: AnyObject) {
+        let titlePrompt = UIAlertController(title: "Reset password",
+            message: "Enter the email you registered with:",
+            preferredStyle: .Alert)
+        
+        var titleTextField: UITextField?
+        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            titleTextField = textField
+            textField.placeholder = "Email"
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        
+        titlePrompt.addAction(cancelAction)
+        
+        titlePrompt.addAction(UIAlertAction(title: "Reset", style: .Destructive, handler: { (action) -> Void in
+            if let textField = titleTextField {
+                self.resetPassword(textField.text)
+            }
+        }))
+        
+        self.presentViewController(titlePrompt, animated: true, completion: nil)
+    }
+    
     
     func clearTextField(){
         emailAddress.text = ""
@@ -359,33 +366,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-
-    
-    //button action to reset forgotten password
-    //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
-    @IBAction func resetPasswordPressed(sender: AnyObject) {
-        let titlePrompt = UIAlertController(title: "Reset password",
-            message: "Enter the email you registered with:",
-            preferredStyle: .Alert)
-        
-        var titleTextField: UITextField?
-        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            titleTextField = textField
-            textField.placeholder = "Email"
-        }
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-        
-        titlePrompt.addAction(cancelAction)
-        
-        titlePrompt.addAction(UIAlertAction(title: "Reset", style: .Destructive, handler: { (action) -> Void in
-            if let textField = titleTextField {
-                self.resetPassword(textField.text)
-            }
-        }))
-        
-        self.presentViewController(titlePrompt, animated: true, completion: nil)
-    }
     
  
     //Parse function to reset forgotten password
@@ -417,6 +397,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
+    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+        if identifier == "signInToNavigationSegue" {
+            var segueShouldOccur = true
+            var segueShouldOccurEULA = true
+            
+            if isValidEmail(emailAddress.text) == false {
+                // perform your computation to determine whether segue should occur
+                segueShouldOccur = false
+            }
+            
+            if cancelSignUp() == true {
+                segueShouldOccurEULA = false
+            }
+            
+            if !segueShouldOccur {
+                let notPermitted = UIAlertView(title: "Alert", message: "Email is not valid.", delegate: nil, cancelButtonTitle: "OK")
+                
+                // shows alert to user
+                notPermitted.show()
+                
+                // prevent segue from occurring
+                return false
+            }
+            
+            if !segueShouldOccurEULA {
+                // prevent segue from occurring
+                return false
+            }
+        }
+        // by default perform the segue transition
+        return true
     }
     
     

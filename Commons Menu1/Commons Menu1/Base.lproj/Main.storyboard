@@ -111,76 +111,6 @@
             </objects>
             <point key="canvasLocation" x="-30" y="-1550"/>
         </scene>
-        <!--Top Dishes View Controller-->
-        <scene sceneID="jtD-Kt-Svu">
-            <objects>
-                <viewController id="21x-v4-HIz" customClass="TopDishesViewController" customModule="Foodscape" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="a67-ua-hN9"/>
-                        <viewControllerLayoutGuide type="bottom" id="eu5-gc-uiU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a1x-aM-wLj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="F0N-5e-uH7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="zFt-qk-fYa">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zFt-qk-fYa" id="tJh-MC-4i4">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="F0N-5e-uH7" firstAttribute="leading" secondItem="a1x-aM-wLj" secondAttribute="leadingMargin" constant="16" id="2Pn-AX-keB">
-                                <variation key="widthClass=compact" constant="8"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="F0N-5e-uH7" secondAttribute="trailing" constant="16" id="8Y7-PO-Xff">
-                                <variation key="widthClass=compact" constant="8"/>
-                            </constraint>
-                            <constraint firstItem="eu5-gc-uiU" firstAttribute="top" secondItem="F0N-5e-uH7" secondAttribute="bottom" constant="16" id="H8g-wH-2T2"/>
-                            <constraint firstItem="F0N-5e-uH7" firstAttribute="top" secondItem="a1x-aM-wLj" secondAttribute="topMargin" id="wjX-4G-emm">
-                                <variation key="widthClass=compact" constant="80"/>
-                            </constraint>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="F0N-5e-uH7"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="H8g-wH-2T2"/>
-                                <exclude reference="2Pn-AX-keB"/>
-                                <exclude reference="8Y7-PO-Xff"/>
-                                <exclude reference="wjX-4G-emm"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="F0N-5e-uH7"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="H8g-wH-2T2"/>
-                                <include reference="2Pn-AX-keB"/>
-                                <include reference="8Y7-PO-Xff"/>
-                                <include reference="wjX-4G-emm"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="topDishesTableView" destination="F0N-5e-uH7" id="Y90-CO-gNQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zSY-tX-aGE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1375.5" y="-1468"/>
-        </scene>
         <!--Main Menu-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -603,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJm-zj-PxR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3073.5" y="710"/>
+            <point key="canvasLocation" x="-3103.5" y="710"/>
         </scene>
         <!--About Sustainability-->
         <scene sceneID="1a4-ct-bCe">
@@ -624,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oD3-eF-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2175" y="31"/>
+            <point key="canvasLocation" x="-2247" y="31"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
