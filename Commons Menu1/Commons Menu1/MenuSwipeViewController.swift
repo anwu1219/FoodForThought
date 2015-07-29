@@ -189,7 +189,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         if !dishes.learned["menuSwipe"]! {
             let alertController = UIAlertController(title: "Instruction",
-                message: "Swipe right on the dish to add to Favorites \n or\n swipe left to dislike!",
+                message: "Swipe right on the dish to add to Favorites \n \n or\n \n Swipe left to dislike",
                 preferredStyle: UIAlertControllerStyle.Alert
             )
             alertController.addAction(UIAlertAction(title: "OK!",

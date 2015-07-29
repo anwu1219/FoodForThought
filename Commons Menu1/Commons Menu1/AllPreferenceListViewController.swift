@@ -16,11 +16,9 @@ protocol PreferenceMenuTableViewCellDelegate{
     */
     func toDoItemDeleted(dish: Dish)
     
-    
     /**
     indicates which item has been selected and provide appropriate information for a segue to dish info
     */
-    // #spchadinha
     func viewDishInfo(dish: Dish)
 }
 
@@ -39,9 +37,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     var indexTitles = [String]()
     let menuSwipeScroll = UIScrollView()
     var typesTableView = UITableView()
-    
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         //Formats the table view
@@ -68,14 +64,11 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         menuSwipeScroll.scrollEnabled = false
         view.addSubview(menuSwipeScroll)
         
-        
         typesTableView.dataSource = self
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
-        
-        
-        
+
         //bottom border between top image and table view
         let border = CALayer()
         let width = CGFloat(2.0)
@@ -102,7 +95,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         
         view.addSubview(myPreferenceLabel)
         
-        
         preferenceListTableView.layer.borderColor = UIColor(red: 132/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
         
@@ -124,8 +116,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         addTable()
     }
     
-    
-    
     func addTable(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
@@ -136,10 +126,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
-        
-        
-        
-        
+
         preferenceListTableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.backgroundView?.contentMode = .ScaleAspectFill
@@ -212,7 +199,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             }
         }
     
-    
     /**
     Returns the number of rows in the table
     */
@@ -223,8 +209,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             return preferences.keys.array.count
         }
     }
-    
-    
     
     /**
     Generates cells and adds items to the table
@@ -252,7 +236,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             }
            // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
            // cell.detailTextLabel?.textAlignment = .Center
-            
         }
             return cell
         } else {

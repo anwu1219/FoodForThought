@@ -175,7 +175,7 @@ struct IconDescription{
         "CHR" : "http://sites.davidson.edu/sustainabilityscholars/",
         "GAP" : "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "COBD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "COBD": "http://sites.davidson.edu/sustainabilityscholars/",
         
         "CBFD": "http://sites.davidson.edu/sustainabilityscholars/",
         
@@ -195,7 +195,7 @@ struct IconDescription{
         
         "PHCD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "RACD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "RACD": "http://sites.davidson.edu/sustainabilityscholars/",
         
         "USDAD": "http://sites.davidson.edu/sustainabilityscholars/",
         
@@ -203,25 +203,25 @@ struct IconDescription{
         
         "FFSD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "FLD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FLD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "FTD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FTD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "FWD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FWD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "FJCD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "FJCD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "SPSD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "SPSD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "AGAD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "AGAD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "AHCD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "AHCD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "AWAD" : "http://sites.davidson.edu/sustainabilityscholars/",
+        "AWAD": "http://sites.davidson.edu/sustainabilityscholars/",
         
-        "CHRD" : "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        "CHRD": "Thttp://sites.davidson.edu/sustainabilityscholars/",
         
-        "GAPD" : "http://sites.davidson.edu/sustainabilityscholars/"
+        "GAPD": "http://sites.davidson.edu/sustainabilityscholars/"
         
     ]
 }

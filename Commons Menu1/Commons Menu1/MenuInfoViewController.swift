@@ -85,12 +85,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 var labelHeight = 9 * height
                 var labelSpace = 0.5 * width
                 labelPicsScroll.frame = CGRectMake(0, y, title.frame.width, title.frame.height)
-                labelPicsScroll.contentSize = CGSizeMake((CGFloat(susLabels.count + dish!.eco.count + dish!.humane.count + dish!.fair.count))*(labelWidth+labelSpace)+labelSpace, labelHeight)
+               labelPicsScroll.contentSize = CGSizeMake((CGFloat(susLabels.count + dish!.eco.count + dish!.humane.count + dish!.fair.count))*(labelWidth+labelSpace)+labelSpace, labelHeight)
                 
                 var initX = x
                 if labelPicsScroll.contentSize.width < labelPicsScroll.frame.width {
                     initX = (labelPicsScroll.frame.width/2) - (labelPicsScroll.contentSize.width/2)
                 }
+            
                 for var i = 0; i < susLabels.count; i++ {
                     var labelImage = IconButton(name: susLabels[i], frame: CGRectMake(initX, height, labelWidth, labelWidth))
                     labelImage.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -100,6 +101,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
 
                 var frame = CGRectMake(initX, height, labelWidth, labelWidth)
                 if dish!.eco.count > 0 {
+                    println(dish!.eco.count)
                     let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
                     ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     labelPicsScroll.addSubview(ecoIcon)
@@ -107,20 +109,23 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 }
                 
                 if dish!.humane.count > 0 {
+                    println(dish!.humane.count)
+
                     let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
                     humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     labelPicsScroll.addSubview(humaneIcon)
                     initX += labelSpace + labelWidth
                 }
-                
+            
                 if dish!.fair.count > 0 {
+                    println(dish!.fair.count)
                     let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
                     fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     labelPicsScroll.addSubview(fairIcon)
                     initX += labelSpace + labelWidth
                 }
-                
-                //scrollInfo.addSubview(labelPics)
+            
+//                scrollInfo.addSubview(labelPics)
                 container.addSubview(labelPicsScroll)
                 y += 10 * height
                 
