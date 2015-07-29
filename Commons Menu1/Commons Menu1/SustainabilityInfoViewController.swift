@@ -116,6 +116,15 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == susView{
+            icon.hidden = false
+            println("Scroll finished")
+            
+        }
+    }
+    
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if let boo = isFromInfo {

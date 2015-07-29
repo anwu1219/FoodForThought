@@ -87,14 +87,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             instructLabel.contentsScale = UIScreen.mainScreen().scale
             view.layer.addSublayer(instructLabel)
         }
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.5))
+        dispatch_after(delayTime, dispatch_get_main_queue()){
+            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+        }
     }
     
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if self.menu.isEmpty {
-            self.refreshControl.sendActionsForControlEvents(.ValueChanged)
-        }
     }
     
     
