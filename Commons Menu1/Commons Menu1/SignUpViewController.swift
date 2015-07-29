@@ -29,12 +29,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(-130.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "SignInBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+        
+        setBackground("SignInBackground")
         
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true

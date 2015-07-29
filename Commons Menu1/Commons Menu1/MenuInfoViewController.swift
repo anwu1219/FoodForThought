@@ -29,6 +29,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         super.viewDidLoad()
         
         
+        setBackground("dishlevelInfopagebackground")
+        
+        
         dishName.title = dish?.name
         
         dish.imageFile.getDataInBackgroundWithBlock {
@@ -49,13 +52,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         dishImage.layer.masksToBounds = true
         //scrollInfo.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.3)
 
-        var background = UIImageView()
-        background.bounds = CGRectMake(0.0, 0.0, screenSize.width, screenSize.height)
-        background.frame = background.bounds
-        background.image = UIImage(named: "dishlevelInfopagebackground")
-        background.contentMode = .ScaleAspectFill
-        self.view.addSubview(background)
-        self.view.sendSubviewToBack(background)
 
         layoutPage()
         

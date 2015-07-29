@@ -29,60 +29,32 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //set the background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "MainMenuBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+        
+        setBackground("MainMenuBackground")
         
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food For Thought", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
         
-        restMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
-        restMenuButton.layer.shadowRadius = 5
-        restMenuButton.layer.shadowOpacity = 1.0
         
-        foodTinderMenuButton.layer.shadowOffset = CGSizeMake(4, 4)
-        foodTinderMenuButton.layer.shadowRadius = 5
-        foodTinderMenuButton.layer.shadowOpacity = 1.0
-        
-        myPrefMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
-        myPrefMenuButton.layer.shadowRadius = 5
-        myPrefMenuButton.layer.shadowOpacity = 1.0
-        
-        sustInfoMenuButton.layer.shadowOffset = CGSizeMake(5, 5)
-        sustInfoMenuButton.layer.shadowRadius = 5
-        sustInfoMenuButton.layer.shadowOpacity = 1.0
+        func buttonStyle(button: UIButton, title: String){
+            button.setTitle(title, forState: .Normal)
+            button.layer.shadowOffset = CGSizeMake(5, 5)
+            button.layer.shadowRadius = 5
+            button.layer.shadowOpacity = 1.0
+            button.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+            button.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+            button.titleLabel?.layer.shadowRadius = 2
+            button.titleLabel?.layer.shadowOpacity = 1.0
+            button.frame = styles.buttonFrame
+        }
         
         
-        restMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-        restMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
-        restMenuButton.titleLabel?.layer.shadowRadius = 2
-        restMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-        
-        foodTinderMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-        foodTinderMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
-        foodTinderMenuButton.titleLabel?.layer.shadowRadius = 2
-        foodTinderMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-        
-        myPrefMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-        myPrefMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
-        myPrefMenuButton.titleLabel?.layer.shadowRadius = 2
-        myPrefMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-        
-        sustInfoMenuButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
-        sustInfoMenuButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
-        sustInfoMenuButton.titleLabel?.layer.shadowRadius = 2
-        sustInfoMenuButton.titleLabel?.layer.shadowOpacity = 1.0
-
-        restMenuButton.frame = styles.buttonFrame
-        myPrefMenuButton.frame = styles.buttonFrame
-        foodTinderMenuButton.frame = styles.buttonFrame
-        sustInfoMenuButton.frame = styles.buttonFrame
+        buttonStyle(restMenuButton, "See All Restaurants")
+        buttonStyle(foodTinderMenuButton, "Food For Thought")
+        buttonStyle(myPrefMenuButton, "My Favorite")
+        buttonStyle(sustInfoMenuButton, "Sustainability Info")
         
         
         //change the backbutton title (hides it)
@@ -95,46 +67,34 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.navigationItem.setHidesBackButton(true, animated:true);
         
-        self.fetchPreferenceData()
-        self.fetchDislikeData()
         
-        if let user =  PFUser.currentUser() {
-        if let tinderViewed = user["tinderViewed"] as? Bool {
-            if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
-                self.dishes.learned["tinder"] = tinderViewed
-                self.dishes.learned["menuSwipe"] = menuViewed
-                println("Logged in successfully")
-                }
-            }
-        }
-        
-        
-        
-        instructButton.frame = CGRect(x: 0.94 * view.frame.width, y: 0.95 * view.frame.height, width: 0.05 * view.frame.width, height: 0.05 * view.frame.width)
+        instructButton.frame = CGRect(x: 0.9 * view.frame.width, y: 0.92 * view.frame.height, width: 0.05 * view.frame.width, height: 0.05 * view.frame.width)
         instructButton.tintColor = UIColor.whiteColor()
         instructButton.addTarget(self, action: "viewInstructPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(instructButton)
         
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+            self.fetchPreferenceData()
+            self.fetchDislikeData()
+            self.getNumberOfDishes()
+            if let user =  PFUser.currentUser() {
+                if let tinderViewed = user["tinderViewed"] as? Bool {
+                    if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
+                        self.dishes.learned["tinder"] = tinderViewed
+                        self.dishes.learned["menuSwipe"] = menuViewed
+                    }
+                }
+            }
+        }
     }
     
     
+    
+    // :-Button Actions
     func viewInstructPage(sender : UIButton){
         performSegueWithIdentifier("viewInstructSegue", sender: sender)
-//        let vc = InstructionViewController()
-//        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-//            vc.modalPresentationStyle = .Popover
-//        if let pres = vc.popoverPresentationController {
-//            pres.delegate = self
-//        }
-//        
-//        self.presentViewController(vc, animated: true, completion: nil)
-//            
-//        if let pop = vc.popoverPresentationController {
-//            pop.sourceView = (sender as UIView)
-//            pop.sourceRect = (sender as UIView).bounds
-//        }
     }
-    
     
     
     //creates the log out alert
@@ -146,7 +106,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         alert.addAction(UIAlertAction(
             title: "Yes",
             style: UIAlertActionStyle.Destructive,
-            handler: { alertAction in self.logOutSegue() }
+            handler: { alertAction in self.logOut() }
             )
         )
         alert.addAction(UIAlertAction(
@@ -159,10 +119,20 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     }
     
     
+    @IBAction func showRestaurants(sender: AnyObject) {
+        performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
+    }
+    
+    
+    @IBAction func foodTinderAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
+    }
+    
+    
     /**
     Logs out and clears the text field when go back
     */
-    func logOutSegue(){
+    func logOut(){
         PFUser.logOut()
         println("Logged out")
         for restaurant : RestProfile in dishes.dishes.keys {
@@ -172,11 +142,19 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         performSegueWithIdentifier("logOutSegue", sender: self)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    func getNumberOfDishes(){
+        var query = PFQuery(className:"Constants")
+        query.whereKey("name", equalTo: "dishNumber")
+        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            if let object = object {
+                if let value = object["value"] as? Int {
+                    self.dishes.setNumberOfDishes(value)
+                }
+            }
+        }
+    }
+   
     
     /**
     Fetches preference data from Parse and sets the corresponding dish object like to true
@@ -215,27 +193,27 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         query.getFirstObjectInBackgroundWithBlock{
             (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
-            let dish = object as! Dish
-            dish.like = like
-            dish.dislike = dislike
-            dish.name = object["name"] as! String
-            dish.location = object["location"] as! String
-            dish.ingredients = object["ingredients"] as! [String]
-            dish.labels = object["labels"] as! [[String]]
-            dish.type = object["type"] as! String
-            dish.susLabels = object["susLabels"] as! [String]
-            dish.index = object["index"] as! Int
-            dish.eco = object["eco"] as! [String]
-            dish.fair = object["fair"] as! [String]
-            dish.humane = object["humane"] as! [String]
-            dish.price = object["price"] as! String
-            dish.imageFile = object["image"] as! PFFile
-            if let date = object["displayDate"] as? String {
-                dish.date = date
-            }
-            self.dishes.addToDealtWith(dish.index)
-            self.dishes.addDish(location, dish: dish)
-            self.dishes.addPulled(dish.index)
+                let dish = object as! Dish
+                dish.like = like
+                dish.dislike = dislike
+                dish.name = object["name"] as! String
+                dish.location = object["location"] as! String
+                dish.ingredients = object["ingredients"] as! [String]
+                dish.labels = object["labels"] as! [[String]]
+                dish.type = object["type"] as! String
+                dish.susLabels = object["susLabels"] as! [String]
+                dish.index = object["index"] as! Int
+                dish.eco = object["eco"] as! [String]
+                dish.fair = object["fair"] as! [String]
+                dish.humane = object["humane"] as! [String]
+                dish.price = object["price"] as! String
+                dish.imageFile = object["image"] as! PFFile
+                if let date = object["displayDate"] as? String {
+                    dish.date = date
+                }
+                self.dishes.addToDealtWith(dish.index)
+                self.dishes.addDish(location, dish: dish)
+                self.dishes.addPulled(dish.index)
             }
         }
     }
@@ -269,29 +247,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     }
     
     
-    func getNumberOfDishes(){
-        var query = PFQuery(className:"Constants")
-        query.whereKey("name", equalTo: "dishNumber")
-        query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-            if let object = object {
-                if let value = object["value"] as? Int {
-                    self.dishes.setNumberOfDishes(value)
-                }
-            }
-        }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    
-    
-    @IBAction func showRestaurants(sender: AnyObject) {
-        performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
-    }
-    
-    
-    @IBAction func foodTinderAction(sender: AnyObject) {
-        self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
-    }
-    
-   
     
     
     /**
@@ -300,7 +259,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "foodTinderSegue"{
             let foodTinderViewController = segue.destinationViewController as! FoodTinderViewController
-            self.getNumberOfDishes()
             foodTinderViewController.dishes = dishes
         }
         if segue.identifier == "mainToRestaurantsSegue" {

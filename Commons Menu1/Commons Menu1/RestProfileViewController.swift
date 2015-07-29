@@ -29,6 +29,11 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var susView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        setBackground("genericBackground")
+
+        
         self.title = restProf?.name
         restProf.imageFile.getDataInBackgroundWithBlock {
             (imageData: NSData?, error: NSError?) ->Void in
@@ -56,16 +61,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(infoButton)
-        
-
-        
-        //set the background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "genericBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+    
         
         //sets nav bar to be see through
         let bar:UINavigationBar! =  self.navigationController?.navigationBar

@@ -33,13 +33,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
 
         
         //set background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "preferenceBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
-        
+        setBackground("preferenceBackground")
         
         
     }

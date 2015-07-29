@@ -63,13 +63,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susView.delegate = self
         
         
-        let background = UIImageView()
-        background.image = UIImage(named: "SustyPageBackground")
-        background.frame = CGRectMake(0.0, 0.0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height) // will need to change with new images
-        background.bounds = background.bounds
-        background.contentMode = .ScaleToFill
-        self.view.addSubview(background)
-        //self.view.sendSubviewToBack(background)
+        setBackground("SustyPageBackground")
+
         
         menuSwipeScroll.frame = CGRect(x: widthPadding, y: 3.5*verticalSpace, width: UIScreen.mainScreen().bounds.width-(2*widthPadding), height: UIScreen.mainScreen().bounds.height - (4*verticalSpace))
         menuSwipeScroll.backgroundColor = UIColor.clearColor()

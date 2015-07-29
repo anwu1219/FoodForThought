@@ -29,12 +29,8 @@ class RestMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //set the background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "restPickerBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+        setBackground("restPickerBackground")
+
         
         //Formats the select a restaurant label
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
@@ -51,7 +47,7 @@ class RestMenuViewController: UIViewController {
         verticalRestMenuScroll.contentSize.height = 450
         verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
 
-        //verticalRestMenuScroll.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.75)
+
         //Places the button with the list of restaurants get from restaurant map
         restaurants = dishes.dishes
         if let restaurants = restaurants{

@@ -29,8 +29,6 @@ protocol PreferenceMenuTableViewCellDelegate{
 Class that shows all the preferences of the current user
 */
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate, TypesTableViewCellDelegate {
-    
-    
     var allPrefTopImage = UIImageView()
     var preferenceListTableView = UITableView()
     var preferences = [String: [Dish]]()
@@ -55,12 +53,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         bar.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8)
         
         //sets background image
-        let bkgdImage = UIImageView()
-        bkgdImage.frame = CGRectMake(0.0, 0.0, self.view.frame.width, self.view.frame.height)
-        bkgdImage.image = UIImage(named: "preferenceBackground")
-        bkgdImage.contentMode = .ScaleAspectFill
-        self.view.addSubview(bkgdImage)
-        self.view.sendSubviewToBack(bkgdImage)
+        setBackground("preferenceBackground")
         
         
         allPrefTopImage.image = UIImage(named: "redberrycup")
