@@ -61,12 +61,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.layer.cornerRadius = 5
         
         
-        if let ecoLabelsArray = ecoLabelsArray {
-            //       var keys = ecoLabelsArray.keys.array
-            //       keys.sort({$0.name < $1.name})
-            //       placeEcoLabels(keys)
-        }
-        
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         foodTinderTableView.addSubview(refreshControl)
         
@@ -120,29 +114,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         } else{
             noInternetAlert("Unable to Get Any Food for Thought")
             refreshControl.endRefreshing()
-        }
-    }
-    
-    
-    func placeEcoLabels(keys: [Label]) {
-        for i in 0..<keys.count {
-            var image = UIImage()
-            var downAlign: CGFloat = 20
-            // Sets the size and position of the button
-            var width: CGFloat = 25
-            var height: CGFloat = 25
-            var x: CGFloat = (50 + (0.5 * width))
-            var y: CGFloat = (height+10) * CGFloat(i)
-            //       image.frame = CGRectMake(x - 40, y + 10, 250, 46)
-            //image.backgroundColor = UIColor(red: 0.75, green: 0.83, blue: 0.75, alpha: 0.95)
-            
-            //Sets the content of the buttons
-            
-            // let backgroundImage = Label()
-            // backgroundImage.frame = image.frame
-            
-            //       ecoLabelScrollView.addSubview(button)
-            //       ecoLabelScrollView.addSubview(backgroundImage)
         }
     }
     
@@ -344,7 +315,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         let vc = UIViewController()
         let button = sender as! IconButton
         
-        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.preferredContentSize = CGSizeMake(self.view.frame.width * 0.4, self.view.frame.height * 0.3)
         vc.modalPresentationStyle = .Popover
         
         if let pres = vc.popoverPresentationController {
@@ -357,7 +328,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
         description.sizeToFit()
-        vc.view.addSubview(description)
+
         
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)

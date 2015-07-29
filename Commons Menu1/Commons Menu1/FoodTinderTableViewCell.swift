@@ -25,6 +25,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     var itemLikeLayer = CALayer()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var chefNoteLabel: UILabel
+    var noIconLabel : UILabel
     var susLabels: UIScrollView
     //var ecoLabel: UILabel
 
@@ -51,14 +52,17 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
         label.textColor = styles.labelTextColor
-        label.font = UIFont.boldSystemFontOfSize(16)
         label.backgroundColor = UIColor.clearColor()
         
         
         chefNoteLabel = UILabel(frame: CGRect.nullRect)
         chefNoteLabel.textColor = styles.labelTextColor
-        //chefNoteLabel.font = UIFont.boldSystemFontOfSize(16)
         chefNoteLabel.backgroundColor = UIColor.clearColor()
+    
+        noIconLabel = UILabel(frame : CGRect.nullRect)
+        noIconLabel.textColor = styles.labelTextColor
+        noIconLabel.backgroundColor = UIColor.clearColor()
+        noIconLabel.text = "No Sustainability Icon Available"
         
         susLabels = UIScrollView(frame: CGRect.nullRect)
         
@@ -90,7 +94,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         addSubview(tickLabel)
         addSubview(crossLabel)
         addSubview(susLabels)
-        //addSubview(boarder)
+        addSubview(noIconLabel)
+
         // remove the default blue highlight for selected cells
         selectionStyle = .None
         
@@ -140,19 +145,31 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         label.numberOfLines = 0
         label.lineBreakMode = .ByWordWrapping
         label.textColor = UIColor.whiteColor()
-        
+        label.font = UIFont.boldSystemFontOfSize(0.058 * self.frame.width)
+
         
 
-        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.56,
+        chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.58,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
         chefNoteLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
         chefNoteLabel.textColor = UIColor.whiteColor()
         chefNoteLabel.textAlignment = NSTextAlignment.Center
         chefNoteLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         chefNoteLabel.numberOfLines = 0
+        chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
+        
+        
+        noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
+            width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
+        noIconLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
+        noIconLabel.textColor = UIColor.darkGrayColor()
+        noIconLabel.textAlignment = NSTextAlignment.Center
+        noIconLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        noIconLabel.numberOfLines = 0
+        noIconLabel.font = UIFont(name: "Helvetica", size: 0.04 * self.frame.width)
         
         susLabels.subviews.map({ $0.removeFromSuperview() })
-        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.63, width: screenSize.width - (0.15*screenSize.width), height: screenSize.height*0.1)
+        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.68, width: 0.85 * screenSize.width, height: screenSize.height*0.1)
         susLabels.backgroundColor = UIColor.clearColor()
         placeLabels()
         
@@ -224,6 +241,16 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         }
     }
     
+    
+    func boolToInt(bool : Bool) -> Int {
+        if bool {
+            return 1
+        }
+        return 0
+    }
+    
+    
+    
     func placeLabels() {
         if let labels = dish?.susLabels {
             let space = screenSize.width*0.05
@@ -235,7 +262,19 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
                     numLabels++
                 }
             }
-            x = 0.5*susLabels.frame.width - (0.5*(numLabels*labelDimensions + (numLabels-1)*space))
+            if numLabels != 0 {
+                noIconLabel.hidden = true
+            }
+            
+            let length = (CGFloat(labels.count + boolToInt(!dish!.eco.isEmpty) + boolToInt(!dish!.humane.isEmpty) + boolToInt(!dish!.fair.isEmpty))) * (labelDimensions + space) + space
+            susLabels.contentSize = CGSize(width: length, height: susLabels.frame.height)
+            x = space
+            
+            
+            if length < susLabels.frame.width {
+                x = (susLabels.frame.width - length) / 2 + space
+                susLabels.contentSize = CGSize(width: susLabels.frame.width, height: susLabels.frame.height)
+            }
             
             for var i = 0; i < labels.count; i++ {
                 if count(labels[i]) > 0 {
@@ -245,9 +284,9 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
                     x += icon.frame.width + space
                 }
             }
-            var frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
             if dish!.eco.count > 0 {
                 let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
+                ecoIcon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
                 ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += ecoIcon.frame.width + space
                 susLabels.addSubview(ecoIcon)
@@ -255,6 +294,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             
             if dish!.humane.count > 0 {
                 let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
+                humaneIcon.frame = CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions)
                 humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += humaneIcon.frame.width + space
                 susLabels.addSubview(humaneIcon)
@@ -262,13 +302,11 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             
             if dish!.fair.count > 0 {
                 let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
+                fairIcon.frame = CGRectMake(x, screenSize.height * 0.005, labelDimensions, labelDimensions)
                 fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                 x += fairIcon.frame.width + space
                 susLabels.addSubview(fairIcon)
             }
-            
-            susLabels.contentSize.width = (x)
-            x = 0
         }
     }
     

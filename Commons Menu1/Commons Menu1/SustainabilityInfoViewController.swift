@@ -129,7 +129,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         super.viewDidAppear(animated)
         if let boo = isFromInfo {
             if boo{
-                goToType("Sustainability Labels")
+                susView.setContentOffset(CGPoint(x: 0, y: labelPositions["Sustainability Labels"]!), animated: false)
             }
         }
     }

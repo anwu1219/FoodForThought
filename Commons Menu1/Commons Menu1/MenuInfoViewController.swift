@@ -242,7 +242,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         let vc = UIViewController()
         let button = sender as! IconButton
         
-        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.preferredContentSize = CGSizeMake(self.view.frame.width * 0.4, self.view.frame.height * 0.3)
         vc.modalPresentationStyle = .Popover
         
         if let pres = vc.popoverPresentationController {
@@ -255,7 +255,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
         description.sizeToFit()
-        vc.view.addSubview(description)
         
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)

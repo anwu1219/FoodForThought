@@ -71,6 +71,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let xUnit: CGFloat = screenSize.width / 100
     
         
+        
+        scroll.showsHorizontalScrollIndicator = false
+
+        
         infoButton.frame = CGRect(x: 90 * xUnit, y: 25.8 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -782,7 +786,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let vc = UIViewController()
         let button = sender as! IconButton
         
-        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.preferredContentSize = CGSizeMake(self.view.frame.width * 0.4, self.view.frame.height * 0.3)
         vc.modalPresentationStyle = .Popover
         
         if let pres = vc.popoverPresentationController {
@@ -796,7 +800,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         description.text = button.descriptionText
         description.sizeToFit()
-        vc.view.addSubview(description)
         
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)

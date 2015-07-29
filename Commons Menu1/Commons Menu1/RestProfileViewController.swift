@@ -75,6 +75,9 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
+        
+        restProfScrollView.showsVerticalScrollIndicator = false
+        
         layoutScroll()
         addLabels()
     }
@@ -90,7 +93,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         // move scroll outside for i loop
         for var i = 0; i < restProf.labels.count; i++ {
             var scroll = UIScrollView()
-            
+            scroll.showsHorizontalScrollIndicator = false
             // remove all label stuff for scroll in menu swipe
             var label = UILabel()
             
@@ -478,7 +481,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let vc = UIViewController()
         let button = sender as! IconButton
         
-        vc.preferredContentSize = CGSizeMake(200, 100)
+        vc.preferredContentSize = CGSizeMake(self.view.frame.width * 0.4, self.view.frame.height * 0.3)
         vc.modalPresentationStyle = .Popover
         
         if let pres = vc.popoverPresentationController {
@@ -491,7 +494,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         description.textAlignment = NSTextAlignment.Center
         description.text = button.descriptionText
         description.sizeToFit()
-        vc.view.addSubview(description)
+
         
         let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)
@@ -500,6 +503,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let popScroll = UIScrollView()
+        popScroll.showsVerticalScrollIndicator = false
         if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {
             popScroll.frame = CGRectMake(0, 10, description.frame.width, description.frame.height+linkButton.frame.height+10)
         }
