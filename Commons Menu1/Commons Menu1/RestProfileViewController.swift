@@ -158,7 +158,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     func popup(sender: UIButton!) {
         var button = sender as! IconButton
-        println(button.name)
     }
     
     func viewInfoPage(sender: AnyObject){
@@ -278,11 +277,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var label = UILabel()
             label.text = ""
             var day: [String] = likeHours[key]!
-            println(day)
-            println()
-//            for d in day {
-//                label.text! += d + ", "
-//            }
             if day.count > 1 {
                 label.text! += day[0] + "-" + day[day.count-1]
             }
@@ -342,11 +336,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 var mplabel = UILabel()
                 mplabel.text = ""
                 var day: [String] = likeMealHours[times]!
-                println(day)
-                println()
-                //            for d in day {
-                //                label.text! += d + ", "
-                //            }
                 
                 if day.count > 1 {
                     mplabel.text! += day[0] + "-" + day[day.count-1]
@@ -394,7 +383,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func openWebsite(sender:UIButton) {
         if let url = NSURL(string: restProf.url) {
-            println("Opening Website")
             UIApplication.sharedApplication().openURL(url)
         }
     }
@@ -455,7 +443,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         geocoder.geocodeAddressString(location) { (placemarks: [AnyObject]!, error: NSError!) in
             
             if error != nil {
-                println("Geocode failed with error: \(error.localizedDescription)")
                 completionHandler(lat: nil, long: nil, error: error)
                 
             } else if placemarks.count > 0 {
@@ -473,7 +460,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     func makeCall(){
         if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
-            println("Call Made")
             UIApplication.sharedApplication().openURL(url)
         }
     }

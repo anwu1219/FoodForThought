@@ -174,11 +174,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
       
-        
         // Ensure username is lowercase
         userEmailAddress = userEmailAddress.lowercaseString
-        
-        
+
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
@@ -266,6 +264,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 PFUser.currentUser()?.pinInBackgroundWithBlock({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+
                     }
                 })
                 
@@ -319,7 +321,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //regex function to check if email is in valid format
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }

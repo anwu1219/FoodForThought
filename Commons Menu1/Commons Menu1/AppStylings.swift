@@ -26,15 +26,5 @@ struct Styles {
     // view styles controls 
     let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
     let viewBackgoundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-
-    
-//    init() {
-//        backgroundImage.contentMode = .ScaleAspectFill//.ScaleAspectFit
-//    }
-    
-    
-    
-    // can add any special or unique button or view styles, however, it is best to limit
-    // the number of unique styles to keep the look of the app consistent
 }
 

@@ -658,11 +658,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 if let rest = pFObject["location"] as? String{
                                     if rest == restaurant {
                                         pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully deleted")
-                                            } else {
-                                                println("Failed")
-                                            }
                                         })
                                     }
                                 }
@@ -713,11 +708,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 if let rest = pFObject["location"] as? String{
                                     if rest == restaurant {
                                         pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully deleted")
-                                            } else {
-                                                println("Failed")
-                                            }
                                         })
                                     }
                                 }
@@ -733,11 +723,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                         newPreference["location"] = dish.location
                                         newPreference.saveInBackgroundWithBlock({
                                             (success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully Saved")
-                                            } else {
-                                                    // There was a problem, check error.description
-                                            }
                                         })
                                     }
                                 }
@@ -766,7 +751,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            println(selectedMeal)
             if let index = find(menu[selectedMeal.type]!, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[selectedMeal.type]![index]

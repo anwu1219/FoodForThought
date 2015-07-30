@@ -133,7 +133,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     */
     func logOut(){
         PFUser.logOut()
-        println("Logged out")
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
