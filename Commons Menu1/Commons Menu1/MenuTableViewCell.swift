@@ -96,7 +96,6 @@ class MenuTableViewCell: UITableViewCell {
         
         itemDislikeLayer = CALayer(layer: layer)
         itemDislikeLayer.backgroundColor = UIColor(red: 0.9, green: 0.75, blue: 0.75, alpha: 1.0).CGColor
-        
         itemDislikeLayer.hidden = true
         layer.insertSublayer(itemDislikeLayer, atIndex: 0)
         
