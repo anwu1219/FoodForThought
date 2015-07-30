@@ -160,20 +160,16 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
         
-        yesButton.frame = CGRect(x: (screenWidth*0.73), y: screenSize.height*0.75,
-            width: bounds.size.width*0.3, height: screenSize.height*0.1)
-        yesButton.setTitle("Yes \u{276F} \u{276F}", forState: UIControlState.Normal)
-        yesButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+        yesButton.frame = CGRect(x: (screenWidth*0.6), y: screenSize.height*0.75,
+            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        yesButton.setBackgroundImage(UIImage(named: "thumbYes"), forState: UIControlState.Normal)
         yesButton.addTarget(self, action: "yesAction", forControlEvents: UIControlEvents.TouchUpInside)
-        yesButton.sizeToFit()
         yesButton.backgroundColor = UIColor.clearColor()
         
-        noButton.frame = CGRect(x: (screenWidth*0.01), y: screenSize.height*0.75,
-            width: bounds.size.width*0.3, height: screenSize.height*0.1)
-        noButton.setTitle("\u{276E} \u{276E} No", forState: UIControlState.Normal)
-        noButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.75,
+            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        noButton.setBackgroundImage(UIImage(named: "thumbNo"), forState: UIControlState.Normal)
         noButton.addTarget(self, action: "noAction", forControlEvents: UIControlEvents.TouchUpInside)
-        noButton.sizeToFit()
         noButton.backgroundColor = UIColor.clearColor()
 
         noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
@@ -186,7 +182,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         noIconLabel.font = UIFont(name: "Helvetica", size: 0.04 * self.frame.width)
 
         susLabels.subviews.map({ $0.removeFromSuperview() })
-        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.68, width: 0.85 * screenSize.width, height: screenSize.height*0.1)
+        susLabels.frame = CGRect(x: 0.04*screenSize.width, y: screenSize.height*0.65, width: 0.85 * screenSize.width, height: screenSize.height*0.1)
         susLabels.backgroundColor = UIColor.clearColor()
         placeLabels()
         

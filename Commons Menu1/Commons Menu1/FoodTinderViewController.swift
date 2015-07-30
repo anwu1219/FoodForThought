@@ -209,6 +209,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
         if dishes.pulled.contains(randomIndex) {
             if let dish = dishes.getDishByIndex(randomIndex) {
+                if let imageFile = dish.imageFile {
                 dish.imageFile.getDataInBackgroundWithBlock {
                     (imageData: NSData?, error: NSError?) ->Void in
                     if error == nil {
@@ -220,6 +221,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                     self.foodTinderTableView.reloadData()
                                     self.foodTinderTableView.endUpdates()
                                 }, completion: nil)
+                                }
+                                }
                             }
                         }
                     } else {
@@ -230,7 +233,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                             self.foodTinderTableView.endUpdates()
                             }, completion: nil)
                     }
-                }
             }
         } else {
         var query = PFQuery(className:"dishInfo")
@@ -260,6 +262,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         if let date = object["displayDate"] as? String {
                             dish.date = date
                         }
+                        if let imageFile = dish.imageFile {
                         dish.imageFile.getDataInBackgroundWithBlock {
                             (imageData: NSData?, error: NSError?) ->Void in
                             if error == nil {
@@ -273,7 +276,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                         }, completion: nil)
                                     }
                                 }
-                            } else {
+                            }
+                            }
+                        }else {
                                 dish.image = UIImage(named: "sloth")
                                 self.menu.append(dish)
                                 UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
@@ -284,7 +289,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                             }
                         }
                     }
-                }
             } else {
                 self.foodTinderTableView.endUpdates()
             }
