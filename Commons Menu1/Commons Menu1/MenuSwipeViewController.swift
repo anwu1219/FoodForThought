@@ -315,7 +315,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                     self.addDishToMenu(dish)
                                 }
                             } else {
-                                dish.name = object["name"] as! String
+                                dish.name = object["name"] as? String
                                 dish.location = object["location"] as! String
                                 dish.ingredients = object["ingredients"] as! [String]
                                 dish.labels = object["labels"] as! [[String]]
