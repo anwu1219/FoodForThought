@@ -10,11 +10,15 @@ import Foundation
 
 struct IconDescription{
     let descriptions = [
-        "FS": "This dish was prepared from scratch.\n ",
+        "FSD": "This dish was prepared from scratch.\n ",
+        
+        "FS": "This restaurant prepares meals from scratch. This seemingly simple cooking trick requires top-notch culinary skills and increases the restaurant’s menu flexibility.\n",
         
         "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources that can be thousands of miles away.\n",
         
-        "L": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n ",
+        "LD": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n ",
+        "L": "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n",
+        
         "AI":  "The restaurant’s staff members are educated on common allergens and this information is available upon request. \n ",
         "CA":  "This restaurant offers catering services. Beneficial services provided by the restaurant can help build a sense of community and bring people together, which promotes social welfare.\n ",
         "FD":  "This restaurant frequently donates prepared food to charities, churches, or food banks. \n ",
@@ -34,9 +38,9 @@ struct IconDescription{
         "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n ",
         
         
-        "Humane": "This humane label is awarded to this restaurant because: \n",
-        "Eco": "This Eco label is awarded to this restaurant because: \n",
-        "Fair": "This Fair label i awarded to this restaurant because: \n",
+        "Humane": "This icon indicates that this dish\n",
+        "Eco": "Ecologically Sound\n",
+        "Fair": "Fair\n",
         
         
         

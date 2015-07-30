@@ -112,6 +112,36 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 labelPicsScroll.contentSize = CGSizeMake((CGFloat(susLabels.count + dish!.eco.count + dish!.humane.count + dish!.fair.count)) * (labelWidth+labelSpace) + labelSpace, labelHeight)
                 
                 var initX: CGFloat = 0
+            
+            var frame = CGRectMake(initX, height, labelWidth, labelWidth)
+            if dish!.eco.count > 0 {
+                println(dish!.eco.count)
+                let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
+                ecoIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
+                ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                labelPicsScroll.addSubview(ecoIcon)
+                initX += labelSpace + labelWidth
+            }
+            
+            if dish!.humane.count > 0 {
+                println(dish!.humane.count)
+                
+                let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
+                humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                humaneIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
+                labelPicsScroll.addSubview(humaneIcon)
+                initX += labelSpace + labelWidth
+            }
+            
+            if dish!.fair.count > 0 {
+                println(dish!.fair.count)
+                let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
+                fairIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
+                fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                labelPicsScroll.addSubview(fairIcon)
+                initX += labelSpace + labelWidth
+            }
+
 
                 for var i = 0; i < susLabels.count; i++ {
                     var labelImage = IconButton(name: susLabels[i], frame: CGRectMake(initX, height, labelWidth, labelWidth))
@@ -120,34 +150,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                     initX += labelSpace + labelWidth
                 }
 
-                var frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                if dish!.eco.count > 0 {
-                    println(dish!.eco.count)
-                    let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
-                    ecoIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                    ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    labelPicsScroll.addSubview(ecoIcon)
-                    initX += labelSpace + labelWidth
-                }
-                
-                if dish!.humane.count > 0 {
-                    println(dish!.humane.count)
-
-                    let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
-                    humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    humaneIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                    labelPicsScroll.addSubview(humaneIcon)
-                    initX += labelSpace + labelWidth
-                }
-            
-                if dish!.fair.count > 0 {
-                    println(dish!.fair.count)
-                    let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
-                    fairIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-                    fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    labelPicsScroll.addSubview(fairIcon)
-                    initX += labelSpace + labelWidth
-                }
             
                 //progScrollInfo.addSubview(labelPics)
                 container.addSubview(labelPicsScroll)
