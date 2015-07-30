@@ -359,13 +359,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         for object: AnyObject in objectsArray{
                             if let pFObject: PFObject = object as? PFObject{
                                 pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                    if (success) {
-                                        println("Successfully deleted")
-                                    } else {
-                                        println("Failed to delete")
-                                    }
                                 })
-                                //pFObject.pinInBackground({})
                             }
                         }
                     }
@@ -386,12 +380,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         newPreference["location"] = dish.location
                         newPreference.saveInBackgroundWithBlock({
                             (success: Bool, error: NSError?) -> Void in
-                            if (success) {
-                                println("Successfully saved")
-                                // The object has been saved.
-                            } else {
-                                // There was a problem, check error.description
-                            }
                         })
                     }
                 }

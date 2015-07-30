@@ -174,16 +174,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         var userEmailAddress = emailAddress.text
         var userPassword = password.text
       
-        
         // Ensure username is lowercase
         userEmailAddress = userEmailAddress.lowercaseString
-        
-        // Add email address validation
-        if isValidEmail(userEmailAddress) == false {
-            println("The email you entered is not valid")
-        }
-        
-        
+
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
@@ -199,13 +192,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
-                println("Signed up successfully")
                 //performs automatic segue to main menu
                 self.performSegueWithIdentifier("instructionSegue", sender: nil)
 
             } else {
-                println(error)
-                
                 let signUpFailed = UIAlertView(title: "Sign Up Error", message: "Email Already Exists", delegate: nil, cancelButtonTitle: "OK")
                 // shows alert to user
                 signUpFailed.show()
@@ -267,7 +257,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if let menuViewed = PFUser.currentUser()!["menuViewed"] as? Bool {
                         self.dishes.learned["tinder"] = tinderViewed
                         self.dishes.learned["menuSwipe"] = menuViewed
-                        println("Logged in successfully")
                 }
             }
             
@@ -276,16 +265,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
-                        println("Successfully cached user name")
                     } else {
                         // There was a problem, check error.description
-                        println("Failed to cache user name")
                     }
                 })
                 
                 self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                 } else {
-                println(error)
                 let notPermitted = UIAlertView(title: "Alert", message: "Username or password is not valid.", delegate: nil, cancelButtonTitle: "OK")
                 self.activityIndicator.stopAnimating()
                 // shows alert to user
@@ -333,9 +319,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     //regex function to check if email is in valid format
     func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
         let emailRegEx = "^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }
@@ -368,7 +352,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     if let user = PFUser.currentUser() {
                         self.emailAddress.text = user.username
                         self.password.text = user.password
-                        println("Logged in successfully")
                         self.performSegueWithIdentifier("signInToNavigationSegue", sender: self)
                     }
                 }
@@ -447,7 +430,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signInToNavigationSegue" {
             let mainMenuViewController = segue.destinationViewController as! MainMenuViewController
-            println("Hello \(PFUser.currentUser())")
             mainMenuViewController.dishes = dishes
         }
         if segue.identifier == "instructionSegue" {

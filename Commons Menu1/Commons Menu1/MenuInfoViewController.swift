@@ -122,7 +122,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
 
                 var frame = CGRectMake(initX, height, labelWidth, labelWidth)
                 if dish!.eco.count > 0 {
-                    println(dish!.eco.count)
                     let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
                     ecoIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
                     ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -131,8 +130,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 }
                 
                 if dish!.humane.count > 0 {
-                    println(dish!.humane.count)
-
                     let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
                     humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     humaneIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
@@ -141,7 +138,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 }
             
                 if dish!.fair.count > 0 {
-                    println(dish!.fair.count)
                     let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
                     fairIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
                     fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -221,7 +217,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                     if !labels.isEmpty{
                         var nutLabelXPosition = screenSize.width * 0.75
                         for label: String in labels[i] {
-                            println(label)
                             var nutLabel = IconButton(name: label, frame: CGRectMake(nutLabelXPosition, y - 1 * height, 5 * height, 5 * height))
                             nutLabel.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                             progScrollInfo.addSubview(nutLabel)

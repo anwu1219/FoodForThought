@@ -24,7 +24,6 @@ class SuperIconButton: IconButton {
             if count(labels[i]) > 0 {
                 var description: String = descriptions[labels[i]]!
                 self.descriptionText += description + "\n"
-                println(labels[i])
             }
         }
 
