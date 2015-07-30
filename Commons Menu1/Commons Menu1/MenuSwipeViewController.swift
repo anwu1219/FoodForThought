@@ -90,16 +90,16 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         var restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
-        restWeekdayOpenHoursLabel.text = "Hours: \(restProf!.hours[self.getDayOfWeek()])"
+        restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
         labelStyle(restWeekdayOpenHoursLabel)
-        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 6 * yUnit)
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
 
         view.addSubview(restWeekdayOpenHoursLabel)
         
         var labelTitleLabel = UILabel()
         labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
-        labelTitleLabel.text = "Restaurant Sustainabiltiy Labels:"
+        labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
         labelStyle(labelTitleLabel)
         
@@ -139,7 +139,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
         restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
-        restProfileButton.setTitle("View Restaurant Profile", forState: .Normal)
+        restProfileButton.setTitle("View Restaurant Profile >", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
 
@@ -177,8 +177,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(scroll)
   
         if !dishes.learned["menuSwipe"]! {
-            let alertController = UIAlertController(title: "Instruction",
-                message: "Swipe right on the dish to add to Favorites \n \n or\n \n Swipe left to dislike",
+            let alertController = UIAlertController(title: "Instructions",
+                message: "Swipe right on the dish to add to My Favorites \n \n or\n \n Swipe left to dislike",
                 preferredStyle: UIAlertControllerStyle.Alert
             )
             alertController.addAction(UIAlertAction(title: "OK!",
@@ -326,7 +326,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 dish.fair = object["fair"] as! [String]
                                 dish.humane = object["humane"] as! [String]
                                 dish.price = object["price"] as! String
-                                dish.imageFile = object["image"] as! PFFile
+                                if let imageFile =  object["image"] as? PFFile{
+                                    dish.imageFile = imageFile
+                                }
                                 if let date = object["displayDate"] as? String {
                                     dish.date = date
                                 }
@@ -489,16 +491,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
-                dish.imageFile.getDataInBackgroundWithBlock {
-                    (imageData: NSData?, error: NSError?) ->Void in
-                    if error == nil {
-                        if let data = imageData{
-                            if let image = UIImage(data: data){
-                                cell.imageView?.image = image
-                                dish.image = image
+                if dish.imageFile != nil {
+                    dish.imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData?, error: NSError?) ->Void in
+                        if error == nil {
+                            if let data = imageData{
+                                if let image = UIImage(data: data){
+                                    cell.imageView?.image = image
+                                    dish.image = image
+                                }
                             }
                         }
                     }
+                } else {
+                    cell.imageView?.image = UIImage(named: "sloth")
+                    dish.image =  UIImage(named: "sloth")
                 }
 
                 

@@ -52,7 +52,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         
         buttonStyle(restMenuButton, " See All Restaurants")
         buttonStyle(foodTinderMenuButton, " Food For Thought")
-        buttonStyle(myPrefMenuButton, " My Favorite")
+        buttonStyle(myPrefMenuButton, " My Favorites")
         buttonStyle(sustInfoMenuButton, " Sustainability Info")
         
         
@@ -206,7 +206,9 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 dish.fair = object["fair"] as! [String]
                 dish.humane = object["humane"] as! [String]
                 dish.price = object["price"] as! String
-                dish.imageFile = object["image"] as! PFFile
+                if let imageFile =  object["image"] as? PFFile {
+                    dish.imageFile = imageFile
+                }
                 if let date = object["displayDate"] as? String {
                     dish.date = date
                 }

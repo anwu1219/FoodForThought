@@ -34,7 +34,7 @@ class Dish: PFObject, PFSubclassing {
     @NSManaged var eco : [String]
     @NSManaged var fair : [String]
     @NSManaged var humane : [String]
-    @NSManaged var imageFile : PFFile
+    var imageFile : PFFile!
     var image : UIImage!
     var like: Bool = false
     var dislike: Bool = false
