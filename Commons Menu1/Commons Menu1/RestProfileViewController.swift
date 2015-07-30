@@ -113,16 +113,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             
             // this is the end of label stuff
             var x: CGFloat = 0// move this var outside for i loop and rename
-            for var j = 0; j < restProf.labels[i].count; j++ {
-                if count(restProf.labels[i][j]) > 0 {
-                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
-                    let icon = IconButton(name: restProf.labels[i][j], frame: frame)
-                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    
-                    scroll.addSubview(icon)
-                    x += icon.frame.width + width*0.01
-                }
-            }
+            
             if i == 0 {
                 if restProf.eco.count > 0 {
                     let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
@@ -146,6 +137,17 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(ecoIcon)
                     x += ecoIcon.frame.width + width * 0.01
+                }
+            }
+
+            for var j = 0; j < restProf.labels[i].count; j++ {
+                if count(restProf.labels[i][j]) > 0 {
+                    let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
+                    let icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                    
+                    scroll.addSubview(icon)
+                    x += icon.frame.width + width*0.01
                 }
             }
             scroll.contentSize.width = x + width * 0.1

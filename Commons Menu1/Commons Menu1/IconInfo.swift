@@ -14,37 +14,35 @@ struct IconInfo{
 
         
         
-        "FSD": "This icon indicates that the dish was prepared from scratch. Fresh ingredients mean fresh food!\n ",
+        "FSD": "This dish was prepared from scratch.\n ",
         
-        "SE": "This icon indicates that an ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources!\n",
+        "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources that can be thousands of miles away.\n",
             
-        "LD": "This icon indicates that an Ingredient in this dish comes from a local producer. Local ingredients minimize time from farm to table, which allows restaurants to serve the freshest ingredient to their customers!\n "],
+        "LD": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n "],
         
         
         "Nutritionist labels": [
-            "CE":  "This icon indicates that this ingredient is a good source of carb energy. Carb Energy is the body’s preferred source of fuel and will provide important B vitamins and fiber. \n  ",
-            "ES":  "This icon indicates that the restaurant uses Energy Star appliances, which are great for saving energy and money!\n ",
-            "HF":  "This icon indicates that this ingredient is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins and provide energy. \n ",
-            "PP":  "This icon indicates that this ingredient is a good source of protein. Proteins form most of the solid material in the body such as hair, muscles, tendons and skin. They also have functional properties for carrying out metabolic processes such as transporting oxygen throughout the body. \n ",
-            "VN":  "This icon indicates that this ingredient is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune health, energy metabolism and disease prevention.\n "],
+            "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provides important B vitamins and fiber. \n  ",
+            "HF":  "This food item is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins, and provide energy.\n ",
+            "PP":  "This food item is a good source of protein. Proteins are the building blocks of most body tissues and carry out metabolic properties, such as transporting oxygen throughout the body.\n ",
+            "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n "],
         
         "Restaurant-level labels":
-        ["FS":  "This icon indicates that the restaurant prepares meals from scratch. This reduces the purchase and consumption of pre-prepared or processed foods, which can contain many preservatives! \n ",
+        ["FS":  "This restaurant prepares meals from scratch. This seemingly simple cooking trick requires top-notch culinary skills and increases the restaurant’s menu flexibility.\n ",
         
-        "L":  "This icon indicates that the restaurant purchases a variety of food grown within 100 miles of the restaurant. This supports local famers, the local economy, reduces emissions from transportation, and brings fresh food to your area!\n ",
+        "L":  "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
+        "ES":  "This restaurant uses Energy Star appliances to reduce energy consumption. \n ",
         
-
-        
-        "AI":  "This icon indicates that the restaurant provides allergen information upon request.  Educated employees provide accurate information to concerned consumers! \n ",
-        "CA":  "This icon indicates that the restaurant offers catering services. Catering an event is a great way to connect with other members in your community! \n ",
-        "FD":  "This icon indicates that the restaurant frequently donates prepared food to charities, churches, or food banks. In doing so, these restaurants aid in serving the community’s efforts to combat hunger!\n ",
-        "MD":  "This icon indicates that the restaurant provides monetary donations to charitable groups in the community. Supporting local charities is a great way to promote social welfare! \n ",
-        "VO":  "This icon indicates that the restaurant promotes volunteering opportunities to its employees. Participating in volunteering activities is a great way to support good causes within the community! \n ",
+        "AI":  "The restaurant’s staff members are educated on common allergens and this information is available upon request. \n ",
+        "CA":  "This restaurant offers catering services. Beneficial services provided by the restaurant can help build a sense of community and bring people together, which promotes social welfare.\n ",
+        "FD":  "This restaurant frequently donates prepared food to charities, churches, or food banks. \n ",
+        "MD":  "This restaurant frequently contributes monetary donations to charities.\n ",
+        "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen or helping at a local farm.\n ",
         
         
-        "C":  "This icon indicates that the restaurant actively composts food scraps. Composting is a great way to minimize food waste!\n ",
-        "LA":  "This icon indicates that the restaurant offers local alcohol options, which promotes the work of local breweries. \n ",
-        "R":  "This icon indicates that the restaurant recycles appropriate materials, such as cardboards, plastics, or metals. Recycling is a great way to reduce waste sent to landfills! \n ",
+        "C":  "This restaurant composts food scraps instead of sending them to the landfill. Restoring nutrients back to the soil supports all trophic levels through nutrient cycling.\n ",
+        "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
+        "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
 
         
         "Humane": "This humane label is awarded to this restaurant because: \n",
@@ -53,30 +51,29 @@ struct IconInfo{
         
         
         "Sustainability Certification": [
-        "COB": "This restaurant uses Canada Organic Biologique Certified ingredients, which reduce the use of artificial agents or fertilizers\n",
-        "CBF": "This restaurant offers Certified Bird Friendly coffee, which preserves bird habits and minimizes erosion\n",
-        "CLS": "This restaurant uses Local Food Plus ingredients in its food, promoting sustainable practices by farmers and other food producers\n",
-        "IFO": "This restaurant uses IFOAM-endorsed standard Certified Organic ingredients. Organic foods can be more eco-friendly than their alternatives\n",
-        "DCB" : "This restaurant uses Demeter Certified Biodynamic ingredients, promoting biodiversity and the use of natural farming practices\n",
-        "EUO" : "This restaurant uses European Union Organic ingredients, which avoid the use of GMO’s\n",
-        "FAC" : "This restaurant uses Food Alliance Certified ingredients. These ingredients contain no artificial preservatives or flavors\n",
-        "MSC" : "This restaurant serves Marine Stewardship Council Blue seafood. These fish are raised in a sustainable way that maintains their ecosystems\n",
-        "MBA": "This restaurant serves Monterey Bay Seafood Watch “Best Choice” seafood, which preserves marine populations\n",
-        "PHC" :  "This restaurant serves Protected Harvest Certified food. These foods are certified for being sustainably grown\n",
-        "RAC" : "This restaurant offers Rainforest Alliance Certified food products, which are recognized for their social and ecological benevolence\n",
-        "USDA" : "This restaurant offers USDA Certified Organic food, which are recognized for their protection of resources and promotion of biodiversity\n",
-        "EFT": "This restaurant serves Ecocert Fair Trade food, recognized for the fair working conditions of the food producers\n",
-        "FFS":  "This restaurant serves Fair Food Standards Council ingredients, promoting fair labor practices and conditions\n",
-        "FL" : "This restaurant serves Fair for Life food, which promotes fair working conditions and sustainable food production practices\n",
-        "FT" : "This restaurant serves Fairtrade certified products, which means flexibility and fair working conditions for the food producers\n",
-        "FW" : "This restaurant serves FairWild Certified products, which preserves species and habitats\n",
-        "FJC" : "This restaurant serves Food Justice Certified food, promoting fair wages and other forms of social justice\n",
-        "SPS" : "This restaurant serves Small Producers’ Symbol food, supporting small, family farms\n",
-        "AGA":  "This restaurant serves AGA Grassfed food products, respecting the natural habits and needs of animals\n",
-        "AHC": "This restaurant serves American Humane Certified food products, promoting animal welfare\n",
-        "AWA": "This restaurant serves Animal Welfare Approved food products, promoting the fair and responsible treatment of animals\n",
-        "CHR" : "This restaurant serves Certified Humane Raised and Handled food products, improving the lives of animals\n",
-        "GAP" : "This restaurant serves Global Animal Partnership Certified food products, expressing a commitment to animal welfare\n"
+        "CBF": "Certified Bird Friendly coffee:  created by the Smithsonian Migratory Bird Center, this certification requires that the coffee is grown organically and under a canopy of native trees. Growing coffee within the canopy of the forest prevents clear cutting, preserves migratory bird habitat, and sequesters carbon. \n",
+        "CLS": "Certified Local Sustainable (Local Food Plus): created by the Land Food People Foundations, this non-profit organization seeks to \"promote sustainable agricultural practices that preserve and protect the environment and enhance human welfare and educate the public on the importance of local sustainable food systems.\" \n",
+        "IFO": "International Federation of Organic Agriculture Movements: a non-profit organization that created a globally accepted standard for organic. Their mission is to promote more than just organic foods, but to also advance health, ecology, fairness, and care.\n",
+        "DCB" : "Demeter Certified Biodynamic:  founded in 1985, this non-profit organization’s motto is to \"heal the planet through agriculture\". \"The certification is a comprehensive organic farming method that requires the creation and management of a closed system minimally dependent on imported materials, and instead meets its needs from the living dynamics of the farm itself.\" \n",
+        "EUO" : "European Union Organic: an organic certification the focuses on the entire supply chain in order to ensure that every link along the chain adheres to strict regulations. These regulations aim to ensure environmental protection, food quality, animal welfare and consumer confidence.\n",
+        "FAC" : "Food Alliance Certified: since 1998, this non-profit organization has developed comprehensive sustainability standards for the products, producers, and handlers, which include, but not limited to banning GMO’s/artificial flavors/preservatives, safe and fair working conditions, and reducing energy/water consumption.\n",
+        "MSC" : "Marine Stewardship Council Blue Seafood: this independent, non-profit organization works with fisheries, scientists, conservation groups and stakeholders to set strict sustainability standards for fisheries. Their eco-label designates that the fish can be traced throughout the entire supply chain and met their criteria throughout the journey.\n",
+        "MBA": "Monterey Bay Seafood Watch \"Best Choice\" Seafood: started by Monterey Bay Aquarium, this group created a consumer guide that labels fish species with a red, yellow or green tag that indicates whether or not the species is endangered. When a consumer looks for seafood, this organization recommends purchasing the green flagged species and avoiding the red flags. \n",
+        "PHC" :  "Protected Harvest Certified: this third party organization \"certifies that a producer has met region and crop-specific standards, as approved by its Sustainability Council… Certification covers growers, chain of custody, and licensing of the eco-label trademark in product packaging and point-of-sale promotional materials.\"\n",
+        "RAC" : "Rainforest Alliance Certified:  \"The Rainforest Alliance works to conserve biodiversity and improve livelihoods by promoting and evaluating the implementation of the most globally respected sustainability standards in a variety of fields. Through RA-Cert, the Rainforest Alliance's auditing division, we provide our forestry, agriculture and carbon/climate clients with independent and transparent verification, validation and certification services based on these standards, which are designed to generate ecological, social and economic benefits.\" \n",
+        "USDA" : "USDA Certified Organic: \"USDA defines specific organic standards that cover the product from farm to table, including soil and water quality, pest control, livestock practices, and rules for food additives.\" Farms undergo annual inspection to ensure continuous adherence to the strict standards.\n",
+        "EFT": "Ecocert Fair Trade: approved by Fair Trade, the Ecocert certification promotes the triple bottom line by requiring the \"10 K.O. (knock-out) criteria of the ESR standard\". These include, but are not limited to, “no practices violating human dignity, safe working conditions, and no actions threatening endangered species. \n",
+        "FFS":  "Fair Food Standards Council: currently applies to Floridian tomato workers, this council seeks to advance basic worker human-rights by requiring improvements to worker safety and worker income. This model will eventually be applicable beyond the tomato industry. \n",
+        "FL" : "Fair for Life: applied to numerous industries, such as food and cosmetics, this certification mandates strict social and fair trade practices adapted to each local producer’s community. Transparent reporting increases their credibility.  \n",
+        "FT" : "Fairtrade: a non-profit global organization that works with 1.2 million farmers in over 70 countries to promote sustainable farming, protect worker safety and make sure workers are fairly compensated. \n",
+        "FW" : "FairWild Certified: founded in 2008, this organization is dedicated to creating a framework for trading that requires application of sustainable wild plant collection, fair business transactions, and positively influences consumer decisions.\n",
+        "FJC" : "Food Justice Certified: \"a label based on high-bar social justice standards for farms, processors, and retailers… ensuring fair treatment of workers, fair pricing for farmers, and fair business practices.\" To qualify, 95% of the dry ingredient weight must meet FJC standards.\n",
+        "SPS" : "Small Producers’ Symbol: founded in 2006 by the Latin American and Caribbean Network of Small Fair Trade Producers, this initiative promotes sustainable growing/harvesting practices and fair prices to benefit small communities and the environment.\n",
+        "AGA":  "American Grassfed Association: in conjunction with scientists, veterinarians, ranchers and land managers, this association set standards that require animals to be free range, grass-fed diets, no antibiotics/hormones and seeks to promote healthy consumer diets. \n",
+        "AHC": "American Humane Certified: as the first welfare certification program in America, this organization works to ensure humane treatment of farm animals by creating standards that improve animal living conditions. \n",
+        "AWA": "Animal Welfare Approved: “in collaboration with scientists, veterinarians, researchers and farmers across the globe, [this certification works] to maximize practicable, high-welfare farm management with the environment in mind” by setting strict animal welfare standards.\n",
+        "CHR" : "Certified Humane Raised and Handled: \"a national non-profit charity whose mission is to improve the lives of farm animals by providing viable, credible, duly monitored standards for humane food production and assuring consumers that certified products meet these standards.\"\n",
+        "GAP" : "Global Animal Partnership: a specific 5–step structure that \"promotes and facilitates continuous improvement in animal agriculture, encourages animal welfare friendly farming practices, and better informs consumers.\" \n"
         ]
     ]
 }
