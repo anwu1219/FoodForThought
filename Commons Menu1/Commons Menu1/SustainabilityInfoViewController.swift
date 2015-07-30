@@ -222,7 +222,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         let descriptionsDict = IconInfo().descriptions
-        let levels = ["Dish-level labels", "Restaurant-level labels", "Nutritionist labels", "Sustainability Certification"]
+        let levels = ["Dish-level Icons", "Restaurant-level Icons", "Nutritionist Icons", "Sustainability Certification"]
         for level in levels {
             let levelLabel = UILabel(frame: CGRect(x: widthPadding, y: y, width: susView.frame.width -  widthPadding, height: 0))
             levelLabel.text = level + ":"
@@ -240,7 +240,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             labelImage.image = UIImage(named: labelName)
             labelImage.contentMode = .ScaleToFill
             let labelDescription = UILabel(frame: CGRect(x: labelImage.frame.width + widthPadding, y: 0, width: susView.frame.width - labelImage.frame.width - 3 * widthPadding, height: 0))
-            labelDescription.text = labelName + ": " + descriptions[labelName]!
+            labelDescription.text = descriptions[labelName]!
             labelDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping
             labelDescription.numberOfLines = 0
             labelDescription.textAlignment = .Left
