@@ -52,21 +52,14 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         foodTinderTableView.registerClass(FoodTinderTableViewCell.self, forCellReuseIdentifier: "tinderCell")
         foodTinderTableView.separatorStyle = .SingleLine
         foodTinderTableView.rowHeight = screenSize.height;
-        
-        
         foodTinderTableView.backgroundColor = UIColor.clearColor()
-        
         setBackground("DishLevelPagebackground")
-        
         foodTinderTableView.layer.cornerRadius = 5
-        
-        
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         foodTinderTableView.addSubview(refreshControl)
         
         var logButton = UIBarButtonItem(title: "My Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
         self.navigationItem.rightBarButtonItem = logButton
-        
         
         if !dishes.learned["tinder"]! {
             instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
