@@ -298,20 +298,19 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             let space = screenSize.width*0.05
             let labelDimensions = screenSize.height*0.07
             var x: CGFloat = 0
-            var numLabels: CGFloat = 0
-            for var i = 0; i < labels.count; i++ {
-                if count(labels[i]) > 0 {
-                    numLabels++
-                }
-            }
-            if numLabels != 0 {
+            
+            
+            if labels.isEmpty && dish!.eco.isEmpty && dish!.humane.isEmpty && dish!.fair.isEmpty {
+                noIconLabel.hidden = false
+            } else {
                 noIconLabel.hidden = true
             }
+            
             
             let length = (CGFloat(labels.count + boolToInt(!dish!.eco.isEmpty) + boolToInt(!dish!.humane.isEmpty) + boolToInt(!dish!.fair.isEmpty))) * (labelDimensions + space) + space
             susLabels.contentSize = CGSize(width: length, height: susLabels.frame.height)
             x = space
-            
+        
             
             if length < susLabels.frame.width {
                 x = (susLabels.frame.width - length) / 2 + space
@@ -319,12 +318,10 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             }
             
             for var i = 0; i < labels.count; i++ {
-                if count(labels[i]) > 0 {
-                    let icon = IconButton(name: labels[i], frame: CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions))
-                    icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-                    susLabels.addSubview(icon)
-                    x += icon.frame.width + space
-                }
+                let icon = IconButton(name: labels[i], frame: CGRectMake(x, screenSize.height*0.005, labelDimensions, labelDimensions))
+                icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+                susLabels.addSubview(icon)
+                x += icon.frame.width + space
             }
             if dish!.eco.count > 0 {
                 let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")

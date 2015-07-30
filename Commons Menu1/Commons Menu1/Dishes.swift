@@ -60,6 +60,18 @@ class Dishes{
     }
         
     
+    func getDishByIndex(index: Int) -> Dish? {
+        for restaurant in dishes.keys.array {
+            for dish in dishes[restaurant]!{
+                if dish.index == index{
+                    return dish
+                }
+            }
+        }
+        return nil
+    }
+    
+    
     init (){
         self.learned = ["tinder": false, "menuSwipe": false]
     }

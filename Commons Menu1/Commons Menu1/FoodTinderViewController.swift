@@ -205,11 +205,18 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func fetchRandomDishes(numberOfDishes: Int){
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
-        while dishes.pulled.contains(randomIndex){
-            while dealtWith(randomIndex){
-                randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
-            }
+        while dealtWith(randomIndex){
+            randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         }
+        if dishes.pulled.contains(randomIndex) {
+            if let dish = dishes.getDishByIndex(randomIndex) {
+                self.menu.append(dish)
+                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                self.foodTinderTableView.reloadData()
+                self.foodTinderTableView.endUpdates()
+                }, completion: nil)
+            }
+        } else {
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
@@ -265,6 +272,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 self.foodTinderTableView.endUpdates()
             }
         })
+        }
     }
     
     
