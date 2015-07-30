@@ -16,13 +16,12 @@ Shows all the resturants with available menus
 class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var verticalRestMenuScroll: UIScrollView!
-    @IBOutlet weak var selectARestLabel: UILabel!
     var styles = Styles()
     var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
     var keys = [RestProfile]()
     var location: String?
+    var vertScrollMenu = UIScrollView()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     
@@ -37,17 +36,25 @@ class RestMenuViewController: UIViewController {
         
         
         //Formats the select a restaurant label
+        var selectARestLabel = UILabel()
+        selectARestLabel.frame = CGRectMake(24, 64, screenSize.width*0.9, 55)
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
         selectARestLabel.layer.shadowRadius = 5
         selectARestLabel.layer.shadowOpacity = 1.0
-        
+        selectARestLabel.text = "Select A Restaurant"
+        selectARestLabel.textColor = UIColor.whiteColor()
+        selectARestLabel.font = UIFont(name: "Helvetica-Bold", size: 28)
+        self.view.addSubview(selectARestLabel)
+
         
         //Formats the scroll view
-        verticalRestMenuScroll.contentSize.width = screenSize.width
-        verticalRestMenuScroll.contentSize.height = 450
-        verticalRestMenuScroll.backgroundColor = UIColor.clearColor()
-
+        
+        vertScrollMenu.frame = CGRectMake(24, 200, screenSize.width, screenSize.height * 0.5)
+        vertScrollMenu.contentSize.width = screenSize.width
+        vertScrollMenu.contentSize.height = 350
+        vertScrollMenu.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(vertScrollMenu)
 
         //Places the button with the list of restaurants get from restaurant map
         restaurants = dishes.dishes
@@ -68,9 +75,9 @@ class RestMenuViewController: UIViewController {
             var downAlign: CGFloat = 20
             
             // Sets the size and position of the button
-            var buttonWidth = verticalRestMenuScroll.contentSize.width
-            var width: CGFloat = 0.2 * verticalRestMenuScroll.bounds.width
-            var height: CGFloat = 0.15 * verticalRestMenuScroll.bounds.height
+            var buttonWidth = vertScrollMenu.contentSize.width
+            var width: CGFloat = 0.2 * vertScrollMenu.bounds.width
+            var height: CGFloat = 0.15 * vertScrollMenu.bounds.height
             var x: CGFloat = ((buttonWidth*0.05) + (0.5 * width))
             var y: CGFloat = (height+10) * CGFloat(i)
             
@@ -83,18 +90,16 @@ class RestMenuViewController: UIViewController {
             button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Highlighted)
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             button.titleEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 0);
-       
-            
             button.layer.shadowColor = UIColor.blackColor().CGColor
             button.layer.shadowOffset = CGSizeMake(2, 2)
             button.layer.shadowRadius = 0.5
             button.layer.shadowOpacity = 1.0
-            
             let backgroundImage = UIImageView(image: UIImage(named: "menuButton"))
             backgroundImage.frame = button.frame
             
-            verticalRestMenuScroll.addSubview(button)
-            verticalRestMenuScroll.addSubview(backgroundImage)
+            vertScrollMenu.addSubview(button)
+            vertScrollMenu.addSubview(backgroundImage)
+
         }
     }
     
