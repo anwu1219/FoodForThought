@@ -52,7 +52,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         
         buttonStyle(restMenuButton, " See All Restaurants")
         buttonStyle(foodTinderMenuButton, " Food For Thought")
-        buttonStyle(myPrefMenuButton, " My Favorite")
+        buttonStyle(myPrefMenuButton, " My Favorites")
         buttonStyle(sustInfoMenuButton, " Sustainability Info")
         
         
