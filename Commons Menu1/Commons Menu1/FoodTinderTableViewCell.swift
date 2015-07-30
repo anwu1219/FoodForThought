@@ -160,7 +160,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
         
-        yesButton.frame = CGRect(x: (screenWidth*0.7), y: screenSize.height*0.75,
+        yesButton.frame = CGRect(x: (screenWidth*0.73), y: screenSize.height*0.75,
             width: bounds.size.width*0.3, height: screenSize.height*0.1)
         yesButton.setTitle("Yes \u{276F} \u{276F}", forState: UIControlState.Normal)
         yesButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
@@ -168,16 +168,13 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         yesButton.sizeToFit()
         yesButton.backgroundColor = UIColor.clearColor()
         
-        
-        
-        noButton.frame = CGRect(x: (screenWidth*0.3), y: screenSize.height*0.75,
+        noButton.frame = CGRect(x: (screenWidth*0.01), y: screenSize.height*0.75,
             width: bounds.size.width*0.3, height: screenSize.height*0.1)
         noButton.setTitle("\u{276E} \u{276E} No", forState: UIControlState.Normal)
         noButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
         noButton.addTarget(self, action: "noAction", forControlEvents: UIControlEvents.TouchUpInside)
         noButton.sizeToFit()
         noButton.backgroundColor = UIColor.clearColor()
-
 
         noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
@@ -193,7 +190,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         susLabels.backgroundColor = UIColor.clearColor()
         placeLabels()
         
-
         tickLabel.frame = CGRect(x: -kUICuesWidth - kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
@@ -262,10 +258,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     }
     
     func yesAction() {
-        println("Yes has been pressed")
         if dish != nil {
             dish!.like = true
-            //removes cell once it is liked
             dish?.dislike = false
             self.delegate!.toDoItemDeleted(self.dish!)
             self.delegate!.uploadPreference(self.dish!)
@@ -274,13 +268,10 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     
     func noAction() {
         if delegate != nil && dish != nil {
-            // notify the delegate that this item should be deleted
             dish?.like = false
             dish?.dislike = false
             self.delegate!.toDoItemDeleted(self.dish!)
         }
-        println("No has been pressed")
-
     }
     
     
@@ -290,8 +281,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         }
         return 0
     }
-    
-    
     
     func placeLabels() {
         if let labels = dish?.susLabels {
