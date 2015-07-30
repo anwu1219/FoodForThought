@@ -206,7 +206,9 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 dish.fair = object["fair"] as! [String]
                 dish.humane = object["humane"] as! [String]
                 dish.price = object["price"] as! String
-                dish.imageFile = object["image"] as! PFFile
+                if let imageFile =  object["image"] as? PFFile {
+                    dish.imageFile = imageFile
+                }
                 if let date = object["displayDate"] as? String {
                     dish.date = date
                 }

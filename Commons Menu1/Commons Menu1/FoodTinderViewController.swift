@@ -209,7 +209,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func fetchRandomDishes(numberOfDishes: Int) -> Int{
+    func fetchRandomDishes(numberOfDishes: Int){
         var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while dishes.pulled.contains(randomIndex){
@@ -219,6 +219,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
+            if error == nil {
             if let object = object {
                 if !self.hasBeenAdded(object["name"]! as! String, location: object["location"] as! String){
                     let dish = object as! Dish
@@ -234,7 +235,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                         dish.fair = object["fair"] as! [String]
                         dish.humane = object["humane"] as! [String]
                         dish.price = object["price"] as! String
-                        dish.imageFile = object["image"] as! PFFile
+                        if let imageFile =  object["image"] as? PFFile{
+                            dish.imageFile = imageFile
+                        }
                         self.dishes.addDish(dish.location, dish: dish)
                         self.dishes.addPulled(dish.index)
                         if let date = object["displayDate"] as? String {
@@ -254,14 +257,21 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                     }
                                 }
                             } else {
-                                self.foodTinderTableView.endUpdates()
+                                dish.image = UIImage(named: "sloth")
+                                self.menu.append(dish)
+                                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                    self.foodTinderTableView.reloadData()
+                                    self.foodTinderTableView.endUpdates()
+                                    }, completion: nil)
+                                }
                             }
                         }
                     }
                 }
+            } else {
+                self.foodTinderTableView.endUpdates()
             }
         })
-        return randomIndex
     }
     
     

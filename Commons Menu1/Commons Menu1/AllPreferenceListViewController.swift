@@ -87,8 +87,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         myPreferenceLabel.sizeToFit()
         myPreferenceLabel.shadowColor = UIColor.blackColor()
         myPreferenceLabel.shadowOffset = CGSizeMake(2, 2)
-//        myPreferenceLabel.layer.shadowRadius = 2
-//        myPreferenceLabel.layer.shadowOpacity = 1.0
         myPreferenceLabel.textColor = UIColor.whiteColor()
         myPreferenceLabel.backgroundColor = UIColor.clearColor()
         myPreferenceLabel.frame = CGRect(x : 0.05 * view.frame.width, y: 0.15 * view.frame.height, width: 0.7 * view.frame.width, height: 0.08 * view.frame.height)
@@ -98,7 +96,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.layer.borderColor = UIColor(red: 132/255.0, green: 88/255.0, blue: 88/255.0, alpha: 1).CGColor
         preferenceListTableView.layer.borderWidth = 2.0
         
-        //preferenceListTableView.backgroundColor = UIColor(patternImage: UIImage(named: "DishLevelPagebackground")!)
+
         preferenceListTableView.dataSource = self
         preferenceListTableView.delegate = self
         preferenceListTableView.registerClass(PreferenceListTableViewCell.self, forCellReuseIdentifier: "cell")
@@ -224,15 +222,20 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             cell.delegate = self
             cell.selectionStyle = .None
             cell.dish = dish
-            dish.imageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) ->Void in
-                if error == nil {
-                    if let data = imageData{
-                        if let image = UIImage(data: data){
-                            cell.imageView?.image = image
+            if dish.imageFile != nil {
+                dish.imageFile.getDataInBackgroundWithBlock {
+                    (imageData: NSData?, error: NSError?) ->Void in
+                    if error == nil {
+                        if let data = imageData{
+                            if let image = UIImage(data: data){
+                                cell.imageView?.image = image
+                            }
                         }
                     }
                 }
+            } else {
+                cell.imageView?.image = UIImage(named: "sloth")
+
             }
            // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
            // cell.detailTextLabel?.textAlignment = .Center

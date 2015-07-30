@@ -177,8 +177,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(scroll)
   
         if !dishes.learned["menuSwipe"]! {
-            let alertController = UIAlertController(title: "Instruction",
-                message: "Swipe right on the dish to add to Favorites \n \n or\n \n Swipe left to dislike",
+            let alertController = UIAlertController(title: "Instructions",
+                message: "Swipe right on the dish to add to My Favorites \n \n or\n \n Swipe left to dislike",
                 preferredStyle: UIAlertControllerStyle.Alert
             )
             alertController.addAction(UIAlertAction(title: "OK!",
@@ -326,7 +326,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 dish.fair = object["fair"] as! [String]
                                 dish.humane = object["humane"] as! [String]
                                 dish.price = object["price"] as! String
-                                dish.imageFile = object["image"] as! PFFile
+                                if let imageFile =  object["image"] as? PFFile{
+                                    dish.imageFile = imageFile
+                                }
                                 if let date = object["displayDate"] as? String {
                                     dish.date = date
                                 }
