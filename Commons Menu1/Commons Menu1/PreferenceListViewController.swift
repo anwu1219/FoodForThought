@@ -93,7 +93,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
             cell.imageView?.image = UIImage(named: "sloth")
             dish.image =  UIImage(named: "sloth")
         }
-        
         return cell
     }
     

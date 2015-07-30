@@ -203,20 +203,37 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func fetchRandomDishes(numberOfDishes: Int){
-        var query = PFQuery(className:"dishInfo")
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         while dealtWith(randomIndex){
             randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         }
         if dishes.pulled.contains(randomIndex) {
             if let dish = dishes.getDishByIndex(randomIndex) {
-                self.menu.append(dish)
-                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                self.foodTinderTableView.reloadData()
-                self.foodTinderTableView.endUpdates()
-                }, completion: nil)
+                dish.imageFile.getDataInBackgroundWithBlock {
+                    (imageData: NSData?, error: NSError?) ->Void in
+                    if error == nil {
+                        if let data = imageData{
+                            if let image = UIImage(data: data){
+                                dish.image = image
+                                self.menu.append(dish)
+                                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                                    self.foodTinderTableView.reloadData()
+                                    self.foodTinderTableView.endUpdates()
+                                }, completion: nil)
+                            }
+                        }
+                    } else {
+                        dish.image = UIImage(named: "sloth")
+                        self.menu.append(dish)
+                        UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                            self.foodTinderTableView.reloadData()
+                            self.foodTinderTableView.endUpdates()
+                            }, completion: nil)
+                    }
+                }
             }
         } else {
+        var query = PFQuery(className:"dishInfo")
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
@@ -278,7 +295,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func dealtWith(index: Int) -> Bool {
-        return contains(dishes.dealtWith, index)
+        return dishes.dealtWith.contains(index)
     }
     
     

@@ -152,6 +152,12 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 for type: String in self.types {
                     self.menu[type]!.sort({$0.name < $1.name})
                 }
+                if self.getDate() != dishes.date {
+                    for key in dishes.cached.keys {
+                        dishes.cached[key] = false
+                    }
+                    dishes.date = self.getDate()
+                }
             }
             dispatch_async(dispatch_get_main_queue()) {
                 self.tableView.reloadData()
@@ -191,11 +197,17 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         
-        if self.getDate() != dishes.date {
-            for key in dishes.cached.keys {
-                dishes.cached[key] = false
+        if let foo = dishes.cached[restProf]{
+            if !foo {
+                activityIndicator.hidden = false
+                activityIndicator.startAnimating()
+                activityIndicator.hidesWhenStopped = true
+                activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+                activityIndicator.frame = CGRectMake(view.bounds.midX * 0.92, tableView.bounds.midY, 0, 0)
+                self.tableView.addSubview(activityIndicator)
+                self.refreshControl.sendActionsForControlEvents(.ValueChanged)
+                self.dishes.cached(self.restProf)
             }
-            dishes.date = getDate()
         }
     }
     
@@ -243,18 +255,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let foo = dishes.cached[restProf]{
-            if !foo {
-                activityIndicator.hidden = false
-                activityIndicator.startAnimating()
-                activityIndicator.hidesWhenStopped = true
-                activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-                activityIndicator.frame = CGRectMake(view.bounds.midX * 0.92, tableView.bounds.midY, 0, 0)
-                self.tableView.addSubview(activityIndicator)
-                self.refreshControl.sendActionsForControlEvents(.ValueChanged)
-                self.dishes.cached(self.restProf)
-            }
-        }
+
     }
     
     func refresh(refreshControl: UIRefreshControl) {

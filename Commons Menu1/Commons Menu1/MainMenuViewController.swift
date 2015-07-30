@@ -64,7 +64,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             action: nil
         )
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.navigationItem.setHidesBackButton(true, animated:true)
         
         
         instructButton.frame = CGRect(x: 0.9 * view.frame.width, y: 0.93 * view.frame.height, width: 0.06 * view.frame.width, height: 0.06 * view.frame.width)
