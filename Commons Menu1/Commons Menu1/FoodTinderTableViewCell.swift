@@ -149,7 +149,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         label.numberOfLines = 0
         label.lineBreakMode = .ByWordWrapping
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont.boldSystemFontOfSize(0.058 * self.frame.width)
+        label.font = UIFont.boldSystemFontOfSize(0.062 * self.frame.width)
 
         chefNoteLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height*0.58,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
@@ -160,18 +160,35 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
         
-        yesButton.frame = CGRect(x: (screenWidth*0.6), y: screenSize.height*0.75,
+        yesButton.frame = CGRect(x: (screenWidth*0.58), y: screenSize.height*0.75,
             width: bounds.size.width*0.15, height: bounds.size.width*0.15)
         yesButton.setBackgroundImage(UIImage(named: "thumbYes"), forState: UIControlState.Normal)
         yesButton.addTarget(self, action: "yesAction", forControlEvents: UIControlEvents.TouchUpInside)
         yesButton.backgroundColor = UIColor.clearColor()
+        yesButton.layer.shadowOffset = CGSizeMake(5, 5)
+        yesButton.layer.shadowRadius = 5
+        yesButton.layer.shadowOpacity = 1.0
+        yesButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        yesButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        yesButton.titleLabel?.layer.shadowRadius = 2
+        yesButton.titleLabel?.layer.shadowOpacity = 1.0
         
         noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.75,
             width: bounds.size.width*0.15, height: bounds.size.width*0.15)
         noButton.setBackgroundImage(UIImage(named: "thumbNo"), forState: UIControlState.Normal)
         noButton.addTarget(self, action: "noAction", forControlEvents: UIControlEvents.TouchUpInside)
         noButton.backgroundColor = UIColor.clearColor()
-
+        noButton.backgroundColor = UIColor.clearColor()
+        noButton.layer.shadowOffset = CGSizeMake(5, 5)
+        noButton.layer.shadowRadius = 5
+        noButton.layer.shadowOpacity = 1.0
+        noButton.titleLabel?.layer.shadowColor = UIColor.blackColor().CGColor
+        noButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
+        noButton.titleLabel?.layer.shadowRadius = 2
+        noButton.titleLabel?.layer.shadowOpacity = 1.0
+        
+        
+        
         noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
         noIconLabel.bounds = CGRectMake(0, 100, (screenWidth*0.8), 200)
