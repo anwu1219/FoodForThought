@@ -79,8 +79,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 title.textColor = UIColor.whiteColor()
                 container.addSubview(title)
                 y += 10 * height
-                
-                var labelPicsScroll = UIScrollView()
+            
                 var labelWidth = 6 * height
                 var labelHeight = 9 * height
                 var labelSpace = 0.5 * width
@@ -99,6 +98,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.addSubview(noIconLabel)
             }
             
+                var labelPicsScroll = UIScrollView()
             
                 let length = (CGFloat(susLabels.count + boolToInt(!dish!.eco.isEmpty) + boolToInt(!dish!.humane.isEmpty) + boolToInt(!dish!.fair.isEmpty))) * (labelWidth+labelSpace) + labelSpace
                 labelPicsScroll.frame = CGRectMake((title.frame.width - length) / 2, y, length,  10*height)
@@ -146,10 +146,11 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.addSubview(labelPicsScroll)
                 y += 10 * height
                 
-                container.frame = CGRectMake(x, y - 30*height, 91*width, 20*height)
+                container.frame = CGRect(x: 0, y: 0, width: 91*width, height: 20*height)
                 container.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
                 container.layer.shadowOffset = CGSizeMake(2.0, 2.0)
                 container.layer.shadowOpacity = 0.7
+                container.sizeToFit()
                 progScrollInfo.addSubview(container)
             
         }
