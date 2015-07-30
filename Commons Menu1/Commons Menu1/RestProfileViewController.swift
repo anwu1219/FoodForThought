@@ -415,7 +415,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         getCoordinates(restProf.address) { lat, long, error in
             if error != nil {
-                println("Something went wrong with the map button in RestProfileView")
             } else {
                 // use lat, long here
                 let regionDistance:CLLocationDistance = 10000
