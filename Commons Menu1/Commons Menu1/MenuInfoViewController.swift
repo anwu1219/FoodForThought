@@ -29,15 +29,22 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         progScrollInfo.showsVerticalScrollIndicator = false
         dishName.title = dish?.name
         
-        dish.imageFile.getDataInBackgroundWithBlock {
-            (imageData: NSData?, error: NSError?) ->Void in
-            if error == nil {
-                if let data = imageData{
-                    if let image = UIImage(data: data){
-                        self.progDishImage.image = image
+
+        if dish.imageFile != nil {
+            dish.imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            self.progDishImage.image = image
+                            self.dish.image = image
+                        }
                     }
                 }
             }
+        } else {
+            self.progDishImage.image = UIImage(named: "sloth")
+            dish.image =  UIImage(named: "sloth")
         }
         
         // set the programmatical image

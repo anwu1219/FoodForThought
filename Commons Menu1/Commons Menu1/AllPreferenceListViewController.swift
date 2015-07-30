@@ -229,13 +229,14 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                         if let data = imageData{
                             if let image = UIImage(data: data){
                                 cell.imageView?.image = image
+                                dish.image = image
                             }
                         }
                     }
                 }
             } else {
                 cell.imageView?.image = UIImage(named: "sloth")
-
+                dish.image =  UIImage(named: "sloth")
             }
            // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
            // cell.detailTextLabel?.textAlignment = .Center

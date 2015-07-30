@@ -77,16 +77,23 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         cell.delegate = self
         cell.selectionStyle = .None
         cell.dish = dish
-        dish.imageFile.getDataInBackgroundWithBlock {
-            (imageData: NSData?, error: NSError?) ->Void in
-            if error == nil {
-                if let data = imageData{
-                    if let image = UIImage(data: data){
-                        cell.imageView?.image = image
+        if dish.imageFile != nil {
+            dish.imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            cell.imageView?.image = image
+                            dish.image = image
+                        }
                     }
                 }
             }
+        } else {
+            cell.imageView?.image = UIImage(named: "sloth")
+            dish.image =  UIImage(named: "sloth")
         }
+        
         return cell
     }
     

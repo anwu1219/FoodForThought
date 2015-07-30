@@ -491,16 +491,21 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 let dish = dishes[indexPath.row]
                 cell.dish = dish
             //sets the image
-                dish.imageFile.getDataInBackgroundWithBlock {
-                    (imageData: NSData?, error: NSError?) ->Void in
-                    if error == nil {
-                        if let data = imageData{
-                            if let image = UIImage(data: data){
-                                cell.imageView?.image = image
-                                dish.image = image
+                if dish.imageFile != nil {
+                    dish.imageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData?, error: NSError?) ->Void in
+                        if error == nil {
+                            if let data = imageData{
+                                if let image = UIImage(data: data){
+                                    cell.imageView?.image = image
+                                    dish.image = image
+                                }
                             }
                         }
                     }
+                } else {
+                    cell.imageView?.image = UIImage(named: "sloth")
+                    dish.image =  UIImage(named: "sloth")
                 }
 
                 
