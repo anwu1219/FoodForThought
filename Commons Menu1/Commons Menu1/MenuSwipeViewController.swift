@@ -360,6 +360,30 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let labels = ["Restaurant Label"]
         var x: CGFloat = width * 0.01
         var y: CGFloat = height * 0.01
+        if restProf.eco.count > 0 {
+            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: CGRect.nullRect, name: "Eco")
+            ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+            ecoIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
+            x += ecoIcon.frame.width + width * 0.01
+            scroll.addSubview(ecoIcon)
+        }
+        
+        if restProf.humane.count > 0 {
+            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: CGRect.nullRect, name: "Humane")
+            humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+            humaneIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
+            x += humaneIcon.frame.width + width * 0.01
+            scroll.addSubview(humaneIcon)
+        }
+        
+        if restProf.fair.count > 0 {
+            let fairIcon = SuperIconButton(labels: restProf.fair, frame: CGRect.nullRect, name: "Fair")
+            fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
+            fairIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
+            x += fairIcon.frame.width + width * 0.01
+            scroll.addSubview(fairIcon)
+        }
+
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
@@ -372,29 +396,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             
         }
-        var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
-        if restProf.eco.count > 0 {
-            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: frame, name: "Eco")
-            ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-            x += frame.width
-            scroll.addSubview(ecoIcon)
-        }
-        
-        if restProf.humane.count > 0 {
-            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: frame, name: "Humane")
-            humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-            x += frame.width
-            scroll.addSubview(humaneIcon)
-        }
-        
-        if restProf.fair.count > 0 {
-            let fairIcon = SuperIconButton(labels: restProf.fair, frame: frame, name: "Fair")
-            fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-            x += frame.width
-            scroll.addSubview(fairIcon)
-        }
-        
-        scroll.contentSize.width = x
+
+                scroll.contentSize.width = x
         scroll.contentSize.height = y
     }
     
