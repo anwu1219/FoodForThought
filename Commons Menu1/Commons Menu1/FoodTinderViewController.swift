@@ -33,14 +33,14 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet var foodTinderView: UIView!
     
     var dishes: Dishes!
-    var menu = [Dish]()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    var ecoLabelsArray: [String]!
+    private var menu = [Dish]()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    private let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    private var ecoLabelsArray: [String]!
     //let ecoLabelScrollView: UIScrollView!
-    let refreshControl = UIRefreshControl()
-    let instructLabel = CATextLayer()
+    private let refreshControl = UIRefreshControl()
+    private let instructLabel = CATextLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
         foodTinderTableView.addSubview(refreshControl)
         
-        var logButton = UIBarButtonItem(title: "My Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
+        let logButton = UIBarButtonItem(title: "My Favorites", style: UIBarButtonItemStyle.Plain, target: self, action: "viewPreferences:")
         self.navigationItem.rightBarButtonItem = logButton
         
         if !dishes.learned["tinder"]! {
@@ -86,8 +86,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func viewPreferences(button: UIBarButtonItem?){
         performSegueWithIdentifier("tinderToAllPreferencesSegue", sender: button)
     }
+
     
-    func refresh(refreshControl: UIRefreshControl) {
+    internal func refresh(refreshControl: UIRefreshControl) {
         if Reachability.isConnectedToNetwork() {
             if dishes.dealtWith.count < dishes.numberOfDishes{
                 self.fetchRandomDishes(self.dishes.numberOfDishes)
@@ -168,7 +169,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
              dishes.learned["tinder"] = true
         }
         // use the UITableView to animate the removal of this row
-        var index = find(self.menu, dish)!
+        let index = find(self.menu, dish)!
         self.dishes.addToDealtWith(dish.index)
         self.foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
@@ -195,7 +196,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             return tableView.rowHeight;
     }
     
-    func fetchRandomDishes(numberOfDishes: Int){
+    private func fetchRandomDishes(numberOfDishes: Int){
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         //if the dish has been dealt with
         while dealtWith(randomIndex){
@@ -228,7 +229,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                 }, completion: nil)
             }
         } else {
-        var query = PFQuery(className:"dishInfo")
+        let query = PFQuery(className:"dishInfo")
         query.whereKey("index", equalTo: randomIndex)
         query.getFirstObjectInBackgroundWithBlock({ (object: PFObject?, error: NSError?) -> Void in
             if error == nil {
@@ -275,12 +276,12 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    func dealtWith(index: Int) -> Bool {
+    private func dealtWith(index: Int) -> Bool {
         return dishes.dealtWith.contains(index)
     }
     
     
-    func hasBeenAdded(name : String, location: String)-> Bool {
+    private func hasBeenAdded(name : String, location: String)-> Bool {
         for restaurant in dishes.dishes.keys{
             if restaurant.name == location{
                 for dish: Dish in dishes.dishes[restaurant]!{

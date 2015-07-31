@@ -19,16 +19,16 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     
     var isFromInfo : Bool?
-    var labelPositions = [String: CGFloat]()
-    let menuSwipeScroll = UIScrollView()
-    var typesTableView = UITableView()
-    let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
-    let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
-    let susView = UIScrollView()
-    let icon = UIImageView()
-    let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
-    let susLabels = ["About Sustainability", "Sustainability Labels"]
-    let susInfo = ["Our sustainability team seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information within a useful meal planning tool. This tool integrates the triple bottom line (equity, environment, economy) into our culture in order to encourage sustainable communities, businesses and lifestyles. \n Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability: \n “In every deliberation, we must consider the impact on the seventh generation” \n The Great Law of the Iroquois\n“Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs”\n Brundtland Commission \n We use the triple bottom line concept coined by John Elkington in his 1994 book, “Cannibals with Forks.” It is a framework to facilitate decision-making because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\n Some examples of sustainability topics include (but are not limited to):\n Food Justice\n Socially and environmentally-conscious businesses\n Fair labor\n Land use\n Waste management\n Resource consumption\n Healthy living. What you can do:\n Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability.  Here are some suggestions:\nAsk if the restaurant sources local food.\nSee if you can determine what farms the food you buy comes from.\n Visit your local farmers market. You’ll get fresh food and support the local economy.", "Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.", "Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability."]
+    private var labelPositions = [String: CGFloat]()
+    private let menuSwipeScroll = UIScrollView()
+    private let  typesTableView = UITableView()
+    private let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
+    private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
+    private let susView = UIScrollView()
+    private let icon = UIImageView()
+    private let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
+    private let susLabels = ["About Sustainability", "Sustainability Labels"]
+    private let susInfo = ["Our sustainability team seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information within a useful meal planning tool. This tool integrates the triple bottom line (equity, environment, economy) into our culture in order to encourage sustainable communities, businesses and lifestyles. \n Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability: \n “In every deliberation, we must consider the impact on the seventh generation” \n The Great Law of the Iroquois\n“Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs”\n Brundtland Commission \n We use the triple bottom line concept coined by John Elkington in his 1994 book, “Cannibals with Forks.” It is a framework to facilitate decision-making because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\n Some examples of sustainability topics include (but are not limited to):\n Food Justice\n Socially and environmentally-conscious businesses\n Fair labor\n Land use\n Waste management\n Resource consumption\n Healthy living. What you can do:\n Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability.  Here are some suggestions:\nAsk if the restaurant sources local food.\nSee if you can determine what farms the food you buy comes from.\n Visit your local farmers market. You’ll get fresh food and support the local economy.", "Sustainability must include the inextricable links among equity, environment and economy (the three E’s). The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.", "Never underestimate the impact a single individual can have on the greater sustainability movement. Simple actions, such as asking restaurant managers questions about their restaurant could motivate them to learn more about sustainability."]
     
 
 
@@ -87,7 +87,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
-    func addScrollIcon(){
+    private func addScrollIcon(){
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
@@ -131,14 +131,14 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
-    func addScrollView(){
+    private func addScrollView(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
         
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
         
@@ -259,12 +259,12 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
  
     
     
-    func bringBack(sender: AnyObject){
+    internal func bringBack(sender: AnyObject){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
     }
     
     
-    func viewMenu(swipeGestureRecognizer: UISwipeGestureRecognizer) {
+    internal func viewMenu(swipeGestureRecognizer: UISwipeGestureRecognizer) {
         menuSwipeScroll.setContentOffset(CGPoint(x: 0 * menuSwipeScroll.frame.width, y: 0), animated: true)
     }
     
@@ -288,7 +288,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
         if indexPath.row == 0 {
             cell.delegate = self
             cell.textLabel!.text = "About Sustainability"
@@ -311,7 +311,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
-    func goToType(type: String){
+    internal func goToType(type: String){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         susView.setContentOffset(CGPoint(x: 0, y: labelPositions[type]!), animated: true)
     }
