@@ -166,11 +166,35 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                     if let objectsArray = objects{
                         for object: AnyObject in objectsArray{
                             if let pFObject: PFObject = object as? PFObject{
-                                if let restaurant = pFObject["location"] as?String{
-                                    if let dishName = pFObject["dishName"] as? String{
-                                        self.addDishWithName(restaurant, name: dishName, like: true, dislike: false)
-                                    }
-                                }
+                                let preference = object as! Preference
+                                preference.getPreference(object as! PFObject)
+                                self.addDishWithName(preference.location, name: preference.dishName, like: true, dislike: false)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    /**
+    Fetches dislike data from Parse and sets the corresponding dish object's dislike to true
+    */
+    private func fetchDislikeData(){
+        if let currentUser = PFUser.currentUser(){
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Disliked")
+            query.whereKey("createdBy", equalTo: user)
+            query.findObjectsInBackgroundWithBlock{
+                (objects: [AnyObject]?, error: NSError?) -> Void in
+                if error == nil && objects != nil{
+                    if let objectsArray = objects{
+                        for object: AnyObject in objectsArray{
+                            if let pFObject: PFObject = object as? PFObject{
+                                let disliked = object as! Disliked
+                                disliked.getDisliked(object as! PFObject)
+                                self.addDishWithName(disliked.location, name: disliked.dishName, like: false, dislike: true)
                             }
                         }
                     }
@@ -196,34 +220,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 self.dishes.addToDealtWith(dish.index)
                 self.dishes.addDish(location, dish: dish)
                 self.dishes.addPulled(dish)
-            }
-        }
-    }
-    
-    
-    /**
-    Fetches dislike data from Parse and sets the corresponding dish object's dislike to true
-    */
-    private func fetchDislikeData(){
-        if let currentUser = PFUser.currentUser(){
-            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            let query = PFQuery(className:"Disliked")
-            query.whereKey("createdBy", equalTo: user)
-            query.findObjectsInBackgroundWithBlock{
-                (objects: [AnyObject]?, error: NSError?) -> Void in
-                if error == nil && objects != nil{
-                    if let objectsArray = objects{
-                        for object: AnyObject in objectsArray{
-                            if let pFObject: PFObject = object as? PFObject{
-                                if let restaurant = pFObject["location"] as?String{
-                                    if let dishName = pFObject["dishName"] as? String{
-                                        self.addDishWithName(restaurant, name: dishName, like: false, dislike: true)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
     }
