@@ -1,6 +1,6 @@
 //
 //  RestProfileViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 6/7/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.

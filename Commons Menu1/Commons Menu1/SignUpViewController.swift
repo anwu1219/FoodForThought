@@ -1,6 +1,6 @@
 //
 //  SignUpViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Anstrom, Kaity on 6/29/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -27,11 +27,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setBackground("SignInBackground")
         
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.whiteColor()
         
         
         // - Style of the textfield, button, and label
@@ -172,6 +172,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
+        activityIndicator.color = UIColor.whiteColor()
         
 
         // Create the user
@@ -179,7 +180,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
-
         
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in

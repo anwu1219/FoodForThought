@@ -1,6 +1,6 @@
 //
 //  MenuSwipeViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 18/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -744,7 +744,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -786,13 +785,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         popScroll.addSubview(description)
         popScroll.addSubview(linkButton)
         vc.view.addSubview(popScroll)
-        
         vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
         vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
-        
-        
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds

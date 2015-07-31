@@ -1,6 +1,6 @@
 //
 //  SustainabilityInfoViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 17/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -81,8 +81,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
-        
-        
+
     }
     
     
