@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376EEB91B3C5E9100C5C49A /* AppStylings.swift */; };
 		137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137AC6AD1B386985001057CB /* MenuInfoViewController.swift */; };
 		13C777011B57072700BD2A39 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777001B57072700BD2A39 /* IconButton.swift */; };
 		13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C777021B583D4600BD2A39 /* SuperIconButton.swift */; };
@@ -70,7 +69,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1376EEB91B3C5E9100C5C49A /* AppStylings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStylings.swift; sourceTree = "<group>"; };
 		137AC6AD1B386985001057CB /* MenuInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuInfoViewController.swift; sourceTree = "<group>"; };
 		13C777001B57072700BD2A39 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		13C777021B583D4600BD2A39 /* SuperIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperIconButton.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				F32372D21B5455D3008A7C91 /* Extension */,
 				F32372D31B545602008A7C91 /* TableCells */,
 				F30E9C3F1B59392D0011C1BC /* Local Object Class */,
-				1376EEB91B3C5E9100C5C49A /* AppStylings.swift */,
 				F32372D61B575DED008A7C91 /* IconDescription.swift */,
 				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
@@ -417,7 +414,6 @@
 				407305421B31FEFC00DE02D2 /* RestMenuViewController.swift in Sources */,
 				F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */,
 				13C777051B599D7300BD2A39 /* LinkButton.swift in Sources */,
-				1376EEBA1B3C5E9100C5C49A /* AppStylings.swift in Sources */,
 				F3C180C51B6916CE00E5940C /* BackgroundExtention.swift in Sources */,
 				F3CD7F541B4F280D0051AFF4 /* Dishes.swift in Sources */,
 				407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */,

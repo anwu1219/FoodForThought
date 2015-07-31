@@ -34,7 +34,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     var dishes: Dishes!
     var menu = [Dish]()
-    let styles = Styles()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)

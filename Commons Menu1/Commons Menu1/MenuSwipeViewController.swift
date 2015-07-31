@@ -50,7 +50,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var restImage = UIImageView()
     var menu = [String : [Dish]]()
     var dishes : Dishes!
-    let styles = Styles()
     var disLikes = Set<Dish>()
     var types = [String]()
     var restProf: RestProfile!
@@ -241,7 +240,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         tableView.backgroundColor = UIColor.clearColor()
-        tableView.backgroundView = styles.backgroundImage
+        tableView.backgroundView = UIImageView(image: UIImage(named: "menuButton"))
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 85
         menuSwipeScroll.addSubview(tableView)

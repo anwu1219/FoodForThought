@@ -16,7 +16,6 @@ Shows all the resturants with available menus
 class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var styles = Styles()
     var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
     var keys = [RestProfile]()
