@@ -293,48 +293,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         let dish = object as! Dish
-                        if !self.dishes.pulled.contains(object["index"]! as! Int){
+                        if self.dishes.pulled[object["index"]! as! Int] == nil{
                             if let date = object["displayDate"] as? String {
                                 if date == self.dishes.date {
-                                    dish.name = object["name"] as! String
-                                    dish.location = object["location"] as! String
-                                    dish.ingredients = object["ingredients"] as! [String]
-                                    dish.labels = object["labels"] as! [[String]]
-                                    dish.type = object["type"] as! String
-                                    dish.susLabels = object["susLabels"] as! [String]
-                                    dish.index = object["index"] as! Int
-                                    dish.eco = object["eco"] as! [String]
-                                    dish.fair = object["fair"] as! [String]
-                                    dish.humane = object["humane"] as! [String]
-                                    dish.price = object["price"] as! String
-                                    dish.imageFile = object["image"] as! PFFile
-                                    if let date = object["displayDate"] as? String {
-                                        dish.date = date
-                                    }
+                                    dish.getDishData(object as! PFObject)
                                     self.dishes.addDish(location, dish: dish)
-                                    self.dishes.addPulled(dish.index)
+                                    self.dishes.addPulled(dish)
                                     self.addDishToMenu(dish)
                                 }
                             } else {
-                                dish.name = object["name"] as! String
-                                dish.location = object["location"] as! String
-                                dish.ingredients = object["ingredients"] as! [String]
-                                dish.labels = object["labels"] as! [[String]]
-                                dish.type = object["type"] as! String
-                                dish.susLabels = object["susLabels"] as! [String]
-                                dish.index = object["index"] as! Int
-                                dish.eco = object["eco"] as! [String]
-                                dish.fair = object["fair"] as! [String]
-                                dish.humane = object["humane"] as! [String]
-                                dish.price = object["price"] as! String
-                                if let imageFile =  object["image"] as? PFFile{
-                                    dish.imageFile = imageFile
-                                }
-                                if let date = object["displayDate"] as? String {
-                                    dish.date = date
-                                }
+                                dish.getDishData(object as! PFObject)
                                 self.dishes.addDish(location, dish: dish)
-                                self.dishes.addPulled(dish.index)
+                                self.dishes.addPulled(dish)
                                 self.addDishToMenu(dish)
                             }
                         }
@@ -344,10 +314,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()
-                        self.activityIndicator.stopAnimating()
                         self.typesTableView.reloadData()
-                        self.typesTableView.endUpdates()
-                        }, completion: nil)
+                        }, completion: { (finished: Bool) -> () in
+                            if finished {
+                                self.typesTableView.endUpdates()
+                                self.activityIndicator.stopAnimating()
+                            }
+                        })
                 }
             }
         }

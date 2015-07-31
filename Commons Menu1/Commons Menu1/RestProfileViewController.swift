@@ -177,7 +177,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
-            description.frame = CGRectMake(0.1*width, y, restProfScrollView.frame.width*0.4, 50)
+            description.frame = CGRect(x: 0.05*restProfScrollView.frame.width, y: y, width: restProfScrollView.frame.width*0.43, height: 50)
             description.lineBreakMode = .ByWordWrapping
             description.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             description.numberOfLines = 0
@@ -415,7 +415,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         getCoordinates(restProf.address) { lat, long, error in
             if error != nil {
-                println("Something went wrong with the map button in RestProfileView")
             } else {
                 // use lat, long here
                 let regionDistance:CLLocationDistance = 10000

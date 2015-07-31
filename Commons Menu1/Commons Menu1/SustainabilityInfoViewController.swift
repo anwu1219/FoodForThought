@@ -236,7 +236,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             labelImage.image = UIImage(named: labelName)
             labelImage.contentMode = .ScaleToFill
             let labelDescription = UILabel(frame: CGRect(x: labelImage.frame.width + widthPadding, y: 0, width: susView.frame.width - labelImage.frame.width - 3 * widthPadding, height: 0))
-            labelDescription.text = labelName + ": " + descriptions[labelName]!
+            labelDescription.text = descriptions[labelName]!
             labelDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping
             labelDescription.numberOfLines = 0
             labelDescription.textAlignment = .Left
