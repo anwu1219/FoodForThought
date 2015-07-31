@@ -10,25 +10,15 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="LoadingScreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6VW-iE-Ewd">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="511"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoadingScreenPage" translatesAutoresizingMaskIntoConstraints="NO" id="OGg-j5-WSc">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foodscape" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itU-IB-dxu">
-                    <rect key="frame" x="79" y="171" width="333" height="128"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="itU-IB-dxu" secondAttribute="bottom" constant="181" id="2KW-69-nhb"/>
-                <constraint firstItem="itU-IB-dxu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="79" id="Fih-0J-8Qu"/>
-                <constraint firstItem="6VW-iE-Ewd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GST-E6-eUR"/>
-                <constraint firstItem="6VW-iE-Ewd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="T5d-gh-lAe"/>
-                <constraint firstItem="itU-IB-dxu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="171" id="UFN-Oy-wWq"/>
-                <constraint firstAttribute="trailing" secondItem="itU-IB-dxu" secondAttribute="trailing" constant="68" id="cH6-9y-vFT"/>
-                <constraint firstAttribute="bottom" secondItem="6VW-iE-Ewd" secondAttribute="bottom" constant="-31" id="ejA-X6-u7J"/>
-                <constraint firstAttribute="trailing" secondItem="6VW-iE-Ewd" secondAttribute="trailing" id="l2F-pe-bcJ"/>
+                <constraint firstAttribute="trailing" secondItem="OGg-j5-WSc" secondAttribute="trailing" id="3XO-Gi-rcj"/>
+                <constraint firstAttribute="bottom" secondItem="OGg-j5-WSc" secondAttribute="bottom" id="4lx-eB-ltq"/>
+                <constraint firstItem="OGg-j5-WSc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HmH-4A-1Yn"/>
+                <constraint firstItem="OGg-j5-WSc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sfr-hd-gZj"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -36,7 +26,7 @@
         </view>
     </objects>
     <resources>
-        <image name="LoadingScreenLogo" width="640" height="1136"/>
+        <image name="LoadingScreenPage" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
