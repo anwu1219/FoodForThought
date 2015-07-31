@@ -18,9 +18,9 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var labelsLabel: UILabel!
     
     var dish: Dish!
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let progDishImage = UIImageView()
-    let progScrollInfo = UIScrollView()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private let progDishImage = UIImageView()
+    private let progScrollInfo = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,16 +68,16 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     /**
     Put dish information into the progScrollInfo
     */
-    func layoutPage() {
-        var width: CGFloat = 0.01 * screenSize.width // a unit of x
-        var height: CGFloat = 0.01 * screenSize.height // a unit of y
+    private func layoutPage() {
+        let width: CGFloat = 0.01 * screenSize.width // a unit of x
+        let height: CGFloat = 0.01 * screenSize.height // a unit of y
         var x: CGFloat = 0.01 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
         if let susLabels = dish?.susLabels {
                 
-                var container = UIView()
+                let container = UIView()
                 
-                var title = UILabel()
+                let title = UILabel()
                 title.text = "Dish Sustainability Info"
                 title.frame = CGRectMake(0, y, 85 * width, 10*height)
                 title.textAlignment = .Center
@@ -87,13 +87,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.addSubview(title)
                 y += 10 * height
             
-                var labelWidth = 6 * height
-                var labelHeight = 9 * height
-                var labelSpace = 0.5 * width
+                let labelWidth = 6 * height
+                let labelHeight = 9 * height
+                let labelSpace = 0.5 * width
             
             if susLabels.isEmpty && dish!.eco.isEmpty && dish!.humane.isEmpty && dish!.fair.isEmpty {
                 
-                var noIconLabel = UILabel()
+                let noIconLabel = UILabel()
                 noIconLabel.text = "No icon information available"
                 noIconLabel.frame = CGRectMake(0, y, 85 * width, 10*height)
                 noIconLabel.textAlignment = .Center
@@ -105,7 +105,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.addSubview(noIconLabel)
             }
             
-                var labelPicsScroll = UIScrollView()
+                let labelPicsScroll = UIScrollView()
             
                 let length = (CGFloat(susLabels.count + boolToInt(!dish!.eco.isEmpty) + boolToInt(!dish!.humane.isEmpty) + boolToInt(!dish!.fair.isEmpty))) * (labelWidth+labelSpace) + labelSpace
                 labelPicsScroll.frame = CGRectMake((title.frame.width - length) / 2, y, length,  10*height)
@@ -140,39 +140,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
 
 
                 for var i = 0; i < susLabels.count; i++ {
-                    var labelImage = IconButton(name: susLabels[i], frame: CGRectMake(initX, height, labelWidth, labelWidth))
+                    let labelImage = IconButton(name: susLabels[i], frame: CGRectMake(initX, height, labelWidth, labelWidth))
                     labelImage.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     labelPicsScroll.addSubview(labelImage)
                     initX += labelSpace + labelWidth
                 }
 
-//                var frame = CGRectMake(initX, height, labelWidth, labelWidth)
-//                if dish!.eco.count > 0 {
-//                    let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
-//                    ecoIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-//                    ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-//                    labelPicsScroll.addSubview(ecoIcon)
-//                    initX += labelSpace + labelWidth
-//                }
-//                
-//                if dish!.humane.count > 0 {
-//                    let humaneIcon = SuperIconButton(labels: dish!.humane, frame: frame, name: "Humane")
-//                    humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-//                    humaneIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-//                    labelPicsScroll.addSubview(humaneIcon)
-//                    initX += labelSpace + labelWidth
-//                }
-//            
-//                if dish!.fair.count > 0 {
-//                    let fairIcon = SuperIconButton(labels: dish!.fair, frame: frame, name: "Fair")
-//                    fairIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)
-//                    fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
-//                    labelPicsScroll.addSubview(fairIcon)
-//                    initX += labelSpace + labelWidth
-//                }
-
             
-                //progScrollInfo.addSubview(labelPics)
                 container.addSubview(labelPicsScroll)
                 y += 10 * height
                 
@@ -185,7 +159,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             
         }
         if let location = dish?.location {
-            var label = UILabel()
+            let label = UILabel()
             label.text = "Restaurant: \(location)"
             label.frame = CGRectMake( x, y, 91 * width, 10 * height)
             label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
@@ -199,7 +173,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         
         if let price = dish?.price {
             if count(price) > 0 {
-                var label = UILabel()
+                let label = UILabel()
                 //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
                 label.text = "Price: \(price)"
                 label.frame = CGRectMake(x, y, 91 * width, 10 * height)
@@ -214,7 +188,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         
         if let ingredients = dish?.ingredients {
             if count(ingredients) > 0 {
-                var ingLabel = UILabel()
+                let ingLabel = UILabel()
                 //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
                 ingLabel.text = "Ingredients:"
                 ingLabel.frame = CGRectMake(x, y, 91 * width, 10 * height)
@@ -226,14 +200,14 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 y += ingLabel.frame.height + (3*height)
             }
             for var i = 0; i < ingredients.count; i++ {
-                var ingredient = UILabel()
+                let ingredient = UILabel()
                 ingredient.font = UIFont(name: "HelveticaNeue-Light", size: 14)
                 ingredient.textColor = UIColor.whiteColor()
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
                 ingredient.text = "- \(ingredients[i])"
                 ingredient.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 ingredient.numberOfLines = 0
-                var num = CGFloat(2 * count(ingredients[i]))
+                let num = CGFloat(2 * count(ingredients[i]))
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
 
                 //ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
@@ -244,7 +218,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                     if !labels.isEmpty{
                         var nutLabelXPosition = screenSize.width * 0.75
                         for label: String in labels[i] {
-                            var nutLabel = IconButton(name: label, frame: CGRectMake(nutLabelXPosition, y - 1 * height, 5 * height, 5 * height))
+                            let nutLabel = IconButton(name: label, frame: CGRectMake(nutLabelXPosition, y - 1 * height, 5 * height, 5 * height))
                             nutLabel.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                             progScrollInfo.addSubview(nutLabel)
                             nutLabelXPosition -= 6 * height
@@ -257,7 +231,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         progScrollInfo.contentSize.height = y
     }
     
-    func boolToInt(bool : Bool) -> Int {
+    private func boolToInt(bool : Bool) -> Int {
         if bool {
             return 1
         }
