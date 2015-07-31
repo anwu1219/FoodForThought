@@ -16,7 +16,6 @@ import Parse
 Manages the cell representation of a dish in a menu
 */
 class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
-    let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false
@@ -54,16 +53,16 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         label = UILabel(frame: CGRect.nullRect)
-        label.textColor = styles.labelTextColor
+        label.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         label.backgroundColor = UIColor.clearColor()
         
         
         chefNoteLabel = UILabel(frame: CGRect.nullRect)
-        chefNoteLabel.textColor = styles.labelTextColor
+        chefNoteLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         chefNoteLabel.backgroundColor = UIColor.clearColor()
     
         noIconLabel = UILabel(frame : CGRect.nullRect)
-        noIconLabel.textColor = styles.labelTextColor
+        noIconLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         noIconLabel.backgroundColor = UIColor.clearColor()
         noIconLabel.text = "No Sustainability Icon Available"
         

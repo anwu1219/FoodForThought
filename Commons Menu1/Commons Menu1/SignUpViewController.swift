@@ -13,7 +13,7 @@ import UIKit
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    final private let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
@@ -171,11 +171,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     func processSignUp() {
-        var userEmailAddress = emailAddress.text
-        var userPassword = password.text
+        let userEmailAddress = emailAddress.text.lowercaseString
+        let userPassword = password.text
       
-        // Ensure username is lowercase
-        userEmailAddress = userEmailAddress.lowercaseString
 
         // Start activity indicator
         activityIndicator.hidden = false
@@ -183,7 +181,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
 
         // Create the user
-        var user = PFUser()
+        let user = PFUser()
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
@@ -246,10 +244,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
-        var userEmailAddress = emailAddress.text
-        userEmailAddress = userEmailAddress.lowercaseString
+        let userEmailAddress = emailAddress.text.lowercaseString
         
-        var userPassword = password.text
+        let userPassword = password.text
         PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {

@@ -15,7 +15,6 @@ import Parse
 Manages the cell representation of a dish in a menu
 */
 class MenuTableViewCell: UITableViewCell {
-    let styles = Styles()
     let gradientLayer = CAGradientLayer()
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false

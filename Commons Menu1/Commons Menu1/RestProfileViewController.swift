@@ -15,7 +15,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
-    let styles = Styles()
     var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
 
     
