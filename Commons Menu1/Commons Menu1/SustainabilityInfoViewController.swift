@@ -110,17 +110,13 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if scrollView == susView{
             icon.hidden = false
-            println("Scroll finished")
-        
         }
     }
     
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == susView{
-            icon.hidden = false
-            println("Scroll finished")
-            
+            icon.hidden = false            
         }
     }
     
@@ -316,7 +312,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     
     func goToType(type: String){
-        println(labelPositions)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         susView.setContentOffset(CGPoint(x: 0, y: labelPositions[type]!), animated: true)
     }

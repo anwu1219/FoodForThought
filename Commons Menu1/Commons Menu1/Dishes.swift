@@ -12,7 +12,7 @@ class Dishes{
     var dishes = [RestProfile: [Dish]]()
     var numberOfDishes = 0
     var dealtWith = Set<Int>()
-    var pulled = Set<Int>()
+    var pulled = [Int: Dish]()
     var cached = [RestProfile: Bool]()
     var learned = [String: Bool]()
     var date = String()
@@ -55,8 +55,8 @@ class Dishes{
     }
     
     
-    func addPulled(index: Int){
-        self.pulled.insert(index)
+    func addPulled(dish : Dish){
+        self.pulled[dish.index] = dish
     }
         
     

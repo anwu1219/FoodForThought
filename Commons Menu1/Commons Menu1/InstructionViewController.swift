@@ -18,9 +18,6 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     
     var pageViewController : UIPageViewController!
     
-    @IBAction func swipeLeft(sender: AnyObject) {
-        println("SWipe left")
-    }
     @IBAction func swiped(sender: AnyObject) {
         
         self.pageViewController.view .removeFromSuperview()

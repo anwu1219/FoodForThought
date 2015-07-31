@@ -16,13 +16,12 @@ Shows all the resturants with available menus
 class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var styles = Styles()
-    var restaurants : [RestProfile: [Dish]]!
+    private var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
-    var keys = [RestProfile]()
-    var location: String?
-    var vertScrollMenu = UIScrollView()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private var keys = [RestProfile]()
+    private var location: String?
+    private let vertScrollMenu = UIScrollView()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     
     override func viewDidLoad() {
@@ -36,7 +35,7 @@ class RestMenuViewController: UIViewController {
         
         
         //Formats the select a restaurant label
-        var selectARestLabel = UILabel()
+        let selectARestLabel = UILabel()
         selectARestLabel.frame = CGRectMake(24, 64, screenSize.width*0.9, 55)
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
@@ -69,17 +68,18 @@ class RestMenuViewController: UIViewController {
     /**
     Places buttons that points to different restaurant menus
     */
-    func placeButtons(keys: [RestProfile]) {
+    private func placeButtons(keys: [RestProfile]) {
         for i in 0..<keys.count {
-            var button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            var downAlign: CGFloat = 20
+            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+            let downAlign: CGFloat = 20
             
             // Sets the size and position of the button
-            var buttonWidth = vertScrollMenu.contentSize.width
-            var width: CGFloat = 0.2 * vertScrollMenu.bounds.width
-            var height: CGFloat = 0.15 * vertScrollMenu.bounds.height
-            var x: CGFloat = ((buttonWidth*0.05) + (0.5 * width))
-            var y: CGFloat = (height+10) * CGFloat(i)
+            let buttonWidth = vertScrollMenu.contentSize.width
+            let width: CGFloat = 0.2 * vertScrollMenu.bounds.width
+            let height: CGFloat = 0.15 * vertScrollMenu.bounds.height
+            
+            let x: CGFloat = ((buttonWidth*0.05) + (0.5 * width))
+            let y: CGFloat = (height+10) * CGFloat(i)
             
             //Sets the content of the buttons
             button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)

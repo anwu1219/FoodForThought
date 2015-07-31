@@ -50,6 +50,27 @@ class Dish: PFObject, PFSubclassing {
     }
     
     
+    func getDishData(object: PFObject){
+        self.name = object["name"] as! String
+        self.location = object["location"] as! String
+        self.ingredients = object["ingredients"] as! [String]
+        self.labels = object["labels"] as! [[String]]
+        self.type = object["type"] as! String
+        self.susLabels = object["susLabels"] as! [String]
+        self.index = object["index"] as! Int
+        self.eco = object["eco"] as! [String]
+        self.fair = object["fair"] as! [String]
+        self.humane = object["humane"] as! [String]
+        self.price = object["price"] as! String
+        if let imageFile =  object["image"] as? PFFile{
+            self.imageFile = imageFile
+        }
+        if let date = object["displayDate"] as? String {
+            self.date = date
+        }
+    }
+    
+    
     static func parseClassName() -> String {
         return "dishInfo"
     }

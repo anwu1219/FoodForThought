@@ -34,7 +34,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     var dishes: Dishes!
     var menu = [Dish]()
-    let styles = Styles()
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
@@ -42,8 +41,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     //let ecoLabelScrollView: UIScrollView!
     let refreshControl = UIRefreshControl()
     let instructLabel = CATextLayer()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,8 +86,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func viewPreferences(button: UIBarButtonItem?){
         performSegueWithIdentifier("tinderToAllPreferencesSegue", sender: button)
     }
-    
-    
     
     func refresh(refreshControl: UIRefreshControl) {
         if Reachability.isConnectedToNetwork() {
@@ -159,7 +154,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             
-            
             return cell
     }
     
@@ -201,38 +195,37 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             return tableView.rowHeight;
     }
     
-    
     func fetchRandomDishes(numberOfDishes: Int){
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
+        //if the dish has been dealt with
         while dealtWith(randomIndex){
             randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
         }
-        if dishes.pulled.contains(randomIndex) {
-            if let dish = dishes.getDishByIndex(randomIndex) {
-                if let imageFile = dish.imageFile {
-                dish.imageFile.getDataInBackgroundWithBlock {
-                    (imageData: NSData?, error: NSError?) ->Void in
-                    if error == nil {
-                        if let data = imageData{
-                            if let image = UIImage(data: data){
-                                dish.image = image
-                                self.menu.append(dish)
-                                UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+        // if the dish has been pulled, find the dish in dishes
+        if let dish = dishes.pulled[randomIndex] {
+            if let imageFile = dish.imageFile {
+            dish.imageFile.getDataInBackgroundWithBlock {
+                (imageData: NSData?, error: NSError?) ->Void in
+                if error == nil {
+                    if let data = imageData{
+                        if let image = UIImage(data: data){
+                            dish.image = image
+                            self.menu.append(dish)
+                            UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                     self.foodTinderTableView.reloadData()
                                     self.foodTinderTableView.endUpdates()
-                                }, completion: nil)
-                                }
-                                }
-                            }
-                        }
-                    } else {
-                        dish.image = UIImage(named: "sloth")
-                        self.menu.append(dish)
-                        UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
-                            self.foodTinderTableView.reloadData()
-                            self.foodTinderTableView.endUpdates()
                             }, completion: nil)
+                        }
                     }
+                }
+            }
+        } else {
+            dish.image = UIImage(named: "sloth")
+            self.menu.append(dish)
+            UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
+                self.foodTinderTableView.reloadData()
+                self.foodTinderTableView.endUpdates()
+                }, completion: nil)
             }
         } else {
         var query = PFQuery(className:"dishInfo")
@@ -242,23 +235,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             if let object = object {
                 if !self.hasBeenAdded(object["name"]! as! String, location: object["location"] as! String){
                     let dish = object as! Dish
-                    if !self.dishes.pulled.contains(object["index"]! as! Int){
-                        dish.name = object["name"] as! String
-                        dish.location = object["location"] as! String
-                        dish.ingredients = object["ingredients"] as! [String]
-                        dish.labels = object["labels"] as! [[String]]
-                        dish.type = object["type"] as! String
-                        dish.susLabels = object["susLabels"] as! [String]
-                        dish.index = object["index"] as! Int
-                        dish.eco = object["eco"] as! [String]
-                        dish.fair = object["fair"] as! [String]
-                        dish.humane = object["humane"] as! [String]
-                        dish.price = object["price"] as! String
-                        if let imageFile =  object["image"] as? PFFile{
-                            dish.imageFile = imageFile
-                        }
+                        dish.getDishData(object)
                         self.dishes.addDish(dish.location, dish: dish)
-                        self.dishes.addPulled(dish.index)
+                        self.dishes.addPulled(dish)
                         if let date = object["displayDate"] as? String {
                             dish.date = date
                         }
@@ -286,7 +265,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                     self.foodTinderTableView.endUpdates()
                                     }, completion: nil)
                                 }
-                            }
                         }
                     }
             } else {
@@ -295,7 +273,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         })
         }
     }
-    
     
     
     func dealtWith(index: Int) -> Bool {
@@ -341,6 +318,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         super.didReceiveMemoryWarning()
     }
     
+    
+    
+    @IBAction func learnMoreLink(sender: UIButton) {
+        let urls = IconDescription().urls
+        let button = sender as! LinkButton
+        if let url = NSURL(string: urls[button.name]!) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
     
     
     func showLabelInfo(sender: AnyObject) {
@@ -391,15 +377,13 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
-        }    }
+        }
+    }
 }
-
-
 
 extension FoodTinderViewController : UIPopoverPresentationControllerDelegate {
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
-        
     }
 }

@@ -88,7 +88,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-636" y="-719"/>
+            <point key="canvasLocation" x="-597" y="-915"/>
         </scene>
         <!--All Preference List View Controller-->
         <scene sceneID="jys-nA-lZm">
@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2g0-Ce-3Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-30" y="-1550"/>
+            <point key="canvasLocation" x="-597" y="-1694"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="ufC-wZ-h7g">
@@ -411,7 +411,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1386" y="-719"/>
+            <point key="canvasLocation" x="-1416" y="-915"/>
         </scene>
         <!--Signup Instruction View Controller-->
         <scene sceneID="zAA-gH-msK">
@@ -517,12 +517,12 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="EOr-mv-j1p"/>
+                                <exclude reference="HtE-D5-BrR"/>
                                 <exclude reference="05z-8z-qnL"/>
                                 <exclude reference="LBT-45-57c"/>
                                 <exclude reference="Xxf-5Y-yRz"/>
                                 <exclude reference="ajx-BL-TzX"/>
                                 <exclude reference="dQF-jW-Mh1"/>
-                                <exclude reference="HtE-D5-BrR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -532,12 +532,12 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="EOr-mv-j1p"/>
+                                <exclude reference="HtE-D5-BrR"/>
                                 <include reference="05z-8z-qnL"/>
                                 <include reference="LBT-45-57c"/>
                                 <exclude reference="Xxf-5Y-yRz"/>
                                 <exclude reference="ajx-BL-TzX"/>
                                 <include reference="dQF-jW-Mh1"/>
-                                <exclude reference="HtE-D5-BrR"/>
                             </mask>
                         </variation>
                     </view>
@@ -559,7 +559,7 @@
                         <viewControllerLayoutGuide type="bottom" id="V4Z-DJ-aE0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7D8-cj-OaX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -567,7 +567,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oD3-eF-Ydx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2247" y="31"/>
+            <point key="canvasLocation" x="-2205" y="51"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Z4U-Uz-P4d">
@@ -1182,7 +1182,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2247" y="-979"/>
+            <point key="canvasLocation" x="-2247" y="-915"/>
         </scene>
         <!--Restaurant Selection-->
         <scene sceneID="27M-76-1o5">
@@ -1215,7 +1215,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1182" y="31"/>
+            <point key="canvasLocation" x="-1416" y="31"/>
         </scene>
         <!--Menu-->
         <scene sceneID="PnE-2u-lWa">
@@ -1265,7 +1265,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-543" y="319"/>
+            <point key="canvasLocation" x="-537" y="31"/>
         </scene>
         <!--Restaurant Name-->
         <scene sceneID="9R5-Uz-jaH">
@@ -1433,7 +1433,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-597" y="1037"/>
+            <point key="canvasLocation" x="-537" y="765"/>
         </scene>
         <!--Preference List View Controller-->
         <scene sceneID="9ha-IG-Aia">
@@ -1508,7 +1508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4R-hW-3iA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202.5" y="306"/>
+            <point key="canvasLocation" x="300" y="31"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ne2-5A-bV8">
@@ -1546,7 +1546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDM-EA-xCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-719"/>
+            <point key="canvasLocation" x="300" y="-923"/>
         </scene>
     </scenes>
     <resources>
@@ -1556,8 +1556,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="6HG-gM-2cC"/>
         <segue reference="rSJ-Ob-iMA"/>
-        <segue reference="2sF-BO-Jmm"/>
         <segue reference="sXz-wK-Xvd"/>
-        <segue reference="aZ9-33-JLe"/>
+        <segue reference="2sF-BO-Jmm"/>
+        <segue reference="aIz-rM-qCJ"/>
     </inferredMetricsTieBreakers>
 </document>

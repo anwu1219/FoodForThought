@@ -13,7 +13,7 @@ import UIKit
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    final private let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
@@ -60,7 +60,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         signUpButton.layer.borderWidth = 1
         signUpButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-
         signUpButton.layer.cornerRadius = 5
         signUpButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         
@@ -83,13 +82,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         labelStyle(welcomeLabel)
         labelStyle(passwordLabel)
         labelStyle(emailLabel)
-   
         
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
-        
         
         // Test if there is internet connection
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
@@ -171,21 +167,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     func processSignUp() {
-        var userEmailAddress = emailAddress.text
-        var userPassword = password.text
+        let userEmailAddress = emailAddress.text.lowercaseString
+        let userPassword = password.text
       
-        
-        // Ensure username is lowercase
-        userEmailAddress = userEmailAddress.lowercaseString
-        
-        
+
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
 
         // Create the user
-        var user = PFUser()
+        let user = PFUser()
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
@@ -248,10 +240,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
-        var userEmailAddress = emailAddress.text
-        userEmailAddress = userEmailAddress.lowercaseString
+        let userEmailAddress = emailAddress.text.lowercaseString
         
-        var userPassword = password.text
+        let userPassword = password.text
         PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
@@ -266,6 +257,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 PFUser.currentUser()?.pinInBackgroundWithBlock({
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
+                        // The object has been saved.
+                    } else {
+                        // There was a problem, check error.description
+
                     }
                 })
                 
@@ -319,7 +314,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //regex function to check if email is in valid format
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }
@@ -333,20 +327,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         let restaurant = object as! RestProfile
-                        restaurant.name = object["name"] as! String
-                        restaurant.imageFile = object["image"] as! PFFile
-                        restaurant.address = object["address"] as! String
-                        restaurant.phoneNumber = object["number"] as! String
-                        restaurant.hours = object["hours"] as! [String]
-                        restaurant.restDescript = object["restDescription"] as! String
-                        restaurant.labels = object["labelDescription"] as! [[String]]
-                        restaurant.healthScore = object["healthScore"] as! Double
-                        restaurant.mealPlanHours = object["mealPlanHours"] as! [String]
-                        restaurant.url = object["website"] as! String
-                        restaurant.eco = object["eco"] as! [String]
-                        restaurant.fair = object["fair"] as! [String]
-                        restaurant.humane = object["humane"] as! [String]
-                        restaurant.dynamicTypes = object["dynamic"] as! [String]
+                        restaurant.fetchRestData(object as! PFObject)
                         self.dishes.addRestaurant(restaurant)
                     }
                     if let user = PFUser.currentUser() {

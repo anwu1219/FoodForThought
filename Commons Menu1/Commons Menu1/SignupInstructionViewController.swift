@@ -17,10 +17,8 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
         var isFromMain : Bool?
         
         var pageViewController : UIPageViewController!
-        
-        @IBAction func swipeLeft(sender: AnyObject) {
-            println("SWipe left")
-        }
+    
+    
         @IBAction func swiped(sender: AnyObject) {
             
             self.pageViewController.view .removeFromSuperview()

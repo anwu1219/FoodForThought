@@ -50,7 +50,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     var restImage = UIImageView()
     var menu = [String : [Dish]]()
     var dishes : Dishes!
-    let styles = Styles()
     var disLikes = Set<Dish>()
     var types = [String]()
     var restProf: RestProfile!
@@ -241,7 +240,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         tableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         tableView.backgroundColor = UIColor.clearColor()
-        tableView.backgroundView = styles.backgroundImage
+        tableView.backgroundView = UIImageView(image: UIImage(named: "menuButton"))
         tableView.backgroundView?.contentMode = .ScaleAspectFill
         tableView.rowHeight = 85
         menuSwipeScroll.addSubview(tableView)
@@ -293,48 +292,18 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         let dish = object as! Dish
-                        if !self.dishes.pulled.contains(object["index"]! as! Int){
+                        if self.dishes.pulled[object["index"]! as! Int] == nil{
                             if let date = object["displayDate"] as? String {
                                 if date == self.dishes.date {
-                                    dish.name = object["name"] as! String
-                                    dish.location = object["location"] as! String
-                                    dish.ingredients = object["ingredients"] as! [String]
-                                    dish.labels = object["labels"] as! [[String]]
-                                    dish.type = object["type"] as! String
-                                    dish.susLabels = object["susLabels"] as! [String]
-                                    dish.index = object["index"] as! Int
-                                    dish.eco = object["eco"] as! [String]
-                                    dish.fair = object["fair"] as! [String]
-                                    dish.humane = object["humane"] as! [String]
-                                    dish.price = object["price"] as! String
-                                    dish.imageFile = object["image"] as! PFFile
-                                    if let date = object["displayDate"] as? String {
-                                        dish.date = date
-                                    }
+                                    dish.getDishData(object as! PFObject)
                                     self.dishes.addDish(location, dish: dish)
-                                    self.dishes.addPulled(dish.index)
+                                    self.dishes.addPulled(dish)
                                     self.addDishToMenu(dish)
                                 }
                             } else {
-                                dish.name = object["name"] as! String
-                                dish.location = object["location"] as! String
-                                dish.ingredients = object["ingredients"] as! [String]
-                                dish.labels = object["labels"] as! [[String]]
-                                dish.type = object["type"] as! String
-                                dish.susLabels = object["susLabels"] as! [String]
-                                dish.index = object["index"] as! Int
-                                dish.eco = object["eco"] as! [String]
-                                dish.fair = object["fair"] as! [String]
-                                dish.humane = object["humane"] as! [String]
-                                dish.price = object["price"] as! String
-                                if let imageFile =  object["image"] as? PFFile{
-                                    dish.imageFile = imageFile
-                                }
-                                if let date = object["displayDate"] as? String {
-                                    dish.date = date
-                                }
+                                dish.getDishData(object as! PFObject)
                                 self.dishes.addDish(location, dish: dish)
-                                self.dishes.addPulled(dish.index)
+                                self.dishes.addPulled(dish)
                                 self.addDishToMenu(dish)
                             }
                         }
@@ -344,10 +313,13 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()
-                        self.activityIndicator.stopAnimating()
                         self.typesTableView.reloadData()
-                        self.typesTableView.endUpdates()
-                        }, completion: nil)
+                        }, completion: { (finished: Bool) -> () in
+                            if finished {
+                                self.typesTableView.endUpdates()
+                                self.activityIndicator.stopAnimating()
+                            }
+                        })
                 }
             }
         }
@@ -658,11 +630,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 if let rest = pFObject["location"] as? String{
                                     if rest == restaurant {
                                         pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully deleted")
-                                            } else {
-                                                println("Failed")
-                                            }
                                         })
                                     }
                                 }
@@ -713,11 +680,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                 if let rest = pFObject["location"] as? String{
                                     if rest == restaurant {
                                         pFObject.deleteInBackgroundWithBlock({(success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully deleted")
-                                            } else {
-                                                println("Failed")
-                                            }
                                         })
                                     }
                                 }
@@ -733,11 +695,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                                         newPreference["location"] = dish.location
                                         newPreference.saveInBackgroundWithBlock({
                                             (success: Bool, error: NSError?) -> Void in
-                                            if (success) {
-                                                println("Successfully Saved")
-                                            } else {
-                                                    // There was a problem, check error.description
-                                            }
                                         })
                                     }
                                 }
@@ -766,7 +723,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            println(selectedMeal)
             if let index = find(menu[selectedMeal.type]!, selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[selectedMeal.type]![index]

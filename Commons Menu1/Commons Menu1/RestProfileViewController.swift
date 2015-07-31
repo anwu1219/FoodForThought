@@ -15,7 +15,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
-    let styles = Styles()
     var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
 
     
@@ -158,7 +157,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     func popup(sender: UIButton!) {
         var button = sender as! IconButton
-        println(button.name)
     }
     
     func viewInfoPage(sender: AnyObject){
@@ -178,7 +176,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
-            description.frame = CGRectMake(0.1*width, y, restProfScrollView.frame.width*0.4, 50)
+            description.frame = CGRect(x: 0.05*restProfScrollView.frame.width, y: y, width: restProfScrollView.frame.width*0.43, height: 50)
             description.lineBreakMode = .ByWordWrapping
             description.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             description.numberOfLines = 0
@@ -278,11 +276,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var label = UILabel()
             label.text = ""
             var day: [String] = likeHours[key]!
-            println(day)
-            println()
-//            for d in day {
-//                label.text! += d + ", "
-//            }
             if day.count > 1 {
                 label.text! += day[0] + "-" + day[day.count-1]
             }
@@ -342,11 +335,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 var mplabel = UILabel()
                 mplabel.text = ""
                 var day: [String] = likeMealHours[times]!
-                println(day)
-                println()
-                //            for d in day {
-                //                label.text! += d + ", "
-                //            }
                 
                 if day.count > 1 {
                     mplabel.text! += day[0] + "-" + day[day.count-1]
@@ -394,7 +382,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func openWebsite(sender:UIButton) {
         if let url = NSURL(string: restProf.url) {
-            println("Opening Website")
             UIApplication.sharedApplication().openURL(url)
         }
     }
@@ -427,7 +414,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         getCoordinates(restProf.address) { lat, long, error in
             if error != nil {
-                println("Something went wrong with the map button in RestProfileView")
             } else {
                 // use lat, long here
                 let regionDistance:CLLocationDistance = 10000
@@ -455,7 +441,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         geocoder.geocodeAddressString(location) { (placemarks: [AnyObject]!, error: NSError!) in
             
             if error != nil {
-                println("Geocode failed with error: \(error.localizedDescription)")
                 completionHandler(lat: nil, long: nil, error: error)
                 
             } else if placemarks.count > 0 {
@@ -473,7 +458,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     func makeCall(){
         if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
-            println("Call Made")
             UIApplication.sharedApplication().openURL(url)
         }
     }
@@ -528,6 +512,15 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
+        }
+    }
+    
+    
+    @IBAction func learnMoreLink(sender: UIButton) {
+        let urls = IconDescription().urls
+        let button = sender as! LinkButton
+        if let url = NSURL(string: urls[button.name]!) {
+            UIApplication.sharedApplication().openURL(url)
         }
     }
     

@@ -16,14 +16,13 @@ Welcome page view controller and search type for user
 class MainMenuViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var dishes: Dishes!
-    let styles = Styles()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    final private let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var restMenuButton: UIButton!
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
-    var instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    let instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
     
     override func viewDidLoad() {
@@ -46,7 +45,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             button.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
             button.titleLabel?.layer.shadowRadius = 2
             button.titleLabel?.layer.shadowOpacity = 1.0
-            button.frame = styles.buttonFrame
         }
         
         
@@ -118,12 +116,12 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     }
     
     
-    @IBAction func showRestaurants(sender: AnyObject) {
+    @IBAction private func showRestaurants(sender: AnyObject) {
         performSegueWithIdentifier("mainToRestaurantsSegue", sender: sender)
     }
     
     
-    @IBAction func foodTinderAction(sender: AnyObject) {
+    @IBAction private func foodTinderAction(sender: AnyObject) {
         self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
     
@@ -131,9 +129,8 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     /**
     Logs out and clears the text field when go back
     */
-    func logOut(){
+    private func logOut(){
         PFUser.logOut()
-        println("Logged out")
         for restaurant : RestProfile in dishes.dishes.keys {
             dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
         }//needs update to cache
@@ -142,8 +139,8 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     }
     
     
-    func getNumberOfDishes(){
-        var query = PFQuery(className:"Constants")
+    private func getNumberOfDishes(){
+        let query = PFQuery(className:"Constants")
         query.whereKey("name", equalTo: "dishNumber")
         query.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
             if let object = object {
@@ -158,10 +155,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     /**
     Fetches preference data from Parse and sets the corresponding dish object like to true
     */
-    func fetchPreferenceData(){
+    private func fetchPreferenceData(){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -186,8 +183,8 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     /**
     Add a dish with specific location and name to the dishes object
     */
-    func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
-        var query = PFQuery(className:"dishInfo")
+    private func addDishWithName(location: String, name: String, like : Bool, dislike: Bool){
+        let query = PFQuery(className:"dishInfo")
         query.whereKey("name", equalTo: name)
         query.getFirstObjectInBackgroundWithBlock{
             (object: PFObject?, error: NSError?) -> Void in
@@ -195,26 +192,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 let dish = object as! Dish
                 dish.like = like
                 dish.dislike = dislike
-                dish.name = object["name"] as! String
-                dish.location = object["location"] as! String
-                dish.ingredients = object["ingredients"] as! [String]
-                dish.labels = object["labels"] as! [[String]]
-                dish.type = object["type"] as! String
-                dish.susLabels = object["susLabels"] as! [String]
-                dish.index = object["index"] as! Int
-                dish.eco = object["eco"] as! [String]
-                dish.fair = object["fair"] as! [String]
-                dish.humane = object["humane"] as! [String]
-                dish.price = object["price"] as! String
-                if let imageFile =  object["image"] as? PFFile {
-                    dish.imageFile = imageFile
-                }
-                if let date = object["displayDate"] as? String {
-                    dish.date = date
-                }
+                dish.getDishData(object)
                 self.dishes.addToDealtWith(dish.index)
                 self.dishes.addDish(location, dish: dish)
-                self.dishes.addPulled(dish.index)
+                self.dishes.addPulled(dish)
             }
         }
     }
@@ -223,10 +204,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     /**
     Fetches dislike data from Parse and sets the corresponding dish object's dislike to true
     */
-    func fetchDislikeData(){
+    private func fetchDislikeData(){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Disliked")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
