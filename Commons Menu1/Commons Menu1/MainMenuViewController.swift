@@ -89,13 +89,13 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     
     
     // :-Button Actions
-    private func viewInstructPage(sender : UIButton){
+    func viewInstructPage(sender : UIButton){
         performSegueWithIdentifier("viewInstructSegue", sender: sender)
     }
     
     
     //creates the log out alert
-    @IBAction private func logoutAction(sender: AnyObject) {
+    @IBAction func logoutAction(sender: AnyObject) {
         let alert = UIAlertController(title: "Log Out?",
             message: "Are you sure you want to Log Out?",
             preferredStyle: UIAlertControllerStyle.Alert)
