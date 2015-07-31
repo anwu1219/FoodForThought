@@ -397,7 +397,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.3))
         dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index), atScrollPosition: .Top, animated: true)
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index), atScrollPosition: .Top, animated: false)
         }
     }
     
@@ -457,7 +457,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             if tableView == self.tableView{
             //initiates the cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
             
             cell.delegate = self
             cell.selectionStyle = .None
@@ -490,7 +490,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+                var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
                 cell.delegate = self
                 cell.textLabel!.text = types[indexPath.row]
                 cell.textLabel!.backgroundColor = UIColor.clearColor()
