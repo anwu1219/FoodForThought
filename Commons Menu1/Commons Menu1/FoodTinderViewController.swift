@@ -210,7 +210,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                             UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                     self.foodTinderTableView.reloadData()
                                     self.foodTinderTableView.endUpdates()
-                            }, completion: nil)
+                                }, completion: { (finished: Bool) -> () in
+                                    if finished {
+                                        self.foodTinderTableView.endUpdates()
+                                    }
+                            })
                         }
                     }
                 }
@@ -221,7 +225,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                 self.foodTinderTableView.reloadData()
                 self.foodTinderTableView.endUpdates()
-                }, completion: nil)
+                }, completion: { (finished: Bool) -> () in
+                    if finished {
+                        self.foodTinderTableView.endUpdates()
+                    }
+            })
             }
         } else {
         let query = PFQuery(className:"dishInfo")
@@ -247,8 +255,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                         self.menu.append(dish)
                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                             self.foodTinderTableView.reloadData()
-                                            self.foodTinderTableView.endUpdates()
-                                        }, completion: nil)
+                                            }, completion: { (finished: Bool) -> () in
+                                                if finished {
+                                                    self.foodTinderTableView.endUpdates()
+                                                }
+                                        })
                                     }
                                 }
                             }
@@ -258,8 +269,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                 self.menu.append(dish)
                                 UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                     self.foodTinderTableView.reloadData()
-                                    self.foodTinderTableView.endUpdates()
-                                    }, completion: nil)
+                                    }, completion: { (finished: Bool) -> () in
+                                        if finished {
+                                            self.foodTinderTableView.endUpdates()
+                                        }
+                                })
                                 }
                         }
                     }
@@ -287,6 +301,52 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         return false
+    }
+    
+    
+    /**
+    Uploads the preference list
+    */
+    func uploadPreference(dish: Dish){
+        if let user = PFUser.currentUser(){
+            let newPreference = PFObject(className:"Preference")
+            newPreference["createdBy"] = PFUser.currentUser()
+            newPreference["dishName"] = dish.name
+            newPreference["location"] = dish.location
+            newPreference.saveInBackgroundWithBlock({
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    // The object has been saved.
+                    user["tinderViewed"] = true
+                    user.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                        
+                    })
+                } else {
+                    // There was a problem, check error.description
+                }
+            })
+        }
+    }
+    
+    
+    /**
+    Uploads the preference list
+    */
+    func uploadDislike(dish: Dish){
+        if let user = PFUser.currentUser(){
+            let newPreference = PFObject(className:"Disliked")
+            newPreference["createdBy"] = PFUser.currentUser()
+            newPreference["dishName"] = dish.name
+            newPreference["location"] = dish.location
+            newPreference.saveInBackgroundWithBlock({
+                (success: Bool, error: NSError?) -> Void in
+                if (success) {
+                    // The object has been saved.
+                } else {
+                    // There was a problem, check error.description
+                }
+            })
+        }
     }
     
     

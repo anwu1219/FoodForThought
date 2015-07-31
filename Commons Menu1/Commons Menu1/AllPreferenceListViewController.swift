@@ -145,17 +145,13 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            if edited {
-            presentViewController(savingAlert, animated: true, completion: nil)
-            self.uploadPreferences()
-            let param = Double(self.preferences.keys.array.count) * 0.3
-            let delay =  param * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-            }
-            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                })
+            if Reachability.isConnectedToNetwork(){
+                if edited {
+                    presentViewController(savingAlert, animated: true, completion: nil)
+                    self.uploadPreferences()
+                }
+            } else {
+                noInternetAlert("Unable to save!")
             }
         }
     }
@@ -355,29 +351,27 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                                 })
                             }
                         }
+                        for restaurant: String in self.preferences.keys {
+                            for dish : Dish in self.preferences[restaurant]!{
+                                if dish.like{
+                                    if let user = PFUser.currentUser(){
+                                        let newPreference = PFObject(className:"Preference")
+                                        newPreference["createdBy"] = PFUser.currentUser()
+                                        newPreference["dishName"] = dish.name
+                                        newPreference["location"] = dish.location
+                                        newPreference.saveInBackgroundWithBlock({
+                                            (success: Bool, error: NSError?) -> Void in
+                                            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                                
+                                            })
+                                        })
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-        let param = Double(self.preferences.keys.array.count) * 0.25
-        let delay =  param * Double(NSEC_PER_SEC)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-        for restaurant: String in self.preferences.keys {
-            for dish : Dish in self.preferences[restaurant]!{
-                if dish.like{
-                    if let user = PFUser.currentUser(){
-                        let newPreference = PFObject(className:"Preference")
-                        newPreference["createdBy"] = PFUser.currentUser()
-                        newPreference["dishName"] = dish.name
-                        newPreference["location"] = dish.location
-                        newPreference.saveInBackgroundWithBlock({
-                            (success: Bool, error: NSError?) -> Void in
-                        })
-                    }
-                }
-            }
-        }
         }
     }
     
