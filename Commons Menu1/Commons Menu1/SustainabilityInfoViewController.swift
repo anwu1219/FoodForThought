@@ -287,7 +287,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
         if indexPath.row == 0 {
             cell.delegate = self
             cell.textLabel!.text = "About Sustainability"
@@ -312,7 +312,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     internal func goToType(type: String){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
-        susView.setContentOffset(CGPoint(x: 0, y: labelPositions[type]!), animated: true)
+        susView.setContentOffset(CGPoint(x: 0, y: labelPositions[type]!), animated: false)
     }
     
     
