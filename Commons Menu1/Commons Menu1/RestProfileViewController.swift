@@ -31,7 +31,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         
         setBackground("genericBackground")
-
         
         self.title = restProf?.name
         restProf.imageFile.getDataInBackgroundWithBlock {

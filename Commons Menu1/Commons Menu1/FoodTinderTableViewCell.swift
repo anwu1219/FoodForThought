@@ -159,8 +159,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
         
-        yesButton.frame = CGRect(x: (screenWidth*0.58), y: screenSize.height*0.75,
-            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        yesButton.frame = CGRect(x: (screenWidth*0.58), y: screenSize.height*0.74,
+            width: bounds.size.height*0.07, height: bounds.size.height*0.07)
         yesButton.setBackgroundImage(UIImage(named: "thumbYes"), forState: UIControlState.Normal)
         yesButton.addTarget(self, action: "yesAction", forControlEvents: UIControlEvents.TouchUpInside)
         yesButton.backgroundColor = UIColor.clearColor()
@@ -172,8 +172,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         yesButton.titleLabel?.layer.shadowRadius = 2
         yesButton.titleLabel?.layer.shadowOpacity = 1.0
         
-        noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.75,
-            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.74,
+            width: bounds.size.height*0.07, height: bounds.size.height*0.07)
         noButton.setBackgroundImage(UIImage(named: "thumbNo"), forState: UIControlState.Normal)
         noButton.addTarget(self, action: "noAction", forControlEvents: UIControlEvents.TouchUpInside)
         noButton.backgroundColor = UIColor.clearColor()

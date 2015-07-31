@@ -6,11 +6,7 @@
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
-
-
 import UIKit
-
-
 
 /**
 Displays information of sustainability and links to sustainability info
