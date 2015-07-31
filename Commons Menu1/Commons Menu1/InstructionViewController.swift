@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  FoodForThought
+//  InstructionViewController.swift
+//  Foodscape
 //
 //  Created by Wu, Andrew on 7/24/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -15,11 +15,9 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     private let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
     private let images = ["sloth","sloth","sloth","sloth"]
     var count = 0
-    
     var pageViewController : UIPageViewController!
     
     @IBAction func swiped(sender: AnyObject) {
-        
         self.pageViewController.view .removeFromSuperview()
         self.pageViewController.removeFromParentViewController()
         reset()
@@ -64,7 +62,6 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
         
     }
     return self.viewControllerAtIndex(index)
-    
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -75,7 +72,6 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     }
     index--
     return self.viewControllerAtIndex(index)
-    
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
@@ -97,8 +93,6 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
     return 0
     }
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)

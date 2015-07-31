@@ -1,6 +1,6 @@
 //
 //  FoodTinderViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 29/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -16,16 +16,12 @@ protocol FoodTinderViewCellDelegate {
     //indicates that the given item has been deleted
     func toDoItemDeleted(dish: Dish)
     
-    //indicates which item has been selected and provide appropriate information for a segue to dish info
-    //  func viewDishInfo(dish: Dish)
-    
     func uploadPreference(dish: Dish)
     
     func uploadDislike(dish: Dish)
     
     func showLabelInfo(sender: AnyObject)
 }
-
 
 class FoodTinderViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FoodTinderViewCellDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -38,7 +34,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     private let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     private let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     private var ecoLabelsArray: [String]!
-    //let ecoLabelScrollView: UIScrollView!
     private let refreshControl = UIRefreshControl()
     private let instructLabel = CATextLayer()
     

@@ -1,6 +1,6 @@
 //
 //  PreferenceListViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Andrew Wu on 6/18/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -30,12 +30,9 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.rowHeight = 85;
         self.navigationController?.navigationBar.translucent = true
-
         
         //set background image
         setBackground("preferenceBackground")
-        
-        
     }
     
     
@@ -117,7 +114,6 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         performSegueWithIdentifier("preferenceInfoSegue", sender: selectedDish)
     }
     
-    
     /**
     Delegate function that finds and deletes the dish that is swiped
     */
@@ -133,11 +129,9 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         preferenceListTableView.endUpdates()
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "preferenceInfoSegue" {
