@@ -17,7 +17,6 @@ class Disliked: PFObject, PFSubclassing {
     // a text description of this item.
     @NSManaged var dishName : String
     @NSManaged var location : String
-    @NSManaged var createdBy : PFUser
     
     
     override class func initialize() {
