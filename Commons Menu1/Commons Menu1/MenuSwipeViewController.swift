@@ -223,7 +223,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
         
@@ -269,7 +269,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
 
     func addDishWithLocation(location: String){
-        var query = PFQuery(className:"dishInfo")
+        let query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)
         query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -360,8 +360,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
-                    var icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    let frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
+                    let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
@@ -619,8 +619,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func uploadPreferenceList(restaurant: String){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -669,8 +669,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func uploadDislikes(restaurant: String){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Disliked")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
