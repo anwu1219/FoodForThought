@@ -327,6 +327,15 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     
     
     
+    @IBAction func learnMoreLink(sender: UIButton) {
+        let urls = IconDescription().urls
+        let button = sender as! LinkButton
+        if let url = NSURL(string: urls[button.name]!) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton
@@ -375,7 +384,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
-        }    }
+        }
+    }
 }
 
 

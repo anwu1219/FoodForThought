@@ -516,6 +516,15 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
+    @IBAction func learnMoreLink(sender: UIButton) {
+        let urls = IconDescription().urls
+        let button = sender as! LinkButton
+        if let url = NSURL(string: urls[button.name]!) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
+    
     /**
     Prepares for segue
     */
