@@ -32,11 +32,6 @@ protocol MenuTableViewCellDelegate {
     func handleDealtWithOnLike(dish: Dish)
     
     func handleDealtWithOnDislike(dish : Dish)
-    
-    func uploadPreference(dish: Dish)
-    
-    func uploadDislike(dish: Dish)
-
 }
 
 
