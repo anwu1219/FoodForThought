@@ -484,22 +484,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     cell.imageView?.image = UIImage(named: "sloth")
                     dish.image =  UIImage(named: "sloth")
                 }
-
-                
-             //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
+        return cell
+        } else {
+            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            cell.delegate = self
+            cell.textLabel!.text = types[indexPath.row]
+            cell.textLabel!.backgroundColor = UIColor.clearColor()
+            cell.layer.cornerRadius = 8
+            cell.layer.masksToBounds = true
+            cell.textLabel!.textColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
             return cell
-            } else {
-                var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
-                cell.delegate = self
-                cell.textLabel!.text = types[indexPath.row]
-                cell.textLabel!.backgroundColor = UIColor.clearColor()
-                cell.layer.cornerRadius = 8
-                cell.layer.masksToBounds = true
-                cell.textLabel!.textColor = UIColor.whiteColor()
-                cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
-                return cell
-            }
+        }
     }
     
     
@@ -540,12 +537,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         return nil
     }
     
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == self.tableView{
             return tableView.frame.width / 10
         }
         return 0
     }
+    
     
     func showSections(sender: AnyObject){
         self.menuSwipeScroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)

@@ -215,7 +215,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                             UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                     self.foodTinderTableView.reloadData()
                                     self.foodTinderTableView.endUpdates()
-                            }, completion: nil)
+                                }, completion: { (finished: Bool) -> () in
+                                    if finished {
+                                        self.foodTinderTableView.endUpdates()
+                                    }
+                            })
                         }
                     }
                 }
@@ -226,7 +230,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                 self.foodTinderTableView.reloadData()
                 self.foodTinderTableView.endUpdates()
-                }, completion: nil)
+                }, completion: { (finished: Bool) -> () in
+                    if finished {
+                        self.foodTinderTableView.endUpdates()
+                    }
+            })
             }
         } else {
         let query = PFQuery(className:"dishInfo")
@@ -252,8 +260,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                         self.menu.append(dish)
                                         UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                             self.foodTinderTableView.reloadData()
-                                            self.foodTinderTableView.endUpdates()
-                                        }, completion: nil)
+                                            }, completion: { (finished: Bool) -> () in
+                                                if finished {
+                                                    self.foodTinderTableView.endUpdates()
+                                                }
+                                        })
                                     }
                                 }
                             }
@@ -263,8 +274,11 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
                                 self.menu.append(dish)
                                 UIView.transitionWithView(self.foodTinderTableView, duration:0.5, options:.TransitionFlipFromTop,animations: { () -> Void in
                                     self.foodTinderTableView.reloadData()
-                                    self.foodTinderTableView.endUpdates()
-                                    }, completion: nil)
+                                    }, completion: { (finished: Bool) -> () in
+                                        if finished {
+                                            self.foodTinderTableView.endUpdates()
+                                        }
+                                })
                                 }
                         }
                     }
