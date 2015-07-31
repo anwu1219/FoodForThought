@@ -13,9 +13,9 @@ import CoreLocation
 
 class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
-    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
 
     
     @IBOutlet weak var restProfDescription: UILabel!
@@ -81,7 +81,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         addLabels()
     }
     
-    func addLabels() {
+    private func addLabels() {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
         let susWidth: CGFloat = susView.frame.width/2
@@ -156,7 +156,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     
     func popup(sender: UIButton!) {
-        var button = sender as! IconButton
+        let button = sender as! IconButton
     }
     
     func viewInfoPage(sender: AnyObject){
@@ -164,7 +164,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    func layoutScroll() {
+    private func layoutScroll() {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
         let space = width*0.05
@@ -232,7 +232,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         restProfScrollView.addSubview(openUrl)
         y += openUrl.frame.height + space
         
-        var health = UILabel()
+        let health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
         health.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
         health.lineBreakMode = .ByWordWrapping
@@ -246,7 +246,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         y += height*0.01
         
         // Set up the Restaurant hours panel
-        var hours = UILabel()
+        let hours = UILabel()
         hours.text = "Restaurant Hours: "
         hours.textColor = UIColor.whiteColor()
         hours.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
@@ -273,7 +273,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         var trackY: CGFloat = 30
 
         for key in likeHours.keys {
-            var label = UILabel()
+            let label = UILabel()
             label.text = ""
             var day: [String] = likeHours[key]!
             if day.count > 1 {
@@ -308,7 +308,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         // Set up Meal Plan hours
         if count(restProf.mealPlanHours[0]) > 0 {
             
-            var mealPlan = UILabel()
+            let mealPlan = UILabel()
             mealPlan.text = "Meal Plan Hours:"
             mealPlan.textColor = UIColor.whiteColor()
             mealPlan.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
@@ -432,7 +432,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //http://stackoverflow.com/questions/27769859/ios-swift-coordinates-function-returns-nil
-    func getCoordinates(location: String, completionHandler: (lat: CLLocationDegrees!, long: CLLocationDegrees!, error: NSError?) -> ()) -> Void {
+    private func getCoordinates(location: String, completionHandler: (lat: CLLocationDegrees!, long: CLLocationDegrees!, error: NSError?) -> ()) -> Void {
         
         var lat:CLLocationDegrees
         var long:CLLocationDegrees
@@ -456,14 +456,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func makeCall(){
+    private func makeCall(){
         if let url = NSURL(string: "tel://\(restProf.phoneNumber)") {
             UIApplication.sharedApplication().openURL(url)
         }
     }
     
     
-    func showLabelInfo(sender: AnyObject) {
+     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
         let button = sender as! IconButton
         

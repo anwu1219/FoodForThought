@@ -9,7 +9,6 @@
 import Parse
 import UIKit
 
-
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
@@ -25,7 +24,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

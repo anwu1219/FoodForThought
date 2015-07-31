@@ -13,9 +13,9 @@ class PageContentViewController: UIViewController {
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var bkImageView: UIImageView!
     
-    var pageIndex: Int?
-    var titleText : String!
-    var imageName : String!
+     var pageIndex: Int?
+     var titleText : String!
+     var imageName : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()

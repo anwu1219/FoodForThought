@@ -17,9 +17,9 @@ class PreferenceListTableViewCell: UITableViewCell {
     // Var that determines if the cell needs to be deleted 
     var deleteOnDragRelease = false
     // Center point of the cell
-    var originalCenter = CGPoint()
-    let label: UILabel
-    let subLabel = UILabel()
+    private var originalCenter = CGPoint()
+    private let label: UILabel
+    private let subLabel = UILabel()
     var dish: Dish?{
         didSet {
             label.text = dish!.name
@@ -91,7 +91,7 @@ class PreferenceListTableViewCell: UITableViewCell {
     }
 
     
-    func getDate() -> String {
+    private func getDate() -> String {
         let date = NSDate()
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY/MM/dd"
@@ -152,7 +152,6 @@ class PreferenceListTableViewCell: UITableViewCell {
         if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer {
             //delegate!.viewDishInfo(dish!)
             return true
-            
         }
         return false
     }
