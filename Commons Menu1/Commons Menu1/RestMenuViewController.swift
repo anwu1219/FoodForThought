@@ -16,12 +16,12 @@ Shows all the resturants with available menus
 class RestMenuViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var restaurants : [RestProfile: [Dish]]!
+    private var restaurants : [RestProfile: [Dish]]!
     var dishes : Dishes!
-    var keys = [RestProfile]()
-    var location: String?
-    var vertScrollMenu = UIScrollView()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private var keys = [RestProfile]()
+    private var location: String?
+    private let vertScrollMenu = UIScrollView()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
     
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class RestMenuViewController: UIViewController {
         
         
         //Formats the select a restaurant label
-        var selectARestLabel = UILabel()
+        let selectARestLabel = UILabel()
         selectARestLabel.frame = CGRectMake(24, 64, screenSize.width*0.9, 55)
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
