@@ -1554,10 +1554,10 @@
         <image name="redberrycup" width="1050" height="600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ut7-Ma-1wo"/>
         <segue reference="6HG-gM-2cC"/>
         <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="2sF-BO-Jmm"/>
         <segue reference="aIz-rM-qCJ"/>
-        <segue reference="y85-vf-aeF"/>
     </inferredMetricsTieBreakers>
 </document>

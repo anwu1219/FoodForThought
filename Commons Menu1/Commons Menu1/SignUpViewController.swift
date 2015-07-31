@@ -60,7 +60,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         signUpButton.layer.borderWidth = 1
         signUpButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-
         signUpButton.layer.cornerRadius = 5
         signUpButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         
@@ -83,13 +82,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         labelStyle(welcomeLabel)
         labelStyle(passwordLabel)
         labelStyle(emailLabel)
-   
         
         //keyboard listener
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
-        
         
         // Test if there is internet connection
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
