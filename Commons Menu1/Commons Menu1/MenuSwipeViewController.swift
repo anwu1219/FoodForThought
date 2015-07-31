@@ -45,23 +45,24 @@ Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate, TypesTableViewCellDelegate{
     
-    var tableView = UITableView()
-    var restProfileButton = UIButton()
-    var restImage = UIImageView()
-    var menu = [String : [Dish]]()
-    var dishes : Dishes!
-    var disLikes = Set<Dish>()
-    var types = [String]()
-    var restProf: RestProfile!
-    var edited = false
-    let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let scroll = UIScrollView()
-    let menuSwipeScroll = UIScrollView()
-    var typesTableView = UITableView()
-    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
+    var dishes : Dishes!
+    var restProf: RestProfile!
+    private let tableView = UITableView()
+    private let restProfileButton = UIButton()
+    private let restImage = UIImageView()
+    private let refreshControl = UIRefreshControl()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private let scroll = UIScrollView()
+    private let menuSwipeScroll = UIScrollView()
+    private let typesTableView = UITableView()
+    private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    
+    private var menu = [String : [Dish]]()
+    private var disLikes = Set<Dish>()
+    private var types = [String]()
+    private var edited = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +88,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         
-        var restWeekdayOpenHoursLabel = UILabel()
+        let restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
@@ -96,7 +97,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         view.addSubview(restWeekdayOpenHoursLabel)
         
-        var labelTitleLabel = UILabel()
+        let labelTitleLabel = UILabel()
         labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
         labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
@@ -222,7 +223,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
         
@@ -268,7 +269,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
 
     func addDishWithLocation(location: String){
-        var query = PFQuery(className:"dishInfo")
+        let query = PFQuery(className:"dishInfo")
         query.whereKey("location", equalTo: location)
         query.findObjectsInBackgroundWithBlock{ //causes an error in console for every dish being loaded
             (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -359,8 +360,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
                 if count(restProf.labels[i][j]) > 0 {
-                    var frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
-                    var icon = IconButton(name: restProf.labels[i][j], frame: frame)
+                    let frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
+                    let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
                     scroll.addSubview(icon)
                     x += icon.frame.width + width*0.01
@@ -618,8 +619,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func uploadPreferenceList(restaurant: String){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
@@ -668,8 +669,8 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func uploadDislikes(restaurant: String){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Disliked")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Disliked")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in

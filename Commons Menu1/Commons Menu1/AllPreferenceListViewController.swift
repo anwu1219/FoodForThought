@@ -26,16 +26,16 @@ protocol PreferenceMenuTableViewCellDelegate{
 Class that shows all the preferences of the current user
 */
 class AllPreferenceListViewController:UIViewController, UITableViewDataSource, UITableViewDelegate, PreferenceMenuTableViewCellDelegate, TypesTableViewCellDelegate {
-    var allPrefTopImage = UIImageView()
-    var preferenceListTableView = UITableView()
-    var preferences = [String: [Dish]]()
+    private let allPrefTopImage = UIImageView()
+    private let preferenceListTableView = UITableView()
+    private var preferences = [String: [Dish]]()
     var dishes : Dishes!
-    var keys = [String]()
-    let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    var edited = false
-    var indexTitles = [String]()
-    let menuSwipeScroll = UIScrollView()
-    var typesTableView = UITableView()
+    private var keys = [String]()
+    private let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    private var edited = false
+    private var indexTitles = [String]()
+    private let menuSwipeScroll = UIScrollView()
+    private let typesTableView = UITableView()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         self.navigationController?.navigationBar.translucent = true
         
         
-        var myPreferenceLabel = UILabel()
+        let myPreferenceLabel = UILabel()
         //Formats the labels in the view controller
         myPreferenceLabel.text = "My Favorites"
         myPreferenceLabel.font = UIFont(name: "HelveticaNeue-BoldItalic", size: 0.07 * self.view.frame.width)
@@ -120,7 +120,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
 
@@ -213,7 +213,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // initiates a cell
         if tableView == preferenceListTableView {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         // passes data to each cell
         let key = keys[indexPath.section]
         if let preferences = preferences[key]{
@@ -242,7 +242,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
             return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
             cell.delegate = self
             cell.textLabel!.text = keys[indexPath.row]
             cell.textLabel!.backgroundColor = UIColor.clearColor()
@@ -320,7 +320,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         edited = true
         self.dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
-        var index = find(preferences[dish.location]!, dish)
+        let index = find(preferences[dish.location]!, dish)
         preferences[dish.location]!.removeAtIndex(index!)
         preferenceListTableView.beginUpdates()
         //Finds index of swiped dish and removes it from the array
@@ -328,7 +328,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         if preferences[dish.location]!.isEmpty {
             preferences.removeValueForKey(dish.location)
-            var indexSet = NSIndexSet(index: find(keys, dish.location)!)
+            let indexSet = NSIndexSet(index: find(keys, dish.location)!)
             preferenceListTableView.deleteSections(indexSet, withRowAnimation: .Fade)
             keys = preferences.keys.array
             keys.sort({$0 < $1})
@@ -342,8 +342,8 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func uploadPreferences(){
         if let currentUser = PFUser.currentUser(){
-            var user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
-            var query = PFQuery(className:"Preference")
+            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
+            let query = PFQuery(className:"Preference")
             query.whereKey("createdBy", equalTo: user)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
