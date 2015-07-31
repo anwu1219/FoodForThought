@@ -125,7 +125,6 @@ class RestMenuViewController: UIViewController {
                         if restaurant.name == title{
                             menuSwipeViewController.restProf = restaurant
                             menuSwipeViewController.dishes = dishes
-
                     }
                 }
             }
