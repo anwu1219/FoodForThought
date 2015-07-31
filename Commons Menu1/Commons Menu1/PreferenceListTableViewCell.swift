@@ -153,7 +153,6 @@ class PreferenceListTableViewCell: UITableViewCell {
         if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer {
             //delegate!.viewDishInfo(dish!)
             return true
-            
         }
         return false
     }

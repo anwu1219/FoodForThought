@@ -12,8 +12,8 @@ import UIKit
 class InstructionViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var dishes: Dishes!
-    let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
-    var images = ["sloth","sloth","sloth","sloth"]
+    private let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
+    private let images = ["sloth","sloth","sloth","sloth"]
     var count = 0
     
     var pageViewController : UIPageViewController!

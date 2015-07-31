@@ -11,22 +11,15 @@ import Foundation
 struct IconDescription{
     let descriptions = [
         "FSD": "This dish was prepared from scratch.\n ",
-        
         "FS": "This restaurant prepares meals from scratch. This seemingly simple cooking trick requires top-notch culinary skills and increases the restaurant’s menu flexibility.\n",
-        
         "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources that can be thousands of miles away.\n",
-        
         "LD": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n ",
         "L": "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n",
-        
         "AI":  "The restaurant’s staff members are educated on common allergens and this information is available upon request. \n ",
         "CA":  "This restaurant offers catering services. Beneficial services provided by the restaurant can help build a sense of community and bring people together, which promotes social welfare.\n ",
         "FD":  "This restaurant frequently donates prepared food to charities, churches, or food banks. \n ",
         "MD":  "This restaurant frequently contributes monetary donations to charities.\n ",
         "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen or helping at a local farm.\n ",
-
-        
-        
         "C":  "This restaurant composts food scraps instead of sending them to the landfill. Restoring nutrients back to the soil supports all trophic levels through nutrient cycling.\n ",
         "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
         "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
@@ -37,12 +30,9 @@ struct IconDescription{
         "PP":  "This food item is a good source of protein. Proteins are the building blocks of most body tissues and carry out metabolic properties, such as transporting oxygen throughout the body.\n ",
         "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n ",
         
-        
         "Humane": "This icon indicates that this dish\n",
         "Eco": "Ecologically Sound\n",
         "Fair": "Fair\n",
-        
-        
         
         "CBF": "Certified Bird Friendly coffee: this certification requires that the coffee is grown organically under a canopy of native trees, which avoids clear cutting, preserves migratory bird habitat, and improves carbon sequestration. \n",
         "CLS": "Certified Local Sustainable (Local Food Plus): this non-profit organization set specific standards for sustainable farming that \"balance economic, social and environmental considerations.\" These include avoiding growth hormones, synthetic pesticides/fertilizers and reduce greenhouse emissions.\n",
@@ -96,36 +86,27 @@ struct IconDescription{
     
     let urls = [
         "FS":  "http://sites.davidson.edu/sustainabilityscholars/",
-        "L":  "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        "L":  "http://sites.davidson.edu/sustainabilityscholars/",
         "SE": "http://sites.davidson.edu/sustainabilityscholars/",
-        
-        
         "FSD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
-        
         "AI":  "http://sites.davidson.edu/sustainabilityscholars/",
-        "CA":  "Thttp://sites.davidson.edu/sustainabilityscholars/",
+        "CA":  "http://sites.davidson.edu/sustainabilityscholars/",
         "FD":  "http://sites.davidson.edu/sustainabilityscholars/",
         "MD":  "http://sites.davidson.edu/sustainabilityscholars/",
         "VO":  "http://sites.davidson.edu/sustainabilityscholars/",
-        
-        
         "C":  "http://sites.davidson.edu/sustainabilityscholars/",
         "LA":  "http://sites.davidson.edu/sustainabilityscholars/",
         "R":  "http://sites.davidson.edu/sustainabilityscholars/",
         "LD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "CE":  "http://sites.davidson.edu/sustainabilityscholars/",
         "ES":  "http://sites.davidson.edu/sustainabilityscholars/",
         "HF":  "http://sites.davidson.edu/sustainabilityscholars/",
         "PP":  "http://sites.davidson.edu/sustainabilityscholars/",
         "VN":  "http://sites.davidson.edu/sustainabilityscholars/",
         
-        
         "Humane": "http://sites.davidson.edu/sustainabilityscholars/",
         "Eco": "http://sites.davidson.edu/sustainabilityscholars/",
         "Fair": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         
         "COB": "http://sites.davidson.edu/sustainabilityscholars/",
         "CBF": "http://sites.davidson.edu/sustainabilityscholars/",
@@ -153,52 +134,28 @@ struct IconDescription{
         "GAP" : "http://sites.davidson.edu/sustainabilityscholars/",
         
         "COBD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "CBFD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "CLSD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "IFOD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "DCBD":  "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "EUOD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FACD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "MSCD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "MBAD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "PHCD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "RACD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "USDAD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "EFTD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FFSD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FLD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FTD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FWD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "FJCD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "SPSD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "AGAD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "AHCD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
         "AWAD": "http://sites.davidson.edu/sustainabilityscholars/",
-        
-        "CHRD": "Thttp://sites.davidson.edu/sustainabilityscholars/",
-        
+        "CHRD": "http://sites.davidson.edu/sustainabilityscholars/",
         "GAPD": "http://sites.davidson.edu/sustainabilityscholars/"
-        
     ]
 }

@@ -17,17 +17,17 @@ Manages the cell representation of a dish in a menu
 */
 class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     let gradientLayer = CAGradientLayer()
-    var originalCenter = CGPoint()
+    private var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false
-    var tickLabel: UILabel, crossLabel: UILabel
-    let label: UILabel
+    private var tickLabel: UILabel, crossLabel: UILabel
+    private let label: UILabel
     var itemLikeLayer = CALayer()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    var chefNoteLabel: UILabel
-    var noIconLabel : UILabel
-    var susLabels: UIScrollView
-    var yesButton = UIButton()
-    var noButton = UIButton()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private var chefNoteLabel: UILabel
+    private var noIconLabel : UILabel
+    private var susLabels: UIScrollView
+    private var yesButton = UIButton()
+    private var noButton = UIButton()
     
     //var ecoLabel: UILabel
 
