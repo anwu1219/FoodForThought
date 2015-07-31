@@ -334,20 +334,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 if let objectsArray = objects{
                     for object: AnyObject in objectsArray{
                         let restaurant = object as! RestProfile
-                        restaurant.name = object["name"] as! String
-                        restaurant.imageFile = object["image"] as! PFFile
-                        restaurant.address = object["address"] as! String
-                        restaurant.phoneNumber = object["number"] as! String
-                        restaurant.hours = object["hours"] as! [String]
-                        restaurant.restDescript = object["restDescription"] as! String
-                        restaurant.labels = object["labelDescription"] as! [[String]]
-                        restaurant.healthScore = object["healthScore"] as! Double
-                        restaurant.mealPlanHours = object["mealPlanHours"] as! [String]
-                        restaurant.url = object["website"] as! String
-                        restaurant.eco = object["eco"] as! [String]
-                        restaurant.fair = object["fair"] as! [String]
-                        restaurant.humane = object["humane"] as! [String]
-                        restaurant.dynamicTypes = object["dynamic"] as! [String]
+                        restaurant.fetchRestData(object as! PFObject)
                         self.dishes.addRestaurant(restaurant)
                     }
                     if let user = PFUser.currentUser() {

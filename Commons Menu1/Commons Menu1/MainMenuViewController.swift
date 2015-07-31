@@ -194,26 +194,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 let dish = object as! Dish
                 dish.like = like
                 dish.dislike = dislike
-                dish.name = object["name"] as! String
-                dish.location = object["location"] as! String
-                dish.ingredients = object["ingredients"] as! [String]
-                dish.labels = object["labels"] as! [[String]]
-                dish.type = object["type"] as! String
-                dish.susLabels = object["susLabels"] as! [String]
-                dish.index = object["index"] as! Int
-                dish.eco = object["eco"] as! [String]
-                dish.fair = object["fair"] as! [String]
-                dish.humane = object["humane"] as! [String]
-                dish.price = object["price"] as! String
-                if let imageFile =  object["image"] as? PFFile {
-                    dish.imageFile = imageFile
-                }
-                if let date = object["displayDate"] as? String {
-                    dish.date = date
-                }
+                dish.getDishData(object)
                 self.dishes.addToDealtWith(dish.index)
                 self.dishes.addDish(location, dish: dish)
-                self.dishes.addPulled(dish.index)
+                self.dishes.addPulled(dish)
             }
         }
     }
