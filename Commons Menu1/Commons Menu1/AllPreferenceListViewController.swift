@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 
-
 protocol PreferenceMenuTableViewCellDelegate{
     /**
     indicates that the given item has been deleted
@@ -301,15 +300,10 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
         return 0
     }
-    
-    
-    
-    
+
     func showSections(sender: AnyObject){
         self.menuSwipeScroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
-
     
     //MARK: - Table view cell delegate
     /**
@@ -318,7 +312,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func viewDishInfo(selectedDish: Dish) {
         performSegueWithIdentifier("preferenceInfoSegue", sender: selectedDish)
     }
-    
     
     /**
     Delegate function that finds and deletes the dish that is swiped
@@ -399,13 +392,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
     }
     
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)

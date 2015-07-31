@@ -42,8 +42,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     let refreshControl = UIRefreshControl()
     let instructLabel = CATextLayer()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodTinderTableView.dataSource = self
@@ -88,8 +86,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func viewPreferences(button: UIBarButtonItem?){
         performSegueWithIdentifier("tinderToAllPreferencesSegue", sender: button)
     }
-    
-    
     
     func refresh(refreshControl: UIRefreshControl) {
         if Reachability.isConnectedToNetwork() {
@@ -158,7 +154,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             //cell.imageView?.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))
             cell.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
             
-            
             return cell
     }
     
@@ -199,7 +194,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         indexPath: NSIndexPath) -> CGFloat {
             return tableView.rowHeight;
     }
-    
     
     func fetchRandomDishes(numberOfDishes: Int){
         var randomIndex = Int(arc4random_uniform(UInt32(numberOfDishes)))
@@ -279,7 +273,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         })
         }
     }
-    
     
     
     func dealtWith(index: Int) -> Bool {
@@ -388,12 +381,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
 }
 
-
-
 extension FoodTinderViewController : UIPopoverPresentationControllerDelegate {
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
-        
     }
 }
