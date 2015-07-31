@@ -45,23 +45,24 @@ Displays menus as food tinder
 */
 class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MenuTableViewCellDelegate, MenuSwipeViewControllerDelegate, UIPopoverPresentationControllerDelegate, TypesTableViewCellDelegate{
     
-    var tableView = UITableView()
-    var restProfileButton = UIButton()
-    var restImage = UIImageView()
-    var menu = [String : [Dish]]()
-    var dishes : Dishes!
-    var disLikes = Set<Dish>()
-    var types = [String]()
-    var restProf: RestProfile!
-    var edited = false
-    let refreshControl = UIRefreshControl()
-    var activityIndicator = UIActivityIndicatorView()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    let scroll = UIScrollView()
-    let menuSwipeScroll = UIScrollView()
-    var typesTableView = UITableView()
-    var infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
+    var dishes : Dishes!
+    var restProf: RestProfile!
+    private let tableView = UITableView()
+    private let restProfileButton = UIButton()
+    private let restImage = UIImageView()
+    private let refreshControl = UIRefreshControl()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private let scroll = UIScrollView()
+    private let menuSwipeScroll = UIScrollView()
+    private let typesTableView = UITableView()
+    private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    
+    private var menu = [String : [Dish]]()
+    private var disLikes = Set<Dish>()
+    private var types = [String]()
+    private var edited = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +88,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         
-        var restWeekdayOpenHoursLabel = UILabel()
+        let restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
         restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
@@ -96,7 +97,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         view.addSubview(restWeekdayOpenHoursLabel)
         
-        var labelTitleLabel = UILabel()
+        let labelTitleLabel = UILabel()
         labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 50 * xUnit, height: 2 * yUnit)
         labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
