@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 
-
 protocol PreferenceMenuTableViewCellDelegate{
     /**
     indicates that the given item has been deleted
