@@ -86,7 +86,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
-        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
+        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
         labelStyle(restWeekdayOpenHoursLabel)
         restWeekdayOpenHoursLabel.frame = CGRect(x: 3 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
 
@@ -132,12 +132,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         self.automaticallyAdjustsScrollViewInsets = false;
         
-        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
-        restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
+        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 42 * xUnit, height: 5 * yUnit)
+        //restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile >", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
-        //restProfileButton.backgroundColor = UIColor.whiteColor()
+        restProfileButton.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.4)
+        restProfileButton.layer.cornerRadius = 2
+        restProfileButton.layer.borderWidth = 1
+        restProfileButton.layer.borderColor = UIColor.blackColor().CGColor
 
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)

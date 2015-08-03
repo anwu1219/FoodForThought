@@ -43,14 +43,13 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         let darkBlueColor = UIColor(red: 0.0/255, green: 7.0/255, blue: 72.0/255, alpha: 0.75)
-        progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
         progRestImage.layer.borderColor = darkBlueColor.CGColor
         progRestImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
-       progRestProfScrollView.delegate = self
-       progRestProfScrollView.layer.borderWidth = 1
-       progRestProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
-       progRestProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        progRestProfScrollView.delegate = self
+        progRestProfScrollView.layer.borderWidth = 1
+        progRestProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
+        progRestProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100
@@ -68,7 +67,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
         
         let labelTitleLabel = UILabel()
-        labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 21.5 * yUnit, width: 60 * xUnit, height: 4 * yUnit)
+        labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 20 * yUnit, width: 60 * xUnit, height: 4 * yUnit)
         labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
         labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 4 * xUnit)
         labelStyle(labelTitleLabel)
@@ -88,10 +87,12 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let openHourLabel = UILabel()
         
-       progRestProfScrollView.showsVerticalScrollIndicator = false
+        progRestProfScrollView.showsVerticalScrollIndicator = false
         
-        progSusView.frame = CGRectMake(0, screenSize.height*0.25, screenSize.width-32, screenSize.height*0.18)
-        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.43, screenSize.width-32, screenSize.height*0.57)
+        progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
+        progSusView.frame = CGRectMake(0, screenSize.height*0.23, screenSize.width-32, screenSize.height*0.21)
+        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.44, screenSize.width-32, screenSize.height*0.62)
+        
         //progSusView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(progRestImage)
         self.view.addSubview(progSusView)

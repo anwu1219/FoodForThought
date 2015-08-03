@@ -56,6 +56,8 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         progDishImage.layer.masksToBounds = true
         
         progScrollInfo.frame = CGRectMake(16, 280, screenSize.width-32, screenSize.height - 280)
+        progScrollInfo.layer.borderWidth = 2
+        progScrollInfo.layer.borderColor = UIColor.blackColor().CGColor
 
         
         self.view.addSubview(progDishImage)

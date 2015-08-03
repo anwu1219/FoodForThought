@@ -809,7 +809,7 @@
                                     <constraint firstAttribute="width" constant="138" id="mOD-nH-0u0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
-                                <state key="normal" title="Sign Up here">
+                                <state key="normal" title="testSignUp">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1454,8 +1454,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="6HG-gM-2cC"/>
         <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="2sF-BO-Jmm"/>
         <segue reference="sXz-wK-Xvd"/>
-        <segue reference="jG3-F8-hpT"/>
         <segue reference="aZ9-33-JLe"/>
     </inferredMetricsTieBreakers>
 </document>
