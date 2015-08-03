@@ -17,17 +17,17 @@ Manages the cell representation of a dish in a menu
 */
 class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     let gradientLayer = CAGradientLayer()
-    var originalCenter = CGPoint()
+    private var originalCenter = CGPoint()
     var deleteOnDragRelease = false, likeOnDragRelease = false
-    var tickLabel: UILabel, crossLabel: UILabel
-    let label: UILabel
+    private var tickLabel: UILabel, crossLabel: UILabel
+    private let label: UILabel
     var itemLikeLayer = CALayer()
-    let screenSize: CGRect = UIScreen.mainScreen().bounds
-    var chefNoteLabel: UILabel
-    var noIconLabel : UILabel
-    var susLabels: UIScrollView
-    var yesButton = UIButton()
-    var noButton = UIButton()
+    private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private var chefNoteLabel: UILabel
+    private var noIconLabel : UILabel
+    private var susLabels: UIScrollView
+    private var yesButton = UIButton()
+    private var noButton = UIButton()
     
     //var ecoLabel: UILabel
 
@@ -43,7 +43,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
             itemLikeLayer.hidden = !dish!.like
         }
     }
-    
     
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
@@ -159,8 +158,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         chefNoteLabel.numberOfLines = 0
         chefNoteLabel.font = UIFont(name: "System", size: 0.058 * self.frame.width)
         
-        yesButton.frame = CGRect(x: (screenWidth*0.58), y: screenSize.height*0.75,
-            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        yesButton.frame = CGRect(x: (screenWidth*0.58), y: screenSize.height*0.74,
+            width: bounds.size.height*0.07, height: bounds.size.height*0.07)
         yesButton.setBackgroundImage(UIImage(named: "thumbYes"), forState: UIControlState.Normal)
         yesButton.addTarget(self, action: "yesAction", forControlEvents: UIControlEvents.TouchUpInside)
         yesButton.backgroundColor = UIColor.clearColor()
@@ -172,8 +171,8 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         yesButton.titleLabel?.layer.shadowRadius = 2
         yesButton.titleLabel?.layer.shadowOpacity = 1.0
         
-        noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.75,
-            width: bounds.size.width*0.15, height: bounds.size.width*0.15)
+        noButton.frame = CGRect(x: (screenWidth*0.2), y: screenSize.height*0.74,
+            width: bounds.size.height*0.07, height: bounds.size.height*0.07)
         noButton.setBackgroundImage(UIImage(named: "thumbNo"), forState: UIControlState.Normal)
         noButton.addTarget(self, action: "noAction", forControlEvents: UIControlEvents.TouchUpInside)
         noButton.backgroundColor = UIColor.clearColor()
@@ -185,8 +184,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         noButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
         noButton.titleLabel?.layer.shadowRadius = 2
         noButton.titleLabel?.layer.shadowOpacity = 1.0
-        
-        
         
         noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)

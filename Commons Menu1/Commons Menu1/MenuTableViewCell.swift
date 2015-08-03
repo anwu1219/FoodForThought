@@ -15,14 +15,14 @@ import Parse
 Manages the cell representation of a dish in a menu
 */
 class MenuTableViewCell: UITableViewCell {
-    let gradientLayer = CAGradientLayer()
-    var originalCenter = CGPoint()
-    var deleteOnDragRelease = false, likeOnDragRelease = false
-    var tickLabel: UILabel, crossLabel: UILabel
-    let label: UILabel
-    var itemLikeLayer = CALayer()
-    var itemDislikeLayer = CALayer()
-    var arrowImage = CALayer()
+    private let gradientLayer = CAGradientLayer()
+    private var originalCenter = CGPoint()
+    private var deleteOnDragRelease = false, likeOnDragRelease = false
+    private var tickLabel: UILabel, crossLabel: UILabel
+    private let label: UILabel
+    private var itemLikeLayer = CALayer()
+    private var itemDislikeLayer = CALayer()
+    private let arrowImage = CALayer()
 
     // The object that acts as delegate for this cell
     var delegate: MenuTableViewCellDelegate?
@@ -146,7 +146,7 @@ class MenuTableViewCell: UITableViewCell {
     /**
     MARK: - horizontal pan gesture methods
     */
-    func handlePan(recognizer: UIPanGestureRecognizer) {
+     func handlePan(recognizer: UIPanGestureRecognizer) {
         // 1
         if recognizer.state == .Began {
             // when the gesture begins, record the current center location
@@ -200,7 +200,7 @@ class MenuTableViewCell: UITableViewCell {
     /**
     MARK: - tap gesture methods
     */
-    func handleTap(sender: AnyObject) {
+     func handleTap(sender: AnyObject) {
         if delegate != nil && dish != nil {
             delegate!.viewDishInfo(dish!)
         }

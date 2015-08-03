@@ -1,5 +1,5 @@
 //
-//  signupInstructionViewController.swift
+//  SignupInstructionViewController.swift
 //  Foodscape
 //
 //  Created by Wu, Andrew on 7/28/15.
@@ -11,10 +11,10 @@ import UIKit
 class SignupInstructionViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         
         var dishes: Dishes!
-        let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
-        var images = ["sloth","sloth","sloth","sloth"]
-        var count = 0
-        var isFromMain : Bool?
+        private let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
+        private let images = ["sloth","sloth","sloth","sloth"]
+        private var count = 0
+        private var isFromMain : Bool?
         
         var pageViewController : UIPageViewController!
     

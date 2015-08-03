@@ -1,6 +1,6 @@
 //
 //  allPreferenceListViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Wu, Andrew on 6/29/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -145,17 +145,13 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            if edited {
-            presentViewController(savingAlert, animated: true, completion: nil)
-            self.uploadPreferences()
-            let param = Double(self.preferences.keys.array.count) * 0.3
-            let delay =  param * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue()) { () -> Void in
-            }
-            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    
-                })
+            if Reachability.isConnectedToNetwork(){
+                if edited {
+                    presentViewController(savingAlert, animated: true, completion: nil)
+                    self.uploadPreferences()
+                }
+            } else {
+                noInternetAlert("Unable to save!")
             }
         }
     }
@@ -213,7 +209,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // initiates a cell
         if tableView == preferenceListTableView {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         // passes data to each cell
         let key = keys[indexPath.section]
         if let preferences = preferences[key]{
@@ -242,7 +238,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         }
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
             cell.delegate = self
             cell.textLabel!.text = keys[indexPath.row]
             cell.textLabel!.backgroundColor = UIColor.clearColor()
@@ -355,29 +351,27 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                                 })
                             }
                         }
+                        for restaurant: String in self.preferences.keys {
+                            for dish : Dish in self.preferences[restaurant]!{
+                                if dish.like{
+                                    if let user = PFUser.currentUser(){
+                                        let newPreference = PFObject(className:"Preference")
+                                        newPreference["createdBy"] = PFUser.currentUser()
+                                        newPreference["dishName"] = dish.name
+                                        newPreference["location"] = dish.location
+                                        newPreference.saveInBackgroundWithBlock({
+                                            (success: Bool, error: NSError?) -> Void in
+                                            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                                
+                                            })
+                                        })
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
-        let param = Double(self.preferences.keys.array.count) * 0.25
-        let delay =  param * Double(NSEC_PER_SEC)
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(delayTime, dispatch_get_main_queue()){
-        for restaurant: String in self.preferences.keys {
-            for dish : Dish in self.preferences[restaurant]!{
-                if dish.like{
-                    if let user = PFUser.currentUser(){
-                        let newPreference = PFObject(className:"Preference")
-                        newPreference["createdBy"] = PFUser.currentUser()
-                        newPreference["dishName"] = dish.name
-                        newPreference["location"] = dish.location
-                        newPreference.saveInBackgroundWithBlock({
-                            (success: Bool, error: NSError?) -> Void in
-                        })
-                    }
-                }
-            }
-        }
         }
     }
     
@@ -388,7 +382,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.3))
         dispatch_after(delayTime, dispatch_get_main_queue()){
-            self.preferenceListTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index), atScrollPosition: .Top, animated: true)
+            self.preferenceListTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: index), atScrollPosition: .Top, animated: false)
         }
     }
     

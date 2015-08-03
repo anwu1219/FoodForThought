@@ -15,11 +15,11 @@ class PreferenceListTableViewCell: UITableViewCell {
     var delegate: PreferenceMenuTableViewCellDelegate?
     // The item that this cell renders.
     // Var that determines if the cell needs to be deleted 
-    var deleteOnDragRelease = false
+    private var deleteOnDragRelease = false
     // Center point of the cell
-    var originalCenter = CGPoint()
-    let label: UILabel
-    let subLabel = UILabel()
+    private var originalCenter = CGPoint()
+    private let label: UILabel
+    private let subLabel = UILabel()
     var dish: Dish?{
         didSet {
             label.text = dish!.name
@@ -57,18 +57,18 @@ class PreferenceListTableViewCell: UITableViewCell {
         subLabel.font = UIFont(name: "HelveticaNeue-Light", size: 12)
         
         
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
         
-        var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
     }
     
     override func layoutSubviews() {
-        var width = 0.01 * bounds.size.width
-        var height = 0.01 * bounds.size.height
+        let width = 0.01 * bounds.size.width
+        let height = 0.01 * bounds.size.height
         super.layoutSubviews()
         self.imageView?.frame = CGRect(x: 5 * width, y: 3 * width, width: 25 * width, height: 75 * height)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
@@ -91,14 +91,14 @@ class PreferenceListTableViewCell: UITableViewCell {
     }
 
     
-    func getDate() -> String {
+    private func getDate() -> String {
         let date = NSDate()
-        var dateFormatter = NSDateFormatter()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY/MM/dd"
         return dateFormatter.stringFromDate(date)
     }
     
-    
+
     func handleTap(recognizer: UITapGestureRecognizer) {
         if recognizer.state == .Ended {
             if self.delegate != nil && dish != nil {
@@ -106,6 +106,7 @@ class PreferenceListTableViewCell: UITableViewCell {
             }
         }
     }
+    
     
     func handlePan(recognizer: UIPanGestureRecognizer) {
         // 1
@@ -152,7 +153,6 @@ class PreferenceListTableViewCell: UITableViewCell {
         if let tapGestureRecognizer = gestureRecognizer as? UITapGestureRecognizer {
             //delegate!.viewDishInfo(dish!)
             return true
-            
         }
         return false
     }
