@@ -310,7 +310,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             var cell = tableView.dequeueReusableCellWithIdentifier("susCell", forIndexPath: indexPath) as! ExpandTableViewCell
             
             cell.titleLabel.text = self.subTitles[indexPath.row]
-            cell.contentLabel.text = self.subTitles[indexPath.row]
+            cell.contentLabel.text = self.susInfo[indexPath.row]
+            cell.contentLabel.sizeToFit()
             cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
             return cell
         } else {
@@ -381,6 +382,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let testLabel = UILabel(frame: CGRect(x: 0, y: 0, width: susInfoTableView.frame.width, height: 0))
         testLabel.text = susInfo[index]
         testLabel.frame.size.width = susInfoTableView.frame.width
+        testLabel.numberOfLines = 0
+        testLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        testLabel.textAlignment = .Left
         testLabel.sizeToFit()
         return testLabel.frame.height
     }

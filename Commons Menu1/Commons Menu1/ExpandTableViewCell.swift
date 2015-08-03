@@ -36,9 +36,8 @@ class ExpandTableViewCell: UITableViewCell {
         addSubview(contentLabel)
         
         titleLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        contentLabel.frame = CGRect(x:0, y:self.frame.height, width:self.frame.width, height:100)
+        contentLabel.frame = CGRect(x:0, y:self.frame.height, width:self.frame.width, height:2 * self.frame.height)
         contentLabel.sizeToFit()
-        contentLabel.frame.size.width = self.frame.width
     }
     
     
