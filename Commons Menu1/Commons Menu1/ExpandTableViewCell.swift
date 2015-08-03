@@ -11,6 +11,8 @@ import UIKit
 class ExpandTableViewCell: UITableViewCell {
     let titleLabel : UILabel
     let contentLabel : UILabel
+    let susContentView : UIView
+    let foodSystemImageView : UIImageView
     class var expandedHeight: CGFloat { get { return 200 } }
     class var defaultHeight: CGFloat  { get { return 44  } }
     
@@ -20,6 +22,8 @@ class ExpandTableViewCell: UITableViewCell {
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        
+        
         titleLabel = UILabel(frame: CGRect.nullRect)
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.numberOfLines = 0
@@ -31,19 +35,25 @@ class ExpandTableViewCell: UITableViewCell {
         contentLabel.textColor = UIColor.blackColor()
         contentLabel.numberOfLines = 0
         contentLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        contentLabel.textColor = UIColor.blueColor()    
+        
+        susContentView = UIView(frame: CGRect.nullRect)
+        
+        foodSystemImageView = UIImageView(frame: CGRect.nullRect)
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(titleLabel)
-        addSubview(contentLabel)
         
-        titleLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        contentLabel.frame = CGRect(x:0, y:self.frame.height, width:self.frame.width, height:2 * self.frame.height)
-        contentLabel.sizeToFit()
+        titleLabel.frame = CGRect(x: 0.02 * self.frame.width, y: 0, width: 0.83 * self.frame.width, height: self.frame.height)
+        titleLabel.textAlignment = .Left
+        addSubview(titleLabel)
+        susContentView.addSubview(contentLabel)
+        susContentView.addSubview(foodSystemImageView)
+        addSubview(susContentView)
     }
     
     
     func checkHeight() {
-        contentLabel.hidden = (frame.size.height < ExpandTableViewCell.expandedHeight)
+        susContentView.hidden = !(frame.size.height > UIScreen.mainScreen().bounds.height * 0.1)
     }
         
     func watchFrameChanges() {
