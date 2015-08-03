@@ -52,6 +52,7 @@
 		F3EBAFB01B3B2A8800BFFD93 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */; };
 		F3EBAFB21B3B2A8F00BFFD93 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */; };
 		F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */; };
+		F3F1CE961B6FA8DC00CFA4BF /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */; };
 		F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB7E6F1B41F0A900AD38B7 /* AllPreferenceListViewController.swift */; };
 		F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB7E731B4AD6D500AD38B7 /* Label.swift */; };
 /* End PBXBuildFile section */
@@ -117,6 +118,7 @@
 		F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
 		F3FB7E6F1B41F0A900AD38B7 /* AllPreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPreferenceListViewController.swift; sourceTree = "<group>"; };
 		F3FB7E731B4AD6D500AD38B7 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,6 +249,7 @@
 				F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */,
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */,
+				F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
+				F3F1CE961B6FA8DC00CFA4BF /* ExpandTableViewCell.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
