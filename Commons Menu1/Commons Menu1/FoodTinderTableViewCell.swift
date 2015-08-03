@@ -44,7 +44,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         }
     }
     
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
@@ -185,8 +184,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         noButton.titleLabel?.layer.shadowOffset = CGSizeMake(2, 2)
         noButton.titleLabel?.layer.shadowRadius = 2
         noButton.titleLabel?.layer.shadowOpacity = 1.0
-        
-        
         
         noIconLabel.frame = CGRect(x: (screenWidth*0.06), y: screenSize.height * 0.65,
             width: bounds.size.width - kLabelLeftMargin, height: screenSize.height*0.1)
