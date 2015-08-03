@@ -26,6 +26,7 @@ class ExpandTableViewCell: UITableViewCell {
         titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
 
         
+        
         contentLabel = UILabel(frame: CGRect.nullRect)
         contentLabel.textColor = UIColor.blackColor()
         contentLabel.numberOfLines = 0
