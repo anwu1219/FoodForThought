@@ -253,6 +253,7 @@
 				F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */,
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */,
+				F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -426,6 +427,7 @@
 				13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
+				F3F1CE961B6FA8DC00CFA4BF /* ExpandTableViewCell.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
