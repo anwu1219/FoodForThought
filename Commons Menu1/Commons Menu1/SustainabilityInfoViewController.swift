@@ -42,7 +42,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             vc.view.addSubview(wv)
             wv.frame = vc.view.bounds
             wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-            let url = NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")
+            let url = NSURL(string: "http://food.davidsonsustainability.org")
             let request = NSURLRequest(URL: url!)
             wv.loadRequest(request)
             
