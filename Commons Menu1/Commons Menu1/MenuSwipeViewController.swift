@@ -86,9 +86,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
-        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
+        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         labelStyle(restWeekdayOpenHoursLabel)
-        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 3 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
 
         view.addSubview(restWeekdayOpenHoursLabel)
         
@@ -137,6 +137,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         restProfileButton.setTitle("View Restaurant Profile >", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
+        //restProfileButton.backgroundColor = UIColor.whiteColor()
 
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)

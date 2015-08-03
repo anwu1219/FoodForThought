@@ -65,7 +65,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         self.navigationItem.setHidesBackButton(true, animated:true)
         
         
-        instructButton.frame = CGRect(x: 0.9 * view.frame.width, y: 0.93 * view.frame.height, width: 0.06 * view.frame.width, height: 0.06 * view.frame.width)
+        instructButton.frame = CGRect(x: 0.9 * view.frame.width, y: 0.915 * view.frame.height, width: 0.06 * view.frame.width, height: 0.06 * view.frame.width)
         instructButton.tintColor = UIColor.whiteColor()
         instructButton.addTarget(self, action: "viewInstructPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(instructButton)
