@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     private let screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -44,23 +43,36 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         let darkBlueColor = UIColor(red: 0.0/255, green: 7.0/255, blue: 72.0/255, alpha: 0.75)
-        progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.25)
         progRestImage.layer.borderColor = darkBlueColor.CGColor
         progRestImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
-       progRestProfScrollView.delegate = self
-       progRestProfScrollView.layer.borderWidth = 1
-       progRestProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
-       progRestProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        progRestProfScrollView.delegate = self
+        progRestProfScrollView.layer.borderWidth = 1
+        progRestProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
+        progRestProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100
         
-        infoButton.frame = CGRect(x: 92 * xUnit, y: 30 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.frame = CGRect(x: 92 * xUnit, y: 32 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(infoButton)
-    
+        
+        func labelStyle(label : UILabel){
+            label.lineBreakMode = .ByWordWrapping
+            label.numberOfLines = 0
+            label.textAlignment = NSTextAlignment.Left
+            label.textColor = UIColor.whiteColor()
+        }
+        
+        let labelTitleLabel = UILabel()
+        labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 20 * yUnit, width: 60 * xUnit, height: 4 * yUnit)
+        labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
+        labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 4 * xUnit)
+        labelStyle(labelTitleLabel)
+        
+        view.addSubview(labelTitleLabel)
         
         //sets nav bar to be see through
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
@@ -75,10 +87,12 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let openHourLabel = UILabel()
         
-       progRestProfScrollView.showsVerticalScrollIndicator = false
+        progRestProfScrollView.showsVerticalScrollIndicator = false
         
-        progSusView.frame = CGRectMake(0, screenSize.height*0.30, screenSize.width, screenSize.height*0.18)
-        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.5, screenSize.width-32, screenSize.height*0.5)
+        progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
+        progSusView.frame = CGRectMake(0, screenSize.height*0.23, screenSize.width-32, screenSize.height*0.21)
+        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.44, screenSize.width-32, screenSize.height*0.62)
+        
         //progSusView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(progRestImage)
         self.view.addSubview(progSusView)
@@ -104,13 +118,13 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var label = UILabel()
             
             if restProf.labels[i].count > 0 {
-                label.text = labels[i]
+                //label.text = labels[i]
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 0.05*width)
-                label.frame = CGRectMake(0.02*width, y, 0.45*susWidth, 45)
+                label.frame = CGRectMake(0.02*width, y, 0.75*susWidth, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(0.42*width, y, 0.8*susWidth, label.frame.height)
+                scroll.frame = CGRectMake(0.05*width, y, susWidth+80, label.frame.height)
                 progSusView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }
@@ -183,7 +197,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
-            description.frame = CGRect(x: 0.05*progRestProfScrollView.frame.width, y: y, width: progRestProfScrollView.frame.width*0.43, height: 50)
+            description.frame = CGRect(x: 0.05*progRestProfScrollView.frame.width, y: y, width: progRestProfScrollView.frame.width * 0.9, height: 50)
             description.lineBreakMode = .ByWordWrapping
             description.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             description.numberOfLines = 0
@@ -194,7 +208,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var address = UILabel()
         address.text = "Address:\n" + restProf.address
-        address.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.4, 50)
+        address.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         address.lineBreakMode = .ByWordWrapping
         address.textColor = UIColor.whiteColor()
         address.font = UIFont(name: "HelveticaNeue-Light", size: 16)
@@ -213,7 +227,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var phone = UILabel()
         phone.text = "Phone:\n" + restProf.phoneNumber
-        phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.4, 50)
+        phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         phone.lineBreakMode = .ByWordWrapping
         phone.textColor = UIColor.whiteColor()
         phone.font = UIFont(name: "HelveticaNeue-Light", size: 16)
@@ -241,7 +255,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
-        health.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.4, 50)
+        health.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         health.lineBreakMode = .ByWordWrapping
         health.textColor = UIColor.whiteColor()
         health.font = UIFont(name: "HelveticaNeue-Light", size: 16)
@@ -297,7 +311,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 label.text! += ": Closed"
             }
             
-            label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.4, 50)
+            label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
             //let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
             label.lineBreakMode = .ByWordWrapping
             label.textColor = UIColor.whiteColor()
@@ -364,7 +378,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             
             for label in orderLabels {
-                label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.4, 50)
+                label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
                 label.lineBreakMode = .ByWordWrapping
                 label.numberOfLines = 0
                 label.textColor = UIColor.whiteColor()

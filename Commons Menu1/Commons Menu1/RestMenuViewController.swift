@@ -36,7 +36,7 @@ class RestMenuViewController: UIViewController {
         
         //Formats the select a restaurant label
         let selectARestLabel = UILabel()
-        selectARestLabel.frame = CGRectMake(screenWidth*0.22, screenHeight*0.06, screenWidth*0.54, screenHeight*0.3)
+        selectARestLabel.frame = CGRectMake(screenWidth*0.22, screenHeight*0.15, screenWidth*0.54, screenHeight*0.2)
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
         selectARestLabel.layer.shadowRadius = 5
@@ -50,8 +50,7 @@ class RestMenuViewController: UIViewController {
 
         
         //Formats the scroll view
-        
-        vertScrollMenu.frame = CGRectMake(24, 200, screenSize.width, screenSize.height * 0.5)
+        vertScrollMenu.frame = CGRectMake(24, screenSize.height * 0.35, screenSize.width, screenSize.height * 0.5)
         vertScrollMenu.contentSize.width = screenSize.width
         vertScrollMenu.contentSize.height = 350
         vertScrollMenu.backgroundColor = UIColor.clearColor()
