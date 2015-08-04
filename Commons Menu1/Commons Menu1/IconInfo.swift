@@ -10,7 +10,7 @@ import Foundation
 
 struct IconInfo{
     let descriptions = [
-        "Dish-level labels": [
+        "Dish-level Icons": [
 
         
         
@@ -21,13 +21,13 @@ struct IconInfo{
         "LD": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n "],
         
         
-        "Nutritionist labels": [
+        "Nutritionist Icons": [
             "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provides important B vitamins and fiber. \n  ",
             "HF":  "This food item is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins, and provide energy.\n ",
             "PP":  "This food item is a good source of protein. Proteins are the building blocks of most body tissues and carry out metabolic properties, such as transporting oxygen throughout the body.\n ",
             "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n "],
         
-        "Restaurant-level labels":
+        "Restaurant-level Icons":
         ["FS":  "This restaurant prepares meals from scratch. This seemingly simple cooking trick requires top-notch culinary skills and increases the restaurant’s menu flexibility.\n ",
         
         "L":  "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
