@@ -23,6 +23,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private var labelPositions = [String: CGFloat]()
     private let menuSwipeScroll = UIScrollView()
     private let  typesTableView = UITableView()
+    private let aboutSusView = UIView()
     private let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susView = UIScrollView()
@@ -84,7 +85,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.scrollEnabled = false
         view.addSubview(menuSwipeScroll)
 
-        //addScrollView()
+        addScrollView()
         
         
         
@@ -125,7 +126,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
     }
     
-
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if scrollView == susView{
             icon.hidden = false
@@ -158,7 +159,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
         
 
-        var y: CGFloat = 0.0
+        var y: CGFloat = 10.0
         susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
         self.navigationController?.navigationBar.translucent = true
         
@@ -166,59 +167,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
         susView.layer.borderWidth = 10
         susView.layer.cornerRadius = 5
-        
-        for var i = 0; i < count(susLabels); i++ {
-            let container = UIView()
-            let header = UILabel()
-            let image = UIImageView()
-            let body = UILabel()
-            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            
-            // Set the subsection's header
-            header.text = susLabels[i]
-            header.font = UIFont(name: "Helvetica", size: susView.frame.width * 0.09)
-            header.textColor = UIColor.whiteColor()
-            header.layer.shadowOffset = CGSizeMake(2, 2)
-            header.layer.shadowColor = UIColor.blackColor().CGColor
-            header.layer.shadowOpacity = 0.7
-            header.layer.shadowRadius = 3.0
-            header.sizeToFit()
-            header.frame = CGRectMake(widthPadding, y+verticalSpace, susView.frame.width - 2 * widthPadding, header.frame.height)
-            header.textAlignment = .Center
-            susView.addSubview(header)
-            labelPositions[susLabels[i]] = y
-            y += 50.0 + verticalSpace
-            
-            
-            
-            // set the subsection's image
-            image.image = UIImage(named: sustainabilityImages[i])
-            image.frame = CGRectMake(0.0, y, susView.frame.width, 100)
-            image.contentMode = .ScaleAspectFit
-            susView.addSubview(image)
-            y += 100+verticalSpace
-            
-            // set the subsection's body text
-            body.text = susInfo[i]
-            body.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-            body.textColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95)
-            body.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            body.numberOfLines = 0
-            body.frame = CGRectMake(widthPadding, y, susView.frame.width - (2*widthPadding), header.frame.height * 3)
-            body.sizeToFit()
-            body.textAlignment = .Center
-            susView.addSubview(body)
-            y += body.frame.height + verticalSpace
-            
-            // set the section's learn more button
-            button.setTitle("Learn More", forState: UIControlState.Normal)
-            button.addTarget(self, action: "learnMoreAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            button.frame = CGRectMake(susView.frame.width*0.2, y, susView.frame.width*0.6, 50)
-            button.backgroundColor = UIColor.clearColor()
-            susView.addSubview(button)
-            y += 50 + verticalSpace
-            
-        }
         
         
         let swipeGestureRecognizer = UISwipeGestureRecognizer()
@@ -274,6 +222,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
+        aboutSusView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
@@ -297,8 +247,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         imageView.contentMode = .ScaleToFill
         
         susInfoTableView.frame = CGRect(x: 60 * xUnit, y: 0.3 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
-        menuSwipeScroll.addSubview(imageView)
-        menuSwipeScroll.addSubview(susInfoTableView)
+        
+        aboutSusView.addSubview(imageView)
+        aboutSusView.addSubview(susInfoTableView)
+        
+        menuSwipeScroll.addSubview(aboutSusView)
     }
     
     
