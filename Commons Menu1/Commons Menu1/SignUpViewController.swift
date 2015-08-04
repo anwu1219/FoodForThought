@@ -1,6 +1,6 @@
 //
 //  SignUpViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Anstrom, Kaity on 6/29/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -27,11 +27,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setBackground("SignInBackground")
         
         activityIndicator.hidden = true
         activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.whiteColor()
         
         
         // - Style of the textfield, button, and label
@@ -56,15 +56,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             button.layer.shadowOpacity = 1.0
         }
         
-        signUpButton.layer.borderWidth = 1
-        signUpButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-        signUpButton.layer.cornerRadius = 5
-        signUpButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+//        signUpButton.layer.borderWidth = 1
+//        signUpButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
+//        signUpButton.layer.cornerRadius = 5
+//        signUpButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         
-        signInButton.layer.borderWidth = 1
-        signInButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-        signInButton.layer.cornerRadius = 5
-        signInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+//        signInButton.layer.borderWidth = 1
+//        signInButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
+//        signInButton.layer.cornerRadius = 5
+//        signInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
         
         buttonStyle(signUpButton)
         buttonStyle(signInButton)
@@ -172,6 +172,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
+        activityIndicator.color = UIColor.whiteColor()
         
 
         // Create the user
@@ -179,7 +180,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
-
         
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
@@ -233,6 +233,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func signUpAction(sender: AnyObject) {
+        
+        let titlePrompt = UIAlertController(title: "Sign Up",
+            message: "Sign up with your email and a password",
+            preferredStyle: .Alert)
+        
+        var emailTextField: UITextField?
+        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            emailTextField = textField
+            emailTextField?.keyboardType = UIKeyboardType.EmailAddress
+            textField.placeholder = "Email"
+        }
+        
+        var passwordTextField: UITextField?
+        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            passwordTextField = textField
+            passwordTextField?.keyboardType = UIKeyboardType.Default
+            passwordTextField?.secureTextEntry = true
+            textField.placeholder = "Password"
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+        
+        titlePrompt.addAction(cancelAction)
+        
+        titlePrompt.addAction(UIAlertAction(title: "Sign Up", style: .Default, handler: { (action) -> Void in
+            if let textField = emailTextField {
+                self.signUp(textField.text)
+            }
+        }))
+        
+        self.presentViewController(titlePrompt, animated: true, completion: nil)
+
+        
+    }
     
     @IBAction func signIn(sender: AnyObject) {
         activityIndicator.hidden = false

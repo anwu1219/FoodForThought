@@ -1,6 +1,6 @@
 //
 //  RestProfileViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 6/7/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -10,28 +10,26 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     private let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
     private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    private let progSusView = UIScrollView()
+    private let progRestProfScrollView = UIScrollView()
+    private let progRestImage = UIImageView()
+
 
     
     @IBOutlet weak var restProfDescription: UILabel!
-    @IBOutlet weak var restProfImage: UIImageView!
     @IBOutlet weak var restProfName: UINavigationItem!
     @IBOutlet var restProfileView: UIView!
-    @IBOutlet weak var restProfScrollView: UIScrollView!
     
-    
-    @IBOutlet weak var susView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         setBackground("genericBackground")
-
         
         self.title = restProf?.name
         restProf.imageFile.getDataInBackgroundWithBlock {
@@ -39,28 +37,42 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             if error == nil {
                 if let data = imageData{
                     if let image = UIImage(data: data){
-                        self.restProfImage.image = image
+                        self.progRestImage.image = image
                     }
                 }
             }
         }
         let darkBlueColor = UIColor(red: 0.0/255, green: 7.0/255, blue: 72.0/255, alpha: 0.75)
-        restProfImage.layer.borderColor = darkBlueColor.CGColor
-        restProfImage.layer.borderWidth = 2
+        progRestImage.layer.borderColor = darkBlueColor.CGColor
+        progRestImage.layer.borderWidth = 2
         // Do any additional setup after loading the view.
-        restProfScrollView.delegate = self
-        restProfScrollView.layer.borderWidth = 1
-        restProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
-        restProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
+        progRestProfScrollView.delegate = self
+        progRestProfScrollView.layer.borderWidth = 1
+        progRestProfScrollView.layer.borderColor = UIColor.blackColor().CGColor
+        progRestProfScrollView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.5)
         
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100
         
-        infoButton.frame = CGRect(x: 92 * xUnit, y: 30 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
+        infoButton.frame = CGRect(x: 92 * xUnit, y: 32 * yUnit, width: 6 * xUnit, height: 6 * xUnit)
         infoButton.tintColor = UIColor.whiteColor()
         infoButton.addTarget(self, action: "viewInfoPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(infoButton)
-    
+        
+        func labelStyle(label : UILabel){
+            label.lineBreakMode = .ByWordWrapping
+            label.numberOfLines = 0
+            label.textAlignment = NSTextAlignment.Left
+            label.textColor = UIColor.whiteColor()
+        }
+        
+        let labelTitleLabel = UILabel()
+        labelTitleLabel.frame = CGRect(x: 5 * xUnit, y: 20 * yUnit, width: 60 * xUnit, height: 4 * yUnit)
+        labelTitleLabel.text = "Restaurant Sustainabiltiy Icons:"
+        labelTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 4 * xUnit)
+        labelStyle(labelTitleLabel)
+        
+        view.addSubview(labelTitleLabel)
         
         //sets nav bar to be see through
         let bar:UINavigationBar! =  self.navigationController?.navigationBar
@@ -70,12 +82,21 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.navigationBar.translucent = true
 
         
-        susView.delegate = self
-        susView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
+        progSusView.delegate = self
+        progSusView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
         let openHourLabel = UILabel()
         
-        restProfScrollView.showsVerticalScrollIndicator = false
+        progRestProfScrollView.showsVerticalScrollIndicator = false
+        
+        progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
+        progSusView.frame = CGRectMake(0, screenSize.height*0.23, screenSize.width-32, screenSize.height*0.21)
+        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.44, screenSize.width-32, screenSize.height*0.62)
+        
+        //progSusView.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(progRestImage)
+        self.view.addSubview(progSusView)
+        self.view.addSubview(progRestProfScrollView)
         
         layoutScroll()
         addLabels()
@@ -84,7 +105,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     private func addLabels() {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
-        let susWidth: CGFloat = susView.frame.width/2
+        let susWidth: CGFloat = progSusView.frame.width/2
         
         let labels = ["Environmental:", "Social:", "Economic:"] // dont need for menu swipe scroll
         var y: CGFloat = height * 0.01
@@ -97,18 +118,18 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var label = UILabel()
             
             if restProf.labels[i].count > 0 {
-                label.text = labels[i]
+                //label.text = labels[i]
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 0.05*width)
-                label.frame = CGRectMake(0.02*width, y, 0.38*susWidth, 45)
+                label.frame = CGRectMake(0.02*width, y, 0.75*susWidth, 45)
                 label.textColor = UIColor.whiteColor()
                 //label.sizeToFit()
                 
-                scroll.frame = CGRectMake(0.38*width, y, 0.6*susWidth, label.frame.height)
-                susView.addSubview(scroll)
+                scroll.frame = CGRectMake(0.05*width, y, susWidth+80, label.frame.height)
+                progSusView.addSubview(scroll)
                 y += label.frame.height + height * 0.01
             }
 
-            susView.addSubview(label)
+            progSusView.addSubview(label)
             
             // this is the end of label stuff
             var x: CGFloat = 0// move this var outside for i loop and rename
@@ -151,7 +172,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             scroll.contentSize.width = x + width * 0.1
         }
-        susView.contentSize.height = y
+        progSusView.contentSize.height = y
     }
     
     
@@ -169,78 +190,78 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let width: CGFloat = screenSize.width
         let space = width*0.05
         
-        var y: CGFloat = restProfScrollView.frame.height * 0.05
+        var y: CGFloat = progRestProfScrollView.frame.height * 0.05
         
         if count(restProf.description) > 0 {
             var description = UILabel()
             description.text = "\"\(restProf.restDescript)\""
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
-            description.frame = CGRect(x: 0.05*restProfScrollView.frame.width, y: y, width: restProfScrollView.frame.width*0.43, height: 50)
+            description.frame = CGRect(x: 0.05*progRestProfScrollView.frame.width, y: y, width: progRestProfScrollView.frame.width * 0.9, height: 50)
             description.lineBreakMode = .ByWordWrapping
             description.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             description.numberOfLines = 0
             description.sizeToFit()
-            restProfScrollView.addSubview(description)
+           progRestProfScrollView.addSubview(description)
             y += description.frame.height + space
         }
         
         var address = UILabel()
         address.text = "Address:\n" + restProf.address
-        address.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
+        address.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         address.lineBreakMode = .ByWordWrapping
         address.textColor = UIColor.whiteColor()
         address.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         address.numberOfLines = 0
         address.sizeToFit()
-        restProfScrollView.addSubview(address)
+       progRestProfScrollView.addSubview(address)
         y += address.frame.height + space/3
         
         let searchInMaps = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         searchInMaps.setTitle("Search in Maps", forState: .Normal)
-        searchInMaps.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        searchInMaps.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         searchInMaps.sizeToFit()
         searchInMaps.addTarget(self, action: "mapSearch:", forControlEvents: UIControlEvents.TouchUpInside)
-        restProfScrollView.addSubview(searchInMaps)
+       progRestProfScrollView.addSubview(searchInMaps)
         y += searchInMaps.frame.height + space
         
         var phone = UILabel()
         phone.text = "Phone:\n" + restProf.phoneNumber
-        phone.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
+        phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         phone.lineBreakMode = .ByWordWrapping
         phone.textColor = UIColor.whiteColor()
         phone.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         phone.numberOfLines = 0
         phone.sizeToFit()
-        restProfScrollView.addSubview(phone)
+       progRestProfScrollView.addSubview(phone)
         y += phone.frame.height + space/3
         
         let callRestaurant = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        callRestaurant.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        callRestaurant.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         callRestaurant.setTitle("Call Restaurant", forState: .Normal)
         callRestaurant.sizeToFit()
         callRestaurant.addTarget(self, action: "callNumber:", forControlEvents: UIControlEvents.TouchUpInside)
-        restProfScrollView.addSubview(callRestaurant)
+       progRestProfScrollView.addSubview(callRestaurant)
         y += callRestaurant.frame.height + space
         
         
         let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-        openUrl.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width-(0.1*width), 50)
+        openUrl.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         openUrl.setTitle("Go To Website", forState: .Normal)
         openUrl.sizeToFit()
         openUrl.addTarget(self, action: "openWebsite:", forControlEvents: UIControlEvents.TouchUpInside)
-        restProfScrollView.addSubview(openUrl)
+       progRestProfScrollView.addSubview(openUrl)
         y += openUrl.frame.height + space
         
         let health = UILabel()
         health.text = "Health Score:\n" + String(stringInterpolationSegment: restProf.healthScore)
-        health.frame = CGRectMake(0.05*width, y, restProfScrollView.frame.width*0.4, 50)
+        health.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         health.lineBreakMode = .ByWordWrapping
         health.textColor = UIColor.whiteColor()
         health.font = UIFont(name: "HelveticaNeue-Light", size: 16)
         health.numberOfLines = 0
         health.sizeToFit()
-        restProfScrollView.addSubview(health)
+       progRestProfScrollView.addSubview(health)
         y += health.frame.height + space
         
         y += height*0.01
@@ -252,7 +273,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         hours.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         hours.sizeToFit()
         hours.frame = CGRectMake(0.05*width, y, hours.frame.width, hours.frame.height)
-        restProfScrollView.addSubview(hours)
+       progRestProfScrollView.addSubview(hours)
         y += hours.frame.height
         let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         var likeHours = Dictionary<String, [String]>()
@@ -290,14 +311,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 label.text! += ": Closed"
             }
             
-            label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+            label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
             //let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
             label.lineBreakMode = .ByWordWrapping
             label.textColor = UIColor.whiteColor()
             label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
             label.numberOfLines = 0
             label.sizeToFit()
-            restProfScrollView.addSubview(label)
+           progRestProfScrollView.addSubview(label)
             //trackY += label.frame.height
             y += label.frame.height
 
@@ -314,7 +335,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             mealPlan.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
             mealPlan.sizeToFit()
             mealPlan.frame = CGRectMake(0.05*width, y, mealPlan.frame.width, mealPlan.frame.height)
-            restProfScrollView.addSubview(mealPlan)
+           progRestProfScrollView.addSubview(mealPlan)
             y += mealPlan.frame.height
             
             var likeMealHours = Dictionary<String, [String]>()
@@ -357,18 +378,18 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             
             for label in orderLabels {
-                label.frame = CGRectMake(0.12*width, y, restProfScrollView.frame.width*0.4, 50)
+                label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
                 label.lineBreakMode = .ByWordWrapping
                 label.numberOfLines = 0
                 label.textColor = UIColor.whiteColor()
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 16)
                 label.sizeToFit()
-                restProfScrollView.addSubview(label)
+               progRestProfScrollView.addSubview(label)
                 y += label.frame.height
             }
             y += 25
         }
-        restProfScrollView.contentSize.height = y
+       progRestProfScrollView.contentSize.height = y
         
     }
     

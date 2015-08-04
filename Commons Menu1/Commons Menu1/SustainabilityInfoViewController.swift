@@ -1,16 +1,12 @@
 //
 //  SustainabilityInfoViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 17/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
-
-
 import UIKit
-
-
 
 /**
 Displays information of sustainability and links to sustainability info
@@ -53,7 +49,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             vc.view.addSubview(wv)
             wv.frame = vc.view.bounds
             wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-            let url = NSURL(string: "http://sites.davidson.edu/sustainabilityscholars/")
+            let url = NSURL(string: "http://food.davidsonsustainability.org")
             let request = NSURLRequest(URL: url!)
             wv.loadRequest(request)
             
@@ -98,12 +94,12 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         typesTableView.delegate = self
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
+
         
         susInfoTableView.dataSource = self
         susInfoTableView.delegate = self
         susInfoTableView.registerClass(ExpandTableViewCell.self, forCellReuseIdentifier: "susCell")
         susInfoTableView.separatorStyle = .None
-        
     }
     
     

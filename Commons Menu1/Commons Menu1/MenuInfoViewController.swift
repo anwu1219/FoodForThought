@@ -1,6 +1,6 @@
 //
 //  MenuInfoViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Chadinha, Spencer on 6/22/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -56,6 +56,8 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         progDishImage.layer.masksToBounds = true
         
         progScrollInfo.frame = CGRectMake(16, 280, screenSize.width-32, screenSize.height - 280)
+        progScrollInfo.layer.borderWidth = 2
+        progScrollInfo.layer.borderColor = UIColor.blackColor().CGColor
 
         
         self.view.addSubview(progDishImage)
@@ -78,7 +80,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 let container = UIView()
                 
                 let title = UILabel()
-                title.text = "Dish Sustainability Info"
+                title.text = "Dish Sustainability Info:"
                 title.frame = CGRectMake(0, y, 85 * width, 10*height)
                 title.textAlignment = .Center
                 title.font = UIFont(name: "HelveticaNeue-Light", size: 7 * x)
@@ -94,7 +96,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             if susLabels.isEmpty && dish!.eco.isEmpty && dish!.humane.isEmpty && dish!.fair.isEmpty {
                 
                 let noIconLabel = UILabel()
-                noIconLabel.text = "No icon information available"
+                noIconLabel.text = "Not Reported ¯¯\\_(ツ)_/¯¯"
                 noIconLabel.frame = CGRectMake(0, y, 85 * width, 10*height)
                 noIconLabel.textAlignment = .Center
                 noIconLabel.font = UIFont(name: "HelveticaNeue-Light", size: 5 * x)

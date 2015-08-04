@@ -1,5 +1,5 @@
 //
-//  signupInstructionViewController.swift
+//  SignupInstructionViewController.swift
 //  Foodscape
 //
 //  Created by Wu, Andrew on 7/28/15.

@@ -27,6 +27,7 @@
 		40E8423D1B308C6A00D39DCD /* Commons_Menu1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */; };
 		F32372D11B545591008A7C91 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */; };
 		F32372D71B575DED008A7C91 /* IconDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372D61B575DED008A7C91 /* IconDescription.swift */; };
+		F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */; };
 		F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */; };
@@ -52,7 +53,8 @@
 		F3EBAFB01B3B2A8800BFFD93 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */; };
 		F3EBAFB21B3B2A8F00BFFD93 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */; };
 		F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */; };
-		F3F1CE961B6FA8DC00CFA4BF /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */; };
+		F3F1CE921B6C0FC100CFA4BF /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F1CE911B6C0FC100CFA4BF /* Preference.swift */; };
+		F3F1CE941B6C10D300CFA4BF /* Disliked.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F1CE931B6C10D300CFA4BF /* Disliked.swift */; };
 		F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB7E6F1B41F0A900AD38B7 /* AllPreferenceListViewController.swift */; };
 		F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FB7E731B4AD6D500AD38B7 /* Label.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,7 @@
 		40E8423C1B308C6A00D39DCD /* Commons_Menu1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commons_Menu1Tests.swift; sourceTree = "<group>"; };
 		F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F32372D61B575DED008A7C91 /* IconDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDescription.swift; sourceTree = "<group>"; };
+		F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +121,8 @@
 		F3EBAFAF1B3B2A8800BFFD93 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F3EBAFB11B3B2A8F00BFFD93 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		F3EBAFB31B3B2B8800BFFD93 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
+		F3F1CE911B6C0FC100CFA4BF /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		F3F1CE931B6C10D300CFA4BF /* Disliked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disliked.swift; sourceTree = "<group>"; };
 		F3FB7E6F1B41F0A900AD38B7 /* AllPreferenceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPreferenceListViewController.swift; sourceTree = "<group>"; };
 		F3FB7E731B4AD6D500AD38B7 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,11 +228,13 @@
 			isa = PBXGroup;
 			children = (
 				F39905971B3311A4004E74C6 /* Dish.swift */,
+				F3F1CE911B6C0FC100CFA4BF /* Preference.swift */,
 				13C777001B57072700BD2A39 /* IconButton.swift */,
 				F3CD7F531B4F280D0051AFF4 /* Dishes.swift */,
 				13C777021B583D4600BD2A39 /* SuperIconButton.swift */,
 				40D502131B4AC4E30027F1DD /* RestProfile.swift */,
 				13C777041B599D7300BD2A39 /* LinkButton.swift */,
+				F3F1CE931B6C10D300CFA4BF /* Disliked.swift */,
 			);
 			name = "Local Object Class";
 			sourceTree = "<group>";
@@ -245,11 +251,11 @@
 		F32372D31B545602008A7C91 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */,
 				407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */,
 				F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */,
 				406ABA631B42DFD90096A21F /* FoodTinderTableViewCell.swift */,
 				F3E529111B399F860081FFDC /* PreferenceListTableViewCell.swift */,
-				F3F1CE951B6FA8DC00CFA4BF /* ExpandTableViewCell.swift */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -417,12 +423,12 @@
 				F32372D71B575DED008A7C91 /* IconDescription.swift in Sources */,
 				40E842271B308C6A00D39DCD /* AppDelegate.swift in Sources */,
 				F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */,
+				F3F1CE921B6C0FC100CFA4BF /* Preference.swift in Sources */,
 				40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */,
 				40D502141B4AC4E30027F1DD /* RestProfile.swift in Sources */,
 				13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
-				F3F1CE961B6FA8DC00CFA4BF /* ExpandTableViewCell.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
@@ -430,11 +436,13 @@
 				13C777011B57072700BD2A39 /* IconButton.swift in Sources */,
 				F3E529121B399F860081FFDC /* PreferenceListTableViewCell.swift in Sources */,
 				F3C180C31B681AF300E5940C /* SignupInstructionViewController.swift in Sources */,
+				F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */,
 				F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
 				F32372D11B545591008A7C91 /* UIViewControllerExtension.swift in Sources */,
 				406ABA641B42DFD90096A21F /* FoodTinderTableViewCell.swift in Sources */,
+				F3F1CE941B6C10D300CFA4BF /* Disliked.swift in Sources */,
 				F3AD04131B66E9A000D737ED /* IconInfo.swift in Sources */,
 				F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */,
 			);

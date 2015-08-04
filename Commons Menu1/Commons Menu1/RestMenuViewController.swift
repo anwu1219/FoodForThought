@@ -1,9 +1,9 @@
 //
 //  RestMenuViewController.swift
-//  
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 17/6/15.
-//
+//  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
 import UIKit
@@ -36,20 +36,21 @@ class RestMenuViewController: UIViewController {
         
         //Formats the select a restaurant label
         let selectARestLabel = UILabel()
-        selectARestLabel.frame = CGRectMake(24, 64, screenSize.width*0.9, 55)
+        selectARestLabel.frame = CGRectMake(screenWidth*0.22, screenHeight*0.15, screenWidth*0.54, screenHeight*0.2)
         selectARestLabel.layer.shadowColor = UIColor.blackColor().CGColor
         selectARestLabel.layer.shadowOffset = CGSizeMake(5, 5)
         selectARestLabel.layer.shadowRadius = 5
         selectARestLabel.layer.shadowOpacity = 1.0
-        selectARestLabel.text = "Select A Restaurant"
+        selectARestLabel.text = "Select A\nRestaurant"
+        selectARestLabel.textAlignment = NSTextAlignment.Center
+        selectARestLabel.numberOfLines = 2
         selectARestLabel.textColor = UIColor.whiteColor()
-        selectARestLabel.font = UIFont(name: "Helvetica-Bold", size: 28)
+        selectARestLabel.font = UIFont(name: "Helvetica-Bold", size: 32)
         self.view.addSubview(selectARestLabel)
 
         
         //Formats the scroll view
-        
-        vertScrollMenu.frame = CGRectMake(24, 200, screenSize.width, screenSize.height * 0.5)
+        vertScrollMenu.frame = CGRectMake(24, screenSize.height * 0.35, screenSize.width, screenSize.height * 0.5)
         vertScrollMenu.contentSize.width = screenSize.width
         vertScrollMenu.contentSize.height = 350
         vertScrollMenu.backgroundColor = UIColor.clearColor()
@@ -79,7 +80,7 @@ class RestMenuViewController: UIViewController {
             let height: CGFloat = 0.15 * vertScrollMenu.bounds.height
             
             let x: CGFloat = ((buttonWidth*0.05) + (0.5 * width))
-            let y: CGFloat = (height+10) * CGFloat(i)
+            let y: CGFloat = (height+20) * CGFloat(i)
             
             //Sets the content of the buttons
             button.frame = CGRectMake(x - 40, y + 10, (buttonWidth*0.8), 46)
@@ -125,7 +126,6 @@ class RestMenuViewController: UIViewController {
                         if restaurant.name == title{
                             menuSwipeViewController.restProf = restaurant
                             menuSwipeViewController.dishes = dishes
-
                     }
                 }
             }

@@ -1,6 +1,6 @@
 //
 //  MenuSwipeViewController.swift
-//  Commons Menu1
+//  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 18/6/15.
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
@@ -86,9 +86,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         let restWeekdayOpenHoursLabel = UILabel()
         //Formats the labels in the view controller
         restWeekdayOpenHoursLabel.text = "Today's Hours: \(restProf!.hours[self.getDayOfWeek()])"
-        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3 * xUnit)
+        restWeekdayOpenHoursLabel.font = UIFont(name: "HelveticaNeue-Light", size: 3.2 * xUnit)
         labelStyle(restWeekdayOpenHoursLabel)
-        restWeekdayOpenHoursLabel.frame = CGRect(x: 5 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
+        restWeekdayOpenHoursLabel.frame = CGRect(x: 3 * xUnit, y: 31.5 * yUnit, width: 50 * xUnit, height: 6 * yUnit)
 
         view.addSubview(restWeekdayOpenHoursLabel)
         
@@ -132,11 +132,15 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         self.automaticallyAdjustsScrollViewInsets = false;
         
-        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 40 * xUnit, height: 5 * yUnit)
-        restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
+        restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 42 * xUnit, height: 5 * yUnit)
+        //restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("View Restaurant Profile >", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 3.5 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
+        restProfileButton.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.4)
+        restProfileButton.layer.cornerRadius = 2
+        restProfileButton.layer.borderWidth = 1
+        restProfileButton.layer.borderColor = UIColor.blackColor().CGColor
 
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)
@@ -479,22 +483,19 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                     cell.imageView?.image = UIImage(named: "sloth")
                     dish.image =  UIImage(named: "sloth")
                 }
-
-                
-             //   cell.imageView?.frame = CGRect(x: 0, y: 0, width: 35, height: 35.0)
             }
+        return cell
+        } else {
+            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            cell.delegate = self
+            cell.textLabel!.text = types[indexPath.row]
+            cell.textLabel!.backgroundColor = UIColor.clearColor()
+            cell.layer.cornerRadius = 8
+            cell.layer.masksToBounds = true
+            cell.textLabel!.textColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
             return cell
-            } else {
-                var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
-                cell.delegate = self
-                cell.textLabel!.text = types[indexPath.row]
-                cell.textLabel!.backgroundColor = UIColor.clearColor()
-                cell.layer.cornerRadius = 8
-                cell.layer.masksToBounds = true
-                cell.textLabel!.textColor = UIColor.whiteColor()
-                cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
-                return cell
-            }
+        }
     }
     
     
@@ -535,12 +536,14 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         return nil
     }
     
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == self.tableView{
             return tableView.frame.width / 10
         }
         return 0
     }
+    
     
     func showSections(sender: AnyObject){
         self.menuSwipeScroll.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
@@ -740,7 +743,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -782,13 +784,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         popScroll.addSubview(description)
         popScroll.addSubview(linkButton)
         vc.view.addSubview(popScroll)
-        
         vc.preferredContentSize = CGSizeMake(popScroll.frame.width, popScroll.frame.height)
         vc.modalPresentationStyle = .Popover
         
         self.presentViewController(vc, animated: true, completion: nil)
-        
-        
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
