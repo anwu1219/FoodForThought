@@ -177,7 +177,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         let descriptionsDict = IconInfo().descriptions
-        let levels = ["Dish-level labels", "Restaurant-level labels", "Nutritionist labels", "Sustainability Certification"]
+        let levels = ["Dish-level Icons", "Restaurant-level Icons", "Nutritionist Icons", "Sustainability Certification"]
         for level in levels {
             let levelLabel = UILabel(frame: CGRect(x: widthPadding, y: y, width: susView.frame.width -  widthPadding, height: 0))
             levelLabel.text = level + ":"
