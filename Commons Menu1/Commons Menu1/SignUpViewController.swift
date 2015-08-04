@@ -261,6 +261,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         titlePrompt.addAction(UIAlertAction(title: "Sign Up", style: .Default, handler: { (action) -> Void in
             if let textField = emailTextField {
                 self.signUp(textField.text)
+
             }
         }))
         
