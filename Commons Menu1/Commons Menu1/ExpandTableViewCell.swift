@@ -43,13 +43,14 @@ class ExpandTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         titleLabel.backgroundColor = UIColor(red: 0.114, green: 0.22, blue: 0.325, alpha: 1)
-        layer.cornerRadius = 8
-        layer.masksToBounds = true
+
         
-        titleLabel.frame = CGRect(x: 0.02 * self.frame.width, y: 0, width: 0.83 * self.frame.width, height: self.frame.height)
+        titleLabel.frame = CGRect(x: 0.04 * self.frame.width, y: 0, width: 0.83 * self.frame.width, height: self.frame.height)
         titleLabel.textAlignment = .Left
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont(name: "HelveticaNeue-BoldItalic", size: frame.width * 0.052)
+        titleLabel.layer.cornerRadius = 8
+        layer.masksToBounds = true
         
         
         addSubview(titleLabel)
