@@ -498,7 +498,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
         description.lineBreakMode = .ByWordWrapping
         description.numberOfLines = 0
-        description.textAlignment = NSTextAlignment.Center
+        description.textAlignment = NSTextAlignment.Left
         description.text = button.descriptionText
         description.sizeToFit()
 

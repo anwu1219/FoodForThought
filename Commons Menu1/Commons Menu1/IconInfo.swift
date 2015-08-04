@@ -14,38 +14,38 @@ struct IconInfo{
 
         "FSD": "This dish was prepared from scratch.\n ",
         
-        "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources that can be thousands of miles away.\n",
+        "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source non-locally, which can be up to thousands of miles away.\n",
             
         "LD": "An ingredient in this dish comes from a local producer, which maximizes freshness and taste.\n "],
         
         
         "Nutritionist Icons": [
-            "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provides important B vitamins and fiber. \n  ",
+            "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provide important B vitamins and fiber. \n  ",
             "HF":  "This food item is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins, and provide energy.\n ",
             "PP":  "This food item is a good source of protein. Proteins are the building blocks of most body tissues and carry out metabolic properties, such as transporting oxygen throughout the body.\n ",
-            "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n "],
+            "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient-rich foods are important for immune system health, energy metabolism and disease prevention.\n "],
         
         "Restaurant-level Icons":
-        ["FS":  "This restaurant prepares meals from scratch. This seemingly simple cooking trick requires top-notch culinary skills and increases the restaurant’s menu flexibility.\n ",
+        ["FS":  "This restaurant prepares meals from scratch. This approach to food preperation increases a restaurant's menu flexibility.\n ",
         
         "L":  "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
         "ES":  "This restaurant uses Energy Star appliances to reduce energy consumption. \n ",
         
-        "AI":  "The restaurant’s staff members are educated on common allergens and this information is available upon request. \n ",
+        "AI":  "This restaurant’s staff members are educated on common allergens, and this information is available upon request. \n ",
         "CA":  "This restaurant offers catering services. Beneficial services provided by the restaurant can help build a sense of community and bring people together, which promotes social welfare.\n ",
         "FD":  "This restaurant frequently donates prepared food to charities, churches, or food banks. \n ",
-        "MD":  "This restaurant frequently contributes monetary donations to charities.\n ",
-        "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen or helping at a local farm.\n ",
+        "MD":  "This restaurant contributes monetary donations to charities, churches, or food banks, providing valuable resources to organizations serving underprivileged communities\n ",
+        "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen, or helping at a local farm.\n ",
         
         
-        "C":  "This restaurant composts food scraps instead of sending them to the landfill. Restoring nutrients back to the soil supports all trophic levels through nutrient cycling.\n ",
-        "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
-        "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
+        "C":  "This restaurant composts food scraps instead of sending them to landfills. This process supports nutrient cycling and reduces food waste.\n ",
+        "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and supports the local economy.\n ",
+        "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass, or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
 
         
-        "Humane": "This humane label is awarded to this restaurant because: \n",
-        "Eco": "This Eco label is awarded to this restaurant because: \n",
-        "Fair": "This Fair label i awarded to this restaurant because: \n"],
+        "Humane": "The Humane Icon is displayed when either a restaurant or dish use a product that is certified for humane practices.\n",
+        "Eco": "The Ecologically Sound Icon is displayed when either a restaurant or dish use a product that is certified for ecologically sound practices.\n",
+        "Fair": "The Fair Icon is displayed when either a restaurant or dish use a product that is certified for fair practices.\n"],
         
         
         "Sustainability Certification": [
