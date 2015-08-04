@@ -159,6 +159,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40C3C5C81B71175E00CE6298 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F32372D61B575DED008A7C91 /* IconDescription.swift */,
+				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
+				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		40E842181B308C6A00D39DCD = {
 			isa = PBXGroup;
 			children = (
@@ -188,9 +198,7 @@
 				F32372D21B5455D3008A7C91 /* Extension */,
 				F32372D31B545602008A7C91 /* TableCells */,
 				F30E9C3F1B59392D0011C1BC /* Local Object Class */,
-				F32372D61B575DED008A7C91 /* IconDescription.swift */,
-				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
-				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
+				40C3C5C81B71175E00CE6298 /* Data */,
 				40E8422F1B308C6A00D39DCD /* LaunchScreen.xib */,
 				40E8422D1B308C6A00D39DCD /* Images.xcassets */,
 				40E842241B308C6A00D39DCD /* Supporting Files */,

@@ -27,9 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.setApplicationId("YwH5uZAZTNeun59PpcrL2Rk9qE4Oc1zl1dPjDr8x", clientKey: "pXj8wTsLjDHZta12STdVxEBJMxGZvi8vhjqSCuoG")
        
+        //prevents top status bar from disappearing
         var addStatusBar = UIView()
         addStatusBar.frame = CGRectMake(0, 0, screenSize.width, 20);
-        addStatusBar.backgroundColor = UIColor.whiteColor()
+        addStatusBar.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.8)
         self.window?.rootViewController?.view .addSubview(addStatusBar)
         
         // Register for Push Notitications

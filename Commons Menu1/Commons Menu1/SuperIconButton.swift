@@ -26,7 +26,6 @@ class SuperIconButton: IconButton {
                 self.descriptionText += description + "\n"
             }
         }
-
     }
     
     required init(coder aDecoder: NSCoder) {

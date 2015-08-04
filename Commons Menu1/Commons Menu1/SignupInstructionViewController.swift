@@ -15,9 +15,7 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
         private let images = ["sloth","sloth","sloth","sloth"]
         private var count = 0
         private var isFromMain : Bool?
-        
         var pageViewController : UIPageViewController!
-    
     
         @IBAction func swiped(sender: AnyObject) {
             

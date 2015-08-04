@@ -12,8 +12,6 @@ struct IconInfo{
     let descriptions = [
         "Dish-level Icons": [
 
-        
-        
         "FSD": "This dish was prepared from scratch.\n ",
         
         "SE": "An ingredient in this dish is in season. Using seasonal ingredients reduces the need to source from non-local sources that can be thousands of miles away.\n",

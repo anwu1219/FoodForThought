@@ -12,7 +12,6 @@ import UIKit
 struct Label {
     //Stores the dish level and retaurant level labels
     let Labels = [
-
         "EC": UIImage(named: "EC"),
         "FS": UIImage(named:"FS"),
         "L": UIImage(named: "L"),

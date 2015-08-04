@@ -131,8 +131,6 @@ class MenuTableViewCell: UITableViewCell {
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
         
-     
-        
         var arrowImageView = UIImageView(frame: CGRectMake(90 * width, 42 * height, 4 * width, 20 * height))
         var arrowImage : UIImage = UIImage(named: "MenuItemArrow")!
         arrowImageView.image = arrowImage

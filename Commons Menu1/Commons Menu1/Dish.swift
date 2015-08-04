@@ -8,7 +8,6 @@
 import UIKit
 import Parse
 
-
 /**
 Represents a dish
 */
@@ -69,7 +68,6 @@ class Dish: PFObject, PFSubclassing {
             self.date = date
         }
     }
-    
     
     static func parseClassName() -> String {
         return "dishInfo"

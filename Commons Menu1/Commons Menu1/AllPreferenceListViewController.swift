@@ -50,10 +50,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         //sets background image
         setBackground("preferenceBackground")
         
-        
+        //set top image
         allPrefTopImage.image = UIImage(named: "redberrycup")
         allPrefTopImage.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 0.23 * self.view.frame.height)
-        
         view.addSubview(allPrefTopImage)
         
         menuSwipeScroll.frame = CGRect(x: 0.05 * view.frame.width, y: 0.25 * view.frame.height, width: 0.9 * view.frame.width, height: 0.75 * view.frame.height)
@@ -116,14 +115,11 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func addTable(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
-
-        
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
         typesTableView.addGestureRecognizer(tapRecognizer)
         menuSwipeScroll.addSubview(typesTableView)
-
         preferenceListTableView.frame = CGRect(x: 66 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         preferenceListTableView.backgroundColor = UIColor.clearColor()
         preferenceListTableView.backgroundView?.contentMode = .ScaleAspectFill
@@ -131,13 +127,9 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         menuSwipeScroll.addSubview(preferenceListTableView)
     }
     
-    
-    
     func bringBack(sender: AnyObject){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
     }
-    
-    
     
     /**
     Uploads the preference list when moving to parse
@@ -233,11 +225,10 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                 cell.imageView?.image = UIImage(named: "sloth")
                 dish.image =  UIImage(named: "sloth")
             }
-           // cell.detailTextLabel?.font =  UIFont(name: "Helvetica Neue", size: 20)
-           // cell.detailTextLabel?.textAlignment = .Center
         }
             return cell
-        } else {
+        }
+        else {
             var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
             cell.delegate = self
             cell.textLabel!.text = keys[indexPath.row]
@@ -272,9 +263,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         
         //Set the image of sections button
         sectionsButton.setImage(UIImage(named: "ArrowDropdownButton"), forState: UIControlState.Normal)
-        
-        
-        
+            
         let headerViewLabel = UILabel()
         headerViewLabel.frame = CGRectMake(12 * xUnit, 0, 76 * xUnit, tableView.frame.width / 8)
         headerViewLabel.text = keys[section]

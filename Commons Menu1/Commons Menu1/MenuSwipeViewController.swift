@@ -774,7 +774,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         
         let popScroll = UIScrollView()
         if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {
-            popScroll.frame = CGRectMake(0, 10, description.frame.width, description.frame.height+linkButton.frame.height+10)
+            popScroll.frame = CGRectMake(0, 10, description.frame.width+20, description.frame.height+linkButton.frame.height+20)
         }
         else {
             popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)

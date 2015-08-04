@@ -17,7 +17,6 @@ class Preference: PFObject, PFSubclassing {
     // a text description of this item.
     @NSManaged var dishName : String
     @NSManaged var location : String
-
     
     override class func initialize() {
         struct Static {
@@ -27,7 +26,6 @@ class Preference: PFObject, PFSubclassing {
             self.registerSubclass()
         }
     }
-    
     
     func getPreference(object: PFObject){
         self.dishName = object["name"] as! String

@@ -55,17 +55,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             button.layer.shadowRadius = 2
             button.layer.shadowOpacity = 1.0
         }
-        
-//        signUpButton.layer.borderWidth = 1
-//        signUpButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-//        signUpButton.layer.cornerRadius = 5
-//        signUpButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-        
-//        signInButton.layer.borderWidth = 1
-//        signInButton.layer.borderColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.5).CGColor
-//        signInButton.layer.cornerRadius = 5
-//        signInButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-        
+                
         buttonStyle(signUpButton)
         buttonStyle(signInButton)
         

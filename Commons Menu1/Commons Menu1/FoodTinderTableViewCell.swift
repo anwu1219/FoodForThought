@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Davidson College Mobile App Team. All rights reserved.
 //
 
-
 import UIKit
 import QuartzCore
 import Parse
-
 
 /**
 Manages the cell representation of a dish in a menu
@@ -29,8 +27,6 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     private var yesButton = UIButton()
     private var noButton = UIButton()
     
-    //var ecoLabel: UILabel
-
     // The object that acts as delegate for this cell
     var delegate: FoodTinderViewCellDelegate?
     // The dish that this cell renders

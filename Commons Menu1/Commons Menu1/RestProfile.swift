@@ -36,12 +36,10 @@ class RestProfile: PFObject, PFSubclassing {
             self.registerSubclass()
         }
     }
-
     
     static func parseClassName() -> String {
         return "Restaurant"
     }
-
     
     func fetchRestData(object: PFObject){
         self.name = object["name"] as! String
@@ -59,25 +57,4 @@ class RestProfile: PFObject, PFSubclassing {
         self.humane = object["humane"] as! [String]
         self.dynamicTypes = object["dynamic"] as! [String]
     }
-    
-
-    // MARK: Properties
-    
-    
-//    init(name: String, imageFile: PFFile, restDescript: String, address: String, hours: [String], mealPlanHours: [String], phoneNumber: String, labels: [[String]], heathScore: Double, url: String, eco : [String], fair : [String], humane : [String], dynamicTypes: [String]){
-//        self.name = name
-//        self.imageFile = imageFile
-//        self.restDescript = restDescript
-//        self.address = address
-//        self.hours = hours
-//        self.mealPlanHours = mealPlanHours
-//        self.phoneNumber = phoneNumber
-//        self.labels = labels
-//        self.healthScore = heathScore
-//        self.url = url
-//        self.eco = eco
-//        self.fair = fair
-//        self.humane = humane
-//        self.dynamicTypes = dynamicTypes
-//    }
 }
