@@ -366,12 +366,10 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
+
     
     @IBAction func learnMoreLink(sender: UIButton) {
         let urls = IconDescription().urls
@@ -380,7 +378,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             UIApplication.sharedApplication().openURL(url)
         }
     }
-    
     
     func showLabelInfo(sender: AnyObject) {
         let vc = UIViewController()
@@ -393,15 +390,17 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
             pres.delegate = self
         }
         
-        let description = UILabel(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
-        description.lineBreakMode = .ByWordWrapping
-        description.numberOfLines = 0
+        let description = UITextView(frame: CGRectMake(0, 0, vc.view.frame.width/2 , vc.view.frame.height))
+        description.backgroundColor = UIColor.clearColor()
+        description.textContainerInset = UIEdgeInsetsMake(5, 10, 0, 10)
         description.textAlignment = NSTextAlignment.Left
+        description.userInteractionEnabled = false
+        description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         description.text = button.descriptionText
         description.sizeToFit()
 
         
-        let frame = CGRectMake(0, description.frame.height + 5, description.frame.width, screenSize.height*0.05)
+        let frame = CGRectMake(0, description.frame.height, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)
         linkButton.setTitle("Learn More", forState: UIControlState.Normal)
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
