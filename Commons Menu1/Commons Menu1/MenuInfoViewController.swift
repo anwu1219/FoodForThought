@@ -266,6 +266,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         let linkButton = LinkButton(name: button.name, frame: frame)
         linkButton.setTitle("Learn More", forState: UIControlState.Normal)
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
+        linkButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         
         let popScroll = UIScrollView()
         if description.frame.height + linkButton.frame.height < vc.view.frame.height/2 {

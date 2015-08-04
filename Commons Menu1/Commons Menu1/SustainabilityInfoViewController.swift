@@ -60,18 +60,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
     
     override func viewDidLoad() {
-
-
-        
         super.viewDidLoad()
         
-        
         susView.delegate = self
-        
-        
         setBackground("SustyPageBackground")
-
-        
         menuSwipeScroll.frame = CGRect(x: widthPadding, y: 3.5*verticalSpace, width: UIScreen.mainScreen().bounds.width-(2*widthPadding), height: UIScreen.mainScreen().bounds.height - (4*verticalSpace))
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
@@ -80,12 +72,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         view.addSubview(menuSwipeScroll)
 
         addScrollView()
-        
-        
-        
         addTableView()
-        
-        
         addScrollIcon()
         
         typesTableView.dataSource = self
@@ -93,7 +80,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         typesTableView.registerClass(TypesTableViewCell.self, forCellReuseIdentifier: "typeCell")
         typesTableView.separatorStyle = .None
 
-        
         susInfoTableView.dataSource = self
         susInfoTableView.delegate = self
         susInfoTableView.registerClass(ExpandTableViewCell.self, forCellReuseIdentifier: "susCell")
@@ -246,7 +232,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         imageView.image = UIImage(named: "susTriangle")
         imageView.contentMode = .ScaleToFill
         
-        susInfoTableView.frame = CGRect(x: 0, y: 0.32 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
+        susInfoTableView.frame = CGRect(x: 5, y: 0.32 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
+        susInfoTableView.backgroundColor = UIColor.clearColor()
         
         aboutSusView.addSubview(imageView)
         aboutSusView.addSubview(susInfoTableView)
