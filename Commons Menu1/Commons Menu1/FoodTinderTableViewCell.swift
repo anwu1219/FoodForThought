@@ -63,7 +63,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         noIconLabel = UILabel(frame : CGRect.nullRect)
         noIconLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         noIconLabel.backgroundColor = UIColor.clearColor()
-        noIconLabel.text = "No Sustainability Icon Available"
+        noIconLabel.text = "Not Reported"
         
         susLabels = UIScrollView(frame: CGRect.nullRect)
         
