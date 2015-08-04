@@ -19,12 +19,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private var labelPositions = [String: CGFloat]()
     private let menuSwipeScroll = UIScrollView()
     private let  typesTableView = UITableView()
+    private let aboutSusView = UIView()
     private let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susView = UIScrollView()
     private let icon = UIImageView()
-    private let sustainabilityImages = ["greenEarth", "heartHands", "treeCoin"]
-    private let susLabels = ["About Sustainability","Sustainability Labels"]
     private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Sustainability Defined", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let susInfo = ["Foodscape seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.\nThis app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. Foodscape predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.\nWhile Foodscape concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!\n\n",
         "We believe it is important for consumers to reconnect with their food and, in addition to the financial implications of their decisions, understand the social and environmental implications of food production, provision and consumption. We hope this app helps you learn and facilitates discussion about what questions you want to ask yourself and your food providers.\nOur food system includes issues related to health, obesity in the United States, water consumption, environmental health impacts of pesticides and fertilizers, inequities of access and availability to healthy food based on socio-economic differences, economic opportunity for local farmers and restaurants, power struggles within food industries between large corporations and small businesses, identity, culture, diversity, and much more. All of these issues can be connected to impacts of policy, subsidies, consumer behavior, advertising and more. It can be overwhelming. We hope to help create a starting point for your journey to learn more about your food and how it is connected to every part of your life. To find out more about all these topics and more visit food.davidsonsustainability.org.\nAs one of the schools supported by The Duke Endowment, who provided the funding for this initiative, we also want this app to be replicable for other colleges and universities. If your school is interested please contact us at food.davidsonsustainability.org to see how we can help integrate new locations into the app or help your school create its own version.\n\n",
@@ -80,7 +79,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.scrollEnabled = false
         view.addSubview(menuSwipeScroll)
 
-        //addScrollView()
+        addScrollView()
         
         
         
@@ -116,21 +115,21 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     
     func scrollViewDidScroll(scrollView: UIScrollView){
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = true
         }
     }
     
-
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = false
         }
     }
     
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = false            
         }
     }
@@ -140,7 +139,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         super.viewDidAppear(animated)
         if let boo = isFromInfo {
             if boo{
-                susView.setContentOffset(CGPoint(x: 0, y: labelPositions["Sustainability Labels"]!), animated: false)
+                goToType("Sustainability Labels")
             }
         }
     }
@@ -154,7 +153,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
         
 
-        var y: CGFloat = 0.0
+        var y: CGFloat = 10.0
         susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
         self.navigationController?.navigationBar.translucent = true
         
@@ -162,59 +161,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
         susView.layer.borderWidth = 10
         susView.layer.cornerRadius = 5
-        
-        for var i = 0; i < count(susLabels); i++ {
-            let container = UIView()
-            let header = UILabel()
-            let image = UIImageView()
-            let body = UILabel()
-            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            
-            // Set the subsection's header
-            header.text = susLabels[i]
-            header.font = UIFont(name: "Helvetica", size: susView.frame.width * 0.09)
-            header.textColor = UIColor.whiteColor()
-            header.layer.shadowOffset = CGSizeMake(2, 2)
-            header.layer.shadowColor = UIColor.blackColor().CGColor
-            header.layer.shadowOpacity = 0.7
-            header.layer.shadowRadius = 3.0
-            header.sizeToFit()
-            header.frame = CGRectMake(widthPadding, y+verticalSpace, susView.frame.width - 2 * widthPadding, header.frame.height)
-            header.textAlignment = .Center
-            susView.addSubview(header)
-            labelPositions[susLabels[i]] = y
-            y += 50.0 + verticalSpace
-            
-            
-            
-            // set the subsection's image
-            image.image = UIImage(named: sustainabilityImages[i])
-            image.frame = CGRectMake(0.0, y, susView.frame.width, 100)
-            image.contentMode = .ScaleAspectFit
-            susView.addSubview(image)
-            y += 100+verticalSpace
-            
-            // set the subsection's body text
-            body.text = susInfo[i]
-            body.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-            body.textColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95)
-            body.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            body.numberOfLines = 0
-            body.frame = CGRectMake(widthPadding, y, susView.frame.width - (2*widthPadding), header.frame.height * 3)
-            body.sizeToFit()
-            body.textAlignment = .Center
-            susView.addSubview(body)
-            y += body.frame.height + verticalSpace
-            
-            // set the section's learn more button
-            button.setTitle("Learn More", forState: UIControlState.Normal)
-            button.addTarget(self, action: "learnMoreAction:", forControlEvents: UIControlEvents.TouchUpInside)
-            button.frame = CGRectMake(susView.frame.width*0.2, y, susView.frame.width*0.6, 50)
-            button.backgroundColor = UIColor.clearColor()
-            susView.addSubview(button)
-            y += 50 + verticalSpace
-            
-        }
+        susView.scrollEnabled = true
+        susView.alpha = 0
         
         
         let swipeGestureRecognizer = UISwipeGestureRecognizer()
@@ -270,6 +218,12 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
+        aboutSusView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        aboutSusView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        aboutSusView.layer.borderWidth = 10
+        aboutSusView.layer.cornerRadius = 5
+        aboutSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
+        
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
@@ -288,13 +242,17 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.addGestureRecognizer(swipeLeftGestureRecognizer)
         
         
-        let imageView = UIImageView(frame: CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height * 0.3))
+        let imageView = UIImageView(frame: CGRect(x: 25 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 23 * yUnit))
         imageView.image = UIImage(named: "susTriangle")
         imageView.contentMode = .ScaleToFill
         
-        susInfoTableView.frame = CGRect(x: 60 * xUnit, y: 0.3 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
-        menuSwipeScroll.addSubview(imageView)
-        menuSwipeScroll.addSubview(susInfoTableView)
+        susInfoTableView.frame = CGRect(x: 0, y: 0.32 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
+        
+        aboutSusView.addSubview(imageView)
+        aboutSusView.addSubview(susInfoTableView)
+        
+        menuSwipeScroll.addSubview(aboutSusView)
+        
     }
     
     
@@ -325,7 +283,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         if tableView == susInfoTableView {
             return subTitles.count
         }
-        return 3
+        return 2
     }
     
     
@@ -346,7 +304,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             cell.contentLabel.frame = CGRect(x:0, y:0, width: menuSwipeScroll.frame.width * 0.88, height:getHeight(indexPath.row))
             cell.contentLabel.textAlignment = .Left
             cell.titleLabel.text = self.subTitles[indexPath.row]
-            cell.titleLabel.backgroundColor = UIColor.redColor()
             cell.contentLabel.text = self.susInfo[indexPath.row]
             cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
             return cell
@@ -360,10 +317,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         if indexPath.row == 1 {
             cell.delegate = self
             cell.textLabel!.text = "Sustainability Labels"
-        }
-        if indexPath.row == 2 {
-            cell.delegate = self
-            cell.textLabel!.text = "About Sustainability"
         }
         cell.textLabel!.backgroundColor = UIColor.clearColor()
         cell.textLabel!.font = UIFont(name: "HelveticaNeue", size: self.view.frame.width * 0.045)
@@ -423,6 +376,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
+    
+    
+    
     func getHeight(index : Int) -> CGFloat{
         let testLabel = UILabel(frame: CGRect(x: 0, y: 0, width: susInfoTableView.frame.width * 0.85, height: 0))
         testLabel.text = susInfo[index]
@@ -435,9 +391,20 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     
-    internal func goToType(type: String){
+    func goToType(type: String){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
-        susView.setContentOffset(CGPoint(x: 0, y: labelPositions[type]!), animated: false)
+        if type == "About Sustainability" {
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                    self.susView.alpha = 0
+                    self.aboutSusView.alpha = 1
+                }, completion: nil)
+        } else {
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.susView.alpha = 1
+                self.aboutSusView.alpha = 0
+                }, completion: nil)
+        }
+        
     }
     
     
