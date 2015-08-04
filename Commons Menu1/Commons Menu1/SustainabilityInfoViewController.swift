@@ -115,21 +115,21 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     
     func scrollViewDidScroll(scrollView: UIScrollView){
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = true
         }
     }
     
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = false
         }
     }
     
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView == susView{
+        if scrollView == susView || scrollView == susInfoTableView{
             icon.hidden = false            
         }
     }
@@ -139,7 +139,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         super.viewDidAppear(animated)
         if let boo = isFromInfo {
             if boo{
-//                susView.setContentOffset(CGPoint(x: 0, y: labelPositions["Sustainability Labels"]!), animated: false)
+                goToType("Sustainability Labels")
             }
         }
     }
@@ -162,6 +162,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susView.layer.borderWidth = 10
         susView.layer.cornerRadius = 5
         susView.scrollEnabled = true
+        susView.alpha = 0
         
         
         let swipeGestureRecognizer = UISwipeGestureRecognizer()
@@ -218,6 +219,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let yUnit : CGFloat = self.view.frame.height / 100
         
         aboutSusView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        aboutSusView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        aboutSusView.layer.borderWidth = 10
+        aboutSusView.layer.cornerRadius = 5
+        aboutSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
@@ -237,11 +242,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.addGestureRecognizer(swipeLeftGestureRecognizer)
         
         
-        let imageView = UIImageView(frame: CGRect(x: 0 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height * 0.3))
+        let imageView = UIImageView(frame: CGRect(x: 25 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 23 * yUnit))
         imageView.image = UIImage(named: "susTriangle")
         imageView.contentMode = .ScaleToFill
         
-        susInfoTableView.frame = CGRect(x: 0, y: 0.3 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
+        susInfoTableView.frame = CGRect(x: 0, y: 0.32 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
         
         aboutSusView.addSubview(imageView)
         aboutSusView.addSubview(susInfoTableView)
@@ -299,7 +304,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             cell.contentLabel.frame = CGRect(x:0, y:0, width: menuSwipeScroll.frame.width * 0.88, height:getHeight(indexPath.row))
             cell.contentLabel.textAlignment = .Left
             cell.titleLabel.text = self.subTitles[indexPath.row]
-            cell.titleLabel.backgroundColor = UIColor.redColor()
             cell.contentLabel.text = self.susInfo[indexPath.row]
             cell.backgroundColor = UIColor(white: 0.667, alpha: 0.2)
             return cell
@@ -370,6 +374,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
         return defaultHeight
     }
+    
+    
+    
     
     
     func getHeight(index : Int) -> CGFloat{

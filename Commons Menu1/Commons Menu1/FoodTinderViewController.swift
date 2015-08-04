@@ -35,7 +35,8 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     private let completeAlert = UIAlertController(title: "You have swiped all the dishes! Bravo!", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     private var ecoLabelsArray: [String]!
     private let refreshControl = UIRefreshControl()
-    private let instructLabel = CATextLayer()
+    private let instructionImageView = UIImageView()
+    private let instructionView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,17 +55,14 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         self.navigationItem.rightBarButtonItem = logButton
         
         if !dishes.learned["tinder"]! {
-            instructLabel.frame = CGRectMake(0, 0.85 * view.bounds.height, view.bounds.width, 0.15 * view.bounds.height)
-            instructLabel.string = "\n Swipe right to add dish to My Favorites\n Swipe left to pass on dish"
-            let fontName: CFStringRef = "Helvetica-Light"
-            instructLabel.font = CTFontCreateWithName(fontName, 10, nil)
-            instructLabel.fontSize = self.view.frame.height / 40
-            instructLabel.backgroundColor = UIColor.lightGrayColor().CGColor
-            instructLabel.foregroundColor = UIColor.darkGrayColor().CGColor
-            instructLabel.wrapped = true
-            instructLabel.alignmentMode = kCAAlignmentCenter
-            instructLabel.contentsScale = UIScreen.mainScreen().scale
-            view.layer.addSublayer(instructLabel)
+            instructionView.frame = CGRectMake(0.03 * view.bounds.width, 0.88 * view.bounds.height, 0.94 * view.bounds.width, 0.12 * view.bounds.height)
+            instructionView.layer.cornerRadius = 5
+            instructionImageView.frame = CGRect(x: 0.21 * instructionView.frame.width, y: 0.1 * instructionView.frame.height, width: 0.58 * instructionView.frame.width, height: 0.8 * instructionView.frame.height)
+            instructionImageView.image = UIImage(named: "tinderInstruction")
+            instructionView.backgroundColor = UIColor.lightGrayColor()
+            instructionImageView.contentMode = .ScaleToFill
+            instructionView.addSubview(instructionImageView)
+            view.addSubview(instructionView)
         }
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.5))
         dispatch_after(delayTime, dispatch_get_main_queue()){
@@ -159,7 +157,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func toDoItemDeleted(dish: Dish) {
         //Finds index of swiped dish and removes it from the array
         if !dishes.learned["tinder"]! {
-            instructLabel.hidden = true
+            instructionView.hidden = true
              dishes.learned["tinder"] = true
         }
         // use the UITableView to animate the removal of this row
