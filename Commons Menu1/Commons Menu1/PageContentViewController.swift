@@ -15,7 +15,8 @@ class PageContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.9 * self.view.frame.height))
+        self.navigationController?.navigationBarHidden = true
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.92 * self.view.frame.height))
         imageView.image = UIImage(named: imageName)
         imageView.contentMode = .ScaleToFill
         

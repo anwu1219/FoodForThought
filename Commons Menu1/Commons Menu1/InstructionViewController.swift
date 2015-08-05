@@ -22,6 +22,7 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
         reset()
     }
     
+    
     func reset() {
         /* Getting the page View controller */
         pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
@@ -53,6 +54,7 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         reset()
     }
     
@@ -66,6 +68,7 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     var index = (viewController as! PageContentViewController).pageIndex!
     index++
     if(index == self.images.count){
+        sleep(1)
         self.performSegueWithIdentifier("instructionToMainSegue", sender: self)
         
     }

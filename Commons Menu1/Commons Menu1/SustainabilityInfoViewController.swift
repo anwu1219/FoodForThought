@@ -67,7 +67,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         super.viewDidLoad()
 
         setBackground("SustyPageBackground")
-        menuSwipeScroll.frame = CGRect(x: widthPadding, y: 3.5*verticalSpace, width: UIScreen.mainScreen().bounds.width-(2*widthPadding), height: UIScreen.mainScreen().bounds.height - (4*verticalSpace))
+        menuSwipeScroll.frame = CGRect(x: widthPadding, y: 2.5 * verticalSpace, width: UIScreen.mainScreen().bounds.width-2 * widthPadding, height: UIScreen.mainScreen().bounds.height - (2.7*verticalSpace))
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: false)
@@ -187,7 +187,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         topTextLabel.textAlignment = .Left
         topTextLabel.sizeToFit()
         
-        susInfoTableView.frame = CGRect(x: 0, y: 0.45 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.55 * menuSwipeScroll.frame.height)
+        susInfoTableView.frame = CGRect(x: 0, y: 0.43 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.55 * menuSwipeScroll.frame.height)
         susInfoTableView.backgroundColor = UIColor.clearColor()
         
         susInfoTableView.backgroundColor = UIColor.clearColor()

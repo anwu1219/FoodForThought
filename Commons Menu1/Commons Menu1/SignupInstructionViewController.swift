@@ -67,6 +67,7 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
             var index = (viewController as! PageContentViewController).pageIndex!
             index++
             if(index == self.images.count){
+                sleep(1)
                 self.dismissViewControllerAnimated(true, completion: { () -> Void in})
             }
             return self.viewControllerAtIndex(index)
