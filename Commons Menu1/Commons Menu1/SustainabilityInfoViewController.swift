@@ -202,7 +202,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         iconSusView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
-        iconSusView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        iconSusView.layer.borderColor = UIColor(red: 0.114, green: 0.22, blue: 0.325, alpha: 0.9).CGColor
         iconSusView.layer.borderWidth = 10
         iconSusView.layer.cornerRadius = 5
         iconSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
@@ -262,7 +262,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: 0)
             cell.susContentView.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = self.levels[indexPath.row]
-            cell.titleView.backgroundColor = UIColor(red: 0.114, green: 0.22, blue: 0.325, alpha: 0.9)
+            cell.titleView.backgroundColor = UIColor(red: 60/255.0, green: 96/255.0, blue: 128/255.0, alpha: 1)
             cell.titleView.layer.cornerRadius = 8
             cell.titleView.layer.masksToBounds = true
             cell.titleView.frame = CGRect(x: 0.05 * menuSwipeScroll.frame.width, y: 0, width: 0.9 * menuSwipeScroll.frame.width, height: defaultHeight)
@@ -368,7 +368,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
         if indexPaths.count > 0 {
             tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+            }
         }
     }
     
