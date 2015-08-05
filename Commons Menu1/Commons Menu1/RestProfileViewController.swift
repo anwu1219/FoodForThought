@@ -18,6 +18,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     private let progSusView = UIScrollView()
     private let progRestProfScrollView = UIScrollView()
     private let progRestImage = UIImageView()
+    private var isWebPage = Bool()
 
 
     
@@ -407,8 +408,29 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func openWebsite(sender:UIButton) {
+
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+        vc.modalPresentationStyle = .Popover
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
+        }
+        isWebPage = true
+        let wv = UIWebView()
+        vc.view.addSubview(wv)
+        wv.frame = vc.view.bounds
+        wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
         if let url = NSURL(string: restProf.url) {
-            UIApplication.sharedApplication().openURL(url)
+        let request = NSURLRequest(URL: url)
+        wv.loadRequest(request)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as UIView)
+            pop.sourceRect = (sender as UIView).bounds
+            }
+            
         }
     }
     
@@ -569,6 +591,23 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
 extension RestProfileViewController : UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        if isWebPage {
+        return .FullScreen
+        }
+        else {
         return .None
+        }
+    }
+    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let vc = controller.presentedViewController
+        let nav = UINavigationController(rootViewController: vc)
+        let b = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissHelp:")
+        vc.navigationItem.rightBarButtonItem = b
+        return nav
+    }
+    
+    func dismissHelp(sender:AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        isWebPage = false
     }
 }

@@ -802,7 +802,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             UIApplication.sharedApplication().openURL(url)
         }
     }
-    
 }
 
 extension MenuSwipeViewController : UIPopoverPresentationControllerDelegate {
