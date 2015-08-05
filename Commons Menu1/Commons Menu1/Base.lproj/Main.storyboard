@@ -514,9 +514,6 @@
                         <subviews>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lzq-2o-lDV">
                                 <rect key="frame" x="290" y="443" width="20" height="20"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="290" y="389" width="20" height="20"/>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="187" y="413" width="20" height="20"/>
                                 </variation>
@@ -579,8 +576,7 @@
                                         <exclude reference="nse-af-Ac6"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="45" y="287" width="492" height="27"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Umg-Df-Biu"/>
                                         <exclude reference="nse-af-Ac6"/>
@@ -642,9 +638,6 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="56" width="600" height="63"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
                                 <rect key="frame" x="57" y="216" width="60" height="27"/>
@@ -663,8 +656,7 @@
                                         <exclude reference="utQ-oR-6Yo"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="45" y="197" width="492" height="27"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="KSx-Vr-jT3"/>
                                         <exclude reference="utQ-oR-6Yo"/>
@@ -687,8 +679,7 @@
                                         <exclude reference="jwy-DJ-QU0"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="232" width="518" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="YhL-uS-ZmK"/>
                                         <exclude reference="jwy-DJ-QU0"/>
@@ -715,8 +706,7 @@
                                         <exclude reference="k1x-Wf-DcB"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="323" width="518" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Zsf-hc-pBQ"/>
                                         <include reference="k1x-Wf-DcB"/>
@@ -1399,10 +1389,10 @@
         <image name="menuButton" width="559" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXz-wK-Xvd"/>
-        <segue reference="DIe-8N-XbI"/>
-        <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="6HG-gM-2cC"/>
+        <segue reference="Z4n-Rp-1Qi"/>
         <segue reference="2sF-BO-Jmm"/>
+        <segue reference="sXz-wK-Xvd"/>
         <segue reference="aZ9-33-JLe"/>
     </inferredMetricsTieBreakers>
 </document>
