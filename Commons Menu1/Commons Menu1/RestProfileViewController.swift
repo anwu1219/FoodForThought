@@ -327,8 +327,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
            progRestProfScrollView.addSubview(label)
             //trackY += label.frame.height
             y += label.frame.height
-
-            
         }
         y += trackY + space
         
@@ -384,7 +382,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
             
             for label in orderLabels {
-                label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
+                label.frame = CGRectMake(0.08*width, y,progRestProfScrollView.frame.width*0.9, 50)
                 label.lineBreakMode = .ByWordWrapping
                 label.numberOfLines = 0
                 label.textColor = UIColor.whiteColor()

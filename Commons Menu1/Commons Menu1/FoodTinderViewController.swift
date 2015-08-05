@@ -281,11 +281,9 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    
     private func dealtWith(index: Int) -> Bool {
         return dishes.dealtWith.contains(index)
     }
-    
     
     private func hasBeenAdded(name : String, location: String)-> Bool {
         for restaurant in dishes.dishes.keys{
@@ -403,6 +401,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         let frame = CGRectMake(0, description.frame.height, description.frame.width, screenSize.height*0.05)
         let linkButton = LinkButton(name: button.name, frame: frame)
         linkButton.setTitle("Learn More", forState: UIControlState.Normal)
+        linkButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         linkButton.addTarget(self, action: "learnMoreLink:", forControlEvents: UIControlEvents.TouchUpInside)
         
         let popScroll = UIScrollView()
@@ -412,8 +411,6 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         else {
             popScroll.frame = CGRectMake(0, 0, vc.view.frame.width/2, vc.view.frame.height/2)
         }
-        
-        
         
         popScroll.contentSize = CGSizeMake(description.frame.width, description.frame.height+linkButton.frame.height)
         popScroll.addSubview(description)
