@@ -28,6 +28,7 @@
 		F32372D11B545591008A7C91 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */; };
 		F32372D71B575DED008A7C91 /* IconDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372D61B575DED008A7C91 /* IconDescription.swift */; };
 		F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */; };
+		F338EB261B7289650008B40B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB251B7289650008B40B /* StringExtension.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */; };
 		F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */; };
@@ -95,6 +96,7 @@
 		F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F32372D61B575DED008A7C91 /* IconDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDescription.swift; sourceTree = "<group>"; };
 		F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
+		F338EB251B7289650008B40B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				F3CD7F551B5063950051AFF4 /* Reachability.swift */,
 				F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */,
+				F338EB251B7289650008B40B /* StringExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
+				F338EB261B7289650008B40B /* StringExtension.swift in Sources */,
 				13C777011B57072700BD2A39 /* IconButton.swift in Sources */,
 				F3E529121B399F860081FFDC /* PreferenceListTableViewCell.swift in Sources */,
 				F3C180C31B681AF300E5940C /* SignupInstructionViewController.swift in Sources */,
