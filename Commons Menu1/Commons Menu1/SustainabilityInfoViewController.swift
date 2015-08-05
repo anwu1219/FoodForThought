@@ -386,7 +386,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
 
 //https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
-extension SignUpViewController: UIPopoverPresentationControllerDelegate {
+extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen
     }

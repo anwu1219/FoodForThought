@@ -137,8 +137,7 @@
                                         <exclude reference="hIb-89-WmQ"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="239" y="545" width="122" height="30"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="hIb-89-WmQ"/>
                                     </mask>
@@ -165,8 +164,7 @@
                                         <exclude reference="l44-iF-tIb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="143" width="536" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="8tr-ft-47r"/>
                                         <exclude reference="l44-iF-tIb"/>
@@ -191,8 +189,7 @@
                                         <exclude reference="dKJ-wF-O37"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="344" width="536" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="dKJ-wF-O37"/>
                                     </mask>
@@ -215,8 +212,7 @@
                                         <exclude reference="KfL-Mw-2kS"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="210" width="536" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="KfL-Mw-2kS"/>
                                     </mask>
@@ -240,8 +236,7 @@
                                         <exclude reference="wll-Ur-Dl7"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="32" y="277" width="536" height="46"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="wll-Ur-Dl7"/>
                                     </mask>
@@ -586,24 +581,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYP-O1-7OV">
-                                <rect key="frame" x="196" y="504" width="208" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="208" id="AkN-zk-utf"/>
-                                    <constraint firstAttribute="height" constant="30" id="tBR-4d-Y6H"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
-                                <state key="normal" title="Forgot Password">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="119" y="463" width="157" height="25"/>
-                                </variation>
-                                <connections>
-                                    <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lzq-2o-lDV">
                                 <rect key="frame" x="290" y="443" width="20" height="20"/>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
@@ -635,8 +612,7 @@
                                         <exclude reference="eIA-L0-fLb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="459" y="388" width="100" height="43"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="0rn-zt-FQS"/>
                                         <include reference="EEy-Yr-bWU"/>
@@ -833,6 +809,24 @@
                                     <action selector="openEULAButton:" destination="bha-uc-Tnm" eventType="touchUpInside" id="fgz-AO-RS4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bYP-O1-7OV">
+                                <rect key="frame" x="196" y="504" width="208" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="208" id="AkN-zk-utf"/>
+                                    <constraint firstAttribute="height" constant="30" id="tBR-4d-Y6H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                <state key="normal" title="Forgot Password">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="119" y="463" width="157" height="25"/>
+                                </variation>
+                                <connections>
+                                    <action selector="resetPasswordPressed:" destination="bha-uc-Tnm" eventType="touchUpInside" id="0EI-1j-2nN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -894,7 +888,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Nox-A2-GYD" secondAttribute="trailing" constant="278" id="OFR-4U-ctZ"/>
                             <constraint firstItem="Cot-IL-hPO" firstAttribute="leading" secondItem="lzq-2o-lDV" secondAttribute="trailing" constant="75" id="P0T-2A-JSa"/>
                             <constraint firstItem="Cot-IL-hPO" firstAttribute="top" secondItem="xbZ-KB-OJR" secondAttribute="bottom" constant="43" id="PEA-pI-Mwf"/>
-                            <constraint firstItem="HY5-m2-oXd" firstAttribute="top" secondItem="bYP-O1-7OV" secondAttribute="bottom" constant="41" id="PT5-63-3M6"/>
+                            <constraint firstItem="HY5-m2-oXd" firstAttribute="top" secondItem="bYP-O1-7OV" secondAttribute="bottom" constant="41" id="PT5-63-3M6">
+                                <variation key="widthClass=compact" constant="61"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="HkO-JZ-QH7" secondAttribute="trailing" constant="41" id="PhN-nN-fzM"/>
                             <constraint firstItem="Cot-IL-hPO" firstAttribute="leading" secondItem="4EP-YF-uCt" secondAttribute="leadingMargin" constant="267" id="Pu9-qO-wvI"/>
                             <constraint firstItem="kfS-hu-XbJ" firstAttribute="top" secondItem="HkO-JZ-QH7" secondAttribute="bottom" constant="19" id="Q0X-nn-GBL"/>
@@ -944,7 +940,9 @@
                             </constraint>
                             <constraint firstItem="kfS-hu-XbJ" firstAttribute="top" secondItem="x6x-p8-c8K" secondAttribute="bottom" constant="224" id="mY1-NN-R3V"/>
                             <constraint firstItem="bYP-O1-7OV" firstAttribute="top" secondItem="lzq-2o-lDV" secondAttribute="bottom" constant="30" id="nEu-gu-Ddw"/>
-                            <constraint firstItem="VPe-l4-qnd" firstAttribute="top" secondItem="bYP-O1-7OV" secondAttribute="bottom" constant="3" id="nbU-pR-dWG"/>
+                            <constraint firstItem="VPe-l4-qnd" firstAttribute="top" secondItem="bYP-O1-7OV" secondAttribute="bottom" constant="3" id="nbU-pR-dWG">
+                                <variation key="widthClass=compact" constant="23"/>
+                            </constraint>
                             <constraint firstItem="HY5-m2-oXd" firstAttribute="top" secondItem="HkO-JZ-QH7" secondAttribute="bottom" constant="338" id="nzq-Wy-Bez"/>
                             <constraint firstAttribute="centerX" secondItem="POE-fj-PE4" secondAttribute="centerX" id="o0E-jy-uUY"/>
                             <constraint firstItem="HY5-m2-oXd" firstAttribute="top" secondItem="bYP-O1-7OV" secondAttribute="bottom" constant="41" id="ozG-Hn-hbY"/>
@@ -1208,10 +1206,12 @@
                         <outlet property="activityIndicator" destination="lzq-2o-lDV" id="d8N-h0-TEc"/>
                         <outlet property="emailAddress" destination="HkO-JZ-QH7" id="4uF-AC-OcL"/>
                         <outlet property="emailLabel" destination="YHF-gB-QOn" id="OS5-Ze-wjl"/>
+                        <outlet property="forgotPasswordButton" destination="bYP-O1-7OV" id="zhi-Ub-Her"/>
                         <outlet property="password" destination="xbZ-KB-OJR" id="hhG-aB-ayT"/>
                         <outlet property="passwordLabel" destination="kfS-hu-XbJ" id="e8G-Fl-BaS"/>
                         <outlet property="signInButton" destination="Cot-IL-hPO" id="QBj-Ep-fab"/>
                         <outlet property="signUpButton" destination="Nox-A2-GYD" id="R2J-JH-xfJ"/>
+                        <outlet property="tocButton" destination="VPe-l4-qnd" id="dgn-Hc-PKV"/>
                         <outlet property="welcomeLabel" destination="POE-fj-PE4" id="NcL-9n-392"/>
                     </connections>
                 </viewController>

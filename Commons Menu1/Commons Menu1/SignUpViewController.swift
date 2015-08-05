@@ -23,6 +23,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var tocButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
         buttonStyle(signUpButton)
         buttonStyle(signInButton)
+        buttonStyle(forgotPasswordButton)
+        buttonStyle(tocButton)
         
         
         func labelStyle(label : UILabel){
@@ -431,7 +434,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
 
 //https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
-extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
+extension SignUpViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen
     }
