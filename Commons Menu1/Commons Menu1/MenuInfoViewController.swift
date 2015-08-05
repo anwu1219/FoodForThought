@@ -48,17 +48,15 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         }
         
         // set the programmatical image
-        progDishImage.frame = CGRectMake(16, 76, screenSize.width-32, 180)
+        progDishImage.frame = CGRectMake(16, screenSize.height*0.11, screenSize.width-32, screenSize.height*0.3)
         progDishImage.contentMode = .ScaleAspectFill
         let darkGreenColor = UIColor(red: 25.0/255, green: 58.0/255, blue: 46/255, alpha: 1)
         progDishImage.layer.borderWidth = 6
         progDishImage.layer.borderColor = darkGreenColor.CGColor
         progDishImage.layer.masksToBounds = true
         
-        progScrollInfo.frame = CGRectMake(16, 280, screenSize.width-32, screenSize.height - 280)
-        progScrollInfo.layer.borderWidth = 2
-        progScrollInfo.layer.borderColor = UIColor.blackColor().CGColor
-
+        progScrollInfo.frame = CGRectMake(16, screenSize.height*0.41, screenSize.width-32, screenSize.height - 280)
+       
         
         self.view.addSubview(progDishImage)
         self.view.addSubview(progScrollInfo)
@@ -96,7 +94,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             if susLabels.isEmpty && dish!.eco.isEmpty && dish!.humane.isEmpty && dish!.fair.isEmpty {
                 
                 let noIconLabel = UILabel()
-                noIconLabel.text = "Not Reported ¯¯\\_(ツ)_/¯¯"
+                noIconLabel.text = "Not Reported"
                 noIconLabel.frame = CGRectMake(0, y, 85 * width, 10*height)
                 noIconLabel.textAlignment = .Center
                 noIconLabel.font = UIFont(name: "HelveticaNeue-Light", size: 5 * x)
@@ -199,7 +197,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 ingLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 ingLabel.textColor = UIColor.whiteColor()
                 progScrollInfo.addSubview(ingLabel)
-                y += ingLabel.frame.height + (3*height)
+                y += ingLabel.frame.height + (1*height)
             }
             for var i = 0; i < ingredients.count; i++ {
                 let ingredient = UILabel()

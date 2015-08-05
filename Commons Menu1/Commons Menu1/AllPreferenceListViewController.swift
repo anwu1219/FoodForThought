@@ -81,7 +81,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         let myPreferenceLabel = UILabel()
         //Formats the labels in the view controller
         myPreferenceLabel.text = "My Favorites"
-        myPreferenceLabel.font = UIFont(name: "HelveticaNeue-BoldItalic", size: 0.07 * self.view.frame.width)
+        myPreferenceLabel.font = UIFont(name: "HelveticaNeue-BoldItalic", size: 0.09 * self.view.frame.width)
         myPreferenceLabel.sizeToFit()
         myPreferenceLabel.shadowColor = UIColor.blackColor()
         myPreferenceLabel.shadowOffset = CGSizeMake(2, 2)

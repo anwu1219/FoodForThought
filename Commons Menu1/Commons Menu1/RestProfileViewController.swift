@@ -91,7 +91,9 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
         progSusView.frame = CGRectMake(0, screenSize.height*0.23, screenSize.width-32, screenSize.height*0.21)
-        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.44, screenSize.width-32, screenSize.height*0.62)
+        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.42, screenSize.width-32, screenSize.height*0.56)
+        progRestProfScrollView.contentSize.height = 450
+
         
         //progSusView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(progRestImage)
@@ -219,6 +221,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let searchInMaps = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         searchInMaps.setTitle("Search in Maps", forState: .Normal)
+        searchInMaps.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         searchInMaps.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         searchInMaps.sizeToFit()
         searchInMaps.addTarget(self, action: "mapSearch:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -238,6 +241,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let callRestaurant = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         callRestaurant.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
+        callRestaurant.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         callRestaurant.setTitle("Call Restaurant", forState: .Normal)
         callRestaurant.sizeToFit()
         callRestaurant.addTarget(self, action: "callNumber:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -247,6 +251,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         openUrl.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
+        openUrl.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         openUrl.setTitle("Go To Website", forState: .Normal)
         openUrl.sizeToFit()
         openUrl.addTarget(self, action: "openWebsite:", forControlEvents: UIControlEvents.TouchUpInside)
