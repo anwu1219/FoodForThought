@@ -47,7 +47,7 @@ struct IconInfo{
         ]],
         
         
-    "Ecologially-sound Icon": [
+    "Ecologically Sound Icon": [
         ["Eco": "The Ecologically Sound Icon is displayed when either a restaurant or dish use a product that is certified for ecologically sound practices.\n"],
         ["CBF": "Certified Bird Friendly coffee:  created by the Smithsonian Migratory Bird Center, this certification requires that the coffee is grown organically and under a canopy of native trees. Growing coffee within the canopy of the forest prevents clear cutting, preserves migratory bird habitat, and sequesters carbon. \n",
         "CLS": "Certified Local Sustainable (Local Food Plus): created by the Land Food People Foundations, this non-profit organization seeks to \"promote sustainable agricultural practices that preserve and protect the environment and enhance human welfare and educate the public on the importance of local sustainable food systems.\" \n",
