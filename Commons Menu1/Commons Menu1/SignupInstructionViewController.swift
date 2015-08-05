@@ -11,8 +11,7 @@ import UIKit
 class SignupInstructionViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         
         var dishes: Dishes!
-        private let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
-        private let images = ["sloth","sloth","sloth","sloth"]
+        private let images = ["instruction1","instruction2","instruction3","instruction4"]
         private var count = 0
         private var isFromMain : Bool?
         var pageViewController : UIPageViewController!
@@ -32,12 +31,21 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
             let pageContentViewController = self.viewControllerAtIndex(0)
             self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
             
-            /* We are substracting 30 because we have a start again button whose height is 30*/
-            self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - 30)
+
+            self.pageViewController.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().applicationFrame.width, UIScreen.mainScreen().applicationFrame.height)
             self.addChildViewController(pageViewController)
             self.view.addSubview(pageViewController.view)
             self.pageViewController.didMoveToParentViewController(self)
-        }
+            
+            self.view.backgroundColor = UIColor.blackColor()
+            
+            
+            let appearance = UIPageControl.appearance()
+            appearance.pageIndicatorTintColor = UIColor.grayColor()
+            appearance.currentPageIndicatorTintColor = UIColor.whiteColor()
+            appearance.backgroundColor = UIColor.darkGrayColor()
+            
+    }
         
         @IBAction func start(sender: AnyObject) {
             let pageContentViewController = self.viewControllerAtIndex(0)
@@ -77,26 +85,28 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
         }
         
         func viewControllerAtIndex(index : Int) -> UIViewController? {
-            if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
+            if((self.images.count == 0) || (index >= self.images.count)) {
                 return nil
             }
             let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
             
             pageContentViewController.imageName = self.images[index]
-            pageContentViewController.titleText = self.pageTitles[index]
             pageContentViewController.pageIndex = index
             return pageContentViewController
         }
         
         func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-            return pageTitles.count
+            return images.count
         }
         
         func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
             return 0
         }
-        
-        
+    
+    
+    
+    
+    
         func fromMain(){
             self.isFromMain = true
         }

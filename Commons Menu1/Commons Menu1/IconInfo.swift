@@ -9,7 +9,7 @@
 import Foundation
 
 struct IconInfo{
-    let descriptions = [
+    let descriptions :  [String : [[String: String]]] = [
     "Dish-level Icons": [
         [
 
@@ -35,14 +35,15 @@ struct IconInfo{
         "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass, or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
         "ES":  "This restaurant uses Energy Star appliances to reduce energy consumption. \n ",
         
-        "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and supports the local economy.\n "],
+        "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and supports the local economy.\n ",
+        "C":  "This restaurant composts food scraps instead of sending them to landfills. This process supports nutrient cycling and reduces food waste.\n "
+        ],
         
         ["AI":  "This restaurant’s staff members are educated on common allergens, and this information is available upon request. \n ",
         "CA":  "This restaurant offers catering services. Beneficial services provided by the restaurant can help build a sense of community and bring people together, which promotes social welfare.\n ",
         "FD":  "This restaurant frequently donates prepared food to charities, churches, or food banks. \n ",
         "MD":  "This restaurant contributes monetary donations to charities, churches, or food banks, providing valuable resources to organizations serving underprivileged communities\n ",
-        "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen, or helping at a local farm.\n ",
-        "C":  "This restaurant composts food scraps instead of sending them to landfills. This process supports nutrient cycling and reduces food waste.\n "
+        "VO":  "This restaurant promotes volunteering opportunities to its employees, such as helping run charity events, working at a soup kitchen, or helping at a local farm.\n "
         ]],
         
         

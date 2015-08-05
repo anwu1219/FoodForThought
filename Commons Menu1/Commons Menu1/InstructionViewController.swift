@@ -12,8 +12,7 @@ import UIKit
 class InstructionViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var dishes: Dishes!
-    private let pageTitles = ["Title 1", "Title 2", "Title 3", "Title 4"]
-    private let images = ["sloth","sloth","sloth","sloth"]
+    private let images = ["instruction1","instruction2","instruction3","instruction4"]
     var count = 0
     var pageViewController : UIPageViewController!
     
@@ -28,14 +27,23 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
         pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewController") as! UIPageViewController
         self.pageViewController.dataSource = self
         
+        //self.navigationController?.navigationBarHidden = true
+        
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         
-        /* We are substracting 30 because we have a start again button whose height is 30*/
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - 30)
+        self.pageViewController.view.frame = CGRectMake(0, 0, UIScreen.mainScreen().applicationFrame.width, UIScreen.mainScreen().applicationFrame.height)
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+        
+        self.view.backgroundColor = UIColor.blackColor()
+        
+        var pageControl = UIPageControl.appearance()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        pageControl.backgroundColor = UIColor.clearColor()
+ 
     }
     
     @IBAction func start(sender: AnyObject) {
@@ -75,24 +83,25 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
-    if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
+    if((self.images.count == 0) || (index >= self.images.count)) {
     return nil
     }
     let pageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageContentViewController") as! PageContentViewController
     
     pageContentViewController.imageName = self.images[index]
-    pageContentViewController.titleText = self.pageTitles[index]
     pageContentViewController.pageIndex = index
     return pageContentViewController
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-    return pageTitles.count
+    return images.count
     }
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
     return 0
     }
+
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)

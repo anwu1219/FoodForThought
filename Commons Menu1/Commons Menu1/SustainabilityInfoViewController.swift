@@ -26,9 +26,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let icon = UIImageView()
     private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Sustainability Defined", "Our Methodology", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let levels = ["Restaurant-level Icons", "Dish-level Icons", "Davidson Nutritionist Icons", "Ecologially-sound Icon", "Fair Icon", "Humane Icon"]
-    private let susInfo = ["Foodscape seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.\nThis app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. Foodscape predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.\nWhile Foodscape concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!\n\n",
+    private let susInfo = ["Foodscape seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.\nThis app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. Foodscape predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.\nWhile Foodscape concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!\n\n\n\n\n",
         "We believe it is important for consumers to reconnect with their food and, in addition to the financial implications of their decisions, understand the social and environmental implications of food production, provision and consumption. We hope this app helps you learn and facilitates discussion about what questions you want to ask yourself and your food providers.\nOur food system includes issues related to health, obesity in the United States, water consumption, environmental health impacts of pesticides and fertilizers, inequities of access and availability to healthy food based on socio-economic differences, economic opportunity for local farmers and restaurants, power struggles within food industries between large corporations and small businesses, identity, culture, diversity, and much more. All of these issues can be connected to impacts of policy, subsidies, consumer behavior, advertising and more. It can be overwhelming. We hope to help create a starting point for your journey to learn more about your food and how it is connected to every part of your life. To find out more about all these topics and more visit food.davidsonsustainability.org.\nAs one of the schools supported by The Duke Endowment, who provided the funding for this initiative, we also want this app to be replicable for other colleges and universities. If your school is interested please contact us at food.davidsonsustainability.org to see how we can help integrate new locations into the app or help your school create its own version.\n\n",
-        "Sustainability is a framework that includes the inextricable links among social equity, environmental integrity and economic prosperity – often referred to as the Triple Bottom Line (coined by John Elkington in his 1994 book, Cannibals with Forks). Triple Bottom Line sustainability is a framework we use to facilitate decision-making; because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\n\n{insert triangle image here}\n\nThe Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.\n\"In every deliberation, we must consider the impact on the seventh generation.\"\n- The Great Law of the Iroquois\n\"Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs.\"\n- Brundtland Commission\n\n",
+        "Sustainability is a framework that includes the inextricable links among social equity, environmental integrity and economic prosperity – often referred to as the Triple Bottom Line (coined by John Elkington in his 1994 book, Cannibals with Forks). Triple Bottom Line sustainability is a framework we use to facilitate decision-making; because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.\nThe Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.\n\"In every deliberation, we must consider the impact on the seventh generation.\"\n- The Great Law of the Iroquois\n\"Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs.\"\n- Brundtland Commission\n\n",
         
         "Methodology",
         
@@ -180,11 +180,21 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         imageView.image = UIImage(named: "susTriangle")
         imageView.contentMode = .ScaleToFill
         
-        susInfoTableView.frame = CGRect(x: 0, y: 0.32 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.7 * menuSwipeScroll.frame.height)
+        
+        let topTextLabel = UILabel(frame: CGRect(x: 5 * xUnit, y: 25 * yUnit, width: 88 * xUnit, height: 10 * yUnit))
+        topTextLabel.text = "Foodscape seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information."
+        topTextLabel.font = UIFont(name: "HelveticaNeue-Italic", size: self.view.frame.width * 0.04)
+        topTextLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        topTextLabel.numberOfLines = 0
+        topTextLabel.textAlignment = .Left
+        topTextLabel.sizeToFit()
+        
+        susInfoTableView.frame = CGRect(x: 0, y: 0.42 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.6 * menuSwipeScroll.frame.height)
         susInfoTableView.backgroundColor = UIColor.clearColor()
         
         susInfoTableView.backgroundColor = UIColor.clearColor()
         
+        aboutSusView.addSubview(topTextLabel)
         aboutSusView.addSubview(imageView)
         aboutSusView.addSubview(susInfoTableView)
         
@@ -193,7 +203,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susIconTableView.alpha = 0
         
         menuSwipeScroll.addSubview(susIconTableView)
-        
         menuSwipeScroll.addSubview(aboutSusView)
     
         

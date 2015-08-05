@@ -33,7 +33,7 @@ class ExpandTableViewCell: UITableViewCell {
         titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
 
         downArrowImageView = UIImageView(frame: CGRect.nullRect)
-        downArrowImageView.image = UIImage(named: "MenuItemArrow")
+        downArrowImageView.image = UIImage(named: "infoItemArrow")
         
         contentLabel = UILabel(frame: CGRect.nullRect)
         contentLabel.textColor = UIColor.blackColor()
