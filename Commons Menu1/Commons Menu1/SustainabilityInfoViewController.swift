@@ -20,6 +20,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let menuSwipeScroll = UIScrollView()
     private let  typesTableView = UITableView()
     private let aboutSusView = UIView()
+    private let iconSusView = UIView()
     private let verticalSpace = 0.05 * UIScreen.mainScreen().bounds.height
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susIconTableView = UITableView()
@@ -190,19 +191,36 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susInfoTableView.frame = CGRect(x: 0, y: 0.43 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.55 * menuSwipeScroll.frame.height)
         susInfoTableView.backgroundColor = UIColor.clearColor()
         
-        susInfoTableView.backgroundColor = UIColor.clearColor()
         
         aboutSusView.addSubview(topTextLabel)
         aboutSusView.addSubview(imageView)
         aboutSusView.addSubview(susInfoTableView)
         
         
-        susIconTableView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
-        susIconTableView.alpha = 0
+        let iconTopTextLabel = UILabel(frame: CGRect(x: 1 * xUnit, y: 2 * yUnit, width: 90 * xUnit, height: 18 * yUnit))
+        iconTopTextLabel.text = "Sustainability Icons"
+        iconTopTextLabel.font = UIFont(name: "HelveticaNeue-Bold", size: self.view.frame.width * 0.08)
+        iconTopTextLabel.textAlignment = .Center
         
-        menuSwipeScroll.addSubview(susIconTableView)
+        
+        iconSusView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
+        iconSusView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        iconSusView.layer.borderWidth = 10
+        iconSusView.layer.cornerRadius = 5
+        iconSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
+        iconSusView.alpha = 0
+        
+        susIconTableView.frame = CGRect(x: 0, y: 0.20 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.79 * menuSwipeScroll.frame.height)
+        susIconTableView.backgroundColor = UIColor.clearColor()
+        
+        
+        iconSusView.addSubview(susIconTableView)
+        iconSusView.addSubview(iconTopTextLabel)
+
+        menuSwipeScroll.addSubview(iconSusView)
         menuSwipeScroll.addSubview(aboutSusView)
-    
+        
+
         
     }
     
@@ -437,14 +455,16 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         if type == "About Sustainability" {
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                    self.susIconTableView.alpha = 0
+                    self.iconSusView.alpha = 0
                     self.aboutSusView.alpha = 1
                 }, completion: nil)
+            self.title = "About Sustainability"
         } else {
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                self.susIconTableView.alpha = 1
+                self.iconSusView.alpha = 1
                 self.aboutSusView.alpha = 0
                 }, completion: nil)
+            self.title = "Sustainability Icon"
         }
         
     }
