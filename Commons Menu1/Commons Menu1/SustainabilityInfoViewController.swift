@@ -189,7 +189,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         topTextLabel.textAlignment = .Left
         topTextLabel.sizeToFit()
         
-        susInfoTableView.frame = CGRect(x: 0, y: 0.42 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.6 * menuSwipeScroll.frame.height)
+        susInfoTableView.frame = CGRect(x: 0, y: 0.45 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.55 * menuSwipeScroll.frame.height)
         susInfoTableView.backgroundColor = UIColor.clearColor()
         
         susInfoTableView.backgroundColor = UIColor.clearColor()
