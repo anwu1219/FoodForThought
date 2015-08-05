@@ -130,14 +130,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
     }
     
-    
     private func addScrollView(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
         let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
-        
-        
-
-        
 
         var y: CGFloat = 10.0
         susView.backgroundColor = UIColor(red: 243/255.0, green: 244/255.0, blue: 230/255.0, alpha: 1)
@@ -227,7 +222,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         swipeLeftGestureRecognizer.addTarget(self, action: "bringBack:")
         menuSwipeScroll.addGestureRecognizer(swipeLeftGestureRecognizer)
         
-        
         let imageView = UIImageView(frame: CGRect(x: 25 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 23 * yUnit))
         imageView.image = UIImage(named: "susTriangle")
         imageView.contentMode = .ScaleToFill
@@ -241,11 +235,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         menuSwipeScroll.addSubview(aboutSusView)
         
     }
-    
-    
-    
- 
-    
     
     internal func bringBack(sender: AnyObject){
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
@@ -362,10 +351,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         return defaultHeight
     }
     
-    
-    
-    
-    
     func getHeight(index : Int) -> CGFloat{
         let testLabel = UILabel(frame: CGRect(x: 0, y: 0, width: susInfoTableView.frame.width * 0.85, height: 0))
         testLabel.text = susInfo[index]
@@ -394,7 +379,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -402,7 +386,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
 
 //https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
-extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
+extension SignUpViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen
     }

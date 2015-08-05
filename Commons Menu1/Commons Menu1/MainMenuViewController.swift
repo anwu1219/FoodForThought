@@ -28,13 +28,11 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setBackground("MainMenuBackground")
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
         foodTinderMenuButton.setTitle(" Food For Thought", forState: .Normal)
         myPrefMenuButton.setTitle(" My Favorites", forState: .Normal)
         sustInfoMenuButton.setTitle(" Sustainability Info", forState: .Normal)
-        
         
         func buttonStyle(button: UIButton, title: String){
             button.setTitle(title, forState: .Normal)
@@ -46,8 +44,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             button.titleLabel?.layer.shadowRadius = 2
             button.titleLabel?.layer.shadowOpacity = 1.0
         }
-        
-        
+
         buttonStyle(restMenuButton, " See All Restaurants")
         buttonStyle(foodTinderMenuButton, " Food For Thought")
         buttonStyle(myPrefMenuButton, " My Favorites")
@@ -64,12 +61,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.navigationItem.setHidesBackButton(true, animated:true)
         
-        
         instructButton.frame = CGRect(x: 0.9 * view.frame.width, y: 0.915 * view.frame.height, width: 0.06 * view.frame.width, height: 0.06 * view.frame.width)
         instructButton.tintColor = UIColor.whiteColor()
         instructButton.addTarget(self, action: "viewInstructPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(instructButton)
-        
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
             self.fetchPreferenceData()

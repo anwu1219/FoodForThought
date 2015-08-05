@@ -99,7 +99,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if preferences.count == 0 {
 
-            return "No Dishes in your Preference list"
+            return "No Dishes in your Favorites list"
         }
         else {
             return location! + " Favorites"

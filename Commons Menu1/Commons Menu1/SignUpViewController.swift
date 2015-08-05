@@ -197,7 +197,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             //ensure password is longer than 6 characters and is shorter than 20 characters
             if checkPasswordLengthShort(password.text) == true {
                 let alertController = UIAlertController(title: "Agree to terms and conditions",
-                    message: "Click I AGREE to signal that you agree to the End User Licence Agreement.",
+                    message: "Click I AGREE to signal that you accept to the Terms and Conditions.",
                     preferredStyle: UIAlertControllerStyle.Alert
                 )
                 alertController.addAction(UIAlertAction(title: "I AGREE",
@@ -207,7 +207,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 )
                 alertController.addAction(UIAlertAction(title: "I do NOT agree",
                     style: UIAlertActionStyle.Default,
-                    //handler: nil
                     handler: { alertController in self.cancelSignUp() }
                     )
                 )
@@ -223,41 +222,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func signUpAction(sender: AnyObject) {
-        
-        let titlePrompt = UIAlertController(title: "Sign Up",
-            message: "Sign up with your email and a password",
-            preferredStyle: .Alert)
-        
-        var emailTextField: UITextField?
-        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            emailTextField = textField
-            emailTextField?.keyboardType = UIKeyboardType.EmailAddress
-            textField.placeholder = "Email"
+    @IBAction func openEULAButton(sender: AnyObject) {
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+        vc.modalPresentationStyle = .Popover
+        if let pres = vc.popoverPresentationController {
+            pres.delegate = self
         }
         
-        var passwordTextField: UITextField?
-        titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            passwordTextField = textField
-            passwordTextField?.keyboardType = UIKeyboardType.Default
-            passwordTextField?.secureTextEntry = true
-            textField.placeholder = "Password"
+        let wv = UIWebView()
+        vc.view.addSubview(wv)
+        wv.frame = vc.view.bounds
+        wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+        let url = NSURL(string: "http://food.davidsonsustainability.org")
+        let request = NSURLRequest(URL: url!)
+        wv.loadRequest(request)
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+        
+        if let pop = vc.popoverPresentationController {
+            pop.sourceView = (sender as! UIView)
+            pop.sourceRect = (sender as! UIView).bounds
         }
-        
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
-        
-        titlePrompt.addAction(cancelAction)
-        
-        titlePrompt.addAction(UIAlertAction(title: "Sign Up", style: .Default, handler: { (action) -> Void in
-            if let textField = emailTextField {
-                self.signUp(textField.text)
-
-            }
-        }))
-        
-        self.presentViewController(titlePrompt, animated: true, completion: nil)
-
-        
     }
     
     @IBAction func signIn(sender: AnyObject) {
@@ -331,7 +317,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func clearTextField(){
         emailAddress.text = ""
         password.text = ""
-        
     }
     
     
@@ -441,5 +426,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             let instructionViewController = segue.destinationViewController as! InstructionViewController
             instructionViewController.dishes = dishes
         }
+    }
+}
+
+
+//https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
+extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .FullScreen
+    }
+    
+    func presentationController(controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        let vc = controller.presentedViewController
+        let nav = UINavigationController(rootViewController: vc)
+        let b = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissHelp:")
+        vc.navigationItem.rightBarButtonItem = b
+        return nav
+    }
+    
+    func dismissHelp(sender:AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
