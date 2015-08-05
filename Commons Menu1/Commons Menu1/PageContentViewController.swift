@@ -9,22 +9,17 @@
 import UIKit
 
 class PageContentViewController: UIViewController {
-
-    @IBOutlet weak var heading: UILabel!
-    @IBOutlet weak var bkImageView: UIImageView!
     
      var pageIndex: Int?
-     var titleText : String!
      var imageName : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bkImageView.image = UIImage(named: imageName)
-        self.heading.text = self.titleText
-        self.heading.alpha = 0.1
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.heading.alpha = 1.0
-        })
+        self.navigationController?.navigationBarHidden = true
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.92 * self.view.frame.height))
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .ScaleToFill
         
+        self.view.addSubview(imageView)
     }
 }
