@@ -253,7 +253,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             var y : CGFloat = 0.0
             let descriptions = IconInfo().descriptions[levels[indexPath.row]]!
             for section in descriptions {
-            for labelName: String in section.keys.array {
+                for labelName: String in section.keys.array {
                 var x : CGFloat = 0.0
                 let labelView = UIView()
                 if UIImage(named: labelName) != nil {
@@ -276,7 +276,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                 cell.susContentView.addSubview(labelView)
                 y = y + labelDescription.frame.height
             }
-        }
+            }
             cell.backgroundColor = UIColor.clearColor()
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
@@ -407,7 +407,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         var y : CGFloat = 0.0
         let descriptions = IconInfo().descriptions[levels[index]]!
         for section in descriptions {
-        for labelName: String in section.keys.array {
+            for labelName: String in section.keys.array {
             var x : CGFloat = 0.0
             let labelView = UIView()
             if UIImage(named: labelName) != nil {
@@ -430,7 +430,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             testSusView.addSubview(labelView)
             y = y + labelDescription.frame.height
         }
-    }
+        }
         return y
     }
     
