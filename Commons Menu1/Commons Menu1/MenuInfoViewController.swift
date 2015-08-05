@@ -48,14 +48,14 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         }
         
         // set the programmatical image
-        progDishImage.frame = CGRectMake(16, screenSize.height*0.11, screenSize.width-32, screenSize.height*0.3)
+        progDishImage.frame = CGRectMake(16, 72, screenSize.width-32, screenSize.height*0.26)
         progDishImage.contentMode = .ScaleAspectFill
         let darkGreenColor = UIColor(red: 25.0/255, green: 58.0/255, blue: 46/255, alpha: 1)
         progDishImage.layer.borderWidth = 6
         progDishImage.layer.borderColor = darkGreenColor.CGColor
         progDishImage.layer.masksToBounds = true
         
-        progScrollInfo.frame = CGRectMake(16, screenSize.height*0.41, screenSize.width-32, screenSize.height - 280)
+        progScrollInfo.frame = CGRectMake(16, screenSize.height*0.42, screenSize.width-32, screenSize.height*0.58)
        
         
         self.view.addSubview(progDishImage)
@@ -168,7 +168,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             label.sizeToFit()
             //label.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
             progScrollInfo.addSubview(label)
-            y += label.frame.height + (3 * height)
+            y += label.frame.height + (1 * height)
         }
         
         if let price = dish?.price {
@@ -176,13 +176,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 let label = UILabel()
                 //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
                 label.text = "Price: \(price)"
-                label.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                label.textColor = UIColor.whiteColor()
+                label.frame = CGRectMake(x, y, 91 * width, 5 * height)
                 label.numberOfLines = 0
                 label.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
-                label.textColor = UIColor.whiteColor()
                 progScrollInfo.addSubview(label)
-                y += label.frame.height + (1*height)
+                y += label.frame.height + (0.7*height)
             }
         }
         
@@ -191,13 +191,13 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 let ingLabel = UILabel()
                 //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
                 ingLabel.text = "Ingredients:"
-                ingLabel.frame = CGRectMake(x, y, 91 * width, 10 * height)
+                ingLabel.frame = CGRectMake(x, y, 91 * width, 5 * height)
                 ingLabel.numberOfLines = 0
                 ingLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 ingLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 ingLabel.textColor = UIColor.whiteColor()
                 progScrollInfo.addSubview(ingLabel)
-                y += ingLabel.frame.height + (1*height)
+                y += ingLabel.frame.height + (0.7*height)
             }
             for var i = 0; i < ingredients.count; i++ {
                 let ingredient = UILabel()

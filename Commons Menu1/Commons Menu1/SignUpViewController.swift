@@ -190,9 +190,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    
-    
     //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
@@ -368,7 +365,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 success.addAction(okButton)
                 self.presentViewController(success, animated: false, completion: nil)
                 
-            }else {
+            } else {
                 let errormessage = error!.userInfo!["error"] as! NSString
                 let error = UIAlertController(title: "Cannot complete request", message: errormessage as String, preferredStyle: .Alert)
                 let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)

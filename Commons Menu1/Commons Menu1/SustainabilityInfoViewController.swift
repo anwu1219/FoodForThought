@@ -351,7 +351,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
     }
     
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView == susInfoTableView || tableView == susIconTableView {
         let previousIndexPath = selectedIndexPath
@@ -414,7 +413,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         testLabel.sizeToFit()
         return testLabel.frame.height * 1.2
     }
-    
     
     func getHeightForIcon(index : Int) -> CGFloat{
         var testSusView = UIView(frame: CGRect(x: 0, y: 0, width: 0.9 * susIconTableView.frame.width, height: 0))
