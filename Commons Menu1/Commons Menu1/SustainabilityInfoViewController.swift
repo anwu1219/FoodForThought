@@ -185,7 +185,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         let iconTopTextImage = UIImageView(frame: CGRect(x: 25 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 23 * yUnit))
-        iconTopTextImage.image = UIImage(named: "susTriangle")
+        iconTopTextImage.image = UIImage(named: "earthLeaves")
         iconTopTextImage.contentMode = .ScaleToFill
         
         
