@@ -10,7 +10,7 @@ import UIKit
 
 class ExpandTableViewCell: UITableViewCell {
     let titleLabel : UILabel
-    let contentLabel : UILabel
+    let contentLabel : UITextView
     let susContentView : UIView
     
     let foodSystemImageView : UIImageView
@@ -35,11 +35,10 @@ class ExpandTableViewCell: UITableViewCell {
         downArrowImageView = UIImageView(frame: CGRect.nullRect)
         downArrowImageView.image = UIImage(named: "infoItemArrow")
         
-        contentLabel = UILabel(frame: CGRect.nullRect)
+        contentLabel = UITextView(frame: CGRect.nullRect)
         contentLabel.textColor = UIColor.blackColor()
-        contentLabel.numberOfLines = 0
-        contentLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        contentLabel.textColor = UIColor.blueColor()    
+        contentLabel.textColor = UIColor.blueColor()
+        contentLabel.userInteractionEnabled = false
         
         susContentView = UIView(frame: CGRect.nullRect)
         
