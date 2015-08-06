@@ -90,7 +90,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
-        icon.frame = CGRect(x: 60 * xUnit + 7, y: verticalSpace, width: 1.5 * widthPadding, height: 2 * verticalSpace)
+        icon.frame = CGRect(x: 60 * xUnit + 7.5, y: verticalSpace, width: 1.5 * widthPadding, height: 2 * verticalSpace)
         icon.setBackgroundImage(UIImage(named: "arrowIcon"), forState: UIControlState.Normal)
         icon.contentMode = .ScaleToFill
         icon.addTarget(self, action: "viewMenu:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -184,7 +184,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         aboutSusView.addSubview(susInfoTableView)
         
         
-        let iconTopTextImage = UIImageView(frame: CGRect(x: 25 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 23 * yUnit))
+        let iconTopTextImage = UIImageView(frame: CGRect(x: 27 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 21 * yUnit))
         iconTopTextImage.image = UIImage(named: "earthLeaves")
         iconTopTextImage.contentMode = .ScaleToFill
         
