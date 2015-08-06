@@ -25,6 +25,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susIconTableView = UITableView()
     private let icon = UIButton()
+    private let urls = IconDescription().urls
     private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Our Methodology", "Sustainability Defined", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let levels = ["Restaurant-level Icons", "Dish-level Icons", "Davidson Nutritionist Icons", "Ecologically Sound Icon", "Fair Icon", "Humane Icon"]
     var susInfo = ["<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><i>Foodscape</i> seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">This app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. <i>Foodscape</i> predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">While <i>Foodscape</i> concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!</p>".html2AttStr,
@@ -48,7 +49,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         super.viewDidLoad()
 
         setBackground("SustyPageBackground")
-        menuSwipeScroll.frame = CGRect(x: widthPadding * 0.5 , y: 2.5 * verticalSpace, width: UIScreen.mainScreen().bounds.width-widthPadding, height: UIScreen.mainScreen().bounds.height - (2.7*verticalSpace))
+        menuSwipeScroll.frame = CGRect(x: widthPadding * 0.5 , y: 2.6 * verticalSpace, width: UIScreen.mainScreen().bounds.width-widthPadding, height: UIScreen.mainScreen().bounds.height - (2.7*verticalSpace))
         menuSwipeScroll.backgroundColor = UIColor.clearColor()
         menuSwipeScroll.contentSize = CGSize(width: 1.66 * menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.635 * menuSwipeScroll.frame.width, y: 0), animated: false)
@@ -273,7 +274,13 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     labelDescription.editable = false
                     labelDescription.scrollEnabled = false
                     labelDescription.backgroundColor = UIColor.clearColor()
-                labelDescription.text = section[labelName]!
+                if x == widthPadding {
+                    var text = NSMutableAttributedString(string: section[labelName]!)
+                    text.setAsLink(labelName, linkURL: urls[labelName]!)
+                    labelDescription.attributedText = text
+                } else {
+                    labelDescription.text = section[labelName]!
+                }
 
                 labelDescription.textAlignment = .Left
                 labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
@@ -418,6 +425,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             }
             let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 3 * widthPadding, height: 0))
             labelDescription.text = section[labelName]!
+            if x == widthPadding {
+                
+            }
             labelDescription.textAlignment = .Left
             labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
             labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)
