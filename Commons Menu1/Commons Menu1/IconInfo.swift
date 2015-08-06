@@ -30,9 +30,9 @@ struct IconInfo{
         ],
         
     "Restaurant-level Icons":[
-        ["FS":  "This restaurant prepares meals from scratch. This approach to food preperation increases a restaurant's menu flexibility.\n ",
-        "L":  "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships between farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
-        "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass, or certain metals. Promoting closed loop recycling cycles saves raw materials for future generations.\n ",
+        ["FS":  "This restaurant prepares meals from scratch. This approach to food preparation increases the restaurant's menu flexibility.\n ",
+        "L":  "This restaurant provides food options from local farms that are within 250 miles. Local sourcing builds relationships among farmers, restaurant owners, and customers, which creates a sense of community and promotes the local economy.\n ",
+        "R":  "This restaurant recycles appropriate materials, such as cardboard, correct plastics, glass, or certain metals. Promoting closed loop recycling saves raw materials for future generations.\n ",
         "ES":  "This restaurant uses Energy Star appliances to reduce energy consumption. \n ",
         
         "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries. This builds relationships between producers, restaurant owners, and customers, which creates a sense of community and supports the local economy.\n ",
