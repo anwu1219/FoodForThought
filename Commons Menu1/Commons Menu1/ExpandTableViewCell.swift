@@ -38,7 +38,7 @@ class ExpandTableViewCell: UITableViewCell {
         contentLabel = UITextView(frame: CGRect.nullRect)
         contentLabel.textColor = UIColor.blackColor()
         contentLabel.textColor = UIColor.blueColor()
-        contentLabel.userInteractionEnabled = false
+        contentLabel.editable = false
         
         susContentView = UIView(frame: CGRect.nullRect)
         
