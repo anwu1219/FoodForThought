@@ -58,9 +58,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     private var disLikes = Set<Dish>()
     private var types = [String]()
     private var edited = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         
         let yUnit: CGFloat = screenSize.height / 100
         let xUnit: CGFloat = screenSize.width / 100

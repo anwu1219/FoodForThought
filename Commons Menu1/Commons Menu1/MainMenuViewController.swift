@@ -23,7 +23,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     let instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
-    var susInfoArray = [NSMutableAttributedString]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +78,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 }
             }
         }
-        self.susInfoArray = susInfo().susInfoArray
     }
     
     
@@ -256,7 +254,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         }
         if segue.identifier == "mainToInfoSegue" {
             let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
-            sustainabilityInfoViewController.susInfo = self.susInfoArray
         }
     }
 }

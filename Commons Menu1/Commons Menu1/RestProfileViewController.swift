@@ -20,7 +20,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     private let progRestImage = UIImageView()
     private var isWebPage = Bool()
 
-
     
     @IBOutlet weak var restProfDescription: UILabel!
     @IBOutlet weak var restProfName: UINavigationItem!
@@ -28,7 +27,6 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setBackground("genericBackground")
         
@@ -281,7 +279,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         hours.frame = CGRectMake(0.05*width, y, hours.frame.width, hours.frame.height)
        progRestProfScrollView.addSubview(hours)
         y += hours.frame.height
-        let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         var likeHours = Dictionary<String, [String]>()
         var valuePositions: [String] = []
         

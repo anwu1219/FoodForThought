@@ -559,7 +559,7 @@
                                     <action selector="signIn:" destination="bha-uc-Tnm" eventType="touchUpInside" id="qNu-ow-u8k"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfS-hu-XbJ">
                                 <rect key="frame" x="57" y="299" width="105" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kfS-hu-XbJ" secondAttribute="height" multiplier="19:8" id="Umg-Df-Biu"/>
@@ -586,7 +586,7 @@
                                     <rect key="frame" x="51" y="323" width="292" height="32"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nox-A2-GYD">
                                 <rect key="frame" x="41" y="407" width="125" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="71" id="8iC-Gi-nNe"/>
@@ -663,7 +663,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HkO-JZ-QH7">
                                 <rect key="frame" x="51" y="250" width="498" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="YhL-uS-ZmK">
@@ -689,7 +689,7 @@
                                     <rect key="frame" x="45" y="278" width="298" height="30"/>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="••••••••••" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xbZ-KB-OJR">
                                 <rect key="frame" x="51" y="339" width="498" height="30"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1374,10 +1374,10 @@
         <image name="menuButton" width="559" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="sXz-wK-Xvd"/>
         <segue reference="6HG-gM-2cC"/>
         <segue reference="Z4n-Rp-1Qi"/>
-        <segue reference="2sF-BO-Jmm"/>
-        <segue reference="sXz-wK-Xvd"/>
+        <segue reference="y85-vf-aeF"/>
         <segue reference="aZ9-33-JLe"/>
     </inferredMetricsTieBreakers>
 </document>
