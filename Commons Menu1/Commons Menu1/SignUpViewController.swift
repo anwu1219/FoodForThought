@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
     final private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    private var isTOCButton = Bool()
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
@@ -23,6 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var tocButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         buttonStyle(signUpButton)
         buttonStyle(signInButton)
         buttonStyle(forgotPasswordButton)
+        buttonStyle(tocButton)
         
         
         func labelStyle(label : UILabel){
@@ -154,30 +157,30 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func openTOCAction(sender: AnyObject) {
+        isTOCButton = true
+        openEULAButton(sender)
+    }
     
     func processSignUp() {
         let userEmailAddress = emailAddress.text.lowercaseString
         let userPassword = password.text
-      
 
         // Start activity indicator
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         activityIndicator.color = UIColor.whiteColor()
-        
 
         // Create the user
         let user = PFUser()
         user.username = userEmailAddress
         user.password = userPassword
         user.email = userEmailAddress
-        
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
                 //performs automatic segue to main menu
                 self.performSegueWithIdentifier("instructionSegue", sender: nil)
-
             } else {
                 let signUpFailed = UIAlertView(title: "Sign Up Error", message: "Email Already Exists", delegate: nil, cancelButtonTitle: "OK")
                 // shows alert to user
@@ -194,21 +197,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if isValidEmail(emailAddress.text) == true {
             //ensure password is longer than 6 characters and is shorter than 20 characters
             if checkPasswordLengthShort(password.text) == true {
-                let alertController = UIAlertController(title: "Agree to terms and conditions",
-                    message: "Click I AGREE to signal that you accept to the Terms and Conditions.",
+                let alertController = UIAlertController(title: "Terms & Conditions",
+                    message: "I have read and agree to the \nTerms & Conditions.",
                     preferredStyle: UIAlertControllerStyle.Alert
                 )
-                alertController.addAction(UIAlertAction(title: "I AGREE",
+                alertController.addAction(UIAlertAction(title: "I Agree",
                     style: UIAlertActionStyle.Default,
                     handler: { alertController in self.processSignUp()}
                     )
                 )
-                alertController.addAction(UIAlertAction(title: "I do NOT agree",
+                alertController.addAction(UIAlertAction(title: "Cancel",
                     style: UIAlertActionStyle.Default,
                     handler: { alertController in self.cancelSignUp() }
                     )
                 )
-                alertController.addAction(UIAlertAction(title: "Read ToC",
+                alertController.addAction(UIAlertAction(title: "Read Terms & Conditions",
                     style: UIAlertActionStyle.Default,
                     handler: { alertController in self.openEULAButton(sender) }
                     )
@@ -452,28 +455,13 @@ extension SignUpViewController: UIPopoverPresentationControllerDelegate {
     }
     
     func dismissHelp(sender:AnyObject) {
+        if isTOCButton == true {
         self.dismissViewControllerAnimated(true, completion: nil)
-        let alertController = UIAlertController(title: "Agree to terms and conditions",
-            message: "Click I AGREE to signal that you accept to the Terms and Conditions.",
-            preferredStyle: UIAlertControllerStyle.Alert
-        )
-        alertController.addAction(UIAlertAction(title: "I AGREE",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.processSignUp()}
-            )
-        )
-        alertController.addAction(UIAlertAction(title: "I do NOT agree",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.cancelSignUp() }
-            )
-        )
-        alertController.addAction(UIAlertAction(title: "Read ToC",
-            style: UIAlertActionStyle.Default,
-            handler: { alertController in self.openEULAButton(sender) }
-            )
-        )
-        
-        // Display alert
-        self.presentViewController(alertController, animated: true, completion: nil)
+            isTOCButton = false
+        }
+        else {
+        self.dismissViewControllerAnimated(true, completion: nil)
+            signUpButton.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+        }
     }
 }
