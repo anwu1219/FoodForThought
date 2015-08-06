@@ -31,7 +31,6 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     private var preferences = [String: [Dish]]()
     var dishes : Dishes!
     private var keys = [String]()
-    private let savingAlert = UIAlertController(title: "Saving...", message: "", preferredStyle: UIAlertControllerStyle.Alert)
     private var edited = false
     private var indexTitles = [String]()
     private let menuSwipeScroll = UIScrollView()
@@ -137,14 +136,16 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
+            if self.edited {
+
             if Reachability.isConnectedToNetwork(){
-                if edited {
-                    presentViewController(savingAlert, animated: true, completion: nil)
+                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
                     self.uploadPreferences()
-                }
-            } else {
-                noInternetAlert("Unable to save!")
             }
+            }else {
+                self.noInternetAlert("Unable to save!")
+            }
+        }
         }
     }
     
@@ -350,9 +351,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
                                         newPreference["location"] = dish.location
                                         newPreference.saveInBackgroundWithBlock({
                                             (success: Bool, error: NSError?) -> Void in
-                                            self.savingAlert.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                                
-                                            })
+                                            
                                         })
                                     }
                                 }
