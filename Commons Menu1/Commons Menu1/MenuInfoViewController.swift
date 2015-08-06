@@ -22,6 +22,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     private let progDishImage = UIImageView()
     private let progScrollInfo = UIScrollView()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +62,6 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         self.view.addSubview(progDishImage)
         self.view.addSubview(progScrollInfo)
 
-        
         layoutPage()
     }
     
