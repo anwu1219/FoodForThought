@@ -48,14 +48,14 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         }
         
         // set the programmatical image
-        progDishImage.frame = CGRectMake(16, 72, screenSize.width-32, screenSize.height*0.26)
+        progDishImage.frame = CGRectMake(16, screenSize.height*0.12+7, screenSize.width-32, screenSize.height*0.26)
         progDishImage.contentMode = .ScaleAspectFill
         let darkGreenColor = UIColor(red: 25.0/255, green: 58.0/255, blue: 46/255, alpha: 1)
         progDishImage.layer.borderWidth = 6
         progDishImage.layer.borderColor = darkGreenColor.CGColor
         progDishImage.layer.masksToBounds = true
         
-        progScrollInfo.frame = CGRectMake(16, screenSize.height*0.42, screenSize.width-32, screenSize.height*0.58)
+        progScrollInfo.frame = CGRectMake(16, screenSize.height*0.39+7, screenSize.width-32, screenSize.height*0.58)
        
         
         self.view.addSubview(progDishImage)
