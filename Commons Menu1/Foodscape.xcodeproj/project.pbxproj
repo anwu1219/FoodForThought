@@ -30,6 +30,7 @@
 		F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */; };
 		F338EB261B7289650008B40B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB251B7289650008B40B /* StringExtension.swift */; };
 		F338EB281B7391420008B40B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB271B7391420008B40B /* NSAttributedStringExtension.swift */; };
+		F338EB2C1B73BB950008B40B /* susInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB2B1B73BB950008B40B /* susInfo.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */; };
 		F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */; };
@@ -99,6 +100,7 @@
 		F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
 		F338EB251B7289650008B40B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F338EB271B7391420008B40B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		F338EB2B1B73BB950008B40B /* susInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = susInfo.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				F32372D61B575DED008A7C91 /* IconDescription.swift */,
 				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
+				F338EB2B1B73BB950008B40B /* susInfo.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				F3E707101B3460850072E442 /* PreferenceListViewController.swift in Sources */,
 				F3F1CE921B6C0FC100CFA4BF /* Preference.swift in Sources */,
 				40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */,
+				F338EB2C1B73BB950008B40B /* susInfo.swift in Sources */,
 				40D502141B4AC4E30027F1DD /* RestProfile.swift in Sources */,
 				13C777031B583D4600BD2A39 /* SuperIconButton.swift in Sources */,
 				F39905981B3311A4004E74C6 /* Dish.swift in Sources */,

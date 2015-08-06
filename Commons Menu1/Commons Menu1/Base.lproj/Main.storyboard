@@ -194,7 +194,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="BYz-6F-mJb" kind="show" id="2sF-BO-Jmm"/>
+                                    <segue destination="BYz-6F-mJb" kind="show" identifier="mainToInfoSegue" id="2sF-BO-Jmm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-3x-4nw">
@@ -639,7 +639,7 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHF-gB-QOn">
                                 <rect key="frame" x="57" y="216" width="60" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="YHF-gB-QOn" secondAttribute="height" multiplier="292:33" id="KSx-Vr-jT3"/>

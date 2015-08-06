@@ -23,7 +23,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     let instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
-    
+    var susInfoArray = [NSMutableAttributedString]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
             self.fetchPreferenceData()
             self.fetchDislikeData()
+            self.susInfoArray = susInfo().susInfoArray
             self.getNumberOfDishes()
             if let user =  PFUser.currentUser() {
                 if let tinderViewed = user["tinderViewed"] as? Bool {
@@ -245,6 +246,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         if segue.identifier == "mainToAllPreferencesSegue"{
             let allPreferenceListViewController = segue.destinationViewController as! AllPreferenceListViewController
             allPreferenceListViewController.dishes = dishes
+        }
+        if segue.identifier == "mainToInfoSegue" {
+            let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
+            sustainabilityInfoViewController.susInfo = self.susInfoArray
         }
     }
 }
