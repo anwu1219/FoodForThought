@@ -24,11 +24,11 @@ struct IconDescription{
         "LA":  "This restaurant sources alcoholic beverages from local breweries and wineries.\n ",
         "R":  "This restaurant recycles appropriate materials.\n ",
         
-        "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provides important B vitamins and fiber. \n",
+        "CE":  "This food item is a good source of carb energy. Carbohydrates are the body’s preferred source of fuel and provide important B vitamins and fiber. \n",
         "ES":  "This restaurant uses Energy Star appliances to reduce energy consumption. \n",
         "HF":  "This food item is a good source of healthy fat. Healthy fats add flavor and satiety to food, are heart healthy, prevent inflammation, aid in the absorption of fat-soluble vitamins, and provide energy.\n ",
         "PP":  "This food item is a good source of protein. Proteins are the building blocks of most body tissues and carry out metabolic properties, such as transporting oxygen throughout the body.\n ",
-        "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient rich foods are important for immune system health, energy metabolism and disease prevention.\n ",
+        "VN":  "This food item is rich in nutrients such as essential vitamins and minerals. Nutrient-rich foods are important for immune system health, energy metabolism and disease prevention.\n ",
 
         "Humane": "Humane:\n\n",
         "Eco": "Ecologicaly Sound:\n\n",

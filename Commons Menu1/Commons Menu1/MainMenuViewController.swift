@@ -69,7 +69,6 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
             self.fetchPreferenceData()
             self.fetchDislikeData()
-            self.susInfoArray = susInfo().susInfoArray
             self.getNumberOfDishes()
             if let user =  PFUser.currentUser() {
                 if let tinderViewed = user["tinderViewed"] as? Bool {
@@ -80,6 +79,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
                 }
             }
         }
+        self.susInfoArray = susInfo().susInfoArray
     }
     
     

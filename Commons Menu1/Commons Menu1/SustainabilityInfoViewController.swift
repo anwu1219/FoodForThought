@@ -25,7 +25,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susIconTableView = UITableView()
     private let icon = UIButton()
-    private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Sustainability Defined", "Our Methodology", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
+    private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Our Methodology", "Sustainability Defined", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let levels = ["Restaurant-level Icons", "Dish-level Icons", "Davidson Nutritionist Icons", "Ecologically Sound Icon", "Fair Icon", "Humane Icon"]
     var susInfo : [NSMutableAttributedString]!
     private let susInfoTableView = UITableView()
@@ -67,8 +67,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             for mutableAttributedString in self.susInfo {
                 mutableAttributedString.setAsLink("food.davidsonsustainability.org", linkURL: "http://food.davidsonsustainability.org")
             }
-            self.susInfo[4].setAsLink("http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx", linkURL: "http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx")
-            self.susInfo[4].setAsLink("http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf", linkURL: "http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf")
+            self.susInfo[4].setAsLink(" here", linkURL: "http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx")
+            self.susInfo[4].setAsLink(" report ", linkURL: "http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf")
         }
     }
     
