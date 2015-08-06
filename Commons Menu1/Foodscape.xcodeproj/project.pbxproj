@@ -16,6 +16,7 @@
 		407305441B32037C00DE02D2 /* SustainabilityInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */; };
 		407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */; };
 		407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */; };
+		409F18B61B739E07002B29DA /* TermsOfConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F18B51B739E07002B29DA /* TermsOfConditions.swift */; };
 		40AC266A1B418B1700C85C5A /* FoodTinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */; };
 		40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D502111B4AC2520027F1DD /* RestProfileViewController.swift */; };
 		40D502141B4AC4E30027F1DD /* RestProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D502131B4AC4E30027F1DD /* RestProfile.swift */; };
@@ -80,6 +81,7 @@
 		407305431B32037C00DE02D2 /* SustainabilityInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SustainabilityInfoViewController.swift; sourceTree = "<group>"; };
 		407898D41B3300320006E9C5 /* MenuSwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSwipeViewController.swift; sourceTree = "<group>"; };
 		407898D81B3302DB0006E9C5 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		409F18B51B739E07002B29DA /* TermsOfConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfConditions.swift; sourceTree = "<group>"; };
 		40AC26691B418B1700C85C5A /* FoodTinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTinderViewController.swift; sourceTree = "<group>"; };
 		40D502111B4AC2520027F1DD /* RestProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfileViewController.swift; sourceTree = "<group>"; };
 		40D502131B4AC4E30027F1DD /* RestProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestProfile.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F32372D61B575DED008A7C91 /* IconDescription.swift */,
+				409F18B51B739E07002B29DA /* TermsOfConditions.swift */,
 				F3AD04121B66E9A000D737ED /* IconInfo.swift */,
 				F3FB7E731B4AD6D500AD38B7 /* Label.swift */,
 			);
@@ -442,6 +445,7 @@
 				40D502121B4AC2520027F1DD /* RestProfileViewController.swift in Sources */,
 				407898D91B3302DB0006E9C5 /* MenuTableViewCell.swift in Sources */,
 				F3FB7E701B41F0A900AD38B7 /* AllPreferenceListViewController.swift in Sources */,
+				409F18B61B739E07002B29DA /* TermsOfConditions.swift in Sources */,
 				F3CD7F561B5063950051AFF4 /* Reachability.swift in Sources */,
 				137AC6AE1B386985001057CB /* MenuInfoViewController.swift in Sources */,
 				F338EB261B7289650008B40B /* StringExtension.swift in Sources */,

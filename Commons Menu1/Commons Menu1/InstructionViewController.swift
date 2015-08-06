@@ -57,6 +57,10 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
         self.navigationController?.navigationBarHidden = true
         reset()
     }
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = true
+        super.viewWillAppear(animated)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

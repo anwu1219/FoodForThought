@@ -22,4 +22,9 @@ class PageContentViewController: UIViewController {
         
         self.view.addSubview(imageView)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = true
+        super.viewWillAppear(animated)
+    }
 }

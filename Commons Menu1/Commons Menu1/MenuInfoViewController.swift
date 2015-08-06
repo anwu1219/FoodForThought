@@ -257,7 +257,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         description.backgroundColor = UIColor.clearColor()
         description.textContainerInset = UIEdgeInsetsMake(5, 10, 0, 10)
         description.textAlignment = NSTextAlignment.Left
-        description.userInteractionEnabled = false
+        description.editable = false
         description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         description.text = button.descriptionText
         description.sizeToFit()
