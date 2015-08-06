@@ -194,7 +194,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="BYz-6F-mJb" kind="show" id="2sF-BO-Jmm"/>
+                                    <segue destination="BYz-6F-mJb" kind="show" identifier="mainToInfoSegue" id="2sF-BO-Jmm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwZ-3x-4nw">
