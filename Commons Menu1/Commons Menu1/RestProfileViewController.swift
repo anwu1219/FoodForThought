@@ -214,7 +214,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         address.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         address.lineBreakMode = .ByWordWrapping
         address.textColor = UIColor.whiteColor()
-        address.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+        address.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         address.numberOfLines = 0
         address.sizeToFit()
        progRestProfScrollView.addSubview(address)
@@ -234,7 +234,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         phone.lineBreakMode = .ByWordWrapping
         phone.textColor = UIColor.whiteColor()
-        phone.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+        phone.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         phone.numberOfLines = 0
         phone.sizeToFit()
        progRestProfScrollView.addSubview(phone)
@@ -264,7 +264,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         health.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         health.lineBreakMode = .ByWordWrapping
         health.textColor = UIColor.whiteColor()
-        health.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+        health.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         health.numberOfLines = 0
         health.sizeToFit()
        progRestProfScrollView.addSubview(health)
