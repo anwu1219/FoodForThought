@@ -23,7 +23,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var tocButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +59,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         buttonStyle(signUpButton)
         buttonStyle(signInButton)
         buttonStyle(forgotPasswordButton)
-        buttonStyle(tocButton)
         
         
         func labelStyle(label : UILabel){
@@ -210,6 +208,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     handler: { alertController in self.cancelSignUp() }
                     )
                 )
+                alertController.addAction(UIAlertAction(title: "Read ToC",
+                    style: UIAlertActionStyle.Default,
+                    handler: { alertController in self.openEULAButton(sender) }
+                    )
+                )
                 
                 // Display alert
                 self.presentViewController(alertController, animated: true, completion: nil)
@@ -229,17 +232,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if let pres = vc.popoverPresentationController {
             pres.delegate = self
         }
+        vc.title = "End User License Agreement"
         
-        let wv = UIWebView()
-        vc.view.addSubview(wv)
-        wv.frame = vc.view.bounds
-        wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-        let url = NSURL(string: "http://food.davidsonsustainability.org")
-        let request = NSURLRequest(URL: url!)
-        wv.loadRequest(request)
-        
+        let description = UITextView(frame: CGRectMake(0, 0, vc.view.frame.width , vc.view.frame.height*1))
+        description.showsVerticalScrollIndicator = false
+        description.backgroundColor = UIColor.whiteColor()
+        description.textContainerInset = UIEdgeInsetsMake(5, 10, 0, 10)
+        description.textAlignment = NSTextAlignment.Left
+        description.editable = false
+        description.textColor = UIColor.blackColor()
+        description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        description.text = tocData().description
+        //description.sizeToFit()
+        vc.view.addSubview(description)
         self.presentViewController(vc, animated: true, completion: nil)
-        
+
         if let pop = vc.popoverPresentationController {
             pop.sourceView = (sender as! UIView)
             pop.sourceRect = (sender as! UIView).bounds
@@ -446,5 +453,27 @@ extension SignUpViewController: UIPopoverPresentationControllerDelegate {
     
     func dismissHelp(sender:AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        let alertController = UIAlertController(title: "Agree to terms and conditions",
+            message: "Click I AGREE to signal that you accept to the Terms and Conditions.",
+            preferredStyle: UIAlertControllerStyle.Alert
+        )
+        alertController.addAction(UIAlertAction(title: "I AGREE",
+            style: UIAlertActionStyle.Default,
+            handler: { alertController in self.processSignUp()}
+            )
+        )
+        alertController.addAction(UIAlertAction(title: "I do NOT agree",
+            style: UIAlertActionStyle.Default,
+            handler: { alertController in self.cancelSignUp() }
+            )
+        )
+        alertController.addAction(UIAlertAction(title: "Read ToC",
+            style: UIAlertActionStyle.Default,
+            handler: { alertController in self.openEULAButton(sender) }
+            )
+        )
+        
+        // Display alert
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

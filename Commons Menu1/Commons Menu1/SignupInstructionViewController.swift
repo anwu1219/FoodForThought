@@ -105,7 +105,10 @@ class SignupInstructionViewController: UIViewController, UIPageViewControllerDat
         }
     
     
-    
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = true
+        super.viewWillAppear(animated)
+    }
     
     
         func fromMain(){

@@ -121,6 +121,13 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         self.performSegueWithIdentifier("foodTinderSegue", sender: sender)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = false
+        super.viewWillAppear(animated)
+    }
+    
+    
+   
     
     /**
     Logs out and clears the text field when go back
