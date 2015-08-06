@@ -76,10 +76,15 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         if let susLabels = dish?.susLabels {
                 
                 let container = UIView()
-                
+                container.frame = CGRect(x: 0, y: 0, width: 91*width, height: 20*height)
+                container.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+                container.layer.shadowOffset = CGSizeMake(2.0, 2.0)
+                container.layer.shadowOpacity = 0.7
+                container.sizeToFit()
+
                 let title = UILabel()
                 title.text = "Dish Sustainability Info:"
-                title.frame = CGRectMake(0, y, 85 * width, 10*height)
+                title.frame = CGRectMake(0, y, container.frame.width, 10*height)
                 title.textAlignment = .Center
                 title.font = UIFont(name: "HelveticaNeue-Light", size: 7 * x)
                 
@@ -95,7 +100,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 
                 let noIconLabel = UILabel()
                 noIconLabel.text = "Not Reported"
-                noIconLabel.frame = CGRectMake(0, y, 85 * width, 10*height)
+                noIconLabel.frame = CGRectMake(0, y, container.frame.width, 10*height)
                 noIconLabel.textAlignment = .Center
                 noIconLabel.font = UIFont(name: "HelveticaNeue-Light", size: 5 * x)
             
@@ -149,12 +154,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
             
                 container.addSubview(labelPicsScroll)
                 y += 10 * height
-                
-                container.frame = CGRect(x: 0, y: 0, width: 91*width, height: 20*height)
-                container.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-                container.layer.shadowOffset = CGSizeMake(2.0, 2.0)
-                container.layer.shadowOpacity = 0.7
-                container.sizeToFit()
+            
                 progScrollInfo.addSubview(container)
             
         }
