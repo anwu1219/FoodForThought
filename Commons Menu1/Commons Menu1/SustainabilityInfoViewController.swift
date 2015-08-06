@@ -27,42 +27,18 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let icon = UIImageView()
     private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Sustainability Defined", "Our Methodology", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let levels = ["Restaurant-level Icons", "Dish-level Icons", "Davidson Nutritionist Icons", "Ecologically Sound Icon", "Fair Icon", "Humane Icon"]
-    private let susInfo = ["<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><i>Foodscape</i> seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">This app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. <i>Foodscape</i> predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">While <i>Foodscape</i> concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!</p>".html2AttStr,
+    private let susInfo = ["</br><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><i>Foodscape</i> seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">This app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. <i>Foodscape</i> predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">While <i>Foodscape</i> concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!</p>".html2AttStr,
         "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">We believe it is important for consumers to reconnect with their food and, in addition to the financial implications of their decisions, understand the social and environmental implications of food production, provision and consumption. We hope this app helps you learn and facilitates discussion about what questions you want to ask yourself and your food providers.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Our food system includes issues related to health, obesity in the United States, water consumption, environmental health impacts of pesticides and fertilizers, inequities of access and availability to healthy food based on socio-economic differences, economic opportunity for local farmers and restaurants, power struggles within food industries between large corporations and small businesses, identity, culture, diversity, and much more. All of these issues can be connected to impacts of policy, subsidies, consumer behavior, advertising and more. It can be overwhelming. We hope to help create a starting point for your journey to learn more about your food and how it is connected to every part of your life. To find out more about all these topics and more visit <strong>food.davidsonsustainability.org</strong>.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">As one of the schools supported by The Duke Endowment, who provided the funding for this initiative, we also want this app to be replicable for other colleges and universities. If your school is interested please contact us at <strong>food.davidsonsustainability.org</strong> to see how we can help integrate new locations into the app or help your school create its own version.</p>".html2AttStr,
         "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Sustainability is a framework that includes the inextricable links among social equity, environmental integrity and economic prosperity – often referred to as the Triple Bottom Line (coined by John Elkington in his 1994 book, <i>Cannibals with Forks</i>). Triple Bottom Line sustainability is a framework we use to facilitate decision-making; because every decision we make affects social equity, environmental integrity and economic prosperity. Improving all three can drive opportunity.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">The Great Law of the Iroquois and the definition of sustainable development in the Brundtland Commission Report of 1987 best exemplify the concept of sustainability.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">\"In every deliberation, we must consider the impact on the seventh generation.\"</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">&nbsp;&nbsp;&nbsp;&nbsp;- <i>The Great Law of the Iroquois</i></p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">\"Sustainable development is development that meets the needs of the present without compromising the ability of future generations to meet their own needs.\"</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">&nbsp;&nbsp;&nbsp;&nbsp;- <i>Brundtland Commission</i></p>".html2AttStr,
         
         "Methodology".html2AttStr,
         
-        "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Food and sustainability addresses where our food originates (e.g., local and small scale vs. large scale), how it is grown (organic, biologique (?), naturally grown, etc.), fair labor practices, environmental impact, availability and access to healthy foods, other food justice issues, and much more. Want to learn more about what all this means? Explore all these issues and more at <strong>food.davidsonsustainability.org</strong>.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">We know that our mobile app does not touch on every aspect of sustainability and food. However, we are using the website above to pull together more resources from around the globe and from our own students, faculty and staff at Davidson College.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><strong><u>Food Justice</u></strong><br>Our website provides more detail, information and opportunities related to Food Justice issues.\n<i>\"Food justice asserts that no one should live without enough food because of economic constraints or social inequalities… The food justice movement is a different approach to a community’s needs that seeks to truly advance self-reliance and social justice by placing communities in leadership of their own solutions and providing them with the tools to address the disparities within our food systems and within society at large.\" (Ahmadi, 2010)</i></p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">The United States Department of Agriculture has created some definitions and analysis about Food Security and Insecurity. Here are their definitions (<strong>http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx</strong>)</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><strong>Food Security</strong><br>&nbsp;&nbsp;\u{2022} <strong>High food security</strong> (<i>old label=Food security</i>): no reported indications of food-access problems or limitations.<br>&nbsp;&nbsp;\u{2022} <strong>Marginal food security</strong> (<i>old label=Food security</i>): one or two reported indications—typically of anxiety over food sufficiency or shortage of food in the house. Little or no indication of changes in diets or food intake.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Food Insecurity<br><strong>&nbsp;&nbsp;\u{2022} Low food security (old label=Food insecurity without hunger): reports of reduced quality, variety, or desirability of diet. Little or no indication of reduced food intake.</strong><br><strong>&nbsp;&nbsp;\u{2022} Very low food security</strong> (old label=Food insecurity with hunger): Reports of multiple indications of disrupted eating patterns and reduced food intake.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><u><strong>Sports</u></strong><br>Food and sports has become a hot topic. People come together for sports and food. So there is a big opportunity to influence change in healthy eating, local sourcing and organically grown foods. The Green Sports Alliance and Natural Resources Defense Council created a report titled, Champions of Game Day Food. (<strong>http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf</strong>). If you want to learn more about how athletes are becoming leaders for food and sustainability, whether hormone and antibiotic free beef or nutritional and vegan diets for athletes, visit <strong>food.davidsonsustainability.org</strong>.</p>".html2AttStr,
-        "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Some examples of sustainability topics in food include (but are not limited to):<br>&nbsp;&nbsp;&nbsp;&nbsp;Culture and food<br>&nbsp;&nbsp;&nbsp;&nbsp;Fair labor<br>&nbsp;&nbsp;&nbsp;&nbsp;Food & Identity<br>&nbsp;&nbsp;&nbsp;&nbsp;Food justice<br>&nbsp;&nbsp;&nbsp;&nbsp;Global food issues<br>&nbsp;&nbsp;&nbsp;&nbsp;Healthy living<br>&nbsp;&nbsp;&nbsp;&nbsp;Hormone and antibiotic free meat<br>&nbsp;&nbsp;&nbsp;&nbsp;Land use<br>&nbsp;&nbsp;&nbsp;&nbsp;Local sourcing<br>&nbsp;&nbsp;&nbsp;&nbsp;Power and Policy<br>&nbsp;&nbsp;&nbsp;&nbsp;Resource consumption<br>&nbsp;&nbsp;&nbsp;&nbsp;Safe and healthy workplace<br>&nbsp;&nbsp;&nbsp;&nbsp;Socially and environmentally-conscious businesses<br>&nbsp;&nbsp;&nbsp;&nbsp;Veganism<br>&nbsp;&nbsp;&nbsp;&nbsp;Vegetarianism<br>&nbsp;&nbsp;&nbsp;&nbsp;Water use<br>&nbsp;&nbsp;&nbsp;&nbsp;Waste management<br><br>Learn about some of these examples at <strong>food.davidsonsustainability.org</strong>\n\n</p>".html2AttStr,
+        "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Food and sustainability addresses where our food originates (e.g., local and small scale vs. large scale), how it is grown (organic, biologique (?), naturally grown, etc.), fair labor practices, environmental impact, availability and access to healthy foods, other food justice issues, and much more. Want to learn more about what all this means? Explore all these issues and more at <strong>food.davidsonsustainability.org</strong>.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">We know that our mobile app does not touch on every aspect of sustainability and food. However, we are using the website above to pull together more resources from around the globe and from our own students, faculty and staff at Davidson College.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><strong><u>Food Justice</u></strong><br>Our website provides more detail, information and opportunities related to Food Justice issues.\n<i>\"Food justice asserts that no one should live without enough food because of economic constraints or social inequalities… The food justice movement is a different approach to a community’s needs that seeks to truly advance self-reliance and social justice by placing communities in leadership of their own solutions and providing them with the tools to address the disparities within our food systems and within society at large.\" (Ahmadi, 2010)</i></p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">The United States Department of Agriculture has created some definitions and analysis about Food Security and Insecurity. Here are their definitions (<strong>http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx</strong>)</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><strong>Food Security</strong><br>&nbsp;&nbsp;<span style=\"display: inline;\">\u{2022} <strong>High food security</strong> (<i>old label=Food security</i>): no reported indications of food-access problems or limitations.<br>&nbsp;&nbsp;\u{2022} <strong>Marginal food security</strong> (<i>old label=Food security</i>): one or two reported indications—typically of anxiety over food sufficiency or shortage of food in the house. Little or no indication of changes in diets or food intake.</span></p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Food Insecurity<br><strong>&nbsp;&nbsp;\u{2022} Low food security (old label=Food insecurity without hunger): reports of reduced quality, variety, or desirability of diet. Little or no indication of reduced food intake.</strong><br><strong>&nbsp;&nbsp;\u{2022} Very low food security</strong> (old label=Food insecurity with hunger): Reports of multiple indications of disrupted eating patterns and reduced food intake.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><u><strong>Sports</u></strong><br>Food and sports has become a hot topic. People come together for sports and food. So there is a big opportunity to influence change in healthy eating, local sourcing and organically grown foods. The Green Sports Alliance and Natural Resources Defense Council created a report titled, Champions of Game Day Food. (<strong>http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf</strong>). If you want to learn more about how athletes are becoming leaders for food and sustainability, whether hormone and antibiotic free beef or nutritional and vegan diets for athletes, visit <strong>food.davidsonsustainability.org</strong>.</p>".html2AttStr,
+        "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Some examples of sustainability topics in food include (but are not limited to):<br><span>&nbsp;&nbsp;&nbsp;&nbsp;Culture and food<br>&nbsp;&nbsp;&nbsp;&nbsp;Fair labor<br>&nbsp;&nbsp;&nbsp;&nbsp;Food & Identity<br>&nbsp;&nbsp;&nbsp;&nbsp;Food justice<br>&nbsp;&nbsp;&nbsp;&nbsp;Global food issues<br>&nbsp;&nbsp;&nbsp;&nbsp;Healthy living<br>&nbsp;&nbsp;&nbsp;&nbsp;Hormone and antibiotic free meat<br>&nbsp;&nbsp;&nbsp;&nbsp;Land use<br>&nbsp;&nbsp;&nbsp;&nbsp;Local sourcing<br>&nbsp;&nbsp;&nbsp;&nbsp;Power and Policy<br>&nbsp;&nbsp;&nbsp;&nbsp;Resource consumption<br>&nbsp;&nbsp;&nbsp;&nbsp;Safe and healthy workplace<br>&nbsp;&nbsp;&nbsp;&nbsp;Socially and environmentally-conscious businesses<br>&nbsp;&nbsp;&nbsp;&nbsp;Veganism<br>&nbsp;&nbsp;&nbsp;&nbsp;Vegetarianism<br>&nbsp;&nbsp;&nbsp;&nbsp;Water use<br>&nbsp;&nbsp;&nbsp;&nbsp;Waste management</span><br><br>Learn about some of these examples at <strong>food.davidsonsustainability.org</strong>\n\n</p>".html2AttStr,
         "<br><br><br><br><br><br><br>".html2AttStr,
         "<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">Please provide us with your feedback and suggestions for the Davidson College Office of Sustainability and our partners through our website: <strong>food.davidsonsustainability.org</strong>.</p>".html2AttStr]
     private let susInfoTableView = UITableView()
     
-
-    @IBAction func learnMoreAction(sender: UIButton!) {
-            let vc = UIViewController()
-            vc.preferredContentSize = CGSizeMake(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-            vc.modalPresentationStyle = .Popover
-            if let pres = vc.popoverPresentationController {
-                pres.delegate = self
-            }
-            
-            let wv = UIWebView()
-            vc.view.addSubview(wv)
-            wv.frame = vc.view.bounds
-            wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
-            let url = NSURL(string: "http://food.davidsonsustainability.org")
-            let request = NSURLRequest(URL: url!)
-            wv.loadRequest(request)
-            
-            self.presentViewController(vc, animated: true, completion: nil)
-            
-            if let pop = vc.popoverPresentationController {
-                pop.sourceView = (sender as UIView)
-                pop.sourceRect = (sender as UIView).bounds
-            }
-        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +70,15 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susIconTableView.delegate = self
         susIconTableView.registerClass(ExpandTableViewCell.self, forCellReuseIdentifier: "susIconCell")
         susIconTableView.separatorStyle = .None
+        
+        
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+            for mutableAttributedString in self.susInfo {
+                mutableAttributedString.setAsLink("food.davidsonsustainability.org", linkURL: "food.davidsonsustainability.org")
+            }
+            self.susInfo[4].setAsLink("http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx", linkURL: "http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx")
+            self.susInfo[4].setAsLink("http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf", linkURL: "http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf")
+        }
     }
     
     
@@ -202,7 +187,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         iconSusView.frame = CGRect(x: 60 * xUnit, y: 0, width: menuSwipeScroll.frame.width, height: menuSwipeScroll.frame.height)
-        iconSusView.layer.borderColor = UIColor(red: 64/255.0, green: 55/255.0, blue: 74/255.0, alpha: 0.95).CGColor
+        iconSusView.layer.borderColor = UIColor(red: 0.114, green: 0.22, blue: 0.325, alpha: 0.9).CGColor
         iconSusView.layer.borderWidth = 10
         iconSusView.layer.cornerRadius = 5
         iconSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
@@ -262,7 +247,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: 0)
             cell.susContentView.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = self.levels[indexPath.row]
-            cell.titleView.backgroundColor = UIColor(red: 0.114, green: 0.22, blue: 0.325, alpha: 0.9)
+            cell.titleView.backgroundColor = UIColor(red: 60/255.0, green: 96/255.0, blue: 128/255.0, alpha: 1)
             cell.titleView.layer.cornerRadius = 8
             cell.titleView.layer.masksToBounds = true
             cell.titleView.frame = CGRect(x: 0.05 * menuSwipeScroll.frame.width, y: 0, width: 0.9 * menuSwipeScroll.frame.width, height: defaultHeight)
@@ -281,10 +266,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     x += labelImage.frame.width + widthPadding
                     labelView.addSubview(labelImage)
                 }
-                let labelDescription = UILabel(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 3 * widthPadding, height: 0))
+                let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 0))
+                    labelDescription.userInteractionEnabled = false
+                    labelDescription.backgroundColor = UIColor.clearColor()
                 labelDescription.text = section[labelName]!
-                labelDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                labelDescription.numberOfLines = 0
+
                 labelDescription.textAlignment = .Left
                 labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
                 labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)
@@ -368,7 +354,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         }
         if indexPaths.count > 0 {
             tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+            }
         }
     }
     
@@ -404,11 +390,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     func getHeight(index : Int) -> CGFloat{
-        let testLabel = UILabel(frame: CGRect(x: 0, y: 0, width: susInfoTableView.frame.width * 0.8, height: 0))
+        let testLabel = UITextView(frame: CGRect(x: 0, y: 0, width: susInfoTableView.frame.width * 0.8, height: 0))
         testLabel.attributedText = susInfo[index]
         testLabel.frame.size.width = susInfoTableView.frame.width
-        testLabel.numberOfLines = 0
-        testLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
         testLabel.sizeToFit()
         return testLabel.frame.height * 1.2
     }
@@ -428,10 +412,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                 x += labelImage.frame.width + widthPadding
                 labelView.addSubview(labelImage)
             }
-            let labelDescription = UILabel(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 3 * widthPadding, height: 0))
+            let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 3 * widthPadding, height: 0))
             labelDescription.text = section[labelName]!
-            labelDescription.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            labelDescription.numberOfLines = 0
             labelDescription.textAlignment = .Left
             labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
             labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)

@@ -30,6 +30,7 @@
 		F32372D71B575DED008A7C91 /* IconDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32372D61B575DED008A7C91 /* IconDescription.swift */; };
 		F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */; };
 		F338EB261B7289650008B40B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB251B7289650008B40B /* StringExtension.swift */; };
+		F338EB281B7391420008B40B /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338EB271B7391420008B40B /* NSAttributedStringExtension.swift */; };
 		F39905981B3311A4004E74C6 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39905971B3311A4004E74C6 /* Dish.swift */; };
 		F3AD040C1B5DF00600D737ED /* TypesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */; };
 		F3AD040F1B62C9B200D737ED /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */; };
@@ -99,6 +100,7 @@
 		F32372D61B575DED008A7C91 /* IconDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconDescription.swift; sourceTree = "<group>"; };
 		F338EB231B7012F70008B40B /* ExpandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandTableViewCell.swift; sourceTree = "<group>"; };
 		F338EB251B7289650008B40B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		F338EB271B7391420008B40B /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		F39905971B3311A4004E74C6 /* Dish.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		F3AD040B1B5DF00600D737ED /* TypesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypesTableViewCell.swift; sourceTree = "<group>"; };
 		F3AD040E1B62C9B200D737ED /* PageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				F3CD7F551B5063950051AFF4 /* Reachability.swift */,
 				F32372D01B545591008A7C91 /* UIViewControllerExtension.swift */,
 				F338EB251B7289650008B40B /* StringExtension.swift */,
+				F338EB271B7391420008B40B /* NSAttributedStringExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				F3E529121B399F860081FFDC /* PreferenceListTableViewCell.swift in Sources */,
 				F3C180C31B681AF300E5940C /* SignupInstructionViewController.swift in Sources */,
 				F338EB241B7012F70008B40B /* ExpandTableViewCell.swift in Sources */,
+				F338EB281B7391420008B40B /* NSAttributedStringExtension.swift in Sources */,
 				F3FB7E741B4AD6D500AD38B7 /* Label.swift in Sources */,
 				F3EBAFB41B3B2B8800BFFD93 /* SignUpViewController.swift in Sources */,
 				407898D51B3300320006E9C5 /* MenuSwipeViewController.swift in Sources */,
