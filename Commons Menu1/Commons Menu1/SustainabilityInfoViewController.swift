@@ -248,7 +248,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         if tableView == susIconTableView {
             var cell = tableView.dequeueReusableCellWithIdentifier("susIconCell", forIndexPath: indexPath) as! ExpandTableViewCell
             cell.selectionStyle = .None
-            cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: 0)
+            cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: getHeightForIcon(indexPath.row))
             cell.susContentView.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = self.levels[indexPath.row]
             cell.titleView.backgroundColor = UIColor(red: 60/255.0, green: 96/255.0, blue: 128/255.0, alpha: 1)
@@ -270,9 +270,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     x += labelImage.frame.width + widthPadding
                     labelView.addSubview(labelImage)
                 }
-                let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 0))
+                let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 100))
                     labelDescription.editable = false
                     labelDescription.scrollEnabled = false
+                    labelDescription.userInteractionEnabled = true
                     labelDescription.backgroundColor = UIColor.clearColor()
                 if x == widthPadding {
                     var text = NSMutableAttributedString(string: section[labelName]!)
@@ -281,10 +282,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                 } else {
                     labelDescription.text = section[labelName]!
                 }
-
+                labelDescription.font = UIFont(name: "HelveticaNeue", size: susIconTableView.frame.width * 0.05)
                 labelDescription.textAlignment = .Left
-                labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
                 labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)
+                labelView.userInteractionEnabled = true
                 labelDescription.sizeToFit()
                 labelView.addSubview(labelDescription)
                 labelView.sizeToFit()
