@@ -90,7 +90,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         progRestImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height*0.21)
         progSusView.frame = CGRectMake(0, screenSize.height*0.23, screenSize.width-32, screenSize.height*0.21)
-        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.42, screenSize.width-32, screenSize.height*0.56)
+        progRestProfScrollView.frame = CGRectMake(16, screenSize.height*0.42+7, screenSize.width-32, screenSize.height*0.56)
         progRestProfScrollView.contentSize.height = 450
 
         
