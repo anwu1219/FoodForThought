@@ -43,12 +43,11 @@ class ExpandTableViewCell: UITableViewCell {
 
         
         susContentView = UIView(frame: CGRect.nullRect)
+        susContentView.userInteractionEnabled = true
         
         foodSystemImageView = UIImageView(frame: CGRect.nullRect)
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-
         
 
         titleLabel.textAlignment = .Left
@@ -56,7 +55,6 @@ class ExpandTableViewCell: UITableViewCell {
         titleLabel.font = UIFont(name: "HelveticaNeue-BoldItalic", size: frame.width * 0.055)
         titleLabel.layer.cornerRadius = 8
         layer.masksToBounds = true
-
         
         
         addSubview(titleView)
