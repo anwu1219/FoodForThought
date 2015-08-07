@@ -270,7 +270,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     labelView.addSubview(labelImage)
                 }
                 let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 0))
-                    labelDescription.editable = false
+                    labelDescription.editable = true
                     labelDescription.scrollEnabled = false
                     labelDescription.backgroundColor = UIColor.clearColor()
                 labelDescription.text = section[labelName]!
