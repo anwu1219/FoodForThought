@@ -25,6 +25,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     private let widthPadding = 0.05 * UIScreen.mainScreen().bounds.width
     private let susIconTableView = UITableView()
     private let icon = UIButton()
+    private let urls = IconDescription().urls
     private let subTitles = ["Foodscape Purpose", "Foodscape Mission", "Our Methodology", "Sustainability Defined", "More Than This App: Food Justice, Sports and More", "Examples of Food and Sustainability Topics", "The Davidson College Food System", "Feedback & Suggestions"]
     private let levels = ["Restaurant-level Icons", "Dish-level Icons", "Davidson Nutritionist Icons", "Ecologically Sound Icon", "Fair Icon", "Humane Icon"]
     var susInfo : [NSMutableAttributedString] = ["<p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\"><i>Foodscape</i> seeks to promote sustainability among local communities by providing consumers with relevant food-related sustainability information.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">This app connects the three E's of equity, environment, economy into our local food preferences in order to encourage sustainable communities, businesses and lifestyles. <i>Foodscape</i> predominantly highlights social and environmental aspects of food and locations as self-reported by local restaurants and cafes. Through this mobile app you will learn whether restaurants report sourcing locally, get involved in their communities, source products that believe in fair labor and fair wages, recycle, and much more. See methodology for more about how this information is reported and what it means.</p><p style=\"font-size: 1.2em; text-align: left; font-family: Helvetica\">While <i>Foodscape</i> concentrates on the interaction between consumers and the restaurants where they purchase food, the goal is to get everyone to think more about their entire food system. You can see a diagram of the Davidson College food system below. Using this, we can start connecting the dots between seed and fork for all food consumers in Davidson. We hope this helps you understand what questions you want to ask about your food, where it comes from, and your preferences!</p>".html2AttStr,
@@ -247,7 +248,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         if tableView == susIconTableView {
             var cell = tableView.dequeueReusableCellWithIdentifier("susIconCell", forIndexPath: indexPath) as! ExpandTableViewCell
             cell.selectionStyle = .None
-            cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: 0)
+            cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: getHeightForIcon(indexPath.row))
             cell.susContentView.backgroundColor = UIColor.clearColor()
             cell.titleLabel.text = self.levels[indexPath.row]
             cell.titleView.backgroundColor = UIColor(red: 60/255.0, green: 96/255.0, blue: 128/255.0, alpha: 1)
@@ -269,15 +270,22 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     x += labelImage.frame.width + widthPadding
                     labelView.addSubview(labelImage)
                 }
-                let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 0))
-                    labelDescription.editable = true
+                let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 2.5 * widthPadding, height: 100))
+                    labelDescription.editable = false
                     labelDescription.scrollEnabled = false
+                    labelDescription.userInteractionEnabled = true
                     labelDescription.backgroundColor = UIColor.clearColor()
-                labelDescription.text = section[labelName]!
-
+                if x == widthPadding {
+                    var text = NSMutableAttributedString(string: section[labelName]!)
+                    text.setAsLink(labelName, linkURL: urls[labelName]!)
+                    labelDescription.attributedText = text
+                } else {
+                    labelDescription.text = section[labelName]!
+                }
+                labelDescription.font = UIFont(name: "HelveticaNeue", size: susIconTableView.frame.width * 0.05)
                 labelDescription.textAlignment = .Left
-                labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
                 labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)
+                labelView.userInteractionEnabled = true
                 labelDescription.sizeToFit()
                 labelView.addSubview(labelDescription)
                 labelView.sizeToFit()
@@ -418,6 +426,9 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             }
             let labelDescription = UITextView(frame: CGRect(x: x, y: 0, width: susIconTableView.frame.width - x - 3 * widthPadding, height: 0))
             labelDescription.text = section[labelName]!
+            if x == widthPadding {
+                
+            }
             labelDescription.textAlignment = .Left
             labelDescription.font = UIFont(name: "Helvetica", size: susIconTableView.frame.width * 0.05)
             labelView.frame = CGRect(x: 0, y: y, width: susIconTableView.frame.width, height: UIScreen.mainScreen().bounds.height)

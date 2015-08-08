@@ -22,6 +22,17 @@ extension NSMutableAttributedString {
         return false
     }
     
+    
+    func setFont(textToFind:String, font : UIFont) -> Bool {
+        let foundRange = self.mutableString.rangeOfString(textToFind)
+        if foundRange.location != NSNotFound {
+            self.addAttributes([NSFontAttributeName : font], range: foundRange)    
+            return true
+        }
+        return false
+    }
+    
+    
     func setAllAsLink(textToFind: String, linkURL: String) -> Bool{
         var foundRange = self.mutableString.rangeOfString(textToFind)
         if foundRange.location != NSNotFound {
