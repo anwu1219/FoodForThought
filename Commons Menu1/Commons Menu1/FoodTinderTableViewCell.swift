@@ -34,7 +34,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         didSet {
             label.text = "\(dish!.name)\n\(dish!.location)"
          //   chefNoteLabel.text = dish!.chefNote
-               chefNoteLabel.text = "Sustainability Labels"
+               chefNoteLabel.text = "Sustainability Icons"
          //   ecoLabel.text = dish!.ecoLabel
             itemLikeLayer.hidden = !dish!.like
         }
