@@ -245,8 +245,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         description.editable = false
         description.textColor = UIColor.blackColor()
         description.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        description.text = tocData().description
-        //description.sizeToFit()
+        description.attributedText = tocData().description
         vc.view.addSubview(description)
         self.presentViewController(vc, animated: true, completion: nil)
 
