@@ -118,6 +118,11 @@ class RestMenuViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = false
+        super.viewWillAppear(animated)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "restToMenuSegue"{
             let menuSwipeViewController = segue.destinationViewController as! MenuSwipeViewController

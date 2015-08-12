@@ -462,6 +462,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        navigationController?.navigationBarHidden = false
+        super.viewWillAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

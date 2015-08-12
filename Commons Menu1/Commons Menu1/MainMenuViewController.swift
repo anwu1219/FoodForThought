@@ -22,6 +22,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var topNameLabel: UILabel!
     let instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
     
     override func viewDidLoad() {
@@ -120,7 +121,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     }
     
     override func viewWillAppear(animated: Bool) {
-        navigationController?.navigationBarHidden = false
+        navigationController?.navigationBarHidden = true
         super.viewWillAppear(animated)
     }
     

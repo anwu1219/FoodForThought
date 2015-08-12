@@ -228,7 +228,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         y += searchInMaps.frame.height + space
         
         var phone = UILabel()
-        phone.text = "Phone:\n" + restProf.phoneNumber
+        phone.text = "Phone:\n"
         phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         phone.lineBreakMode = .ByWordWrapping
         phone.textColor = UIColor.whiteColor()
@@ -236,12 +236,12 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         phone.numberOfLines = 0
         phone.sizeToFit()
        progRestProfScrollView.addSubview(phone)
-        y += phone.frame.height + space/3
+        y += phone.frame.height-25
         
         let callRestaurant = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         callRestaurant.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         callRestaurant.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
-        callRestaurant.setTitle("Call Restaurant", forState: .Normal)
+        callRestaurant.setTitle("" + restProf.phoneNumber, forState: .Normal)
         callRestaurant.sizeToFit()
         callRestaurant.addTarget(self, action: "callNumber:", forControlEvents: UIControlEvents.TouchUpInside)
        progRestProfScrollView.addSubview(callRestaurant)
@@ -251,7 +251,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
         openUrl.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         openUrl.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
-        openUrl.setTitle("Go To Website", forState: .Normal)
+        openUrl.setTitle("Restaurant Website", forState: .Normal)
         openUrl.sizeToFit()
         openUrl.addTarget(self, action: "openWebsite:", forControlEvents: UIControlEvents.TouchUpInside)
        progRestProfScrollView.addSubview(openUrl)
@@ -315,7 +315,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 label.text! += ": Closed"
             }
             
-            label.frame = CGRectMake(0.12*width, y,progRestProfScrollView.frame.width*0.9, 50)
+            label.frame = CGRectMake(0.08*width, y,progRestProfScrollView.frame.width*0.9, 50)
             //let placeY = CGFloat(y+CGFloat(find(valuePositions,day[0])!)*label.frame.height)
             label.lineBreakMode = .ByWordWrapping
             label.textColor = UIColor.whiteColor()
@@ -326,7 +326,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             //trackY += label.frame.height
             y += label.frame.height
         }
-        y += trackY + space
+        y += trackY + space - 25
         
         // Set up Meal Plan hours
         if count(restProf.mealPlanHours[0]) > 0 {

@@ -83,7 +83,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 container.sizeToFit()
 
                 let title = UILabel()
-                title.text = "Dish Sustainability Info:"
+                title.text = "Sustainability Information:"
                 title.frame = CGRectMake(0, y, container.frame.width, 10*height)
                 title.textAlignment = .Center
                 title.font = UIFont(name: "HelveticaNeue-Light", size: 7 * x)
@@ -194,7 +194,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 ingLabel.frame = CGRectMake(x, y, 91 * width, 5 * height)
                 ingLabel.numberOfLines = 0
                 ingLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                ingLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18)
+                ingLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
                 ingLabel.textColor = UIColor.whiteColor()
                 progScrollInfo.addSubview(ingLabel)
                 y += ingLabel.frame.height + (0.7*height)
