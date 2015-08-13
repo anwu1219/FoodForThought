@@ -92,8 +92,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
-        icon.frame = CGRect(x: 60 * xUnit + 7.5, y: verticalSpace, width: 1.5 * widthPadding, height: 2 * verticalSpace)
-        icon.setBackgroundImage(UIImage(named: "arrowIcon"), forState: UIControlState.Normal)
+        icon.frame = CGRect(x: 64 * xUnit, y: 15, width: 1.8 * widthPadding, height: 1.5 * widthPadding)
+        icon.setBackgroundColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+        icon.alpha = 0.8
+        icon.setBackgroundImage(UIImage(named: "susinfo3bar"), forState: UIControlState.Normal)
         icon.contentMode = .ScaleToFill
         icon.addTarget(self, action: "viewMenu:", forControlEvents: UIControlEvents.TouchUpInside)
         self.menuSwipeScroll.addSubview(icon)

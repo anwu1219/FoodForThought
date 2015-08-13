@@ -135,7 +135,6 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.automaticallyAdjustsScrollViewInsets = false;
         
         restProfileButton.frame = CGRect(x: 55 * xUnit, y: 31.5 * yUnit, width: 42 * xUnit, height: 5 * yUnit)
-        //restProfileButton.setBackgroundImage(UIImage(named: "ViewRestProfgradient"), forState: UIControlState.Normal)
         restProfileButton.setTitle("Restaurant Profile    >", forState: .Normal)
         restProfileButton.titleLabel!.font = UIFont(name: "HelveticaNeue-Light", size: 4 * xUnit)
         restProfileButton.addTarget(self, action: "showRestaurant:", forControlEvents: UIControlEvents.TouchUpInside)
