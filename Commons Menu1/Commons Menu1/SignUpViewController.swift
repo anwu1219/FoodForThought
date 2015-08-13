@@ -448,6 +448,7 @@ extension SignUpViewController: UIPopoverPresentationControllerDelegate {
         let nav = UINavigationController(rootViewController: vc)
         let b = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "dismissHelp:")
         vc.navigationItem.rightBarButtonItem = b
+        vc.title = ""
         return nav
     }
     
