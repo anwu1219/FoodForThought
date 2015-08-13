@@ -14,7 +14,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     var dishes = Dishes()
     final private let screenSize: CGRect = UIScreen.mainScreen().bounds
     private var isTOCButton = Bool()
-    @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -71,7 +70,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             label.layer.shadowOpacity = 1.0
         }
         
-        labelStyle(welcomeLabel)
         labelStyle(passwordLabel)
         labelStyle(emailLabel)
         

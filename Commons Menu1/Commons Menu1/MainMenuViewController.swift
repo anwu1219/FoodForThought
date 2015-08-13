@@ -1,5 +1,6 @@
 //
 //  MainMenuViewController.swift
+//  
 //  Foodscape
 //
 //  Created by Bjorn Ordoubadian on 16/6/15.
@@ -18,6 +19,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     var dishes: Dishes!
     final private let screenSize: CGRect = UIScreen.mainScreen().bounds
     @IBOutlet weak var restMenuButton: UIButton!
+    let titleImage = UIImageView()
     @IBOutlet weak var foodTinderMenuButton: UIButton!
     @IBOutlet weak var myPrefMenuButton: UIButton!
     @IBOutlet weak var sustInfoMenuButton: UIButton!
@@ -27,6 +29,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleImage.image = UIImage(named:"Foodscape")
+        self.titleImage.frame = CGRect(x: self.view.frame.width * 0.10, y: self.view.frame.height * 0.12, width: self.view.frame.width * 0.80, height:  self.view.frame.width * 0.23)
+        
+        self.view.addSubview(titleImage)
         
         setBackground("MainMenuBackground")
         restMenuButton.setTitle(" See All Restaurants", forState: .Normal)
