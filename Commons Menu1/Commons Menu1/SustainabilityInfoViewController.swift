@@ -92,7 +92,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         let xUnit : CGFloat = self.view.frame.width / 100
         let yUnit : CGFloat = self.view.frame.height / 100
         
-        icon.frame = CGRect(x: 64 * xUnit, y: 15, width: 1.8 * widthPadding, height: 1.5 * widthPadding)
+        icon.frame = CGRect(x: 63 * xUnit, y: 15, width: 1.8 * widthPadding, height: 1.5 * widthPadding)
         icon.setBackgroundColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         icon.alpha = 0.8
         icon.setBackgroundImage(UIImage(named: "susinfo3bar"), forState: UIControlState.Normal)
@@ -100,27 +100,6 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         icon.addTarget(self, action: "viewMenu:", forControlEvents: UIControlEvents.TouchUpInside)
         self.menuSwipeScroll.addSubview(icon)
         icon.hidden = false
-    }
-    
-    
-    func scrollViewDidScroll(scrollView: UIScrollView){
-        if scrollView == susIconTableView || scrollView == susInfoTableView{
-            icon.hidden = true
-        }
-    }
-    
-    
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if scrollView == susIconTableView || scrollView == susInfoTableView{
-            icon.hidden = false
-        }
-    }
-    
-    
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView == susIconTableView || scrollView == susInfoTableView{
-            icon.hidden = false            
-        }
     }
     
     

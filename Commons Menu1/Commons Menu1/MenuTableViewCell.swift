@@ -127,7 +127,7 @@ class MenuTableViewCell: UITableViewCell {
             width: kUICuesWidth, height: bounds.size.height)
         crossLabel.frame = CGRect(x: bounds.size.width + kUICuesMargin, y: 0,
             width: kUICuesWidth, height: bounds.size.height)
-        self.imageView?.frame = CGRect(x: 5 * width, y: 20 * height, width: 18 * width, height: 60 * height)
+        self.imageView?.frame = CGRect(x: 5 * width, y: 0.5 * (100 * height - 18 * width), width: 18 * width, height: 18 * width)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
         

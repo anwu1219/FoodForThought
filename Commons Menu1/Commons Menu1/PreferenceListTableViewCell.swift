@@ -69,7 +69,7 @@ class PreferenceListTableViewCell: UITableViewCell {
         let width = 0.01 * bounds.size.width
         let height = 0.01 * bounds.size.height
         super.layoutSubviews()
-        self.imageView?.frame = CGRect(x: 5 * width, y: 3 * width, width: 25 * width, height: 75 * height)
+        self.imageView?.frame = CGRect(x: 5 * width, y: 0.5 * (100 * height - 18 * width), width: 18 * width, height: 18 * width)
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
 
