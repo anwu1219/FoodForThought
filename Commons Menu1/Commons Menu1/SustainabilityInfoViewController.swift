@@ -167,7 +167,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         aboutSusView.addSubview(susInfoTableView)
         
         
-        let iconTopTextImage = UIImageView(frame: CGRect(x: 27 * xUnit, y: 2 * yUnit, width: 23 * yUnit, height: 21 * yUnit))
+        let iconTopTextImage = UIImageView(frame: CGRect(x: 27 * xUnit, y: 6 * xUnit, width: 42 * xUnit, height: 39 * xUnit))
         iconTopTextImage.image = UIImage(named: "earthLeaves")
         iconTopTextImage.contentMode = .ScaleToFill
         
@@ -179,7 +179,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         iconSusView.backgroundColor = UIColor(red: 0.953, green: 0.957, blue: 0.9, alpha: 0.9)
         iconSusView.alpha = 0
         
-        susIconTableView.frame = CGRect(x: 0, y: 0.3 * menuSwipeScroll.frame.height, width: menuSwipeScroll.frame.width, height: 0.68 * menuSwipeScroll.frame.height)
+        susIconTableView.frame = CGRect(x: 0, y: 0.51 * menuSwipeScroll.frame.width, width: menuSwipeScroll.frame.width, height: 0.68 * menuSwipeScroll.frame.height)
         susIconTableView.backgroundColor = UIColor.clearColor()
         
         
