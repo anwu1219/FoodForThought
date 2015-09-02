@@ -195,7 +195,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         if count(restProf.description) > 0 {
             var description = UILabel()
-            description.text = "\"\(restProf.restDescript)\""
+            description.text = "\(restProf.restDescript)"
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
             description.frame = CGRect(x: 0.05*progRestProfScrollView.frame.width, y: y, width: progRestProfScrollView.frame.width * 0.9, height: 50)
@@ -456,7 +456,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func mapSearch(sender:UIButton) {
         //http://stackoverflow.com/questions/28604429/how-to-open-maps-app-programatically-with-coordinates-in-swift
         
-        getCoordinates(restProf.address) { lat, long, error in
+        getCoordinates(restProf.coordinates) { lat, long, error in
             if error != nil {
             } else {
                 // use lat, long here

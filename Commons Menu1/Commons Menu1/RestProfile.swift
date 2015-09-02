@@ -26,6 +26,7 @@ class RestProfile: PFObject, PFSubclassing {
      @NSManaged var humane : [String]
      @NSManaged var imageFile: PFFile
      @NSManaged var dynamicTypes : [String]
+    @NSManaged var coordinates : String
     
     
     override class func initialize() {
@@ -56,5 +57,6 @@ class RestProfile: PFObject, PFSubclassing {
         self.fair = object["fair"] as! [String]
         self.humane = object["humane"] as! [String]
         self.dynamicTypes = object["dynamic"] as! [String]
+        self.coordinates = object["coordinates"] as! String
     }
 }
