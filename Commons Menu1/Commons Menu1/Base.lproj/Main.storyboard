@@ -1350,10 +1350,10 @@
         <image name="menuButton" width="559" height="84"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sXz-wK-Xvd"/>
-        <segue reference="6HG-gM-2cC"/>
         <segue reference="rSJ-Ob-iMA"/>
+        <segue reference="6HG-gM-2cC"/>
         <segue reference="2sF-BO-Jmm"/>
+        <segue reference="sXz-wK-Xvd"/>
         <segue reference="aZ9-33-JLe"/>
     </inferredMetricsTieBreakers>
 </document>
