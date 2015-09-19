@@ -78,7 +78,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         // Test if there is internet connection
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             let isReachable = Reachability.isConnectedToNetwork()
             dispatch_async(dispatch_get_main_queue()) {
                 if !isReachable {
@@ -89,7 +89,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         
         //Fetch Restaurant Data
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             self.getRestaurant()
             for restaurant : RestProfile in self.dishes.dishes.keys {
                 self.dishes.dishes[restaurant]?.removeAll(keepCapacity: false)
@@ -132,7 +132,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    // override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) { //pre swift 2
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) { //post swift 2
         self.view.endEditing(true)
     }
     
@@ -147,7 +148,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     //Check the password's length
     func checkPasswordLengthShort(password: String) -> Bool {
-        if count(password) >= 6 && count(password) <= 20{
+        if (password.characters.count) >= 6 && (password.characters.count) <= 20{
             return true
         }
         else {
@@ -161,7 +162,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func processSignUp() {
-        let userEmailAddress = emailAddress.text.lowercaseString
+        let userEmailAddress = emailAddress.text!.lowercaseString
         let userPassword = password.text
 
         // Start activity indicator
@@ -192,9 +193,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
-        if isValidEmail(emailAddress.text) == true {
+        if isValidEmail(emailAddress.text!) == true {
             //ensure password is longer than 6 characters and is shorter than 20 characters
-            if checkPasswordLengthShort(password.text) == true {
+            if checkPasswordLengthShort(password.text!) == true {
                 let alertController = UIAlertController(title: "Terms & Conditions",
                     message: "I have read and agree to the \nTerms & Conditions.",
                     preferredStyle: UIAlertControllerStyle.Alert
@@ -257,10 +258,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
-        let userEmailAddress = emailAddress.text.lowercaseString
+        let userEmailAddress = emailAddress.text!.lowercaseString
         
         let userPassword = password.text
-        PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword){
+        PFUser.logInWithUsernameInBackground(userEmailAddress, password: userPassword!){
             (user: PFUser?, error: NSError?) -> Void in
             if error == nil {
                 if let tinderViewed = PFUser.currentUser()!["tinderViewed"] as? Bool {
@@ -313,7 +314,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         titlePrompt.addAction(UIAlertAction(title: "Reset", style: .Destructive, handler: { (action) -> Void in
             if let textField = titleTextField {
-                self.resetPassword(textField.text)
+                self.resetPassword(textField.text!)
             }
         }))
         
@@ -336,7 +337,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     func getRestaurant() {
-        var query = PFQuery(className:"Restaurant")
+        let query = PFQuery(className:"Restaurant")
         query.findObjectsInBackgroundWithBlock{
             (objects: [AnyObject]?, error: NSError?) -> Void in
             if error == nil && objects != nil{
@@ -373,7 +374,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self.presentViewController(success, animated: false, completion: nil)
                 
             } else {
-                let errormessage = error!.userInfo!["error"] as! NSString
+                let errormessage = error!.userInfo["error"] as! NSString
                 let error = UIAlertController(title: "Cannot complete request", message: errormessage as String, preferredStyle: .Alert)
                 let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
                 error.addAction(okButton)
@@ -390,12 +391,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
-    override func shouldPerformSegueWithIdentifier(identifier: String!, sender: AnyObject!) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if identifier == "signInToNavigationSegue" {
             var segueShouldOccur = true
             var segueShouldOccurEULA = true
             
-            if isValidEmail(emailAddress.text) == false {
+            if isValidEmail(emailAddress.text!) == false {
                 // perform your computation to determine whether segue should occur
                 segueShouldOccur = false
             }

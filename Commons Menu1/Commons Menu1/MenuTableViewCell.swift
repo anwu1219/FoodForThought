@@ -41,7 +41,7 @@ class MenuTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
-        label = UILabel(frame: CGRect.nullRect)
+        label = UILabel(frame: CGRect.null)
         label.textColor = UIColor.whiteColor()
         //label.font = UIFont(name: "Helvetica-Neue Light", size: 16)
 
@@ -52,7 +52,7 @@ class MenuTableViewCell: UITableViewCell {
         utility method for creating the contextual cues
         */
         func createCueLabel() -> UILabel {
-            let label = UILabel(frame: CGRect.nullRect)
+            let label = UILabel(frame: CGRect.null)
             label.textColor = UIColor.whiteColor()
             label.font = UIFont.boldSystemFontOfSize(32.0)
             label.backgroundColor = UIColor.clearColor()
@@ -99,11 +99,11 @@ class MenuTableViewCell: UITableViewCell {
         layer.insertSublayer(itemDislikeLayer, atIndex: 0)
         
         // add a pan recognizer
-        var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
 
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
         
@@ -116,8 +116,8 @@ class MenuTableViewCell: UITableViewCell {
         gradientLayer.frame = bounds
         itemLikeLayer.frame = bounds
         itemDislikeLayer.frame = bounds
-        var width = 0.01 * bounds.size.width
-        var height = 0.01 * bounds.size.height
+        let width = 0.01 * bounds.size.width
+        let height = 0.01 * bounds.size.height
         let kLabelLeftMargin: CGFloat = 36 * width
         let kUICuesMargin: CGFloat = 10.0, kUICuesWidth: CGFloat = 50.0
         label.frame = CGRect(x: kLabelLeftMargin - 20, y: 0,
@@ -131,8 +131,8 @@ class MenuTableViewCell: UITableViewCell {
         self.imageView?.layer.borderColor = UIColor.blackColor().CGColor
         self.imageView?.layer.borderWidth = 1.0
         
-        var arrowImageView = UIImageView(frame: CGRectMake(90 * width, 42 * height, 4 * width, 20 * height))
-        var arrowImage : UIImage = UIImage(named: "MenuItemArrow")!
+        let arrowImageView = UIImageView(frame: CGRectMake(90 * width, 42 * height, 4 * width, 20 * height))
+        let arrowImage : UIImage = UIImage(named: "MenuItemArrow")!
         arrowImageView.image = arrowImage
         self.backgroundView = UIView()
         self.backgroundView!.addSubview(arrowImageView)

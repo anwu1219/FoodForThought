@@ -77,7 +77,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         susIconTableView.separatorStyle = .None
         
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
             for mutableAttributedString in self.susInfo {
                 mutableAttributedString.setAllAsLink("food.davidson.edu/", linkURL: "http://http://food.davidson.edu/")
             }
@@ -92,7 +92,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     
     private func addScrollIcon(){
         let xUnit : CGFloat = self.view.frame.width / 100
-        let yUnit : CGFloat = self.view.frame.height / 100
+       // let yUnit : CGFloat = self.view.frame.height / 100
         
         icon.frame = CGRect(x: 63 * xUnit, y: 15, width: 1.8 * widthPadding, height: 1.5 * widthPadding)
         icon.setBackgroundColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
@@ -115,8 +115,8 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     private func addScrollView(){
-        let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
-        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+    //    let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
+    //    let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
 
         menuSwipeScroll.addSubview(susIconTableView)
     }
@@ -230,7 +230,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if tableView == susIconTableView {
-            var cell = tableView.dequeueReusableCellWithIdentifier("susIconCell", forIndexPath: indexPath) as! ExpandTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("susIconCell", forIndexPath: indexPath) as! ExpandTableViewCell
             cell.selectionStyle = .None
             cell.susContentView.frame = CGRect(x:0.05 * menuSwipeScroll.frame.width, y: defaultHeight, width:menuSwipeScroll.frame.width * 0.9, height: getHeightForIcon(indexPath.row))
             cell.susContentView.backgroundColor = UIColor.clearColor()
@@ -244,7 +244,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             var y : CGFloat = verticalSpace
             let descriptions = IconInfo().descriptions[levels[indexPath.row]]!
             for section in descriptions {
-                for labelName: String in section.keys.array {
+                for labelName: String in section.keys.generate() {
                 var x : CGFloat = widthPadding
                 let labelView = UIView()
                 if UIImage(named: labelName) != nil {
@@ -260,7 +260,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
                     labelDescription.userInteractionEnabled = true
                     labelDescription.backgroundColor = UIColor.clearColor()
                 if x == widthPadding {
-                    var text = NSMutableAttributedString(string: section[labelName]!)
+                    let text = NSMutableAttributedString(string: section[labelName]!)
                     text.setAsLink(labelName, linkURL: urls[labelName]!)
                     labelDescription.attributedText = text
                 } else {
@@ -285,7 +285,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         }
         if tableView == susInfoTableView {
-            var cell = tableView.dequeueReusableCellWithIdentifier("susCell", forIndexPath: indexPath) as! ExpandTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("susCell", forIndexPath: indexPath) as! ExpandTableViewCell
             cell.selectionStyle = .None
             cell.foodSystemImageView.hidden = !(indexPath.row == 6)
             if indexPath.row == 6 {
@@ -312,7 +312,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
             return cell
         } else {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
         cell.selectionStyle = .None
         if indexPath.row == 0 {
             cell.delegate = self
@@ -394,11 +394,11 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
     }
     
     func getHeightForIcon(index : Int) -> CGFloat{
-        var testSusView = UIView(frame: CGRect(x: 0, y: 0, width: 0.9 * susIconTableView.frame.width, height: 0))
+        let testSusView = UIView(frame: CGRect(x: 0, y: 0, width: 0.9 * susIconTableView.frame.width, height: 0))
         var y : CGFloat = verticalSpace
         let descriptions = IconInfo().descriptions[levels[index]]!
         for section in descriptions {
-            for labelName: String in section.keys.array {
+            for labelName: String in section.keys.generate() {
             var x : CGFloat = widthPadding
             let labelView = UIView()
             if UIImage(named: labelName) != nil {
@@ -457,7 +457,7 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
 
 
 //https://github.com/mattneub/Programming-iOS-Book-Examples/tree/master/bk2ch09p477popoversOnPhone/PopoverOnPhone
-extension SustainabilityInfoViewController: UIPopoverPresentationControllerDelegate {
+extension SustainabilityInfoViewController {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen
     }

@@ -25,7 +25,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     @IBOutlet weak var sustInfoMenuButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     @IBOutlet weak var topNameLabel: UILabel!
-    let instructButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    let instructButton = UIButton(type: UIButtonType.InfoLight)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +51,10 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             button.titleLabel?.layer.shadowOpacity = 1.0
         }
 
-        buttonStyle(restMenuButton, " See All Restaurants")
-        buttonStyle(foodTinderMenuButton, " Food For Thought")
-        buttonStyle(myPrefMenuButton, " My Favorites")
-        buttonStyle(sustInfoMenuButton, " About Sustainability")
+        buttonStyle(restMenuButton, title: " See All Restaurants")
+        buttonStyle(foodTinderMenuButton, title: " Food For Thought")
+        buttonStyle(myPrefMenuButton, title: " My Favorites")
+        buttonStyle(sustInfoMenuButton, title: " About Sustainability")
         
         
         //change the backbutton title (hides it)
@@ -72,7 +72,7 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
         instructButton.addTarget(self, action: "viewInstructPage:", forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(instructButton)
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
             self.fetchPreferenceData()
             self.fetchDislikeData()
             self.getNumberOfDishes()
@@ -260,13 +260,13 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
             allPreferenceListViewController.dishes = dishes
         }
         if segue.identifier == "mainToInfoSegue" {
-            let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
+      //      let sustainabilityInfoViewController = segue.destinationViewController as! SustainabilityInfoViewController
         }
     }
 }
 
 
-extension MainMenuViewController: UIPopoverPresentationControllerDelegate {
+extension MainMenuViewController {
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .FullScreen
     }

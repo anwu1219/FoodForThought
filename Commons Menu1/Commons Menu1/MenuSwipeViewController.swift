@@ -52,7 +52,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     private let scroll = UIScrollView()
     private let menuSwipeScroll = UIScrollView()
     private let typesTableView = UITableView()
-    private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    private let infoButton = UIButton(type: UIButtonType.InfoLight)
     
     private var menu = [String : [Dish]]()
     private var disLikes = Set<Dish>()
@@ -146,11 +146,11 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         self.view.addSubview(restProfileButton)
         self.view.addSubview(restWeekdayOpenHoursLabel)
         
-        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.value), 0)) {
+        dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
             if let dishes = self.dishes {
                 self.makeMenu(dishes.dishes[self.restProf]!)
                 for type: String in self.types {
-                    self.menu[type]!.sort({$0.name < $1.name})
+                    self.menu[type]!.sortInPlace({$0.name < $1.name})
                 }
                 if self.getDate() != dishes.date {
                     for key in dishes.cached.keys {
@@ -218,7 +218,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
  
     func addTable(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
-        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+        //let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
         
         
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
@@ -310,7 +310,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                     }
                     for type: String in self.types {
-                        self.menu[type]!.sort({$0.name < $1.name})
+                        self.menu[type]!.sortInPlace({$0.name < $1.name})
                     }
                     UIView.transitionWithView(self.tableView, duration:0.35, options:.TransitionCrossDissolve,animations: { () -> Void in
                         self.tableView.reloadData()
@@ -334,7 +334,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         var x: CGFloat = width * 0.01
         var y: CGFloat = height * 0.01
         if restProf.eco.count > 0 {
-            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: CGRect.nullRect, name: "Eco")
+            let ecoIcon = SuperIconButton(labels: restProf.eco, frame: CGRect.null, name: "Eco")
             ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             ecoIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
             x += ecoIcon.frame.width + width * 0.01
@@ -342,7 +342,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         if restProf.humane.count > 0 {
-            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: CGRect.nullRect, name: "Humane")
+            let humaneIcon = SuperIconButton(labels: restProf.humane, frame: CGRect.null, name: "Humane")
             humaneIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             humaneIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
             x += humaneIcon.frame.width + width * 0.01
@@ -350,7 +350,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         if restProf.fair.count > 0 {
-            let fairIcon = SuperIconButton(labels: restProf.fair, frame: CGRect.nullRect, name: "Fair")
+            let fairIcon = SuperIconButton(labels: restProf.fair, frame: CGRect.null, name: "Fair")
             fairIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
             fairIcon.frame = CGRectMake(x, 0.14*scroll.frame.height, 0.72*scroll.frame.height, 0.72 * scroll.frame.height)
             x += fairIcon.frame.width + width * 0.01
@@ -359,7 +359,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
 
         for var i = 0; i < restProf.labels.count; i++ {
             for var j = 0; j < restProf.labels[i].count; j++ {
-                if count(restProf.labels[i][j]) > 0 {
+                if (restProf.labels[i][j].characters.count) > 0 {
                     let frame = CGRectMake(x, 0.14*scroll.frame.height, 0.68*scroll.frame.height, 0.68 * scroll.frame.height)
                     let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -382,7 +382,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         super.willMoveToParentViewController(parent)
         if parent == nil {
             if edited {
-                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
                     self.uploadPreferenceList(self.restProf.name)
                     self.uploadDislikes(self.restProf.name)
                 }
@@ -393,7 +393,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     // TypeDelegate
     func goToType(type: String){
-        let index = find(types, type)!
+        let index = types.indexOf(type)!
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.3))
         dispatch_after(delayTime, dispatch_get_main_queue()){
@@ -416,10 +416,10 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     func addDishToMenu(dish: Dish){
-        if !contains(menu.keys, dish.type){
+        if !menu.keys.contains(dish.type){
             menu[dish.type] = [Dish]()
             self.types.append(dish.type)
-            self.types.sort({$0 < $1})
+            self.types.sortInPlace({$0 < $1})
         }
         menu[dish.type]?.append(dish)
     }
@@ -457,7 +457,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             if tableView == self.tableView{
             //initiates the cell
-            var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MenuTableViewCell
             
             cell.delegate = self
             cell.selectionStyle = .None
@@ -487,7 +487,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         return cell
         } else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
             cell.delegate = self
             cell.textLabel!.text = types[indexPath.row]
             cell.textLabel!.backgroundColor = UIColor.clearColor()
@@ -563,7 +563,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-        preferences.sort({$0.name < $1.name})
+        preferences.sortInPlace({$0.name < $1.name})
         return preferences
     }
     
@@ -723,7 +723,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "mealInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(menu[selectedMeal.type]!, selectedMeal) {
+            if let index = menu[selectedMeal.type]!.indexOf(selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[selectedMeal.type]![index]
             }
@@ -805,7 +805,7 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     }
 }
 
-extension MenuSwipeViewController : UIPopoverPresentationControllerDelegate {
+extension MenuSwipeViewController {
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None

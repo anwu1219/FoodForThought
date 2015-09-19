@@ -21,7 +21,7 @@ class TypesTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        var tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         tapRecognizer.delegate = self
         addGestureRecognizer(tapRecognizer)
     }

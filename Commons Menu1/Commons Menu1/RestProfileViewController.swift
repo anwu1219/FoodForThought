@@ -14,7 +14,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     
     private let screenSize: CGRect = UIScreen.mainScreen().bounds
     var restProf : RestProfile!
-    private let infoButton = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIButton
+    private let infoButton = UIButton(type: UIButtonType.InfoLight)
     private let progSusView = UIScrollView()
     private let progRestProfScrollView = UIScrollView()
     private let progRestImage = UIImageView()
@@ -84,7 +84,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         progSusView.delegate = self
         progSusView.backgroundColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 0.0)
         
-        let openHourLabel = UILabel()
+        //let openHourLabel = UILabel()
         
         progRestProfScrollView.showsVerticalScrollIndicator = false
         
@@ -108,15 +108,15 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let width: CGFloat = screenSize.width
         let susWidth: CGFloat = progSusView.frame.width/2
         
-        let labels = ["Environmental:", "Social:", "Economic:"] // dont need for menu swipe scroll
+        //let labels = ["Environmental:", "Social:", "Economic:"] // dont need for menu swipe scroll
         var y: CGFloat = height * 0.01
         
         // move scroll outside for i loop
         for var i = 0; i < restProf.labels.count; i++ {
-            var scroll = UIScrollView()
+            let scroll = UIScrollView()
             scroll.showsHorizontalScrollIndicator = false
             // remove all label stuff for scroll in menu swipe
-            var label = UILabel()
+            let label = UILabel()
             
             if restProf.labels[i].count > 0 {
                 //label.text = labels[i]
@@ -162,7 +162,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             }
 
             for var j = 0; j < restProf.labels[i].count; j++ {
-                if count(restProf.labels[i][j]) > 0 {
+                if (restProf.labels[i][j].characters.count) > 0 {
                     let frame = CGRectMake(x, 0.01*scroll.frame.height, 0.98*scroll.frame.height, 0.98*scroll.frame.height)
                     let icon = IconButton(name: restProf.labels[i][j], frame: frame)
                     icon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -193,8 +193,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         var y: CGFloat = progRestProfScrollView.frame.height * 0.05
         
-        if count(restProf.description) > 0 {
-            var description = UILabel()
+        if (restProf.description.characters.count) > 0 {
+            let description = UILabel()
             description.text = "\(restProf.restDescript)"
             description.textAlignment = .Center
             description.textColor = UIColor.whiteColor()
@@ -207,7 +207,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             y += description.frame.height + space
         }
         
-        var address = UILabel()
+        let address = UILabel()
         address.text = "Address:\n" + restProf.address
         address.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         address.lineBreakMode = .ByWordWrapping
@@ -218,7 +218,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
        progRestProfScrollView.addSubview(address)
         y += address.frame.height + space/3
         
-        let searchInMaps = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let searchInMaps = UIButton(type: UIButtonType.System)
         searchInMaps.setTitle("Search in Maps", forState: .Normal)
         searchInMaps.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         searchInMaps.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
@@ -227,7 +227,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
        progRestProfScrollView.addSubview(searchInMaps)
         y += searchInMaps.frame.height + space
         
-        var phone = UILabel()
+        let phone = UILabel()
         phone.text = "Phone:\n"
         phone.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width*0.9, 50)
         phone.lineBreakMode = .ByWordWrapping
@@ -238,7 +238,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
        progRestProfScrollView.addSubview(phone)
         y += phone.frame.height-25
         
-        let callRestaurant = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let callRestaurant = UIButton(type: UIButtonType.System)
         callRestaurant.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         callRestaurant.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         callRestaurant.setTitle("" + restProf.phoneNumber, forState: .Normal)
@@ -248,7 +248,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         y += callRestaurant.frame.height + space
         
         
-        let openUrl = UIButton.buttonWithType(UIButtonType.System) as! UIButton
+        let openUrl = UIButton(type: UIButtonType.System)
         openUrl.frame = CGRectMake(0.05*width, y,progRestProfScrollView.frame.width-(0.1*width), 50)
         openUrl.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 16)
         openUrl.setTitle("Restaurant Website", forState: .Normal)
@@ -285,7 +285,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         
         for var i = 0; i < restProf.hours.count; i++ {
             
-            if contains(likeHours.keys, restProf.hours[i]) {
+            if likeHours.keys.contains(restProf.hours[i]) {
                 likeHours[restProf.hours[i]]?.append(days[i])
             }
             else {
@@ -295,7 +295,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         }
         
 
-        var trackY: CGFloat = 30
+        let trackY: CGFloat = 30
 
         for key in likeHours.keys {
             let label = UILabel()
@@ -308,7 +308,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 label.text! += day[0]
             }
             
-            if count(key) > 0 {
+            if (key.characters.count) > 0 {
                 label.text! += ": " + key
             }
             else {
@@ -329,7 +329,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         y += trackY + space - 25
         
         // Set up Meal Plan hours
-        if count(restProf.mealPlanHours[0]) > 0 {
+        if (restProf.mealPlanHours[0].characters.count) > 0 {
             
             let mealPlan = UILabel()
             mealPlan.text = "Meal Plan Hours:"
@@ -343,7 +343,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             var likeMealHours = Dictionary<String, [String]>()
             var valuePositions: [String] = []
             for var i = 0; i < restProf.mealPlanHours.count; i++ {
-                if contains(likeMealHours.keys, restProf.mealPlanHours[i]) {
+                if likeMealHours.keys.contains(restProf.mealPlanHours[i]) {
                     likeMealHours[restProf.mealPlanHours[i]]?.append(days[i])
                 }
                 else {
@@ -352,10 +352,10 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
             
-            var tY: CGFloat = 0
+           // let tY: CGFloat = 0
             var orderLabels: [UILabel] = [UILabel(), UILabel(), UILabel(), UILabel(), UILabel(), UILabel()]
             for times in likeMealHours.keys {
-                var mplabel = UILabel()
+                let mplabel = UILabel()
                 mplabel.text = ""
                 var day: [String] = likeMealHours[times]!
                 
@@ -366,7 +366,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                     mplabel.text! += day[0]
                 }
                 
-                if count(times) > 0 {
+                if (times.characters.count) > 0 {
                     mplabel.text! += ": " + times
                 }
                 else {
@@ -374,7 +374,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
                 }
                 
                 
-                var index: Int = find(valuePositions, day[0])!
+                let index: Int = valuePositions.indexOf(day[0])!
                 orderLabels.insert(mplabel, atIndex: index)
 
             }
@@ -415,7 +415,8 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let wv = UIWebView()
         vc.view.addSubview(wv)
         wv.frame = vc.view.bounds
-        wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+       // wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight //pre swift 2
+        wv.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] //post swift 2
         if let url = NSURL(string: restProf.url) {
         let request = NSURLRequest(URL: url)
         wv.loadRequest(request)
@@ -461,14 +462,14 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
             } else {
                 // use lat, long here
                 let regionDistance:CLLocationDistance = 10000
-                var coordinates = CLLocationCoordinate2DMake(lat, long)
+                let coordinates = CLLocationCoordinate2DMake(lat, long)
                 let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-                var options = [
+                let options = [
                     MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
                     MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
                 ]
-                var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-                var mapItem = MKMapItem(placemark: placemark)
+                let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+                let mapItem = MKMapItem(placemark: placemark)
                 mapItem.name = "\(self.restProf.address)"
                 mapItem.openInMapsWithLaunchOptions(options)
             }
@@ -478,22 +479,20 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     //http://stackoverflow.com/questions/27769859/ios-swift-coordinates-function-returns-nil
     private func getCoordinates(location: String, completionHandler: (lat: CLLocationDegrees!, long: CLLocationDegrees!, error: NSError?) -> ()) -> Void {
         
-        var lat:CLLocationDegrees
-        var long:CLLocationDegrees
-        var geocoder = CLGeocoder()
+
         
-        geocoder.geocodeAddressString(location) { (placemarks: [AnyObject]!, error: NSError!) in
-            
+        //geocoder.geocodeAddressString(location) { (placemarks: [AnyObject]!, error: NSError!) in
+        CLGeocoder().geocodeAddressString(location) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+    
             if error != nil {
                 completionHandler(lat: nil, long: nil, error: error)
                 
-            } else if placemarks.count > 0 {
-                
-                let placemark = placemarks[0] as! CLPlacemark
+            } else if let placemarks = placemarks {
+                let placemark = placemarks[0]
                 let location = placemark.location
                 
-                let lat = location.coordinate.latitude
-                let long = location.coordinate.longitude
+                let lat = location!.coordinate.latitude
+                let long = location!.coordinate.longitude
                 
                 completionHandler(lat: lat, long: long, error: nil)
             }

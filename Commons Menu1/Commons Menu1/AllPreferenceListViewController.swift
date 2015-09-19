@@ -102,10 +102,14 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         preferenceListTableView.rowHeight = 85;
         preferenceListTableView.backgroundColor = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.3)
         self.addToPreferences()
-        keys = preferences.keys.array
-        keys.sort({$0 < $1})
+        let keysG = preferences.keys.generate()
+        keys.removeAll()
+        for key : String in keysG {
+            keys.append(key)
+        }
+        keys.sortInPlace({$0 < $1})
         for key: String in keys {
-            preferences[key]!.sort({$0.name < $1.name})
+            preferences[key]!.sortInPlace({$0.name < $1.name})
         }
         
         addTable()
@@ -113,7 +117,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     func addTable(){
         let xUnit : CGFloat = self.menuSwipeScroll.frame.width / 100
-        let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
+       // let yUnit : CGFloat = self.menuSwipeScroll.frame.height / 100
         typesTableView.frame = CGRect(x: 0 * xUnit, y: 0, width: 60 * xUnit, height: menuSwipeScroll.frame.height)
         typesTableView.backgroundColor = UIColor.clearColor()
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "bringBack:")
@@ -139,7 +143,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             if self.edited {
 
             if Reachability.isConnectedToNetwork(){
-                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.value), 0)) {
+                dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_BACKGROUND.rawValue), 0)) {
                     self.uploadPreferences()
             }
             }else {
@@ -155,7 +159,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func addToPreferences(){
         for key in dishes.dishes.keys {
-            if !contains(preferences.keys.array, key.name){
+            if !preferences.keys.generate().contains(key.name){
                 preferences[key.name] = [Dish]()
             }
             for dish: Dish in dishes.dishes[key]!{
@@ -179,7 +183,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
             if tableView == preferenceListTableView {
-                return preferences.keys.array.count //can be customized to number of restuarant
+                return preferences.keys.count //can be customized to number of restuarant
             } else {
                 return 1
             }
@@ -192,7 +196,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if tableView == preferenceListTableView {
             return preferences[keys[section]]!.count
         } else {
-            return preferences.keys.array.count
+            return preferences.keys.count
         }
     }
     
@@ -202,7 +206,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // initiates a cell
         if tableView == preferenceListTableView {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         // passes data to each cell
         let key = keys[indexPath.section]
         if let preferences = preferences[key]{
@@ -230,7 +234,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
             return cell
         }
         else {
-            var cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("typeCell", forIndexPath: indexPath) as! TypesTableViewCell
             cell.delegate = self
             cell.textLabel!.text = keys[indexPath.row]
             cell.textLabel!.backgroundColor = UIColor.clearColor()
@@ -306,18 +310,22 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         edited = true
         self.dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
-        let index = find(preferences[dish.location]!, dish)
+        let index = preferences[dish.location]!.indexOf(dish)
         preferences[dish.location]!.removeAtIndex(index!)
         preferenceListTableView.beginUpdates()
         //Finds index of swiped dish and removes it from the array
-        let indexPathForRow = NSIndexPath(forRow: index!, inSection: find(keys, dish.location)!)
+        let indexPathForRow = NSIndexPath(forRow: index!, inSection: keys.indexOf(dish.location)!)
         preferenceListTableView.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
         if preferences[dish.location]!.isEmpty {
             preferences.removeValueForKey(dish.location)
-            let indexSet = NSIndexSet(index: find(keys, dish.location)!)
+            let indexSet = NSIndexSet(index: keys.indexOf(dish.location)!)
             preferenceListTableView.deleteSections(indexSet, withRowAnimation: .Fade)
-            keys = preferences.keys.array
-            keys.sort({$0 < $1})
+            let keysG = preferences.keys.generate()
+            keys.removeAll()
+            for key:String in keysG {
+                keys.append(key)
+            }
+            keys.sortInPlace({$0 < $1})
         }
         preferenceListTableView.endUpdates()
     }
@@ -366,7 +374,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
     
     // TypeDelegate
     func goToType(type: String){
-        let index = find(keys, type)!
+        let index = keys.indexOf(type)!
         menuSwipeScroll.setContentOffset(CGPoint(x: 0.66 * menuSwipeScroll.frame.width, y: 0), animated: true)
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.3))
         dispatch_after(delayTime, dispatch_get_main_queue()){
@@ -388,7 +396,7 @@ class AllPreferenceListViewController:UIViewController, UITableViewDataSource, U
         if segue.identifier == "preferenceInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(preferences[selectedMeal.location]!, selectedMeal) {
+            if let index = preferences[selectedMeal.location]!.indexOf(selectedMeal) {
                 mealInfoViewController.dish = preferences[selectedMeal.location]![index]
             }
         }

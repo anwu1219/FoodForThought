@@ -110,7 +110,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     //Fisher-Yates function to get random dishes into the tinder swiper
     //From http://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
     func shuffle<C: MutableCollectionType where C.Index == Int>(var list: C) -> C {
-        let c = count(list)
+        let c = (list.count)
         if c < 2 { return list }
         for i in 0..<(c - 1) {
             let j = Int(arc4random_uniform(UInt32(c - i))) + i
@@ -132,7 +132,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             //initiates the cell
-            var cell = tableView.dequeueReusableCellWithIdentifier("tinderCell", forIndexPath: indexPath) as! FoodTinderTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("tinderCell", forIndexPath: indexPath) as! FoodTinderTableViewCell
             
             //
             cell.delegate = self
@@ -161,7 +161,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
              dishes.learned["tinder"] = true
         }
         // use the UITableView to animate the removal of this row
-        let index = find(self.menu, dish)!
+        let index = self.menu.indexOf(dish)!
         self.dishes.addToDealtWith(dish.index)
         self.foodTinderTableView.beginUpdates()
         self.menu.removeAtIndex(index)
@@ -353,7 +353,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
         if segue.identifier == "foodTinderSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(menu, selectedMeal) {
+            if let index = menu.indexOf(selectedMeal) {
                 // Sets the dish info in the new view to selected cell's dish
                 mealInfoViewController.dish = menu[index]
             }
@@ -435,7 +435,7 @@ class FoodTinderViewController: UIViewController, UITableViewDataSource, UITable
     }
 }
 
-extension FoodTinderViewController : UIPopoverPresentationControllerDelegate {
+extension FoodTinderViewController {
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None

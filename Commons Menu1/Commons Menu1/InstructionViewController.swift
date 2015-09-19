@@ -40,7 +40,7 @@ class InstructionViewController: UIViewController, UIPageViewControllerDataSourc
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        var pageControl = UIPageControl.appearance()
+        let pageControl = UIPageControl.appearance()
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
         pageControl.backgroundColor = UIColor.clearColor()

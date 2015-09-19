@@ -47,28 +47,28 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
-        label = UILabel(frame: CGRect.nullRect)
+        label = UILabel(frame: CGRect.null)
         label.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         label.backgroundColor = UIColor.clearColor()
         
         
-        chefNoteLabel = UILabel(frame: CGRect.nullRect)
+        chefNoteLabel = UILabel(frame: CGRect.null)
         chefNoteLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         chefNoteLabel.backgroundColor = UIColor.clearColor()
     
-        noIconLabel = UILabel(frame : CGRect.nullRect)
+        noIconLabel = UILabel(frame : CGRect.null)
         noIconLabel.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
         noIconLabel.backgroundColor = UIColor.clearColor()
         noIconLabel.text = "Not Reported"
         
-        susLabels = UIScrollView(frame: CGRect.nullRect)
+        susLabels = UIScrollView(frame: CGRect.null)
         
         
         /**
         utility method for creating the contextual cues
         */
         func createCueLabel() -> UILabel {
-            let label = UILabel(frame: CGRect.nullRect)
+            let label = UILabel(frame: CGRect.null)
             label.textColor = UIColor.whiteColor()
             label.font = UIFont.boldSystemFontOfSize(32.0)
             label.backgroundColor = UIColor.clearColor()
@@ -116,7 +116,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         layer.insertSublayer(itemLikeLayer, atIndex: 0)
         
         // add a pan recognizer
-        var panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
     }
@@ -132,7 +132,7 @@ class FoodTinderTableViewCell: UITableViewCell, UIPopoverPresentationControllerD
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        let halfScreen = screenWidth/2
+     //   let halfScreen = screenWidth/2
         
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds

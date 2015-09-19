@@ -36,7 +36,7 @@ class PreferenceListTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         // create a label that renders the to-do item text
-        label = UILabel(frame: CGRect.nullRect)
+        label = UILabel(frame: CGRect.null)
         label.textColor = UIColor.whiteColor()
         label.textAlignment = NSTextAlignment.Left;
         label.numberOfLines = 2
@@ -47,7 +47,7 @@ class PreferenceListTableViewCell: UITableViewCell {
         
         addSubview(label)
       
-        subLabel.frame = CGRect.nullRect
+        subLabel.frame = CGRect.null
         subLabel.text = "\n(Not Available Today)"
         subLabel.textColor = UIColor.darkGrayColor()
         subLabel.textAlignment = NSTextAlignment.Left;

@@ -10,7 +10,20 @@ import UIKit
 
 
 extension String {
+    
+    
+    
     var html2AttStr: NSMutableAttributedString {
-        return NSMutableAttributedString(data: dataUsingEncoding(NSUTF8StringEncoding)!, options:[NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding], documentAttributes: nil, error: nil)!
+        do {
+            
+            let str = try NSMutableAttributedString(data: dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+            return str
+            
+        } catch {
+            print(error)
+        }
+    return NSMutableAttributedString()
     }
 }
+
+

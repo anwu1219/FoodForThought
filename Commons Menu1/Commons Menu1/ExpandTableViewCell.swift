@@ -26,26 +26,26 @@ class ExpandTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
-        titleView = UIView(frame: CGRect.nullRect)
-        titleLabel = UILabel(frame: CGRect.nullRect)
+        titleView = UIView(frame: CGRect.null)
+        titleLabel = UILabel(frame: CGRect.null)
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
 
-        downArrowImageView = UIImageView(frame: CGRect.nullRect)
+        downArrowImageView = UIImageView(frame: CGRect.null)
         downArrowImageView.image = UIImage(named: "infoItemArrow")
         
-        contentLabel = UITextView(frame: CGRect.nullRect)
+        contentLabel = UITextView(frame: CGRect.null)
         contentLabel.textColor = UIColor.blackColor()
         contentLabel.textColor = UIColor.blueColor()
         contentLabel.editable = false
         contentLabel.scrollEnabled = false
 
         
-        susContentView = UIView(frame: CGRect.nullRect)
+        susContentView = UIView(frame: CGRect.null)
         susContentView.userInteractionEnabled = true
         
-        foodSystemImageView = UIImageView(frame: CGRect.nullRect)
+        foodSystemImageView = UIImageView(frame: CGRect.null)
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -69,9 +69,10 @@ class ExpandTableViewCell: UITableViewCell {
     func checkHeight() {
         susContentView.hidden = !(frame.size.height > UIScreen.mainScreen().bounds.height * 0.1)
     }
-        
+
     func watchFrameChanges() {
-        addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.New|NSKeyValueObservingOptions.Initial, context: nil)
+    //addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.New |NSKeyValueObservingOptions.Initial, context: nil) //pre swift 2
+        addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Initial], context: nil) //post swift 2
     }
         
     func ignoreFrameChanges() {
@@ -89,7 +90,7 @@ class ExpandTableViewCell: UITableViewCell {
     }
     
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change:[NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+   override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change:[String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "frame" {
             checkHeight()
         }

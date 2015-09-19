@@ -71,7 +71,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     private func layoutPage() {
         let width: CGFloat = 0.01 * screenSize.width // a unit of x
         let height: CGFloat = 0.01 * screenSize.height // a unit of y
-        var x: CGFloat = 0.01 * screenSize.width // current x coordinate
+        let x: CGFloat = 0.01 * screenSize.width // current x coordinate
         var y: CGFloat = 0.01 * screenSize.height // current y coordinate
         if let susLabels = dish?.susLabels {
                 
@@ -172,7 +172,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
         }
         
         if let price = dish?.price {
-            if count(price) > 0 {
+            //if  price > 0 {
                 let label = UILabel()
                 //label.backgroundColor = UIColor(red: 0.3, green: 0.6, blue: 0.6, alpha: 0.8)
                 label.text = "Price: \(price)"
@@ -183,11 +183,11 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
                 progScrollInfo.addSubview(label)
                 y += label.frame.height + (0.7*height)
-            }
+            //}
         }
         
         if let ingredients = dish?.ingredients {
-            if count(ingredients) > 0 {
+            if ingredients.count > 0 {
                 let ingLabel = UILabel()
                 //ingLabel.backgroundColor = UIColor(red: 0.6, green: 0.3, blue: 0.6, alpha: 0.8)
                 ingLabel.text = "Ingredients:"
@@ -207,7 +207,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 ingredient.text = "- \(ingredients[i])"
                 ingredient.lineBreakMode = NSLineBreakMode.ByWordWrapping
                 ingredient.numberOfLines = 0
-                let num = CGFloat(2 * count(ingredients[i]))
+                //let num = CGFloat(2 * count(ingredients[i]))
                 ingredient.frame = CGRectMake( 2 * x, y, 91 * width, 10 * height)
 
                 //ingreident.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.8)
@@ -303,7 +303,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
     }
 }
 
-extension MealInfoViewController : UIPopoverPresentationControllerDelegate {
+extension MealInfoViewController {
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None

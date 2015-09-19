@@ -27,7 +27,7 @@ class Dishes{
     }
     
     func addRestaurant(restaurant: RestProfile) {
-        if !contains(dishes.keys, restaurant){
+        if dishes.keys.contains(restaurant)==false{
             dishes[restaurant] = [Dish]()
             cached[restaurant] = false
         }
@@ -61,7 +61,7 @@ class Dishes{
         
     
     func getDishByIndex(index: Int) -> Dish? {
-        for restaurant in dishes.keys.array {
+        for restaurant in dishes.keys {
             for dish in dishes[restaurant]!{
                 if dish.index == index{
                     return dish

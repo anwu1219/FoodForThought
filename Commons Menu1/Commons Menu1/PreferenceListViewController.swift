@@ -69,7 +69,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PreferenceListTableViewCell
         let dish = preferences[indexPath.row]
         cell.delegate = self
         cell.selectionStyle = .None
@@ -119,7 +119,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
     */
     func toDoItemDeleted(dish: Dish){
         //Finds index of swiped dish and removes it from the array
-        var index = find(preferences, dish)!
+        let index = preferences.indexOf(dish)!
         preferences.removeAtIndex(index)
         dishes.removeFromDealtWith(dish.index)
         // use the UITableView to animate the removal of this row
@@ -137,7 +137,7 @@ class PreferenceListViewController: UIViewController, UITableViewDataSource, UIT
         if segue.identifier == "preferenceInfoSegue" {
             let mealInfoViewController = segue.destinationViewController as! MealInfoViewController
             let selectedMeal = sender! as! Dish
-            if let index = find(preferences, selectedMeal) {
+            if let index = preferences.indexOf(selectedMeal) {
                 mealInfoViewController.dish = preferences[index]
             }
         }

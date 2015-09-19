@@ -59,8 +59,12 @@ class RestMenuViewController: UIViewController {
         //Places the button with the list of restaurants get from restaurant map
         restaurants = dishes.dishes
         if let restaurants = restaurants{
-            keys = restaurants.keys.array
-            keys.sort({$0.name < $1.name})
+            keys.removeAll()
+            let keysG = restaurants.keys.generate()
+            for key: RestProfile in keysG {
+                keys.append(key)
+            }
+            keys.sortInPlace({$0.name < $1.name})
             placeButtons(keys)
         }
     }
@@ -71,8 +75,8 @@ class RestMenuViewController: UIViewController {
     */
     private func placeButtons(keys: [RestProfile]) {
         for i in 0..<keys.count {
-            let button = UIButton.buttonWithType(UIButtonType.System) as! UIButton
-            let downAlign: CGFloat = 20
+            let button = UIButton(type: UIButtonType.System)
+         //   let downAlign: CGFloat = 20
             
             // Sets the size and position of the button
             let buttonWidth = vertScrollMenu.contentSize.width
