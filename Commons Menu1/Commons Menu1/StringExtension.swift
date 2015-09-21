@@ -20,7 +20,7 @@ extension String {
             return str
             
         } catch {
-            print(error)
+            //print(error)
         }
     return NSMutableAttributedString()
     }

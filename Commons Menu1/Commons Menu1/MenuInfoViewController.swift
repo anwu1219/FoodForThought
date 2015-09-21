@@ -118,7 +118,7 @@ class MealInfoViewController: UIViewController, UIPopoverPresentationControllerD
                 
                 var initX: CGFloat = 0
             
-            var frame = CGRectMake(initX, height, labelWidth, labelWidth)
+            let frame = CGRectMake(initX, height, labelWidth, labelWidth)
             if dish!.eco.count > 0 {
                 let ecoIcon = SuperIconButton(labels: dish!.eco, frame: frame, name: "Eco")
                 ecoIcon.frame = CGRectMake(initX, height, labelWidth, labelWidth)

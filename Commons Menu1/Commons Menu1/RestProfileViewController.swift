@@ -415,8 +415,7 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
         let wv = UIWebView()
         vc.view.addSubview(wv)
         wv.frame = vc.view.bounds
-       // wv.autoresizingMask = .FlexibleWidth | .FlexibleHeight //pre swift 2
-        wv.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] //post swift 2
+        wv.autoresizingMask = [.FlexibleWidth, .FlexibleHeight] 
         if let url = NSURL(string: restProf.url) {
         let request = NSURLRequest(URL: url)
         wv.loadRequest(request)

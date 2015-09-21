@@ -132,8 +132,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    // override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) { //pre swift 2
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) { //post swift 2
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) { 
         self.view.endEditing(true)
     }
     

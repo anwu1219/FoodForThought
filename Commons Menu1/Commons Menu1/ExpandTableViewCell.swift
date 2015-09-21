@@ -71,8 +71,7 @@ class ExpandTableViewCell: UITableViewCell {
     }
 
     func watchFrameChanges() {
-    //addObserver(self, forKeyPath: "frame", options: NSKeyValueObservingOptions.New |NSKeyValueObservingOptions.Initial, context: nil) //pre swift 2
-        addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New], context: nil) //post swift 2
+        addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.New], context: nil) 
         addObserver(self, forKeyPath: "frame", options: [NSKeyValueObservingOptions.Initial], context: nil)
     }
         

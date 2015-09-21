@@ -14,8 +14,7 @@ extension UIViewController {
     func getDayOfWeek()->Int {
         let date = NSDate()
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-       // let myComponents = myCalendar.components(.CalendarUnitWeekday, fromDate: date) //pre swift 2
-        let myComponents = myCalendar.components(NSCalendarUnit.Weekday, fromDate: date)    //post swift 2
+        let myComponents = myCalendar.components(NSCalendarUnit.Weekday, fromDate: date) 
 
         
         let weekDay = myComponents.weekday
