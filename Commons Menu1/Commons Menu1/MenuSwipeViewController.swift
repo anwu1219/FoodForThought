@@ -330,9 +330,9 @@ class MenuSwipeViewController: UIViewController, UITableViewDataSource, UITableV
     func addLabels() {
         let height: CGFloat = screenSize.height
         let width: CGFloat = screenSize.width
-        let labels = ["Restaurant Label"]
+     //   let labels = ["Restaurant Label"]
         var x: CGFloat = width * 0.01
-        var y: CGFloat = height * 0.01
+        let y: CGFloat = height * 0.01
         if restProf.eco.count > 0 {
             let ecoIcon = SuperIconButton(labels: restProf.eco, frame: CGRect.null, name: "Eco")
             ecoIcon.addTarget(self, action: "showLabelInfo:", forControlEvents: UIControlEvents.TouchUpInside)

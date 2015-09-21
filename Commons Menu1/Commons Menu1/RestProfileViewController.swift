@@ -177,9 +177,9 @@ class RestProfileViewController: UIViewController, UIScrollViewDelegate {
     }
     
     
-    func popup(sender: UIButton!) {
-        let button = sender as! IconButton
-    }
+//    func popup(sender: UIButton!) {
+//        let button = sender as! IconButton
+//    }
     
     func viewInfoPage(sender: AnyObject){
         performSegueWithIdentifier("viewInfoPageSegue", sender: sender)
