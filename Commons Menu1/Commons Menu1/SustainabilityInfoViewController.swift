@@ -78,10 +78,10 @@ class SustainabilityInfoViewController: UIViewController, UIPopoverPresentationC
         
         
         dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-            for mutableAttributedString in self.susInfo {
-                mutableAttributedString.setAllAsLink("food.davidson.edu/", linkURL: "http://http://food.davidson.edu/")
-            }
             self.susInfo[0].setAsLink("food.davidson.edu/#food-issues", linkURL: "http://food.davidson.edu/#food-issues")
+            for mutableAttributedString in self.susInfo {
+                mutableAttributedString.setAllAsLink("food.davidson.edu/", linkURL: "http://food.davidson.edu/")
+            }
             self.susInfo[2].setAsLink(" here", linkURL: "https://stars.aashe.org/pages/about/stars-overview.html")
             self.susInfo[4].setAsLink(" here", linkURL: "http://www.ers.usda.gov/topics/food-nutrition-assistance/food-security-in-the-us/definitions-of-food-security.aspx")
             self.susInfo[4].setAsLink(" report ", linkURL: "http://www.nrdc.org/greenbusiness/guides/sports/files/game-day-food-report.pdf")
