@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     var dishes = Dishes()
     final private let screenSize: CGRect = UIScreen.mainScreen().bounds
+    var segueShouldOccur = true
     private var isTOCButton = Bool()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var message: UILabel!
@@ -173,7 +174,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let user = PFUser()
         user.username = userEmailAddress
         user.password = userPassword
-        user.email = userEmailAddress
+        if (isValidEmail(userEmailAddress)){
+            user.email = userEmailAddress
+        }
         user.signUpInBackgroundWithBlock {
             (succeeded: Bool, error: NSError?) -> Void in
             if error == nil {
@@ -192,7 +195,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
-        if isValidEmail(emailAddress.text!) == true {
+        
+        if isValidEmail(emailAddress.text!) == false {
+            let notPermitted = UIAlertController(title: "Alert", message: "We recommomend you to use a valid e-mail for password recovery purposes.", preferredStyle: .Alert)
+            let okButton = UIAlertAction(title: "Go back", style: .Cancel, handler: nil)
+
+            let noButton = UIAlertAction(title: "Continue Anyway", style: .Default, handler: { alertAction in self.realSignUp(sender)})
+            notPermitted.addAction(noButton)
+            notPermitted.addAction(okButton)
+            self.presentViewController(notPermitted, animated: false, completion: nil)
+            
+        }
             //ensure password is longer than 6 characters and is shorter than 20 characters
             if checkPasswordLengthShort(password.text!) == true {
                 let alertController = UIAlertController(title: "Terms & Conditions",
@@ -222,9 +235,44 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let passwordLengthNotPermitted = UIAlertView(title: "Password Length Error", message: "Password must be between 6 and 20 characters", delegate: nil, cancelButtonTitle: "OK")
                 // shows alert to user
                 passwordLengthNotPermitted.show()
-            }
         }
     }
+    
+    
+    func realSignUp(sender: AnyObject){
+        //ensure password is longer than 6 characters and is shorter than 20 characters
+        if checkPasswordLengthShort(password.text!) == true {
+            let alertController = UIAlertController(title: "Terms & Conditions",
+                message: "I have read and agree to the \nTerms & Conditions.",
+                preferredStyle: UIAlertControllerStyle.Alert
+            )
+            alertController.addAction(UIAlertAction(title: "I Agree",
+                style: UIAlertActionStyle.Default,
+                handler: { alertController in self.processSignUp()}
+                )
+            )
+            alertController.addAction(UIAlertAction(title: "Cancel",
+                style: UIAlertActionStyle.Default,
+                handler: { alertController in self.cancelSignUp() }
+                )
+            )
+            alertController.addAction(UIAlertAction(title: "Read Terms & Conditions",
+                style: UIAlertActionStyle.Default,
+                handler: { alertController in self.openEULAButton(sender) }
+                )
+            )
+            
+            // Display alert
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+        else {
+            let passwordLengthNotPermitted = UIAlertView(title: "Password Length Error", message: "Password must be between 6 and 20 characters", delegate: nil, cancelButtonTitle: "OK")
+            // shows alert to user
+            passwordLengthNotPermitted.show()
+        }
+
+    }
+    
     
     @IBAction func openEULAButton(sender: AnyObject) {
         let vc = UIViewController()
@@ -304,7 +352,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
             titleTextField = textField
             titleTextField?.keyboardType = UIKeyboardType.EmailAddress
-            textField.placeholder = "Email"
+            textField.placeholder = "Email/User Name"
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
@@ -392,7 +440,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //from http://stackoverflow.com/questions/9407571/to-stop-segue-and-show-alert
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject!) -> Bool {
         if identifier == "signInToNavigationSegue" {
-            var segueShouldOccur = true
             var segueShouldOccurEULA = true
             
             if isValidEmail(emailAddress.text!) == false {
@@ -405,12 +452,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
             
             if !segueShouldOccur {
-                let notPermitted = UIAlertView(title: "Alert", message: "Email is not valid.", delegate: nil, cancelButtonTitle: "OK")
-                
-                // shows alert to user
-                notPermitted.show()
-                
-                // prevent segue from occurring
                 return false
             }
             
@@ -420,8 +461,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
         // by default perform the segue transition
-        return true
+        print(segueShouldOccur)
+        return segueShouldOccur
     }
+    
+
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
