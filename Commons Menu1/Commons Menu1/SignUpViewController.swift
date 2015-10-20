@@ -197,10 +197,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // Build the terms and conditions alert
         if checkPasswordLengthShort(password.text!) == true {
         if isValidEmail(emailAddress.text!) == false {
-            let notPermitted = UIAlertController(title: "Alert", message: "We recommomend you to use a valid e-mail for password recovery purposes.", preferredStyle: .Alert)
+            let notPermitted = UIAlertController(title: "Alert", message: "We recommend you to use a valid email for password recovery purposes.", preferredStyle: .Alert)
             let okButton = UIAlertAction(title: "Go back", style: .Cancel, handler: nil)
 
-            let noButton = UIAlertAction(title: "Continue Anyway", style: .Default, handler: { alertAction in self.realSignUp(sender)})
+            let noButton = UIAlertAction(title: "Continue anyway", style: .Default, handler: { alertAction in self.realSignUp(sender)})
             notPermitted.addAction(noButton)
             notPermitted.addAction(okButton)
             self.presentViewController(notPermitted, animated: false, completion: nil)
@@ -345,14 +345,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
     @IBAction func resetPasswordPressed(sender: AnyObject) {
         let titlePrompt = UIAlertController(title: "Reset password",
-            message: "Enter the email you registered with: ()",
+            message: "Enter the email you registered with: \n(If you did not register with a valid email address, contact us at\njostjameslopez@davidson.edu)",
             preferredStyle: .Alert)
         
         var titleTextField: UITextField?
         titlePrompt.addTextFieldWithConfigurationHandler { (textField) -> Void in
             titleTextField = textField
             titleTextField?.keyboardType = UIKeyboardType.EmailAddress
-            textField.placeholder = "Email/User Name"
+            textField.placeholder = "Email"
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
