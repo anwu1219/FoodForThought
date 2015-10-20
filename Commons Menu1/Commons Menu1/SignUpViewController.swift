@@ -195,7 +195,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //from http://blog.bizzi-body.com/2015/02/10/ios-swift-1-2-parse-com-tutorial-users-sign-up-sign-in-and-securing-data-part-3-or-3/
     @IBAction func signUp(sender: AnyObject) {
         // Build the terms and conditions alert
-        
+        if checkPasswordLengthShort(password.text!) == true {
         if isValidEmail(emailAddress.text!) == false {
             let notPermitted = UIAlertController(title: "Alert", message: "We recommomend you to use a valid e-mail for password recovery purposes.", preferredStyle: .Alert)
             let okButton = UIAlertAction(title: "Go back", style: .Cancel, handler: nil)
@@ -207,7 +207,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
         }
             //ensure password is longer than 6 characters and is shorter than 20 characters
-            if checkPasswordLengthShort(password.text!) == true {
+
                 let alertController = UIAlertController(title: "Terms & Conditions",
                     message: "I have read and agree to the \nTerms & Conditions.",
                     preferredStyle: UIAlertControllerStyle.Alert
@@ -345,7 +345,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
     @IBAction func resetPasswordPressed(sender: AnyObject) {
         let titlePrompt = UIAlertController(title: "Reset password",
-            message: "Enter the email you registered with:",
+            message: "Enter the email you registered with: ()",
             preferredStyle: .Alert)
         
         var titleTextField: UITextField?
