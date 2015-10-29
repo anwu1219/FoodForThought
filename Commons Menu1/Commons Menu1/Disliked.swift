@@ -30,7 +30,7 @@ class Disliked: PFObject, PFSubclassing {
     
     
     func getDisliked(object: PFObject){
-        self.dishName = object["name"] as! String
+        self.dishName = object["dishName"] as! String
         self.location = object["location"] as! String
     }
     

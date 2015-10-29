@@ -165,9 +165,8 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     */
     private func fetchPreferenceData(){
         if let currentUser = PFUser.currentUser(){
-            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             let query = PFQuery(className:"Preference")
-            query.whereKey("createdBy", equalTo: user)
+            query.whereKey("createdBy", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{
@@ -214,9 +213,8 @@ class MainMenuViewController: UIViewController, UIPopoverPresentationControllerD
     */
     private func fetchDislikeData(){
         if let currentUser = PFUser.currentUser(){
-            let user = PFObject(withoutDataWithClassName: "_User", objectId: currentUser.objectId)
             let query = PFQuery(className:"Disliked")
-            query.whereKey("createdBy", equalTo: user)
+            query.whereKey("createdBy", equalTo: currentUser)
             query.findObjectsInBackgroundWithBlock{
                 (objects: [AnyObject]?, error: NSError?) -> Void in
                 if error == nil && objects != nil{
