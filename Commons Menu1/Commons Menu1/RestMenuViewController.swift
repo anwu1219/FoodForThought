@@ -52,7 +52,7 @@ class RestMenuViewController: UIViewController {
         //Formats the scroll view
         vertScrollMenu.frame = CGRectMake(24, screenSize.height * 0.32, screenSize.width, screenSize.height * 0.6)
         vertScrollMenu.contentSize.width = screenSize.width
-        vertScrollMenu.contentSize.height = 350
+        vertScrollMenu.contentSize.height = 600
         vertScrollMenu.backgroundColor = UIColor.clearColor()
         self.view.addSubview(vertScrollMenu)
 

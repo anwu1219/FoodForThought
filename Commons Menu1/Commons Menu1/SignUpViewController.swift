@@ -345,7 +345,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     //found at http://stackoverflow.com/questions/28610031/parse-password-reset-function
     @IBAction func resetPasswordPressed(sender: AnyObject) {
         let titlePrompt = UIAlertController(title: "Reset password",
-            message: "Enter the email you registered with: \n(If you did not register with a valid email address, contact us at\njostjameslopez@davidson.edu)",
+            message: "Enter the email you registered with. \nIf you did not register with a valid email address, contact us instead at\njostjameslopez@davidson.edu",
             preferredStyle: .Alert)
         
         var titleTextField: UITextField?
@@ -461,7 +461,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
         // by default perform the segue transition
-        print(segueShouldOccur)
         return segueShouldOccur
     }
     
